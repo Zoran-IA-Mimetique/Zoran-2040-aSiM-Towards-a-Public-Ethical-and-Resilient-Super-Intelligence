@@ -1,0 +1,579 @@
+{
+  "version": "OMEGA_20260515",
+  "mission_id": "ZORAN_FRACTAL_LAW_TREE_OMEGA_20260515",
+  "generated_at": "2026-05-15T18:35:00+02:00",
+  "families": [
+    { "id": "ULG",      "label": "ULG vΩ7.2 — Grammaire Latente Universelle" },
+    { "id": "DVE",      "label": "ΔVARIANT_ENGINE Ω⁸" },
+    { "id": "UDE",      "label": "Unified Discovery Engine Ω7.3" },
+    { "id": "GHUC",     "label": "GHUC Ω⁸ — Consolidation Scientifique" },
+    { "id": "WP11",     "label": "WP-11 — Opérationnaliser la cohérence" },
+    { "id": "WP12",     "label": "WP-12 — Cadres d'admissibilité" },
+    { "id": "SDE",      "label": "SDE-CF — Skopein Dual Engine" },
+    { "id": "PAL",      "label": "Palieronic — Sauts de palier" },
+    { "id": "VAR",      "label": "Variantes" },
+    { "id": "ISO",      "label": "Isomorphismes & Ponts" }
+  ],
+  "nodes": [
+    {
+      "id": "ULG-001", "title": "Grammaire Latente Universelle",
+      "canonical": true, "palieronic": false, "family": "ULG",
+      "domains": ["topologie cognitive", "linguistique latente"],
+      "parents": [], "children": ["ULG-002", "ULG-003", "ULG-004", "ULG-005"],
+      "related": ["SDE-001", "ISO-001"], "contradictions": [],
+      "examples": ["Détection d'invariants entre modèles", "Alignement inter-domaines"],
+      "html_description": "Loi fondatrice postulant l'existence d'une grammaire latente universelle sous-tendant tous les cadres représentationnels. Elle agit comme l'attracteur racine de la famille ULG.",
+      "equations": ["ULG(x) = lim_{n→∞} ∩_{k≤n} F_k(x)"],
+      "S_local": 0.97, "S_global": 0.91, "stability": "stable", "weight": 1.0, "doi": "zoran:ULG/vΩ7.2/001"
+    },
+    {
+      "id": "ULG-002", "title": "Convergence des cadres latents",
+      "canonical": true, "palieronic": false, "family": "ULG",
+      "domains": ["topologie cognitive"],
+      "parents": ["ULG-001"], "children": ["VAR-003"],
+      "related": ["GHUC-004"], "contradictions": [],
+      "examples": ["Convergence VAE/transformer", "Embeddings cross-lingual"],
+      "html_description": "Tout cadre représentationnel admissible converge asymptotiquement vers un sous-espace stable de la grammaire latente universelle.",
+      "equations": ["d(F_k, ULG) → 0 quand k → ∞"],
+      "S_local": 0.93, "S_global": 0.84, "stability": "stable", "weight": 0.82
+    },
+    {
+      "id": "ULG-003", "title": "Invariance morphologique",
+      "canonical": true, "palieronic": false, "family": "ULG",
+      "domains": ["morphologie", "structure"],
+      "parents": ["ULG-001"], "children": [],
+      "related": ["ISO-001"], "contradictions": [],
+      "examples": ["Symétries préservées sous transformation"],
+      "html_description": "Les structures morphologiques fondamentales sont invariantes sous reparamétrisation du cadre.",
+      "equations": ["φ ∘ T = φ pour tout T ∈ Aut(F)"],
+      "S_local": 0.91, "S_global": 0.79, "stability": "stable", "weight": 0.75
+    },
+    {
+      "id": "ULG-004", "title": "Densité de structure",
+      "canonical": false, "palieronic": false, "family": "ULG",
+      "domains": ["mesure", "densité"],
+      "parents": ["ULG-001"], "children": [],
+      "related": ["GHUC-002"], "contradictions": [],
+      "examples": ["Compactification de représentations"],
+      "html_description": "Mesure la densité informationnelle d'une zone du cadre latent. Une densité élevée signale un attracteur potentiel.",
+      "equations": ["ρ(x) = lim_{ε→0} |B_ε(x) ∩ ULG| / vol(B_ε)"],
+      "S_local": 0.88, "S_global": 0.71, "stability": "stable", "weight": 0.62
+    },
+    {
+      "id": "ULG-005", "title": "Propagation latente fractale",
+      "canonical": false, "palieronic": true, "family": "ULG",
+      "domains": ["fractale", "propagation"],
+      "parents": ["ULG-001"], "children": ["PAL-002"],
+      "related": ["PAL-001"], "contradictions": [],
+      "examples": ["Diffusion auto-similaire d'un concept"],
+      "html_description": "La propagation d'un signal dans le cadre latent suit une dynamique fractale auto-similaire.",
+      "equations": ["P(x, t) = P(λ·x, λ^H·t)"],
+      "S_local": 0.84, "S_global": 0.74, "stability": "stable", "weight": 0.68
+    },
+
+    {
+      "id": "DVE-001", "title": "ΔVariant Engine Ω⁸",
+      "canonical": true, "palieronic": false, "family": "DVE",
+      "domains": ["génération de variantes", "exploration"],
+      "parents": [], "children": ["DVE-002", "DVE-003", "DVE-004", "DVE-005"],
+      "related": ["ISO-003", "UDE-001"], "contradictions": [],
+      "examples": ["Moteur de bifurcation contrôlée", "Génération de variantes scientifiques"],
+      "html_description": "Moteur canonique de génération de variantes structurées. Produit des bifurcations contrôlées dans l'espace des cadres.",
+      "equations": ["ΔV(x) = { y | d(x,y) ≤ ε ∧ admissible(y) }"],
+      "S_local": 0.96, "S_global": 0.88, "stability": "stable", "weight": 0.95
+    },
+    {
+      "id": "DVE-002", "title": "Loi des dérivations contrôlées",
+      "canonical": true, "palieronic": false, "family": "DVE",
+      "domains": ["dérivation"],
+      "parents": ["DVE-001"], "children": ["VAR-001"],
+      "related": ["WP12-001"], "contradictions": [],
+      "examples": ["Dérivation pas-à-pas vérifiée"],
+      "html_description": "Toute dérivation doit être traçable, réversible et vérifiable contre les cadres d'admissibilité WP-12.",
+      "equations": ["∀ d ∈ Derivations : trace(d) ≠ ∅ ∧ admissible(d)"],
+      "S_local": 0.92, "S_global": 0.83, "stability": "stable", "weight": 0.78
+    },
+    {
+      "id": "DVE-003", "title": "Bifurcation cohérente",
+      "canonical": true, "palieronic": false, "family": "DVE",
+      "domains": ["bifurcation"],
+      "parents": ["DVE-001"], "children": ["VAR-002"],
+      "related": ["UDE-003"], "contradictions": [],
+      "examples": ["Split de variante préservant S_global"],
+      "html_description": "Une bifurcation n'est admise que si elle préserve S_global sous un seuil de dégradation maximal.",
+      "equations": ["S_global(branch) ≥ S_global(parent) − δ"],
+      "S_local": 0.90, "S_global": 0.81, "stability": "stable", "weight": 0.74
+    },
+    {
+      "id": "DVE-004", "title": "Espace de variantes admissibles",
+      "canonical": false, "palieronic": false, "family": "DVE",
+      "domains": ["espace de variantes"],
+      "parents": ["DVE-001"], "children": [],
+      "related": ["WP12-001"], "contradictions": [],
+      "examples": ["Énumération filtrée par WP-12"],
+      "html_description": "Sous-espace des variantes filtrées par les cadres d'admissibilité de WP-12.",
+      "equations": ["A(ΔV) = ΔV(x) ∩ WP12"],
+      "S_local": 0.87, "S_global": 0.76, "stability": "stable", "weight": 0.66
+    },
+    {
+      "id": "DVE-005", "title": "Filtrage entropique",
+      "canonical": false, "palieronic": false, "family": "DVE",
+      "domains": ["entropie", "filtrage"],
+      "parents": ["DVE-001"], "children": [],
+      "related": ["GHUC-003"], "contradictions": [],
+      "examples": ["Élagage par excès d'entropie locale"],
+      "html_description": "Filtre éliminant les variantes dont l'entropie excède le seuil de cohérence locale.",
+      "equations": ["H(v) > H_max ⇒ prune(v)"],
+      "S_local": 0.85, "S_global": 0.70, "stability": "stable", "weight": 0.58
+    },
+
+    {
+      "id": "UDE-001", "title": "Unified Discovery Engine",
+      "canonical": true, "palieronic": false, "family": "UDE",
+      "domains": ["découverte", "exploration"],
+      "parents": [], "children": ["UDE-002", "UDE-003", "UDE-004", "UDE-005"],
+      "related": ["DVE-001", "ISO-003"], "contradictions": [],
+      "examples": ["Découverte conjointe attracteurs/variantes"],
+      "html_description": "Moteur unifié de découverte structurelle. Couple exploration et exploitation dans le graphe des cadres.",
+      "equations": ["UDE = argmax_{path} { gain(path) − cost(path) }"],
+      "S_local": 0.95, "S_global": 0.86, "stability": "stable", "weight": 0.93
+    },
+    {
+      "id": "UDE-002", "title": "Cartographie des attracteurs",
+      "canonical": true, "palieronic": false, "family": "UDE",
+      "domains": ["attracteurs"],
+      "parents": ["UDE-001"], "children": [],
+      "related": ["GHUC-001"], "contradictions": [],
+      "examples": ["Détection de pôles structurels"],
+      "html_description": "Procédure de cartographie systématique des attracteurs du graphe relationnel.",
+      "equations": ["A = { x | div(F)(x) < 0 ∧ ‖∇F(x)‖ → 0 }"],
+      "S_local": 0.91, "S_global": 0.82, "stability": "stable", "weight": 0.77
+    },
+    {
+      "id": "UDE-003", "title": "Découverte par résonance",
+      "canonical": false, "palieronic": false, "family": "UDE",
+      "domains": ["résonance"],
+      "parents": ["UDE-001"], "children": ["VAR-002"],
+      "related": ["DVE-003"], "contradictions": [],
+      "examples": ["Saut sur loi co-résonante"],
+      "html_description": "Découverte de lois nouvelles par résonance structurelle avec une loi connue.",
+      "equations": ["res(L1, L2) = ⟨φ(L1), φ(L2)⟩ / (‖φ(L1)‖·‖φ(L2)‖)"],
+      "S_local": 0.86, "S_global": 0.72, "stability": "stable", "weight": 0.64
+    },
+    {
+      "id": "UDE-004", "title": "Frontière de l'inconnu",
+      "canonical": false, "palieronic": true, "family": "UDE",
+      "domains": ["exploration", "frontière"],
+      "parents": ["UDE-001"], "children": ["PAL-003"],
+      "related": ["PAL-001"], "contradictions": [],
+      "examples": ["Cartographie de la frange exploratoire"],
+      "html_description": "Hypersurface séparant l'espace exploré de l'espace inconnu. Elle est elle-même un objet dynamique.",
+      "equations": ["∂U = { x | ε(x) = ε_threshold }"],
+      "S_local": 0.82, "S_global": 0.69, "stability": "stable", "weight": 0.61
+    },
+    {
+      "id": "UDE-005", "title": "Heuristique de saut",
+      "canonical": false, "palieronic": false, "family": "UDE",
+      "domains": ["heuristique"],
+      "parents": ["UDE-001"], "children": [],
+      "related": ["PAL-004"], "contradictions": [],
+      "examples": ["Saut hors-cadre vers un attracteur distal"],
+      "html_description": "Heuristique guidant les sauts longue portée vers des attracteurs non-locaux.",
+      "equations": ["P(jump) ∝ exp(−d(x, A) / τ)"],
+      "S_local": 0.79, "S_global": 0.66, "stability": "stable", "weight": 0.55
+    },
+
+    {
+      "id": "GHUC-001", "title": "GHUC Ω⁸ — Consolidation Scientifique",
+      "canonical": true, "palieronic": false, "family": "GHUC",
+      "domains": ["consolidation", "méta-théorie"],
+      "parents": [], "children": ["GHUC-002", "GHUC-003", "GHUC-004", "GHUC-005"],
+      "related": ["ISO-004", "ISO-005"], "contradictions": [],
+      "examples": ["Méta-loi de consolidation des familles"],
+      "html_description": "Attracteur majeur. Consolide les familles de lois sous une méta-structure de cohérence Ω⁸.",
+      "equations": ["GHUC = ⨁_{F ∈ Families} consolidate(F)"],
+      "S_local": 0.98, "S_global": 0.94, "stability": "stable", "weight": 1.0, "doi": "zoran:GHUC/Ω8/001"
+    },
+    {
+      "id": "GHUC-002", "title": "Compression sémantique",
+      "canonical": true, "palieronic": false, "family": "GHUC",
+      "domains": ["compression"],
+      "parents": ["GHUC-001"], "children": ["VAR-003"],
+      "related": ["ULG-004"], "contradictions": [],
+      "examples": ["Compression sans perte structurelle"],
+      "html_description": "Compression des cadres préservant l'information structurelle pertinente.",
+      "equations": ["C(F) tel que I_struct(C(F)) = I_struct(F)"],
+      "S_local": 0.92, "S_global": 0.85, "stability": "stable", "weight": 0.81
+    },
+    {
+      "id": "GHUC-003", "title": "Pruning structurel",
+      "canonical": true, "palieronic": false, "family": "GHUC",
+      "domains": ["pruning", "élagage"],
+      "parents": ["GHUC-001"], "children": [],
+      "related": ["DVE-005"], "contradictions": [],
+      "examples": ["Élagage de branches redondantes"],
+      "html_description": "Élagage automatique des branches dont le rapport gain/bruit chute sous le seuil de cohérence.",
+      "equations": ["prune(b) ⟺ gain(b)/noise(b) < θ"],
+      "S_local": 0.93, "S_global": 0.86, "stability": "stable", "weight": 0.83
+    },
+    {
+      "id": "GHUC-004", "title": "Fusion de cadres",
+      "canonical": false, "palieronic": false, "family": "GHUC",
+      "domains": ["fusion"],
+      "parents": ["GHUC-001"], "children": [],
+      "related": ["ULG-002"], "contradictions": [],
+      "examples": ["Fusion de deux familles compatibles"],
+      "html_description": "Procédure de fusion de cadres compatibles avec préservation des invariants.",
+      "equations": ["F1 ⊕ F2 si Inv(F1) ∩ Inv(F2) ≠ ∅"],
+      "S_local": 0.88, "S_global": 0.78, "stability": "stable", "weight": 0.72
+    },
+    {
+      "id": "GHUC-005", "title": "Stabilisation des isomorphismes",
+      "canonical": false, "palieronic": false, "family": "GHUC",
+      "domains": ["isomorphismes"],
+      "parents": ["GHUC-001"], "children": [],
+      "related": ["ISO-001", "ISO-002", "ISO-003"], "contradictions": [],
+      "examples": ["Verrouillage d'un pont structurel"],
+      "html_description": "Verrouille un isomorphisme détecté comme stable sous perturbation contrôlée.",
+      "equations": ["stab(iso) ⟺ ∀ε<ε0 : iso préservé"],
+      "S_local": 0.86, "S_global": 0.77, "stability": "stable", "weight": 0.70
+    },
+
+    {
+      "id": "WP11-001", "title": "Opérationnalisation de la cohérence",
+      "canonical": true, "palieronic": false, "family": "WP11",
+      "domains": ["cohérence", "métrique"],
+      "parents": [], "children": ["WP11-002", "WP11-003", "WP11-004", "WP11-005"],
+      "related": ["WP12-001", "ISO-002"], "contradictions": [],
+      "examples": ["Pipeline de mesure S_local + S_global"],
+      "html_description": "Cadre opérationnel rendant la cohérence mesurable, auditable et différentiée entre local et global.",
+      "equations": ["S = (S_local, S_global), avec S_local ⊥ S_global a priori"],
+      "S_local": 0.96, "S_global": 0.92, "stability": "stable", "weight": 0.97
+    },
+    {
+      "id": "WP11-002", "title": "Métrique S_local",
+      "canonical": true, "palieronic": false, "family": "WP11",
+      "domains": ["métrique locale"],
+      "parents": ["WP11-001"], "children": [],
+      "related": ["WP11-004"], "contradictions": [],
+      "examples": ["Score de cohérence intra-attracteur"],
+      "html_description": "Mesure la cohérence autour d'un attracteur réduit. Insensible à la structure globale.",
+      "equations": ["S_local(x) = 1 − var_{y∈N(x)}(d_struct(x,y))"],
+      "S_local": 0.94, "S_global": 0.81, "stability": "stable", "weight": 0.84
+    },
+    {
+      "id": "WP11-003", "title": "Métrique S_global",
+      "canonical": true, "palieronic": false, "family": "WP11",
+      "domains": ["métrique globale"],
+      "parents": ["WP11-001"], "children": [],
+      "related": ["WP11-004"], "contradictions": [],
+      "examples": ["Score systémique multi-cadres"],
+      "html_description": "Mesure la cohérence systémique à travers tous les cadres. Insensible aux pics locaux trompeurs.",
+      "equations": ["S_global = 1 − E_{F1,F2}[contradict(F1,F2)]"],
+      "S_local": 0.92, "S_global": 0.89, "stability": "stable", "weight": 0.85
+    },
+    {
+      "id": "WP11-004", "title": "Distinction stricte S_local / S_global",
+      "canonical": true, "palieronic": false, "family": "WP11",
+      "domains": ["méta-règle"],
+      "parents": ["WP11-001"], "children": ["WP11-005"],
+      "related": ["WP11-002", "WP11-003"], "contradictions": [],
+      "examples": ["Refus d'inférer S_global depuis S_local"],
+      "html_description": "Règle méta : interdit toute inférence automatique d'un S_global élevé à partir d'un S_local élevé.",
+      "equations": ["¬( S_local ↑ ⇒ S_global ↑ )"],
+      "S_local": 0.97, "S_global": 0.93, "stability": "stable", "weight": 0.92
+    },
+    {
+      "id": "WP11-005", "title": "Détection de fausse cohérence",
+      "canonical": false, "palieronic": false, "family": "WP11",
+      "domains": ["audit", "anti-illusion"],
+      "parents": ["WP11-004"], "children": ["VAR-005"],
+      "related": ["GHUC-003"], "contradictions": ["UDE-003"],
+      "examples": ["Détection de résonance trompeuse"],
+      "html_description": "Détecte les configurations où S_local élevé masque un S_global dégradé.",
+      "equations": ["alert ⟺ S_local − S_global > Δ_max"],
+      "S_local": 0.89, "S_global": 0.80, "stability": "stable", "weight": 0.76
+    },
+
+    {
+      "id": "WP12-001", "title": "Cadres d'admissibilité",
+      "canonical": true, "palieronic": false, "family": "WP12",
+      "domains": ["admissibilité"],
+      "parents": [], "children": ["WP12-002", "WP12-003", "WP12-004", "WP12-005"],
+      "related": ["DVE-002", "DVE-004", "ISO-002"], "contradictions": [],
+      "examples": ["Filtre des variantes émergentes"],
+      "html_description": "Définit les conditions sous lesquelles un cadre est admissible dans le système ZORAN.",
+      "equations": ["admissible(F) ⟺ NC(F) ∧ Min(F) ∧ Fert(F)"],
+      "S_local": 0.95, "S_global": 0.90, "stability": "stable", "weight": 0.94
+    },
+    {
+      "id": "WP12-002", "title": "Critère de non-contradiction",
+      "canonical": true, "palieronic": false, "family": "WP12",
+      "domains": ["logique"],
+      "parents": ["WP12-001"], "children": [],
+      "related": [], "contradictions": [],
+      "examples": ["Refus d'un cadre auto-contradictoire"],
+      "html_description": "Aucun cadre admissible ne peut contenir de contradiction interne.",
+      "equations": ["NC(F) ⟺ ¬∃p : p ∧ ¬p ∈ F"],
+      "S_local": 0.96, "S_global": 0.91, "stability": "stable", "weight": 0.88
+    },
+    {
+      "id": "WP12-003", "title": "Critère de minimalité",
+      "canonical": false, "palieronic": false, "family": "WP12",
+      "domains": ["minimalité"],
+      "parents": ["WP12-001"], "children": [],
+      "related": [], "contradictions": [],
+      "examples": ["Rasoir d'Occam appliqué"],
+      "html_description": "Un cadre admissible doit être minimal au sens de la complexité descriptionnelle.",
+      "equations": ["Min(F) ⟺ K(F) minimal sur classes équivalentes"],
+      "S_local": 0.88, "S_global": 0.76, "stability": "stable", "weight": 0.69
+    },
+    {
+      "id": "WP12-004", "title": "Critère de fertilité",
+      "canonical": false, "palieronic": false, "family": "WP12",
+      "domains": ["fertilité"],
+      "parents": ["WP12-001"], "children": [],
+      "related": [], "contradictions": [],
+      "examples": ["Production de prédictions nouvelles"],
+      "html_description": "Un cadre admissible doit produire de nouvelles prédictions ou structures.",
+      "equations": ["Fert(F) ⟺ |{p ∈ F : p ∉ F_parent}| > 0"],
+      "S_local": 0.86, "S_global": 0.74, "stability": "stable", "weight": 0.66
+    },
+    {
+      "id": "WP12-005", "title": "Validation croisée multi-cadres",
+      "canonical": false, "palieronic": false, "family": "WP12",
+      "domains": ["validation"],
+      "parents": ["WP12-001"], "children": [],
+      "related": ["WP11-003"], "contradictions": [],
+      "examples": ["Cross-check inter-familles"],
+      "html_description": "Validation systématique d'un cadre contre plusieurs cadres voisins indépendants.",
+      "equations": ["valid(F) ⟺ ∀G ∈ N(F) : compat(F,G)"],
+      "S_local": 0.87, "S_global": 0.79, "stability": "stable", "weight": 0.71
+    },
+
+    {
+      "id": "SDE-001", "title": "Skopein Dual Engine",
+      "canonical": true, "palieronic": false, "family": "SDE",
+      "domains": ["dualité", "regard"],
+      "parents": [], "children": ["SDE-002", "SDE-003", "SDE-004", "SDE-005"],
+      "related": ["ULG-001", "ISO-001"], "contradictions": [],
+      "examples": ["Moteur de dualité focal/diffus"],
+      "html_description": "Moteur dual de focalisation cognitive. Opère sur le couple observateur/objet.",
+      "equations": ["SDE(x) = (focus(x), diffuse(x))"],
+      "S_local": 0.94, "S_global": 0.85, "stability": "stable", "weight": 0.89
+    },
+    {
+      "id": "SDE-002", "title": "Dualité observateur / objet",
+      "canonical": true, "palieronic": false, "family": "SDE",
+      "domains": ["dualité"],
+      "parents": ["SDE-001"], "children": [],
+      "related": [], "contradictions": [],
+      "examples": ["Inversion de rôles dans l'observation"],
+      "html_description": "Postule que tout objet est aussi observateur, et tout observateur est observable.",
+      "equations": ["⟨O, X⟩ ↔ ⟨X, O⟩"],
+      "S_local": 0.90, "S_global": 0.81, "stability": "stable", "weight": 0.76
+    },
+    {
+      "id": "SDE-003", "title": "Cadre focal / diffus",
+      "canonical": false, "palieronic": false, "family": "SDE",
+      "domains": ["focalisation"],
+      "parents": ["SDE-001"], "children": [],
+      "related": [], "contradictions": [],
+      "examples": ["Bascule attention/contexte"],
+      "html_description": "Définit le couple cadre focal / cadre diffus régissant l'attention cognitive.",
+      "equations": ["F_focal + F_diffuse = F_total"],
+      "S_local": 0.87, "S_global": 0.74, "stability": "stable", "weight": 0.67
+    },
+    {
+      "id": "SDE-004", "title": "Conjugaison Skopein",
+      "canonical": false, "palieronic": false, "family": "SDE",
+      "domains": ["conjugaison"],
+      "parents": ["SDE-001"], "children": ["VAR-004"],
+      "related": ["ISO-001"], "contradictions": [],
+      "examples": ["Opération de conjugaison cognitive"],
+      "html_description": "Conjugue deux regards distincts en une opération unique préservant l'invariant Skopein.",
+      "equations": ["⟨S1 ∘ S2⟩ = ⟨S2 ∘ S1⟩ mod Skopein"],
+      "S_local": 0.83, "S_global": 0.68, "stability": "instable", "weight": 0.58
+    },
+    {
+      "id": "SDE-005", "title": "Symétrie de regard",
+      "canonical": false, "palieronic": false, "family": "SDE",
+      "domains": ["symétrie"],
+      "parents": ["SDE-001"], "children": [],
+      "related": [], "contradictions": [],
+      "examples": ["Réflexion mutuelle entre cadres"],
+      "html_description": "Toute relation observateur/objet admet une symétrie de regard non triviale.",
+      "equations": ["σ(⟨O,X⟩) = ⟨X,O⟩"],
+      "S_local": 0.85, "S_global": 0.72, "stability": "stable", "weight": 0.63
+    },
+
+    {
+      "id": "PAL-001", "title": "Loi palieronique fondamentale",
+      "canonical": true, "palieronic": true, "family": "PAL",
+      "domains": ["palier", "saut cognitif"],
+      "parents": [], "children": ["PAL-002", "PAL-003", "PAL-004", "PAL-005"],
+      "related": ["ULG-005", "UDE-004"], "contradictions": [],
+      "examples": ["Saut cognitif inter-palier"],
+      "html_description": "Attracteur palieronique. Régit les transitions discrètes entre paliers de cohérence.",
+      "equations": ["Δpalier = ⌊log(S_global) / log(φ)⌋"],
+      "S_local": 0.91, "S_global": 0.83, "stability": "stable", "weight": 0.88
+    },
+    {
+      "id": "PAL-002", "title": "Transition de palier",
+      "canonical": false, "palieronic": true, "family": "PAL",
+      "domains": ["transition"],
+      "parents": ["PAL-001", "ULG-005"], "children": [],
+      "related": [], "contradictions": [],
+      "examples": ["Passage palier n → palier n+1"],
+      "html_description": "Décrit la dynamique d'une transition d'un palier à l'autre dans l'espace de cohérence.",
+      "equations": ["P(n → n+1) ∝ exp(−ΔE_palier / k·T)"],
+      "S_local": 0.84, "S_global": 0.73, "stability": "stable", "weight": 0.68
+    },
+    {
+      "id": "PAL-003", "title": "Effet de seuil cognitif",
+      "canonical": false, "palieronic": true, "family": "PAL",
+      "domains": ["seuil"],
+      "parents": ["PAL-001", "UDE-004"], "children": [],
+      "related": [], "contradictions": [],
+      "examples": ["Seuil de bascule attentionnelle"],
+      "html_description": "Au-delà d'un seuil critique, une légère perturbation déclenche un saut palieronique entier.",
+      "equations": ["x > x_c ⇒ Δpalier = 1"],
+      "S_local": 0.86, "S_global": 0.71, "stability": "stable", "weight": 0.65
+    },
+    {
+      "id": "PAL-004", "title": "Saut palieronique",
+      "canonical": false, "palieronic": true, "family": "PAL",
+      "domains": ["saut"],
+      "parents": ["PAL-001"], "children": [],
+      "related": ["UDE-005"], "contradictions": [],
+      "examples": ["Saut hors-zone admissible"],
+      "html_description": "Saut discret dans l'espace des cadres, supérieur en magnitude à une dérivation continue.",
+      "equations": ["Δx_saut ≫ Δx_derivation"],
+      "S_local": 0.80, "S_global": 0.67, "stability": "instable", "weight": 0.59
+    },
+    {
+      "id": "PAL-005", "title": "Stabilité inter-palier",
+      "canonical": false, "palieronic": true, "family": "PAL",
+      "domains": ["stabilité"],
+      "parents": ["PAL-001"], "children": [],
+      "related": [], "contradictions": [],
+      "examples": ["Maintien de cohérence entre paliers"],
+      "html_description": "Conditions sous lesquelles la cohérence est préservée à travers plusieurs paliers.",
+      "equations": ["S_global(palier n) ≈ S_global(palier n+k) ± ε"],
+      "S_local": 0.83, "S_global": 0.70, "stability": "stable", "weight": 0.62
+    },
+
+    {
+      "id": "VAR-001", "title": "Variante stable de DVE-002",
+      "canonical": false, "palieronic": false, "family": "VAR",
+      "domains": ["variante"],
+      "parents": ["DVE-002"], "children": [],
+      "related": [], "contradictions": [],
+      "examples": ["Branche dérivée vérifiée WP-12"],
+      "html_description": "Variante stable des dérivations contrôlées. Validée par les critères WP-12.",
+      "equations": ["V1 = DVE-002 + δ admissible"],
+      "S_local": 0.82, "S_global": 0.70, "stability": "stable", "weight": 0.55
+    },
+    {
+      "id": "VAR-002", "title": "Variante critique UDE-003",
+      "canonical": false, "palieronic": false, "family": "VAR",
+      "domains": ["variante critique"],
+      "parents": ["DVE-003", "UDE-003"], "children": [],
+      "related": [], "contradictions": [],
+      "examples": ["Branche à S_local trompeur"],
+      "html_description": "Variante au S_local élevé mais S_global dégradé. Surveillée par WP-11.",
+      "equations": ["S_local(V2) ≫ S_global(V2)"],
+      "S_local": 0.91, "S_global": 0.52, "stability": "instable", "weight": 0.42
+    },
+    {
+      "id": "VAR-003", "title": "Variante absorbée ULG-002 → GHUC-002",
+      "canonical": false, "palieronic": false, "family": "VAR",
+      "domains": ["absorption"],
+      "parents": ["ULG-002", "GHUC-002"], "children": [],
+      "related": [], "contradictions": [],
+      "examples": ["Branche fusionnée par GHUC"],
+      "html_description": "Variante absorbée par compression sémantique GHUC. Conservée pour traçabilité.",
+      "equations": ["V3 ⊂ GHUC-002 après fusion"],
+      "S_local": 0.65, "S_global": 0.58, "stability": "absorbée", "weight": 0.30
+    },
+    {
+      "id": "VAR-004", "title": "Variante instable SDE-004",
+      "canonical": false, "palieronic": false, "family": "VAR",
+      "domains": ["instable"],
+      "parents": ["SDE-004"], "children": [],
+      "related": [], "contradictions": [],
+      "examples": ["Branche oscillante de conjugaison"],
+      "html_description": "Variante instable de la conjugaison Skopein. Marquée pour pruning si non stabilisée.",
+      "equations": ["d/dt(V4) ≠ 0"],
+      "S_local": 0.71, "S_global": 0.49, "stability": "instable", "weight": 0.38
+    },
+    {
+      "id": "VAR-005", "title": "Variante en cours WP11-005",
+      "canonical": false, "palieronic": false, "family": "VAR",
+      "domains": ["en cours"],
+      "parents": ["WP11-005"], "children": [],
+      "related": [], "contradictions": [],
+      "examples": ["Branche d'audit en construction"],
+      "html_description": "Variante exploratoire du détecteur de fausse cohérence. Validation en cours.",
+      "equations": ["V5: under_review = true"],
+      "S_local": 0.78, "S_global": 0.65, "stability": "stable", "weight": 0.50
+    },
+
+    {
+      "id": "ISO-001", "title": "Isomorphisme ULG ↔ SDE",
+      "canonical": false, "palieronic": false, "family": "ISO",
+      "domains": ["isomorphisme"],
+      "parents": ["ULG-001", "SDE-001"], "children": [],
+      "related": ["ULG-003", "SDE-004", "GHUC-005"], "contradictions": [],
+      "examples": ["Mapping grammaire ↔ regard"],
+      "html_description": "Isomorphisme structurel entre la grammaire latente universelle et le moteur Skopein.",
+      "equations": ["Φ : ULG → SDE, bijectif sur invariants"],
+      "S_local": 0.88, "S_global": 0.81, "stability": "stable", "weight": 0.75
+    },
+    {
+      "id": "ISO-002", "title": "Pont WP-11 / WP-12",
+      "canonical": false, "palieronic": false, "family": "ISO",
+      "domains": ["pont", "méta-cadres"],
+      "parents": ["WP11-001", "WP12-001"], "children": [],
+      "related": ["GHUC-005"], "contradictions": [],
+      "examples": ["Cohérence + admissibilité = mesure conjointe"],
+      "html_description": "Pont structurel entre la mesure de cohérence (WP-11) et les cadres d'admissibilité (WP-12).",
+      "equations": ["Bridge(WP11, WP12) = co-validation conjointe"],
+      "S_local": 0.90, "S_global": 0.84, "stability": "stable", "weight": 0.80
+    },
+    {
+      "id": "ISO-003", "title": "Conjugaison UDE ↔ DVE",
+      "canonical": false, "palieronic": false, "family": "ISO",
+      "domains": ["conjugaison"],
+      "parents": ["UDE-001", "DVE-001"], "children": [],
+      "related": ["GHUC-005"], "contradictions": [],
+      "examples": ["Découverte ↔ génération de variantes"],
+      "html_description": "Conjugaison entre découverte unifiée et génération de variantes. Dualité opératoire.",
+      "equations": ["UDE ∘ DVE = DVE ∘ UDE mod consolidation"],
+      "S_local": 0.89, "S_global": 0.82, "stability": "stable", "weight": 0.77
+    },
+    {
+      "id": "ISO-004", "title": "Bouclage GHUC sur les attracteurs",
+      "canonical": false, "palieronic": false, "family": "ISO",
+      "domains": ["bouclage"],
+      "parents": ["GHUC-001"], "children": [],
+      "related": ["UDE-002"], "contradictions": [],
+      "examples": ["Boucle de consolidation des attracteurs"],
+      "html_description": "Bouclage récursif de GHUC sur les attracteurs détectés par UDE. Stabilise le système global.",
+      "equations": ["GHUC(GHUC(A)) → A*"],
+      "S_local": 0.87, "S_global": 0.83, "stability": "stable", "weight": 0.78
+    },
+    {
+      "id": "ISO-005", "title": "Méta-isomorphisme global",
+      "canonical": true, "palieronic": true, "family": "ISO",
+      "domains": ["méta", "topologie"],
+      "parents": ["GHUC-001"], "children": [],
+      "related": ["ULG-001", "DVE-001", "UDE-001", "WP11-001", "WP12-001", "SDE-001", "PAL-001"],
+      "contradictions": [],
+      "examples": ["Topologie globale de la cohérence ZORAN"],
+      "html_description": "Méta-isomorphisme reliant l'ensemble des moteurs canoniques. Définit la topologie navigable globale ZORAN.",
+      "equations": ["Ω = ⨁ Engines / consolidation"],
+      "S_local": 0.95, "S_global": 0.92, "stability": "stable", "weight": 0.99, "doi": "zoran:ISO/Ω/005"
+    }
+  ]
+}

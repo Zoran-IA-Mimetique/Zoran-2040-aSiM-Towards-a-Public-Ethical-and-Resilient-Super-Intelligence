@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZORAN — Arbre Fractal des Lois</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header id="topbar">
+    <div class="brand">
+      <span class="logo">◈</span>
+      <span class="title">ZORAN <span class="dim">— Arbre Fractal des Lois</span></span>
+    </div>
+    <div class="controls">
+      <input id="search" type="search" placeholder="Rechercher loi, famille, domaine…" autocomplete="off" />
+      <button id="btn-back"    title="Précédent (Alt+←)">←</button>
+      <button id="btn-forward" title="Suivant (Alt+→)">→</button>
+      <button id="btn-reset"   title="Recentrer (R)">⌖</button>
+      <button id="btn-prune"   title="Pruning : masquer faible poids (P)">∿</button>
+      <button id="btn-oracle"  title="Audit Oracle (O)">⊙</button>
+    </div>
+  </header>
+
+  <aside id="sidebar">
+    <section class="panel">
+      <h3>Familles</h3>
+      <ul id="families"></ul>
+    </section>
+    <section class="panel">
+      <h3>Index</h3>
+      <ul id="index"></ul>
+    </section>
+    <section class="panel legend">
+      <h3>Légende</h3>
+      <ul>
+        <li><span class="swatch" style="background:#4ea3ff"></span>canonique</li>
+        <li><span class="swatch" style="background:#3ad17a"></span>variante</li>
+        <li><span class="swatch" style="background:#b86bff"></span>palieronique</li>
+        <li><span class="swatch" style="background:#ff6b6b"></span>instable</li>
+        <li><span class="swatch" style="background:#7a7a7a"></span>absorbée</li>
+        <li><span class="swatch" style="background:#ffcc4d"></span>attracteur</li>
+      </ul>
+    </section>
+  </aside>
+
+  <main id="graph"></main>
+
+  <section id="detail" class="hidden" aria-hidden="true">
+    <button id="detail-close" title="Fermer (Esc)">×</button>
+    <div id="detail-body"></div>
+  </section>
+
+  <footer id="statusbar">
+    <span id="status-mission"></span>
+    <span id="status-counts"></span>
+    <span id="status-coherence"></span>
+    <span id="status-fps"></span>
+  </footer>
+
+  <!-- 3D force graph (vanilla) -->
+  <script src="https://unpkg.com/three@0.155.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/3d-force-graph@1.73.4/dist/3d-force-graph.min.js"></script>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
