@@ -1,0 +1,203 @@
+{
+  "version": "P0.5",
+  "mission_id": "ZORAN_GLOBAL_COHERENCE_ORACLE_20260515",
+  "timestamp": "2026-05-15T19:03:00+02:00",
+  "mode": "spec-only",
+  "description": "Machine-readable rule catalog for the ZORAN global coherence Oracle. Specs only — execution gated on Oracle-mode exit.",
+  "thresholds": {
+    "density_soft": 2.8,
+    "density_hard": 3.5,
+    "inflation_warn": 0.10,
+    "inflation_hard": 0.20,
+    "contradictions_floor": 0.04,
+    "contradictions_ceiling": 0.15,
+    "contradictions_hard_ceiling": 0.20,
+    "false_coherence_gap_warn": 0.30,
+    "false_coherence_gap_critical": 0.40,
+    "chaos_entropy_threshold": 0.20,
+    "correlation_local_global_warn": 0.60,
+    "correlation_local_global_hard": 0.80,
+    "HS_min_acceptable": 0.50,
+    "HS_target_P0_5": 0.75,
+    "related_per_node_max": 4,
+    "gravity_related_canonical_warn": 5,
+    "depth_required_for_fractal": 3,
+    "JS_divergence_max_for_auto_similarity": 0.15,
+    "invariant_variance_max": 0.10,
+    "weight_pruning_floor": 0.45,
+    "fractal_demonstrations_required_min": 1,
+    "compositions_required_for_S_global_scalar": 3
+  },
+  "blocking_rules": [
+    {
+      "id": "R-DEN-1",
+      "name": "Hard density limit",
+      "condition": "links / nodes > thresholds.density_hard",
+      "action": "reject",
+      "severity": "critical",
+      "doc": "audit/CHAOS_PREVENTION.md §3-D1"
+    },
+    {
+      "id": "R-INV-1",
+      "name": "Iso requires invariants",
+      "condition": "edge.kind == 'iso' AND (edge.invariants == null OR len(edge.invariants) == 0)",
+      "action": "reject",
+      "severity": "critical",
+      "doc": "audit/EDGE_SYSTEM_SPEC.md §3 (iso)"
+    },
+    {
+      "id": "R-REC-1",
+      "name": "Parent must form DAG",
+      "condition": "adding edge.kind=='parent' creates a cycle",
+      "action": "reject",
+      "severity": "critical",
+      "doc": "audit/edge_types.json (parent.constraints.must_form_dag)"
+    },
+    {
+      "id": "R-CTR-1",
+      "name": "Contradicts must be reciprocal",
+      "condition": "edge.kind == 'contradicts' AND reciprocal not declared",
+      "action": "warn_then_auto_repair",
+      "severity": "warn",
+      "doc": "audit/edge_types.json (contradicts.constraints.requires_reciprocal)"
+    },
+    {
+      "id": "R-MAX-1",
+      "name": "Max kinds per pair",
+      "condition": "more than 2 kinds between same (source, target)",
+      "action": "reject",
+      "severity": "critical",
+      "doc": "audit/edge_types.json (global_constraints.max_kinds_per_pair)"
+    },
+    {
+      "id": "R-INF-1",
+      "name": "Family must be canonical",
+      "condition": "node.family not in ['ULG','DVE','UDE','GHUC','WP11','WP12','SDE','PAL']",
+      "action": "reject",
+      "severity": "critical",
+      "doc": "audit/P0_5_ADMISSIBILITY.md §A1"
+    },
+    {
+      "id": "R-WP11-INFERENCE",
+      "name": "No automatic inference S_local -> S_global",
+      "condition": "S_global computed as f(S_local only)",
+      "action": "reject",
+      "severity": "critical",
+      "doc": "audit/S_GLOBAL_RULES.md R-S0"
+    },
+    {
+      "id": "R-S2",
+      "name": "Proxy tag required",
+      "condition": "publish(S_global, scalar=true) AND C_composition < thresholds.compositions_required_for_S_global_scalar / N_attractors_mu0",
+      "action": "reject_publication",
+      "severity": "critical",
+      "doc": "audit/S_GLOBAL_RULES.md R-S2"
+    }
+  ],
+  "warning_rules": [
+    {
+      "id": "R-DEN-2",
+      "name": "Soft density warning",
+      "condition": "thresholds.density_soft < links/nodes <= thresholds.density_hard",
+      "action": "warn",
+      "severity": "warn",
+      "doc": "audit/CHAOS_PREVENTION.md §3-D1"
+    },
+    {
+      "id": "R-FC-1",
+      "name": "False coherence count growing",
+      "condition": "false_coherence_count(now) > false_coherence_count(previous_audit)",
+      "action": "warn",
+      "severity": "warn",
+      "doc": "audit/CHAOS_PREVENTION.md §3-D5"
+    },
+    {
+      "id": "R-CTR-2",
+      "name": "Contradictions floor",
+      "condition": "contradicts/nodes < thresholds.contradictions_floor",
+      "action": "warn",
+      "severity": "warn",
+      "doc": "audit/RELATIONAL_COLLISIONS.md C6"
+    },
+    {
+      "id": "R-CTR-3",
+      "name": "Contradictions ceiling",
+      "condition": "contradicts/nodes > thresholds.contradictions_ceiling",
+      "action": "warn",
+      "severity": "warn",
+      "doc": "audit/S_GLOBAL_RULES.md (calibration)"
+    },
+    {
+      "id": "R-ISO-1",
+      "name": "Gravitational attractor risk",
+      "condition": "node has 'related' edges to >= thresholds.gravity_related_canonical_warn canonical roots",
+      "action": "warn",
+      "severity": "warn",
+      "doc": "audit/RELATIONAL_COLLISIONS.md C3 (ISO-005)"
+    },
+    {
+      "id": "R-ATR-1",
+      "name": "Attractor without tier",
+      "condition": "node.title or node.description contains 'attracteur' AND node.attractor_tier is null",
+      "action": "warn",
+      "severity": "warn",
+      "doc": "audit/P0_5_ADMISSIBILITY.md §A5"
+    },
+    {
+      "id": "R-INF-2",
+      "name": "Inflation ratio warn",
+      "condition": "inflation_ratio > thresholds.inflation_warn",
+      "action": "warn",
+      "severity": "warn",
+      "doc": "audit/TOPOLOGY_AUDIT.md §3.1"
+    },
+    {
+      "id": "R-FRC-1",
+      "name": "Public use of 'fractal' without proof",
+      "condition": "claim contains 'fractal' AND no family with fractal_property=true is cited",
+      "action": "warn",
+      "severity": "warn",
+      "doc": "audit/FAILED_FRACTAL_CLAIMS.md"
+    },
+    {
+      "id": "R-S7",
+      "name": "S_local / S_global correlation too high",
+      "condition": "corr(mean_S_local, S_global) > thresholds.correlation_local_global_warn",
+      "action": "warn",
+      "severity": "warn",
+      "doc": "audit/S_GLOBAL_RULES.md R-S7"
+    }
+  ],
+  "metrics_definitions": {
+    "HS": {
+      "formula": "0.25*(1-inflation_ratio) + 0.30*(passes_fractal_property/3) + 0.20*C_composition + 0.15*iso_invariants_declared_ratio + 0.10*contradictions_calibration",
+      "doc": "P0_5_SPEC.md §10"
+    },
+    "S_global": {
+      "formula": "0.35*C_struct + 0.40*C_composition + 0.15*C_iso - 0.10*contradictions_density",
+      "doc": "P0_5_SPEC.md §1.5 and audit/S_GLOBAL_RULES.md R-S1"
+    },
+    "fractal_property": {
+      "predicates": ["P1 depth>=3", "P2 pattern_occurrences>=2", "P3 JS<=0.15", "P4 invariant_variance<=0.10"],
+      "doc": "P0_5_SPEC.md §1.4"
+    }
+  },
+  "chaos_triggers": [
+    { "id": "D1", "rule_ref": "R-DEN-2" },
+    { "id": "D2", "name": "Entropy", "condition": "H_normalized > 0.20" },
+    { "id": "D3", "rule_ref": "R-ISO-1" },
+    { "id": "D4", "rule_ref": "R-INF-2" },
+    { "id": "D5", "name": "False coherence rate", "condition": "false_coherence_count / nodes > 0.10" },
+    { "id": "D6", "name": "Fragmentation", "condition": "connected_components > 3" },
+    { "id": "D7", "rule_ref": "R-CTR-2" },
+    { "id": "D8", "rule_ref": "R-S7" },
+    { "id": "D9", "rule_ref": "R-FRC-1" }
+  ],
+  "escalation_paliers": {
+    "palier_1": { "name": "Surveillance", "trigger": "always_on" },
+    "palier_2": { "name": "Warning", "trigger": "1 warning rule active" },
+    "palier_3": { "name": "Freeze additions", "trigger": "1 critical OR 2 warnings simultaneous" },
+    "palier_4": { "name": "Recommend rollback", "trigger": "1 critical AND chaos_triggers>=2" },
+    "palier_5": { "name": "Imminent collapse", "trigger": "density>3.5 OR inflation>0.20 OR false_coherence>0.20*nodes" }
+  }
+}

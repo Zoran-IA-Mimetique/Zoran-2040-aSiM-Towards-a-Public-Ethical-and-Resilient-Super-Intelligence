@@ -1,0 +1,101 @@
+{
+  "version": "P0.5",
+  "mission_id": "ZORAN_RELATIONAL_TOPOLOGY_AUDIT_20260515",
+  "timestamp": "2026-05-15T19:03:00+02:00",
+  "mode": "spec-only",
+  "edge_types": {
+    "parent": {
+      "direction": "child_to_root",
+      "semantics": "Dérivation hiérarchique stricte. Doit former un DAG global.",
+      "required": ["source", "target", "kind"],
+      "optional": ["weight"],
+      "constraints": {
+        "must_form_dag": true,
+        "weight_range": [0.0, 1.0],
+        "default_weight": "target.weight"
+      }
+    },
+    "derives": {
+      "direction": "derived_to_base",
+      "semantics": "Variante ou spécialisation non-hiérarchique.",
+      "required": ["source", "target", "kind"],
+      "optional": ["weight", "stability", "status"],
+      "constraints": {
+        "stability_enum": ["stable", "instable", "absorbée", "under_review"],
+        "default_weight": 0.50,
+        "must_form_dag": false
+      }
+    },
+    "iso": {
+      "direction": "non_oriented_lex_min_source",
+      "semantics": "Isomorphisme structurel. Invariants préservés explicitement déclarés.",
+      "required": ["source", "target", "kind", "invariants"],
+      "optional": ["weight"],
+      "constraints": {
+        "invariants_min_count": 1,
+        "invariants_each_min_chars": 8,
+        "default_weight": 0.65,
+        "canonical_order": "source.id < target.id"
+      }
+    },
+    "contradicts": {
+      "direction": "non_oriented_lex_min_source",
+      "semantics": "Contradiction logique entre deux énoncés.",
+      "required": ["source", "target", "kind"],
+      "optional": ["weight", "domain"],
+      "constraints": {
+        "requires_reciprocal": true,
+        "default_weight": 0.60,
+        "canonical_order": "source.id < target.id"
+      }
+    },
+    "related": {
+      "direction": "non_oriented_lex_min_source",
+      "semantics": "Proximité sémantique faible. Usage parcimonieux.",
+      "required": ["source", "target", "kind"],
+      "optional": ["weight", "reason"],
+      "constraints": {
+        "default_weight": 0.30,
+        "max_per_node": 4,
+        "rationale_recommended": true,
+        "canonical_order": "source.id < target.id"
+      }
+    },
+    "absorbed_into": {
+      "direction": "absorbed_to_absorber",
+      "semantics": "La loi source est absorbée par GHUC dans la cible. Conservée pour traçabilité.",
+      "required": ["source", "target", "kind", "absorbed_at"],
+      "optional": ["weight"],
+      "constraints": {
+        "target_must_be_canonical": true,
+        "default_weight": 0.40
+      }
+    },
+    "depends": {
+      "direction": "dependent_to_prerequisite",
+      "semantics": "Dépendance opératoire (condition d'exécution), distincte de la dérivation.",
+      "required": ["source", "target", "kind"],
+      "optional": ["weight"],
+      "constraints": {
+        "must_form_dag": true,
+        "default_weight": 0.55
+      }
+    }
+  },
+  "global_constraints": {
+    "no_self_loop": true,
+    "max_kinds_per_pair": 2,
+    "kinds_disallowed_together": [
+      ["parent", "derives"],
+      ["contradicts", "iso"]
+    ]
+  },
+  "validation_severity": {
+    "missing_required_field": "reject",
+    "unknown_kind": "reject",
+    "iso_without_invariants": "reject",
+    "contradicts_without_reciprocal": "warn_then_auto_repair",
+    "related_exceeds_max_per_node": "warn",
+    "duplicate_pair_kind": "reject"
+  }
+}
