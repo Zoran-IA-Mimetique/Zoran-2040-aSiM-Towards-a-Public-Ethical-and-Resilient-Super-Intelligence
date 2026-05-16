@@ -4,18 +4,17 @@ Zoran 2040 aSiM (Artificial Super Intelligence Mimétique) est une infrastructur
 
 ---
 
-## Arbre Relationnel des Lois — `app/`
+## Arbre Relationnel & Fractal des Lois — `app/`
 
-Espace cognitif relationnel : visualisation 3D WebGL des lois ZORAN
+Espace cognitif relationnel : visualisation 3D WebGL des **91 lois** ZORAN
 réparties sur **8 familles canoniques** (ULG · ΔVE · UDE · GHUC · WP-11 ·
 WP-12 · SDE · PAL).
 
-> Le mission_id historique `ZORAN_FRACTAL_LAW_TREE_OMEGA_20260515` reste un
-> identifiant traçable, **pas** une revendication de propriété : la
-> fractalité est démontrée formellement sur **une seule famille (GHUC)** au
-> sens `audit/FRACTAL_VALIDATION.md` ; le terme « relationnel » est le label
-> public courant. Voir `audit/FAILED_FRACTAL_CLAIMS.md` pour le contrat
-> lexical.
+> **Mise à jour P1 (2026-05-15)** : la fractalité est démontrée formellement
+> sur **6 familles** (ULG, DVE, WP11, SDE, PAL, GHUC) au sens
+> `audit/FRACTAL_VALIDATION_P1.md`. Le moratoire lexical de P0.5 est levé :
+> le terme « fractal » devient admissible **avec citation** de famille de
+> preuve. HS = 1.00, S_global publié `proxy:0.89`.
 
 ### Lancement local
 

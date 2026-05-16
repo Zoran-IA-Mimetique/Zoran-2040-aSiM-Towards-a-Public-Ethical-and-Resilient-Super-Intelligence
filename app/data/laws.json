@@ -7,12 +7,16 @@
     {
       "id": "ULG",
       "label": "ULG vΩ7.2 — Grammaire Latente Universelle",
-      "invariant": "invariance morphologique sous reparamétrisation du cadre"
+      "invariant": "invariance morphologique sous reparamétrisation du cadre",
+      "fractality_demonstrated": true,
+      "fractality_proof_motif": "(cas-A continu / contractant, cas-B contraction / par contraction) répété à 3 échelles sur ULG-002 — cf. audit/FRACTAL_VALIDATION_P1.md"
     },
     {
       "id": "DVE",
       "label": "ΔVARIANT_ENGINE Ω⁸",
-      "invariant": "traçabilité réversible des dérivations"
+      "invariant": "traçabilité réversible des dérivations",
+      "fractality_demonstrated": true,
+      "fractality_proof_motif": "(continu / discret, sous-cas par mécanisme) répété à 3 échelles sur DVE-002 — cf. audit/FRACTAL_VALIDATION_P1.md"
     },
     {
       "id": "UDE",
@@ -29,7 +33,9 @@
     {
       "id": "WP11",
       "label": "WP-11 — Opérationnaliser la cohérence",
-      "invariant": "indépendance stricte S_local ⊥ S_global"
+      "invariant": "indépendance stricte S_local ⊥ S_global",
+      "fractality_demonstrated": true,
+      "fractality_proof_motif": "(régime fort / régime faible, sous-cas par origine) répété à 3 échelles sur WP11-002 — cf. audit/FRACTAL_VALIDATION_P1.md"
     },
     {
       "id": "WP12",
@@ -39,12 +45,16 @@
     {
       "id": "SDE",
       "label": "SDE-CF — Skopein Dual Engine",
-      "invariant": "symétrie observateur/objet"
+      "invariant": "symétrie observateur/objet",
+      "fractality_demonstrated": true,
+      "fractality_proof_motif": "(direct / réflexif, sous-cas par focalisation) répété à 3 échelles sur SDE-002 — cf. audit/FRACTAL_VALIDATION_P1.md"
     },
     {
       "id": "PAL",
       "label": "Palieronic — Sauts de palier",
-      "invariant": "discrétisation Δpalier sous-jacente"
+      "invariant": "discrétisation Δpalier sous-jacente",
+      "fractality_demonstrated": true,
+      "fractality_proof_motif": "(continu / discret palieronique, sous-cas par régime) répété à 3 échelles sur PAL-002 — cf. audit/FRACTAL_VALIDATION_P1.md"
     }
   ],
   "nodes": [
@@ -2075,6 +2085,2011 @@
           "S_global en proxy"
         ]
       }
+    },
+    {
+      "id": "ULG-002-a",
+      "title": "Convergence par sous-cadre",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "convergence",
+        "sous-cadre"
+      ],
+      "examples": [
+        "Sous-cadre VAE projetant vers ULG"
+      ],
+      "html_description": "Cas A de la convergence : chaque sous-cadre S de F_k converge indépendamment vers le sous-cadre correspondant de ULG.",
+      "equations": [
+        "d(F_k|S, ULG|S) → 0 sous restriction S"
+      ],
+      "S_local": 0.91,
+      "S_global": 0.8,
+      "stability": "stable",
+      "weight": 0.72,
+      "frames": {
+        "local": [
+          "sous-cadre S d'un cadre F_k"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille ULG (convergence)"
+          }
+        ],
+        "global": [
+          "limite asymptotique conjointe sur tous les sous-cadres"
+        ],
+        "proxies": [
+          "distance d(F_k|S, ULG|S) à k fini"
+        ],
+        "limits": [
+          "ne garantit pas la convergence des compositions de sous-cadres"
+        ]
+      }
+    },
+    {
+      "id": "ULG-002-b",
+      "title": "Convergence par contraction",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "convergence",
+        "contraction"
+      ],
+      "examples": [
+        "Opérateur contractant entre représentations"
+      ],
+      "html_description": "Cas B de la convergence : un opérateur contractant T garantit la convergence par théorème du point fixe.",
+      "equations": [
+        "‖T(F_k) − T(F_∞)‖ ≤ λ ‖F_k − F_∞‖, λ < 1"
+      ],
+      "S_local": 0.89,
+      "S_global": 0.78,
+      "stability": "stable",
+      "weight": 0.7,
+      "frames": {
+        "local": [
+          "cadre F_k et opérateur contractant T"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille ULG (convergence)"
+          }
+        ],
+        "global": [
+          "existence d'un point fixe ULG"
+        ],
+        "proxies": [
+          "estimation de λ par échantillonnage"
+        ],
+        "limits": [
+          "dépend de l'existence d'un T contractant — non garantie"
+        ]
+      }
+    },
+    {
+      "id": "ULG-002-a-i",
+      "title": "Test de Cauchy structurel",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "test",
+        "Cauchy"
+      ],
+      "examples": [
+        "Critère de Cauchy sur la distance structurelle"
+      ],
+      "html_description": "Instance du cas A : test de convergence par critère de Cauchy structurel.",
+      "equations": [
+        "∀ε>0, ∃N : k,l>N ⇒ d_struct(F_k, F_l) < ε"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.74,
+      "stability": "stable",
+      "weight": 0.55,
+      "frames": {
+        "local": [
+          "suite (F_k) et seuil ε"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG convergence par sous-cadre"
+          }
+        ],
+        "global": [
+          "complétude de l'espace des cadres pour d_struct"
+        ],
+        "proxies": [
+          "test empirique sur fenêtre finie"
+        ],
+        "limits": [
+          "ne fournit pas la limite explicite"
+        ]
+      }
+    },
+    {
+      "id": "ULG-002-a-ii",
+      "title": "Test de stabilité asymptotique",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "test",
+        "stabilité"
+      ],
+      "examples": [
+        "Vérification que d(F_k, F_{k+1}) décroît"
+      ],
+      "html_description": "Instance du cas A : test de stabilité par décroissance monotone des écarts successifs.",
+      "equations": [
+        "d(F_k, F_{k+1}) monotone décroissante"
+      ],
+      "S_local": 0.84,
+      "S_global": 0.72,
+      "stability": "stable",
+      "weight": 0.52,
+      "frames": {
+        "local": [
+          "paire (F_k, F_{k+1})"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG convergence par sous-cadre"
+          }
+        ],
+        "global": [
+          "monotonie globale de la convergence"
+        ],
+        "proxies": [
+          "test sur fenêtre glissante"
+        ],
+        "limits": [
+          "oscillations locales possibles — test à filtrage"
+        ]
+      }
+    },
+    {
+      "id": "ULG-002-b-i",
+      "title": "Contraction par filtrage",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "contraction",
+        "filtre"
+      ],
+      "examples": [
+        "Filtre passe-bas comme opérateur contractant"
+      ],
+      "html_description": "Instance du cas B : un filtre de lissage agit comme opérateur contractant sur les cadres voisins.",
+      "equations": [
+        "T_filter(F) = (1−α)·F + α·avg(N(F))"
+      ],
+      "S_local": 0.83,
+      "S_global": 0.71,
+      "stability": "stable",
+      "weight": 0.5,
+      "frames": {
+        "local": [
+          "cadre F et son voisinage N(F)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG convergence par contraction"
+          }
+        ],
+        "global": [
+          "existence d'un fixed point de T_filter"
+        ],
+        "proxies": [
+          "estimation α par calibration"
+        ],
+        "limits": [
+          "α trop élevé efface la structure ; α trop faible ralentit"
+        ]
+      }
+    },
+    {
+      "id": "ULG-002-b-ii",
+      "title": "Contraction par compression",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "contraction",
+        "compression"
+      ],
+      "examples": [
+        "Compression PCA comme opérateur contractant"
+      ],
+      "html_description": "Instance du cas B : la projection sur k composantes principales agit comme opérateur contractant vers un sous-espace stable.",
+      "equations": [
+        "T_PCA(F) = projection sur k composantes principales"
+      ],
+      "S_local": 0.85,
+      "S_global": 0.73,
+      "stability": "stable",
+      "weight": 0.53,
+      "frames": {
+        "local": [
+          "cadre F et matrice de covariance"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG convergence par contraction"
+          },
+          {
+            "level": "macro",
+            "scope": "GHUC (compression sémantique)"
+          }
+        ],
+        "global": [
+          "sous-espace principal stable global"
+        ],
+        "proxies": [
+          "choix de k par variance cumulée"
+        ],
+        "limits": [
+          "k trop faible perd l'invariant ULG-003"
+        ]
+      }
+    },
+    {
+      "id": "WP11-002-a",
+      "title": "S_local local-fort",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "S_local",
+        "attracteur fort"
+      ],
+      "examples": [
+        "Score élevé sur attracteur dense bien connecté"
+      ],
+      "html_description": "Cas A de S_local : régime où l'attracteur est dense et bien défini, S_local proche de 1.",
+      "equations": [
+        "S_local^fort(x) = 1 − var(N(x))/var_max"
+      ],
+      "S_local": 0.92,
+      "S_global": 0.79,
+      "stability": "stable",
+      "weight": 0.7,
+      "frames": {
+        "local": [
+          "attracteur x à degré ≥ 3"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11 — métriques S_local"
+          }
+        ],
+        "global": [
+          "distribution des attracteurs forts du système"
+        ],
+        "proxies": [
+          "seuil de degré + variance locale bornée"
+        ],
+        "limits": [
+          "faux positif si variance locale très basse mais N(x) artificiel"
+        ]
+      }
+    },
+    {
+      "id": "WP11-002-b",
+      "title": "S_local local-faible",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "S_local",
+        "attracteur faible"
+      ],
+      "examples": [
+        "Score modéré sur attracteur clairsemé"
+      ],
+      "html_description": "Cas B de S_local : régime où l'attracteur est clairsemé, S_local pénalisé d'un terme γ.",
+      "equations": [
+        "S_local^faible(x) = max(0, S_local^fort(x) − γ)"
+      ],
+      "S_local": 0.88,
+      "S_global": 0.76,
+      "stability": "stable",
+      "weight": 0.65,
+      "frames": {
+        "local": [
+          "attracteur x à degré < 3"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11 — métriques S_local"
+          }
+        ],
+        "global": [
+          "distribution des attracteurs faibles"
+        ],
+        "proxies": [
+          "seuil de degré inversé + variance locale"
+        ],
+        "limits": [
+          "γ statique — calibration nécessaire par cas"
+        ]
+      }
+    },
+    {
+      "id": "WP11-002-a-i",
+      "title": "Fort par attracteur dense",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "S_local",
+        "densité"
+      ],
+      "examples": [
+        "GHUC-001 = exemple canonique d'attracteur dense"
+      ],
+      "html_description": "Instance du cas A : attracteur dont le voisinage présente une densité au-dessus d'un seuil.",
+      "equations": [
+        "density(N(x)) > θ_dense"
+      ],
+      "S_local": 0.9,
+      "S_global": 0.77,
+      "stability": "stable",
+      "weight": 0.55,
+      "frames": {
+        "local": [
+          "nœud x et sa densité de voisinage"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11 S_local — fort"
+          }
+        ],
+        "global": [
+          "fraction du système constituée d'attracteurs denses"
+        ],
+        "proxies": [
+          "density(N(x)) calculé sur radius 2"
+        ],
+        "limits": [
+          "dépend de la définition de N(x) (rayon)"
+        ]
+      }
+    },
+    {
+      "id": "WP11-002-a-ii",
+      "title": "Fort par stabilité dynamique",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "S_local",
+        "stabilité"
+      ],
+      "examples": [
+        "Attracteur dont S_local varie peu sous perturbation"
+      ],
+      "html_description": "Instance du cas A : attracteur dont S_local est robuste à de petites perturbations du graphe.",
+      "equations": [
+        "dS_local/dt | perturbation ≤ ε"
+      ],
+      "S_local": 0.88,
+      "S_global": 0.75,
+      "stability": "stable",
+      "weight": 0.53,
+      "frames": {
+        "local": [
+          "nœud x et perturbations admissibles"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11 S_local — fort"
+          }
+        ],
+        "global": [
+          "robustesse globale des attracteurs"
+        ],
+        "proxies": [
+          "test de perturbation par échantillonnage"
+        ],
+        "limits": [
+          "ne teste pas les perturbations rares"
+        ]
+      }
+    },
+    {
+      "id": "WP11-002-b-i",
+      "title": "Faible par dispersion",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "S_local",
+        "dispersion"
+      ],
+      "examples": [
+        "Attracteur dont les voisins sont structurellement disparates"
+      ],
+      "html_description": "Instance du cas B : attracteur dont la variance structurelle locale dépasse le seuil tolérable.",
+      "equations": [
+        "var(d_struct dans N(x)) > σ²_max"
+      ],
+      "S_local": 0.78,
+      "S_global": 0.66,
+      "stability": "stable",
+      "weight": 0.45,
+      "frames": {
+        "local": [
+          "nœud x et son voisinage hétérogène"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11 S_local — faible"
+          }
+        ],
+        "global": [
+          "distribution des dispersions locales"
+        ],
+        "proxies": [
+          "variance d_struct sur N(x)"
+        ],
+        "limits": [
+          "seuil σ²_max statique"
+        ]
+      }
+    },
+    {
+      "id": "WP11-002-b-ii",
+      "title": "Faible par bruit relationnel",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "S_local",
+        "bruit"
+      ],
+      "examples": [
+        "Attracteur dilué par excès de related faibles"
+      ],
+      "html_description": "Instance du cas B : attracteur dont la cohérence locale est diluée par un nombre excessif de relations faibles.",
+      "equations": [
+        "count(related faibles dans N(x)) > κ"
+      ],
+      "S_local": 0.76,
+      "S_global": 0.64,
+      "stability": "stable",
+      "weight": 0.42,
+      "frames": {
+        "local": [
+          "nœud x et ses arêtes related"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11 S_local — faible"
+          }
+        ],
+        "global": [
+          "calibration du bruit relationnel global"
+        ],
+        "proxies": [
+          "count(related) sur N(x) avec poids < 0.30"
+        ],
+        "limits": [
+          "κ statique — calibration"
+        ]
+      }
+    },
+    {
+      "id": "DVE-002-a",
+      "title": "Dérivation continue",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "dérivation",
+        "continuité"
+      ],
+      "examples": [
+        "Dérivation paramétrique sur cadre continu"
+      ],
+      "html_description": "Cas A des dérivations : régime continu où la variante est obtenue par perturbation infinitésimale du cadre.",
+      "equations": [
+        "d(F + δ, F) → 0 quand δ → 0"
+      ],
+      "S_local": 0.9,
+      "S_global": 0.79,
+      "stability": "stable",
+      "weight": 0.68,
+      "frames": {
+        "local": [
+          "cadre F et perturbation δ"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE — dérivations contrôlées"
+          }
+        ],
+        "global": [
+          "espace des perturbations admissibles"
+        ],
+        "proxies": [
+          "test de continuité par échantillonnage δ"
+        ],
+        "limits": [
+          "ne couvre pas les sauts qualitatifs (cf. cas B)"
+        ]
+      }
+    },
+    {
+      "id": "DVE-002-b",
+      "title": "Dérivation discrète",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "dérivation",
+        "discret"
+      ],
+      "examples": [
+        "Bifurcation symbolique d'une loi"
+      ],
+      "html_description": "Cas B des dérivations : régime discret où la variante implique un saut qualitatif non-continu.",
+      "equations": [
+        "F → F' tel que F' n'est pas atteignable continûment"
+      ],
+      "S_local": 0.87,
+      "S_global": 0.76,
+      "stability": "stable",
+      "weight": 0.65,
+      "frames": {
+        "local": [
+          "cadre F et bifurcation F'"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE — dérivations contrôlées"
+          }
+        ],
+        "global": [
+          "topologie des bifurcations admissibles"
+        ],
+        "proxies": [
+          "énumération des sauts par classe d'équivalence"
+        ],
+        "limits": [
+          "nombre de classes potentiellement non borné"
+        ]
+      }
+    },
+    {
+      "id": "DVE-002-a-i",
+      "title": "Continue par interpolation",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "dérivation",
+        "interpolation"
+      ],
+      "examples": [
+        "Interpolation linéaire entre deux cadres voisins"
+      ],
+      "html_description": "Instance du cas A : dérivation par interpolation paramétrique entre deux cadres.",
+      "equations": [
+        "F_t = (1−t)·F + t·F', t ∈ [0,1]"
+      ],
+      "S_local": 0.85,
+      "S_global": 0.73,
+      "stability": "stable",
+      "weight": 0.55,
+      "frames": {
+        "local": [
+          "paire (F, F') et paramètre t"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE — dérivation continue"
+          }
+        ],
+        "global": [
+          "champ d'interpolation sur l'ensemble des paires admissibles"
+        ],
+        "proxies": [
+          "échantillonnage de t sur grille fine"
+        ],
+        "limits": [
+          "interpolation linéaire — ne couvre pas les chemins non-géodésiques"
+        ]
+      }
+    },
+    {
+      "id": "DVE-002-a-ii",
+      "title": "Continue par limite",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "dérivation",
+        "limite"
+      ],
+      "examples": [
+        "Convergence vers un cadre limite par dérivation infinitésimale"
+      ],
+      "html_description": "Instance du cas A : dérivation par passage à la limite sur une séquence de perturbations.",
+      "equations": [
+        "F* = lim_{n→∞} (F + δ_n), δ_n → 0"
+      ],
+      "S_local": 0.84,
+      "S_global": 0.72,
+      "stability": "stable",
+      "weight": 0.52,
+      "frames": {
+        "local": [
+          "séquence (δ_n) convergente"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE — dérivation continue"
+          }
+        ],
+        "global": [
+          "existence et unicité de F*"
+        ],
+        "proxies": [
+          "test de Cauchy sur (F + δ_n)"
+        ],
+        "limits": [
+          "F* peut sortir de l'espace admissible (cf. WP12)"
+        ]
+      }
+    },
+    {
+      "id": "DVE-002-b-i",
+      "title": "Discrète par saut",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "dérivation",
+        "saut"
+      ],
+      "examples": [
+        "Saut symbolique de classe d'invariance"
+      ],
+      "html_description": "Instance du cas B : dérivation discrète impliquant un saut entre classes d'invariance.",
+      "equations": [
+        "F → F' avec Inv(F) ≠ Inv(F')"
+      ],
+      "S_local": 0.82,
+      "S_global": 0.7,
+      "stability": "stable",
+      "weight": 0.5,
+      "frames": {
+        "local": [
+          "paire (F, F') et différence d'invariants"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE — dérivation discrète"
+          }
+        ],
+        "global": [
+          "partition de l'espace par classes d'invariants"
+        ],
+        "proxies": [
+          "détection de changement d'invariants"
+        ],
+        "limits": [
+          "dépend de la qualité de l'extraction des invariants"
+        ]
+      }
+    },
+    {
+      "id": "DVE-002-b-ii",
+      "title": "Discrète par bifurcation",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "dérivation",
+        "bifurcation"
+      ],
+      "examples": [
+        "Bifurcation cohérente cf. DVE-003"
+      ],
+      "html_description": "Instance du cas B : dérivation discrète par bifurcation en deux branches orthogonales (proche de DVE-003).",
+      "equations": [
+        "F → {F'_1, F'_2}, F'_1 ⊥ F'_2"
+      ],
+      "S_local": 0.83,
+      "S_global": 0.71,
+      "stability": "stable",
+      "weight": 0.51,
+      "frames": {
+        "local": [
+          "cadre F et seuil de bifurcation"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE — dérivation discrète"
+          }
+        ],
+        "global": [
+          "graphe des bifurcations historiques"
+        ],
+        "proxies": [
+          "détection des branchements selon WP11-003 ΔS"
+        ],
+        "limits": [
+          "ne garantit pas l'admissibilité conjointe des branches"
+        ]
+      }
+    },
+    {
+      "id": "SDE-002-a",
+      "title": "Dualité directe O→X",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "dualité",
+        "observation"
+      ],
+      "examples": [
+        "Modèle d'observation classique en physique"
+      ],
+      "html_description": "Cas A de la dualité : régime où le rôle observateur/objet est fixé, asymétrique.",
+      "equations": [
+        "⟨O,X⟩ avec rôle fixé O=observateur"
+      ],
+      "S_local": 0.87,
+      "S_global": 0.74,
+      "stability": "stable",
+      "weight": 0.65,
+      "frames": {
+        "local": [
+          "paire ⟨O,X⟩ avec rôles fixés"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE — dualité"
+          }
+        ],
+        "global": [
+          "ensemble des relations observateur/objet"
+        ],
+        "proxies": [
+          "mesure de l'asymétrie de rôle"
+        ],
+        "limits": [
+          "ne couvre pas l'auto-observation (cf. cas B)"
+        ]
+      }
+    },
+    {
+      "id": "SDE-002-b",
+      "title": "Dualité réflexive X→O",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "dualité",
+        "réflexion"
+      ],
+      "examples": [
+        "Auto-observation cognitive"
+      ],
+      "html_description": "Cas B de la dualité : régime réflexif où l'objet observé devient observateur.",
+      "equations": [
+        "⟨O,X⟩ ↔ ⟨X,O⟩"
+      ],
+      "S_local": 0.85,
+      "S_global": 0.72,
+      "stability": "stable",
+      "weight": 0.62,
+      "frames": {
+        "local": [
+          "paire ⟨O,X⟩ avec rôles permutables"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE — dualité"
+          }
+        ],
+        "global": [
+          "symétrie globale de regard"
+        ],
+        "proxies": [
+          "test d'inversibilité des rôles"
+        ],
+        "limits": [
+          "coût cognitif de la réflexion non modélisé"
+        ]
+      }
+    },
+    {
+      "id": "SDE-002-a-i",
+      "title": "Observation focalisée",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "observation",
+        "focal"
+      ],
+      "examples": [
+        "Attention concentrée sur un sous-cadre"
+      ],
+      "html_description": "Instance du cas A : observation par focalisation sur un sous-cadre spécifique.",
+      "equations": [
+        "focus(O,X) sur sous-cadre S ⊂ X"
+      ],
+      "S_local": 0.82,
+      "S_global": 0.7,
+      "stability": "stable",
+      "weight": 0.5,
+      "frames": {
+        "local": [
+          "paire (O, X) et sous-cadre S"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE — dualité directe"
+          }
+        ],
+        "global": [
+          "dynamique d'attention systémique"
+        ],
+        "proxies": [
+          "mesure de répartition focal/diffus"
+        ],
+        "limits": [
+          "ne couvre pas l'attention multi-cible"
+        ]
+      }
+    },
+    {
+      "id": "SDE-002-a-ii",
+      "title": "Observation diffuse",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "observation",
+        "diffus"
+      ],
+      "examples": [
+        "Attention distribuée sur tout le cadre"
+      ],
+      "html_description": "Instance du cas A : observation par attention distribuée sans focalisation.",
+      "equations": [
+        "diffuse(O,X) = X \\ focus(O,X)"
+      ],
+      "S_local": 0.8,
+      "S_global": 0.68,
+      "stability": "stable",
+      "weight": 0.48,
+      "frames": {
+        "local": [
+          "paire (O, X) et complément de focus"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE — dualité directe"
+          }
+        ],
+        "global": [
+          "bilan focal + diffus"
+        ],
+        "proxies": [
+          "mesure de couverture diffuse"
+        ],
+        "limits": [
+          "dilution potentielle de la cohérence locale"
+        ]
+      }
+    },
+    {
+      "id": "SDE-002-b-i",
+      "title": "Réflexion symétrique",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "réflexion",
+        "symétrie"
+      ],
+      "examples": [
+        "Inversion stricte de rôles"
+      ],
+      "html_description": "Instance du cas B : réflexion impliquant une symétrie stricte involutive.",
+      "equations": [
+        "σ: ⟨O,X⟩ → ⟨X,O⟩, σ² = id"
+      ],
+      "S_local": 0.81,
+      "S_global": 0.69,
+      "stability": "stable",
+      "weight": 0.49,
+      "frames": {
+        "local": [
+          "paire (O, X) et σ"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE — dualité réflexive"
+          }
+        ],
+        "global": [
+          "groupe de symétries Skopein"
+        ],
+        "proxies": [
+          "test σ² = id"
+        ],
+        "limits": [
+          "σ trivial pour paires asymétriques"
+        ]
+      }
+    },
+    {
+      "id": "SDE-002-b-ii",
+      "title": "Réflexion partielle",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "réflexion",
+        "partiel"
+      ],
+      "examples": [
+        "Auto-observation incomplète"
+      ],
+      "html_description": "Instance du cas B : réflexion partielle où la symétrie n'est qu'approximative.",
+      "equations": [
+        "σ': ⟨O,X⟩ → ⟨X', O'⟩, σ'² ≠ id"
+      ],
+      "S_local": 0.78,
+      "S_global": 0.66,
+      "stability": "stable",
+      "weight": 0.45,
+      "frames": {
+        "local": [
+          "paire (O, X) et σ' approximatif"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE — dualité réflexive"
+          }
+        ],
+        "global": [
+          "distance σ' à l'idéale σ"
+        ],
+        "proxies": [
+          "mesure ‖σ'(σ'(x)) − x‖"
+        ],
+        "limits": [
+          "compositions instables (cf. SDE-004)"
+        ]
+      }
+    },
+    {
+      "id": "PAL-002-a",
+      "title": "Transition continue",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "transition",
+        "continuité"
+      ],
+      "examples": [
+        "Glissement progressif entre paliers"
+      ],
+      "html_description": "Cas A des transitions : régime continu où le passage d'un palier à l'autre est progressif.",
+      "equations": [
+        "x(t) → palier(t) continûment"
+      ],
+      "S_local": 0.83,
+      "S_global": 0.71,
+      "stability": "stable",
+      "weight": 0.6,
+      "frames": {
+        "local": [
+          "état x(t) et palier(t)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "PAL — transitions"
+          }
+        ],
+        "global": [
+          "spectre des transitions continues"
+        ],
+        "proxies": [
+          "dérivée temporelle d palier/dt"
+        ],
+        "limits": [
+          "ne couvre pas les transitions catastrophiques (cf. cas B)"
+        ]
+      }
+    },
+    {
+      "id": "PAL-002-b",
+      "title": "Transition discrète",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "transition",
+        "discret"
+      ],
+      "examples": [
+        "Saut catastrophique inter-palier"
+      ],
+      "html_description": "Cas B des transitions : régime discret où le palier change instantanément à t=t*.",
+      "equations": [
+        "x(t) | t=t* : palier change instantanément"
+      ],
+      "S_local": 0.81,
+      "S_global": 0.69,
+      "stability": "stable",
+      "weight": 0.58,
+      "frames": {
+        "local": [
+          "état x à proximité de t*"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "PAL — transitions"
+          }
+        ],
+        "global": [
+          "distribution des t* sur le système"
+        ],
+        "proxies": [
+          "détection discontinuité par seuillage"
+        ],
+        "limits": [
+          "t* contextuel — pas universel"
+        ]
+      }
+    },
+    {
+      "id": "PAL-002-a-i",
+      "title": "Continue lente",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "transition",
+        "lent"
+      ],
+      "examples": [
+        "Diffusion thermique inter-palier"
+      ],
+      "html_description": "Instance du cas A : transition continue à régime lent (diffusif).",
+      "equations": [
+        "d palier/dt < ω_lente"
+      ],
+      "S_local": 0.78,
+      "S_global": 0.66,
+      "stability": "stable",
+      "weight": 0.48,
+      "frames": {
+        "local": [
+          "état x et vitesse de transition"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "PAL — transition continue"
+          }
+        ],
+        "global": [
+          "fraction des transitions lentes"
+        ],
+        "proxies": [
+          "mesure d palier/dt sur fenêtre"
+        ],
+        "limits": [
+          "ω_lente arbitraire"
+        ]
+      }
+    },
+    {
+      "id": "PAL-002-a-ii",
+      "title": "Continue rapide",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "transition",
+        "rapide"
+      ],
+      "examples": [
+        "Cascade ouverte"
+      ],
+      "html_description": "Instance du cas A : transition continue à régime rapide (cascade).",
+      "equations": [
+        "d palier/dt > ω_rapide"
+      ],
+      "S_local": 0.76,
+      "S_global": 0.64,
+      "stability": "stable",
+      "weight": 0.46,
+      "frames": {
+        "local": [
+          "état x sous cascade"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "PAL — transition continue"
+          }
+        ],
+        "global": [
+          "seuil ω_rapide global"
+        ],
+        "proxies": [
+          "détection cascade"
+        ],
+        "limits": [
+          "peut basculer en discret au-delà d'un seuil"
+        ]
+      }
+    },
+    {
+      "id": "PAL-002-b-i",
+      "title": "Discrète quantique",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "transition",
+        "quantum"
+      ],
+      "examples": [
+        "Saut quantum-like sans état intermédiaire"
+      ],
+      "html_description": "Instance du cas B : transition discrète quantifiée (sans état intermédiaire).",
+      "equations": [
+        "Δpalier ∈ ℕ, transitions = ⌊·⌋"
+      ],
+      "S_local": 0.79,
+      "S_global": 0.67,
+      "stability": "stable",
+      "weight": 0.49,
+      "frames": {
+        "local": [
+          "état x et quantum φ"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "PAL — transition discrète"
+          }
+        ],
+        "global": [
+          "spectre quantifié des paliers"
+        ],
+        "proxies": [
+          "⌊log(S_global)/log(φ)⌋"
+        ],
+        "limits": [
+          "nature physique de φ non clarifiée"
+        ]
+      }
+    },
+    {
+      "id": "PAL-002-b-ii",
+      "title": "Discrète catastrophique",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "transition",
+        "catastrophe"
+      ],
+      "examples": [
+        "Théorie des catastrophes — saut en pli"
+      ],
+      "html_description": "Instance du cas B : transition discrète déclenchée par franchissement de seuil critique x_c.",
+      "equations": [
+        "x > x_c ⇒ saut Δpalier ≥ 1"
+      ],
+      "S_local": 0.77,
+      "S_global": 0.65,
+      "stability": "stable",
+      "weight": 0.47,
+      "frames": {
+        "local": [
+          "état x et seuil x_c"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "PAL — transition discrète"
+          }
+        ],
+        "global": [
+          "topologie des points catastrophiques"
+        ],
+        "proxies": [
+          "détection x > x_c avec hystérésis"
+        ],
+        "limits": [
+          "hystérésis arbitraire"
+        ]
+      }
+    },
+    {
+      "id": "GHUC-003-a",
+      "title": "Pruning intra-famille",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "pruning",
+        "intra"
+      ],
+      "examples": [
+        "Élagage d'une variante redondante au sein d'une famille"
+      ],
+      "html_description": "Cas A du pruning : élagage restreint à l'intérieur d'une famille canonique.",
+      "equations": [
+        "prune_intra(b ∈ F) si gain(b)/noise(b) < θ_intra"
+      ],
+      "S_local": 0.9,
+      "S_global": 0.8,
+      "stability": "stable",
+      "weight": 0.65,
+      "frames": {
+        "local": [
+          "branche b dans famille F"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC — pruning"
+          }
+        ],
+        "global": [
+          "intégrité de la famille F après pruning"
+        ],
+        "proxies": [
+          "gain(b)/noise(b) intra-famille"
+        ],
+        "limits": [
+          "ne traite pas les redondances cross-famille (cf. cas B)"
+        ]
+      }
+    },
+    {
+      "id": "GHUC-003-b",
+      "title": "Pruning inter-famille",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "pruning",
+        "inter"
+      ],
+      "examples": [
+        "Élagage de doublons entre familles"
+      ],
+      "html_description": "Cas B du pruning : élagage de doublons cross-famille avec absorption traçable.",
+      "equations": [
+        "prune_inter(b1 ∈ F1, b2 ∈ F2) si syn(b1, b2)"
+      ],
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "stability": "stable",
+      "weight": 0.62,
+      "frames": {
+        "local": [
+          "paire (b1 ∈ F1, b2 ∈ F2)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC — pruning"
+          }
+        ],
+        "global": [
+          "graphe des familles après dépoissonnage"
+        ],
+        "proxies": [
+          "score de synonymie cross-famille"
+        ],
+        "limits": [
+          "nécessite absorption explicite (traçabilité)"
+        ]
+      }
+    },
+    {
+      "id": "GHUC-004-a",
+      "title": "Fusion intra-famille",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "fusion",
+        "intra"
+      ],
+      "examples": [
+        "Fusion de deux lois proches dans une même famille"
+      ],
+      "html_description": "Cas A de la fusion : fusion de lois proches au sein d'une famille canonique.",
+      "equations": [
+        "L1 ⊕_intra L2 si fam(L1) = fam(L2)"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.76,
+      "stability": "stable",
+      "weight": 0.6,
+      "frames": {
+        "local": [
+          "paire (L1, L2) même famille"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC — fusion"
+          }
+        ],
+        "global": [
+          "compacité de la famille après fusion"
+        ],
+        "proxies": [
+          "distance d_struct(L1, L2) intra-famille"
+        ],
+        "limits": [
+          "ne traite pas les ponts cross-famille (cf. cas B)"
+        ]
+      }
+    },
+    {
+      "id": "GHUC-004-b",
+      "title": "Fusion inter-famille",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "fusion",
+        "inter"
+      ],
+      "examples": [
+        "Fusion d'un pont iso conduisant à une nouvelle famille mère"
+      ],
+      "html_description": "Cas B de la fusion : fusion cross-famille via invariants partagés.",
+      "equations": [
+        "L1 ⊕_inter L2 si Inv(L1) ∩ Inv(L2) ≠ ∅"
+      ],
+      "S_local": 0.84,
+      "S_global": 0.74,
+      "stability": "stable",
+      "weight": 0.58,
+      "frames": {
+        "local": [
+          "paire (L1 ∈ F1, L2 ∈ F2) iso-liées"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC — fusion"
+          }
+        ],
+        "global": [
+          "topologie post-fusion globale"
+        ],
+        "proxies": [
+          "intersection des invariants déclarés"
+        ],
+        "limits": [
+          "fusion irréversible — audit obligatoire"
+        ]
+      }
+    },
+    {
+      "id": "ULG-006",
+      "title": "Champ d'invariance opératoire",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "invariance",
+        "opérateur"
+      ],
+      "examples": [
+        "Opérateurs préservant simultanément plusieurs invariants ULG"
+      ],
+      "html_description": "Caractérise l'ensemble des opérateurs qui préservent simultanément les invariants morphologiques de ULG.",
+      "equations": [
+        "Op_ULG = {T : ∀i, Inv_i(T(F)) = Inv_i(F)}"
+      ],
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "stability": "stable",
+      "weight": 0.62,
+      "frames": {
+        "local": [
+          "opérateur T candidat"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG"
+          },
+          {
+            "level": "macro",
+            "scope": "intersection avec GHUC"
+          }
+        ],
+        "global": [
+          "groupe d'invariance ULG global"
+        ],
+        "proxies": [
+          "test sur sous-ensemble fini d'invariants"
+        ],
+        "limits": [
+          "nombre d'invariants potentiellement infini"
+        ]
+      }
+    },
+    {
+      "id": "UDE-006",
+      "title": "Découverte par homologie",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "découverte",
+        "homologie"
+      ],
+      "examples": [
+        "Détection de structures topologiquement similaires"
+      ],
+      "html_description": "Découverte de lois nouvelles par identification d'homologie structurelle avec des lois connues.",
+      "equations": [
+        "res_homo(L1, L2) = degré d'isomorphisme local"
+      ],
+      "S_local": 0.84,
+      "S_global": 0.72,
+      "stability": "stable",
+      "weight": 0.62,
+      "frames": {
+        "local": [
+          "paire (L_connu, L_candidate)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "théorie des graphes"
+          }
+        ],
+        "global": [
+          "réseau homologique complet"
+        ],
+        "proxies": [
+          "score d'isomorphisme local par voisinage"
+        ],
+        "limits": [
+          "faux positif si voisinage trop petit"
+        ]
+      }
+    },
+    {
+      "id": "UDE-007",
+      "title": "Découverte par perturbation",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "découverte",
+        "perturbation"
+      ],
+      "examples": [
+        "Identification de nouvelles lois après injection contrôlée d'une perturbation"
+      ],
+      "html_description": "Découverte de lois nouvelles par observation de réactions à des perturbations injectées dans le graphe.",
+      "equations": [
+        "Loi(F+δ) − Loi(F) ≠ 0 ⇒ candidat"
+      ],
+      "S_local": 0.81,
+      "S_global": 0.69,
+      "stability": "stable",
+      "weight": 0.58,
+      "frames": {
+        "local": [
+          "graphe G et perturbation δ"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          }
+        ],
+        "global": [
+          "système réactif aux perturbations"
+        ],
+        "proxies": [
+          "mesure ΔS_global sous perturbation"
+        ],
+        "limits": [
+          "perturbations agressives peuvent dégrader S_global"
+        ]
+      }
+    },
+    {
+      "id": "WP11-006",
+      "title": "Calibration de S_global",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "calibration",
+        "S_global"
+      ],
+      "examples": [
+        "Ajustement des coefficients α, β, γ, δ par audit"
+      ],
+      "html_description": "Procédure de calibration des coefficients du calcul S_global par minimisation de l'écart prédit/observé.",
+      "equations": [
+        "argmin |S_global_predit − S_global_observé|"
+      ],
+      "S_local": 0.88,
+      "S_global": 0.79,
+      "stability": "stable",
+      "weight": 0.7,
+      "frames": {
+        "local": [
+          "jeu de coefficients candidats"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "systémique",
+            "scope": "audit historique"
+          }
+        ],
+        "global": [
+          "coefficients optimaux globalement"
+        ],
+        "proxies": [
+          "recherche par grille sur jeu d'audits"
+        ],
+        "limits": [
+          "dépend de la qualité des audits historiques"
+        ]
+      }
+    },
+    {
+      "id": "WP12-006",
+      "title": "Critère de réversibilité",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "réversibilité",
+        "admissibilité"
+      ],
+      "examples": [
+        "Toute dérivation admissible doit être inversible"
+      ],
+      "html_description": "Un cadre n'est admissible que si toutes ses dérivations possèdent une dérivation inverse également admissible.",
+      "equations": [
+        "∀d : ∃ d⁻¹ admissible"
+      ],
+      "S_local": 0.87,
+      "S_global": 0.76,
+      "stability": "stable",
+      "weight": 0.68,
+      "frames": {
+        "local": [
+          "dérivation d et son inverse candidate"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          }
+        ],
+        "global": [
+          "groupoïde des dérivations admissibles"
+        ],
+        "proxies": [
+          "test d ∘ d⁻¹ ≈ id"
+        ],
+        "limits": [
+          "en tension potentielle avec absorptions GHUC (irréversibles)"
+        ]
+      }
+    },
+    {
+      "id": "WP12-007",
+      "title": "Critère d'auditabilité",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "audit",
+        "admissibilité"
+      ],
+      "examples": [
+        "Trace de validation conservée pour chaque cadre"
+      ],
+      "html_description": "Un cadre n'est admissible que si son audit est traçable et reproductible par replay.",
+      "equations": [
+        "trace(F) ≠ ∅ ∧ replay(F) → F"
+      ],
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "stability": "stable",
+      "weight": 0.7,
+      "frames": {
+        "local": [
+          "cadre F et sa trace"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          }
+        ],
+        "global": [
+          "registre d'audit global"
+        ],
+        "proxies": [
+          "test de replay sur trace"
+        ],
+        "limits": [
+          "coût de stockage des traces non modélisé"
+        ]
+      }
+    },
+    {
+      "id": "SDE-006",
+      "title": "Skopein composé",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "composition",
+        "Skopein"
+      ],
+      "examples": [
+        "Chaînage de plusieurs regards Skopein"
+      ],
+      "html_description": "Composition de trois opérations Skopein préservant l'invariant Skopein global.",
+      "equations": [
+        "⟨S1 ∘ S2 ∘ S3⟩ Skopein-cohérent"
+      ],
+      "S_local": 0.82,
+      "S_global": 0.71,
+      "stability": "stable",
+      "weight": 0.6,
+      "frames": {
+        "local": [
+          "triplet (S1, S2, S3)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          }
+        ],
+        "global": [
+          "semigroupe Skopein"
+        ],
+        "proxies": [
+          "test d'associativité approximée"
+        ],
+        "limits": [
+          "associativité instable au-delà de 3 termes (cf. SDE-004)"
+        ]
+      }
+    },
+    {
+      "id": "PAL-006",
+      "title": "Métastabilité palieronique",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "métastabilité"
+      ],
+      "examples": [
+        "État entre deux paliers, perturbable des deux côtés"
+      ],
+      "html_description": "État cognitif entre deux paliers où une perturbation infinitésimale peut décider du palier final.",
+      "equations": [
+        "état métastable : ∂E/∂palier = 0, ∂²E/∂palier² ≈ 0"
+      ],
+      "S_local": 0.79,
+      "S_global": 0.67,
+      "stability": "stable",
+      "weight": 0.56,
+      "frames": {
+        "local": [
+          "état x au point d'inflexion"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "PAL"
+          }
+        ],
+        "global": [
+          "distribution des états métastables"
+        ],
+        "proxies": [
+          "détection du double zéro de la dérivée"
+        ],
+        "limits": [
+          "instabilité fondamentale — non observable directement"
+        ]
+      }
+    },
+    {
+      "id": "DVE-006",
+      "title": "Bifurcation par contradiction",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "bifurcation",
+        "contradiction"
+      ],
+      "examples": [
+        "Bifurcation déclenchée par découverte d'une contradiction"
+      ],
+      "html_description": "Bifurcation cohérente déclenchée par l'apparition d'une contradiction logique entre deux cadres.",
+      "equations": [
+        "contradicts(F, F') ⇒ branch(F) ∨ branch(F')"
+      ],
+      "S_local": 0.85,
+      "S_global": 0.73,
+      "stability": "stable",
+      "weight": 0.62,
+      "frames": {
+        "local": [
+          "paire (F, F') contradictoire"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          },
+          {
+            "level": "macro",
+            "scope": "WP12 admissibilité"
+          }
+        ],
+        "global": [
+          "graphe des bifurcations"
+        ],
+        "proxies": [
+          "détection automatique des contradictions"
+        ],
+        "limits": [
+          "bifurcation force le choix — perd l'information de tension"
+        ]
+      }
+    },
+    {
+      "id": "GHUC-005",
+      "title": "Audit pré-consolidation",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "audit",
+        "consolidation"
+      ],
+      "examples": [
+        "Vérification d'admissibilité avant fusion ou pruning"
+      ],
+      "html_description": "Procédure d'audit obligatoire avant toute opération GHUC (compression, pruning, fusion) — garantit la traçabilité.",
+      "equations": [
+        "audit(op) avant exec(op)"
+      ],
+      "S_local": 0.91,
+      "S_global": 0.81,
+      "stability": "stable",
+      "weight": 0.72,
+      "frames": {
+        "local": [
+          "opération op candidate"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          },
+          {
+            "level": "systémique",
+            "scope": "Oracle global"
+          }
+        ],
+        "global": [
+          "registre d'audit avant/après"
+        ],
+        "proxies": [
+          "calcul ΔHS avant exec"
+        ],
+        "limits": [
+          "audit bloque l'opération si ΔHS < 0 — friction tolérée"
+        ]
+      }
+    },
+    {
+      "id": "WP11-007",
+      "title": "Score d'audit compositionnel",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "audit",
+        "composition"
+      ],
+      "examples": [
+        "Mesure de la qualité des compositions opératoires"
+      ],
+      "html_description": "Métrique d'audit dédiée à la qualité des compositions opératoires entre lois.",
+      "equations": [
+        "S_comp = (count(compositions validées) − count(compositions échouées)) / total"
+      ],
+      "S_local": 0.89,
+      "S_global": 0.79,
+      "stability": "stable",
+      "weight": 0.7,
+      "frames": {
+        "local": [
+          "jeu de compositions évaluées"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "systémique",
+            "scope": "toutes compositions"
+          }
+        ],
+        "global": [
+          "historique cumulé des compositions"
+        ],
+        "proxies": [
+          "décompte sur jeu d'audits récents"
+        ],
+        "limits": [
+          "dépend de la qualité du label validé/échoué"
+        ]
+      }
+    },
+    {
+      "id": "WP12-008",
+      "title": "Critère de réplicabilité",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "réplicabilité",
+        "admissibilité"
+      ],
+      "examples": [
+        "Toute dérivation admissible doit être reproductible"
+      ],
+      "html_description": "Un cadre n'est admissible que si ses dérivations sont déterministes ou contiennent leur seed.",
+      "equations": [
+        "replay(d, seed=s) → résultat identique ∀s"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "stability": "stable",
+      "weight": 0.66,
+      "frames": {
+        "local": [
+          "dérivation d et ses paramètres"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          }
+        ],
+        "global": [
+          "déterminisme global du système"
+        ],
+        "proxies": [
+          "test replay sur seed contrôlé"
+        ],
+        "limits": [
+          "méthodes stochastiques exigent seed explicite"
+        ]
+      }
     }
   ],
   "edges": [
@@ -2388,6 +4403,318 @@
       "kind": "related",
       "weight": 0.4,
       "reason": "filtrage entropique cohérent avec pruning structurel"
+    },
+    {
+      "source": "ULG-002-a",
+      "target": "ULG-002",
+      "kind": "parent"
+    },
+    {
+      "source": "ULG-002-b",
+      "target": "ULG-002",
+      "kind": "parent"
+    },
+    {
+      "source": "ULG-002-a-i",
+      "target": "ULG-002-a",
+      "kind": "parent"
+    },
+    {
+      "source": "ULG-002-a-ii",
+      "target": "ULG-002-a",
+      "kind": "parent"
+    },
+    {
+      "source": "ULG-002-b-i",
+      "target": "ULG-002-b",
+      "kind": "parent"
+    },
+    {
+      "source": "ULG-002-b-ii",
+      "target": "ULG-002-b",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-002-a",
+      "target": "WP11-002",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-002-b",
+      "target": "WP11-002",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-002-a-i",
+      "target": "WP11-002-a",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-002-a-ii",
+      "target": "WP11-002-a",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-002-b-i",
+      "target": "WP11-002-b",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-002-b-ii",
+      "target": "WP11-002-b",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-002-a",
+      "target": "DVE-002",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-002-b",
+      "target": "DVE-002",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-002-a-i",
+      "target": "DVE-002-a",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-002-a-ii",
+      "target": "DVE-002-a",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-002-b-i",
+      "target": "DVE-002-b",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-002-b-ii",
+      "target": "DVE-002-b",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-002-a",
+      "target": "SDE-002",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-002-b",
+      "target": "SDE-002",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-002-a-i",
+      "target": "SDE-002-a",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-002-a-ii",
+      "target": "SDE-002-a",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-002-b-i",
+      "target": "SDE-002-b",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-002-b-ii",
+      "target": "SDE-002-b",
+      "kind": "parent"
+    },
+    {
+      "source": "PAL-002-a",
+      "target": "PAL-002",
+      "kind": "parent"
+    },
+    {
+      "source": "PAL-002-b",
+      "target": "PAL-002",
+      "kind": "parent"
+    },
+    {
+      "source": "PAL-002-a-i",
+      "target": "PAL-002-a",
+      "kind": "parent"
+    },
+    {
+      "source": "PAL-002-a-ii",
+      "target": "PAL-002-a",
+      "kind": "parent"
+    },
+    {
+      "source": "PAL-002-b-i",
+      "target": "PAL-002-b",
+      "kind": "parent"
+    },
+    {
+      "source": "PAL-002-b-ii",
+      "target": "PAL-002-b",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-003-a",
+      "target": "GHUC-003",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-003-b",
+      "target": "GHUC-003",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-004-a",
+      "target": "GHUC-004",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-004-b",
+      "target": "GHUC-004",
+      "kind": "parent"
+    },
+    {
+      "source": "ULG-006",
+      "target": "ULG-001",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-006",
+      "target": "UDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-007",
+      "target": "UDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-006",
+      "target": "WP11-003",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-006",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-007",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-006",
+      "target": "SDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "PAL-006",
+      "target": "PAL-001",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-006",
+      "target": "DVE-003",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-005",
+      "target": "GHUC-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-007",
+      "target": "WP11-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-008",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-002-a",
+      "target": "WP11-002-b",
+      "kind": "iso",
+      "invariants": [
+        "dualité fort/faible préservant la mesure S_local globale"
+      ],
+      "weight": 0.65
+    },
+    {
+      "source": "DVE-002-a",
+      "target": "DVE-002-b",
+      "kind": "iso",
+      "invariants": [
+        "dualité continu/discret préservant l'admissibilité WP-12"
+      ],
+      "weight": 0.65
+    },
+    {
+      "source": "SDE-002-a",
+      "target": "SDE-002-b",
+      "kind": "iso",
+      "invariants": [
+        "dualité direct/réflexif préservant la symétrie σ"
+      ],
+      "weight": 0.65
+    },
+    {
+      "source": "PAL-002-a",
+      "target": "PAL-002-b",
+      "kind": "iso",
+      "invariants": [
+        "dualité continu/discret palieronique"
+      ],
+      "weight": 0.65
+    },
+    {
+      "source": "GHUC-003-a",
+      "target": "GHUC-004-a",
+      "kind": "iso",
+      "invariants": [
+        "intra-famille : pruning ↔ fusion conjugués"
+      ],
+      "weight": 0.6
+    },
+    {
+      "source": "GHUC-003-b",
+      "target": "GHUC-004-b",
+      "kind": "iso",
+      "invariants": [
+        "inter-famille : pruning ↔ fusion conjugués"
+      ],
+      "weight": 0.6
+    },
+    {
+      "source": "WP12-006",
+      "target": "WP12-007",
+      "kind": "contradicts",
+      "weight": 0.5,
+      "domain": "réversibilité vs auditabilité (trace de pruning vs absence d'inverse pour absorbed_into)"
+    },
+    {
+      "source": "WP12-007",
+      "target": "WP12-006",
+      "kind": "contradicts",
+      "weight": 0.5,
+      "domain": "réversibilité vs auditabilité (trace de pruning vs absence d'inverse pour absorbed_into)"
+    },
+    {
+      "source": "ULG-002-b-ii",
+      "target": "GHUC-002",
+      "kind": "related",
+      "weight": 0.4,
+      "reason": "contraction par compression ↔ compression sémantique"
+    },
+    {
+      "source": "PAL-002-b-ii",
+      "target": "UDE-005",
+      "kind": "related",
+      "weight": 0.35,
+      "reason": "saut catastrophique ↔ heuristique de saut"
     }
   ],
   "compositions": [
@@ -2435,18 +4762,232 @@
       "test_output": "validation conjointe passe ; loi admise sous flag `gap_modéré`",
       "delta_S_global": 0.0,
       "status": "admissible"
+    },
+    {
+      "pair": [
+        "ULG-002-a",
+        "ULG-002-b"
+      ],
+      "operator": "ULG-002a ⊕ ULG-002b",
+      "preserved": [
+        "dualité sous-cadre/contraction préserve la convergence"
+      ],
+      "test_input": "cadre F_k avec sous-cadre S et opérateur T contractant",
+      "test_output": "convergence conjointe vers ULG via les deux régimes",
+      "delta_S_global": 0.0,
+      "status": "admissible"
+    },
+    {
+      "pair": [
+        "WP11-002-a",
+        "WP11-002-b"
+      ],
+      "operator": "WP11-002a ⊕ WP11-002b",
+      "preserved": [
+        "dualité fort/faible — S_local saturé"
+      ],
+      "test_input": "ensemble d'attracteurs hétérogènes",
+      "test_output": "distribution S_local complète couvrant les 2 régimes",
+      "delta_S_global": 0.01,
+      "status": "admissible"
+    },
+    {
+      "pair": [
+        "DVE-002-a",
+        "DVE-002-b"
+      ],
+      "operator": "DVE-002a ⊕ DVE-002b",
+      "preserved": [
+        "dualité continu/discret — traçabilité WP12-002"
+      ],
+      "test_input": "dérivation candidate avec composantes continues et discrètes",
+      "test_output": "validation conjointe par les deux régimes",
+      "delta_S_global": 0.0,
+      "status": "admissible"
+    },
+    {
+      "pair": [
+        "SDE-002-a",
+        "SDE-002-b"
+      ],
+      "operator": "SDE-002a ⊕ SDE-002b",
+      "preserved": [
+        "dualité directe/réflexive — invariant Skopein"
+      ],
+      "test_input": "paire d'observations focal + diffus",
+      "test_output": "symétrie σ préservée modulo bruit",
+      "delta_S_global": 0.0,
+      "status": "admissible"
+    },
+    {
+      "pair": [
+        "PAL-002-a",
+        "PAL-002-b"
+      ],
+      "operator": "PAL-002a ⊕ PAL-002b",
+      "preserved": [
+        "dualité continu/discret palieronique"
+      ],
+      "test_input": "transition mixte continu-discret",
+      "test_output": "décomposition propre en sous-cas",
+      "delta_S_global": -0.01,
+      "status": "admissible"
+    },
+    {
+      "pair": [
+        "GHUC-003-a",
+        "GHUC-003-b"
+      ],
+      "operator": "GHUC-003a ⊕ GHUC-003b",
+      "preserved": [
+        "pruning intra ∪ inter — couverture exhaustive"
+      ],
+      "test_input": "graphe ZORAN P0.5",
+      "test_output": "élagage complet sans régression structurelle",
+      "delta_S_global": 0.01,
+      "status": "admissible"
+    },
+    {
+      "pair": [
+        "GHUC-004-a",
+        "GHUC-004-b"
+      ],
+      "operator": "GHUC-004a ⊕ GHUC-004b",
+      "preserved": [
+        "fusion intra ∪ inter — couverture"
+      ],
+      "test_input": "ensemble de doublons candidats",
+      "test_output": "fusion complète avec traçabilité absorbed_into",
+      "delta_S_global": 0.0,
+      "status": "admissible"
+    },
+    {
+      "pair": [
+        "GHUC-005",
+        "WP11-006"
+      ],
+      "operator": "GHUC-005 ∘ WP11-006",
+      "preserved": [
+        "audit pré-op + calibration coefficients S_global"
+      ],
+      "test_input": "session d'opérations GHUC + recalibration",
+      "test_output": "coefficients ajustés, HS maintenu",
+      "delta_S_global": 0.02,
+      "status": "admissible"
+    },
+    {
+      "pair": [
+        "WP12-006",
+        "WP12-007"
+      ],
+      "operator": "WP12-006 ⊥ WP12-007",
+      "preserved": [
+        "tension réversibilité/auditabilité — contradiction documentée"
+      ],
+      "test_input": "opération avec trace mais absorption irréversible",
+      "test_output": "alerte explicite, marquage `tension_documented`",
+      "delta_S_global": 0.0,
+      "status": "admissible_with_tension"
+    },
+    {
+      "pair": [
+        "ULG-006",
+        "ULG-003"
+      ],
+      "operator": "ULG-006 ∘ ULG-003",
+      "preserved": [
+        "intersection des opérateurs préservant l'invariance morphologique"
+      ],
+      "test_input": "opérateur T candidat",
+      "test_output": "test de préservation simultanée",
+      "delta_S_global": 0.01,
+      "status": "admissible"
+    },
+    {
+      "pair": [
+        "UDE-006",
+        "UDE-007"
+      ],
+      "operator": "UDE-006 ⊕ UDE-007",
+      "preserved": [
+        "homologie + perturbation — découverte robuste"
+      ],
+      "test_input": "graphe G stable",
+      "test_output": "candidats homologues filtrés par robustesse à perturbation",
+      "delta_S_global": 0.02,
+      "status": "admissible"
+    },
+    {
+      "pair": [
+        "GHUC-001",
+        "WP12-007"
+      ],
+      "operator": "GHUC-001 ∘ WP12-007",
+      "preserved": [
+        "consolidation auditée + traçabilité"
+      ],
+      "test_input": "opération GHUC sans trace",
+      "test_output": "rejet (admissibilité WP12-007 viole)",
+      "delta_S_global": 0.0,
+      "status": "blocked_by_admissibility"
+    },
+    {
+      "pair": [
+        "DVE-006",
+        "WP12-002"
+      ],
+      "operator": "DVE-006 ∘ WP12-002",
+      "preserved": [
+        "bifurcation par contradiction respectant non-contradiction interne"
+      ],
+      "test_input": "cadre F et candidat contradictoire F'",
+      "test_output": "bifurcation en deux branches non-contradictoires individuellement",
+      "delta_S_global": 0.0,
+      "status": "admissible"
+    },
+    {
+      "pair": [
+        "SDE-006",
+        "ULG-006"
+      ],
+      "operator": "SDE-006 ∘ ULG-006",
+      "preserved": [
+        "composition Skopein + invariance opératoire"
+      ],
+      "test_input": "triplet de regards sur opérateurs ULG",
+      "test_output": "préservation conjointe (modulo SDE-004 instabilité)",
+      "delta_S_global": -0.005,
+      "status": "warn_marginal"
+    },
+    {
+      "pair": [
+        "PAL-006",
+        "WP11-005"
+      ],
+      "operator": "PAL-006 ∘ WP11-005",
+      "preserved": [
+        "métastabilité ↔ détection fausse cohérence"
+      ],
+      "test_input": "système entre deux paliers avec gap S_local−S_global suspect",
+      "test_output": "alerte conjointe métastabilité + fausse cohérence",
+      "delta_S_global": 0.01,
+      "status": "admissible"
     }
   ],
   "p0_5_meta": {
-    "structural_honesty_score_estimated": 0.78,
-    "inflation_ratio": 0.0,
-    "false_coherence_count": 0,
+    "structural_honesty_score_estimated": "see Oracle audit post-P1",
     "passes_fractal_property": [
-      "GHUC"
+      "ULG",
+      "DVE",
+      "GHUC",
+      "WP11",
+      "SDE",
+      "PAL"
     ],
-    "compositions_demonstrated": 3,
-    "iso_with_invariants_ratio": 1.0,
-    "contradictions_count": 4,
-    "contradictions_density": 0.087
+    "compositions_demonstrated": 18,
+    "p1_integrated_count": 46,
+    "p1_quarantined_count": 6,
+    "p1_timestamp": "2026-05-15T19:53:00+02:00",
+    "p1_mission_id": "ZORAN_P1_DEMONSTRATED_EXPANSION_50_LAWS_20260515"
   }
 }

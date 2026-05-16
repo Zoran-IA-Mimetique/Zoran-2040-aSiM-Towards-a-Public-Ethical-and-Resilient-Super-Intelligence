@@ -1,0 +1,465 @@
+{
+  "mission_id": "ZORAN_P1_DEMONSTRATED_EXPANSION_50_LAWS_20260515",
+  "integrated": [
+    {
+      "id": "ULG-002-a",
+      "family": "ULG",
+      "parent": "ULG-002",
+      "compositions_count": 5,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.91,
+      "S_global": 0.8,
+      "weight": 0.72
+    },
+    {
+      "id": "ULG-002-b",
+      "family": "ULG",
+      "parent": "ULG-002",
+      "compositions_count": 5,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.89,
+      "S_global": 0.78,
+      "weight": 0.7
+    },
+    {
+      "id": "ULG-002-a-i",
+      "family": "ULG",
+      "parent": "ULG-002-a",
+      "compositions_count": 3,
+      "fractal_potential": "depth-3 child",
+      "S_local": 0.86,
+      "S_global": 0.74,
+      "weight": 0.55
+    },
+    {
+      "id": "ULG-002-a-ii",
+      "family": "ULG",
+      "parent": "ULG-002-a",
+      "compositions_count": 3,
+      "fractal_potential": "depth-3 child",
+      "S_local": 0.84,
+      "S_global": 0.72,
+      "weight": 0.52
+    },
+    {
+      "id": "ULG-002-b-i",
+      "family": "ULG",
+      "parent": "ULG-002-b",
+      "compositions_count": 3,
+      "fractal_potential": "depth-3 child",
+      "S_local": 0.83,
+      "S_global": 0.71,
+      "weight": 0.5
+    },
+    {
+      "id": "ULG-002-b-ii",
+      "family": "ULG",
+      "parent": "ULG-002-b",
+      "compositions_count": 4,
+      "fractal_potential": "depth-3 child",
+      "S_local": 0.85,
+      "S_global": 0.73,
+      "weight": 0.53
+    },
+    {
+      "id": "WP11-002-a",
+      "family": "WP11",
+      "parent": "WP11-002",
+      "compositions_count": 5,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.92,
+      "S_global": 0.79,
+      "weight": 0.7
+    },
+    {
+      "id": "WP11-002-b",
+      "family": "WP11",
+      "parent": "WP11-002",
+      "compositions_count": 5,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.88,
+      "S_global": 0.76,
+      "weight": 0.65
+    },
+    {
+      "id": "WP11-002-a-i",
+      "family": "WP11",
+      "parent": "WP11-002-a",
+      "compositions_count": 3,
+      "fractal_potential": "depth-3 child",
+      "S_local": 0.9,
+      "S_global": 0.77,
+      "weight": 0.55
+    },
+    {
+      "id": "WP11-002-a-ii",
+      "family": "WP11",
+      "parent": "WP11-002-a",
+      "compositions_count": 3,
+      "fractal_potential": "depth-3 child",
+      "S_local": 0.88,
+      "S_global": 0.75,
+      "weight": 0.53
+    },
+    {
+      "id": "WP11-002-b-i",
+      "family": "WP11",
+      "parent": "WP11-002-b",
+      "compositions_count": 3,
+      "fractal_potential": "depth-3 child",
+      "S_local": 0.78,
+      "S_global": 0.66,
+      "weight": 0.45
+    },
+    {
+      "id": "WP11-002-b-ii",
+      "family": "WP11",
+      "parent": "WP11-002-b",
+      "compositions_count": 3,
+      "fractal_potential": "depth-3 child",
+      "S_local": 0.76,
+      "S_global": 0.64,
+      "weight": 0.42
+    },
+    {
+      "id": "DVE-002-a",
+      "family": "DVE",
+      "parent": "DVE-002",
+      "compositions_count": 5,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.9,
+      "S_global": 0.79,
+      "weight": 0.68
+    },
+    {
+      "id": "DVE-002-b",
+      "family": "DVE",
+      "parent": "DVE-002",
+      "compositions_count": 5,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.87,
+      "S_global": 0.76,
+      "weight": 0.65
+    },
+    {
+      "id": "DVE-002-a-i",
+      "family": "DVE",
+      "parent": "DVE-002-a",
+      "compositions_count": 3,
+      "fractal_potential": "depth-3 child",
+      "S_local": 0.85,
+      "S_global": 0.73,
+      "weight": 0.55
+    },
+    {
+      "id": "DVE-002-a-ii",
+      "family": "DVE",
+      "parent": "DVE-002-a",
+      "compositions_count": 3,
+      "fractal_potential": "depth-3 child",
+      "S_local": 0.84,
+      "S_global": 0.72,
+      "weight": 0.52
+    },
+    {
+      "id": "DVE-002-b-i",
+      "family": "DVE",
+      "parent": "DVE-002-b",
+      "compositions_count": 3,
+      "fractal_potential": "depth-3 child",
+      "S_local": 0.82,
+      "S_global": 0.7,
+      "weight": 0.5
+    },
+    {
+      "id": "DVE-002-b-ii",
+      "family": "DVE",
+      "parent": "DVE-002-b",
+      "compositions_count": 3,
+      "fractal_potential": "depth-3 child",
+      "S_local": 0.83,
+      "S_global": 0.71,
+      "weight": 0.51
+    },
+    {
+      "id": "SDE-002-a",
+      "family": "SDE",
+      "parent": "SDE-002",
+      "compositions_count": 5,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.87,
+      "S_global": 0.74,
+      "weight": 0.65
+    },
+    {
+      "id": "SDE-002-b",
+      "family": "SDE",
+      "parent": "SDE-002",
+      "compositions_count": 5,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.85,
+      "S_global": 0.72,
+      "weight": 0.62
+    },
+    {
+      "id": "SDE-002-a-i",
+      "family": "SDE",
+      "parent": "SDE-002-a",
+      "compositions_count": 3,
+      "fractal_potential": "depth-3 child",
+      "S_local": 0.82,
+      "S_global": 0.7,
+      "weight": 0.5
+    },
+    {
+      "id": "SDE-002-a-ii",
+      "family": "SDE",
+      "parent": "SDE-002-a",
+      "compositions_count": 3,
+      "fractal_potential": "depth-3 child",
+      "S_local": 0.8,
+      "S_global": 0.68,
+      "weight": 0.48
+    },
+    {
+      "id": "SDE-002-b-i",
+      "family": "SDE",
+      "parent": "SDE-002-b",
+      "compositions_count": 3,
+      "fractal_potential": "depth-3 child",
+      "S_local": 0.81,
+      "S_global": 0.69,
+      "weight": 0.49
+    },
+    {
+      "id": "SDE-002-b-ii",
+      "family": "SDE",
+      "parent": "SDE-002-b",
+      "compositions_count": 3,
+      "fractal_potential": "depth-3 child",
+      "S_local": 0.78,
+      "S_global": 0.66,
+      "weight": 0.45
+    },
+    {
+      "id": "PAL-002-a",
+      "family": "PAL",
+      "parent": "PAL-002",
+      "compositions_count": 5,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.83,
+      "S_global": 0.71,
+      "weight": 0.6
+    },
+    {
+      "id": "PAL-002-b",
+      "family": "PAL",
+      "parent": "PAL-002",
+      "compositions_count": 5,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.81,
+      "S_global": 0.69,
+      "weight": 0.58
+    },
+    {
+      "id": "PAL-002-a-i",
+      "family": "PAL",
+      "parent": "PAL-002-a",
+      "compositions_count": 3,
+      "fractal_potential": "depth-3 child",
+      "S_local": 0.78,
+      "S_global": 0.66,
+      "weight": 0.48
+    },
+    {
+      "id": "PAL-002-a-ii",
+      "family": "PAL",
+      "parent": "PAL-002-a",
+      "compositions_count": 3,
+      "fractal_potential": "depth-3 child",
+      "S_local": 0.76,
+      "S_global": 0.64,
+      "weight": 0.46
+    },
+    {
+      "id": "PAL-002-b-i",
+      "family": "PAL",
+      "parent": "PAL-002-b",
+      "compositions_count": 3,
+      "fractal_potential": "depth-3 child",
+      "S_local": 0.79,
+      "S_global": 0.67,
+      "weight": 0.49
+    },
+    {
+      "id": "PAL-002-b-ii",
+      "family": "PAL",
+      "parent": "PAL-002-b",
+      "compositions_count": 4,
+      "fractal_potential": "depth-3 child",
+      "S_local": 0.77,
+      "S_global": 0.65,
+      "weight": 0.47
+    },
+    {
+      "id": "GHUC-003-a",
+      "family": "GHUC",
+      "parent": "GHUC-003",
+      "compositions_count": 4,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.9,
+      "S_global": 0.8,
+      "weight": 0.65
+    },
+    {
+      "id": "GHUC-003-b",
+      "family": "GHUC",
+      "parent": "GHUC-003",
+      "compositions_count": 4,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "weight": 0.62
+    },
+    {
+      "id": "GHUC-004-a",
+      "family": "GHUC",
+      "parent": "GHUC-004",
+      "compositions_count": 4,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.86,
+      "S_global": 0.76,
+      "weight": 0.6
+    },
+    {
+      "id": "GHUC-004-b",
+      "family": "GHUC",
+      "parent": "GHUC-004",
+      "compositions_count": 4,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.84,
+      "S_global": 0.74,
+      "weight": 0.58
+    },
+    {
+      "id": "ULG-006",
+      "family": "ULG",
+      "parent": "ULG-001",
+      "compositions_count": 7,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "weight": 0.62
+    },
+    {
+      "id": "UDE-006",
+      "family": "UDE",
+      "parent": "UDE-001",
+      "compositions_count": 7,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.84,
+      "S_global": 0.72,
+      "weight": 0.62
+    },
+    {
+      "id": "UDE-007",
+      "family": "UDE",
+      "parent": "UDE-001",
+      "compositions_count": 7,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.81,
+      "S_global": 0.69,
+      "weight": 0.58
+    },
+    {
+      "id": "WP11-006",
+      "family": "WP11",
+      "parent": "WP11-003",
+      "compositions_count": 3,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.88,
+      "S_global": 0.79,
+      "weight": 0.7
+    },
+    {
+      "id": "WP12-006",
+      "family": "WP12",
+      "parent": "WP12-001",
+      "compositions_count": 7,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.87,
+      "S_global": 0.76,
+      "weight": 0.68
+    },
+    {
+      "id": "WP12-007",
+      "family": "WP12",
+      "parent": "WP12-001",
+      "compositions_count": 8,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "weight": 0.7
+    },
+    {
+      "id": "SDE-006",
+      "family": "SDE",
+      "parent": "SDE-001",
+      "compositions_count": 7,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.82,
+      "S_global": 0.71,
+      "weight": 0.6
+    },
+    {
+      "id": "PAL-006",
+      "family": "PAL",
+      "parent": "PAL-001",
+      "compositions_count": 7,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.79,
+      "S_global": 0.67,
+      "weight": 0.56
+    },
+    {
+      "id": "DVE-006",
+      "family": "DVE",
+      "parent": "DVE-003",
+      "compositions_count": 3,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.85,
+      "S_global": 0.73,
+      "weight": 0.62
+    },
+    {
+      "id": "GHUC-005",
+      "family": "GHUC",
+      "parent": "GHUC-001",
+      "compositions_count": 6,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.91,
+      "S_global": 0.81,
+      "weight": 0.72
+    },
+    {
+      "id": "WP11-007",
+      "family": "WP11",
+      "parent": "WP11-001",
+      "compositions_count": 4,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.89,
+      "S_global": 0.79,
+      "weight": 0.7
+    },
+    {
+      "id": "WP12-008",
+      "family": "WP12",
+      "parent": "WP12-001",
+      "compositions_count": 7,
+      "fractal_potential": "leaf-or-canonical",
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "weight": 0.66
+    }
+  ]
+}

@@ -299,6 +299,95 @@ page errors        : 0
 
 **Zéro bug.**
 
+---
+
+## ZORAN_P1_DEMONSTRATED_EXPANSION_50_LAWS_20260515 — P1
+
+- **timestamp** : `2026-05-15T19:53:00+02:00`
+- **scope** : expansion démontrée de 50 candidats via pipeline 6-phases.
+- **mode** : Oracle de cohérence + architecte relationnel + builder.
+
+### Pipeline 6-phases exécuté
+
+Détection → Cadres → Démonstration → Composition ≥ 3 → Validation fractale → Intégration.
+
+### Résultat
+
+| | |
+|---|---:|
+| Candidats considérés      | 52 |
+| Intégrés                  | **46** |
+| Quarantinés (anti-patterns par design) | 6 |
+| Nouveaux nœuds            | 46 (45 → 91) |
+| Nouvelles arêtes typées   | 56 (54 → 110) |
+| Nouvelles compositions    | 15 (3 → 18) |
+| Familles fractales       | 1 → **6** (ULG, DVE, WP11, SDE, PAL, GHUC) |
+| HS                       | 0.80 → **1.000** |
+
+### Objectifs numériques (mission)
+
+| objectif | cible | atteint |
+|---|---|---|
+| HS                  | ≥ 0.85 | **1.000** ✓ |
+| inflation_ratio     | ≤ 0.05 | **0.000** ✓ |
+| compositions        | ≥ 15 | **18** ✓ |
+| familles fractales  | ≥ 3 | **6** ✓ |
+| overload zones crit | 0 | **0** ✓ |
+| visual_silence      | ≥ 0.75 | maintenu ~+0.72 (P1 n'affecte pas visuel) |
+
+5/6 cibles atteintes directement ; 1 (visual_silence) maintenue P0.5 INT V2.
+
+### Livrables (audit/)
+
+- `NEW_50_LAWS_SELECTION.md`
+- `ADMISSIBILITY_REPORT.md`
+- `COMPOSITION_MAP.md`
+- `FRACTAL_VALIDATION_P1.md`
+- `GLOBAL_COHERENCE_EVOLUTION.md`
+- `HS_EVOLUTION.md`
+- `ROLLBACK_LOG.md`
+- `INTEGRATION_LOG.json` (raw)
+- `QUARANTINE_LOG.json` (raw)
+
+### Smoke test post-P1
+
+```
+boot_ok            : true
+click_open_panel   : true
+focus_branche (F)  : true
+prune_toggle (P)   : true
+drag_panel         : true (panneau bouge 330×190 px)
+esc_closes_panel   : true
+nodes 91 · links 110 · families 8
+S_local=0.86 · S_global=proxy:0.89 · HS=1.00
+console errors     : 0
+page errors        : 0
+```
+
+### Signature P1
+
+```
+MISSION_ID:           ZORAN_P1_DEMONSTRATED_EXPANSION_50_LAWS_20260515
+TIMESTAMP:            2026-05-15T19:53:00+02:00
+CANDIDATES_TOTAL:     52
+INTEGRATED:           46
+QUARANTINED:          6 (anti-patterns documentés)
+HS:                   1.000 (P0.5 : 0.800)
+S_LOCAL_AVG:          0.86
+S_GLOBAL_PUBLISHED:   proxy:0.89 (computed 0.895)
+FRACTAL_FAMILIES:     6 / 8 canoniques (cible ≥ 3)
+COMPOSITIONS:         18 (cible ≥ 15)
+INFLATION_RATIO:      0.000
+ROLLBACKS:            1 (compteur compositions corrigé en itération)
+RUNTIME_VALIDATION:   ✅ smoke test 6/6 sans erreur console
+NEXT_PHASE:           P0.6 — HS_v2 plus strict ; promotion μ0 cross-démocratique ;
+                      regroupement sidebar par famille ; audit Oracle continu
+```
+
+🔶
+
+---
+
 ### Signature V2
 
 ```
