@@ -212,8 +212,10 @@ export function compete(question, nodes, parentsMap) {
   const survivors = routes.filter(r => !r.eliminated).sort((a, b) => b.selection_score - a.selection_score);
   const winnerRoute = survivors[0] || null;
   // THE answer = première loi du winner route (priority-ordered)
-  // C'est l'étiquette qui répond à la question. Off-topic → null.
-  const answerLawId = (!offTopic && winnerRoute) ? winnerRoute.laws_used[0] : null;
+  // Mission MULTI_WINNER : on garde answerLawId MÊME en off-topic
+  // (le user verra l'avertissement off-topic + le multi-winner LLM tournera
+  // quand même → CLAUDE brut peut répondre, ZORAN tentera avec ses cadres).
+  const answerLawId = winnerRoute ? winnerRoute.laws_used[0] : null;
   // Trouver le nœud complet pour cette loi + parents
   const answerNode = answerLawId ? nodes.find(n => n.id === answerLawId) : null;
   const parents = answerNode
@@ -364,15 +366,40 @@ export function renderResults(result, onPickLaw) {
   ${blHtml}
   </div></details>`;
 
-  // Lancement async de la synthèse LLM si clé présente (et pas off-topic)
-  if (hasApiKey() && !result.offTopic && result.answerContext) {
+  // Lancement async multi-winner si clé présente
+  // Mission : même off-topic, on lance le pipeline (CLAUDE brut peut
+  // toujours répondre, et le user verra le warning off-topic + les
+  // tentatives ZORAN — c'est précieux pour comprendre le domaine couvert).
+  if (hasApiKey() && result.answerContext) {
     runSynthesis(result);
+  } else if (hasApiKey() && !result.answerContext) {
+    // Edge case : pas de winner route → on lance quand même Claude brut
+    runBaselineOnly(result);
   }
 
   // Wire law-id clicks
   body.querySelectorAll('a[data-pick]').forEach(a => {
     a.addEventListener('click', () => onPickLaw(a.dataset.pick));
   });
+}
+
+async function runBaselineOnly(result) {
+  const box = document.getElementById('llm-answer-box');
+  if (!box) return;
+  box.innerHTML = `<div class="llm-label">⚖ Claude brut uniquement (pas de loi ZORAN retenue)</div>
+    <div class="llm-body">Question hors-domaine total — appel direct Claude…</div>`;
+  const { synthesizeBaseline } = await import('./llm.js');
+  const r = await synthesizeBaseline(result.question);
+  box.classList.remove('loading');
+  if (r.ok) {
+    box.innerHTML = `<div class="llm-label">⚖ CLAUDE brut · 0 loi (off-topic ZORAN)</div>
+      <div class="llm-body">${esc(r.text)}</div>
+      <div class="llm-meta">modèle ${esc(r.model || '?')}</div>`;
+  } else {
+    box.classList.add('error');
+    box.innerHTML = `<div class="llm-label">⚠ Claude brut échoué : ${esc(r.reason || '?')}</div>
+      <div class="llm-body">${esc(r.message || '')}</div>`;
+  }
 }
 
 async function runSynthesis(result) {

@@ -14,8 +14,8 @@ import { synthesizeBaseline, synthesizeRoute, judgeResponses, reformulateQuestio
 const SUPERIORITY_ROUTES = ['frugale', 'anti_hallucination', 'structurelle'];
 
 export async function runSuperiorityComparison({ question, allNodes, routeResults }) {
-  // routeResults : output de compete() — contient toutes les routes avec laws_used
   const t0 = performance.now();
+  console.log('[ZORAN sup] START — question=', question.slice(0, 60));
 
   // Construit le set [{stratName, route, laws}] pour les 3 stratégies
   const zoranSpecs = [];
@@ -43,7 +43,10 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
     reformulation: '(aucune — réponse directe, sans cadrage ZORAN)',
     ...(await synthesizeBaseline(question)),
   }))();
+  console.log('[ZORAN sup] phase 1 — reformulations × 3 lancées en parallèle');
   const reformResults = await Promise.allSettled(reformTasks);
+  console.log('[ZORAN sup] phase 1 OK — reformulations terminées',
+    reformResults.map(s => s.status === 'fulfilled' ? (s.value.ok ? '✓' : '✗') : '✗').join(''));
   const reformByLabel = new Map();
   reformResults.forEach((s, i) => {
     if (s.status === 'fulfilled' && s.value.ok) {
@@ -65,8 +68,11 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
       })),
     };
   })());
+  console.log('[ZORAN sup] phase 2 — réponses × 3 + baseline en parallèle');
   const respResults = await Promise.allSettled(respTasks);
   const baselineResult = await baselineTask;
+  console.log('[ZORAN sup] phase 2 OK — baseline=', baselineResult.ok ? '✓' : '✗',
+    'zoran=', respResults.map(s => s.status === 'fulfilled' ? (s.value.ok ? '✓' : '✗') : '✗').join(''));
 
   // Aggreg responses
   const responses = [];
@@ -76,15 +82,18 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
   }
 
   if (responses.length < 2) {
+    console.warn('[ZORAN sup] FAIL — too few responses (got', responses.length, ')');
     return { ok: false, reason: 'too_few_responses', responses };
   }
 
   // 3. JUGE — score chaque réponse + reformulations + divergence
   const reformulationsList = responses.map(r => r.reformulation || null);
+  console.log('[ZORAN sup] phase 3 — juge LLM');
   const judgeResult = await judgeResponses({
     question, responses, reformulations: reformulationsList,
   });
   const judge = judgeResult.ok ? judgeResult.judge : null;
+  console.log('[ZORAN sup] phase 3', judge ? 'OK — verdict=' + judge.verdict : 'FAIL — judge non parsable');
 
   // 3. Compute deltas vs baseline (responses[0])
   const baseline = responses[0];
