@@ -179,6 +179,21 @@ const classesLabel = await page.locator('.frames-label:has-text("Classes")').cou
 console.log(`  Sustainability sect. : ${sustLabel > 0 ? 'présente' : 'absente'}`);
 console.log(`  Frugality score      : ${fragLabel > 0 ? 'présente' : 'absente'}`);
 console.log(`  Classes badges       : ${classesLabel > 0 ? 'présente' : 'absente'}`);
+// NEW : provenance + cores + counters (missions 2026-05-16 night)
+const provLabel = await page.locator('.frames-label:has-text("SHA + version")').count();
+const filLabel = await page.locator('.frames-label:has-text("Filiation")').count();
+const lriLabel = await page.locator('.frames-label:has-text("LRI")').count();
+const coresUl = await page.locator('#cores-list li').count();
+const counters = await page.locator('#status-counts').textContent();
+const hasStar = counters.includes('★');
+const hasFrugal = counters.includes('frugal');
+const hasCores = counters.includes('cores');
+console.log(`  Provenance SHA       : ${provLabel > 0 ? 'présente' : 'absente'}`);
+console.log(`  Filiation row        : ${filLabel > 0 ? 'présente' : 'absente'}`);
+console.log(`  LRI / Keep prob.     : ${lriLabel > 0 ? 'présente' : 'absente'}`);
+console.log(`  Cores sidebar list   : ${coresUl} items`);
+console.log(`  Counters ★/frugal/cores: ${hasStar?'★':''} ${hasFrugal?'frugal':''} ${hasCores?'cores':''}`);
+
 // New : generative + selection sections (missions 2026-05-16)
 const genLabel = await page.locator('.frames-label:has-text("Profil génér")').count();
 const scopeLabel = await page.locator('.frames-label:has-text("Scope")').count();
@@ -232,6 +247,39 @@ const tempHeader = await page.locator('h3:has-text("Sélection temporelle")').fi
 await tempHeader.scrollIntoViewIfNeeded({ timeout: 2000 }).catch(() => {});
 await page.waitForTimeout(200);
 await page.screenshot({ path: 'app/preview-sidebar.png', fullPage: false });
+
+// Test manual pan via window.__zoranPan (REAL_HAND_NAVIGATION_FIX)
+let manual_pan_ok = false;
+try {
+  const result = await page.evaluate(() => {
+    const fg = window.__zoranFG;
+    if (!fg || !window.__zoranPan) return { ok: false };
+    const c = fg.camera();
+    const before = c.position.clone();
+    window.__zoranPan(120, 80);
+    const after = c.position.clone();
+    return { ok: before.distanceTo(after) > 0.5, d: before.distanceTo(after) };
+  });
+  console.log(`  manual pan API: dcam=${(result.d||0).toFixed(2)}`);
+  manual_pan_ok = result.ok;
+} catch (_) {}
+
+// Test layer toggle
+let layer_toggle_ok = false;
+try {
+  const before = await page.locator('#cores-list li').count();
+  if (before > 0) {
+    await page.locator('#cores-list li').first().locator('[data-toggle]').click();
+    await page.waitForTimeout(200);
+    const state = await page.evaluate(() => {
+      const vis = window.__zoranFG && document.querySelector('#cores-list li [data-toggle]')?.textContent;
+      return vis;
+    });
+    layer_toggle_ok = state === '∅';
+    // Restore
+    await page.locator('#cores-list li').first().locator('[data-toggle]').click();
+  }
+} catch (e) { console.log('  layer toggle err:', e.message); }
 
 // Test 'S' toggle sidebar (Full Hand Navigation mission)
 let sidebar_toggle_ok = false;
@@ -376,6 +424,8 @@ console.log('focus_branche (F)  :', focus_ok);
 console.log('prune_toggle (P)   :', prune_ok);
 console.log('drag_panel         :', drag_ok, '|', drag_diag);
 console.log('sidebar_toggle     :', sidebar_toggle_ok);
+console.log('manual_pan         :', manual_pan_ok);
+console.log('layer_toggle       :', layer_toggle_ok);
 console.log('pan_right_drag     :', pan_ok, '|', pan_diag);
 console.log('esc_closes_panel   :', esc_ok);
 console.log('status counts      :', counts);
@@ -386,5 +436,6 @@ console.log('page errors        :', pageErrors.length);
 for (const e of pageErrors) console.log('  ✗ ', e);
 
 const fail = !boot_ok || !click_ok || !focus_ok || !prune_ok || !drag_ok || !esc_ok
+           || !sidebar_toggle_ok || !manual_pan_ok
            || pageErrors.length > 0 || consoleErrors.length > 0;
 process.exit(fail ? 1 : 0);

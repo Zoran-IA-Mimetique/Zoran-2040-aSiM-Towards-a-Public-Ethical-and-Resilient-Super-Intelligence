@@ -72,8 +72,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "f1b9361a6cb99410d26fcc8d1f6ae1c93579cbc28428dce88bcd3a195875ba43bbdccacf6dd20a837a903b8057b370847e89bc76b48cb029f56f3971910985a7",
+      "sha_short": "f1b9361a6cb9",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-ULG-103",
@@ -140,8 +157,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "effca190a6748e441a1439ec74ee4e8e5742c492d87c649253ae62ece2d4869edd31873e93f95b32ab60d56001806bfc6669b8518d4b5e2f3aa2e79286e9b6a4",
+      "sha_short": "effca190a674",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-ULG-108",
@@ -208,8 +242,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "01e91ee0eb2b02b4610100a513547e97efe69bc9918fc26b1921278fcebb49ad30ebd442bfd4aa7c7abc2a20abbbc68d2988331c0c4f83e6ed47ac8019ac1792",
+      "sha_short": "01e91ee0eb2b",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-ULG-110",
@@ -276,8 +327,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "04c6fa303ece135b3665e1e59b521d9ce732962671dc6ccb4a5bdeaae6bbeab3b36206269da6a43bd82429cd484b8d6c3c815b12e072db4ec6b95befde72643d",
+      "sha_short": "04c6fa303ece",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-ULG-112",
@@ -344,8 +412,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "2559196a98b0deb89ccadb23a9e8be966230895901411320feeb3a712f6250cda6a2ae4ca6d62df461cbd7b7ed5d904e5eb92c696b543db5c5d7a91ad96a2c45",
+      "sha_short": "2559196a98b0",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-DVE-101",
@@ -413,8 +498,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "0ee2f544e4b2126ea4c32462442f9173b43817cf770bd13b681b383d79ef6daf1505f086152e575e200380e4788ca395304f51ac3109fb6ac8381d2a800054ac",
+      "sha_short": "0ee2f544e4b2",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-DVE-102",
@@ -481,8 +583,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "2bb63837db61dc5f68fe6054effa192d9a814e72b987be562775bdc5573e1fe374773be65ecb368a1b33c30c330ab7c2393b330245b97944480bfe559f466c6a",
+      "sha_short": "2bb63837db61",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-DVE-105",
@@ -545,8 +664,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "66b17fa968987999a7b3af1d8291e04a23cb54dafdf78d1b74261eec23337d8ae05d3724a9455f2e67a9f3049df895f382f0e8f54772b8a20f3b3f3b55973b30",
+      "sha_short": "66b17fa96898",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-DVE-107",
@@ -609,8 +745,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "abacef0c75c257d2c3afe83702b0627139645a61c6cdce6d7d17a6f819511f98ae5a997ea775948a63d7dc2a225ae6140be40fa7e0b3fb6c4543abf517d4bd46",
+      "sha_short": "abacef0c75c2",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-DVE-108",
@@ -673,8 +826,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "e9125cab6bda672bfc64bc83078166f1d11d7096c93628f39f13ded82bd5e2af095f7d1a2c8fc428566b8b1bd97d68cacde3e1c7d9464048a92dc10cac0dc26b",
+      "sha_short": "e9125cab6bda",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-DVE-109",
@@ -737,8 +907,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "ee698f261c302a692faf9eb98cf5dbab4102bad17121a52f1245f24810e6dab83c4b855bfd4d12a738c40447d3f1b3306675a655f65c885ae259c9542b1b780e",
+      "sha_short": "ee698f261c30",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-DVE-110",
@@ -801,8 +988,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "0ab54b9d04575643d3db1935864233044a4c2f3406a00756cb915df139000115ef011d238bd745154523a9972ffedcad6aca4f2257c6c70f957d8dedb4513339",
+      "sha_short": "0ab54b9d0457",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-DVE-111",
@@ -869,8 +1073,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "83e8c7bcb7c909f4c6c20fadfe7a73d9b3fd14f3fd939e00cbd37246e556a2f8b1b1d9e8e5788e2cf24e09e1e2a10492c820cf6530c2f343c0bcd4b7a4077e97",
+      "sha_short": "83e8c7bcb7c9",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-DVE-112",
@@ -933,8 +1154,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "be9f3cd839f7a0871e309396e3147d825dd4ee225f0889d1359520b12285e0754b00b6872eddac03653d52e75be491953ea67dc5ad47db70219f4a02463b0a72",
+      "sha_short": "be9f3cd839f7",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-UDE-101",
@@ -1001,8 +1239,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "7b42e66c58312f23344883aeace1208a04dc635c79f077c126d03d26245bff8d82697a4dfdeb2ec1d2996242500c3fdce945556ea6e3d17234813da1fd9e7e43",
+      "sha_short": "7b42e66c5831",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-UDE-102",
@@ -1065,8 +1320,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "d3c48dbf05762aed721e9830a82b223f763a139c9732fa834c9837addf829b36aa2d2fac2f40553929fd50c0c04f2b69ffaf49fdcbfe33330ffb7c042634297b",
+      "sha_short": "d3c48dbf0576",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-UDE-105",
@@ -1133,8 +1405,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "889f338b5fae9e6de7038bd008cf7bf51189447c9c3985effbc0ae99e3780c4dc37d8af71796f0530d840fdb7eee3886e6dd72063a8f71f3a2ea8fa4c7b4a1ac",
+      "sha_short": "889f338b5fae",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-UDE-106",
@@ -1201,8 +1490,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "f5e0baed81f2c6e43e58b9e9af3b361d71cef28c58cdb4f4fd908551056089a5188e2036c375110cb6f3632c247fb416fdf9052f75eb10fb6214a33a27f5e357",
+      "sha_short": "f5e0baed81f2",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-UDE-107",
@@ -1265,8 +1571,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "df0c41d26b8262d17501887da781da447bb3a6fdc5a349152e8ca2a703bdb01c39d8d72c3444d29d10522fa933379dfaa7c4ba10f3a52bc312ef9772f2e72917",
+      "sha_short": "df0c41d26b82",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-UDE-108",
@@ -1333,8 +1656,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "c64482d8a7e58235244feaa1b2493d9e855978647c5c292c932c70bada92bcdcc3d7d47b4ddbdeae15b6be760d5a3d41e8260c2393422216b26c8de83453ad74",
+      "sha_short": "c64482d8a7e5",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-UDE-110",
@@ -1401,8 +1741,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "2b109c22f6e65ce93b61a0b9e47d90a9c541bc24c841bce8d798a5fc9465f45eac01b805a0ee83a27371d1d8d2ce178767de7090bf81ad00ec0ff3a6b753f02d",
+      "sha_short": "2b109c22f6e6",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-UDE-111",
@@ -1465,8 +1822,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "f4b3ee4352ddd94bbafeef5fa1b46a9afafaaca1de2d08bc68a09a378a8af6e648d143f57e06261e54c4a5b5bc773648ed2d62debca55c769a5534a07eca48aa",
+      "sha_short": "f4b3ee4352dd",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-GHUC-101",
@@ -1533,8 +1907,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "1e00b2e434273bbc0d8503f6a248faf33169a102d7bb48b21982b6566078f7fe478340e8f93c29f5e7491aed2873555f04ac1c4c78b26fbc0d245f7cb7feab10",
+      "sha_short": "1e00b2e43427",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-GHUC-103",
@@ -1601,8 +1992,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "cb2c27e4b28cf7ca700e21443419295008206faf22843dba43cdf43e9d6d5a72d5b117103640f869c62178d3ba3d51608404e02ac73682bb554cf1b27d6bdeb3",
+      "sha_short": "cb2c27e4b28c",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-GHUC-106",
@@ -1669,8 +2077,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "ccfd1fbf24009e3efd58b6e515fa09d7a1f12bb73cdf9b3bf7ff053aa7a62cbc745fe1d4f6243e723843344b46306e71b8497f082195e075dc2bee8d14467c25",
+      "sha_short": "ccfd1fbf2400",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-GHUC-107",
@@ -1737,8 +2162,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "baa011c444b1520fa0c53bdd3938ed05b819222f49f80c55eaa3df5967d7a137675bdf3bee7bd5338882a317a7744c4f1fc1ad1ffebaa02fd9e32659e6efa63e",
+      "sha_short": "baa011c444b1",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-GHUC-111",
@@ -1801,8 +2243,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "0eacc941b3c10a569e103b8725749ccd6a4315918563784d2a68be142409437146f30782047ec1d75b9297c989c1ed3cc37aede5a596a0d8835317ede9d8b385",
+      "sha_short": "0eacc941b3c1",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-GHUC-112",
@@ -1865,8 +2324,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "4081264f4d01ff247ac343067c48f8ac3cdbae090d5ac93cecfb2202523135e2eeeaaddc1f359ca0f9f287d1d9c60f7adbeca2886c0972f96bec8b2c46ae47dc",
+      "sha_short": "4081264f4d01",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-WP11-102",
@@ -1933,8 +2409,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "2079a8fc1680d27d24bd6e2990ea77167063a00b0cb69a53e854f7f87fd2dd2479b06842de640014d927d87e39ed5b4c749376d6630f6c9abcc2e9f642952ab2",
+      "sha_short": "2079a8fc1680",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-WP11-103",
@@ -2001,8 +2494,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "120ffdc82be473190339d2a7174c5d40817a05b9d28306b6f8b4b4fd2ae09a51084f9aae5bf86fbdc7adb040a4b29384d7c43d43f6756bb956d67cb8d2a54345",
+      "sha_short": "120ffdc82be4",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-WP11-104",
@@ -2065,8 +2575,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "e228c57de2d4cfe05051a47e53bb0a7ad7d5466062dfe0a7602471280c0ddf791abcef2f40bf5f29320b99cc1f2a5201314a26dd32266b26060f168a860a2543",
+      "sha_short": "e228c57de2d4",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-WP11-106",
@@ -2133,8 +2660,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "b920112adcd1d6b590a9f3be2efd4bd03ed427032a6a5af6c275b6b47e2777293c6f06f0e39dcb9d28ace473ff33f679ae6bdd86786e5029359053f447269ea6",
+      "sha_short": "b920112adcd1",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-WP11-108",
@@ -2201,8 +2745,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "69ab69cb1c2d6cd9c2d343eb62adae74cbc34bfb0a2e95d9a7a46b066913873ba862af23ca044495c81efb35bd34dd6a628c2022d124770d272d19f9c9184f4c",
+      "sha_short": "69ab69cb1c2d",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-WP11-110",
@@ -2269,8 +2830,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "10ae0b1af6d7798a3287fcc4fd73bf31885190a562a475564a01686fb1c8dd876fd909929ec2cdae0071e42ef4891a84a9d7a9511cfc572797caecca3dce6138",
+      "sha_short": "10ae0b1af6d7",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-WP11-112",
@@ -2337,8 +2915,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "ebcc37b461de014b29f759309fb73244b7c351deae79796d78ff3f96b0fc12ee7be335254cb2e27a335a0849a2d9ca1c2d62b533d9b24c63962d4c72e578db3e",
+      "sha_short": "ebcc37b461de",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-WP12-103",
@@ -2405,8 +3000,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "1bd4d90d68539603c1897cd0f3e0680435d621dfc4536ec129947616fbfcdc0ecf5d0948dc8a7a90b18e8e461ecb045823326f170d74315f282c72f123ffbd48",
+      "sha_short": "1bd4d90d6853",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-WP12-104",
@@ -2473,8 +3085,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "4b4765cff68609ed6a0a4f6155a388a1a33670f43dc6bf8e3de774cbf963b6207173bfa241e3e82052733ce0411267a0611f58dbdd27503a8f82400404a44c06",
+      "sha_short": "4b4765cff686",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-WP12-105",
@@ -2541,8 +3170,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "7bb55c532cd365a924ef1b858000005c473f22ca6f752d6c9e3c19c606268a20a955c9da7a6e5c9b3818b48540b42116c868f8e25e45f9390e2b66e142f871de",
+      "sha_short": "7bb55c532cd3",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-WP12-109",
@@ -2609,8 +3255,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "9094cb34f1dc01a548a8e04897a2d0cea1e6f4dc8b2e38c560ab5a7db96984c77f7bba5968f81b2de142121aff9ff806d66c7db61a74078386b8e2957f2d369a",
+      "sha_short": "9094cb34f1dc",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-WP12-110",
@@ -2673,8 +3336,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "043f20f9fcff4bd18476dcfd1f0102abbb6921a2aa0eefe7e21467c0d1e5e2730c83d2ac9314b742f4beed65fb22072e03f0af7a659072d952014aebc1ee73bc",
+      "sha_short": "043f20f9fcff",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-WP12-111",
@@ -2741,8 +3421,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "a819c0a468b3e06e429f06f893c84c7fc08629bbe7657b4dd51c7dc0fc737fdfdf1e3524e38e3a1d43e5b5d8d6f99a16a8b995696c0f94a2dd3f488d31c8033a",
+      "sha_short": "a819c0a468b3",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-WP12-112",
@@ -2809,8 +3506,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "7aa9fb4a0b3c177e187acb1ce7e072eda6edb761539e7cd7ecc8a7189890460cf69208a649ba185e5dd484211d7bf27ab8d74b887af8fc1882bbebf3e06c4e0e",
+      "sha_short": "7aa9fb4a0b3c",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-SDE-101",
@@ -2877,8 +3591,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "300bfdefd07a6fdc91dacb3d0c9155a63daac8fdd7d1bd24df0a9c13aeb6debb43f427043086d690b1a2bdbfcabab55e6ae863f9496e494cdafd6dffaaa14d4d",
+      "sha_short": "300bfdefd07a",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-SDE-102",
@@ -2945,8 +3676,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "6d76965153a83269400c0cc9e035c4ff0d1a9ad193f77e1f8f0dcb0fd5d2ec0777830c4d03bee2eb70e471e9ac574ae9b4ab131506fdf16c5a9cb88cf49a44ae",
+      "sha_short": "6d76965153a8",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-SDE-103",
@@ -3013,8 +3761,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "039968c14229e41316ab4d094673f547926858080386d21a37a901636e0a6fef0949d53c2111bbe71f66e5ff9e9ca7db13a7b4b93fa7a4429f62ca86e958d761",
+      "sha_short": "039968c14229",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-SDE-104",
@@ -3081,8 +3846,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "abde648f83a8c6dc9daa891aa0aec8a5dcdee431ec836eb77000ae43fcb35a2f65d234c3a20af1593aa706d9a90e2ca308a59b4dc742ca5c2cf8de738a843572",
+      "sha_short": "abde648f83a8",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-SDE-106",
@@ -3149,8 +3931,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "1399fbfc3b63a7cd4859336ccdc43c72c31e6c7b26e04c3ce073f27bcc850ddd0f908fabaaa94c63fe74a24c33ccb739fba8b82782bf4342ddf5bf2ef17150e6",
+      "sha_short": "1399fbfc3b63",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-SDE-107",
@@ -3216,8 +4015,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "aceb1f2fc73428b4d4bc16184bce075070b77fbb9e0e2df82c2af7131dc72b5bba3f306b7e4ffbd48f4a3bf38504a8e09a5591f7cb636d9d54f16bc17543221c",
+      "sha_short": "aceb1f2fc734",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-SDE-109",
@@ -3284,8 +4100,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "ddd1459e984b445aaecddeb1f636d143d4b9005603cd696ec24cb124b0feb9f4a52031a673e5d3aea11d6a80963a90fd3abfbc275f843320fefe44eeb9ea939f",
+      "sha_short": "ddd1459e984b",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-SDE-112",
@@ -3352,8 +4185,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "fb19d1c8f079dc6a1c85ac7525d75c3e8e4274a1f264478e18c2876c0c983e9e3b17f11f724c6677da607b6fdc6ce729d1d179724a26a636a0216babd602927c",
+      "sha_short": "fb19d1c8f079",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-PAL-101",
@@ -3420,8 +4270,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "1aba2460625a527c4445b5883ef447e2abc2d936687f3f66e0653603ef65f4b22a0e4746f3b7ff804845e0ceaf14cc32ffd5aef7ab3735a45e688cf9a51da5ec",
+      "sha_short": "1aba2460625a",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-PAL-102",
@@ -3488,8 +4355,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "bb7c4ba7626e340bd0a1ba0bca370e912afb8a8d89b19ab6c2dff117b52ff3810a9110e6a358a9325b2dd0530d1d917f1a2862a9526c4890b283be8fdc654a86",
+      "sha_short": "bb7c4ba7626e",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-PAL-103",
@@ -3556,8 +4440,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "e7176527f564f0bd140804ee33af6b16f83b905f9581c72ce21ae343d2c33c8fb4ae0cd05d3f1f8f39ce8a145c8dc04bec4f7d32df121ae99fc18ca0276cc311",
+      "sha_short": "e7176527f564",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-PAL-106",
@@ -3624,8 +4525,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "2389081da26c92e256b3cf89581f7adc36508716c4b65e360b2cd1baeb9695e825b3486d0fb05d467208729870847ac511f24de438df7b9af527dd93685727e4",
+      "sha_short": "2389081da26c",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-PAL-107",
@@ -3692,8 +4610,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "f1649b7c24e25fc793a75b626086d3b2761c49c873a1054f28dfb2c89a88d61fcc78fc9663054eb67b3db3c5fb87b13371f423b9e9cda7d15f92fddf7d6b14c0",
+      "sha_short": "f1649b7c24e2",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-WP12-113",
@@ -3760,8 +4695,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "75074716af1eb6a4db6bacfaf9ad6c9a4d0de84b516a9ceb2039a58d1e336dba9b7d71d97f6bd8e143b7d1b01c2656bf52161e6de80e3a09245437fd49612ba2",
+      "sha_short": "75074716af1e",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-UDE-113",
@@ -3828,8 +4780,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "f7641374711ab5baeb0004bc1151dc681e6eff8347efcf5995ac1044ac1ba6ed56a5c4417a399df989dbf15b1748bbc0f7e87c06f4aed48f7e2b3b514d30b232",
+      "sha_short": "f7641374711a",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-DVE-113",
@@ -3896,8 +4865,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "2637680656a7bf8ea3099d93d702e4748ecf77758879820e0fc1a34bd8f7b239984ddcc3d22ba9177f89427c464a5fca27ddc508beda38a81c805b51b6ae82fd",
+      "sha_short": "2637680656a7",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-SDE-113",
@@ -3964,8 +4950,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "b61aaab83023bff44479baf0544749162b92aeaea9f0d6b7f42ad00dfb97b5a13ed454f70ae4a31fa7a09324c05dc1a7ec9d732589453d6a8cc361224122c437",
+      "sha_short": "b61aaab83023",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-PAL-109",
@@ -4032,8 +5035,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "f892002bfa0d7d54171c2b510aa944766938b827571a88d52de01e4f1f9fd44fe81da65235b4030e8953572fc941e6500204abec7e50fbcebab74c4519c48a53",
+      "sha_short": "f892002bfa0d",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-ULG-113",
@@ -4100,8 +5120,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "b95637743d270294969906f1e01c313d306044e89f05cc8ee74dce30dd340585fc883971df80091381ad5d4c781c1c2c218849e5ab1df782b9556f6f8f2b1234",
+      "sha_short": "b95637743d27",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-GHUC-114",
@@ -4168,8 +5205,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "0a87b0fad41e4be035e15f3df6990bef2e93eee97e2a8a01fb7a658d02c6b276ac7845e85e0cf46cdd76f61c108db458d25be97587c745536fece50779fcd328",
+      "sha_short": "0a87b0fad41e",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-WP12-114",
@@ -4236,8 +5290,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "3b6a68a0fc24601b4f66282556d44b7c976bff3b985d520bde8f60358d2e264ce3c31b1966bb59dd9c3f227f4a5c08ef0460080a77f430b9d6034264c938ada6",
+      "sha_short": "3b6a68a0fc24",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-UDE-114",
@@ -4304,8 +5375,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "68dcc42ca9ad4aa1da6eee8a0b6d40d307ecd647cf4cbeec8bbe85ef31c408101a2182dc50e237afe7f7d454549c3382987d301a9b8ae98b8de0403bfc69a7b6",
+      "sha_short": "68dcc42ca9ad",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-DVE-114",
@@ -4372,8 +5460,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "19230566f953cd6a4df775d1777a035228cb9b2d37abdec5978612faa957b7d874cbe2c722057776e5b6342caacb555d35f3474e3be2c9f27a24988beadc812f",
+      "sha_short": "19230566f953",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-SDE-114",
@@ -4440,8 +5545,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "74481337d665da6600a36e6df2544b676f9ecc34e80ef83341c84a7ce87604f6087c795cb001da9ed6234f33cbcfc4e8db30fe3eb6e291e3eafea5eae29bf093",
+      "sha_short": "74481337d665",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-ULG-114",
@@ -4508,8 +5630,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "f885363a6bc81148b997ab9d235fb4de6f1fccba9b75d124300ff067ca45815afd2aef348824b9e59d8b2745507994e4a54da6799d62441dfedd60c17f65d526",
+      "sha_short": "f885363a6bc8",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-UDE-115",
@@ -4576,8 +5715,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "5b0ea1d0bc7cfb3888721aec8a3b59db6d4deade3744e38234be315404ec70500ab401a2ec134d6ca570a9141eaa2a87f2b8b849c5d47cf2a569b6f235f7ec4c",
+      "sha_short": "5b0ea1d0bc7c",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-DVE-115",
@@ -4644,8 +5800,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "95a02c1ffc2509e7f172944f283441c7f7dfce3a4a943afe67541d91c8e34b43ddd55fc1bf025c558f0a5100bed2079f86f26e6f6f90cee97462e0bc9940f4fc",
+      "sha_short": "95a02c1ffc25",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "SBX-SDE-115",
@@ -4712,8 +5885,25 @@
       },
       "reversible": true,
       "rollback_dependencies": [],
-      "canonical_status": "sandbox",
-      "runtime_admissible": false
+      "canonical_status": "canonical",
+      "runtime_admissible": false,
+      "version": 1,
+      "sha512": "c1b865f47a320e8b8c4bb4f9ca1eab9d5b48238eee20c9e1df87aede34c6ea97721fb600cc55eac9e7b36feacb993ddffe824083984209a6dcc2e2dee966c88d",
+      "sha_short": "c1b865f47a32",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "ZORAN_FRACTAL_LAW_TREE_OMEGA",
+      "parent_laws": [],
+      "child_laws": [],
+      "derivation_chain": [],
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": false,
+        "auditable": true
+      }
     },
     {
       "id": "ULG-GHUC-004-a-d1",
@@ -4732,7 +5922,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "cbfb40aff0ca5d28751b0b185f77965f5025273b2114dea5cbbfde0f1ddbbe2ae1e65aa32b187ab70c117aca3331ca4fabd3613e9a3958adbb2dc0b36bd2398d",
+      "sha_short": "cbfb40aff0ca",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "GHUC-004-a"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "GHUC-004-a"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "WP12-UDE-024-d2",
@@ -4751,7 +5963,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "a38dbb493ec283283c2a7558cbab992f0e264356c548313f3e7fe1d5a798841cb105f4361cf97647f3663517c33a6ccdf0e75f4fb1d96afdc38abf7eac83f2bf",
+      "sha_short": "a38dbb493ec2",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "UDE-024"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "UDE-024"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "DVE-UDE-032-d1",
@@ -4770,7 +6004,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "aaa583faed2a55098a6a7be8c8404dda053d1dbdf910c424a3de07ba3c2c7f7a904e18933a925468966f633849f52ebb127d479af40d0d4c86535fe41f9220b1",
+      "sha_short": "aaa583faed2a",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "UDE-032"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "UDE-032"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "WP11-ULG-002-a-i-d1",
@@ -4789,7 +6045,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "d2e4ef7a92eeecab5a81a25cf0b8bd5cdb772dceba0c76d9cf5c95646f97ccebcd800f1e08198e3a179a1b99a9df880e16caffef10d2c82de21c67a8acdf2214",
+      "sha_short": "d2e4ef7a92ee",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "ULG-002-a-i"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "ULG-002-a-i"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "PAL-WP12-016-d2",
@@ -4808,7 +6086,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "7c21a75c858e1bb05bf50f58bd826bce2f81a5d1dd8eb1f84970b7543634ab2f5d7906e5e327b393ae39e92f5e42f41dd0224bb939e367fc2aa85e3a94360ce7",
+      "sha_short": "7c21a75c858e",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "WP12-016"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "WP12-016"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "WP12-ULG-002-d2",
@@ -4827,7 +6127,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "4e6c6174771f551ef12d6578863df572c5f98947d56e2e1501d2a48e98f28b3ed8d341f52d21d4c9a2f6cc777477b03ecee2ceb6d411b9b8ba3d386c297ef060",
+      "sha_short": "4e6c6174771f",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "ULG-002"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "ULG-002"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "ULG-GHUC-011-d1",
@@ -4846,7 +6168,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "ee40da6b1ab68ba32ec0de6b8356285f89294c4364a774e81aa17f8f2ec108bda7740d07df909043f00156ef4be2f3cdeb8d59316635c9368cdb557913c0ae7d",
+      "sha_short": "ee40da6b1ab6",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "GHUC-011"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "GHUC-011"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "PAL-SDE-013-d1",
@@ -4865,7 +6209,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "c59efd27211d75742346cf19ebb7f5c27e9c30d9fd54942cbf40edc8b21012a1870e9ca13f42e5c1091169afcef17bffaa3d8f3663ee4f4b7c0fb90ed677b59d",
+      "sha_short": "c59efd27211d",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "SDE-013"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "SDE-013"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "WP11-GHUC-022-d2",
@@ -4884,7 +6250,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "a678c9a3b9986ff6fbe408456056e9e46f9c01101252ac73bc6bfd2b9d580d474819281a22f9ca327f1c9904423302e21fddc5caedb06a45e5a71406701fcb39",
+      "sha_short": "a678c9a3b998",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "GHUC-022"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "GHUC-022"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "ULG-GHUC-009-d1",
@@ -4903,7 +6291,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "8505e3223c38bd8cae2689e276a20b3874598f41d8199d81f239589f6b43950b3e4b084786ee4df7992ebe2119301ab5be38cbdab1cba10fa0e537d71da8063c",
+      "sha_short": "8505e3223c38",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "GHUC-009"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "GHUC-009"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "DVE-WP12-006-d1",
@@ -4922,7 +6332,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "506522e767aa5650c6a954bea3773681ee6d7fde18b2a1660f36aa92920f9bdf5168436901285ec98de8ce5d50c812201022634e4a41cae61dc99e790bd9b99c",
+      "sha_short": "506522e767aa",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "WP12-006"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "WP12-006"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "WP11-GHUC-013-d2",
@@ -4941,7 +6373,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "fe028aa5b8e0d5073c0de54553859b65dddf30a21e20e15eeb9b8543b0b2337406f4644c92f1a3954e121894a5273de04dca82c11287ae0e6b1d282247921501",
+      "sha_short": "fe028aa5b8e0",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "GHUC-013"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "GHUC-013"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "DVE-WP12-015-d1",
@@ -4960,7 +6414,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "b314df6b5500b860da6dcce62e6e042c57eb7cc7e58695ee21ceacb4ddb70386daf6cf10e0ded52736896e38b95a7e892fc79ffa17803d7ee5b89eb478a041c6",
+      "sha_short": "b314df6b5500",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "WP12-015"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "WP12-015"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "UDE-SDE-011-d2",
@@ -4979,7 +6455,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "e528d4e0379edd1cfd32f4c337f65aa6028c6a0d301994812d87cb5937d2876e9dddb0bf38313261ede644b6ef94e2fa811d5eac92e399f39780a01720bd6eb9",
+      "sha_short": "e528d4e0379e",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "SDE-011"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "SDE-011"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "UDE-SDE-012-d2",
@@ -4998,7 +6496,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "cf37a3c5a8cd444efec2eed6e60de71f2355e02c975470d628b7da0cf120eeeeffe4a8a0986bca7bfbdec651d0d281cd0a1c2962ffd83e6d4b0c435ec06ebdd1",
+      "sha_short": "cf37a3c5a8cd",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "SDE-012"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "SDE-012"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "PAL-DVE-020-d1",
@@ -5017,7 +6537,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "b3f8fddcb9408805ebcecf0d2e62865e1bbc514f78dcaa29a88f0dcdde0a57263ef5a11a53a28301f9b9ff2baefa6c6cfcb1da5af183485b359e2656a7967cd9",
+      "sha_short": "b3f8fddcb940",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "DVE-020"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "DVE-020"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "DVE-UDE-036-d1",
@@ -5036,7 +6578,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "10a8b6415a98ab45a5fec97a7e4a85fce1234ec1112c4fe546be86b5683e41be5d2da5eb50b3243f3838c2e42dd072de5f6e56bcddea2ced85852fab89efcc48",
+      "sha_short": "10a8b6415a98",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "UDE-036"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "UDE-036"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "ISO-WP11-029-d2",
@@ -5055,7 +6619,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "8e3f1542a8449d0485219b77a22ac29f0cc281da0a99cecb4b3d506b4e5a48d34052be45822b1727a578acde4bb00f874a38898324af3c914b6b09e9bdd6e6bc",
+      "sha_short": "8e3f1542a844",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "WP11-029"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "WP11-029"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "PAL-DVE-002-d2",
@@ -5074,7 +6660,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "9c36012cc937859589b03135e14482e5d3464f225770a97b8b96cbc389cfc4d97f0a277c954e932f4ed79a9795bbdf65c66bb57d4fd4f869f0c0d32837910c36",
+      "sha_short": "9c36012cc937",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "DVE-002"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "DVE-002"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "ISO-WP11-010-d2",
@@ -5093,7 +6701,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "1d40694ce886435a79957f29fb1641d70d00454ae54d97ddcbee8e0a05c467893b567d5a714fa9f7a0923b5f14b4ece383e02bb14c807fa5a12bf9e4daf12fe9",
+      "sha_short": "1d40694ce886",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "WP11-010"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "WP11-010"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "ULG-WP11-034-d1",
@@ -5112,7 +6742,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "9311901b86170e2ac30944b49f45dfd498f4d6d3b23f4902e0a74214623d31abbeba15bff11daf6a870c521b22f079f537352c3bdfeffd9027ee2d52b79919cd",
+      "sha_short": "9311901b8617",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "WP11-034"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "WP11-034"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "ISO-WP11-034-d2",
@@ -5131,7 +6783,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "aa4be824327ddc454aa85dfe82c40d4a1b84f7630c61a7d8123c313c0f60d8e97deddde0ac9676c0960f623ae24c48c752c5d869b076f3f121e5d0e685c5b20d",
+      "sha_short": "aa4be824327d",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "WP11-034"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "WP11-034"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "ULG-WP11-014-d1",
@@ -5150,7 +6824,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "c5f1c2b24bb9afab597a25906c3068e2a5475a1a6824d21b2e92e1f81f20f90e0ace29db718ce8d3125e430ae59fa1bf11fdcef8118043a1b5c125c28d2585c7",
+      "sha_short": "c5f1c2b24bb9",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "WP11-014"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "WP11-014"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "WP12-ULG-022-d2",
@@ -5169,7 +6865,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "553ae508b0ab37a86a2f836389fcc9f31f67b4c1723e81a9623575e0e44762dd5b878b4d4f38174ff739ed809050e99531da16e138b10f45f6df2f1f553b9b08",
+      "sha_short": "553ae508b0ab",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "ULG-022"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "ULG-022"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "DVE-UDE-013-d1",
@@ -5188,7 +6906,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "782e0570909e9dd1def3267664d335d1bd78923a588a28c07b75dc73224714609eb431519b1b262f30cedc63eb70ddbd9fe4c93c70e0d9a63a90d70f1cf59651",
+      "sha_short": "782e0570909e",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "UDE-013"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "UDE-013"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "ULG-WP11-017-d1",
@@ -5207,7 +6947,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "3cecfaf9cf85cc31ab373f7f97986e53d7ad64fb5c51a2901cf674e9efc409adc31d0189305d74ef072f827c301daeba3e0746441ff97d6d011dc3de039f6846",
+      "sha_short": "3cecfaf9cf85",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "WP11-017"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "WP11-017"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "WP12-ULG-002-b-i-d2",
@@ -5226,7 +6988,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "19567d7af9c72ff3eee0b58218748b152797a1271cca29a81775c29bcd79ed67ee4e80a120bbdfd7044d7c8caefd02914483a4eb864eec36ea1e980ed8bda4a2",
+      "sha_short": "19567d7af9c7",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "ULG-002-b-i"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "ULG-002-b-i"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "DVE-UDE-019-d1",
@@ -5245,7 +7029,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "c8d53bac4387562dc964dc0577e64b0d5c3df39ebf48adf7c2eedf0859d3c2c3d87448712317ced1860b357039e94917e4e579d8a0203f5ea17b914d33db39be",
+      "sha_short": "c8d53bac4387",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "UDE-019"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "UDE-019"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "ULG-GHUC-007-d1",
@@ -5264,7 +7070,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "abb676457d23cbc88eede84c9e67c7379b11daf4cf37897cf0b952b739c423b54dd26d9cdb11cbc86a1bbd0f385ca06aa4158649fb598ed8ae165de574a82300",
+      "sha_short": "abb676457d23",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "GHUC-007"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "GHUC-007"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "ULG-WP11-015-d1",
@@ -5283,7 +7111,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "793b556a5135e7c43fb052128595e95734f14a8ddb557e048fd77aaa8a3b78b299103ebeff7183c1f3c1f254a91e51bc2eaca2a1676d584b49394790bfc6d7d8",
+      "sha_short": "793b556a5135",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "WP11-015"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "WP11-015"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "ULG-WP11-037-d1",
@@ -5302,7 +7152,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "6efa969768bf3e2a202f6bd9145b026103b369c869697eb8241297d80b13211c2051403b145d435dc7c7da6eede3f054a176969a21d056f75c51ab01c0cef882",
+      "sha_short": "6efa969768bf",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "WP11-037"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "WP11-037"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "SDE-PAL-005-d2",
@@ -5321,7 +7193,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "82571aa6eee93290a0baf6d685201614f24f036830994a205ead4af7f3a35bab0fed19b4e9ec92167a41c31523c32c63dd4bd425c7b276a992e69d54a8cb1e0c",
+      "sha_short": "82571aa6eee9",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "PAL-005"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "PAL-005"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "WP12-DVE-003-d1",
@@ -5340,7 +7234,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "91b769479592b4dd828501ad4e5f1ca779cf4bab51dad284536064cb0f6616cd4d5b736df055e4e62564a1ed00bb586fede3f5546df23e6a42a6bc18e951a420",
+      "sha_short": "91b769479592",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "DVE-003"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "DVE-003"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "ULG-GHUC-022-d1",
@@ -5359,7 +7275,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "39dd027fbe3a324505dccb48be9d19a50acee611e054506e973322f736bfffb482f5643e98ae29a561222126031758fb5cf89498790dfb37da6a6e6876399549",
+      "sha_short": "39dd027fbe3a",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "GHUC-022"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "GHUC-022"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "ULG-GHUC-030-d1",
@@ -5378,7 +7316,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "ea496718a97f96bc22620be1c547a4f54677c2c20a68abfd436ee4ed10bdf813e1997e01c4981822afad038f5566d90934cac56a792e01b7408f0ecea3d2c570",
+      "sha_short": "ea496718a97f",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "GHUC-030"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "GHUC-030"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "WP12-ULG-002-a-ii-d2",
@@ -5397,7 +7357,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "b6f8f9f9a9ae6d33c92a8852e3a78cebb7fb89ea740824317bbb3312feaf6398112b74f006f5efdf6868e73907254a7c0a9dbd5b44e614879a23fac16c6601dc",
+      "sha_short": "b6f8f9f9a9ae",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "ULG-002-a-ii"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "ULG-002-a-ii"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "ISO-WP11-024-d2",
@@ -5416,7 +7398,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "003b51699b4521c11712dc665955099ded32e3ba341c9b9206ce93226e16e0586eb3c89a7c2bead3f54d33b57d9bf6d9f6c93d00c8013de3bf165f8e0bbc083a",
+      "sha_short": "003b51699b45",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "WP11-024"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "WP11-024"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "PAL-SDE-023-d1",
@@ -5435,7 +7439,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "55dd83292815058306c2fc0d0abd279caff0563dd7afb7598a10ed76d30453290f41ac107ac6d23acd490fcae76844536f4c874490dd7cff4a0ec00e43dda12c",
+      "sha_short": "55dd83292815",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "SDE-023"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "SDE-023"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "ULG-GHUC-004-b-d1",
@@ -5454,7 +7480,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "d28b51da121beb6f71019f93ab2c5960761c18ff66163f0111e3be5898853604f6465aafc0b25edaf87f431d94949fc406ffdde6e19c3d9486ac644d2c005246",
+      "sha_short": "d28b51da121b",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "GHUC-004-b"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "GHUC-004-b"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "WP12-DVE-016-d1",
@@ -5473,7 +7521,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "dd6f4011d3fcf02d8a8e7841cf25978af67304707d9f9b84c129d48bbe8a1b4d31c5325ef5edc91261094e148e1ea4d5e1d3771fa54911b9e4a6f8ea9de9d82d",
+      "sha_short": "dd6f4011d3fc",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "DVE-016"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "DVE-016"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "WP11-GHUC-002-a-d2",
@@ -5492,7 +7562,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "029094dac0939ee7a07bde7d0f97893c3c0dd1a53c109ed5e34db799bee4bda33bb06812d4aaf58e85a04bfeda93c50c6afb6a89584e315ff506e4b409d8373b",
+      "sha_short": "029094dac093",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "GHUC-002-a"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "GHUC-002-a"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "DVE-WP12-027-d1",
@@ -5511,7 +7603,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "dd6982e320136dccd820cde756dcda248815b0bdc53941cbfa4d1d9a10a4ee25474c5a7fff3a0d238fbf9c52540ed460b81090445fa94c13ad3cf5026a339465",
+      "sha_short": "dd6982e32013",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "WP12-027"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "WP12-027"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "ULG-GHUC-005-d1",
@@ -5530,7 +7644,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "2e1e540eb4f2a1caa3243c744d0589dc52d74179a6c9cd39969d18a560c5eaf9b4c2dab19f27c223e280aecde7b690d6010c8e2820dbcbdce9282a1bc517182f",
+      "sha_short": "2e1e540eb4f2",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "GHUC-005"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "GHUC-005"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "WP11-ULG-013-d1",
@@ -5549,7 +7685,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "752333b953dd01f5f59ae2b3ae5a62cdd3c410441b6620f8d82d0210a6fac9d1a7158c572404cd1fe9c4e2d92242b404b9aa4eff83d32cb1a6d1d3977536f4fe",
+      "sha_short": "752333b953dd",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "ULG-013"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "ULG-013"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "WP12-UDE-012-d2",
@@ -5568,7 +7726,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "7a2542fab83e77d2ff9eb116984fbce3a78574a32d9e577f6469aa1088efe04d574909b241b793bda004cc5723455ae8c8b221e692ffbbe5e19319b0d012e12b",
+      "sha_short": "7a2542fab83e",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "UDE-012"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "UDE-012"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "ULG-WP11-022-d1",
@@ -5587,7 +7767,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "72f1c4b3b18700082205009ef3124838c4fc53fb7139f56fcbdec42903c68ba59cc2bdb8f49440d10efbeaa70087972d8161b3d3813d83ca2d5dd33d2c4ec765",
+      "sha_short": "72f1c4b3b187",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "WP11-022"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "WP11-022"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "ULG-GHUC-026-d1",
@@ -5606,7 +7808,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "8ba32110ded87fb611fcd810f804b69ad0705e35d47af73adf25ec259e07c0f15076edf977020efa0e77c680422f3387084b8cea96cc6a83afd84895fab47936",
+      "sha_short": "8ba32110ded8",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "GHUC-026"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "GHUC-026"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "WP12-ULG-003-d2",
@@ -5625,7 +7849,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "ee96fa3d8a4ac6cbbfb2e36dee91df908fe16a43fca701e7e016502279e4a1753155beaaa61ce8660cf7950f336ed5e4606a3f9833e7a0de10ae496acbc718a2",
+      "sha_short": "ee96fa3d8a4a",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "ULG-003"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "ULG-003"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "DVE-WP12-004-d1",
@@ -5644,7 +7890,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "fbd0078d4e73241bd70f41efca9e4d82d47beaca2dafa33ec4905456432761e8f99d49f6602f5eb17f001aa810eb07b1bd3b0328c29b12be3c52acd7a3ee5513",
+      "sha_short": "fbd0078d4e73",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "WP12-004"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "WP12-004"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     },
     {
       "id": "ULG-WP11-002-b-ii-d1",
@@ -5663,7 +7931,29 @@
         "propagation_test",
         "temporal_test",
         "composition_test"
-      ]
+      ],
+      "version": 1,
+      "sha512": "65245a2c0e76ce8ec353a95bb72f5e15e0dbb2a3df9538bd128c2da303cea9c3808e89cab4b3eacc8ea95f6af9426f36c94d616ceb3983721668dace5d4b0ba2",
+      "sha_short": "65245a2c0e76",
+      "timestamp_utc": "2026-05-16T13:14:37.268241+00:00",
+      "last_modified_utc": "2026-05-16T13:14:37.268241+00:00",
+      "creation_epoch": 1778937277,
+      "origin_engine": "DISTRIBUTED_GENERATIVE_LAW_ENGINE",
+      "parent_laws": [
+        "WP11-002-b-ii"
+      ],
+      "child_laws": [],
+      "derivation_chain": [
+        "WP11-002-b-ii"
+      ],
+      "canonical_status": "sandbox",
+      "runtime_status": "marginal",
+      "oracle_validation": {
+        "sha_unique": true,
+        "version_consistent": true,
+        "filiation_traceable": true,
+        "auditable": true
+      }
     }
   ],
   "edges": [

@@ -245,10 +245,19 @@ function makeBilliardMesh(node) {
 function recomputeOpacityTargets() {
   for (const n of state.graphView.nodes) {
     let target = 1.0;
-    if (state.branchVisible && !state.branchVisible.has(n.id)) target = 0.18;
+    // Layer visibility (mission MULTI_CORE_PATTERN)
+    if (state.layerVisibility && n.core_id && state.layerVisibility[n.core_id] === false) {
+      target = 0.05;
+    }
+    else if (state.branchVisible && !state.branchVisible.has(n.id)) target = 0.18;
     else if (state.highlightNodes.size > 0 && !state.highlightNodes.has(n.id)) target = 0.32;
     state.targetOpacity.set(n.id, target);
   }
+}
+
+function applyLayerVisibility() {
+  recomputeOpacityTargets();
+  if (state.fg) state.fg.refresh();
 }
 
 function updateHalos() {
@@ -315,10 +324,19 @@ function setupLighting() {
 // ───────────────────────── status / sidebar ────────────────────
 function setStatus() {
   $('#status-mission').textContent = `MISSION ${MISSION}`;
-  const n = state.graphView.nodes.length;
+  const nodes = state.graphView.nodes;
+  const n = nodes.length;
   const l = state.graphView.links.length;
   const fam = state.graphView.families?.length ?? 0;
-  $('#status-counts').textContent = `nodes ${n} · links ${l} · families ${fam}`;
+  // GLOBAL_RUNTIME_COUNTERS — mission MULTI_CORE_PATTERN_LAYERS_AND_RUNTIME_UI_FIXES
+  const superior = nodes.filter(x => x.superior_law_candidate).length;
+  const frugal   = nodes.filter(x => (x.frugality_score ?? 0) >= 0.65).length;
+  const toxic    = nodes.filter(x => (x.experimental_classes || []).includes('toxique_propagationnelle')).length;
+  const sandbox  = state.sandboxCount ?? 0;
+  const cores    = state.coresDetected ?? 0;
+  const runtimeAdm = nodes.filter(x => x.threshold_admissibility === true).length;
+  $('#status-counts').textContent =
+      `nodes ${n} · links ${l} · fam ${fam} · ★${superior} · frugal ${frugal} · toxic ${toxic} · sandbox ${sandbox} · runtime ${runtimeAdm} · cores ${cores}`;
   const m = state.lastAudit?.metrics;
   if (m) {
     $('#status-coherence').textContent =
@@ -391,6 +409,51 @@ function buildSidebar() {
         supUl.appendChild(li);
       }
     }
+  }
+
+  // ─── LAYER_MANAGER : noyaux émergents (mission MULTI_CORE_PATTERN) ───
+  const coresUl = $('#cores-list');
+  if (coresUl && state.cores && state.cores.cores && state.cores.cores.length) {
+    coresUl.innerHTML = '';
+    state.layerVisibility = state.layerVisibility || {};
+    for (const c of state.cores.cores) {
+      if (state.layerVisibility[c.core_id] == null) state.layerVisibility[c.core_id] = true;
+      const li = document.createElement('li');
+      li.dataset.coreId = c.core_id;
+      const color = familyColor(c.dominant_family);
+      const checked = state.layerVisibility[c.core_id] ? '✓' : '∅';
+      li.innerHTML = `<span class="swatch" style="background:${color}"></span>`
+        + `<span style="font-family:ui-monospace,monospace;font-size:10px">${c.core_id.replace('CORE-','')}</span>`
+        + `<span class="fam-count" title="taille noyau">${c.size}</span>`
+        + `<span style="margin-left:auto;color:var(--accent);font-size:11px;cursor:pointer" data-toggle="1">${checked}</span>`;
+      li.title = `${c.core_id}\n\nCentres : ${c.gravity_center.join(', ')}\nDensité : ${c.density}\nStabilité : ${c.stability_score}\nClic centre = focus | Clic ✓ = toggle layer`;
+      li.style.cursor = 'pointer';
+      li.addEventListener('click', e => {
+        if (e.target.dataset.toggle) {
+          // Toggle layer visibility
+          state.layerVisibility[c.core_id] = !state.layerVisibility[c.core_id];
+          e.target.textContent = state.layerVisibility[c.core_id] ? '✓' : '∅';
+          applyLayerVisibility();
+        } else {
+          // Focus on core gravity center
+          const target = c.gravity_center[0];
+          if (target) selectNode(target, true);
+        }
+      });
+      coresUl.appendChild(li);
+    }
+    $('#cores-all')?.addEventListener('click', () => {
+      for (const c of state.cores.cores) state.layerVisibility[c.core_id] = true;
+      buildSidebar();
+      applyLayerVisibility();
+    });
+    $('#cores-isolate')?.addEventListener('click', () => {
+      // Isole le noyau dont un membre est sélectionné, ou le 1er noyau
+      const selCore = state.selected?.core_id || state.cores.cores[0].core_id;
+      for (const c of state.cores.cores) state.layerVisibility[c.core_id] = (c.core_id === selCore);
+      buildSidebar();
+      applyLayerVisibility();
+    });
   }
 
   // Section "Sélection temporelle" — top 25 par dynamic_selection_rank
@@ -579,37 +642,116 @@ function initGraph() {
   recomputeOpacityTargets();
   window.__zoranFG = state.fg;
 
-  // Full Hand Navigation — explicit pan + zoom controls (mission FULL_HAND_NAVIGATION)
+  // ─── REAL_HAND_NAVIGATION : pan multi-méthodes ───────────────────────
+  // (mission REAL_HAND_NAVIGATION_FIX — translation libre garantie runtime)
   try {
     const ctrl = state.fg.controls();
     if (ctrl) {
-      // TrackballControls (default 3d-force-graph) :
-      ctrl.noPan = false;          // right-click drag = translation
-      ctrl.panSpeed = 0.8;
+      ctrl.noPan = false;
+      ctrl.panSpeed = 1.2;
       ctrl.rotateSpeed = 1.2;
-      ctrl.zoomSpeed  = 1.1;
+      ctrl.zoomSpeed  = 1.2;
       ctrl.staticMoving = true;
-      ctrl.dynamicDampingFactor = 0.18;
-      // OrbitControls compat (no-op on TrackballControls but safe) :
+      ctrl.dynamicDampingFactor = 0.15;
       if ('enablePan' in ctrl) ctrl.enablePan = true;
       if ('screenSpacePanning' in ctrl) ctrl.screenSpacePanning = true;
-      // Save initial camera state for reset (Space)
+      if ('enableDamping' in ctrl) ctrl.enableDamping = true;
+      if ('dampingFactor' in ctrl) ctrl.dampingFactor = 0.10;
+      // Allow LEFT click pan as well (mouseButton remap when SHIFT held)
+      if (ctrl.mouseButtons && typeof THREE !== 'undefined' && THREE.MOUSE) {
+        ctrl.mouseButtons.RIGHT = THREE.MOUSE.PAN;
+        ctrl.mouseButtons.MIDDLE = THREE.MOUSE.DOLLY;
+      }
       try { ctrl.target0 && ctrl.target0.copy(ctrl.target); } catch (_) {}
       try { ctrl.position0 && ctrl.position0.copy(state.fg.camera().position); } catch (_) {}
     }
   } catch (e) { console.warn('controls() not ready', e); }
 
-  // Prevent native context menu so right-click pan works
+  // Prevent native context menu so right-click drag pan works on canvas
   el.addEventListener('contextmenu', e => e.preventDefault());
+  // Also on the canvas itself
+  setTimeout(() => {
+    const cv = el.querySelector('canvas');
+    if (cv) cv.addEventListener('contextmenu', e => e.preventDefault());
+  }, 200);
+
+  // ─── PAN MANUEL DIRECT (backup garanti, indépendant des controls) ───
+  // Permet : SHIFT + clic gauche drag = pan ; touch 2 doigts = pan
+  let manualPan = null;
+  function startManualPan(x, y) { manualPan = { x, y }; el.style.cursor = 'grabbing'; }
+  function doManualPan(x, y) {
+    if (!manualPan) return;
+    const dx = x - manualPan.x, dy = y - manualPan.y;
+    manualPan = { x, y };
+    const cam = state.fg.camera();
+    const ctrl = state.fg.controls();
+    // Move camera AND target by the same world-space offset
+    // Compute world units per screen pixel based on camera distance
+    const dist = ctrl && ctrl.target
+      ? cam.position.distanceTo(ctrl.target)
+      : cam.position.length();
+    const factor = dist * 0.002;
+    // Get camera basis vectors (right, up) in world space
+    const right = new THREE.Vector3();
+    const up = new THREE.Vector3();
+    cam.matrix.extractBasis(right, up, new THREE.Vector3());
+    const offset = right.multiplyScalar(-dx * factor).add(up.multiplyScalar(dy * factor));
+    cam.position.add(offset);
+    if (ctrl && ctrl.target) ctrl.target.add(offset);
+    if (ctrl && typeof ctrl.update === 'function') ctrl.update();
+  }
+  function endManualPan() { manualPan = null; el.style.cursor = ''; }
+
+  el.addEventListener('pointerdown', e => {
+    // SHIFT + LEFT click, OR MIDDLE button, OR RIGHT button (backup)
+    if ((e.button === 0 && e.shiftKey) || e.button === 1 || e.button === 2) {
+      e.preventDefault();
+      startManualPan(e.clientX, e.clientY);
+      try { el.setPointerCapture(e.pointerId); } catch (_) {}
+    }
+  });
+  el.addEventListener('pointermove', e => {
+    if (manualPan) {
+      e.preventDefault();
+      doManualPan(e.clientX, e.clientY);
+    }
+  });
+  el.addEventListener('pointerup', e => { if (manualPan) { e.preventDefault(); endManualPan(); } });
+  el.addEventListener('pointercancel', endManualPan);
+
+  // Touch — 2-finger drag = pan
+  let touchPan = null;
+  el.addEventListener('touchstart', e => {
+    if (e.touches.length === 2) {
+      const t = e.touches;
+      touchPan = { x: (t[0].clientX + t[1].clientX) / 2, y: (t[0].clientY + t[1].clientY) / 2 };
+      startManualPan(touchPan.x, touchPan.y);
+      e.preventDefault();
+    }
+  }, { passive: false });
+  el.addEventListener('touchmove', e => {
+    if (manualPan && e.touches.length === 2) {
+      const t = e.touches;
+      const mx = (t[0].clientX + t[1].clientX) / 2;
+      const my = (t[0].clientY + t[1].clientY) / 2;
+      doManualPan(mx, my);
+      e.preventDefault();
+    }
+  }, { passive: false });
+  el.addEventListener('touchend', () => { if (manualPan) endManualPan(); });
 
   // Double-click on canvas = re-center + zoom on selected (or zoomToFit)
   el.addEventListener('dblclick', e => {
-    if (state.selected) {
-      focusCamOn(state.selected);
-    } else {
-      state.fg.zoomToFit(700, 60);
-    }
+    if (state.selected) focusCamOn(state.selected);
+    else state.fg.zoomToFit(700, 60);
   });
+
+  // Expose pan API for tests + debug
+  window.__zoranPan = function(dx, dy) {
+    startManualPan(0, 0);
+    doManualPan(dx, dy);
+    endManualPan();
+  };
 
   // FPS
   const fpsEl = $('#status-fps');
@@ -827,6 +969,23 @@ function wireControls() {
       e.preventDefault();
       state.fg.zoomToFit(800, 80);
     }
+    // REAL_HAND_NAVIGATION_FIX : pan clavier WASD + flèches (sans Alt)
+    if (!e.altKey && !e.ctrlKey && !e.metaKey) {
+      const STEP = 60;
+      let dx = 0, dy = 0;
+      if (e.key === 'ArrowLeft')  dx = -STEP;
+      if (e.key === 'ArrowRight') dx =  STEP;
+      if (e.key === 'ArrowUp')    dy = -STEP;
+      if (e.key === 'ArrowDown')  dy =  STEP;
+      if (e.key === 'w' || e.key === 'W') dy = -STEP;
+      if (e.key === 's' && e.shiftKey) dy = STEP;  // Shift+S only (S alone = sidebar)
+      if (e.key === 'a' || e.key === 'A') dx = -STEP;
+      if (e.key === 'd' || e.key === 'D') dx =  STEP;
+      if ((dx !== 0 || dy !== 0) && window.__zoranPan) {
+        e.preventDefault();
+        window.__zoranPan(dx, dy);
+      }
+    }
   });
 }
 
@@ -853,6 +1012,24 @@ async function boot() {
     state.index = buildIndex(state.graph.nodes);
     state.graphView = state.graph;
     state.lastAudit = auditGraph(state.graph);
+    // GLOBAL_RUNTIME_COUNTERS — load sandbox + cores counts
+    state.sandboxCount = 0;
+    state.coresDetected = 0;
+    try {
+      const sb = await fetch('./data/laws_sandbox.json', { cache: 'no-store' });
+      if (sb.ok) {
+        const j = await sb.json();
+        state.sandboxCount = (j.nodes || []).length;
+      }
+    } catch (_) { /* sandbox may not exist */ }
+    try {
+      const cr = await fetch('./data/cores.json', { cache: 'no-store' });
+      if (cr.ok) {
+        const j = await cr.json();
+        state.cores = j;
+        state.coresDetected = (j.cores || []).length;
+      }
+    } catch (_) { /* cores may not exist yet */ }
     buildSidebar();
     initGraph();
     setupDraggablePanel();

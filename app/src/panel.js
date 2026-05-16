@@ -576,6 +576,55 @@ function selectionBlock(node) {
   </section>`;
 }
 
+function provenanceBlock(node) {
+  if (!node.sha512 && !node.law_relevance_index) return '';
+  const lri = node.law_relevance_index;
+  const kp = node.keep_probability;
+  const rs = node.retention_status;
+  const ver = node.version || 1;
+  const sha = node.sha_short || (node.sha512 || '').slice(0, 12);
+  const ts = node.timestamp_utc || '';
+  const lmts = node.last_modified_utc || '';
+  const origin = node.origin_engine || '?';
+  const parents = node.parent_laws || [];
+  const children = node.child_laws || [];
+  const cstatus = node.canonical_status || '?';
+  const rstatus = node.runtime_status || '?';
+  const coreId = node.core_id && node.core_id !== 'orphan' ? node.core_id : null;
+  const retentColor = {
+    'canonical':'#3ad17a',
+    'runtime_candidate':'var(--accent)',
+    'sandbox':'var(--canonical)',
+    'archive':'var(--fg-2)',
+    'purge_candidate':'var(--unstable)',
+  }[rs] || 'var(--fg-1)';
+  return `<section>
+    <h4>Provenance + rétention</h4>
+    <div class="frames">
+      <div class="frames-row"><span class="frames-glyph">⌧</span>
+        <span class="frames-label">SHA + version</span>
+        <span class="frames-content"><code style="font-size:10px;background:transparent;padding:0">${esc(sha)}</code> · v${ver} · ${esc(origin)}</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⌚</span>
+        <span class="frames-label">Timestamps</span>
+        <span class="frames-content" style="font-size:10px">créée ${esc(ts.slice(0,19))} · maj ${esc(lmts.slice(0,19))}</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⇡</span>
+        <span class="frames-label">Filiation</span>
+        <span class="frames-content">${parents.length} parents · ${children.length} enfants${coreId ? ` · noyau <strong>${esc(coreId)}</strong>` : ''}</span>
+      </div>
+      ${lri != null ? `<div class="frames-row"><span class="frames-glyph">⌭</span>
+        <span class="frames-label">LRI / Keep p.</span>
+        <span class="frames-content"><strong>${lri.toFixed(3)}</strong> · keep ${kp.toFixed(3)} · <strong style="color:${retentColor}">${esc(rs)}</strong></span>
+      </div>` : ''}
+      <div class="frames-row"><span class="frames-glyph">⊟</span>
+        <span class="frames-label">Statuts</span>
+        <span class="frames-content" style="font-size:10px">canonical: ${esc(cstatus)} · runtime: ${esc(rstatus)}</span>
+      </div>
+    </div>
+  </section>`;
+}
+
 export function renderDetail(node, graph, onPick) {
   const detail = document.getElementById('detail');
   const body = document.getElementById('detail-body');
@@ -611,6 +660,7 @@ export function renderDetail(node, graph, onPick) {
     ${framesBlock(node)}
     ${eqs ? `<section class="equations"><h4>Équations</h4>${eqs}</section>` : ''}
     ${ex  ? `<section><h4>Exemples</h4><ul class="examples">${ex}</ul></section>` : ''}
+    ${provenanceBlock(node)}
     ${superiorBlock(node)}
     ${selectionBlock(node)}
     ${generativeBlock(node)}

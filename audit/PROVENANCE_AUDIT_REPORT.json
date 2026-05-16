@@ -1,0 +1,27 @@
+{
+  "mission_id": "ZORAN_LAW_PROVENANCE_AND_RELEVANCE_INDEX_SYSTEM_20260516",
+  "timestamp": "2026-05-16T13:14:37.279363+00:00",
+  "canonical": {
+    "label": "canonical",
+    "total": 241,
+    "hashed": 241,
+    "collisions": 0,
+    "versioned": 0,
+    "new_provenance": 241,
+    "untraced": 241
+  },
+  "sandbox": {
+    "label": "sandbox",
+    "total": 120,
+    "hashed": 120,
+    "collisions": 0,
+    "versioned": 0,
+    "new_provenance": 120,
+    "untraced": 70
+  },
+  "objectives": {
+    "untraceable_laws": 241,
+    "sha_collisions": 0,
+    "orphan_laws": 0
+  }
+}
