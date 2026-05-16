@@ -8,10 +8,11 @@
 //
 // Retourne un tableau comparatif avec deltas ZORAN vs baseline.
 
-import { synthesizeBaseline, synthesizeRoute, judgeResponses, reformulateQuestion } from './llm.js';
+import { synthesizeBaseline, synthesizeRoute, judgeResponses, reformulateQuestion, synthesizeOrchestrated } from './llm.js';
 import { jargonDensity, userDistance, practicalUsefulness, metaNoise, concreteRuntimeAlignment, detectJargonTerms } from './jargon.js';
 import { computeDomainFitness, shouldSkipRoute, getStrategyProfile } from './route_specialization.js';
 import { detectTruncation, completionIntegrity, truncationPenalty, terrainAlignment, fieldActionability } from './completion.js';
+import { detectDomain } from './domain_detection.js';
 
 // Top 3 routes utilisées pour la compétition (sous-ensemble — coût API maîtrisé)
 const SUPERIORITY_ROUTES = ['frugale', 'anti_hallucination', 'structurelle'];
@@ -66,6 +67,27 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
     reformulation: '(aucune — réponse directe, sans cadrage ZORAN)',
     ...(await synthesizeBaseline(question)),
   }))();
+
+  // ZORAN ORCHESTRATED : 1 seul call qui combine angles utiles selon
+  // structures détectées + vocabulaire NATIF du domaine (mission
+  // GLOBAL_COGNITIVE_ORCHESTRATION + DOMAIN_NATIVE_RESPONSE)
+  const detectedDomain = detectDomain(question);
+  const lawsByStrategy = {};
+  for (const s of zoranSpecs) lawsByStrategy[s.stratName] = s.laws;
+  const orchestratedTask = (async () => ({
+    label: 'ZORAN Orchestré',
+    strategy: 'orchestrated',
+    laws_used: [...new Set(Object.values(lawsByStrategy).flat().map(l => l.id))].slice(0, 10),
+    reformulation: `(orchestré sur domaine ${detectedDomain.label})`,
+    domain: detectedDomain,
+    ...(await synthesizeOrchestrated({
+      question,
+      domain: detectedDomain,
+      structures: detectedStructures,
+      lawsByStrategy,
+      parents: [],
+    })),
+  }))();
   console.log('[ZORAN sup] phase 1 — reformulations × 3 lancées en parallèle');
   const reformResults = await Promise.allSettled(reformTasks);
   console.log('[ZORAN sup] phase 1 OK — reformulations terminées',
@@ -94,12 +116,14 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
   console.log('[ZORAN sup] phase 2 — réponses × 3 + baseline en parallèle');
   const respResults = await Promise.allSettled(respTasks);
   const baselineResult = await baselineTask;
+  const orchestratedResult = await orchestratedTask;
   console.log('[ZORAN sup] phase 2 OK — baseline=', baselineResult.ok ? '✓' : '✗',
     'zoran=', respResults.map(s => s.status === 'fulfilled' ? (s.value.ok ? '✓' : '✗') : '✗').join(''));
 
-  // Aggreg responses
+  // Aggreg responses (orchestrated en 2e position après baseline pour comparaison directe)
   const responses = [];
   if (baselineResult.ok) responses.push(baselineResult);
+  if (orchestratedResult.ok) responses.push(orchestratedResult);
   for (const r of respResults) {
     if (r.status === 'fulfilled' && r.value.ok) responses.push(r.value);
   }

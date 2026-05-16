@@ -102,7 +102,7 @@ function buildSystemPrompt(node, multiFrame, parents) {
 }
 
 // Appel générique Claude API — base de tous les autres
-async function callLLM({ system, user, maxTokens = 600, model = null }) {
+export async function callLLM({ system, user, maxTokens = 600, model = null }) {
   const key = getApiKey();
   if (!key) return { ok: false, reason: 'no_api_key' };
   try {
@@ -157,6 +157,79 @@ export async function reformulateQuestion({ question, strategyLabel, laws }) {
     '  Structurelle : "articuler les cadres local-intermédiaire-global pour borner l\'espace d\'inférence"',
   ].join('\n');
   return await callLLM({ system, user: question, maxTokens: 120 });
+}
+
+// GLOBAL_COGNITIVE_ORCHESTRATION_ENGINE (mission DOMAIN_DOMINANCE)
+// Au lieu de générer 3 réponses séparées et choisir, on ORCHESTRE en
+// UN seul appel LLM qui combine les angles cognitifs UTILES selon les
+// structures détectées + impose le vocabulaire NATIF du domaine.
+// Économie : 1 call au lieu de 3+1 judge. Qualité : pas de méta-fusion
+// bruyante. Le LLM sélectionne mentalement les angles pertinents.
+export async function synthesizeOrchestrated({
+  question, domain, structures, lawsByStrategy = {}, parents = []
+}) {
+  // Construit la consigne multi-angle selon structures détectées
+  const angles = [];
+  const structKeys = (structures || []).map(s => s.key || s);
+  if (structKeys.includes('propagation') || structKeys.includes('causalite') || structKeys.includes('temporalite')) {
+    angles.push('STRUCTURE : décris les effets en cascade et causes racines (multi-niveaux)');
+  }
+  if (structKeys.includes('decision_action') || structKeys.includes('risque')) {
+    angles.push('ACTION : donne 3-5 étapes concrètes immédiates priorisées par urgence');
+  }
+  if (structKeys.includes('hypothese_cachee') || structKeys.includes('contradiction') || structKeys.includes('auditabilite')) {
+    angles.push('VALIDATION : identifie les hypothèses cachées et indique ce qui doit être vérifié');
+  }
+  if (structKeys.includes('bornage') || structKeys.includes('compression_synthese')) {
+    angles.push('BORNAGE : précise le périmètre exact, dis franchement les limites de ta réponse');
+  }
+  if (structKeys.includes('temporalite')) {
+    angles.push('TEMPS : distingue court terme (urgence) vs long terme (vieillissement, dérive)');
+  }
+  if (angles.length === 0) {
+    angles.push('Réponse standard structurée');
+  }
+
+  // Top lois (max 5) pour cadrage silencieux
+  const flatLaws = [];
+  for (const ls of Object.values(lawsByStrategy)) {
+    if (Array.isArray(ls)) flatLaws.push(...ls);
+  }
+  const uniqLaws = [...new Map(flatLaws.map(l => [l.id, l])).values()].slice(0, 5);
+  const lawsCtx = uniqLaws.map(l => `• ${l.title || l.id}`).join('\n') || '(aucune)';
+
+  const domLabel = domain?.label || 'généraliste';
+  const domVocab = domain?.vocab_hint || 'vocabulaire courant';
+
+  const system = [
+    `Tu es un EXPERT du domaine "${domLabel}". Tu réponds dans le LANGAGE NATIF de ce domaine.`,
+    `Vocabulaire attendu : ${domVocab}.`,
+    '',
+    'Cadres cognitifs activés MENTALEMENT (à ne JAMAIS citer dans la réponse) :',
+    lawsCtx,
+    parents.length ? `Lois parentes silencieuses : ${parents.slice(0, 3).join(', ')}` : '',
+    '',
+    '═══ ANGLES À ARTICULER (sans les nommer textuellement) ═══',
+    ...angles.map(a => '  • ' + a),
+    '',
+    '═══ RÈGLES STRICTES ═══',
+    '1. Vocabulaire 100% du domaine — PAS de "loi", "cadre", "S_local", "propagation",',
+    '   "frugalité", "WP11/12", "GHUC", "PAL", IDs de lois (etc.).',
+    '2. 4-7 phrases denses. Hiérarchise : urgence d\'abord, contexte ensuite, limites en clôture.',
+    '3. Si tu ne sais pas factuellement (date, jurisprudence précise, calcul réglementaire),',
+    '   DIS-LE FRANCHEMENT au lieu d\'inventer. Renvoie vers l\'expert humain compétent.',
+    '4. TERMINE TA RÉPONSE — pas de phrase coupée, conclusion claire.',
+    '5. Évite "intéressant", "fascinant", "très cohérent" (promotionnel).',
+    '',
+    'EXEMPLE BTP "supprimer murs porteurs" :',
+    '  ✗ "préserver l\'invariance morphologique en propageant les charges"',
+    '  ✓ "Étape 1 : étude structure obligatoire par BET (calcul descente charges + section IPN/IPE).',
+    '     Étape 2 : déclaration préalable en mairie. Étape 3 : bureau de contrôle pour validation',
+    '     calculs avant exécution. Sans étude → risque effondrement + nullité garantie décennale.',
+    '     Limite : dimensionnement exact dépend de la charge réelle, non calculable à distance."',
+  ].filter(Boolean).join('\n');
+
+  return await callLLM({ system, user: question, maxTokens: 1000 });
 }
 
 // Mission RUNTIME_SUPERIORITY : LLM brut sans contexte ZORAN
