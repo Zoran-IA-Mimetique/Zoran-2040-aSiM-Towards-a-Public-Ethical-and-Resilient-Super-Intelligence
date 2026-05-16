@@ -363,6 +363,16 @@ body.sidebar-hidden #graph {
   border-color: var(--canonical) !important;
   font-weight: 700;
 }
+#chat-reset {
+  background: rgba(255,156,46,0.10) !important;
+  color: #ff9c2e !important;
+  border-color: rgba(255,156,46,0.35) !important;
+  font-size: 14px;
+}
+#chat-reset:hover {
+  background: rgba(255,156,46,0.25) !important;
+  color: var(--fg-0) !important;
+}
 
 #chat-results {
   position: fixed;

@@ -159,6 +159,62 @@ export async function reformulateQuestion({ question, strategyLabel, laws }) {
   return await callLLM({ system, user: question, maxTokens: 120 });
 }
 
+// WINNER_SYNTHESIS_ENGINE (mission SUPERIORITY_CONVERGENCE 20260516)
+// Prend les 2 candidats (Claude brut + ZORAN orchestré), demande au LLM
+// de produire UNE seule réponse finale optimale qui combine leurs forces
+// et corrige leurs défauts. C'est la VRAIE sortie utilisateur.
+//
+// Sortie : { ok, finalAnswer, picked_from, rationale } — l'utilisateur
+// voit "finalAnswer" + 1 phrase rationale ("synthèse Claude brut + ZORAN").
+export async function winnerSynthesis({ question, claudeAnswer, zoranAnswer, domain }) {
+  if (!claudeAnswer && !zoranAnswer) return { ok: false, reason: 'no_inputs' };
+  if (!claudeAnswer) return { ok: true, finalAnswer: zoranAnswer, picked_from: 'zoran_only', rationale: 'Claude brut indisponible' };
+  if (!zoranAnswer)  return { ok: true, finalAnswer: claudeAnswer, picked_from: 'claude_only', rationale: 'ZORAN orchestré indisponible' };
+
+  const domLabel = domain?.label || 'généraliste';
+  const domVocab = domain?.vocab_hint || 'vocabulaire courant';
+  const system = [
+    `Tu es un EXPERT du domaine "${domLabel}". Produis UNE réponse finale optimale qui combine les forces de deux brouillons et corrige leurs défauts.`,
+    `Vocabulaire imposé : ${domVocab}.`,
+    '',
+    '═══ RÈGLES STRICTES ═══',
+    '1. Garde ce qui est CONCRET et ACTIONNABLE dans chaque brouillon.',
+    '2. SUPPRIME : méta-phrases, jargon ZORAN, prudence rituelle, transitions vides.',
+    '3. STRUCTURE : urgences d\'abord, contexte ensuite, limites en clôture.',
+    '4. 4-7 phrases denses. Vocabulaire DU DOMAINE uniquement.',
+    '5. TERMINE TA RÉPONSE complètement.',
+    '6. Pas de markdown, pas de listes à puces (sauf si essentielles).',
+    '',
+    'Tu choisis QUE GARDER, fusionnes intelligemment, et produit la réponse finale.',
+    'Réponds STRICTEMENT en JSON : {"finalAnswer":"...","picked_from":"both|claude|zoran","rationale":"<1 phrase>"}.',
+    'Pas d\'autre prose, pas de markdown autour du JSON.',
+  ].join('\n');
+
+  const user = [
+    `QUESTION : ${question}`,
+    '',
+    `BROUILLON CLAUDE BRUT :`,
+    claudeAnswer,
+    '',
+    `BROUILLON ZORAN ORCHESTRÉ :`,
+    zoranAnswer,
+    '',
+    'Produis la réponse finale optimale en JSON.',
+  ].join('\n');
+
+  const r = await callLLM({ system, user, maxTokens: 1200 });
+  if (!r.ok) return r;
+  try {
+    const match = r.text.match(/\{[\s\S]*\}/);
+    if (!match) return { ok: false, reason: 'no_json_in_response', raw: r.text };
+    const json = JSON.parse(match[0]);
+    if (!json.finalAnswer) return { ok: false, reason: 'no_final_answer', raw: r.text };
+    return { ok: true, ...json, model: r.model, usage: r.usage };
+  } catch (e) {
+    return { ok: false, reason: 'json_parse_error', error: e.message, raw: r.text };
+  }
+}
+
 // GLOBAL_COGNITIVE_ORCHESTRATION_ENGINE (mission DOMAIN_DOMINANCE)
 // Au lieu de générer 3 réponses séparées et choisir, on ORCHESTRE en
 // UN seul appel LLM qui combine les angles cognitifs UTILES selon les

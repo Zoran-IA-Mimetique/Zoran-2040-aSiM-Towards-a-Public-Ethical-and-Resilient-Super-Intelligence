@@ -549,9 +549,33 @@ export function wireChatBar(nodes, onPickLaw, onCompete, onClearRoutes, parentsM
   const sendBtn = document.getElementById('chat-send');
   const micBtn = document.getElementById('chat-mic');
   const fileBtn = document.getElementById('chat-file');
+  const resetBtn = document.getElementById('chat-reset');
   const fileInput = document.getElementById('chat-file-input');
   const resultsClose = document.getElementById('chat-results-close');
   if (!bar || !input) return;
+
+  // Mission SUPERIORITY_CONVERGENCE — bouton ⟲ Reset : efface prompt,
+  // ferme popup résultats, désactive route mode dans le graphe, prêt pour
+  // nouvelle question sans rafraîchir la page.
+  function resetAll() {
+    input.value = '';
+    input.focus();
+    const popup = document.getElementById('chat-results');
+    if (popup) {
+      popup.classList.add('hidden');
+      popup.setAttribute('aria-hidden', 'true');
+    }
+    // Désactive route mode du graphe (étiquette rouge + tinting)
+    if (onClearRoutes) onClearRoutes();
+    // Reset window state for fresh comparison
+    if (window.state) {
+      window.state.answerLawId = null;
+      window.state.answerContext = null;
+      window.state.lastQuestion = null;
+    }
+    console.log('[ZORAN] ⟲ reset — prompt cleared, popup closed, routes deactivated');
+  }
+  if (resetBtn) resetBtn.addEventListener('click', resetAll);
 
   function submit() {
     const q = (input.value || '').trim();
