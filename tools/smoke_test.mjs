@@ -228,8 +228,12 @@ try {
     });
     return { glowing, dimmed };
   });
-  console.log(`  Route viz : glowing=${viz?.glowing}  dimmed=${viz?.dimmed}`);
-  route_viz_ok = viz && viz.glowing > 0 && viz.dimmed > 100; // winner glows + ~200 nodes hors routes dimmed
+  // Mission ROUTE_FOCUS_MODE : verify dim > 150 (graphe s'effondre vraiment)
+  // + verify route-mode body class
+  const rmActive = await page.evaluate(() => document.body.classList.contains('route-mode'));
+  console.log(`  Route viz : glowing=${viz?.glowing}  dimmed=${viz?.dimmed}  body.route-mode=${rmActive}`);
+  // 241 lois - max 60 dans 6 routes = ~180 hors-routes ; on attend > 150 dimmed
+  route_viz_ok = viz && viz.glowing > 0 && viz.dimmed > 150 && rmActive;
 } catch (e) { console.log('Route viz test failed:', e.message); }
 
 // NEW (mission DRAGGABLE_RUNTIME_RESPONSE_POPUP) : draggable + minimize

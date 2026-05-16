@@ -310,6 +310,7 @@ export function activateRoutes(competitionResult) {
     });
   }
   state.routeMode = true;
+  document.body.classList.add('route-mode');
   applyRouteVisualization();
 }
 
@@ -327,6 +328,11 @@ export function deactivateRoutes() {
   }
   state.activeRoutes = null;
   state.routeMode = false;
+  document.body.classList.remove('route-mode');
+  // Reset hover scales to normal
+  for (const mesh of state.meshes.values()) {
+    mesh.userData.zoranHoverScale = 1.0;
+  }
   recomputeOpacityTargets();
   if (state.fg) state.fg.refresh();
 }
@@ -341,7 +347,8 @@ function applyRouteVisualization() {
       nodeRoutes.get(lawId).push(route);
     }
   }
-  // Apply per-mesh tint
+  // ─── ROUTE_FOCUS_MODE : le bruit global s'effondre ; routes dominent ───
+  // (mission 2026-05-16 05:23 : "Route_active ⇒ bruit_global ↓")
   for (const [id, mesh] of state.meshes.entries()) {
     if (!mesh.userData.zoranOrigColor && mesh.material && mesh.material.color) {
       mesh.userData.zoranOrigColor = mesh.material.color.getHex();
@@ -352,25 +359,28 @@ function applyRouteVisualization() {
       const winner = involved.find(r => r.winner);
       const dom = winner || involved.reduce((a, b) => a.strength >= b.strength ? a : b);
       if (mesh.material && mesh.material.color) {
-        // Tint toward route color (50% blend)
+        // Tint plus marqué (75% blend) pour dominance visuelle
         const c = new THREE.Color(dom.color.hex);
         const orig = new THREE.Color(mesh.userData.zoranOrigColor);
-        mesh.material.color.copy(orig).lerp(c, 0.55);
+        mesh.material.color.copy(orig).lerp(c, 0.75);
       }
       if (mesh.material && mesh.material.emissive && dom.winner) {
+        // WINNER : glow fort + scale 1.18 pour dominance
         mesh.material.emissive.setHex(dom.color.hex);
-        mesh.material.emissiveIntensity = 0.20;
+        mesh.material.emissiveIntensity = 0.40;
         mesh.userData.zoranWinnerPulse = true;
+        mesh.userData.zoranHoverScale = 1.18;
       } else if (mesh.material && mesh.material.emissive) {
-        // soft glow for non-winner involved nodes
+        // Route survivor : glow modéré + scale 1.06
         mesh.material.emissive.setHex(dom.color.hex);
-        mesh.material.emissiveIntensity = dom.eliminated ? 0.0 : 0.08;
+        mesh.material.emissiveIntensity = dom.eliminated ? 0.0 : 0.22;
         mesh.userData.zoranWinnerPulse = false;
+        mesh.userData.zoranHoverScale = dom.eliminated ? 0.95 : 1.06;
       }
-      // Opacity : eliminated = faded, others normal
-      state.targetOpacity.set(id, dom.eliminated ? 0.30 : 1.0);
+      // Opacity : eliminated = très faded (0.18), survivor = full
+      state.targetOpacity.set(id, dom.eliminated ? 0.18 : 1.0);
     } else {
-      // Not in any route : dim heavily (mission : "routes rejetées s'atténuent")
+      // HORS ROUTES : effondrement quasi-total (mission : "quasi invisible")
       if (mesh.material && mesh.material.color) {
         mesh.material.color.setHex(mesh.userData.zoranOrigColor || 0x666666);
       }
@@ -379,7 +389,9 @@ function applyRouteVisualization() {
         mesh.material.emissiveIntensity = 0;
       }
       mesh.userData.zoranWinnerPulse = false;
-      state.targetOpacity.set(id, 0.12);
+      mesh.userData.zoranHoverScale = 0.92; // léger shrink pour reculer
+      // 0.06 : presque invisible mais structure devinée (silence visuel ≥ 0.90)
+      state.targetOpacity.set(id, 0.06);
     }
   }
   if (state.fg) state.fg.refresh();
@@ -415,8 +427,9 @@ function updateHalos() {
 function tickAnimation() {
   // Per-frame opacity lerp + hover scale lerp + halo facing + winner pulse
   const t = performance.now() * 0.001;
-  // Soft winner pulse — 1.5 Hz, ±0.15 intensity (mission : sobre, lent, stable)
-  const winnerPulse = 0.20 + Math.sin(t * 1.5 * Math.PI * 2) * 0.10;
+  // Winner pulse — 1.1 Hz (lent), ±0.15 amplitude autour de 0.45
+  // (mission 2026-05-16 05:23 : dominance visuelle, sobre, lent, stable)
+  const winnerPulse = 0.45 + Math.sin(t * 1.1 * Math.PI * 2) * 0.15;
   for (const [id, mesh] of state.meshes.entries()) {
     const target = state.targetOpacity.get(id) ?? 1.0;
     const cur = mesh.material.opacity;
@@ -702,7 +715,7 @@ function initGraph() {
     .nodeThreeObject(n => makeBilliardMesh(n))
     .nodeThreeObjectExtend(false)         // replace default sphere entirely
     .linkColor(l => {
-      // ROUTE MODE — route winner edges = winner color, eliminated = grey
+      // ROUTE MODE — winner edges = winner color forte ; hors-route ≈ invisible
       if (state.activeRoutes) {
         let winnerColor = null;
         let anyRouteColor = null;
@@ -715,8 +728,9 @@ function initGraph() {
           }
         }
         if (winnerColor) return winnerColor;
-        if (anyRouteColor) return anyEliminatedOnly ? 'rgba(120,130,150,0.10)' : anyRouteColor;
-        return 'rgba(120,130,150,0.02)';
+        if (anyRouteColor) return anyEliminatedOnly ? 'rgba(120,130,150,0.08)' : anyRouteColor;
+        // hors-route : quasi invisible (silence visuel max)
+        return 'rgba(120,130,150,0.008)';
       }
       if (state.branchVisible) {
         const s = typeof l.source === 'object' ? l.source.id : l.source;
@@ -730,27 +744,38 @@ function initGraph() {
       if (state.activeRoutes) {
         for (const route of state.activeRoutes.values()) {
           if (route.edges.has(l)) {
-            if (route.winner) return 2.2;
+            if (route.winner) return 5.0;    // mission : edges runtime dominants
             if (route.eliminated) return 0.3;
-            return 1.0;
+            return 2.0;                       // route survivor visible
           }
         }
-        return 0.2;
+        return 0.05;                          // hors-route : presque effacé
       }
       return state.highlightLinks.has(l) ? 1.6 : 0.4;
     })
-    .linkDirectionalParticles(l => (state.particlesEnabled && state.highlightLinks.has(l) ? 2 : 0))
-    .linkDirectionalParticleSpeed(0.006)
-    .linkDirectionalParticleWidth(1.2)
+    .linkDirectionalParticles(l => {
+      // Particules animées sur edges WINNER pour visualiser la propagation
+      if (state.activeRoutes) {
+        for (const route of state.activeRoutes.values()) {
+          if (route.edges.has(l) && route.winner) return 3;
+        }
+        return 0;
+      }
+      return (state.particlesEnabled && state.highlightLinks.has(l) ? 2 : 0);
+    })
+    .linkDirectionalParticleSpeed(0.008)
+    .linkDirectionalParticleWidth(2.5)
     .linkOpacity(0.55)
     .enableNodeDrag(true)
     .onNodeClick(n => selectNode(n.id, true))
     .onNodeHover(n => {
-      // Reset prior hover
-      for (const mesh of state.meshes.values()) mesh.userData.zoranHoverScale = 1.0;
+      // Reset prior hover — sauf si route mode (préserve la dominance route)
+      if (!state.routeMode) {
+        for (const mesh of state.meshes.values()) mesh.userData.zoranHoverScale = 1.0;
+      }
       if (n) {
         const m = state.meshes.get(n.id);
-        if (m) m.userData.zoranHoverScale = 1.10;
+        if (m && !state.routeMode) m.userData.zoranHoverScale = 1.10;
         document.body.style.cursor = 'pointer';
       } else {
         document.body.style.cursor = '';
@@ -865,8 +890,9 @@ function initGraph() {
   function endManualPan() { manualPan = null; el.style.cursor = ''; }
 
   el.addEventListener('pointerdown', e => {
-    // SHIFT + LEFT click, OR MIDDLE button, OR RIGHT button (backup)
-    if ((e.button === 0 && e.shiftKey) || e.button === 1 || e.button === 2) {
+    // SHIFT + LEFT click, OR MIDDLE button = manual pan backup.
+    // RIGHT click reste géré par OrbitControls natif (sinon double-trigger).
+    if ((e.button === 0 && e.shiftKey) || e.button === 1) {
       e.preventDefault();
       startManualPan(e.clientX, e.clientY);
       try { el.setPointerCapture(e.pointerId); } catch (_) {}

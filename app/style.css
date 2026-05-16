@@ -67,6 +67,11 @@ body.sidebar-hidden #sidebar {
   opacity: 0;
   pointer-events: none;
 }
+body.route-mode #sidebar {
+  opacity: 0.45;
+  transition: opacity 280ms ease-out;
+}
+body.route-mode #sidebar:hover { opacity: 1; }
 body.sidebar-hidden #graph {
   left: 0;
   transition: left 200ms ease-out;
