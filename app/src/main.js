@@ -567,8 +567,13 @@ function updateAnswerLabel() {
   // Convert NDC to viewport pixels (offset au-dessus du mesh : ~radius * 3)
   const graphEl = document.getElementById('graph');
   const rect = graphEl.getBoundingClientRect();
-  const px = ((_answerProj.x + 1) / 2) * rect.width + rect.left;
-  const py = ((-_answerProj.y + 1) / 2) * rect.height + rect.top - 50;
+  let px = ((_answerProj.x + 1) / 2) * rect.width + rect.left;
+  let py = ((-_answerProj.y + 1) / 2) * rect.height + rect.top - 50;
+  // CLAMP : keep label entièrement visible dans le viewport
+  const lblW = overlay.offsetWidth || 320;
+  const lblH = overlay.offsetHeight || 60;
+  px = Math.max(lblW / 2 + 8, Math.min(window.innerWidth - lblW / 2 - 8, px));
+  py = Math.max(lblH + 60, Math.min(window.innerHeight - 8, py));
   overlay.style.left = Math.round(px) + 'px';
   overlay.style.top  = Math.round(py) + 'px';
   if (!overlay.classList.contains('visible')) overlay.classList.add('visible');

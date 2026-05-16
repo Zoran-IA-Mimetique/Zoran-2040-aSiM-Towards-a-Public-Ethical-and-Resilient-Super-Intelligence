@@ -707,18 +707,15 @@ export function renderDetail(node, graph, onPick) {
     ? 'S_global (loi)'
     : 'S_global (proxy)';
 
-  // Section "Réponse à votre question" si cette loi est la loi-réponse
-  // (mission UX : pique sur la loi rouge → contexte de la question affiché ici)
-  let answerSection = '';
+  // Section "Réponse à votre question" — fold-section OUVERTE par défaut
+  // (mission : triangle jaune pour plier, comme toutes les autres sections)
+  let answerSectionInner = '';
   const w = (typeof window !== 'undefined' && window.state) ? window.state : null;
   if (w && w.answerLawId === node.id && w.answerContext) {
     const ctx = w.answerContext;
-    answerSection = `<section style="background:linear-gradient(135deg,rgba(255,58,58,0.16),rgba(255,107,107,0.05));
+    answerSectionInner = `<section style="background:linear-gradient(135deg,rgba(255,58,58,0.16),rgba(255,107,107,0.05));
                           border:1px solid #ff4444; border-radius:8px;
                           padding:14px 16px; margin-bottom:14px">
-      <div style="font-size:11px;color:#ff8888;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">
-        ● Réponse à votre question
-      </div>
       <div style="font-family:ui-monospace,monospace;font-size:12px;color:var(--fg-1);margin-bottom:10px;padding:6px 10px;background:rgba(0,0,0,0.30);border-radius:4px">
         ${esc(ctx.question)}
       </div>
@@ -753,6 +750,10 @@ export function renderDetail(node, graph, onPick) {
       </div>
     </section>`;
   }
+  // Wrap dans fold-section ouvert par défaut (consistance UX avec les autres)
+  const answerFold = answerSectionInner
+    ? fold('● Réponse à votre question', answerSectionInner, true)
+    : '';
 
   // Sections "loi" (titre+description+scores) et "réponse" toujours ouvertes.
   // Toutes les autres : pliées par défaut avec triangle jaune ▶ / ▼.
@@ -767,10 +768,10 @@ export function renderDetail(node, graph, onPick) {
   const doiSection = node.doi ? `<section><code>${esc(node.doi)}</code></section>` : '';
 
   body.innerHTML = `
-    ${answerSection}
     <h2>${tierBadge(node)}${esc(node.title)}</h2>
     <div class="meta">${esc(node.id)} · famille <strong>${esc(node.family)}</strong> · poids ${(node.weight ?? 0).toFixed(2)}</div>
     <div class="tags">${tags(node)}</div>
+    ${answerFold}
     ${fold('Loi · description', loiSection, true)}
     ${fold('Cadres cognitifs',             framesBlock(node),                       false)}
     ${fold('Équations',                    eqSection,                               false)}
