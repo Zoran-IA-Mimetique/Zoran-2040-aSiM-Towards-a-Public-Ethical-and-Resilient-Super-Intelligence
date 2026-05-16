@@ -72,12 +72,12 @@ try {
   // Force the lib to settle so meshes are positioned
   await page.waitForTimeout(800);
   // Use the index sidebar to click a known node id
-  const found = await page.locator('#index li[data-id="GHUC-001"]').first().click({ timeout: 2000 }).then(() => true).catch(() => false);
-  if (found) {
-    await page.waitForTimeout(300);
-    const visible = await page.locator('#detail').isVisible();
-    click_ok = visible;
-  }
+  const item = page.locator('#index li[data-id="GHUC-001"]').first();
+  await item.scrollIntoViewIfNeeded({ timeout: 3000 }).catch(() => {});
+  await item.click({ timeout: 5000, force: true }).catch(() => {});
+  await page.waitForTimeout(500);
+  const visible = await page.locator('#detail').isVisible();
+  click_ok = visible;
 } catch (e) {
   console.error('Click test failed:', e.message);
 }

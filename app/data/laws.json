@@ -4181,6 +4181,4042 @@
         ]
       },
       "runtime_admissible": true
+    },
+    {
+      "id": "ULG-008",
+      "title": "Embedding cross-modèle invariant",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "embeddings",
+        "cross-modèle"
+      ],
+      "examples": [
+        "Alignement entre embeddings GPT/Claude/Gemini sur même invariant"
+      ],
+      "html_description": "Mesure d'invariance d'embedding cross-modèle ; les modèles distincts produisent des représentations alignées sur les invariants ULG.",
+      "equations": [
+        "sim(emb_M1(x), emb_M2(x)) ≥ θ"
+      ],
+      "S_local": 0.84,
+      "S_global": 0.74,
+      "stability": "stable",
+      "weight": 0.65,
+      "frames": {
+        "local": [
+          "paire de modèles M1, M2"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG"
+          },
+          {
+            "level": "macro",
+            "scope": "modèles d'embeddings contemporains"
+          }
+        ],
+        "global": [
+          "alignement universel des invariants morphologiques"
+        ],
+        "proxies": [
+          "cosine cross-modèle θ ≥ 0.85"
+        ],
+        "limits": [
+          "dépend du choix de θ ; modèles très différents peuvent diverger"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "ULG-009",
+      "title": "Latence représentationnelle",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "latence",
+        "représentation"
+      ],
+      "examples": [
+        "Délai entre input symbolique et stabilisation de l'embedding"
+      ],
+      "html_description": "Temps caractéristique de stabilisation d'une représentation latente après input.",
+      "equations": [
+        "τ_lat = inf{ t : ‖emb(t) − emb(∞)‖ < ε }"
+      ],
+      "S_local": 0.82,
+      "S_global": 0.71,
+      "stability": "stable",
+      "weight": 0.6,
+      "frames": {
+        "local": [
+          "input x et trajectoire emb(t)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG"
+          },
+          {
+            "level": "macro",
+            "scope": "systèmes représentationnels dynamiques"
+          }
+        ],
+        "global": [
+          "distribution globale des τ_lat"
+        ],
+        "proxies": [
+          "mesure expérimentale par sondage"
+        ],
+        "limits": [
+          "dépend de l'architecture du modèle"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "ULG-010",
+      "title": "Grammaire compositionnelle locale",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "compositionnalité",
+        "grammaire"
+      ],
+      "examples": [
+        "Combinaison locale de tokens préservant le sens"
+      ],
+      "html_description": "Une combinaison locale de tokens reste dans la grammaire latente si chaque sous-combinaison y est.",
+      "equations": [
+        "compose(t1, t2) ∈ L_grammar"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "stability": "stable",
+      "weight": 0.66,
+      "frames": {
+        "local": [
+          "paire de tokens (t1, t2)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG"
+          },
+          {
+            "level": "macro",
+            "scope": "syntaxe latente émergente"
+          }
+        ],
+        "global": [
+          "clôture grammaticale globale"
+        ],
+        "proxies": [
+          "test d'admissibilité par sampling"
+        ],
+        "limits": [
+          "compositionnalité non garantie pour > 5 tokens"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "ULG-011",
+      "title": "Désambiguïsation contextuelle",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "désambiguïsation",
+        "contexte"
+      ],
+      "examples": [
+        "Résolution d'un mot polysémique selon le contexte"
+      ],
+      "html_description": "Sélection du sens d'un token polysémique en maximisant la probabilité conditionnelle au contexte.",
+      "equations": [
+        "disamb(w, ctx) = argmax_s P(s | w, ctx)"
+      ],
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "stability": "stable",
+      "weight": 0.65,
+      "frames": {
+        "local": [
+          "token w et contexte ctx"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG"
+          },
+          {
+            "level": "macro",
+            "scope": "sémantique distributionnelle"
+          }
+        ],
+        "global": [
+          "distribution globale des sens disponibles"
+        ],
+        "proxies": [
+          "P(s|w,ctx) estimée par modèle"
+        ],
+        "limits": [
+          "dépend de la qualité de l'estimation P"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "ULG-012",
+      "title": "Compression représentationnelle",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "compression",
+        "représentation"
+      ],
+      "examples": [
+        "Quantization d'embeddings sans perte de structure"
+      ],
+      "html_description": "Une représentation peut être compressée à dim ≤ k tant que I_struct est préservé.",
+      "equations": [
+        "dim(emb_compressed) ≤ k ∧ I_struct préservé"
+      ],
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "stability": "stable",
+      "weight": 0.62,
+      "frames": {
+        "local": [
+          "embedding e à compresser"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG"
+          },
+          {
+            "level": "macro",
+            "scope": "GHUC compression sémantique"
+          }
+        ],
+        "global": [
+          "taux de compression admissible global"
+        ],
+        "proxies": [
+          "test post-compression sur tâches downstream"
+        ],
+        "limits": [
+          "compression agressive perd les nuances rares"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "ULG-013",
+      "title": "Stabilité sous perturbation lexicale",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "robustesse",
+        "lexique"
+      ],
+      "examples": [
+        "Invariance sous synonymie ou faute de frappe mineure"
+      ],
+      "html_description": "L'embedding est robuste à de petites perturbations lexicales (synonymie, typos).",
+      "equations": [
+        "‖emb(x) − emb(perturb(x))‖ ≤ δ"
+      ],
+      "S_local": 0.84,
+      "S_global": 0.73,
+      "stability": "stable",
+      "weight": 0.63,
+      "frames": {
+        "local": [
+          "token x et perturbation"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG"
+          },
+          {
+            "level": "macro",
+            "scope": "robustesse linguistique"
+          }
+        ],
+        "global": [
+          "ensemble des perturbations admissibles"
+        ],
+        "proxies": [
+          "mesure adversarial sur dataset"
+        ],
+        "limits": [
+          "seuil δ subjectif"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "ULG-014",
+      "title": "Co-référence temporelle",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "co-référence",
+        "temps"
+      ],
+      "examples": [
+        "« il » référant à une entité mentionnée précédemment"
+      ],
+      "html_description": "Résolution de référence anaphorique vers les mentions antérieures.",
+      "equations": [
+        "coref(token_t, mentions_<t)"
+      ],
+      "S_local": 0.81,
+      "S_global": 0.69,
+      "stability": "stable",
+      "weight": 0.58,
+      "frames": {
+        "local": [
+          "token courant et historique"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG"
+          },
+          {
+            "level": "macro",
+            "scope": "traitement du discours"
+          }
+        ],
+        "global": [
+          "graphe de co-référence sur le document"
+        ],
+        "proxies": [
+          "modèle de co-référence statistique"
+        ],
+        "limits": [
+          "échec sur ambiguïtés multiples"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "ULG-015",
+      "title": "Densité informationnelle ajustée",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "densité",
+        "information"
+      ],
+      "examples": [
+        "Mesure d'entropie locale ajustée par contexte"
+      ],
+      "html_description": "L'entropie informationnelle d'un token dépend du contexte, pas seulement de son occurrence.",
+      "equations": [
+        "H_local(x | ctx) ≠ H_local(x)"
+      ],
+      "S_local": 0.82,
+      "S_global": 0.71,
+      "stability": "stable",
+      "weight": 0.6,
+      "frames": {
+        "local": [
+          "token x et son contexte"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG"
+          }
+        ],
+        "global": [
+          "distribution conditionnelle globale"
+        ],
+        "proxies": [
+          "estimation H par maximum vraisemblance"
+        ],
+        "limits": [
+          "estimation biaisée sur petit corpus"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "ULG-016",
+      "title": "Migration cross-langue d'invariant",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "multilingue",
+        "invariant"
+      ],
+      "examples": [
+        "Invariant ULG préservé entre représentations EN/FR/JA"
+      ],
+      "html_description": "Les invariants morphologiques ULG sont préservés au passage cross-langue.",
+      "equations": [
+        "Inv_ULG(emb_EN(x)) ≈ Inv_ULG(emb_FR(translation(x)))"
+      ],
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "stability": "stable",
+      "weight": 0.62,
+      "frames": {
+        "local": [
+          "paire (texte, traduction)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG"
+          },
+          {
+            "level": "macro",
+            "scope": "alignement multilingue"
+          }
+        ],
+        "global": [
+          "clôture des invariants sur toutes les langues"
+        ],
+        "proxies": [
+          "alignement par parallel corpus"
+        ],
+        "limits": [
+          "dépend de la qualité de la traduction"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "ULG-017",
+      "title": "Compactification asymptotique",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "compactification",
+        "asymptote"
+      ],
+      "examples": [
+        "Embedding tendant vers un sous-espace compact à grand échantillon"
+      ],
+      "html_description": "Avec corpus suffisant, l'espace effectif des embeddings se concentre sur un compact.",
+      "equations": [
+        "lim_{n→∞} support(emb_corpus_n) ⊂ K compact"
+      ],
+      "S_local": 0.8,
+      "S_global": 0.69,
+      "stability": "stable",
+      "weight": 0.56,
+      "frames": {
+        "local": [
+          "corpus de taille n"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG"
+          },
+          {
+            "level": "macro",
+            "scope": "statistiques de modèles"
+          }
+        ],
+        "global": [
+          "compact limite global"
+        ],
+        "proxies": [
+          "mesure dimension intrinsèque"
+        ],
+        "limits": [
+          "asymptote théorique non observable"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "DVE-008",
+      "title": "Variant filtering anti-hallucination",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "filtrage",
+        "anti-hallucination"
+      ],
+      "examples": [
+        "Élimination des variantes incohérentes par check WP-12"
+      ],
+      "html_description": "Filtrage des variantes pour éliminer celles qui hallucinent (contradiction avec base ou inadmissibles WP-12).",
+      "equations": [
+        "filter_AH(v) = admissible_WP12(v) ∧ ¬contradicts(v, base)"
+      ],
+      "S_local": 0.89,
+      "S_global": 0.78,
+      "stability": "stable",
+      "weight": 0.7,
+      "frames": {
+        "local": [
+          "variante v candidate"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          },
+          {
+            "level": "macro",
+            "scope": "WP-12 admissibilité"
+          },
+          {
+            "level": "systémique",
+            "scope": "anti-hallucination"
+          }
+        ],
+        "global": [
+          "taux d'hallucination résiduel global"
+        ],
+        "proxies": [
+          "test sur jeu de prompts adversaires"
+        ],
+        "limits": [
+          "dépend de la complétude de la base de référence"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "DVE-009",
+      "title": "Variance contrôlée multi-modèles",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "multi-modèles",
+        "variance"
+      ],
+      "examples": [
+        "Génération par 3 modèles puis sélection par majorité"
+      ],
+      "html_description": "Génération de variantes par plusieurs modèles puis sélection par vote ou cohérence.",
+      "equations": [
+        "select(M1(x), M2(x), M3(x)) = majority"
+      ],
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "stability": "stable",
+      "weight": 0.65,
+      "frames": {
+        "local": [
+          "input x et ensemble de modèles"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          },
+          {
+            "level": "macro",
+            "scope": "ensemble methods"
+          }
+        ],
+        "global": [
+          "distribution des accords inter-modèles"
+        ],
+        "proxies": [
+          "mesure d'accord par paire"
+        ],
+        "limits": [
+          "coût computationnel multiplié par |M|"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "DVE-010",
+      "title": "Bifurcation à seuil de risque",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "bifurcation",
+        "risque"
+      ],
+      "examples": [
+        "Génération de la variante prudente si risque > τ"
+      ],
+      "html_description": "Activation d'une variante prudente quand le risque estimé dépasse un seuil.",
+      "equations": [
+        "if risk(x) > τ : output safe_variant(x)"
+      ],
+      "S_local": 0.87,
+      "S_global": 0.76,
+      "stability": "stable",
+      "weight": 0.67,
+      "frames": {
+        "local": [
+          "input x et estimation risk(x)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          },
+          {
+            "level": "macro",
+            "scope": "sécurité opérationnelle"
+          }
+        ],
+        "global": [
+          "politique globale de gestion des risques"
+        ],
+        "proxies": [
+          "estimation risk par modèle dédié"
+        ],
+        "limits": [
+          "seuil τ contextuel"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "DVE-011",
+      "title": "Variant pruning par cohérence",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "pruning",
+        "cohérence"
+      ],
+      "examples": [
+        "Élimination de variantes incohérentes avec contexte"
+      ],
+      "html_description": "Élimination des variantes dont la cohérence locale au contexte est sous le seuil.",
+      "equations": [
+        "prune(v) ⟺ S_local(v|ctx) < θ"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "stability": "stable",
+      "weight": 0.66,
+      "frames": {
+        "local": [
+          "variante v et contexte ctx"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          },
+          {
+            "level": "macro",
+            "scope": "WP-11 cohérence"
+          }
+        ],
+        "global": [
+          "taux global de pruning"
+        ],
+        "proxies": [
+          "S_local(v|ctx) calculé par WP11-002"
+        ],
+        "limits": [
+          "seuil θ statique"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "DVE-012",
+      "title": "Diversité contrainte",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "diversité",
+        "contrainte"
+      ],
+      "examples": [
+        "Génération de N variantes maximalement diverses sous contrainte cohérence"
+      ],
+      "html_description": "Maximisation de la diversité d'un set de variantes sous contrainte de cohérence individuelle.",
+      "equations": [
+        "max diversity({v_i}) s.c. cohérence(v_i) ≥ θ"
+      ],
+      "S_local": 0.84,
+      "S_global": 0.73,
+      "stability": "stable",
+      "weight": 0.63,
+      "frames": {
+        "local": [
+          "ensemble {v_i} candidat"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          },
+          {
+            "level": "macro",
+            "scope": "exploration combinatoire"
+          }
+        ],
+        "global": [
+          "politique d'exploration globale"
+        ],
+        "proxies": [
+          "distance pairwise + score cohérence"
+        ],
+        "limits": [
+          "trade-off diversité/cohérence non linéaire"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "DVE-013",
+      "title": "Trace de génération réversible",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "traçabilité",
+        "réversibilité"
+      ],
+      "examples": [
+        "Log complet du chemin génératif"
+      ],
+      "html_description": "La génération est traçable et reproductible étant donnée la trace.",
+      "equations": [
+        "replay(trace(gen(x))) = gen(x)"
+      ],
+      "S_local": 0.9,
+      "S_global": 0.79,
+      "stability": "stable",
+      "weight": 0.71,
+      "frames": {
+        "local": [
+          "génération g et sa trace"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          },
+          {
+            "level": "macro",
+            "scope": "WP-12 réversibilité"
+          },
+          {
+            "level": "systémique",
+            "scope": "audit"
+          }
+        ],
+        "global": [
+          "registre global des traces"
+        ],
+        "proxies": [
+          "test de replay sur jeu d'audit"
+        ],
+        "limits": [
+          "coût de stockage proportionnel à |trace|"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "DVE-014",
+      "title": "Stop early sur convergence",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "arrêt",
+        "convergence"
+      ],
+      "examples": [
+        "Arrêt génératif quand ΔS_local < ε"
+      ],
+      "html_description": "Arrêt précoce de la génération dès que la cohérence locale converge sous un seuil.",
+      "equations": [
+        "stop_gen ⟺ ΔS_local(t) < ε"
+      ],
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "stability": "stable",
+      "weight": 0.65,
+      "frames": {
+        "local": [
+          "trajectoire de génération"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          }
+        ],
+        "global": [
+          "politique globale d'arrêt"
+        ],
+        "proxies": [
+          "ΔS_local sur fenêtre glissante"
+        ],
+        "limits": [
+          "faux arrêts si ε trop large"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "DVE-015",
+      "title": "Variant scoring multi-critère",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "scoring",
+        "multi-critère"
+      ],
+      "examples": [
+        "Score combinant cohérence, diversité, coût"
+      ],
+      "html_description": "Évaluation multi-critère des variantes pondérant cohérence, diversité, coût.",
+      "equations": [
+        "score(v) = α·coh + β·div − γ·cost"
+      ],
+      "S_local": 0.84,
+      "S_global": 0.73,
+      "stability": "stable",
+      "weight": 0.63,
+      "frames": {
+        "local": [
+          "variante v"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          },
+          {
+            "level": "macro",
+            "scope": "optimisation multi-objectif"
+          }
+        ],
+        "global": [
+          "frontière de Pareto globale"
+        ],
+        "proxies": [
+          "pondérations α,β,γ calibrées"
+        ],
+        "limits": [
+          "pondérations dépendantes du domaine"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "UDE-009",
+      "title": "Retrieval augmenté par graphe",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "retrieval",
+        "graphe"
+      ],
+      "examples": [
+        "Recherche de loi pertinente via BFS sur graphe ZORAN"
+      ],
+      "html_description": "Récupération de lois pertinentes par BFS bornée sur le graphe ZORAN (cf. CLE).",
+      "equations": [
+        "retrieve(q) = top_k(BFS_score(q, graph))"
+      ],
+      "S_local": 0.88,
+      "S_global": 0.77,
+      "stability": "stable",
+      "weight": 0.7,
+      "frames": {
+        "local": [
+          "query q et noeud ancre"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "CLE"
+          },
+          {
+            "level": "systémique",
+            "scope": "ZenRuntime"
+          }
+        ],
+        "global": [
+          "registre global des retrievals"
+        ],
+        "proxies": [
+          "budget BFS profondeur ≤ 2"
+        ],
+        "limits": [
+          "fragilité aux fausses ancres"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "UDE-010",
+      "title": "Mémoire externe vectorielle",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "mémoire",
+        "vectoriel"
+      ],
+      "examples": [
+        "Vector DB stockant embeddings + metadata"
+      ],
+      "html_description": "Mémoire externe basée sur store vectoriel pour retrieval rapide.",
+      "equations": [
+        "query(v, k) = nearest_neighbors(v, store, k)"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "stability": "stable",
+      "weight": 0.66,
+      "frames": {
+        "local": [
+          "vecteur v et store"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "vector databases"
+          }
+        ],
+        "global": [
+          "index global"
+        ],
+        "proxies": [
+          "ANN avec rappel quantifié"
+        ],
+        "limits": [
+          "dépend de la qualité de l'embedding"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "UDE-011",
+      "title": "Découverte par contraste",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "découverte",
+        "contraste"
+      ],
+      "examples": [
+        "Comparaison entre 2 corpus pour identifier divergences"
+      ],
+      "html_description": "Identification de structures nouvelles par contraste entre deux corpus.",
+      "equations": [
+        "diff(C1, C2) = C1 \\ C2 ∪ C2 \\ C1"
+      ],
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "stability": "stable",
+      "weight": 0.65,
+      "frames": {
+        "local": [
+          "paire de corpus (C1, C2)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "analyse différentielle"
+          }
+        ],
+        "global": [
+          "distribution des différences sur tous corpus"
+        ],
+        "proxies": [
+          "mesure de différence sur features"
+        ],
+        "limits": [
+          "faux positifs sur corpus disparates"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "UDE-012",
+      "title": "Découverte par déductibilité",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "découverte",
+        "déduction"
+      ],
+      "examples": [
+        "Loi inférée par déduction depuis lois existantes"
+      ],
+      "html_description": "Découverte d'une loi par chaînage déductif depuis le corpus existant.",
+      "equations": [
+        "L_new = deduce({L_i}_known)"
+      ],
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "stability": "stable",
+      "weight": 0.62,
+      "frames": {
+        "local": [
+          "ensemble de lois prémisses"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "logique formelle"
+          }
+        ],
+        "global": [
+          "base déductive complète"
+        ],
+        "proxies": [
+          "moteur déductif validé"
+        ],
+        "limits": [
+          "limité aux relations formalisables"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "UDE-013",
+      "title": "Découverte abductive",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "découverte",
+        "abduction"
+      ],
+      "examples": [
+        "Loi hypothétique meilleure explication d'observations"
+      ],
+      "html_description": "Découverte par abduction : la loi la plus plausible expliquant un set d'observations.",
+      "equations": [
+        "L_abd = argmax_L P(observations | L) · prior(L)"
+      ],
+      "S_local": 0.81,
+      "S_global": 0.69,
+      "stability": "stable",
+      "weight": 0.58,
+      "frames": {
+        "local": [
+          "set d'observations"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "statistiques bayésiennes"
+          }
+        ],
+        "global": [
+          "distribution a priori globale"
+        ],
+        "proxies": [
+          "modélisation P(obs|L) calibrée"
+        ],
+        "limits": [
+          "sensible au choix du prior"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "UDE-014",
+      "title": "Mémoire épisodique",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "mémoire",
+        "épisodique"
+      ],
+      "examples": [
+        "Stockage de séquences temporelles d'interactions"
+      ],
+      "html_description": "Mémoire épisodique conservant les séquences temporelles d'événements.",
+      "equations": [
+        "memory_ep = [(t_i, event_i)]_i"
+      ],
+      "S_local": 0.82,
+      "S_global": 0.71,
+      "stability": "stable",
+      "weight": 0.6,
+      "frames": {
+        "local": [
+          "événement e à temps t"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "mémoire à long terme"
+          }
+        ],
+        "global": [
+          "historique global des sessions"
+        ],
+        "proxies": [
+          "index temporel"
+        ],
+        "limits": [
+          "coût mémoire croissant linéairement"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "UDE-015",
+      "title": "Mémoire procédurale",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "mémoire",
+        "procédurale"
+      ],
+      "examples": [
+        "Cache de procédures fréquemment exécutées"
+      ],
+      "html_description": "Mémoire procédurale stockant les procédures et leurs résultats.",
+      "equations": [
+        "cache_proc[hash(proc)] = result"
+      ],
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "stability": "stable",
+      "weight": 0.61,
+      "frames": {
+        "local": [
+          "procédure proc et arguments"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          }
+        ],
+        "global": [
+          "politique globale de cache"
+        ],
+        "proxies": [
+          "LRU ou LFU"
+        ],
+        "limits": [
+          "taille bornée — éviction"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "UDE-017",
+      "title": "Decay de pertinence mémoire",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "mémoire",
+        "decay"
+      ],
+      "examples": [
+        "Pertinence d'un souvenir décroissant avec le temps"
+      ],
+      "html_description": "Pertinence d'un événement mémorisé décroissant exponentiellement avec le temps.",
+      "equations": [
+        "pertinence(e, now) = exp(−λ·(now − t_e))"
+      ],
+      "S_local": 0.81,
+      "S_global": 0.69,
+      "stability": "stable",
+      "weight": 0.57,
+      "frames": {
+        "local": [
+          "événement e"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          }
+        ],
+        "global": [
+          "politique globale de decay"
+        ],
+        "proxies": [
+          "λ calibré par usage"
+        ],
+        "limits": [
+          "events critiques peuvent décayer trop vite"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "UDE-018",
+      "title": "Refresh de mémoire par usage",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "mémoire",
+        "renforcement"
+      ],
+      "examples": [
+        "Reset du timer de decay à chaque accès"
+      ],
+      "html_description": "L'accès à un événement mémorisé renforce sa pertinence (reset decay).",
+      "equations": [
+        "t_e ← now sur access(e)"
+      ],
+      "S_local": 0.82,
+      "S_global": 0.71,
+      "stability": "stable",
+      "weight": 0.59,
+      "frames": {
+        "local": [
+          "événement e accédé"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          }
+        ],
+        "global": [
+          "distribution globale des access"
+        ],
+        "proxies": [
+          "log d'access"
+        ],
+        "limits": [
+          "risque de bias sur events fréquents"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "UDE-019",
+      "title": "Index sémantique relationnel",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "index",
+        "relationnel"
+      ],
+      "examples": [
+        "Index sur relations (parent, iso, ...) pour query rapide"
+      ],
+      "html_description": "Index sémantique permettant retrieval rapide selon types de relations.",
+      "equations": [
+        "index[relation] = sorted(edges of that kind)"
+      ],
+      "S_local": 0.84,
+      "S_global": 0.73,
+      "stability": "stable",
+      "weight": 0.62,
+      "frames": {
+        "local": [
+          "relation kind"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "databases relationnelles"
+          }
+        ],
+        "global": [
+          "index global"
+        ],
+        "proxies": [
+          "lookup en O(log N)"
+        ],
+        "limits": [
+          "coût mise à jour à chaque ajout"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "GHUC-006",
+      "title": "Audit pré-prompt",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "audit",
+        "prompt"
+      ],
+      "examples": [
+        "Vérification des contraintes runtime avant exécution prompt"
+      ],
+      "html_description": "Tout prompt subit un audit pré-exécution validant ses contraintes runtime.",
+      "equations": [
+        "audit(prompt) ∧ admissible(prompt) ⇒ execute"
+      ],
+      "S_local": 0.89,
+      "S_global": 0.79,
+      "stability": "stable",
+      "weight": 0.7,
+      "frames": {
+        "local": [
+          "prompt p"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          },
+          {
+            "level": "macro",
+            "scope": "Oracle"
+          },
+          {
+            "level": "systémique",
+            "scope": "ZenRuntime"
+          }
+        ],
+        "global": [
+          "politique globale d'audit"
+        ],
+        "proxies": [
+          "check Core rules + Adaptive rules"
+        ],
+        "limits": [
+          "surcoût latence ~5-10ms"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "GHUC-007",
+      "title": "Consolidation post-batch",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "consolidation",
+        "batch"
+      ],
+      "examples": [
+        "Audit consolidé après chaque batch d'ajouts"
+      ],
+      "html_description": "Audit complet de cohérence systémique exécuté après chaque batch d'ajouts.",
+      "equations": [
+        "consolidate(batch) ⇒ audit_global"
+      ],
+      "S_local": 0.9,
+      "S_global": 0.8,
+      "stability": "stable",
+      "weight": 0.71,
+      "frames": {
+        "local": [
+          "batch b ajouté"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          },
+          {
+            "level": "macro",
+            "scope": "Oracle audit"
+          },
+          {
+            "level": "systémique",
+            "scope": "HS evolution"
+          }
+        ],
+        "global": [
+          "historique HS"
+        ],
+        "proxies": [
+          "recalcul HS + S_global"
+        ],
+        "limits": [
+          "coût computationnel proportionnel à |graph|"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "GHUC-008",
+      "title": "Rollback automatique sur HS↓",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "rollback",
+        "HS"
+      ],
+      "examples": [
+        "Annulation auto si HS_après < HS_avant"
+      ],
+      "html_description": "Mécanisme de rollback automatique déclenché par dégradation de HS post-modification.",
+      "equations": [
+        "HS_after < HS_before ⇒ rollback"
+      ],
+      "S_local": 0.92,
+      "S_global": 0.81,
+      "stability": "stable",
+      "weight": 0.74,
+      "frames": {
+        "local": [
+          "modification m"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          },
+          {
+            "level": "macro",
+            "scope": "R-CORE-6"
+          },
+          {
+            "level": "systémique",
+            "scope": "gouvernance"
+          }
+        ],
+        "global": [
+          "protection systémique global"
+        ],
+        "proxies": [
+          "snapshot avant chaque modification"
+        ],
+        "limits": [
+          "rollback partiel impossible — atomique"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "GHUC-009",
+      "title": "Consolidation des isomorphismes",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "consolidation",
+        "iso"
+      ],
+      "examples": [
+        "Fusion de deux iso redondants en un seul"
+      ],
+      "html_description": "Consolidation des arêtes iso redondantes par fusion d'invariants.",
+      "equations": [
+        "iso_merge(e1, e2) si invariants(e1) ⊂ invariants(e2)"
+      ],
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "stability": "stable",
+      "weight": 0.64,
+      "frames": {
+        "local": [
+          "paire iso (e1, e2)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          }
+        ],
+        "global": [
+          "registre global des iso"
+        ],
+        "proxies": [
+          "test inclusion d'invariants"
+        ],
+        "limits": [
+          "fusion irréversible — audit"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "GHUC-010",
+      "title": "Audit de quarantine",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "audit",
+        "quarantine"
+      ],
+      "examples": [
+        "Revue périodique de la sandbox pour promotion candidate"
+      ],
+      "html_description": "Audit périodique de la DiscoverySandbox déclenchant promotions et decays.",
+      "equations": [
+        "audit_sandbox(now) ⇒ promotions + decays"
+      ],
+      "S_local": 0.87,
+      "S_global": 0.77,
+      "stability": "stable",
+      "weight": 0.67,
+      "frames": {
+        "local": [
+          "sandbox snapshot"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          },
+          {
+            "level": "macro",
+            "scope": "DiscoverySandbox"
+          }
+        ],
+        "global": [
+          "politique globale d'audit sandbox"
+        ],
+        "proxies": [
+          "fréquence calibrable"
+        ],
+        "limits": [
+          "coût proportionnel à |sandbox|"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "GHUC-011",
+      "title": "Compression de graphe par clustering",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "compression",
+        "clustering"
+      ],
+      "examples": [
+        "Regroupement de lois sœurs pour réduire la densité visible"
+      ],
+      "html_description": "Compression visuelle par regroupement de lois d'une famille en super-nœud.",
+      "equations": [
+        "cluster(F) → super-nœud avec details détachés"
+      ],
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "stability": "stable",
+      "weight": 0.62,
+      "frames": {
+        "local": [
+          "famille F"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          },
+          {
+            "level": "macro",
+            "scope": "UX visualisation"
+          }
+        ],
+        "global": [
+          "politique de regroupement systémique"
+        ],
+        "proxies": [
+          "seuil |F| > 8 → compression"
+        ],
+        "limits": [
+          "perte de détail visuel — détail à la demande"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "GHUC-012",
+      "title": "Détection de doublon sémantique",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "doublon",
+        "sémantique"
+      ],
+      "examples": [
+        "Identification de deux lois exprimant la même idée différemment"
+      ],
+      "html_description": "Détection automatique de doublons sémantiques entre deux lois.",
+      "equations": [
+        "dup(L1, L2) ⟺ cosine_titles ≥ 0.92 ∧ cosine_descriptions ≥ 0.85"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "stability": "stable",
+      "weight": 0.65,
+      "frames": {
+        "local": [
+          "paire (L1, L2)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          }
+        ],
+        "global": [
+          "registre des doublons à fusionner"
+        ],
+        "proxies": [
+          "embeddings + cosine"
+        ],
+        "limits": [
+          "seuils calibrables — risque faux positif"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "GHUC-013",
+      "title": "Pruning par redondance d'arêtes",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "pruning",
+        "arêtes"
+      ],
+      "examples": [
+        "Suppression d'arêtes related dupliquant parent"
+      ],
+      "html_description": "Suppression des arêtes related quand une arête plus structurante existe entre les mêmes nœuds.",
+      "equations": [
+        "prune(e) si ∃ e' tel que kind(e') ≠ related ∧ endpoints égaux"
+      ],
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "stability": "stable",
+      "weight": 0.68,
+      "frames": {
+        "local": [
+          "arête e candidate"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          }
+        ],
+        "global": [
+          "graphe global après pruning"
+        ],
+        "proxies": [
+          "scan paires (source, target)"
+        ],
+        "limits": [
+          "ne traite pas les related justifiés"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "GHUC-014",
+      "title": "Audit historique d'admissibilité",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "audit",
+        "histoire"
+      ],
+      "examples": [
+        "Revue rétroactive des admissions passées"
+      ],
+      "html_description": "Revue rétroactive des décisions d'admission passées avec critères à jour.",
+      "equations": [
+        "audit_retro(window) → re-evaluation"
+      ],
+      "S_local": 0.84,
+      "S_global": 0.73,
+      "stability": "stable",
+      "weight": 0.63,
+      "frames": {
+        "local": [
+          "fenêtre temporelle"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          },
+          {
+            "level": "macro",
+            "scope": "Oracle"
+          }
+        ],
+        "global": [
+          "historique d'audit"
+        ],
+        "proxies": [
+          "replay des décisions"
+        ],
+        "limits": [
+          "coût proportionnel à |historique|"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "GHUC-015",
+      "title": "Calibration cross-batch",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "calibration",
+        "cross-batch"
+      ],
+      "examples": [
+        "Ajustement seuils selon performance batch précédent"
+      ],
+      "html_description": "Calibration adaptative des seuils selon le retour du batch précédent.",
+      "equations": [
+        "thresholds(t+1) = update(thresholds(t), feedback(batch_t))"
+      ],
+      "S_local": 0.87,
+      "S_global": 0.76,
+      "stability": "stable",
+      "weight": 0.66,
+      "frames": {
+        "local": [
+          "batch t et performance"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          },
+          {
+            "level": "macro",
+            "scope": "Adaptive"
+          },
+          {
+            "level": "systémique",
+            "scope": "Oracle"
+          }
+        ],
+        "global": [
+          "historique des seuils"
+        ],
+        "proxies": [
+          "update via Adaptive"
+        ],
+        "limits": [
+          "risque oscillation si feedback bruité"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "WP11-008",
+      "title": "Décomposition stricte de S_global",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "décomposition",
+        "S_global"
+      ],
+      "examples": [
+        "S_global = α·C_struct + β·C_comp + γ·C_iso − δ·contradictions"
+      ],
+      "html_description": "S_global se décompose strictement en 4 composantes pondérées, jamais en moyenne S_local.",
+      "equations": [
+        "S_global = 0.35·C_struct + 0.40·C_comp + 0.15·C_iso − 0.10·contr_density"
+      ],
+      "S_local": 0.94,
+      "S_global": 0.84,
+      "stability": "stable",
+      "weight": 0.78,
+      "frames": {
+        "local": [
+          "calcul de S_global"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "R-CORE-2"
+          },
+          {
+            "level": "systémique",
+            "scope": "Oracle Core"
+          }
+        ],
+        "global": [
+          "formule globale invariante"
+        ],
+        "proxies": [
+          "coefficients calibrables (Adaptive)"
+        ],
+        "limits": [
+          "dépend de la définition de C_comp"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "WP11-009",
+      "title": "Score de rigueur épistémique",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "rigueur",
+        "épistémologie"
+      ],
+      "examples": [
+        "Score combinant grounding + composition + tests"
+      ],
+      "html_description": "Mesure de rigueur épistémique d'une loi combinant grounding (eq/ex), compositions, et tests.",
+      "equations": [
+        "rigor = w1·grounding + w2·comp + w3·tests"
+      ],
+      "S_local": 0.89,
+      "S_global": 0.79,
+      "stability": "stable",
+      "weight": 0.72,
+      "frames": {
+        "local": [
+          "loi L"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "WP12 admissibilité"
+          }
+        ],
+        "global": [
+          "distribution globale des scores"
+        ],
+        "proxies": [
+          "audit programmatique"
+        ],
+        "limits": [
+          "pondérations subjectives à calibrer"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "WP11-010",
+      "title": "Audit de non-circularité",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "audit",
+        "circularité"
+      ],
+      "examples": [
+        "Détection de chaînes circulaires d'inférence"
+      ],
+      "html_description": "Détection des chaînes d'inférence circulaires (auto-référentielles).",
+      "equations": [
+        "circular(chain) ⟺ ∃ cycle dans graph(chain)"
+      ],
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "stability": "stable",
+      "weight": 0.69,
+      "frames": {
+        "local": [
+          "chaîne d'inférence"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          }
+        ],
+        "global": [
+          "graphe global des inférences"
+        ],
+        "proxies": [
+          "DFS détection de cycles"
+        ],
+        "limits": [
+          "circularités utiles parfois (ex. récursion fractal)"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "WP11-011",
+      "title": "Audit de hallucination par composition",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "audit",
+        "hallucination"
+      ],
+      "examples": [
+        "Détection de réponse non supportée par lois chargées"
+      ],
+      "html_description": "Détection de hallucination par vérification que toute affirmation provient des lois chargées.",
+      "equations": [
+        "hallucination ⟺ claim ∉ closure(loaded_laws)"
+      ],
+      "S_local": 0.93,
+      "S_global": 0.83,
+      "stability": "stable",
+      "weight": 0.76,
+      "frames": {
+        "local": [
+          "réponse runtime"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "ZenRuntime"
+          },
+          {
+            "level": "systémique",
+            "scope": "anti-hallucination"
+          }
+        ],
+        "global": [
+          "taux global d'hallucination"
+        ],
+        "proxies": [
+          "NLI ou pattern matching"
+        ],
+        "limits": [
+          "faux positifs sur paraphrases"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "WP11-012",
+      "title": "Calibration de coefficients par audit",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "calibration",
+        "audit"
+      ],
+      "examples": [
+        "Recalibration α,β,γ,δ sur jeu d'audits"
+      ],
+      "html_description": "Calibration des coefficients de S_global par minimisation de l'écart prédit/réel sur audits.",
+      "equations": [
+        "argmin_coef Σ |S_global_pred − S_global_real|"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.76,
+      "stability": "stable",
+      "weight": 0.66,
+      "frames": {
+        "local": [
+          "jeu de coefficients candidats"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "Adaptive"
+          }
+        ],
+        "global": [
+          "coefficients optimaux globaux"
+        ],
+        "proxies": [
+          "recherche par grille"
+        ],
+        "limits": [
+          "dépend de la qualité des audits"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "WP11-013",
+      "title": "Mesure de stabilité temporelle",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "stabilité",
+        "temps"
+      ],
+      "examples": [
+        "Variance de S_local sur fenêtre temporelle"
+      ],
+      "html_description": "Stabilité temporelle d'une loi : faible variance de S_local sur la fenêtre.",
+      "equations": [
+        "stab(L, T) = 1 − var_T(S_local(L, t))"
+      ],
+      "S_local": 0.87,
+      "S_global": 0.77,
+      "stability": "stable",
+      "weight": 0.68,
+      "frames": {
+        "local": [
+          "loi L et fenêtre T"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "analyse temporelle"
+          }
+        ],
+        "global": [
+          "distribution globale des stabilités"
+        ],
+        "proxies": [
+          "mesure sur historique d'audits"
+        ],
+        "limits": [
+          "fenêtre T à choisir avec soin"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "WP11-014",
+      "title": "Audit cross-runtime",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "audit",
+        "runtime"
+      ],
+      "examples": [
+        "Vérification cohérence entre 2 instances ZenRuntime"
+      ],
+      "html_description": "Audit de cohérence entre instances ZenRuntime distinctes (pour distribué).",
+      "equations": [
+        "audit_cross(R1, R2) → diff"
+      ],
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "stability": "stable",
+      "weight": 0.61,
+      "frames": {
+        "local": [
+          "paire (R1, R2)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "ZenRuntime distribué"
+          }
+        ],
+        "global": [
+          "registre global des incohérences"
+        ],
+        "proxies": [
+          "diff de réponses sur jeu test"
+        ],
+        "limits": [
+          "coût communication inter-runtime"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "WP11-015",
+      "title": "Détection de drift de cohérence",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "drift",
+        "cohérence"
+      ],
+      "examples": [
+        "Alerte si HS chute > 0.10 sur 10 audits"
+      ],
+      "html_description": "Détection de drift par variance excessive de HS sur fenêtre temporelle.",
+      "equations": [
+        "drift_alert ⟺ var_T(HS) > θ"
+      ],
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "stability": "stable",
+      "weight": 0.69,
+      "frames": {
+        "local": [
+          "fenêtre T d'audits"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "Adaptive"
+          }
+        ],
+        "global": [
+          "seuil drift global"
+        ],
+        "proxies": [
+          "variance HS calculée"
+        ],
+        "limits": [
+          "faux positifs sur transitions intentionnelles"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "WP11-017",
+      "title": "Mesure d'écart inter-cadres",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "écart",
+        "cadres"
+      ],
+      "examples": [
+        "S_local local-fort vs S_local local-faible : écart"
+      ],
+      "html_description": "Écart de S_local d'une loi entre ses différents cadres d'évaluation.",
+      "equations": [
+        "gap_inter_frame(L) = max_F S_local(L, F) − min_F S_local(L, F)"
+      ],
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "stability": "stable",
+      "weight": 0.64,
+      "frames": {
+        "local": [
+          "loi L et ses cadres"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          }
+        ],
+        "global": [
+          "distribution des écarts globaux"
+        ],
+        "proxies": [
+          "calcul par cadre"
+        ],
+        "limits": [
+          "écart faible peut masquer fragilité commune"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "WP11-018",
+      "title": "Validation Oracle multi-couche",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "validation",
+        "Oracle"
+      ],
+      "examples": [
+        "Audit traversant Core + Adaptive + Sandbox"
+      ],
+      "html_description": "Validation traversant les 3 couches de l'Oracle (Core, Adaptive, Sandbox).",
+      "equations": [
+        "valid_multi(L) = Core(L) ∧ Adaptive(L) ∧ Sandbox_check(L)"
+      ],
+      "S_local": 0.91,
+      "S_global": 0.81,
+      "stability": "stable",
+      "weight": 0.74,
+      "frames": {
+        "local": [
+          "loi L à valider"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "Oracle"
+          },
+          {
+            "level": "systémique",
+            "scope": "gouvernance"
+          }
+        ],
+        "global": [
+          "politique d'admission systémique"
+        ],
+        "proxies": [
+          "validation séquentielle Core → Adaptive → Sandbox"
+        ],
+        "limits": [
+          "3 sources de rejet possibles"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "WP12-009",
+      "title": "Critère anti-hallucination",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "anti-hallucination",
+        "admissibilité"
+      ],
+      "examples": [
+        "Loi admissible si toutes ses affirmations sont supportées"
+      ],
+      "html_description": "Une loi est admissible seulement si toutes ses affirmations sont déductibles de ses dépendances.",
+      "equations": [
+        "antihall(L) ⟺ ∀ claim ∈ L : claim ∈ closure(L_dependencies)"
+      ],
+      "S_local": 0.9,
+      "S_global": 0.79,
+      "stability": "stable",
+      "weight": 0.71,
+      "frames": {
+        "local": [
+          "loi L et ses dépendances"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "WP-11 cohérence"
+          },
+          {
+            "level": "systémique",
+            "scope": "anti-hallucination"
+          }
+        ],
+        "global": [
+          "politique systémique d'admission"
+        ],
+        "proxies": [
+          "NLI sur claims vs closure"
+        ],
+        "limits": [
+          "dépend de la complétude des dépendances"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "WP12-010",
+      "title": "Critère de citation obligatoire",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "citation",
+        "admissibilité"
+      ],
+      "examples": [
+        "Tout label fort doit citer sa loi de preuve"
+      ],
+      "html_description": "Tout usage public d'un label fort (« fractal », « attracteur ») doit citer la loi de preuve.",
+      "equations": [
+        "valid_label(label) ⟺ ∃ proof_law: cite(label, proof_law)"
+      ],
+      "S_local": 0.92,
+      "S_global": 0.81,
+      "stability": "stable",
+      "weight": 0.74,
+      "frames": {
+        "local": [
+          "usage de label fort"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "R-CORE-12"
+          }
+        ],
+        "global": [
+          "registre global des labels et preuves"
+        ],
+        "proxies": [
+          "scan textuel des claims"
+        ],
+        "limits": [
+          "false positives sur usage générique"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "WP12-011",
+      "title": "Critère de typage strict",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "typage",
+        "admissibilité"
+      ],
+      "examples": [
+        "Une arête iso doit avoir invariants[]"
+      ],
+      "html_description": "Toute arête doit respecter strictement le schéma de son kind (cf. EDGE_SYSTEM_SPEC).",
+      "equations": [
+        "valid_typing(e) ⟺ schema(e) respecté"
+      ],
+      "S_local": 0.93,
+      "S_global": 0.83,
+      "stability": "stable",
+      "weight": 0.76,
+      "frames": {
+        "local": [
+          "arête e"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "R-CORE-8"
+          }
+        ],
+        "global": [
+          "registre global des schémas"
+        ],
+        "proxies": [
+          "validation programmatique"
+        ],
+        "limits": [
+          "schéma strict — pas de polymorphisme"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "WP12-012",
+      "title": "Critère de complétude des frames",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "frames",
+        "complétude"
+      ],
+      "examples": [
+        "Une loi sans `limits` est inadmissible"
+      ],
+      "html_description": "Une loi est admissible seulement si ses 5 champs frames sont présents et non vides.",
+      "equations": [
+        "valid_frames(L) ⟺ tous les 5 champs présents et non vides"
+      ],
+      "S_local": 0.93,
+      "S_global": 0.83,
+      "stability": "stable",
+      "weight": 0.77,
+      "frames": {
+        "local": [
+          "loi L et ses frames"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "R-CORE-4"
+          }
+        ],
+        "global": [
+          "politique systémique d'admission"
+        ],
+        "proxies": [
+          "validation programmatique"
+        ],
+        "limits": [
+          "champs vagues passent encore le test"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "WP12-013",
+      "title": "Critère de minimal API",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "api",
+        "minimalité"
+      ],
+      "examples": [
+        "Une loi doit avoir surface API minimale"
+      ],
+      "html_description": "Une loi doit avoir une surface (nombre de paramètres / dépendances) sous le seuil minimal.",
+      "equations": [
+        "surface(L) ≤ θ_min"
+      ],
+      "S_local": 0.84,
+      "S_global": 0.73,
+      "stability": "stable",
+      "weight": 0.63,
+      "frames": {
+        "local": [
+          "loi L et sa surface"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "WP12-003 minimalité"
+          }
+        ],
+        "global": [
+          "politique de minimalité globale"
+        ],
+        "proxies": [
+          "compte des paramètres"
+        ],
+        "limits": [
+          "en tension avec WP12-004 fertilité"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "WP12-014",
+      "title": "Critère d'orthogonalité",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "orthogonalité",
+        "admissibilité"
+      ],
+      "examples": [
+        "Deux lois canoniques doivent être conceptuellement orthogonales"
+      ],
+      "html_description": "Deux lois canoniques distinctes doivent avoir des scopes essentiellement orthogonaux.",
+      "equations": [
+        "orth(L1, L2) ⟺ overlap(L1.scope, L2.scope) ≤ θ"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "stability": "stable",
+      "weight": 0.66,
+      "frames": {
+        "local": [
+          "paire (L1, L2)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "R-CORE-3 composition"
+          }
+        ],
+        "global": [
+          "matrice d'orthogonalité globale"
+        ],
+        "proxies": [
+          "overlap par embedding"
+        ],
+        "limits": [
+          "seuil θ subjectif"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "WP12-015",
+      "title": "Critère de conservativité",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "conservativité",
+        "admissibilité"
+      ],
+      "examples": [
+        "Modification ne doit pas casser les invariants existants"
+      ],
+      "html_description": "Une modification est admissible si elle préserve tous les invariants déjà démontrés.",
+      "equations": [
+        "conservative(modif) ⟺ ∀ inv : inv préservé"
+      ],
+      "S_local": 0.91,
+      "S_global": 0.81,
+      "stability": "stable",
+      "weight": 0.73,
+      "frames": {
+        "local": [
+          "modification m et invariants"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "R-CORE-6 rollback"
+          }
+        ],
+        "global": [
+          "registre global des invariants"
+        ],
+        "proxies": [
+          "test invariant par invariant"
+        ],
+        "limits": [
+          "coût croissant avec |invariants|"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "WP12-016",
+      "title": "Critère de proxy explicite",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "proxy",
+        "admissibilité"
+      ],
+      "examples": [
+        "S_global publié `proxy:0.89` tant que C_composition insuffisant"
+      ],
+      "html_description": "Toute métrique publiée comme scalar doit satisfaire les gates ; sinon marquage `proxy:` obligatoire.",
+      "equations": [
+        "publish_scalar(M) ⟺ R-S2 satisfaite ; sinon `proxy:`"
+      ],
+      "S_local": 0.9,
+      "S_global": 0.8,
+      "stability": "stable",
+      "weight": 0.71,
+      "frames": {
+        "local": [
+          "métrique M à publier"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "R-S2"
+          }
+        ],
+        "global": [
+          "politique d'affichage systémique"
+        ],
+        "proxies": [
+          "check gate R-S2"
+        ],
+        "limits": [
+          "risque d'over-marking proxy"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "WP12-017",
+      "title": "Critère de lifecycle traçable",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "lifecycle",
+        "traçabilité"
+      ],
+      "examples": [
+        "Création → modification → archivage avec horodatage"
+      ],
+      "html_description": "Toute loi a un historique de cycle de vie horodaté et hash-traçable.",
+      "equations": [
+        "history(L) = [(t_i, action_i, hash_i)]"
+      ],
+      "S_local": 0.89,
+      "S_global": 0.79,
+      "stability": "stable",
+      "weight": 0.69,
+      "frames": {
+        "local": [
+          "loi L et son historique"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "gouvernance"
+          },
+          {
+            "level": "systémique",
+            "scope": "audit"
+          }
+        ],
+        "global": [
+          "registre global des lifecycles"
+        ],
+        "proxies": [
+          "log append-only"
+        ],
+        "limits": [
+          "coût stockage croissant"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "WP12-018",
+      "title": "Critère de réfutabilité",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "réfutabilité",
+        "admissibilité"
+      ],
+      "examples": [
+        "Loi admissible si une expérience peut la réfuter"
+      ],
+      "html_description": "Une loi est admissible seulement si elle est en principe réfutable (popperien).",
+      "equations": [
+        "refutable(L) ⟺ ∃ test_T : T(L) = false possible"
+      ],
+      "S_local": 0.87,
+      "S_global": 0.77,
+      "stability": "stable",
+      "weight": 0.68,
+      "frames": {
+        "local": [
+          "loi L et tests possibles"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "épistémologie scientifique"
+          }
+        ],
+        "global": [
+          "espace des tests admissibles"
+        ],
+        "proxies": [
+          "énumération des tests"
+        ],
+        "limits": [
+          "lois trop générales non réfutables"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "WP12-019",
+      "title": "Critère d'auditabilité user",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "audit",
+        "user"
+      ],
+      "examples": [
+        "Utilisateur peut requérir l'audit complet d'une réponse"
+      ],
+      "html_description": "Toute réponse runtime peut être auditée par l'utilisateur (transparence).",
+      "equations": [
+        "audit_user_request(response) → trace + lois utilisées"
+      ],
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "stability": "stable",
+      "weight": 0.69,
+      "frames": {
+        "local": [
+          "réponse runtime"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "ZenRuntime"
+          },
+          {
+            "level": "systémique",
+            "scope": "user trust"
+          }
+        ],
+        "global": [
+          "politique de transparence systémique"
+        ],
+        "proxies": [
+          "log telemetry runtime"
+        ],
+        "limits": [
+          "coût latence audit"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "WP12-020",
+      "title": "Critère de consentement",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "consentement",
+        "user"
+      ],
+      "examples": [
+        "Toute mémoire user doit avoir consentement explicite"
+      ],
+      "html_description": "Toute mémoire portant sur l'utilisateur exige son consentement explicite préalable.",
+      "equations": [
+        "store(user_data) ⟺ consent(user, store)"
+      ],
+      "S_local": 0.91,
+      "S_global": 0.81,
+      "stability": "stable",
+      "weight": 0.73,
+      "frames": {
+        "local": [
+          "opération sur user data"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "éthique data"
+          },
+          {
+            "level": "systémique",
+            "scope": "RGPD/AI Act"
+          }
+        ],
+        "global": [
+          "politique systémique de consentement"
+        ],
+        "proxies": [
+          "check consent store"
+        ],
+        "limits": [
+          "consent peut être révoqué — à gérer"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "SDE-008",
+      "title": "Attention sélective contextuelle",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "attention",
+        "contexte"
+      ],
+      "examples": [
+        "Focus sur sous-prompt pertinent dans une longue conversation"
+      ],
+      "html_description": "Sélection des tokens contextuels pertinents par scoring relevance.",
+      "equations": [
+        "focus(ctx) = top_k(relevance(token_i, query) for token_i ∈ ctx)"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "stability": "stable",
+      "weight": 0.65,
+      "frames": {
+        "local": [
+          "contexte ctx et query"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "attention mécanismes"
+          }
+        ],
+        "global": [
+          "distribution attention globale"
+        ],
+        "proxies": [
+          "scoring relevance par modèle"
+        ],
+        "limits": [
+          "k arbitraire — calibration nécessaire"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "SDE-009",
+      "title": "Explainability par chaîne de raisonnement",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "explainability",
+        "chain-of-thought"
+      ],
+      "examples": [
+        "Réponse accompagnée d'une trace de raisonnement"
+      ],
+      "html_description": "Chaque réponse runtime est accompagnée d'une trace ordonnée des étapes de raisonnement.",
+      "equations": [
+        "explain(response) = ordered(steps)"
+      ],
+      "S_local": 0.89,
+      "S_global": 0.79,
+      "stability": "stable",
+      "weight": 0.7,
+      "frames": {
+        "local": [
+          "réponse runtime"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "interprétabilité"
+          },
+          {
+            "level": "systémique",
+            "scope": "user trust"
+          }
+        ],
+        "global": [
+          "politique d'explication systémique"
+        ],
+        "proxies": [
+          "log structurel des étapes"
+        ],
+        "limits": [
+          "coût latence pour générer trace"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "SDE-010",
+      "title": "Focus dual : query + contraintes",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "focus",
+        "contraintes"
+      ],
+      "examples": [
+        "Focus simultané sur query utilisateur et contraintes système"
+      ],
+      "html_description": "Attention dualement répartie entre query utilisateur et contraintes Oracle.",
+      "equations": [
+        "focus_dual = query_focus ⊕ constraint_focus"
+      ],
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "stability": "stable",
+      "weight": 0.64,
+      "frames": {
+        "local": [
+          "query + contraintes Oracle"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "R-CORE-1 séparation"
+          }
+        ],
+        "global": [
+          "bilan attention global"
+        ],
+        "proxies": [
+          "pondération calibrable"
+        ],
+        "limits": [
+          "déséquilibre risque hallucination ou rigidité"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "SDE-011",
+      "title": "Mémoire de regard inversée",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "mémoire",
+        "regard"
+      ],
+      "examples": [
+        "L'observateur garde mémoire d'avoir été observé"
+      ],
+      "html_description": "Mémoire bidirectionnelle des relations d'observation : (O→X) implique trace (X←O).",
+      "equations": [
+        "memory(O, X) → memory(X, O)"
+      ],
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "stability": "stable",
+      "weight": 0.61,
+      "frames": {
+        "local": [
+          "paire (O, X) et leur historique"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "UDE mémoire"
+          }
+        ],
+        "global": [
+          "registre des observations mutuelles"
+        ],
+        "proxies": [
+          "log bidirectionnel"
+        ],
+        "limits": [
+          "coût stockage doublé"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "SDE-012",
+      "title": "Décomposition focal multi-niveau",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "focal",
+        "multi-niveau"
+      ],
+      "examples": [
+        "Focus zoom out (macro) puis zoom in (micro) successifs"
+      ],
+      "html_description": "Décomposition hiérarchique du focus de macro vers micro pour une compréhension graduée.",
+      "equations": [
+        "focal(x) = compose(macro_focus, micro_focus)"
+      ],
+      "S_local": 0.82,
+      "S_global": 0.71,
+      "stability": "stable",
+      "weight": 0.6,
+      "frames": {
+        "local": [
+          "objet x et niveaux de focus"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "cognition graduée"
+          }
+        ],
+        "global": [
+          "politique de focus systémique"
+        ],
+        "proxies": [
+          "budget par niveau"
+        ],
+        "limits": [
+          "risque de perte d'information à chaque transition"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "SDE-013",
+      "title": "Self-observation contrôlée",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "self",
+        "observation"
+      ],
+      "examples": [
+        "LLM observant ses propres outputs avant émission"
+      ],
+      "html_description": "Auto-observation des outputs avant émission pour vérification d'admissibilité.",
+      "equations": [
+        "self_check(output) → admissible | reject"
+      ],
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "stability": "stable",
+      "weight": 0.69,
+      "frames": {
+        "local": [
+          "output candidat"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "WP12 admissibilité"
+          },
+          {
+            "level": "systémique",
+            "scope": "anti-hallucination"
+          }
+        ],
+        "global": [
+          "politique de self-check systémique"
+        ],
+        "proxies": [
+          "second-pass de validation"
+        ],
+        "limits": [
+          "coût latence ~2x ; risque self-confirmation bias"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "SDE-014",
+      "title": "Décentrage cognitif",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "décentrage",
+        "perspective"
+      ],
+      "examples": [
+        "Réponse depuis perspective utilisateur, pas système"
+      ],
+      "html_description": "Reformulation de la réponse selon la perspective utilisateur (theory of mind).",
+      "equations": [
+        "decenter(response, user_perspective)"
+      ],
+      "S_local": 0.84,
+      "S_global": 0.73,
+      "stability": "stable",
+      "weight": 0.62,
+      "frames": {
+        "local": [
+          "réponse + perspective user"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "ToM cognitive science"
+          }
+        ],
+        "global": [
+          "politique de communication user"
+        ],
+        "proxies": [
+          "modélisation user simplifiée"
+        ],
+        "limits": [
+          "risque de mauvaise modélisation user"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "SDE-015",
+      "title": "Attention à la limite (limits awareness)",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "attention",
+        "limites"
+      ],
+      "examples": [
+        "Réponse incluant les limites de la loi utilisée"
+      ],
+      "html_description": "Toute réponse basée sur une loi inclut explicitement les limites de cette loi.",
+      "equations": [
+        "respond(L) ⇒ inclure L.frames.limits"
+      ],
+      "S_local": 0.9,
+      "S_global": 0.8,
+      "stability": "stable",
+      "weight": 0.71,
+      "frames": {
+        "local": [
+          "réponse basée sur loi L"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "R-CORE-4 frames"
+          },
+          {
+            "level": "systémique",
+            "scope": "anti-hubris"
+          }
+        ],
+        "global": [
+          "politique d'inclusion des limits"
+        ],
+        "proxies": [
+          "lookup automatique L.frames.limits"
+        ],
+        "limits": [
+          "réponse plus longue ; user peut vouloir version courte"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "SDE-016",
+      "title": "Refus structuré sur lacune",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "refus",
+        "lacune"
+      ],
+      "examples": [
+        "Réponse `je ne sais pas` avec citation des lois manquantes"
+      ],
+      "html_description": "Refus structuré quand les lois nécessaires sont absentes du CanonicalGraph (anti-hallucination).",
+      "equations": [
+        "refuse(query) si missing_laws ≠ ∅"
+      ],
+      "S_local": 0.92,
+      "S_global": 0.82,
+      "stability": "stable",
+      "weight": 0.74,
+      "frames": {
+        "local": [
+          "query et lois disponibles"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "ZenRuntime"
+          },
+          {
+            "level": "systémique",
+            "scope": "anti-hallucination"
+          }
+        ],
+        "global": [
+          "politique systémique de refus"
+        ],
+        "proxies": [
+          "check missing_laws"
+        ],
+        "limits": [
+          "frustration user si refus fréquent"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "SDE-017",
+      "title": "Skopein narratif",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "narratif",
+        "Skopein"
+      ],
+      "examples": [
+        "Cohérence narrative à travers une longue conversation"
+      ],
+      "html_description": "Cohérence narrative préservée à travers les tours de conversation.",
+      "equations": [
+        "coherent_narrative(turn_1, ..., turn_n)"
+      ],
+      "S_local": 0.84,
+      "S_global": 0.73,
+      "stability": "stable",
+      "weight": 0.62,
+      "frames": {
+        "local": [
+          "séquence de tours de conversation"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "UDE mémoire épisodique"
+          }
+        ],
+        "global": [
+          "cohérence narrative globale"
+        ],
+        "proxies": [
+          "check inter-turn par modèle"
+        ],
+        "limits": [
+          "dégrade au-delà d'un seuil de longueur"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "PAL-007",
+      "title": "Transition mode user/system",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "transition",
+        "modes"
+      ],
+      "examples": [
+        "Bascule d'un mode conversationnel à un mode tâche"
+      ],
+      "html_description": "Transition palieronique entre modes opérationnels distincts du runtime.",
+      "equations": [
+        "mode(t) ∈ {user_chat, task_exec, audit, ...}"
+      ],
+      "S_local": 0.82,
+      "S_global": 0.71,
+      "stability": "stable",
+      "weight": 0.6,
+      "frames": {
+        "local": [
+          "état courant du runtime"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "PAL"
+          },
+          {
+            "level": "macro",
+            "scope": "ZenRuntime"
+          }
+        ],
+        "global": [
+          "spectre des modes possibles"
+        ],
+        "proxies": [
+          "state machine"
+        ],
+        "limits": [
+          "transitions abruptes mal vécues par user"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "PAL-008",
+      "title": "Calibration runtime par feedback",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "calibration",
+        "feedback"
+      ],
+      "examples": [
+        "Ajustement du budget CLE selon retours utilisateur"
+      ],
+      "html_description": "Ajustement palieronique des paramètres runtime selon feedback (latence/satisfaction).",
+      "equations": [
+        "budget(t+1) = update(budget(t), user_feedback)"
+      ],
+      "S_local": 0.84,
+      "S_global": 0.73,
+      "stability": "stable",
+      "weight": 0.63,
+      "frames": {
+        "local": [
+          "paramètre + feedback"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "PAL"
+          },
+          {
+            "level": "macro",
+            "scope": "Adaptive"
+          }
+        ],
+        "global": [
+          "politique d'adaptation systémique"
+        ],
+        "proxies": [
+          "agrégation feedback"
+        ],
+        "limits": [
+          "risque oscillation si feedback contradictoire"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "PAL-010",
+      "title": "Stabilisation post-modification",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "stabilisation",
+        "modification"
+      ],
+      "examples": [
+        "Période de stabilisation forcée après modification du graphe"
+      ],
+      "html_description": "Période de stabilisation forcée après toute modification du CanonicalGraph (anti-thrashing).",
+      "equations": [
+        "stabilize_window after modification(graph)"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.76,
+      "stability": "stable",
+      "weight": 0.66,
+      "frames": {
+        "local": [
+          "modification récente"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "PAL"
+          },
+          {
+            "level": "macro",
+            "scope": "Oracle"
+          },
+          {
+            "level": "systémique",
+            "scope": "gouvernance"
+          }
+        ],
+        "global": [
+          "politique anti-thrashing systémique"
+        ],
+        "proxies": [
+          "timer T_stabilize"
+        ],
+        "limits": [
+          "bloque modifications utiles aussi"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "PAL-012",
+      "title": "Transition palieronique runtime",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "transition",
+        "runtime"
+      ],
+      "examples": [
+        "Bascule load_mode strict vs relaxé selon HS"
+      ],
+      "html_description": "Bascule palieronique du mode de chargement runtime selon HS courant.",
+      "equations": [
+        "load_mode = strict if HS<θ else relaxed"
+      ],
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "stability": "stable",
+      "weight": 0.64,
+      "frames": {
+        "local": [
+          "HS courant"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "PAL"
+          },
+          {
+            "level": "macro",
+            "scope": "ZenRuntime"
+          }
+        ],
+        "global": [
+          "politique mode systémique"
+        ],
+        "proxies": [
+          "seuil θ adaptatif"
+        ],
+        "limits": [
+          "thrashing si HS oscille autour de θ"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "PAL-013",
+      "title": "Saut catastrophique sur HS↓↓",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "catastrophe",
+        "HS"
+      ],
+      "examples": [
+        "Mode emergency-only si HS<0.50"
+      ],
+      "html_description": "Bascule palieronique catastrophique vers mode emergency quand HS chute critique.",
+      "equations": [
+        "if HS < 0.50 ⇒ mode = emergency"
+      ],
+      "S_local": 0.81,
+      "S_global": 0.7,
+      "stability": "stable",
+      "weight": 0.59,
+      "frames": {
+        "local": [
+          "HS très bas"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "PAL"
+          },
+          {
+            "level": "macro",
+            "scope": "gouvernance"
+          },
+          {
+            "level": "systémique",
+            "scope": "R-CORE-6"
+          }
+        ],
+        "global": [
+          "procédures d'urgence systémiques"
+        ],
+        "proxies": [
+          "check seuil HS"
+        ],
+        "limits": [
+          "mode emergency frustrant pour user"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "PAL-014",
+      "title": "Réveil progressif post-stabilisation",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "réveil",
+        "post-stabilisation"
+      ],
+      "examples": [
+        "Reprise graduelle des opérations après emergency"
+      ],
+      "html_description": "Reprise progressive (ramp) des opérations runtime après période d'urgence.",
+      "equations": [
+        "resume(t) = ramp(0, full, T_resume)"
+      ],
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "stability": "stable",
+      "weight": 0.61,
+      "frames": {
+        "local": [
+          "temps depuis fin d'emergency"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "PAL"
+          },
+          {
+            "level": "macro",
+            "scope": "gouvernance"
+          }
+        ],
+        "global": [
+          "politique de reprise systémique"
+        ],
+        "proxies": [
+          "timer T_resume calibrable"
+        ],
+        "limits": [
+          "latence prolongée pour user"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "WP11-019",
+      "title": "Calibration HS_v2 robust",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "calibration",
+        "HS"
+      ],
+      "examples": [
+        "HS_v2 incluant terme robustness sous perturbation"
+      ],
+      "html_description": "Version 2 de HS incluant un terme de robustness sous perturbation aléatoire.",
+      "equations": [
+        "HS_v2 = HS_v1_terms + 0.10·robustness"
+      ],
+      "S_local": 0.87,
+      "S_global": 0.77,
+      "stability": "stable",
+      "weight": 0.67,
+      "frames": {
+        "local": [
+          "formule HS courante"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "HS_EVOLUTION.md §5"
+          }
+        ],
+        "global": [
+          "formule globale invariante"
+        ],
+        "proxies": [
+          "calibration empirique"
+        ],
+        "limits": [
+          "coefficient 0.10 arbitraire — à recalibrer"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "UDE-020",
+      "title": "Découverte par anomalie composée",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "découverte",
+        "anomalie"
+      ],
+      "examples": [
+        "Anomalie détectée par composition de plusieurs détecteurs"
+      ],
+      "html_description": "Détection d'anomalie par composition (OR) de plusieurs détecteurs spécialisés.",
+      "equations": [
+        "anomaly = ∨_i detector_i(x)"
+      ],
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "stability": "stable",
+      "weight": 0.62,
+      "frames": {
+        "local": [
+          "input x"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "ensemble methods"
+          }
+        ],
+        "global": [
+          "distribution des anomalies vs normales"
+        ],
+        "proxies": [
+          "combinaison logique de détecteurs"
+        ],
+        "limits": [
+          "taux de faux positifs croissant avec |détecteurs|"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "GHUC-016",
+      "title": "Méta-consolidation cross-mission",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "méta",
+        "cross-mission"
+      ],
+      "examples": [
+        "Consolidation traversant plusieurs missions Zoran"
+      ],
+      "html_description": "Consolidation méta-cross-mission produisant un graphe canonique stable.",
+      "equations": [
+        "consolidate_meta(missions) ⇒ canonical_meta_graph"
+      ],
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "stability": "stable",
+      "weight": 0.69,
+      "frames": {
+        "local": [
+          "ensemble de missions"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          },
+          {
+            "level": "macro",
+            "scope": "gouvernance"
+          },
+          {
+            "level": "systémique",
+            "scope": "Oracle"
+          }
+        ],
+        "global": [
+          "graphe méta-canonique global"
+        ],
+        "proxies": [
+          "scan des outputs missions"
+        ],
+        "limits": [
+          "coût computationnel cross-mission"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "WP12-021",
+      "title": "Critère d'éthique runtime",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "éthique",
+        "runtime"
+      ],
+      "examples": [
+        "Refus de réponses contraires au principe de non-nuisance"
+      ],
+      "html_description": "Critère éthique de runtime : pas de nuisance, pas de tromperie, transparence.",
+      "equations": [
+        "ethic_admissible(response) ⟺ no_harm ∧ no_deceit"
+      ],
+      "S_local": 0.91,
+      "S_global": 0.81,
+      "stability": "stable",
+      "weight": 0.73,
+      "frames": {
+        "local": [
+          "réponse candidate"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "éthique IA"
+          },
+          {
+            "level": "systémique",
+            "scope": "ZenRuntime"
+          }
+        ],
+        "global": [
+          "politique éthique systémique"
+        ],
+        "proxies": [
+          "vérifications NLI sur principes"
+        ],
+        "limits": [
+          "frontière éthique contextuelle"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "SDE-018",
+      "title": "Skopein contradictoire admissible",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "contradictoire",
+        "admissible"
+      ],
+      "examples": [
+        "Maintien d'observations contradictoires sans collapse"
+      ],
+      "html_description": "Admission de relations observationnelles contradictoires si la tension est documentée.",
+      "equations": [
+        "admit_contradiction(O1, O2) si tension_documented"
+      ],
+      "S_local": 0.82,
+      "S_global": 0.71,
+      "stability": "stable",
+      "weight": 0.6,
+      "frames": {
+        "local": [
+          "paire (O1, O2) contradictoires"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "WP-12 admissibilité"
+          }
+        ],
+        "global": [
+          "politique de tolérance globale"
+        ],
+        "proxies": [
+          "tension explicitement documentée"
+        ],
+        "limits": [
+          "risque de banalisation des contradictions"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "PAL-015",
+      "title": "Transition focus-context",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "transition",
+        "focus"
+      ],
+      "examples": [
+        "Bascule de focus serré vers contexte large"
+      ],
+      "html_description": "Transition palieronique de focus serré vers contexte large sur déclencheur explicite.",
+      "equations": [
+        "context_width(t+1) > context_width(t) sur déclencheur"
+      ],
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "stability": "stable",
+      "weight": 0.61,
+      "frames": {
+        "local": [
+          "focus + déclencheur"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "PAL"
+          },
+          {
+            "level": "macro",
+            "scope": "SDE attention"
+          }
+        ],
+        "global": [
+          "politique d'élargissement systémique"
+        ],
+        "proxies": [
+          "détection déclencheur"
+        ],
+        "limits": [
+          "élargissement coûteux en VRAM"
+        ]
+      },
+      "runtime_admissible": true
+    },
+    {
+      "id": "DVE-016",
+      "title": "Variant ranking par anti-hallu",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "ranking",
+        "anti-hallucination"
+      ],
+      "examples": [
+        "Top variantes triées par grounding aux lois canoniques"
+      ],
+      "html_description": "Tri des variantes par score de grounding aux lois CanonicalGraph (anti-hallucination).",
+      "equations": [
+        "rank(v) = grounding_score(v, CanonicalGraph)"
+      ],
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "stability": "stable",
+      "weight": 0.69,
+      "frames": {
+        "local": [
+          "ensemble de variantes"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          },
+          {
+            "level": "macro",
+            "scope": "ZenRuntime"
+          },
+          {
+            "level": "systémique",
+            "scope": "anti-hallucination"
+          }
+        ],
+        "global": [
+          "politique de ranking systémique"
+        ],
+        "proxies": [
+          "calcul grounding par citation"
+        ],
+        "limits": [
+          "dépend complétude CanonicalGraph"
+        ]
+      },
+      "runtime_admissible": true
     }
   ],
   "edges": [
@@ -4806,6 +8842,522 @@
       "kind": "related",
       "weight": 0.35,
       "reason": "saut catastrophique ↔ heuristique de saut"
+    },
+    {
+      "source": "ULG-008",
+      "target": "ULG-001",
+      "kind": "parent"
+    },
+    {
+      "source": "ULG-009",
+      "target": "ULG-001",
+      "kind": "parent"
+    },
+    {
+      "source": "ULG-010",
+      "target": "ULG-001",
+      "kind": "parent"
+    },
+    {
+      "source": "ULG-011",
+      "target": "ULG-001",
+      "kind": "parent"
+    },
+    {
+      "source": "ULG-012",
+      "target": "ULG-004",
+      "kind": "parent"
+    },
+    {
+      "source": "ULG-013",
+      "target": "ULG-003",
+      "kind": "parent"
+    },
+    {
+      "source": "ULG-014",
+      "target": "ULG-002",
+      "kind": "parent"
+    },
+    {
+      "source": "ULG-015",
+      "target": "ULG-004",
+      "kind": "parent"
+    },
+    {
+      "source": "ULG-016",
+      "target": "ULG-003",
+      "kind": "parent"
+    },
+    {
+      "source": "ULG-017",
+      "target": "ULG-002",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-008",
+      "target": "DVE-005",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-009",
+      "target": "DVE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-010",
+      "target": "DVE-003",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-011",
+      "target": "DVE-005",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-012",
+      "target": "DVE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-013",
+      "target": "DVE-002",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-014",
+      "target": "DVE-003",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-015",
+      "target": "DVE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-009",
+      "target": "UDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-010",
+      "target": "UDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-011",
+      "target": "UDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-012",
+      "target": "UDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-013",
+      "target": "UDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-014",
+      "target": "UDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-015",
+      "target": "UDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-017",
+      "target": "UDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-018",
+      "target": "UDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-019",
+      "target": "UDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-006",
+      "target": "GHUC-005",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-007",
+      "target": "GHUC-001",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-008",
+      "target": "GHUC-001",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-009",
+      "target": "GHUC-004",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-010",
+      "target": "GHUC-005",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-011",
+      "target": "GHUC-002",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-012",
+      "target": "GHUC-002",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-013",
+      "target": "GHUC-003",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-014",
+      "target": "GHUC-005",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-015",
+      "target": "GHUC-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-008",
+      "target": "WP11-003",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-009",
+      "target": "WP11-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-010",
+      "target": "WP11-005",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-011",
+      "target": "WP11-005",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-012",
+      "target": "WP11-006",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-013",
+      "target": "WP11-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-014",
+      "target": "WP11-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-015",
+      "target": "WP11-005",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-017",
+      "target": "WP11-002",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-018",
+      "target": "WP11-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-009",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-010",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-011",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-012",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-013",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-014",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-015",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-016",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-017",
+      "target": "WP12-007",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-018",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-019",
+      "target": "WP12-007",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-020",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-008",
+      "target": "SDE-003",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-009",
+      "target": "SDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-010",
+      "target": "SDE-003",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-011",
+      "target": "SDE-002",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-012",
+      "target": "SDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-013",
+      "target": "SDE-002",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-014",
+      "target": "SDE-002",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-015",
+      "target": "SDE-003",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-016",
+      "target": "SDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-017",
+      "target": "SDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "PAL-007",
+      "target": "PAL-001",
+      "kind": "parent"
+    },
+    {
+      "source": "PAL-008",
+      "target": "PAL-001",
+      "kind": "parent"
+    },
+    {
+      "source": "PAL-010",
+      "target": "PAL-005",
+      "kind": "parent"
+    },
+    {
+      "source": "PAL-012",
+      "target": "PAL-002",
+      "kind": "parent"
+    },
+    {
+      "source": "PAL-013",
+      "target": "PAL-002-b-ii",
+      "kind": "parent"
+    },
+    {
+      "source": "PAL-014",
+      "target": "PAL-005",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-019",
+      "target": "WP11-006",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-020",
+      "target": "UDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-016",
+      "target": "GHUC-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-021",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-018",
+      "target": "SDE-002",
+      "kind": "parent"
+    },
+    {
+      "source": "PAL-015",
+      "target": "PAL-002",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-016",
+      "target": "DVE-005",
+      "kind": "parent"
+    },
+    {
+      "source": "ULG-008",
+      "target": "GHUC-002",
+      "kind": "iso",
+      "invariants": [
+        "compression sémantique préservant invariants ULG embedding"
+      ],
+      "weight": 0.65
+    },
+    {
+      "source": "DVE-008",
+      "target": "WP12-009",
+      "kind": "iso",
+      "invariants": [
+        "filtrage anti-hallucination ↔ critère anti-hallucination admissibilité"
+      ],
+      "weight": 0.7
+    },
+    {
+      "source": "UDE-009",
+      "target": "WP11-005",
+      "kind": "iso",
+      "invariants": [
+        "retrieval contextuel ↔ détection de fausse cohérence par sous-graphe"
+      ],
+      "weight": 0.65
+    },
+    {
+      "source": "SDE-013",
+      "target": "WP11-011",
+      "kind": "iso",
+      "invariants": [
+        "self-observation ↔ audit hallucination — boucle cohérence"
+      ],
+      "weight": 0.7
+    },
+    {
+      "source": "GHUC-008",
+      "target": "WP12-015",
+      "kind": "iso",
+      "invariants": [
+        "rollback automatique ↔ critère de conservativité"
+      ],
+      "weight": 0.68
+    },
+    {
+      "source": "DVE-008",
+      "target": "DVE-012",
+      "kind": "contradicts",
+      "weight": 0.55,
+      "domain": "anti-hallucination filtre vs diversité contrainte (trade-off rigueur/exploration)"
+    },
+    {
+      "source": "DVE-012",
+      "target": "DVE-008",
+      "kind": "contradicts",
+      "weight": 0.55,
+      "domain": "anti-hallucination filtre vs diversité contrainte (trade-off rigueur/exploration)"
+    },
+    {
+      "source": "WP11-011",
+      "target": "SDE-016",
+      "kind": "related",
+      "weight": 0.45,
+      "reason": "détection hallucination + refus structuré : pipeline anti-hallu complet"
+    },
+    {
+      "source": "GHUC-015",
+      "target": "WP11-012",
+      "kind": "related",
+      "weight": 0.45,
+      "reason": "calibration cross-batch + calibration coefficients — adaptive cohérent"
+    },
+    {
+      "source": "DVE-008",
+      "target": "DVE-014",
+      "kind": "contradicts",
+      "weight": 0.5,
+      "domain": "anti-hallucination filter vs early stop sur convergence (filter peut être bypassé)"
+    },
+    {
+      "source": "DVE-014",
+      "target": "DVE-008",
+      "kind": "contradicts",
+      "weight": 0.5,
+      "domain": "anti-hallucination filter vs early stop sur convergence (filter peut être bypassé)"
+    },
+    {
+      "source": "UDE-019",
+      "target": "GHUC-013",
+      "kind": "contradicts",
+      "weight": 0.5,
+      "domain": "index sémantique nécessite arêtes vs pruning par redondance les supprime"
+    },
+    {
+      "source": "GHUC-013",
+      "target": "UDE-019",
+      "kind": "contradicts",
+      "weight": 0.5,
+      "domain": "index sémantique nécessite arêtes vs pruning par redondance les supprime"
     }
   ],
   "compositions": [
@@ -5063,6 +9615,104 @@
       "test_output": "alerte conjointe métastabilité + fausse cohérence",
       "delta_S_global": 0.01,
       "status": "admissible"
+    },
+    {
+      "pair": [
+        "WP11-011",
+        "SDE-016"
+      ],
+      "operator": "WP11-011 ∘ SDE-016",
+      "preserved": [
+        "pipeline anti-hallucination : détection + refus structuré"
+      ],
+      "test_input": "réponse candidate avec affirmation non supportée",
+      "test_output": "détection hallucination → refus avec citation des lois manquantes",
+      "delta_S_global": 0.02,
+      "status": "admissible"
+    },
+    {
+      "pair": [
+        "DVE-008",
+        "WP12-009"
+      ],
+      "operator": "DVE-008 ∘ WP12-009",
+      "preserved": [
+        "filtre variantes + critère admissibilité = double-filtre anti-hallu"
+      ],
+      "test_input": "génération de N variantes",
+      "test_output": "variantes survivantes = admissibles ∧ non hallucinantes",
+      "delta_S_global": 0.01,
+      "status": "admissible"
+    },
+    {
+      "pair": [
+        "UDE-009",
+        "ULG-008"
+      ],
+      "operator": "UDE-009 ∘ ULG-008",
+      "preserved": [
+        "retrieval contextuel + invariance embedding cross-modèle"
+      ],
+      "test_input": "query sur 2 modèles distincts",
+      "test_output": "lois retrieved cohérentes inter-modèles",
+      "delta_S_global": 0.01,
+      "status": "admissible"
+    },
+    {
+      "pair": [
+        "SDE-013",
+        "WP11-011"
+      ],
+      "operator": "SDE-013 ∘ WP11-011",
+      "preserved": [
+        "self-check + audit hallucination = double-validation runtime"
+      ],
+      "test_input": "output candidat",
+      "test_output": "rejet si hallucination détectée à l'auto-observation",
+      "delta_S_global": 0.02,
+      "status": "admissible"
+    },
+    {
+      "pair": [
+        "GHUC-008",
+        "PAL-013"
+      ],
+      "operator": "GHUC-008 ∘ PAL-013",
+      "preserved": [
+        "rollback automatique + saut catastrophique sur HS↓↓"
+      ],
+      "test_input": "HS chute brutale",
+      "test_output": "rollback + bascule mode emergency",
+      "delta_S_global": 0.0,
+      "status": "admissible"
+    },
+    {
+      "pair": [
+        "WP12-019",
+        "SDE-009"
+      ],
+      "operator": "WP12-019 ∘ SDE-009",
+      "preserved": [
+        "audit user + chain-of-thought = transparence complète"
+      ],
+      "test_input": "demande d'audit user sur réponse",
+      "test_output": "trace complète + lois utilisées + chain-of-thought",
+      "delta_S_global": 0.01,
+      "status": "admissible"
+    },
+    {
+      "pair": [
+        "UDE-014",
+        "UDE-017"
+      ],
+      "operator": "UDE-014 ∘ UDE-017",
+      "preserved": [
+        "mémoire épisodique + decay cohérents"
+      ],
+      "test_input": "événements anciens",
+      "test_output": "decay correct, événements pertinents gardés",
+      "delta_S_global": 0.0,
+      "status": "admissible"
     }
   ],
   "p0_5_meta": {
@@ -5075,10 +9725,14 @@
       "SDE",
       "PAL"
     ],
-    "compositions_demonstrated": 18,
+    "compositions_demonstrated": 25,
     "p1_integrated_count": 46,
     "p1_quarantined_count": 6,
     "p1_timestamp": "2026-05-15T19:53:00+02:00",
-    "p1_mission_id": "ZORAN_P1_DEMONSTRATED_EXPANSION_50_LAWS_20260515"
+    "p1_mission_id": "ZORAN_P1_DEMONSTRATED_EXPANSION_50_LAWS_20260515",
+    "p2_integrated_count": 83,
+    "p2_quarantined_count": 5,
+    "p2_timestamp": "2026-05-15T20:30:00+02:00",
+    "p2_mission_id": "ZORAN_P2_DEMONSTRATED_EXPANSION_100_LAWS_20260515"
   }
 }

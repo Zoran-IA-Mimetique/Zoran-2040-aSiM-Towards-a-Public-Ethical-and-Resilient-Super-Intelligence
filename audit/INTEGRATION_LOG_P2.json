@@ -1,0 +1,752 @@
+{
+  "mission_id": "ZORAN_P2_DEMONSTRATED_EXPANSION_100_LAWS_20260515",
+  "integrated": [
+    {
+      "id": "ULG-008",
+      "family": "ULG",
+      "parent": "ULG-001",
+      "compositions_count": 11,
+      "S_local": 0.84,
+      "S_global": 0.74,
+      "weight": 0.65
+    },
+    {
+      "id": "ULG-009",
+      "family": "ULG",
+      "parent": "ULG-001",
+      "compositions_count": 9,
+      "S_local": 0.82,
+      "S_global": 0.71,
+      "weight": 0.6
+    },
+    {
+      "id": "ULG-010",
+      "family": "ULG",
+      "parent": "ULG-001",
+      "compositions_count": 9,
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "weight": 0.66
+    },
+    {
+      "id": "ULG-011",
+      "family": "ULG",
+      "parent": "ULG-001",
+      "compositions_count": 9,
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "weight": 0.65
+    },
+    {
+      "id": "ULG-012",
+      "family": "ULG",
+      "parent": "ULG-004",
+      "compositions_count": 3,
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "weight": 0.62
+    },
+    {
+      "id": "ULG-013",
+      "family": "ULG",
+      "parent": "ULG-003",
+      "compositions_count": 4,
+      "S_local": 0.84,
+      "S_global": 0.73,
+      "weight": 0.63
+    },
+    {
+      "id": "ULG-014",
+      "family": "ULG",
+      "parent": "ULG-002",
+      "compositions_count": 5,
+      "S_local": 0.81,
+      "S_global": 0.69,
+      "weight": 0.58
+    },
+    {
+      "id": "ULG-015",
+      "family": "ULG",
+      "parent": "ULG-004",
+      "compositions_count": 3,
+      "S_local": 0.82,
+      "S_global": 0.71,
+      "weight": 0.6
+    },
+    {
+      "id": "ULG-016",
+      "family": "ULG",
+      "parent": "ULG-003",
+      "compositions_count": 3,
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "weight": 0.62
+    },
+    {
+      "id": "ULG-017",
+      "family": "ULG",
+      "parent": "ULG-002",
+      "compositions_count": 5,
+      "S_local": 0.8,
+      "S_global": 0.69,
+      "weight": 0.56
+    },
+    {
+      "id": "DVE-008",
+      "family": "DVE",
+      "parent": "DVE-005",
+      "compositions_count": 6,
+      "S_local": 0.89,
+      "S_global": 0.78,
+      "weight": 0.7
+    },
+    {
+      "id": "DVE-009",
+      "family": "DVE",
+      "parent": "DVE-001",
+      "compositions_count": 7,
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "weight": 0.65
+    },
+    {
+      "id": "DVE-010",
+      "family": "DVE",
+      "parent": "DVE-003",
+      "compositions_count": 4,
+      "S_local": 0.87,
+      "S_global": 0.76,
+      "weight": 0.67
+    },
+    {
+      "id": "DVE-011",
+      "family": "DVE",
+      "parent": "DVE-005",
+      "compositions_count": 4,
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "weight": 0.66
+    },
+    {
+      "id": "DVE-012",
+      "family": "DVE",
+      "parent": "DVE-001",
+      "compositions_count": 8,
+      "S_local": 0.84,
+      "S_global": 0.73,
+      "weight": 0.63
+    },
+    {
+      "id": "DVE-013",
+      "family": "DVE",
+      "parent": "DVE-002",
+      "compositions_count": 4,
+      "S_local": 0.9,
+      "S_global": 0.79,
+      "weight": 0.71
+    },
+    {
+      "id": "DVE-014",
+      "family": "DVE",
+      "parent": "DVE-003",
+      "compositions_count": 4,
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "weight": 0.65
+    },
+    {
+      "id": "DVE-015",
+      "family": "DVE",
+      "parent": "DVE-001",
+      "compositions_count": 7,
+      "S_local": 0.84,
+      "S_global": 0.73,
+      "weight": 0.63
+    },
+    {
+      "id": "UDE-009",
+      "family": "UDE",
+      "parent": "UDE-001",
+      "compositions_count": 19,
+      "S_local": 0.88,
+      "S_global": 0.77,
+      "weight": 0.7
+    },
+    {
+      "id": "UDE-010",
+      "family": "UDE",
+      "parent": "UDE-001",
+      "compositions_count": 17,
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "weight": 0.66
+    },
+    {
+      "id": "UDE-011",
+      "family": "UDE",
+      "parent": "UDE-001",
+      "compositions_count": 17,
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "weight": 0.65
+    },
+    {
+      "id": "UDE-012",
+      "family": "UDE",
+      "parent": "UDE-001",
+      "compositions_count": 17,
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "weight": 0.62
+    },
+    {
+      "id": "UDE-013",
+      "family": "UDE",
+      "parent": "UDE-001",
+      "compositions_count": 17,
+      "S_local": 0.81,
+      "S_global": 0.69,
+      "weight": 0.58
+    },
+    {
+      "id": "UDE-014",
+      "family": "UDE",
+      "parent": "UDE-001",
+      "compositions_count": 17,
+      "S_local": 0.82,
+      "S_global": 0.71,
+      "weight": 0.6
+    },
+    {
+      "id": "UDE-015",
+      "family": "UDE",
+      "parent": "UDE-001",
+      "compositions_count": 17,
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "weight": 0.61
+    },
+    {
+      "id": "UDE-017",
+      "family": "UDE",
+      "parent": "UDE-001",
+      "compositions_count": 17,
+      "S_local": 0.81,
+      "S_global": 0.69,
+      "weight": 0.57
+    },
+    {
+      "id": "UDE-018",
+      "family": "UDE",
+      "parent": "UDE-001",
+      "compositions_count": 17,
+      "S_local": 0.82,
+      "S_global": 0.71,
+      "weight": 0.59
+    },
+    {
+      "id": "UDE-019",
+      "family": "UDE",
+      "parent": "UDE-001",
+      "compositions_count": 17,
+      "S_local": 0.84,
+      "S_global": 0.73,
+      "weight": 0.62
+    },
+    {
+      "id": "GHUC-006",
+      "family": "GHUC",
+      "parent": "GHUC-005",
+      "compositions_count": 4,
+      "S_local": 0.89,
+      "S_global": 0.79,
+      "weight": 0.7
+    },
+    {
+      "id": "GHUC-007",
+      "family": "GHUC",
+      "parent": "GHUC-001",
+      "compositions_count": 8,
+      "S_local": 0.9,
+      "S_global": 0.8,
+      "weight": 0.71
+    },
+    {
+      "id": "GHUC-008",
+      "family": "GHUC",
+      "parent": "GHUC-001",
+      "compositions_count": 10,
+      "S_local": 0.92,
+      "S_global": 0.81,
+      "weight": 0.74
+    },
+    {
+      "id": "GHUC-009",
+      "family": "GHUC",
+      "parent": "GHUC-004",
+      "compositions_count": 4,
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "weight": 0.64
+    },
+    {
+      "id": "GHUC-010",
+      "family": "GHUC",
+      "parent": "GHUC-005",
+      "compositions_count": 4,
+      "S_local": 0.87,
+      "S_global": 0.77,
+      "weight": 0.67
+    },
+    {
+      "id": "GHUC-011",
+      "family": "GHUC",
+      "parent": "GHUC-002",
+      "compositions_count": 5,
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "weight": 0.62
+    },
+    {
+      "id": "GHUC-012",
+      "family": "GHUC",
+      "parent": "GHUC-002",
+      "compositions_count": 5,
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "weight": 0.65
+    },
+    {
+      "id": "GHUC-013",
+      "family": "GHUC",
+      "parent": "GHUC-003",
+      "compositions_count": 4,
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "weight": 0.68
+    },
+    {
+      "id": "GHUC-014",
+      "family": "GHUC",
+      "parent": "GHUC-005",
+      "compositions_count": 4,
+      "S_local": 0.84,
+      "S_global": 0.73,
+      "weight": 0.63
+    },
+    {
+      "id": "GHUC-015",
+      "family": "GHUC",
+      "parent": "GHUC-001",
+      "compositions_count": 9,
+      "S_local": 0.87,
+      "S_global": 0.76,
+      "weight": 0.66
+    },
+    {
+      "id": "WP11-008",
+      "family": "WP11",
+      "parent": "WP11-003",
+      "compositions_count": 3,
+      "S_local": 0.94,
+      "S_global": 0.84,
+      "weight": 0.78
+    },
+    {
+      "id": "WP11-009",
+      "family": "WP11",
+      "parent": "WP11-001",
+      "compositions_count": 8,
+      "S_local": 0.89,
+      "S_global": 0.79,
+      "weight": 0.72
+    },
+    {
+      "id": "WP11-010",
+      "family": "WP11",
+      "parent": "WP11-005",
+      "compositions_count": 4,
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "weight": 0.69
+    },
+    {
+      "id": "WP11-011",
+      "family": "WP11",
+      "parent": "WP11-005",
+      "compositions_count": 6,
+      "S_local": 0.93,
+      "S_global": 0.83,
+      "weight": 0.76
+    },
+    {
+      "id": "WP11-012",
+      "family": "WP11",
+      "parent": "WP11-006",
+      "compositions_count": 4,
+      "S_local": 0.86,
+      "S_global": 0.76,
+      "weight": 0.66
+    },
+    {
+      "id": "WP11-013",
+      "family": "WP11",
+      "parent": "WP11-001",
+      "compositions_count": 8,
+      "S_local": 0.87,
+      "S_global": 0.77,
+      "weight": 0.68
+    },
+    {
+      "id": "WP11-014",
+      "family": "WP11",
+      "parent": "WP11-001",
+      "compositions_count": 8,
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "weight": 0.61
+    },
+    {
+      "id": "WP11-015",
+      "family": "WP11",
+      "parent": "WP11-005",
+      "compositions_count": 4,
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "weight": 0.69
+    },
+    {
+      "id": "WP11-017",
+      "family": "WP11",
+      "parent": "WP11-002",
+      "compositions_count": 4,
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "weight": 0.64
+    },
+    {
+      "id": "WP11-018",
+      "family": "WP11",
+      "parent": "WP11-001",
+      "compositions_count": 8,
+      "S_local": 0.91,
+      "S_global": 0.81,
+      "weight": 0.74
+    },
+    {
+      "id": "WP12-009",
+      "family": "WP12",
+      "parent": "WP12-001",
+      "compositions_count": 19,
+      "S_local": 0.9,
+      "S_global": 0.79,
+      "weight": 0.71
+    },
+    {
+      "id": "WP12-010",
+      "family": "WP12",
+      "parent": "WP12-001",
+      "compositions_count": 18,
+      "S_local": 0.92,
+      "S_global": 0.81,
+      "weight": 0.74
+    },
+    {
+      "id": "WP12-011",
+      "family": "WP12",
+      "parent": "WP12-001",
+      "compositions_count": 18,
+      "S_local": 0.93,
+      "S_global": 0.83,
+      "weight": 0.76
+    },
+    {
+      "id": "WP12-012",
+      "family": "WP12",
+      "parent": "WP12-001",
+      "compositions_count": 18,
+      "S_local": 0.93,
+      "S_global": 0.83,
+      "weight": 0.77
+    },
+    {
+      "id": "WP12-013",
+      "family": "WP12",
+      "parent": "WP12-001",
+      "compositions_count": 18,
+      "S_local": 0.84,
+      "S_global": 0.73,
+      "weight": 0.63
+    },
+    {
+      "id": "WP12-014",
+      "family": "WP12",
+      "parent": "WP12-001",
+      "compositions_count": 18,
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "weight": 0.66
+    },
+    {
+      "id": "WP12-015",
+      "family": "WP12",
+      "parent": "WP12-001",
+      "compositions_count": 19,
+      "S_local": 0.91,
+      "S_global": 0.81,
+      "weight": 0.73
+    },
+    {
+      "id": "WP12-016",
+      "family": "WP12",
+      "parent": "WP12-001",
+      "compositions_count": 18,
+      "S_local": 0.9,
+      "S_global": 0.8,
+      "weight": 0.71
+    },
+    {
+      "id": "WP12-017",
+      "family": "WP12",
+      "parent": "WP12-007",
+      "compositions_count": 3,
+      "S_local": 0.89,
+      "S_global": 0.79,
+      "weight": 0.69
+    },
+    {
+      "id": "WP12-018",
+      "family": "WP12",
+      "parent": "WP12-001",
+      "compositions_count": 18,
+      "S_local": 0.87,
+      "S_global": 0.77,
+      "weight": 0.68
+    },
+    {
+      "id": "WP12-019",
+      "family": "WP12",
+      "parent": "WP12-007",
+      "compositions_count": 4,
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "weight": 0.69
+    },
+    {
+      "id": "WP12-020",
+      "family": "WP12",
+      "parent": "WP12-001",
+      "compositions_count": 18,
+      "S_local": 0.91,
+      "S_global": 0.81,
+      "weight": 0.73
+    },
+    {
+      "id": "SDE-008",
+      "family": "SDE",
+      "parent": "SDE-003",
+      "compositions_count": 4,
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "weight": 0.65
+    },
+    {
+      "id": "SDE-009",
+      "family": "SDE",
+      "parent": "SDE-001",
+      "compositions_count": 10,
+      "S_local": 0.89,
+      "S_global": 0.79,
+      "weight": 0.7
+    },
+    {
+      "id": "SDE-010",
+      "family": "SDE",
+      "parent": "SDE-003",
+      "compositions_count": 4,
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "weight": 0.64
+    },
+    {
+      "id": "SDE-011",
+      "family": "SDE",
+      "parent": "SDE-002",
+      "compositions_count": 7,
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "weight": 0.61
+    },
+    {
+      "id": "SDE-012",
+      "family": "SDE",
+      "parent": "SDE-001",
+      "compositions_count": 9,
+      "S_local": 0.82,
+      "S_global": 0.71,
+      "weight": 0.6
+    },
+    {
+      "id": "SDE-013",
+      "family": "SDE",
+      "parent": "SDE-002",
+      "compositions_count": 8,
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "weight": 0.69
+    },
+    {
+      "id": "SDE-014",
+      "family": "SDE",
+      "parent": "SDE-002",
+      "compositions_count": 7,
+      "S_local": 0.84,
+      "S_global": 0.73,
+      "weight": 0.62
+    },
+    {
+      "id": "SDE-015",
+      "family": "SDE",
+      "parent": "SDE-003",
+      "compositions_count": 4,
+      "S_local": 0.9,
+      "S_global": 0.8,
+      "weight": 0.71
+    },
+    {
+      "id": "SDE-016",
+      "family": "SDE",
+      "parent": "SDE-001",
+      "compositions_count": 10,
+      "S_local": 0.92,
+      "S_global": 0.82,
+      "weight": 0.74
+    },
+    {
+      "id": "SDE-017",
+      "family": "SDE",
+      "parent": "SDE-001",
+      "compositions_count": 9,
+      "S_local": 0.84,
+      "S_global": 0.73,
+      "weight": 0.62
+    },
+    {
+      "id": "PAL-007",
+      "family": "PAL",
+      "parent": "PAL-001",
+      "compositions_count": 7,
+      "S_local": 0.82,
+      "S_global": 0.71,
+      "weight": 0.6
+    },
+    {
+      "id": "PAL-008",
+      "family": "PAL",
+      "parent": "PAL-001",
+      "compositions_count": 7,
+      "S_local": 0.84,
+      "S_global": 0.73,
+      "weight": 0.63
+    },
+    {
+      "id": "PAL-010",
+      "family": "PAL",
+      "parent": "PAL-005",
+      "compositions_count": 3,
+      "S_local": 0.86,
+      "S_global": 0.76,
+      "weight": 0.66
+    },
+    {
+      "id": "PAL-012",
+      "family": "PAL",
+      "parent": "PAL-002",
+      "compositions_count": 5,
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "weight": 0.64
+    },
+    {
+      "id": "PAL-013",
+      "family": "PAL",
+      "parent": "PAL-002-b-ii",
+      "compositions_count": 3,
+      "S_local": 0.81,
+      "S_global": 0.7,
+      "weight": 0.59
+    },
+    {
+      "id": "PAL-014",
+      "family": "PAL",
+      "parent": "PAL-005",
+      "compositions_count": 3,
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "weight": 0.61
+    },
+    {
+      "id": "WP11-019",
+      "family": "WP11",
+      "parent": "WP11-006",
+      "compositions_count": 3,
+      "S_local": 0.87,
+      "S_global": 0.77,
+      "weight": 0.67
+    },
+    {
+      "id": "UDE-020",
+      "family": "UDE",
+      "parent": "UDE-001",
+      "compositions_count": 17,
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "weight": 0.62
+    },
+    {
+      "id": "GHUC-016",
+      "family": "GHUC",
+      "parent": "GHUC-001",
+      "compositions_count": 8,
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "weight": 0.69
+    },
+    {
+      "id": "WP12-021",
+      "family": "WP12",
+      "parent": "WP12-001",
+      "compositions_count": 18,
+      "S_local": 0.91,
+      "S_global": 0.81,
+      "weight": 0.73
+    },
+    {
+      "id": "SDE-018",
+      "family": "SDE",
+      "parent": "SDE-002",
+      "compositions_count": 7,
+      "S_local": 0.82,
+      "S_global": 0.71,
+      "weight": 0.6
+    },
+    {
+      "id": "PAL-015",
+      "family": "PAL",
+      "parent": "PAL-002",
+      "compositions_count": 5,
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "weight": 0.61
+    },
+    {
+      "id": "DVE-016",
+      "family": "DVE",
+      "parent": "DVE-005",
+      "compositions_count": 4,
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "weight": 0.69
+    }
+  ]
+}
