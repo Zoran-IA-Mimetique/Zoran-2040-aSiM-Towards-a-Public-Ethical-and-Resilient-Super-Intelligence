@@ -1545,6 +1545,14 @@ async function boot() {
     setupDraggablePanel();
     setupDraggableChatPopup();   // mission DRAGGABLE_RUNTIME_RESPONSE_POPUP
     wireControls();
+    // Bouton × sur étiquette flottante rouge (mission UX fermable)
+    const lblClose = document.getElementById('answer-label-close');
+    if (lblClose) {
+      lblClose.addEventListener('click', e => {
+        e.preventDefault(); e.stopPropagation();
+        deactivateRoutes();
+      });
+    }
     // Mission RUNTIME_COGNITIVE_PATH_COMPETITION : chat bar + 6 routes
     // + mission REALTIME_ROUTE_VISUALIZATION : activer les routes dans le graphe
     // + parentsMap pour répondre multi-cadres avec lois parentes

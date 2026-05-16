@@ -66,6 +66,7 @@
 
   <!-- Étiquette flottante enrichie : réponse multi-cadres + parents + cadres -->
   <div id="answer-label-overlay" aria-live="polite">
+    <button id="answer-label-close" title="Fermer (Esc)" aria-label="Fermer l'étiquette">×</button>
     <div class="ans-id"></div>
     <div class="ans-title"></div>
     <div class="ans-frames"></div>
@@ -113,6 +114,11 @@
           <option value="claude-sonnet-4-6" selected>Sonnet 4.6 — équilibré</option>
           <option value="claude-opus-4-7">Opus 4.7 — plus capable</option>
         </select>
+        <label style="display:flex;align-items:center;gap:8px;margin-top:14px;font-size:12px;cursor:pointer">
+          <input id="settings-bench" type="checkbox" style="width:16px;height:16px;cursor:pointer">
+          <span><strong>Benchmark mode</strong> — compare ZORAN vs LLM brut avec juge externe
+          <br><span style="font-size:10px;color:var(--fg-2)">(~5 appels API par question, ~0.02-0.05$ par benchmark)</span></span>
+        </label>
         <p style="font-size:10px;color:var(--fg-2);margin:14px 0 0 0;line-height:1.5">
           ⚠ La clé est stockée en localStorage et envoyée depuis le navigateur (entête anthropic-dangerous-direct-browser-access).
           Utilise une clé restreinte / un usage personnel uniquement.

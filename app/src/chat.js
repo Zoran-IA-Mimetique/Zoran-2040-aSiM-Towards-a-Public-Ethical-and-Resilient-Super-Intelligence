@@ -1,6 +1,8 @@
 // ZORAN — chat.js
 // Mission ZORAN_RUNTIME_COGNITIVE_PATH_COMPETITION_ENGINE_20260516
-import { synthesizeAnswer, hasApiKey, getApiKey, setApiKey, getModel, setModel } from './llm.js';
+import { synthesizeAnswer, hasApiKey, getApiKey, setApiKey, getModel, setModel,
+         getBenchmarkEnabled, setBenchmarkEnabled } from './llm.js';
+import { runSuperiorityComparison, renderComparison } from './superiority.js';
 //
 // Port browser de runtime_cognitive_path_competition_engine.py
 // Génère 6 routes cognitives concurrentes pour une question, score chacune,
@@ -378,9 +380,36 @@ async function runSynthesis(result) {
   if (!box) return;
   const ctx = result.answerContext;
   if (!ctx) return;
-  // Trouver le node depuis ctx + window.state
   const node = window.state?.graph?.nodes?.find(n => n.id === ctx.law_id);
   if (!node) return;
+
+  // Mission RUNTIME_SUPERIORITY : si benchmark mode activé, lance la
+  // comparaison ZORAN vs baseline LLM avec LLM-as-judge.
+  if (getBenchmarkEnabled()) {
+    box.innerHTML = `
+      <div class="llm-label">⚖ Benchmark runtime — ZORAN vs LLM baseline (≈5 appels API…)</div>
+      <div class="llm-body">Lancement de 1 baseline + 3 routes ZORAN + 1 juge en parallèle…</div>
+    `;
+    const allNodes = window.state?.graph?.nodes || [];
+    const cmp = await runSuperiorityComparison({
+      question: result.question,
+      allNodes,
+      routeResults: result,
+    });
+    box.classList.remove('loading');
+    if (cmp.ok) {
+      box.classList.remove('error');
+      box.innerHTML = `<div class="llm-label">⚖ Runtime superiority — comparatif jugé</div>
+        ${renderComparison(cmp)}`;
+    } else {
+      box.classList.add('error');
+      box.innerHTML = `<div class="llm-label">⚠ Benchmark échoué (${esc(cmp.reason || '?')})</div>
+        <div class="llm-body">${esc(cmp.message || 'Trop peu de réponses valides ou juge non parsable.')}</div>`;
+    }
+    return;
+  }
+
+  // Mode standard : 1 seul appel synthèse
   const t0 = performance.now();
   const r = await synthesizeAnswer({
     question: result.question,
@@ -421,10 +450,12 @@ function setupSettingsModal() {
   const save     = document.getElementById('settings-save');
   const clear    = document.getElementById('settings-clear');
 
+  const benchInput = document.getElementById('settings-bench');
   function open() {
     try {
       keyInput.value = getApiKey();
       modelSel.value = getModel() || 'claude-sonnet-4-6';
+      if (benchInput) benchInput.checked = getBenchmarkEnabled();
     } catch (e) { console.warn('[ZORAN] settings open error', e); }
     modal.classList.remove('hidden');
     setTimeout(() => keyInput && keyInput.focus(), 50);
@@ -438,8 +469,9 @@ function setupSettingsModal() {
   if (save) save.addEventListener('click', () => {
     setApiKey(keyInput.value.trim());
     setModel(modelSel.value);
+    if (benchInput) setBenchmarkEnabled(benchInput.checked);
     shut();
-    console.log('[ZORAN] API key saved (length =', keyInput.value.trim().length, ')');
+    console.log('[ZORAN] settings saved — bench=', benchInput?.checked);
   });
   if (clear) clear.addEventListener('click', () => {
     setApiKey('');

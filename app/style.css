@@ -554,6 +554,26 @@ body.sidebar-hidden #graph {
   border-right: 2px solid #ff6b6b;
   border-bottom: 2px solid #ff6b6b;
 }
+#answer-label-close {
+  position: absolute;
+  top: 6px; right: 8px;
+  width: 26px; height: 26px;
+  background: rgba(0,0,0,0.30);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.30);
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22px;
+  text-align: center;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: background 120ms, transform 120ms;
+}
+#answer-label-close:hover {
+  background: rgba(0,0,0,0.55);
+  transform: scale(1.1);
+}
 #answer-label-overlay .ans-id {
   font-family: ui-monospace, monospace;
   font-size: 11px;
@@ -709,6 +729,71 @@ body.sidebar-hidden #graph {
   margin-top: 10px; padding-top: 8px;
   border-top: 1px dotted rgba(120,130,150,0.20);
   font-family: ui-monospace, monospace;
+}
+
+/* RUNTIME SUPERIORITY — comparaison ZORAN vs LLM baseline */
+.superiority-container { display: flex; flex-direction: column; gap: 10px; }
+.sup-verdict {
+  background: rgba(255,204,77,0.10);
+  border: 1px solid var(--accent);
+  border-radius: 6px; padding: 8px 12px;
+  font-size: 12px; color: var(--fg-1);
+}
+.sup-card {
+  background: rgba(13,16,24,0.55);
+  border: 1px solid var(--line);
+  border-radius: 8px; padding: 12px 14px;
+}
+.sup-card.baseline {
+  border-color: rgba(186,107,255,0.45);
+  background: rgba(186,107,255,0.04);
+}
+.sup-card.zoran {
+  border-color: rgba(78,163,255,0.45);
+  background: rgba(78,163,255,0.04);
+}
+.sup-card.winner {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(255,204,77,0.20), 0 6px 14px rgba(255,204,77,0.08);
+}
+.sup-head {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+  font-size: 12px; font-weight: 700;
+}
+.sup-card.baseline .sup-label { color: var(--palieronic); }
+.sup-card.zoran    .sup-label { color: var(--canonical); }
+.sup-winner-tag {
+  background: var(--accent); color: #07080c;
+  font-size: 10px; font-weight: 800;
+  padding: 2px 7px; border-radius: 3px;
+  letter-spacing: 0.5px;
+}
+.sup-text {
+  font-size: 13px; line-height: 1.55; color: var(--fg-0);
+  white-space: pre-wrap; overflow-wrap: anywhere;
+  max-height: 160px; overflow-y: auto;
+  margin-bottom: 8px;
+}
+.sup-scores, .sup-deltas {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  font-size: 10px; margin-top: 6px;
+  font-family: ui-monospace, monospace;
+}
+.sup-scores span, .sup-deltas span {
+  background: var(--bg-2); padding: 2px 6px; border-radius: 3px;
+  border: 1px solid var(--line);
+}
+.sup-scores span.bad, .sup-deltas span.bad { color: var(--unstable); border-color: rgba(255,107,107,0.40); }
+.sup-deltas span.good { color: #3ad17a; border-color: rgba(58,209,122,0.40); }
+.sup-deltas strong.good { color: #3ad17a; }
+.sup-deltas strong.bad { color: var(--unstable); }
+.sup-comment {
+  margin-top: 6px; font-size: 11px; color: var(--fg-2);
+  font-style: italic; line-height: 1.4;
+}
+.superiority-error {
+  background: rgba(255,107,107,0.08); border: 1px solid var(--unstable);
+  border-radius: 6px; padding: 10px 14px; font-size: 12px; color: var(--unstable);
 }
 
 #statusbar {
