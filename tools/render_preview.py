@@ -27,29 +27,35 @@ PALETTE = {
     "attractor":  "#ffcc4d",
 }
 
-FAMILY_ANCHOR_ORDER = ["ULG","DVE","UDE","GHUC","WP11","WP12","SDE","PAL","VAR","ISO"]
+FAMILY_ANCHOR_ORDER = ["ULG","DVE","UDE","GHUC","WP11","WP12","SDE","PAL"]
 
 
 def node_color(n: dict) -> str:
     if n.get("stability") == "absorbée": return PALETTE["absorbed"]
     if n.get("stability") == "instable": return PALETTE["unstable"]
-    if n.get("canonical") and (n.get("weight") or 0) >= 0.92: return PALETTE["attractor"]
+    if n.get("attractor_tier") in ("μ0", "μ1"): return PALETTE["attractor"]
     if n.get("palieronic"): return PALETTE["palieronic"]
     if n.get("canonical"): return PALETTE["canonical"]
     return PALETTE["variant"]
 
 
-def build_links(nodes: list[dict]) -> list[tuple[str, str, str, float]]:
+def build_links(nodes: list[dict], edges: list[dict] | None) -> list[tuple[str, str, str, float]]:
+    """Supporte les deux schémas : legacy (n.parents/related/contradictions) ou edges_typed_v1."""
     by_id = {n["id"] for n in nodes}
-    links = []
+    out = []
+    if edges:
+        for e in edges:
+            if e.get("source") in by_id and e.get("target") in by_id:
+                out.append((e["source"], e["target"], e["kind"], e.get("weight", 0.5)))
+        return out
     for n in nodes:
         for p in n.get("parents", []):
-            if p in by_id: links.append((p, n["id"], "parent", n.get("weight", 0.5)))
+            if p in by_id: out.append((p, n["id"], "parent", n.get("weight", 0.5)))
         for r in n.get("related", []):
-            if r in by_id: links.append((n["id"], r, "related", 0.35))
+            if r in by_id: out.append((n["id"], r, "related", 0.35))
         for c in n.get("contradictions", []):
-            if c in by_id: links.append((n["id"], c, "contradiction", 0.6))
-    return links
+            if c in by_id: out.append((n["id"], c, "contradicts", 0.6))
+    return out
 
 
 def layout(nodes: list[dict], links: list[tuple], iters: int = 500) -> dict[str, tuple[float, float]]:
@@ -141,10 +147,16 @@ def render_svg(nodes: list[dict], links: list[tuple], pos: dict) -> str:
     for s, tg, kind, w in links:
         if s not in pos or tg not in pos: continue
         x1, y1 = pos[s]; x2, y2 = pos[tg]
-        if kind == "contradiction":
+        if kind == "contradicts":
             stroke, opacity, sw = "#ff6b6b", 0.55, 1.2
+        elif kind == "iso":
+            stroke, opacity, sw = "#b86bff", 0.50, 1.0
+        elif kind == "absorbed_into":
+            stroke, opacity, sw = "#888888", 0.45, 0.8
+        elif kind == "derives":
+            stroke, opacity, sw = "#3ad17a", 0.40, 0.8
         elif kind == "related":
-            stroke, opacity, sw = "#b8c4e0", 0.18, 0.6
+            stroke, opacity, sw = "#b8c4e0", 0.10, 0.5
         else:
             stroke, opacity, sw = "#ffcc4d" if w >= 0.85 else "#b8c4e0", 0.45 if w >= 0.85 else 0.28, max(0.5, w*1.3)
         out.append(
@@ -187,10 +199,11 @@ def render_svg(nodes: list[dict], links: list[tuple], pos: dict) -> str:
         out.append(f'<text x="36" y="{yy + 3}" fill="#b3bbcd" font-size="10">{label}</text>')
     out.append('</g>')
 
+    families_count = len({n.get("family") for n in nodes if n.get("family")})
     out.append(
         f'<text x="{WIDTH-24}" y="{HEIGHT-20}" text-anchor="end" '
         f'fill="#6e7794" font-size="10">'
-        f'{len(nodes)} nœuds · {len(links)} liens · 10 familles · preview statique'
+        f'{len(nodes)} nœuds · {len(links)} liens · {families_count} familles · preview statique'
         f'</text>'
     )
     out.append('</svg>')
@@ -200,11 +213,12 @@ def render_svg(nodes: list[dict], links: list[tuple], pos: dict) -> str:
 def main():
     raw = json.loads(DATA.read_text(encoding="utf-8"))
     nodes = raw["nodes"]
-    links = build_links(nodes)
+    edges = raw.get("edges")
+    links = build_links(nodes, edges)
     pos = layout(nodes, links)
     svg = render_svg(nodes, links, pos)
     OUT_SVG.write_text(svg, encoding="utf-8")
-    print(f"wrote {OUT_SVG} ({len(svg)} bytes)")
+    print(f"wrote {OUT_SVG} ({len(svg)} bytes) — {len(nodes)} nodes, {len(links)} links")
 
 
 if __name__ == "__main__":

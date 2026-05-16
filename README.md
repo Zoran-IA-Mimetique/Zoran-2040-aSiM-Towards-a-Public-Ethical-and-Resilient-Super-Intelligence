@@ -4,12 +4,18 @@ Zoran 2040 aSiM (Artificial Super Intelligence Mimétique) est une infrastructur
 
 ---
 
-## Arbre Fractal des Lois — `app/`
+## Arbre Relationnel des Lois — `app/`
 
-Mission `ZORAN_FRACTAL_LAW_TREE_OMEGA_20260515`. Espace cognitif relationnel
-vivant : visualisation 3D WebGL des 50 lois canoniques / variantes /
-palieroniques / isomorphismes répartis sur 10 familles (ULG · ΔVE · UDE ·
-GHUC · WP-11 · WP-12 · SDE · PAL · VAR · ISO).
+Espace cognitif relationnel : visualisation 3D WebGL des lois ZORAN
+réparties sur **8 familles canoniques** (ULG · ΔVE · UDE · GHUC · WP-11 ·
+WP-12 · SDE · PAL).
+
+> Le mission_id historique `ZORAN_FRACTAL_LAW_TREE_OMEGA_20260515` reste un
+> identifiant traçable, **pas** une revendication de propriété : la
+> fractalité est démontrée formellement sur **une seule famille (GHUC)** au
+> sens `audit/FRACTAL_VALIDATION.md` ; le terme « relationnel » est le label
+> public courant. Voir `audit/FAILED_FRACTAL_CLAIMS.md` pour le contrat
+> lexical.
 
 ### Lancement local
 
@@ -26,10 +32,12 @@ python3 -m http.server -d app 8000
 
 - `app/index.html` — UI complète (topbar · sidebar · canvas 3D · panneau détail · statusbar)
 - `app/src/` — moteurs (graph, panel, search, history, oracle, colors)
-- `app/data/laws.json` — corpus des 50 lois
-- `tools/validate_laws.py` — validateur offline (refs, ranges, fausse cohérence)
+- `app/data/laws.json` — corpus 45 lois sur 8 familles canoniques (schéma `edges_typed_v1` post-P0.5)
+- `tools/validate_laws.py` — validateur offline (refs, ranges, fausse cohérence, HS, S_global computed)
 - `tools/render_preview.py` — génération d'aperçu SVG reproductible
 - `MISSION_LOG.md` — traçabilité, signature, rollback
+- `P0_5_SPEC.md` — contrat de vocabulaire et critères d'admissibilité
+- `audit/` — 22 documents Oracle (audits, specs, règles)
 
 ### Règle cardinale
 
