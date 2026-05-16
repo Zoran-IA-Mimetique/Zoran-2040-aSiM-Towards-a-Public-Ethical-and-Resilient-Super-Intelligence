@@ -838,6 +838,13 @@ details.sup-section[open] > summary::before { transform: rotate(90deg); }
   border: 1px solid var(--line); font-size: 9px; margin-right: 3px;
   color: var(--canonical);
 }
+.sup-laws.sup-laws-none {
+  color: var(--palieronic);
+  border-top: 1px dashed rgba(186,107,255,0.30);
+  padding-top: 6px;
+  margin-top: 6px;
+}
+.sup-laws.sup-laws-none strong { color: var(--palieronic); letter-spacing: 0.5px; }
 .sup-winner-tag {
   background: var(--accent); color: #07080c;
   font-size: 10px; font-weight: 800;

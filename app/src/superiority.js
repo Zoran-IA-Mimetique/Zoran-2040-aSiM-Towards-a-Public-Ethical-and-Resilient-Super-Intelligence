@@ -35,10 +35,12 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
       question, strategyLabel: s.route.label || s.stratName, laws: s.laws,
     })),
   }))());
-  // Baseline en parallèle aussi
+  // Baseline en parallèle : Claude SANS aucune loi ZORAN (référence brute)
   const baselineTask = (async () => ({
-    label: 'BASELINE LLM brut',
+    label: 'CLAUDE brut · 0 loi',
     strategy: 'baseline',
+    laws_used: [],
+    reformulation: '(aucune — réponse directe, sans cadrage ZORAN)',
     ...(await synthesizeBaseline(question)),
   }))();
   const reformResults = await Promise.allSettled(reformTasks);
@@ -230,7 +232,11 @@ export function renderComparison(result) {
             </div>
             <div class="sup-resp-text">${escHtml(r.text)}</div>
             ${d?.comment ? `<div class="sup-comment">${escHtml(d.comment)}</div>` : ''}
-            ${r.laws_used ? `<div class="sup-laws">Lois : ${r.laws_used.slice(0, 6).map(id => `<code>${escHtml(id)}</code>`).join(' ')}</div>` : ''}
+            ${r.strategy === 'baseline'
+              ? '<div class="sup-laws sup-laws-none">Lois ZORAN utilisées : <strong>AUCUNE</strong> · réponse Claude brute, pour comparaison</div>'
+              : (r.laws_used && r.laws_used.length
+                  ? `<div class="sup-laws">Lois utilisées (${r.laws_used.length}) : ${r.laws_used.slice(0, 6).map(id => `<code>${escHtml(id)}</code>`).join(' ')}</div>`
+                  : '')}
           </div>`;
         }).join('')}
       </div>
