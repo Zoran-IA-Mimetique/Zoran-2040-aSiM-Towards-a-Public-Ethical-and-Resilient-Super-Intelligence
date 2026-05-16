@@ -26,7 +26,8 @@ python3 -m http.server -d app 8000
 
 ### Aperçu statique
 
-![Aperçu](app/preview.png)
+![Aperçu graphe](app/preview.png)
+![Capture live (V2 boules cognitives)](app/preview-live.png)
 
 ### Contenu
 

@@ -4,541 +4,2433 @@
   "generated_at": "2026-05-15T19:16:00+02:00",
   "schema": "edges_typed_v1",
   "families": [
-    { "id": "ULG",  "label": "ULG vΩ7.2 — Grammaire Latente Universelle",     "invariant": "invariance morphologique sous reparamétrisation du cadre" },
-    { "id": "DVE",  "label": "ΔVARIANT_ENGINE Ω⁸",                              "invariant": "traçabilité réversible des dérivations" },
-    { "id": "UDE",  "label": "Unified Discovery Engine Ω7.3",                   "invariant": "maximisation locale gain − cost sous admissibilité" },
-    { "id": "GHUC", "label": "GHUC Ω⁸ — Consolidation Scientifique",            "invariant": "préservation de I_struct sous compression",
-                    "fractality_demonstrated": true,
-                    "fractality_proof_motif": "(opérateur, cas-A, cas-B) répété à 3 échelles ; cf. audit/FRACTAL_VALIDATION.md (post-exec P0.5)" },
-    { "id": "WP11", "label": "WP-11 — Opérationnaliser la cohérence",           "invariant": "indépendance stricte S_local ⊥ S_global" },
-    { "id": "WP12", "label": "WP-12 — Cadres d'admissibilité",                  "invariant": "non-contradiction ∧ minimalité ∧ fertilité conjointes" },
-    { "id": "SDE",  "label": "SDE-CF — Skopein Dual Engine",                    "invariant": "symétrie observateur/objet" },
-    { "id": "PAL",  "label": "Palieronic — Sauts de palier",                    "invariant": "discrétisation Δpalier sous-jacente" }
+    {
+      "id": "ULG",
+      "label": "ULG vΩ7.2 — Grammaire Latente Universelle",
+      "invariant": "invariance morphologique sous reparamétrisation du cadre"
+    },
+    {
+      "id": "DVE",
+      "label": "ΔVARIANT_ENGINE Ω⁸",
+      "invariant": "traçabilité réversible des dérivations"
+    },
+    {
+      "id": "UDE",
+      "label": "Unified Discovery Engine Ω7.3",
+      "invariant": "maximisation locale gain − cost sous admissibilité"
+    },
+    {
+      "id": "GHUC",
+      "label": "GHUC Ω⁸ — Consolidation Scientifique",
+      "invariant": "préservation de I_struct sous compression",
+      "fractality_demonstrated": true,
+      "fractality_proof_motif": "(opérateur, cas-A, cas-B) répété à 3 échelles ; cf. audit/FRACTAL_VALIDATION.md (post-exec P0.5)"
+    },
+    {
+      "id": "WP11",
+      "label": "WP-11 — Opérationnaliser la cohérence",
+      "invariant": "indépendance stricte S_local ⊥ S_global"
+    },
+    {
+      "id": "WP12",
+      "label": "WP-12 — Cadres d'admissibilité",
+      "invariant": "non-contradiction ∧ minimalité ∧ fertilité conjointes"
+    },
+    {
+      "id": "SDE",
+      "label": "SDE-CF — Skopein Dual Engine",
+      "invariant": "symétrie observateur/objet"
+    },
+    {
+      "id": "PAL",
+      "label": "Palieronic — Sauts de palier",
+      "invariant": "discrétisation Δpalier sous-jacente"
+    }
   ],
   "nodes": [
     {
-      "id": "ULG-001", "title": "Grammaire Latente Universelle",
-      "canonical": true, "palieronic": false, "family": "ULG", "attractor_tier": "μ1",
-      "domains": ["topologie cognitive", "linguistique latente"],
-      "examples": ["Détection d'invariants entre modèles", "Alignement inter-domaines"],
+      "id": "ULG-001",
+      "title": "Grammaire Latente Universelle",
+      "canonical": true,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": "μ1",
+      "domains": [
+        "topologie cognitive",
+        "linguistique latente"
+      ],
+      "examples": [
+        "Détection d'invariants entre modèles",
+        "Alignement inter-domaines"
+      ],
       "html_description": "Loi fondatrice postulant l'existence d'une grammaire latente universelle sous-tendant tous les cadres représentationnels. Racine de la famille ULG.",
-      "equations": ["ULG(x) = lim_{n→∞} ∩_{k≤n} F_k(x)"],
-      "S_local": 0.97, "S_global": 0.91, "stability": "stable", "weight": 1.0
+      "equations": [
+        "ULG(x) = lim_{n→∞} ∩_{k≤n} F_k(x)"
+      ],
+      "S_local": 0.97,
+      "S_global": 0.91,
+      "stability": "stable",
+      "weight": 1.0,
+      "frames": {
+        "local": [
+          "cadre représentationnel F unique en cours d'examen"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille ULG (5 lois)"
+          },
+          {
+            "level": "macro",
+            "scope": "ensemble des cadres représentationnels connus"
+          }
+        ],
+        "global": [
+          "système ZORAN entier (graphe complet de toutes familles)"
+        ],
+        "proxies": [
+          "cosine cross-modèle d'embeddings de cadre"
+        ],
+        "limits": [
+          "ne calcule pas la pragmatique",
+          "n'opère pas hors-cadre représentationnel"
+        ]
+      }
     },
     {
-      "id": "ULG-002", "title": "Convergence des cadres latents",
-      "canonical": true, "palieronic": false, "family": "ULG", "attractor_tier": null,
-      "domains": ["topologie cognitive"],
-      "examples": ["Convergence VAE/transformer", "Embeddings cross-lingual"],
+      "id": "ULG-002",
+      "title": "Convergence des cadres latents",
+      "canonical": true,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "topologie cognitive"
+      ],
+      "examples": [
+        "Convergence VAE/transformer",
+        "Embeddings cross-lingual"
+      ],
       "html_description": "Tout cadre représentationnel admissible converge asymptotiquement vers un sous-espace stable de la grammaire latente universelle.",
-      "equations": ["d(F_k, ULG) → 0 quand k → ∞"],
-      "S_local": 0.93, "S_global": 0.84, "stability": "stable", "weight": 0.82
+      "equations": [
+        "d(F_k, ULG) → 0 quand k → ∞"
+      ],
+      "S_local": 0.93,
+      "S_global": 0.84,
+      "stability": "stable",
+      "weight": 0.82,
+      "frames": {
+        "local": [
+          "chaîne de cadres F_k vers leur limite ULG"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille ULG"
+          }
+        ],
+        "global": [
+          "limite asymptotique en k (non atteinte en temps fini)"
+        ],
+        "proxies": [
+          "distance d(F_k, ULG) à k fini"
+        ],
+        "limits": [
+          "n'évalue pas la vitesse de convergence",
+          "asymptote non observable"
+        ]
+      }
     },
     {
-      "id": "ULG-003", "title": "Invariance morphologique",
-      "canonical": true, "palieronic": false, "family": "ULG", "attractor_tier": null,
-      "domains": ["morphologie", "structure"],
-      "examples": ["Symétries préservées sous transformation"],
+      "id": "ULG-003",
+      "title": "Invariance morphologique",
+      "canonical": true,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "morphologie",
+        "structure"
+      ],
+      "examples": [
+        "Symétries préservées sous transformation"
+      ],
       "html_description": "Les structures morphologiques fondamentales sont invariantes sous reparamétrisation du cadre.",
-      "equations": ["φ ∘ T = φ pour tout T ∈ Aut(F)"],
-      "S_local": 0.91, "S_global": 0.79, "stability": "stable", "weight": 0.75
+      "equations": [
+        "φ ∘ T = φ pour tout T ∈ Aut(F)"
+      ],
+      "S_local": 0.91,
+      "S_global": 0.79,
+      "stability": "stable",
+      "weight": 0.75,
+      "frames": {
+        "local": [
+          "transformation T appliquée à un cadre F"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille ULG"
+          },
+          {
+            "level": "macro",
+            "scope": "groupe Aut(F)"
+          }
+        ],
+        "global": [
+          "invariance préservée à travers tous les automorphismes"
+        ],
+        "proxies": [
+          "test de symétrie sur un échantillon de transformations"
+        ],
+        "limits": [
+          "ne traite pas les transformations non-Aut",
+          "ne couvre pas les invariants non-morphologiques"
+        ]
+      }
     },
     {
-      "id": "ULG-004", "title": "Densité de structure",
-      "canonical": false, "palieronic": false, "family": "ULG", "attractor_tier": null,
-      "domains": ["mesure", "densité"],
-      "examples": ["Compactification de représentations"],
+      "id": "ULG-004",
+      "title": "Densité de structure",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "mesure",
+        "densité"
+      ],
+      "examples": [
+        "Compactification de représentations"
+      ],
       "html_description": "Mesure la densité informationnelle d'une zone du cadre latent. Une densité élevée signale un attracteur potentiel.",
-      "equations": ["ρ(x) = lim_{ε→0} |B_ε(x) ∩ ULG| / vol(B_ε)"],
-      "S_local": 0.88, "S_global": 0.71, "stability": "stable", "weight": 0.62
+      "equations": [
+        "ρ(x) = lim_{ε→0} |B_ε(x) ∩ ULG| / vol(B_ε)"
+      ],
+      "S_local": 0.88,
+      "S_global": 0.71,
+      "stability": "stable",
+      "weight": 0.62,
+      "frames": {
+        "local": [
+          "boule B_ε(x) autour du point latent x"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille ULG"
+          }
+        ],
+        "global": [
+          "mesure de densité étendue à l'ensemble du cadre"
+        ],
+        "proxies": [
+          "estimation kernel-density à ε fini"
+        ],
+        "limits": [
+          "instable quand ε → 0 sans renormalisation",
+          "non-définie hors zones échantillonnées"
+        ]
+      }
     },
     {
-      "id": "ULG-005", "title": "Propagation latente fractale",
-      "canonical": false, "palieronic": true, "family": "ULG", "attractor_tier": null,
-      "domains": ["propagation", "loi d'échelle dynamique"],
-      "examples": ["Diffusion auto-similaire d'un concept"],
+      "id": "ULG-005",
+      "title": "Propagation latente fractale",
+      "canonical": false,
+      "palieronic": true,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "propagation",
+        "loi d'échelle dynamique"
+      ],
+      "examples": [
+        "Diffusion auto-similaire d'un concept"
+      ],
       "html_description": "La propagation d'un signal dans le cadre latent suit une dynamique à loi d'échelle (fractalité dynamique du signal, distincte de la fractalité du graphe ZORAN).",
-      "equations": ["P(x, t) = P(λ·x, λ^H·t)"],
-      "S_local": 0.84, "S_global": 0.74, "stability": "stable", "weight": 0.68
+      "equations": [
+        "P(x, t) = P(λ·x, λ^H·t)"
+      ],
+      "S_local": 0.84,
+      "S_global": 0.74,
+      "stability": "stable",
+      "weight": 0.68,
+      "frames": {
+        "local": [
+          "signal localisé en (x, t)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille ULG (loi palieronique)"
+          },
+          {
+            "level": "macro",
+            "scope": "espace latent fractal dynamique"
+          }
+        ],
+        "global": [
+          "loi d'échelle valide à toutes échelles temporelles"
+        ],
+        "proxies": [
+          "exposant de Hurst H estimé sur fenêtre finie"
+        ],
+        "limits": [
+          "fractalité dynamique du signal, distincte de la fractalité du graphe ZORAN",
+          "n'évalue pas la stabilité hors loi d'échelle"
+        ]
+      }
     },
-
     {
-      "id": "DVE-001", "title": "ΔVariant Engine Ω⁸",
-      "canonical": true, "palieronic": false, "family": "DVE", "attractor_tier": "μ1",
-      "domains": ["génération de variantes", "exploration"],
-      "examples": ["Moteur de bifurcation contrôlée", "Génération de variantes scientifiques"],
+      "id": "DVE-001",
+      "title": "ΔVariant Engine Ω⁸",
+      "canonical": true,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": "μ1",
+      "domains": [
+        "génération de variantes",
+        "exploration"
+      ],
+      "examples": [
+        "Moteur de bifurcation contrôlée",
+        "Génération de variantes scientifiques"
+      ],
       "html_description": "Moteur canonique de génération de variantes structurées. Produit des bifurcations contrôlées dans l'espace des cadres.",
-      "equations": ["ΔV(x) = { y | d(x,y) ≤ ε ∧ admissible(y) }"],
-      "S_local": 0.96, "S_global": 0.88, "stability": "stable", "weight": 0.95
+      "equations": [
+        "ΔV(x) = { y | d(x,y) ≤ ε ∧ admissible(y) }"
+      ],
+      "S_local": 0.96,
+      "S_global": 0.88,
+      "stability": "stable",
+      "weight": 0.95,
+      "frames": {
+        "local": [
+          "cadre x et boule de variantes admissibles ΔV(x)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille DVE"
+          },
+          {
+            "level": "macro",
+            "scope": "espace exploratoire des cadres"
+          }
+        ],
+        "global": [
+          "graphe complet de toutes les dérivations possibles"
+        ],
+        "proxies": [
+          "énumération bornée + filtrage par admissibilité"
+        ],
+        "limits": [
+          "ne juge pas la qualité finale d'une variante",
+          "ne garantit pas la complétude de l'énumération"
+        ]
+      }
     },
     {
-      "id": "DVE-002", "title": "Loi des dérivations contrôlées",
-      "canonical": true, "palieronic": false, "family": "DVE", "attractor_tier": null,
-      "domains": ["dérivation"],
-      "examples": ["Dérivation pas-à-pas vérifiée"],
+      "id": "DVE-002",
+      "title": "Loi des dérivations contrôlées",
+      "canonical": true,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "dérivation"
+      ],
+      "examples": [
+        "Dérivation pas-à-pas vérifiée"
+      ],
       "html_description": "Toute dérivation doit être traçable, réversible et vérifiable contre les cadres d'admissibilité WP-12.",
-      "equations": ["∀ d ∈ Derivations : trace(d) ≠ ∅ ∧ admissible(d)"],
-      "S_local": 0.92, "S_global": 0.83, "stability": "stable", "weight": 0.78
+      "equations": [
+        "∀ d ∈ Derivations : trace(d) ≠ ∅ ∧ admissible(d)"
+      ],
+      "S_local": 0.92,
+      "S_global": 0.83,
+      "stability": "stable",
+      "weight": 0.78,
+      "frames": {
+        "local": [
+          "dérivation d ∈ Derivations isolée"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille DVE"
+          },
+          {
+            "level": "macro",
+            "scope": "WP-12 (cadres d'admissibilité)"
+          }
+        ],
+        "global": [
+          "traçabilité maintenue sur l'historique complet"
+        ],
+        "proxies": [
+          "log de dérivation (trace) consultable"
+        ],
+        "limits": [
+          "ne réalise pas l'admissibilité — délègue à WP-12",
+          "n'évalue pas la coût de la dérivation"
+        ]
+      }
     },
     {
-      "id": "DVE-003", "title": "Bifurcation cohérente",
-      "canonical": true, "palieronic": false, "family": "DVE", "attractor_tier": null,
-      "domains": ["bifurcation"],
-      "examples": ["Split de variante préservant S_global"],
+      "id": "DVE-003",
+      "title": "Bifurcation cohérente",
+      "canonical": true,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "bifurcation"
+      ],
+      "examples": [
+        "Split de variante préservant S_global"
+      ],
       "html_description": "Une bifurcation n'est admise que si elle préserve S_global sous un seuil de dégradation maximal.",
-      "equations": ["S_global(branch) ≥ S_global(parent) − δ"],
-      "S_local": 0.90, "S_global": 0.81, "stability": "stable", "weight": 0.74
+      "equations": [
+        "S_global(branch) ≥ S_global(parent) − δ"
+      ],
+      "S_local": 0.9,
+      "S_global": 0.81,
+      "stability": "stable",
+      "weight": 0.74,
+      "frames": {
+        "local": [
+          "bifurcation isolée parent → branch"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille DVE"
+          }
+        ],
+        "global": [
+          "S_global du système avant et après bifurcation"
+        ],
+        "proxies": [
+          "estimation de S_global selon WP11-003"
+        ],
+        "limits": [
+          "seuil δ doit être calibré par cas",
+          "bifurcation acceptable à court terme peut dégrader à long terme"
+        ]
+      }
     },
     {
-      "id": "DVE-004", "title": "Espace de variantes admissibles",
-      "canonical": false, "palieronic": false, "family": "DVE", "attractor_tier": null,
-      "domains": ["espace de variantes"],
-      "examples": ["Énumération filtrée par WP-12"],
+      "id": "DVE-004",
+      "title": "Espace de variantes admissibles",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "espace de variantes"
+      ],
+      "examples": [
+        "Énumération filtrée par WP-12"
+      ],
       "html_description": "Sous-espace des variantes filtrées par les cadres d'admissibilité de WP-12.",
-      "equations": ["A(ΔV) = ΔV(x) ∩ WP12"],
-      "S_local": 0.87, "S_global": 0.76, "stability": "stable", "weight": 0.66
+      "equations": [
+        "A(ΔV) = ΔV(x) ∩ WP12"
+      ],
+      "S_local": 0.87,
+      "S_global": 0.76,
+      "stability": "stable",
+      "weight": 0.66,
+      "frames": {
+        "local": [
+          "sous-espace A(ΔV) à un point x"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille DVE"
+          },
+          {
+            "level": "macro",
+            "scope": "intersection avec WP-12"
+          }
+        ],
+        "global": [
+          "union des espaces admissibles sur l'ensemble des x"
+        ],
+        "proxies": [
+          "échantillonnage Monte-Carlo de A(ΔV)"
+        ],
+        "limits": [
+          "ne caractérise pas la frontière fine",
+          "dépend de la définition courante de WP-12"
+        ]
+      }
     },
     {
-      "id": "DVE-005", "title": "Filtrage entropique",
-      "canonical": false, "palieronic": false, "family": "DVE", "attractor_tier": null,
-      "domains": ["entropie", "filtrage"],
-      "examples": ["Élagage par excès d'entropie locale"],
+      "id": "DVE-005",
+      "title": "Filtrage entropique",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "entropie",
+        "filtrage"
+      ],
+      "examples": [
+        "Élagage par excès d'entropie locale"
+      ],
       "html_description": "Filtre éliminant les variantes dont l'entropie excède le seuil de cohérence locale.",
-      "equations": ["H(v) > H_max ⇒ prune(v)"],
-      "S_local": 0.85, "S_global": 0.70, "stability": "stable", "weight": 0.58
+      "equations": [
+        "H(v) > H_max ⇒ prune(v)"
+      ],
+      "S_local": 0.85,
+      "S_global": 0.7,
+      "stability": "stable",
+      "weight": 0.58,
+      "frames": {
+        "local": [
+          "variante v et son entropie H(v)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille DVE"
+          }
+        ],
+        "global": [
+          "seuil H_max calibré sur le graphe global"
+        ],
+        "proxies": [
+          "entropie de Shannon estimée sur la distribution latente"
+        ],
+        "limits": [
+          "seuil H_max statique — non adaptatif",
+          "ne distingue pas entropie informative vs bruit"
+        ]
+      }
     },
-
     {
-      "id": "UDE-001", "title": "Unified Discovery Engine",
-      "canonical": true, "palieronic": false, "family": "UDE", "attractor_tier": "μ1",
-      "domains": ["découverte", "exploration"],
-      "examples": ["Découverte conjointe attracteurs/variantes"],
+      "id": "UDE-001",
+      "title": "Unified Discovery Engine",
+      "canonical": true,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": "μ1",
+      "domains": [
+        "découverte",
+        "exploration"
+      ],
+      "examples": [
+        "Découverte conjointe attracteurs/variantes"
+      ],
       "html_description": "Moteur unifié de découverte structurelle. Couple exploration et exploitation dans le graphe des cadres.",
-      "equations": ["UDE = argmax_{path} { gain(path) − cost(path) }"],
-      "S_local": 0.95, "S_global": 0.86, "stability": "stable", "weight": 0.93
+      "equations": [
+        "UDE = argmax_{path} { gain(path) − cost(path) }"
+      ],
+      "S_local": 0.95,
+      "S_global": 0.86,
+      "stability": "stable",
+      "weight": 0.93,
+      "frames": {
+        "local": [
+          "chemin path en cours d'évaluation"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "graphe des cadres explorables"
+          }
+        ],
+        "global": [
+          "maximisation globale de gain−cost sur l'ensemble du graphe"
+        ],
+        "proxies": [
+          "argmax local + heuristiques d'élagage"
+        ],
+        "limits": [
+          "maximum local seulement, pas garanti global",
+          "fonctions gain et cost à définir par cadre"
+        ]
+      }
     },
     {
-      "id": "UDE-002", "title": "Cartographie des attracteurs",
-      "canonical": true, "palieronic": false, "family": "UDE", "attractor_tier": null,
-      "domains": ["attracteurs"],
-      "examples": ["Détection de pôles structurels"],
+      "id": "UDE-002",
+      "title": "Cartographie des attracteurs",
+      "canonical": true,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "attracteurs"
+      ],
+      "examples": [
+        "Détection de pôles structurels"
+      ],
       "html_description": "Procédure de cartographie systématique des attracteurs du graphe relationnel.",
-      "equations": ["A = { x | div(F)(x) < 0 ∧ ‖∇F(x)‖ → 0 }"],
-      "S_local": 0.91, "S_global": 0.82, "stability": "stable", "weight": 0.77
+      "equations": [
+        "A = { x | div(F)(x) < 0 ∧ ‖∇F(x)‖ → 0 }"
+      ],
+      "S_local": 0.91,
+      "S_global": 0.82,
+      "stability": "stable",
+      "weight": 0.77,
+      "frames": {
+        "local": [
+          "voisinage d'un point candidat x"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "champ de gradient F"
+          }
+        ],
+        "global": [
+          "cartographie complète des attracteurs du graphe"
+        ],
+        "proxies": [
+          "détection numérique de divergence et gradient"
+        ],
+        "limits": [
+          "échantillonnage discret peut manquer attracteurs étroits",
+          "ne classifie pas par palier μ"
+        ]
+      }
     },
     {
-      "id": "UDE-003", "title": "Découverte par résonance",
-      "canonical": false, "palieronic": false, "family": "UDE", "attractor_tier": null,
-      "domains": ["résonance"],
-      "examples": ["Saut sur loi co-résonante"],
+      "id": "UDE-003",
+      "title": "Découverte par résonance",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "résonance"
+      ],
+      "examples": [
+        "Saut sur loi co-résonante"
+      ],
       "html_description": "Découverte de lois nouvelles par résonance structurelle avec une loi connue.",
-      "equations": ["res(L1, L2) = ⟨φ(L1), φ(L2)⟩ / (‖φ(L1)‖·‖φ(L2)‖)"],
-      "S_local": 0.86, "S_global": 0.72, "stability": "stable", "weight": 0.64
+      "equations": [
+        "res(L1, L2) = ⟨φ(L1), φ(L2)⟩ / (‖φ(L1)‖·‖φ(L2)‖)"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.72,
+      "stability": "stable",
+      "weight": 0.64,
+      "frames": {
+        "local": [
+          "paire (L1, L2) de lois candidates"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille UDE"
+          }
+        ],
+        "global": [
+          "réseau résonant complet inter-familles"
+        ],
+        "proxies": [
+          "cosine d'embeddings φ"
+        ],
+        "limits": [
+          "résonance ≠ vérité — peut produire fausses résonances (cf. WP11-005)",
+          "dépend du choix de φ"
+        ]
+      }
     },
     {
-      "id": "UDE-004", "title": "Frontière de l'inconnu",
-      "canonical": false, "palieronic": true, "family": "UDE", "attractor_tier": null,
-      "domains": ["exploration", "frontière"],
-      "examples": ["Cartographie de la frange exploratoire"],
+      "id": "UDE-004",
+      "title": "Frontière de l'inconnu",
+      "canonical": false,
+      "palieronic": true,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "exploration",
+        "frontière"
+      ],
+      "examples": [
+        "Cartographie de la frange exploratoire"
+      ],
       "html_description": "Hypersurface séparant l'espace exploré de l'espace inconnu. Elle est elle-même un objet dynamique.",
-      "equations": ["∂U = { x | ε(x) = ε_threshold }"],
-      "S_local": 0.82, "S_global": 0.69, "stability": "stable", "weight": 0.61
+      "equations": [
+        "∂U = { x | ε(x) = ε_threshold }"
+      ],
+      "S_local": 0.82,
+      "S_global": 0.69,
+      "stability": "stable",
+      "weight": 0.61,
+      "frames": {
+        "local": [
+          "point x près de la frontière ∂U"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille UDE (loi palieronique)"
+          },
+          {
+            "level": "macro",
+            "scope": "frange exploratoire courante"
+          }
+        ],
+        "global": [
+          "topologie globale exploré ↔ inconnu"
+        ],
+        "proxies": [
+          "estimation de ε(x) par échantillonnage local"
+        ],
+        "limits": [
+          "frontière mouvante — résultat instantané seulement",
+          "ne mesure pas la profondeur de l'inconnu"
+        ]
+      }
     },
     {
-      "id": "UDE-005", "title": "Heuristique de saut",
-      "canonical": false, "palieronic": false, "family": "UDE", "attractor_tier": null,
-      "domains": ["heuristique"],
-      "examples": ["Saut hors-cadre vers un attracteur distal"],
+      "id": "UDE-005",
+      "title": "Heuristique de saut",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "heuristique"
+      ],
+      "examples": [
+        "Saut hors-cadre vers un attracteur distal"
+      ],
       "html_description": "Heuristique guidant les sauts longue portée vers des attracteurs non-locaux.",
-      "equations": ["P(jump) ∝ exp(−d(x, A) / τ)"],
-      "S_local": 0.79, "S_global": 0.66, "stability": "stable", "weight": 0.55
+      "equations": [
+        "P(jump) ∝ exp(−d(x, A) / τ)"
+      ],
+      "S_local": 0.79,
+      "S_global": 0.66,
+      "stability": "stable",
+      "weight": 0.55,
+      "frames": {
+        "local": [
+          "cadre x et attracteur cible A"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "champ d'attracteurs cartographié"
+          }
+        ],
+        "global": [
+          "distribution complète des sauts dans l'espace"
+        ],
+        "proxies": [
+          "température τ adaptative, distance euclidienne approximée"
+        ],
+        "limits": [
+          "ne garantit pas la cohérence post-saut",
+          "dépend de la qualité de la carte UDE-002"
+        ]
+      }
     },
-
     {
-      "id": "GHUC-001", "title": "GHUC Ω⁸ — Consolidation Scientifique",
-      "canonical": true, "palieronic": false, "family": "GHUC", "attractor_tier": "μ0",
-      "domains": ["consolidation", "méta-théorie"],
-      "examples": ["Méta-loi de consolidation des familles"],
+      "id": "GHUC-001",
+      "title": "GHUC Ω⁸ — Consolidation Scientifique",
+      "canonical": true,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": "μ0",
+      "domains": [
+        "consolidation",
+        "méta-théorie"
+      ],
+      "examples": [
+        "Méta-loi de consolidation des familles"
+      ],
       "html_description": "Attracteur méta de la famille GHUC. Consolide les opérations de compression / pruning / fusion sous une méta-structure unique.",
-      "equations": ["GHUC = ⨁_{op ∈ {C,P,F}} consolidate(op)"],
-      "S_local": 0.98, "S_global": 0.94, "stability": "stable", "weight": 1.0
+      "equations": [
+        "GHUC = ⨁_{op ∈ {C,P,F}} consolidate(op)"
+      ],
+      "S_local": 0.98,
+      "S_global": 0.94,
+      "stability": "stable",
+      "weight": 1.0,
+      "frames": {
+        "local": [
+          "famille F unique soumise à consolidation"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille GHUC (opérations C, P, F)"
+          },
+          {
+            "level": "macro",
+            "scope": "toutes les familles canoniques"
+          },
+          {
+            "level": "systémique",
+            "scope": "topologie globale ZORAN"
+          }
+        ],
+        "global": [
+          "méta-cadre Ω⁸ — invariant de consolidation préservé"
+        ],
+        "proxies": [
+          "test de monotonie S_global sous compression (R-S5)"
+        ],
+        "limits": [
+          "ne génère pas — consolide seulement",
+          "ne traite pas hors-canonique"
+        ]
+      }
     },
     {
-      "id": "GHUC-002", "title": "Compression sémantique",
-      "canonical": true, "palieronic": false, "family": "GHUC", "attractor_tier": null,
-      "domains": ["compression"],
-      "examples": ["Compression sans perte structurelle"],
+      "id": "GHUC-002",
+      "title": "Compression sémantique",
+      "canonical": true,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "compression"
+      ],
+      "examples": [
+        "Compression sans perte structurelle"
+      ],
       "html_description": "Opérateur de compression des cadres préservant I_struct. Décompose en cas-A (intra-loi) et cas-B (inter-loi).",
-      "equations": ["C(F) tel que I_struct(C(F)) = I_struct(F)"],
-      "S_local": 0.92, "S_global": 0.85, "stability": "stable", "weight": 0.81
+      "equations": [
+        "C(F) tel que I_struct(C(F)) = I_struct(F)"
+      ],
+      "S_local": 0.92,
+      "S_global": 0.85,
+      "stability": "stable",
+      "weight": 0.81,
+      "frames": {
+        "local": [
+          "cadre F et sa version compressée C(F)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille GHUC"
+          },
+          {
+            "level": "macro",
+            "scope": "I_struct sur l'ensemble des familles"
+          }
+        ],
+        "global": [
+          "préservation de I_struct globalement"
+        ],
+        "proxies": [
+          "mesure I_struct(F) via complexité descriptionnelle approximée"
+        ],
+        "limits": [
+          "définition de I_struct opérationnelle, pas formelle",
+          "compressions agressives peuvent perdre des cas-frontière"
+        ]
+      }
     },
     {
-      "id": "GHUC-002-a", "title": "Compression intra-loi",
-      "canonical": false, "palieronic": false, "family": "GHUC", "attractor_tier": null,
-      "domains": ["compression", "intra-loi"],
-      "examples": ["Réduction des paramètres d'une loi unique"],
+      "id": "GHUC-002-a",
+      "title": "Compression intra-loi",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "compression",
+        "intra-loi"
+      ],
+      "examples": [
+        "Réduction des paramètres d'une loi unique"
+      ],
       "html_description": "Cas-A du motif GHUC : compression appliquée à l'intérieur d'une loi (paramètres, énoncé, équations).",
-      "equations": ["C_intra(L) = min K(L) sous I_struct(L) préservé"],
-      "S_local": 0.87, "S_global": 0.78, "stability": "stable", "weight": 0.62
+      "equations": [
+        "C_intra(L) = min K(L) sous I_struct(L) préservé"
+      ],
+      "S_local": 0.87,
+      "S_global": 0.78,
+      "stability": "stable",
+      "weight": 0.62,
+      "frames": {
+        "local": [
+          "loi unique L et ses paramètres internes"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC compression intra-loi"
+          }
+        ],
+        "global": [
+          "I_struct(L) globalement préservé"
+        ],
+        "proxies": [
+          "complexité K(L) approximée"
+        ],
+        "limits": [
+          "ne traite pas les inter-relations entre lois"
+        ]
+      }
     },
     {
-      "id": "GHUC-002-a-i", "title": "Compression intra-loi — mots-clés",
-      "canonical": false, "palieronic": false, "family": "GHUC", "attractor_tier": null,
-      "domains": ["compression", "intra-loi", "lexique"],
-      "examples": ["Fusion des synonymes dans `domains`"],
+      "id": "GHUC-002-a-i",
+      "title": "Compression intra-loi — mots-clés",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "compression",
+        "intra-loi",
+        "lexique"
+      ],
+      "examples": [
+        "Fusion des synonymes dans `domains`"
+      ],
       "html_description": "Instance de cas-A : compression du lexique de la loi (mots-clés, domaines déclarés).",
-      "equations": ["|domains(C_intra(L))| ≤ |domains(L)|"],
-      "S_local": 0.82, "S_global": 0.72, "stability": "stable", "weight": 0.48
+      "equations": [
+        "|domains(C_intra(L))| ≤ |domains(L)|"
+      ],
+      "S_local": 0.82,
+      "S_global": 0.72,
+      "stability": "stable",
+      "weight": 0.48,
+      "frames": {
+        "local": [
+          "champ `domains` d'une loi"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC compression mots-clés"
+          }
+        ],
+        "global": [
+          "lexique consolidé sur l'ensemble du corpus"
+        ],
+        "proxies": [
+          "index de synonymie cross-domains"
+        ],
+        "limits": [
+          "dépend de la qualité du dictionnaire de synonymes"
+        ]
+      }
     },
     {
-      "id": "GHUC-002-a-ii", "title": "Compression intra-loi — exemples",
-      "canonical": false, "palieronic": false, "family": "GHUC", "attractor_tier": null,
-      "domains": ["compression", "intra-loi", "exemples"],
-      "examples": ["Réduction de la liste d'exemples redondants"],
+      "id": "GHUC-002-a-ii",
+      "title": "Compression intra-loi — exemples",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "compression",
+        "intra-loi",
+        "exemples"
+      ],
+      "examples": [
+        "Réduction de la liste d'exemples redondants"
+      ],
       "html_description": "Instance de cas-A : compression de la liste d'exemples (suppression des redondants, garde les plus diversifiés).",
-      "equations": ["|examples(C_intra(L))| = card_min sous diversité ≥ θ"],
-      "S_local": 0.81, "S_global": 0.70, "stability": "stable", "weight": 0.46
+      "equations": [
+        "|examples(C_intra(L))| = card_min sous diversité ≥ θ"
+      ],
+      "S_local": 0.81,
+      "S_global": 0.7,
+      "stability": "stable",
+      "weight": 0.46,
+      "frames": {
+        "local": [
+          "champ `examples` d'une loi"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC compression exemples"
+          }
+        ],
+        "global": [
+          "diversité d'exemples préservée à travers le corpus"
+        ],
+        "proxies": [
+          "score de diversité par embedding d'exemples"
+        ],
+        "limits": [
+          "seuil θ de diversité subjectif"
+        ]
+      }
     },
     {
-      "id": "GHUC-002-b", "title": "Compression inter-loi",
-      "canonical": false, "palieronic": false, "family": "GHUC", "attractor_tier": null,
-      "domains": ["compression", "inter-loi"],
-      "examples": ["Fusion de deux lois quasi-synonymes"],
+      "id": "GHUC-002-b",
+      "title": "Compression inter-loi",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "compression",
+        "inter-loi"
+      ],
+      "examples": [
+        "Fusion de deux lois quasi-synonymes"
+      ],
       "html_description": "Cas-B du motif GHUC : compression appliquée entre lois proches (équivalence, synonymie).",
-      "equations": ["C_inter(L1, L2) = ⟨L⟩ tel que I_struct(L1) ∪ I_struct(L2) ⊆ I_struct(⟨L⟩)"],
-      "S_local": 0.86, "S_global": 0.77, "stability": "stable", "weight": 0.61
+      "equations": [
+        "C_inter(L1, L2) = ⟨L⟩ tel que I_struct(L1) ∪ I_struct(L2) ⊆ I_struct(⟨L⟩)"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.77,
+      "stability": "stable",
+      "weight": 0.61,
+      "frames": {
+        "local": [
+          "paire de lois L1, L2"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC compression inter-loi"
+          }
+        ],
+        "global": [
+          "fusion conservant I_struct(L1) ∪ I_struct(L2)"
+        ],
+        "proxies": [
+          "test d'équivalence structurelle"
+        ],
+        "limits": [
+          "fusion irréversible — exige absorption traçable"
+        ]
+      }
     },
     {
-      "id": "GHUC-002-b-i", "title": "Compression inter-loi — synonymie",
-      "canonical": false, "palieronic": false, "family": "GHUC", "attractor_tier": null,
-      "domains": ["compression", "inter-loi", "synonymie"],
-      "examples": ["Lois qui énoncent la même propriété avec un vocabulaire distinct"],
+      "id": "GHUC-002-b-i",
+      "title": "Compression inter-loi — synonymie",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "compression",
+        "inter-loi",
+        "synonymie"
+      ],
+      "examples": [
+        "Lois qui énoncent la même propriété avec un vocabulaire distinct"
+      ],
       "html_description": "Instance de cas-B : détecte deux lois qui sont synonymiques et propose leur fusion.",
-      "equations": ["syn(L1, L2) ⟺ cosine(emb(L1), emb(L2)) ≥ 0.92"],
-      "S_local": 0.80, "S_global": 0.71, "stability": "stable", "weight": 0.47
+      "equations": [
+        "syn(L1, L2) ⟺ cosine(emb(L1), emb(L2)) ≥ 0.92"
+      ],
+      "S_local": 0.8,
+      "S_global": 0.71,
+      "stability": "stable",
+      "weight": 0.47,
+      "frames": {
+        "local": [
+          "paire L1, L2 candidate à synonymie"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC synonymie"
+          }
+        ],
+        "global": [
+          "consolidation systémique du lexique scientifique"
+        ],
+        "proxies": [
+          "cosine ≥ 0.92 sur embeddings"
+        ],
+        "limits": [
+          "seuil arbitraire — calibration nécessaire"
+        ]
+      }
     },
     {
-      "id": "GHUC-002-b-ii", "title": "Compression inter-loi — équivalence",
-      "canonical": false, "palieronic": false, "family": "GHUC", "attractor_tier": null,
-      "domains": ["compression", "inter-loi", "équivalence"],
-      "examples": ["Lois équivalentes modulo reparamétrisation"],
+      "id": "GHUC-002-b-ii",
+      "title": "Compression inter-loi — équivalence",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "compression",
+        "inter-loi",
+        "équivalence"
+      ],
+      "examples": [
+        "Lois équivalentes modulo reparamétrisation"
+      ],
       "html_description": "Instance de cas-B : détecte deux lois équivalentes structurellement (même invariants) et propose leur fusion.",
-      "equations": ["equiv(L1, L2) ⟺ Inv(L1) = Inv(L2)"],
-      "S_local": 0.79, "S_global": 0.70, "stability": "stable", "weight": 0.45
+      "equations": [
+        "equiv(L1, L2) ⟺ Inv(L1) = Inv(L2)"
+      ],
+      "S_local": 0.79,
+      "S_global": 0.7,
+      "stability": "stable",
+      "weight": 0.45,
+      "frames": {
+        "local": [
+          "paire L1, L2 candidate à équivalence"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC équivalence"
+          }
+        ],
+        "global": [
+          "réduction des doublons systémiques"
+        ],
+        "proxies": [
+          "test d'égalité Inv(L1) = Inv(L2)"
+        ],
+        "limits": [
+          "dépend de la qualité de l'extraction d'invariants"
+        ]
+      }
     },
     {
-      "id": "GHUC-003", "title": "Pruning structurel",
-      "canonical": true, "palieronic": false, "family": "GHUC", "attractor_tier": null,
-      "domains": ["pruning", "élagage"],
-      "examples": ["Élagage de branches redondantes"],
+      "id": "GHUC-003",
+      "title": "Pruning structurel",
+      "canonical": true,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "pruning",
+        "élagage"
+      ],
+      "examples": [
+        "Élagage de branches redondantes"
+      ],
       "html_description": "Opérateur de pruning du graphe. Décompose en cas-A (intra-famille) et cas-B (inter-famille) pour respecter le motif GHUC.",
-      "equations": ["prune(b) ⟺ gain(b)/noise(b) < θ"],
-      "S_local": 0.93, "S_global": 0.86, "stability": "stable", "weight": 0.83
+      "equations": [
+        "prune(b) ⟺ gain(b)/noise(b) < θ"
+      ],
+      "S_local": 0.93,
+      "S_global": 0.86,
+      "stability": "stable",
+      "weight": 0.83,
+      "frames": {
+        "local": [
+          "branche b candidate à pruning"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille GHUC"
+          },
+          {
+            "level": "macro",
+            "scope": "familles concurrentes"
+          }
+        ],
+        "global": [
+          "pruning préservant la connectivité globale"
+        ],
+        "proxies": [
+          "ratio gain(b)/noise(b) calculé localement"
+        ],
+        "limits": [
+          "seuil θ statique — pas adaptatif",
+          "peut prune des cas-frontière utiles"
+        ]
+      }
     },
     {
-      "id": "GHUC-004", "title": "Fusion de cadres",
-      "canonical": false, "palieronic": false, "family": "GHUC", "attractor_tier": null,
-      "domains": ["fusion"],
-      "examples": ["Fusion de deux familles compatibles"],
+      "id": "GHUC-004",
+      "title": "Fusion de cadres",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "fusion"
+      ],
+      "examples": [
+        "Fusion de deux familles compatibles"
+      ],
       "html_description": "Opérateur de fusion entre cadres compatibles. Décompose en cas-A (fusion intra-famille) et cas-B (fusion inter-famille).",
-      "equations": ["F1 ⊕ F2 si Inv(F1) ∩ Inv(F2) ≠ ∅"],
-      "S_local": 0.88, "S_global": 0.78, "stability": "stable", "weight": 0.72
+      "equations": [
+        "F1 ⊕ F2 si Inv(F1) ∩ Inv(F2) ≠ ∅"
+      ],
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "stability": "stable",
+      "weight": 0.72,
+      "frames": {
+        "local": [
+          "paire de cadres compatibles F1, F2"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille GHUC"
+          }
+        ],
+        "global": [
+          "topologie globale après fusion"
+        ],
+        "proxies": [
+          "test d'intersection Inv(F1) ∩ Inv(F2)"
+        ],
+        "limits": [
+          "fusion intransitive — F1⊕F2⊕F3 dépend de l'ordre"
+        ]
+      }
     },
-
     {
-      "id": "WP11-001", "title": "Opérationnalisation de la cohérence",
-      "canonical": true, "palieronic": false, "family": "WP11", "attractor_tier": "μ1",
-      "domains": ["cohérence", "métrique"],
-      "examples": ["Pipeline de mesure S_local + S_global"],
+      "id": "WP11-001",
+      "title": "Opérationnalisation de la cohérence",
+      "canonical": true,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": "μ1",
+      "domains": [
+        "cohérence",
+        "métrique"
+      ],
+      "examples": [
+        "Pipeline de mesure S_local + S_global"
+      ],
       "html_description": "Cadre opérationnel rendant la cohérence mesurable, auditable et différenciée entre local et global.",
-      "equations": ["S = (S_local, S_global), S_local ⊥ S_global a priori"],
-      "S_local": 0.96, "S_global": 0.92, "stability": "stable", "weight": 0.97
+      "equations": [
+        "S = (S_local, S_global), S_local ⊥ S_global a priori"
+      ],
+      "S_local": 0.96,
+      "S_global": 0.92,
+      "stability": "stable",
+      "weight": 0.97,
+      "frames": {
+        "local": [
+          "loi ou attracteur unique mesuré"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille WP-11"
+          },
+          {
+            "level": "macro",
+            "scope": "intersection avec WP-12 (admissibilité)"
+          }
+        ],
+        "global": [
+          "système ZORAN entier — mesure conjointe S_local et S_global"
+        ],
+        "proxies": [
+          "formules opérationnelles des sous-lois (WP11-002, -003)"
+        ],
+        "limits": [
+          "S_local ⊥ S_global a priori — ne fournit PAS de relation déterministe"
+        ]
+      }
     },
     {
-      "id": "WP11-002", "title": "Métrique S_local",
-      "canonical": true, "palieronic": false, "family": "WP11", "attractor_tier": null,
-      "domains": ["métrique locale"],
-      "examples": ["Score de cohérence intra-attracteur"],
+      "id": "WP11-002",
+      "title": "Métrique S_local",
+      "canonical": true,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "métrique locale"
+      ],
+      "examples": [
+        "Score de cohérence intra-attracteur"
+      ],
       "html_description": "Mesure la cohérence autour d'un attracteur réduit. Insensible à la structure globale.",
-      "equations": ["S_local(x) = 1 − var_{y∈N(x)}(d_struct(x,y))"],
-      "S_local": 0.94, "S_global": 0.81, "stability": "stable", "weight": 0.84
+      "equations": [
+        "S_local(x) = 1 − var_{y∈N(x)}(d_struct(x,y))"
+      ],
+      "S_local": 0.94,
+      "S_global": 0.81,
+      "stability": "stable",
+      "weight": 0.84,
+      "frames": {
+        "local": [
+          "voisinage N(x) d'un attracteur"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille WP-11"
+          }
+        ],
+        "global": [
+          "non applicable — métrique strictement locale"
+        ],
+        "proxies": [
+          "1 − var sur d_struct(x, y) dans N(x)"
+        ],
+        "limits": [
+          "taille de N(x) à choisir par cas",
+          "insensible à la cohérence systémique"
+        ]
+      }
     },
     {
-      "id": "WP11-003", "title": "Métrique S_global",
-      "canonical": true, "palieronic": false, "family": "WP11", "attractor_tier": null,
-      "domains": ["métrique globale"],
-      "examples": ["Score systémique multi-cadres"],
+      "id": "WP11-003",
+      "title": "Métrique S_global",
+      "canonical": true,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "métrique globale"
+      ],
+      "examples": [
+        "Score systémique multi-cadres"
+      ],
       "html_description": "Mesure la cohérence systémique. S_global = α·C_struct + β·C_composition + γ·C_iso − δ·contradictions_density (cf. audit/S_GLOBAL_RULES.md).",
-      "equations": ["S_global = 0.35·C_struct + 0.40·C_composition + 0.15·C_iso − 0.10·contradictions_density"],
-      "S_local": 0.92, "S_global": 0.89, "stability": "stable", "weight": 0.85
+      "equations": [
+        "S_global = 0.35·C_struct + 0.40·C_composition + 0.15·C_iso − 0.10·contradictions_density"
+      ],
+      "S_local": 0.92,
+      "S_global": 0.89,
+      "stability": "stable",
+      "weight": 0.85,
+      "frames": {
+        "local": [
+          "non applicable — métrique strictement systémique"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille WP-11"
+          },
+          {
+            "level": "macro",
+            "scope": "compositions opératoires"
+          }
+        ],
+        "global": [
+          "graphe complet — toutes paires de cadres F1, F2"
+        ],
+        "proxies": [
+          "formule décomposée 0.35·C_struct + 0.40·C_composition + 0.15·C_iso − 0.10·contradictions_density"
+        ],
+        "limits": [
+          "proxy tant que C_composition < seuil R-S2",
+          "dépend de la calibration des coefficients α,β,γ,δ"
+        ]
+      }
     },
     {
-      "id": "WP11-004", "title": "Distinction stricte S_local / S_global",
-      "canonical": true, "palieronic": false, "family": "WP11", "attractor_tier": null,
-      "domains": ["méta-règle"],
-      "examples": ["Refus d'inférer S_global depuis S_local"],
+      "id": "WP11-004",
+      "title": "Distinction stricte S_local / S_global",
+      "canonical": true,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "méta-règle"
+      ],
+      "examples": [
+        "Refus d'inférer S_global depuis S_local"
+      ],
       "html_description": "Règle méta : interdit toute inférence automatique d'un S_global élevé à partir d'un S_local élevé.",
-      "equations": ["¬( S_local ↑ ⇒ S_global ↑ )"],
-      "S_local": 0.97, "S_global": 0.93, "stability": "stable", "weight": 0.92
+      "equations": [
+        "¬( S_local ↑ ⇒ S_global ↑ )"
+      ],
+      "S_local": 0.97,
+      "S_global": 0.93,
+      "stability": "stable",
+      "weight": 0.92,
+      "frames": {
+        "local": [
+          "méta-règle — pas de contexte local"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille WP-11"
+          },
+          {
+            "level": "systémique",
+            "scope": "tout calcul de cohérence"
+          }
+        ],
+        "global": [
+          "interdiction systémique d'inférence S_local → S_global"
+        ],
+        "proxies": [
+          "audit programmatique des chaînes d'inférence"
+        ],
+        "limits": [
+          "ne propose pas d'alternative — règle d'interdiction pure"
+        ]
+      }
     },
     {
-      "id": "WP11-005", "title": "Détection de fausse cohérence",
-      "canonical": false, "palieronic": false, "family": "WP11", "attractor_tier": null,
-      "domains": ["audit", "anti-illusion"],
-      "examples": ["Détection de résonance trompeuse"],
+      "id": "WP11-005",
+      "title": "Détection de fausse cohérence",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "audit",
+        "anti-illusion"
+      ],
+      "examples": [
+        "Détection de résonance trompeuse"
+      ],
       "html_description": "Détecte les configurations où S_local élevé masque un S_global dégradé. Déclenche alerte si S_local − S_global > 0.30.",
-      "equations": ["alert ⟺ S_local − S_global > Δ_max"],
-      "S_local": 0.89, "S_global": 0.80, "stability": "stable", "weight": 0.76
+      "equations": [
+        "alert ⟺ S_local − S_global > Δ_max"
+      ],
+      "S_local": 0.89,
+      "S_global": 0.8,
+      "stability": "stable",
+      "weight": 0.76,
+      "frames": {
+        "local": [
+          "loi unique avec son couple (S_local, S_global)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille WP-11"
+          }
+        ],
+        "global": [
+          "audit systémique des configurations à gap > 0.30"
+        ],
+        "proxies": [
+          "seuil Δ_max calibré (0.30 par défaut)"
+        ],
+        "limits": [
+          "seuil arbitraire — calibration empirique nécessaire"
+        ]
+      }
     },
-
     {
-      "id": "WP12-001", "title": "Cadres d'admissibilité",
-      "canonical": true, "palieronic": false, "family": "WP12", "attractor_tier": "μ1",
-      "domains": ["admissibilité"],
-      "examples": ["Filtre des variantes émergentes"],
+      "id": "WP12-001",
+      "title": "Cadres d'admissibilité",
+      "canonical": true,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": "μ1",
+      "domains": [
+        "admissibilité"
+      ],
+      "examples": [
+        "Filtre des variantes émergentes"
+      ],
       "html_description": "Définit les conditions sous lesquelles un cadre est admissible : non-contradiction, minimalité, fertilité conjointes.",
-      "equations": ["admissible(F) ⟺ NC(F) ∧ Min(F) ∧ Fert(F)"],
-      "S_local": 0.95, "S_global": 0.90, "stability": "stable", "weight": 0.94
+      "equations": [
+        "admissible(F) ⟺ NC(F) ∧ Min(F) ∧ Fert(F)"
+      ],
+      "S_local": 0.95,
+      "S_global": 0.9,
+      "stability": "stable",
+      "weight": 0.94,
+      "frames": {
+        "local": [
+          "cadre F unique candidat à admissibilité"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille WP-12"
+          },
+          {
+            "level": "macro",
+            "scope": "intersection avec WP-11 (cohérence)"
+          }
+        ],
+        "global": [
+          "ensemble admissible de tous les cadres"
+        ],
+        "proxies": [
+          "conjonction NC(F) ∧ Min(F) ∧ Fert(F)"
+        ],
+        "limits": [
+          "les trois critères peuvent être en tension (cf. contradiction WP12-003 ↔ WP12-004)"
+        ]
+      }
     },
     {
-      "id": "WP12-002", "title": "Critère de non-contradiction",
-      "canonical": true, "palieronic": false, "family": "WP12", "attractor_tier": null,
-      "domains": ["logique"],
-      "examples": ["Refus d'un cadre auto-contradictoire"],
+      "id": "WP12-002",
+      "title": "Critère de non-contradiction",
+      "canonical": true,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "logique"
+      ],
+      "examples": [
+        "Refus d'un cadre auto-contradictoire"
+      ],
       "html_description": "Aucun cadre admissible ne peut contenir de contradiction interne.",
-      "equations": ["NC(F) ⟺ ¬∃p : p ∧ ¬p ∈ F"],
-      "S_local": 0.96, "S_global": 0.91, "stability": "stable", "weight": 0.88
+      "equations": [
+        "NC(F) ⟺ ¬∃p : p ∧ ¬p ∈ F"
+      ],
+      "S_local": 0.96,
+      "S_global": 0.91,
+      "stability": "stable",
+      "weight": 0.88,
+      "frames": {
+        "local": [
+          "proposition p ∈ F"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille WP-12"
+          }
+        ],
+        "global": [
+          "consistance du cadre F entier"
+        ],
+        "proxies": [
+          "recherche de paires p, ¬p dans F"
+        ],
+        "limits": [
+          "ne détecte pas les contradictions implicites"
+        ]
+      }
     },
     {
-      "id": "WP12-003", "title": "Critère de minimalité",
-      "canonical": false, "palieronic": false, "family": "WP12", "attractor_tier": null,
-      "domains": ["minimalité"],
-      "examples": ["Rasoir d'Occam appliqué"],
+      "id": "WP12-003",
+      "title": "Critère de minimalité",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "minimalité"
+      ],
+      "examples": [
+        "Rasoir d'Occam appliqué"
+      ],
       "html_description": "Un cadre admissible doit être minimal au sens de la complexité descriptionnelle. En tension avec WP12-004.",
-      "equations": ["Min(F) ⟺ K(F) minimal sur classes équivalentes"],
-      "S_local": 0.88, "S_global": 0.76, "stability": "stable", "weight": 0.69
+      "equations": [
+        "Min(F) ⟺ K(F) minimal sur classes équivalentes"
+      ],
+      "S_local": 0.88,
+      "S_global": 0.76,
+      "stability": "stable",
+      "weight": 0.69,
+      "frames": {
+        "local": [
+          "cadre F et sa complexité K(F)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille WP-12"
+          }
+        ],
+        "global": [
+          "classes d'équivalence sur l'ensemble des cadres"
+        ],
+        "proxies": [
+          "complexité de Kolmogorov approximée"
+        ],
+        "limits": [
+          "en tension avec WP12-004 (fertilité) — cf. contradiction déclarée"
+        ]
+      }
     },
     {
-      "id": "WP12-004", "title": "Critère de fertilité",
-      "canonical": false, "palieronic": false, "family": "WP12", "attractor_tier": null,
-      "domains": ["fertilité"],
-      "examples": ["Production de prédictions nouvelles"],
+      "id": "WP12-004",
+      "title": "Critère de fertilité",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "fertilité"
+      ],
+      "examples": [
+        "Production de prédictions nouvelles"
+      ],
       "html_description": "Un cadre admissible doit produire de nouvelles prédictions ou structures. En tension avec WP12-003.",
-      "equations": ["Fert(F) ⟺ |{p ∈ F : p ∉ F_parent}| > 0"],
-      "S_local": 0.86, "S_global": 0.74, "stability": "stable", "weight": 0.66
+      "equations": [
+        "Fert(F) ⟺ |{p ∈ F : p ∉ F_parent}| > 0"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.74,
+      "stability": "stable",
+      "weight": 0.66,
+      "frames": {
+        "local": [
+          "cadre F et son F_parent"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille WP-12"
+          }
+        ],
+        "global": [
+          "arbre généalogique des cadres"
+        ],
+        "proxies": [
+          "décompte des prédictions nouvelles (différence symétrique)"
+        ],
+        "limits": [
+          "en tension avec WP12-003 (minimalité) — cf. contradiction déclarée"
+        ]
+      }
     },
     {
-      "id": "WP12-005", "title": "Validation croisée multi-cadres",
-      "canonical": false, "palieronic": false, "family": "WP12", "attractor_tier": null,
-      "domains": ["validation"],
-      "examples": ["Cross-check inter-familles"],
+      "id": "WP12-005",
+      "title": "Validation croisée multi-cadres",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "validation"
+      ],
+      "examples": [
+        "Cross-check inter-familles"
+      ],
       "html_description": "Validation systématique d'un cadre contre plusieurs cadres voisins indépendants.",
-      "equations": ["valid(F) ⟺ ∀G ∈ N(F) : compat(F,G)"],
-      "S_local": 0.87, "S_global": 0.79, "stability": "stable", "weight": 0.71
+      "equations": [
+        "valid(F) ⟺ ∀G ∈ N(F) : compat(F,G)"
+      ],
+      "S_local": 0.87,
+      "S_global": 0.79,
+      "stability": "stable",
+      "weight": 0.71,
+      "frames": {
+        "local": [
+          "cadre F et son voisinage N(F)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille WP-12"
+          },
+          {
+            "level": "macro",
+            "scope": "tous les cadres voisins indépendants"
+          }
+        ],
+        "global": [
+          "validation conjointe sur le réseau d'attracteurs"
+        ],
+        "proxies": [
+          "compat(F, G) pour G ∈ N(F)"
+        ],
+        "limits": [
+          "dépend de la définition du voisinage N(F)"
+        ]
+      }
     },
-
     {
-      "id": "SDE-001", "title": "Skopein Dual Engine",
-      "canonical": true, "palieronic": false, "family": "SDE", "attractor_tier": "μ1",
-      "domains": ["dualité", "regard"],
-      "examples": ["Moteur de dualité focal/diffus"],
+      "id": "SDE-001",
+      "title": "Skopein Dual Engine",
+      "canonical": true,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": "μ1",
+      "domains": [
+        "dualité",
+        "regard"
+      ],
+      "examples": [
+        "Moteur de dualité focal/diffus"
+      ],
       "html_description": "Moteur dual de focalisation cognitive. Opère sur le couple observateur/objet.",
-      "equations": ["SDE(x) = (focus(x), diffuse(x))"],
-      "S_local": 0.94, "S_global": 0.85, "stability": "stable", "weight": 0.89
+      "equations": [
+        "SDE(x) = (focus(x), diffuse(x))"
+      ],
+      "S_local": 0.94,
+      "S_global": 0.85,
+      "stability": "stable",
+      "weight": 0.89,
+      "frames": {
+        "local": [
+          "objet x sous focalisation cognitive"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille SDE"
+          }
+        ],
+        "global": [
+          "scène cognitive complète (focal + diffus)"
+        ],
+        "proxies": [
+          "décomposition focus(x) + diffuse(x)"
+        ],
+        "limits": [
+          "ne formalise pas le saut focal/diffus",
+          "ne couvre pas l'attention partielle"
+        ]
+      }
     },
     {
-      "id": "SDE-002", "title": "Dualité observateur / objet",
-      "canonical": true, "palieronic": false, "family": "SDE", "attractor_tier": null,
-      "domains": ["dualité"],
-      "examples": ["Inversion de rôles dans l'observation"],
+      "id": "SDE-002",
+      "title": "Dualité observateur / objet",
+      "canonical": true,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "dualité"
+      ],
+      "examples": [
+        "Inversion de rôles dans l'observation"
+      ],
       "html_description": "Postule que tout objet est aussi observateur, et tout observateur est observable. En tension avec ULG-003.",
-      "equations": ["⟨O, X⟩ ↔ ⟨X, O⟩"],
-      "S_local": 0.90, "S_global": 0.81, "stability": "stable", "weight": 0.76
+      "equations": [
+        "⟨O, X⟩ ↔ ⟨X, O⟩"
+      ],
+      "S_local": 0.9,
+      "S_global": 0.81,
+      "stability": "stable",
+      "weight": 0.76,
+      "frames": {
+        "local": [
+          "paire ⟨O, X⟩ observateur/objet"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille SDE"
+          }
+        ],
+        "global": [
+          "réseau complet d'observations mutuelles"
+        ],
+        "proxies": [
+          "test de symétrie ⟨O,X⟩ ↔ ⟨X,O⟩"
+        ],
+        "limits": [
+          "en tension avec ULG-003 (invariance morphologique) — cf. contradiction déclarée"
+        ]
+      }
     },
     {
-      "id": "SDE-003", "title": "Cadre focal / diffus",
-      "canonical": false, "palieronic": false, "family": "SDE", "attractor_tier": null,
-      "domains": ["focalisation"],
-      "examples": ["Bascule attention/contexte"],
+      "id": "SDE-003",
+      "title": "Cadre focal / diffus",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "focalisation"
+      ],
+      "examples": [
+        "Bascule attention/contexte"
+      ],
       "html_description": "Définit le couple cadre focal / cadre diffus régissant l'attention cognitive.",
-      "equations": ["F_focal + F_diffuse = F_total"],
-      "S_local": 0.87, "S_global": 0.74, "stability": "stable", "weight": 0.67
+      "equations": [
+        "F_focal + F_diffuse = F_total"
+      ],
+      "S_local": 0.87,
+      "S_global": 0.74,
+      "stability": "stable",
+      "weight": 0.67,
+      "frames": {
+        "local": [
+          "instance d'attention courante"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille SDE"
+          }
+        ],
+        "global": [
+          "bilan F_focal + F_diffuse = F_total"
+        ],
+        "proxies": [
+          "mesure de répartition d'attention"
+        ],
+        "limits": [
+          "F_focal et F_diffuse non observables directement"
+        ]
+      }
     },
     {
-      "id": "SDE-004", "title": "Conjugaison Skopein",
-      "canonical": false, "palieronic": false, "family": "SDE", "attractor_tier": null,
-      "domains": ["conjugaison"],
-      "examples": ["Opération de conjugaison cognitive"],
+      "id": "SDE-004",
+      "title": "Conjugaison Skopein",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "conjugaison"
+      ],
+      "examples": [
+        "Opération de conjugaison cognitive"
+      ],
       "html_description": "Conjugue deux regards distincts en une opération unique préservant l'invariant Skopein.",
-      "equations": ["⟨S1 ∘ S2⟩ = ⟨S2 ∘ S1⟩ mod Skopein"],
-      "S_local": 0.83, "S_global": 0.68, "stability": "instable", "weight": 0.58
+      "equations": [
+        "⟨S1 ∘ S2⟩ = ⟨S2 ∘ S1⟩ mod Skopein"
+      ],
+      "S_local": 0.83,
+      "S_global": 0.68,
+      "stability": "instable",
+      "weight": 0.58,
+      "frames": {
+        "local": [
+          "paire d'opérations Skopein S1, S2"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille SDE"
+          }
+        ],
+        "global": [
+          "modulo invariant Skopein global"
+        ],
+        "proxies": [
+          "test commutativité ⟨S1∘S2⟩ ≡ ⟨S2∘S1⟩"
+        ],
+        "limits": [
+          "instabilité observée — variance sous perturbation à étudier"
+        ]
+      }
     },
     {
-      "id": "SDE-005", "title": "Symétrie de regard",
-      "canonical": false, "palieronic": false, "family": "SDE", "attractor_tier": null,
-      "domains": ["symétrie"],
-      "examples": ["Réflexion mutuelle entre cadres"],
+      "id": "SDE-005",
+      "title": "Symétrie de regard",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "symétrie"
+      ],
+      "examples": [
+        "Réflexion mutuelle entre cadres"
+      ],
       "html_description": "Toute relation observateur/objet admet une symétrie de regard non triviale.",
-      "equations": ["σ(⟨O,X⟩) = ⟨X,O⟩"],
-      "S_local": 0.85, "S_global": 0.72, "stability": "stable", "weight": 0.63
+      "equations": [
+        "σ(⟨O,X⟩) = ⟨X,O⟩"
+      ],
+      "S_local": 0.85,
+      "S_global": 0.72,
+      "stability": "stable",
+      "weight": 0.63,
+      "frames": {
+        "local": [
+          "relation ⟨O,X⟩ unique"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille SDE"
+          }
+        ],
+        "global": [
+          "cohérence des symétries sur l'ensemble des relations"
+        ],
+        "proxies": [
+          "application de σ et test de fixed point"
+        ],
+        "limits": [
+          "σ peut être non-trivial pour certaines paires asymétriques"
+        ]
+      }
     },
-
     {
-      "id": "PAL-001", "title": "Loi palieronique fondamentale",
-      "canonical": true, "palieronic": true, "family": "PAL", "attractor_tier": "μ1",
-      "domains": ["palier", "saut cognitif"],
-      "examples": ["Saut cognitif inter-palier"],
+      "id": "PAL-001",
+      "title": "Loi palieronique fondamentale",
+      "canonical": true,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": "μ1",
+      "domains": [
+        "palier",
+        "saut cognitif"
+      ],
+      "examples": [
+        "Saut cognitif inter-palier"
+      ],
       "html_description": "Racine palieronique. Régit les transitions discrètes entre paliers de cohérence.",
-      "equations": ["Δpalier = ⌊log(S_global) / log(φ)⌋"],
-      "S_local": 0.91, "S_global": 0.83, "stability": "stable", "weight": 0.88
+      "equations": [
+        "Δpalier = ⌊log(S_global) / log(φ)⌋"
+      ],
+      "S_local": 0.91,
+      "S_global": 0.83,
+      "stability": "stable",
+      "weight": 0.88,
+      "frames": {
+        "local": [
+          "palier discret n et son voisinage de cohérence"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille PAL"
+          },
+          {
+            "level": "macro",
+            "scope": "spectre des paliers"
+          }
+        ],
+        "global": [
+          "dynamique inter-palier complète"
+        ],
+        "proxies": [
+          "⌊log(S_global)/log(φ)⌋ approximation"
+        ],
+        "limits": [
+          "nature du quantum φ à clarifier",
+          "S_global en proxy donc Δpalier en proxy"
+        ]
+      }
     },
     {
-      "id": "PAL-002", "title": "Transition de palier",
-      "canonical": false, "palieronic": true, "family": "PAL", "attractor_tier": null,
-      "domains": ["transition"],
-      "examples": ["Passage palier n → palier n+1"],
+      "id": "PAL-002",
+      "title": "Transition de palier",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "transition"
+      ],
+      "examples": [
+        "Passage palier n → palier n+1"
+      ],
       "html_description": "Décrit la dynamique d'une transition d'un palier à l'autre dans l'espace de cohérence.",
-      "equations": ["P(n → n+1) ∝ exp(−ΔE_palier / k·T)"],
-      "S_local": 0.84, "S_global": 0.73, "stability": "stable", "weight": 0.68
+      "equations": [
+        "P(n → n+1) ∝ exp(−ΔE_palier / k·T)"
+      ],
+      "S_local": 0.84,
+      "S_global": 0.73,
+      "stability": "stable",
+      "weight": 0.68,
+      "frames": {
+        "local": [
+          "transition entre paliers n et n+1"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille PAL"
+          }
+        ],
+        "global": [
+          "distribution complète des transitions sur le spectre"
+        ],
+        "proxies": [
+          "estimation Boltzmann de P(n→n+1)"
+        ],
+        "limits": [
+          "température T cognitive non mesurable directement"
+        ]
+      }
     },
     {
-      "id": "PAL-003", "title": "Effet de seuil cognitif",
-      "canonical": false, "palieronic": true, "family": "PAL", "attractor_tier": null,
-      "domains": ["seuil"],
-      "examples": ["Seuil de bascule attentionnelle"],
+      "id": "PAL-003",
+      "title": "Effet de seuil cognitif",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "seuil"
+      ],
+      "examples": [
+        "Seuil de bascule attentionnelle"
+      ],
       "html_description": "Au-delà d'un seuil critique, une légère perturbation déclenche un saut palieronique entier.",
-      "equations": ["x > x_c ⇒ Δpalier = 1"],
-      "S_local": 0.86, "S_global": 0.71, "stability": "stable", "weight": 0.65
+      "equations": [
+        "x > x_c ⇒ Δpalier = 1"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.71,
+      "stability": "stable",
+      "weight": 0.65,
+      "frames": {
+        "local": [
+          "point x près du seuil critique x_c"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille PAL"
+          }
+        ],
+        "global": [
+          "distribution des seuils sur le système"
+        ],
+        "proxies": [
+          "détection x > x_c avec hystérésis"
+        ],
+        "limits": [
+          "seuil x_c contextuel — pas universel"
+        ]
+      }
     },
     {
-      "id": "PAL-004", "title": "Saut palieronique",
-      "canonical": false, "palieronic": true, "family": "PAL", "attractor_tier": null,
-      "domains": ["saut"],
-      "examples": ["Saut hors-zone admissible"],
+      "id": "PAL-004",
+      "title": "Saut palieronique",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "saut"
+      ],
+      "examples": [
+        "Saut hors-zone admissible"
+      ],
       "html_description": "Saut discret dans l'espace des cadres, supérieur en magnitude à une dérivation continue.",
-      "equations": ["Δx_saut ≫ Δx_derivation"],
-      "S_local": 0.80, "S_global": 0.67, "stability": "instable", "weight": 0.59
+      "equations": [
+        "Δx_saut ≫ Δx_derivation"
+      ],
+      "S_local": 0.8,
+      "S_global": 0.67,
+      "stability": "instable",
+      "weight": 0.59,
+      "frames": {
+        "local": [
+          "état actuel dans l'espace des cadres"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille PAL"
+          },
+          {
+            "level": "macro",
+            "scope": "topologie d'attracteurs"
+          }
+        ],
+        "global": [
+          "statistique des sauts sur l'ensemble"
+        ],
+        "proxies": [
+          "comparaison Δx_saut vs Δx_derivation"
+        ],
+        "limits": [
+          "instabilité — cohérence post-saut non garantie"
+        ]
+      }
     },
     {
-      "id": "PAL-005", "title": "Stabilité inter-palier",
-      "canonical": false, "palieronic": true, "family": "PAL", "attractor_tier": null,
-      "domains": ["stabilité"],
-      "examples": ["Maintien de cohérence entre paliers"],
+      "id": "PAL-005",
+      "title": "Stabilité inter-palier",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "stabilité"
+      ],
+      "examples": [
+        "Maintien de cohérence entre paliers"
+      ],
       "html_description": "Conditions sous lesquelles la cohérence est préservée à travers plusieurs paliers.",
-      "equations": ["S_global(palier n) ≈ S_global(palier n+k) ± ε"],
-      "S_local": 0.83, "S_global": 0.70, "stability": "stable", "weight": 0.62
+      "equations": [
+        "S_global(palier n) ≈ S_global(palier n+k) ± ε"
+      ],
+      "S_local": 0.83,
+      "S_global": 0.7,
+      "stability": "stable",
+      "weight": 0.62,
+      "frames": {
+        "local": [
+          "paliers n et n+k voisins"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "famille PAL"
+          },
+          {
+            "level": "systémique",
+            "scope": "spectre complet"
+          }
+        ],
+        "global": [
+          "préservation de S_global à travers k paliers"
+        ],
+        "proxies": [
+          "mesure |S_global(n) − S_global(n+k)|"
+        ],
+        "limits": [
+          "k borné par la connectivité du spectre",
+          "S_global en proxy"
+        ]
+      }
     }
   ],
   "edges": [
-    { "source": "ULG-002", "target": "ULG-001", "kind": "parent" },
-    { "source": "ULG-003", "target": "ULG-001", "kind": "parent" },
-    { "source": "ULG-004", "target": "ULG-001", "kind": "parent" },
-    { "source": "ULG-005", "target": "ULG-001", "kind": "parent" },
-
-    { "source": "DVE-002", "target": "DVE-001", "kind": "parent" },
-    { "source": "DVE-003", "target": "DVE-001", "kind": "parent" },
-    { "source": "DVE-004", "target": "DVE-001", "kind": "parent" },
-    { "source": "DVE-005", "target": "DVE-001", "kind": "parent" },
-
-    { "source": "UDE-002", "target": "UDE-001", "kind": "parent" },
-    { "source": "UDE-003", "target": "UDE-001", "kind": "parent" },
-    { "source": "UDE-004", "target": "UDE-001", "kind": "parent" },
-    { "source": "UDE-005", "target": "UDE-001", "kind": "parent" },
-
-    { "source": "GHUC-002", "target": "GHUC-001", "kind": "parent" },
-    { "source": "GHUC-003", "target": "GHUC-001", "kind": "parent" },
-    { "source": "GHUC-004", "target": "GHUC-001", "kind": "parent" },
-    { "source": "GHUC-002-a",   "target": "GHUC-002",   "kind": "parent" },
-    { "source": "GHUC-002-b",   "target": "GHUC-002",   "kind": "parent" },
-    { "source": "GHUC-002-a-i", "target": "GHUC-002-a", "kind": "parent" },
-    { "source": "GHUC-002-a-ii","target": "GHUC-002-a", "kind": "parent" },
-    { "source": "GHUC-002-b-i", "target": "GHUC-002-b", "kind": "parent" },
-    { "source": "GHUC-002-b-ii","target": "GHUC-002-b", "kind": "parent" },
-
-    { "source": "WP11-002", "target": "WP11-001", "kind": "parent" },
-    { "source": "WP11-003", "target": "WP11-001", "kind": "parent" },
-    { "source": "WP11-004", "target": "WP11-001", "kind": "parent" },
-    { "source": "WP11-005", "target": "WP11-004", "kind": "parent" },
-
-    { "source": "WP12-002", "target": "WP12-001", "kind": "parent" },
-    { "source": "WP12-003", "target": "WP12-001", "kind": "parent" },
-    { "source": "WP12-004", "target": "WP12-001", "kind": "parent" },
-    { "source": "WP12-005", "target": "WP12-001", "kind": "parent" },
-
-    { "source": "SDE-002", "target": "SDE-001", "kind": "parent" },
-    { "source": "SDE-003", "target": "SDE-001", "kind": "parent" },
-    { "source": "SDE-004", "target": "SDE-001", "kind": "parent" },
-    { "source": "SDE-005", "target": "SDE-001", "kind": "parent" },
-
-    { "source": "PAL-002", "target": "PAL-001", "kind": "parent" },
-    { "source": "PAL-003", "target": "PAL-001", "kind": "parent" },
-    { "source": "PAL-004", "target": "PAL-001", "kind": "parent" },
-    { "source": "PAL-005", "target": "PAL-001", "kind": "parent" },
-
-    { "source": "DVE-001",  "target": "UDE-001",  "kind": "iso",
-      "invariants": ["conjugaison opératoire découverte ↔ génération de variantes"], "weight": 0.70 },
-    { "source": "SDE-001",  "target": "ULG-001",  "kind": "iso",
-      "invariants": ["structure morphologique préservée", "symétrie observateur/objet ↔ invariance de cadre"], "weight": 0.70 },
-    { "source": "WP11-001", "target": "WP12-001", "kind": "iso",
-      "invariants": ["co-validation cohérence / admissibilité"], "weight": 0.75 },
-
-    { "source": "ULG-002", "target": "GHUC-002", "kind": "absorbed_into",
-      "absorbed_at": "2026-05-15", "weight": 0.40 },
-
-    { "source": "UDE-003", "target": "WP11-005", "kind": "contradicts", "weight": 0.60,
-      "domain": "résonance vs détection de fausse cohérence" },
-    { "source": "WP11-005", "target": "UDE-003", "kind": "contradicts", "weight": 0.60,
-      "domain": "résonance vs détection de fausse cohérence" },
-
-    { "source": "WP12-003", "target": "WP12-004", "kind": "contradicts", "weight": 0.55,
-      "domain": "minimalité vs fertilité" },
-    { "source": "WP12-004", "target": "WP12-003", "kind": "contradicts", "weight": 0.55,
-      "domain": "minimalité vs fertilité" },
-
-    { "source": "DVE-001", "target": "GHUC-003", "kind": "contradicts", "weight": 0.50,
-      "domain": "génération de variantes vs élagage structurel" },
-    { "source": "GHUC-003", "target": "DVE-001", "kind": "contradicts", "weight": 0.50,
-      "domain": "génération de variantes vs élagage structurel" },
-
-    { "source": "SDE-002", "target": "ULG-003", "kind": "contradicts", "weight": 0.45,
-      "domain": "dualité observateur/objet vs invariance morphologique" },
-    { "source": "ULG-003", "target": "SDE-002", "kind": "contradicts", "weight": 0.45,
-      "domain": "dualité observateur/objet vs invariance morphologique" },
-
-    { "source": "ULG-005", "target": "PAL-001", "kind": "related", "weight": 0.40,
-      "reason": "propagation fractale dynamique informe les transitions palieroniques" },
-    { "source": "UDE-002", "target": "GHUC-001", "kind": "related", "weight": 0.40,
-      "reason": "cartographie des attracteurs ↔ consolidation des familles" },
-    { "source": "DVE-004", "target": "WP12-001", "kind": "related", "weight": 0.40,
-      "reason": "variantes admissibles ∈ cadres d'admissibilité" },
-    { "source": "UDE-005", "target": "PAL-004", "kind": "related", "weight": 0.35,
-      "reason": "heuristique de saut ↔ saut palieronique" },
-    { "source": "DVE-005", "target": "GHUC-003", "kind": "related", "weight": 0.40,
-      "reason": "filtrage entropique cohérent avec pruning structurel" }
+    {
+      "source": "ULG-002",
+      "target": "ULG-001",
+      "kind": "parent"
+    },
+    {
+      "source": "ULG-003",
+      "target": "ULG-001",
+      "kind": "parent"
+    },
+    {
+      "source": "ULG-004",
+      "target": "ULG-001",
+      "kind": "parent"
+    },
+    {
+      "source": "ULG-005",
+      "target": "ULG-001",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-002",
+      "target": "DVE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-003",
+      "target": "DVE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-004",
+      "target": "DVE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-005",
+      "target": "DVE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-002",
+      "target": "UDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-003",
+      "target": "UDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-004",
+      "target": "UDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-005",
+      "target": "UDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-002",
+      "target": "GHUC-001",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-003",
+      "target": "GHUC-001",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-004",
+      "target": "GHUC-001",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-002-a",
+      "target": "GHUC-002",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-002-b",
+      "target": "GHUC-002",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-002-a-i",
+      "target": "GHUC-002-a",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-002-a-ii",
+      "target": "GHUC-002-a",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-002-b-i",
+      "target": "GHUC-002-b",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-002-b-ii",
+      "target": "GHUC-002-b",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-002",
+      "target": "WP11-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-003",
+      "target": "WP11-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-004",
+      "target": "WP11-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-005",
+      "target": "WP11-004",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-002",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-003",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-004",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-005",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-002",
+      "target": "SDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-003",
+      "target": "SDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-004",
+      "target": "SDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-005",
+      "target": "SDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "PAL-002",
+      "target": "PAL-001",
+      "kind": "parent"
+    },
+    {
+      "source": "PAL-003",
+      "target": "PAL-001",
+      "kind": "parent"
+    },
+    {
+      "source": "PAL-004",
+      "target": "PAL-001",
+      "kind": "parent"
+    },
+    {
+      "source": "PAL-005",
+      "target": "PAL-001",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-001",
+      "target": "UDE-001",
+      "kind": "iso",
+      "invariants": [
+        "conjugaison opératoire découverte ↔ génération de variantes"
+      ],
+      "weight": 0.7
+    },
+    {
+      "source": "SDE-001",
+      "target": "ULG-001",
+      "kind": "iso",
+      "invariants": [
+        "structure morphologique préservée",
+        "symétrie observateur/objet ↔ invariance de cadre"
+      ],
+      "weight": 0.7
+    },
+    {
+      "source": "WP11-001",
+      "target": "WP12-001",
+      "kind": "iso",
+      "invariants": [
+        "co-validation cohérence / admissibilité"
+      ],
+      "weight": 0.75
+    },
+    {
+      "source": "ULG-002",
+      "target": "GHUC-002",
+      "kind": "absorbed_into",
+      "absorbed_at": "2026-05-15",
+      "weight": 0.4
+    },
+    {
+      "source": "UDE-003",
+      "target": "WP11-005",
+      "kind": "contradicts",
+      "weight": 0.6,
+      "domain": "résonance vs détection de fausse cohérence"
+    },
+    {
+      "source": "WP11-005",
+      "target": "UDE-003",
+      "kind": "contradicts",
+      "weight": 0.6,
+      "domain": "résonance vs détection de fausse cohérence"
+    },
+    {
+      "source": "WP12-003",
+      "target": "WP12-004",
+      "kind": "contradicts",
+      "weight": 0.55,
+      "domain": "minimalité vs fertilité"
+    },
+    {
+      "source": "WP12-004",
+      "target": "WP12-003",
+      "kind": "contradicts",
+      "weight": 0.55,
+      "domain": "minimalité vs fertilité"
+    },
+    {
+      "source": "DVE-001",
+      "target": "GHUC-003",
+      "kind": "contradicts",
+      "weight": 0.5,
+      "domain": "génération de variantes vs élagage structurel"
+    },
+    {
+      "source": "GHUC-003",
+      "target": "DVE-001",
+      "kind": "contradicts",
+      "weight": 0.5,
+      "domain": "génération de variantes vs élagage structurel"
+    },
+    {
+      "source": "SDE-002",
+      "target": "ULG-003",
+      "kind": "contradicts",
+      "weight": 0.45,
+      "domain": "dualité observateur/objet vs invariance morphologique"
+    },
+    {
+      "source": "ULG-003",
+      "target": "SDE-002",
+      "kind": "contradicts",
+      "weight": 0.45,
+      "domain": "dualité observateur/objet vs invariance morphologique"
+    },
+    {
+      "source": "ULG-005",
+      "target": "PAL-001",
+      "kind": "related",
+      "weight": 0.4,
+      "reason": "propagation fractale dynamique informe les transitions palieroniques"
+    },
+    {
+      "source": "UDE-002",
+      "target": "GHUC-001",
+      "kind": "related",
+      "weight": 0.4,
+      "reason": "cartographie des attracteurs ↔ consolidation des familles"
+    },
+    {
+      "source": "DVE-004",
+      "target": "WP12-001",
+      "kind": "related",
+      "weight": 0.4,
+      "reason": "variantes admissibles ∈ cadres d'admissibilité"
+    },
+    {
+      "source": "UDE-005",
+      "target": "PAL-004",
+      "kind": "related",
+      "weight": 0.35,
+      "reason": "heuristique de saut ↔ saut palieronique"
+    },
+    {
+      "source": "DVE-005",
+      "target": "GHUC-003",
+      "kind": "related",
+      "weight": 0.4,
+      "reason": "filtrage entropique cohérent avec pruning structurel"
+    }
   ],
   "compositions": [
     {
-      "pair": ["GHUC-001", "DVE-001"],
+      "pair": [
+        "GHUC-001",
+        "DVE-001"
+      ],
       "operator": "GHUC ∘ DVE",
-      "preserved": ["traçabilité des dérivations", "I_struct sous compression"],
+      "preserved": [
+        "traçabilité des dérivations",
+        "I_struct sous compression"
+      ],
       "test_input": "famille DVE avec n=5 lois et S_local moyen 0.90",
       "test_output": "famille DVE consolidée avec n=5 (aucune fusion candidate ce passage) et S_local moyen 0.90",
       "delta_S_global": 0.0,
       "status": "admissible"
     },
     {
-      "pair": ["GHUC-001", "UDE-001"],
+      "pair": [
+        "GHUC-001",
+        "UDE-001"
+      ],
       "operator": "GHUC ∘ UDE",
-      "preserved": ["maximisation gain−cost", "I_struct sous compression"],
+      "preserved": [
+        "maximisation gain−cost",
+        "I_struct sous compression"
+      ],
       "test_input": "découverte UDE produit 3 candidats, S_local moyen 0.85",
       "test_output": "1 candidat absorbé par GHUC, 2 conservés, S_local moyen 0.86",
       "delta_S_global": 0.01,
       "status": "admissible"
     },
     {
-      "pair": ["WP11-001", "WP12-001"],
+      "pair": [
+        "WP11-001",
+        "WP12-001"
+      ],
       "operator": "WP11 ∘ WP12",
-      "preserved": ["S_local ⊥ S_global", "non-contradiction ∧ minimalité ∧ fertilité"],
+      "preserved": [
+        "S_local ⊥ S_global",
+        "non-contradiction ∧ minimalité ∧ fertilité"
+      ],
       "test_input": "loi candidate avec S_local 0.92, S_global 0.78, admissible WP12",
       "test_output": "validation conjointe passe ; loi admise sous flag `gap_modéré`",
       "delta_S_global": 0.0,
@@ -549,7 +2441,9 @@
     "structural_honesty_score_estimated": 0.78,
     "inflation_ratio": 0.0,
     "false_coherence_count": 0,
-    "passes_fractal_property": ["GHUC"],
+    "passes_fractal_property": [
+      "GHUC"
+    ],
     "compositions_demonstrated": 3,
     "iso_with_invariants_ratio": 1.0,
     "contradictions_count": 4,

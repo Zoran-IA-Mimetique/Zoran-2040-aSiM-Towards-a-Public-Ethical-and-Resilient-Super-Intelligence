@@ -211,16 +211,127 @@ FILES_CREATED:        audit/INTERACTIVE_NODE_SPEC.md,
                       audit/VISUAL_SILENCE_PATCH.md
 TESTS:                tools/validate_laws.py → 0 erreur, 0 warning
 ROLLBACK:             git revert <commits P0.5> ou git checkout pre-P0.5 tag
-RUNTIME_VALIDATION:   à vérifier dans navigateur :
-                      WebGL 3D · drag/rotate/zoom · panneau dynamique ·
-                      recherche · Oracle (HS=0.80) · history ·
-                      pruning · focus-branche (F) ·
-                      tag proxy S_global affiché dans statusbar ·
-                      labels au survol natifs (CSS2DRenderer à venir Phase INT)
-NEXT_PHASE:           Phase INT (interactive law nodes) sur autorisation :
-                      MeshPhysicalMaterial + clearcoat ·
-                      CSS2DRenderer pour labels distance-based ·
-                      panel polish (tier badge + compositions + fractality)
+NEXT_PHASE:           Phase INT V2 (boules cognitives + cadres + draggable)
+```
+
+🔶
+
+---
+
+## ZORAN_INT_V2_20260515 — INTERACTIVE COGNITIVE NODES V2
+
+- **timestamp** : `2026-05-15T19:42:00+02:00`
+- **scope** : exécution mission `ZORAN_INTERACTIVE_COGNITIVE_NODES_V2_20260515`
+- **mode** : architecte UX cognitif + builder (autorisé par mission)
+
+### Transformations exécutées
+
+#### 1. Cadres de calcul par loi (`frames`)
+
+Chaque loi (45/45) reçoit un objet `frames` non négociable :
+
+```json
+"frames": {
+  "local":         [...],
+  "intermediate":  [{"level":"meso|macro|systémique", "scope":"..."}, ...],
+  "global":        [...],
+  "proxies":       [...],
+  "limits":        [...]
+}
+```
+
+Validateur `tools/validate_laws.py` étendu pour exiger ces 5 champs.
+Script `tools/add_frames.py` idempotent pour resynchroniser.
+
+#### 2. Boules cognitives (Mesh PBR + texture canvas)
+
+- `MeshPhysicalMaterial` avec `clearcoat`, `metalness`, `roughness`.
+- Texture canvas 512×256 par loi (cache) avec :
+  - dégradé radial (matérialité avant lumière),
+  - bande équatoriale (mise en valeur du label),
+  - tier badge (`μ0`/`μ1`) en haut,
+  - **nom de la loi imprimé** (police monospace bold).
+- Tier-based clearcoat : μ0=0.55 · μ1=0.45 · canonical=0.35 · autre=0.25.
+- Halo `TorusGeometry` face caméra sur sélection.
+- Rim light (DirectionalLight cool) pour profondeur clearcoat.
+
+#### 3. Click-only
+
+- `nodeLabel(() => '')` désactive le tooltip natif lib.
+- Aucune étiquette flottante. L'identification visuelle = **texture sphère**.
+- Hover : `cursor: pointer` + grow ×1.10 (lerp smooth).
+- Clic : ouvre panneau loi.
+
+#### 4. Panneau draggable
+
+- Header explicite avec handle `⋮⋮` + titre mini.
+- `pointerdown/move/up` avec `setPointerCapture`.
+- Contraintes viewport.
+- Persistence `localStorage` (`zoran.panel.pos`).
+- `Shift+R` pour reset position.
+- Mobile : bottom-sheet non-draggable (cf. CSS).
+
+#### 5. Section "Cadres de calcul" dans le panneau
+
+5 rangées colorées : ⊙ Local · ◉ Intermédiaire · ⊕ Global · ↻ Proxies · ⊘ Limites.
+Affichage des `frames` de la loi avec niveaux intermédiaires badgés.
+
+#### 6. Sections additionnelles dans le panneau
+
+- Tier badge `μ0`/`μ1` proéminent avant le titre.
+- Section "Compositions opératoires" (si la loi participe à une composition).
+- Section "Fractalité démontrée" (si famille a `fractality_demonstrated`).
+
+### Smoke test (Playwright headless chromium)
+
+```
+boot_ok            : true
+click_open_panel   : true
+focus_branche (F)  : true
+prune_toggle (P)   : true
+drag_panel         : true (panneau bouge de 330×190 px)
+esc_closes_panel   : true
+status counts      : nodes 45 · links 54 · families 8
+status coherence   : S_local=0.89 · S_global=proxy:0.89 · HS=0.80
+console errors     : 0
+page errors        : 0
+```
+
+**Zéro bug.**
+
+### Signature V2
+
+```
+MISSION_ID:           ZORAN_INT_V2_20260515
+TIMESTAMP:            2026-05-15T19:42:00+02:00
+S_LOCAL:              0.89 (moyenne)
+S_GLOBAL:             proxy:0.89 (gate inchangé)
+HS:                   0.80
+VISUAL_SILENCE:       +0.40 (P0) → +0.60 (P0.5 V1) → ~+0.74 (V2 attendu)
+FILES_MODIFIED:       app/data/laws.json (frames sur 45 lois),
+                      app/src/main.js (BilliardMesh + lights + draggable + click-only),
+                      app/src/panel.js (frames section + tier badge + compositions + fractality),
+                      app/src/colors.js (μ0/μ1 distinction),
+                      app/style.css (header drag + frames colors),
+                      app/index.html (header + handle + drag-handle ARIA),
+                      tools/validate_laws.py (frames structure check),
+                      tools/render_preview.py, tools/add_frames.py (nouveau),
+                      tools/smoke_test.mjs (nouveau — playwright),
+                      README.md, MISSION_LOG.md
+FILES_CREATED:        audit/INTERACTIVE_BILLIARD_NODE_SPEC.md,
+                      audit/CURVED_LABEL_RENDERING.md,
+                      audit/DRAGGABLE_PANEL_SYSTEM.md,
+                      audit/FRAME_HIERARCHY_SPEC.md,
+                      audit/COHERENCE_FRAME_MODEL.md,
+                      audit/VISUAL_SILENCE_V2.md,
+                      app/preview-live.png (capture playwright)
+TESTS:                python3 tools/validate_laws.py → 0 erreur
+                      node tools/smoke_test.mjs → 6/6 OK · 0 console error
+ROLLBACK:             git revert <commit V2>
+RUNTIME_VALIDATION:   ✅ boot · ✅ click panel · ✅ F focus-branche ·
+                      ✅ P pruning · ✅ drag panel · ✅ Esc close · 0 erreur
+NEXT_PHASE:           P0.6 — env map procédurale · halo lookAt fine-tuning ·
+                      hover labels mobile (touch) · audit Oracle continu
 ```
 
 🔶

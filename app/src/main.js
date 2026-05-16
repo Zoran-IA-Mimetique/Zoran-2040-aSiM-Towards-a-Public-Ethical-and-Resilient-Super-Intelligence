@@ -20,13 +20,231 @@ const state = {
   highlightLinks: new Set(),
   branchVisible: null,
   selected: null,
-  lastAudit: null
+  lastAudit: null,
+  meshes: new Map(),     // node.id → THREE.Mesh
+  textures: new Map(),   // node.id → THREE.CanvasTexture
+  halos: new Map(),      // node.id → THREE.Mesh (torus halo)
+  targetOpacity: new Map() // node.id → number
 };
 
-const MISSION = 'ZORAN_P0_5_EXEC_20260515';
+const MISSION = 'ZORAN_INT_V2_20260515';
 
+// ─────────────────────────── helpers ───────────────────────────
 function avg(a) { return a.length ? a.reduce((x,y)=>x+y,0) / a.length : 0; }
+function escAttr(s) { return String(s).replace(/"/g, '&quot;'); }
+function escapeShort(s) {
+  const t = String(s);
+  return t.length > 30 ? t.slice(0, 28) + '…' : t;
+}
+function familyColor(family) {
+  const map = {
+    ULG:'#4ea3ff', DVE:'#3ad17a', UDE:'#ffcc4d', GHUC:'#b86bff',
+    WP11:'#5ad1c4', WP12:'#5a8cff', SDE:'#ff8a4e', PAL:'#b86bff'
+  };
+  return map[family] || '#888';
+}
 
+function hexToRgb(hex) {
+  const h = hex.replace('#', '');
+  const v = parseInt(h.length === 3
+    ? h.split('').map(c => c + c).join('')
+    : h, 16);
+  return { r: (v >> 16) & 255, g: (v >> 8) & 255, b: v & 255 };
+}
+function pickContrastingColor(hex) {
+  const { r, g, b } = hexToRgb(hex);
+  const lum = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+  return lum > 0.55 ? '#0a0d14' : '#f0f3fa';
+}
+function lighten(hex, amount) {
+  const { r, g, b } = hexToRgb(hex);
+  const f = v => Math.min(255, Math.round(v + (255 - v) * amount));
+  return `rgb(${f(r)}, ${f(g)}, ${f(b)})`;
+}
+function darken(hex, amount) {
+  const { r, g, b } = hexToRgb(hex);
+  const f = v => Math.max(0, Math.round(v * (1 - amount)));
+  return `rgb(${f(r)}, ${f(g)}, ${f(b)})`;
+}
+
+// ─────────────────── billiard texture (canvas) ───────────────────
+function makeBilliardTexture(node) {
+  const cached = state.textures.get(node.id);
+  if (cached) return cached;
+
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  const W = 512, H = 256;
+  const canvas = document.createElement('canvas');
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  const baseColor = node.color || '#888';
+
+  // Background: radial gradient that gives subtle depth even before lighting
+  const grad = ctx.createRadialGradient(W/2, H/2, 30, W/2, H/2, 280);
+  grad.addColorStop(0.0, lighten(baseColor, 0.10));
+  grad.addColorStop(0.7, baseColor);
+  grad.addColorStop(1.0, darken(baseColor, 0.20));
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+
+  // Equator band (subtle highlight)
+  const bandGrad = ctx.createLinearGradient(0, 80, 0, 176);
+  bandGrad.addColorStop(0.0, 'rgba(255,255,255,0.00)');
+  bandGrad.addColorStop(0.5, 'rgba(255,255,255,0.08)');
+  bandGrad.addColorStop(1.0, 'rgba(255,255,255,0.00)');
+  ctx.fillStyle = bandGrad;
+  ctx.fillRect(0, 80, W, 96);
+
+  const textColor = pickContrastingColor(baseColor);
+
+  // Tier badge in top center (small)
+  if (node.attractor_tier) {
+    ctx.font = '600 22px "Inter", -apple-system, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = textColor === '#0a0d14' ? 'rgba(0,0,0,0.55)' : 'rgba(255,255,255,0.80)';
+    ctx.fillText(node.attractor_tier, W/2, 50);
+  }
+
+  // Main label: node.id
+  const isCanonical = node.canonical;
+  const fontSize = isCanonical ? 64 : 52;
+  ctx.font = `700 ${fontSize}px "JetBrains Mono", "Menlo", ui-monospace, monospace`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+
+  ctx.shadowColor = 'rgba(0,0,0,0.45)';
+  ctx.shadowBlur = 4;
+  ctx.shadowOffsetY = 2;
+  ctx.fillStyle = textColor;
+  ctx.fillText(node.id, W/2, 138);
+  ctx.shadowColor = 'transparent';
+
+  const tex = new THREE.CanvasTexture(canvas);
+  if ('SRGBColorSpace' in THREE) tex.colorSpace = THREE.SRGBColorSpace;
+  // Anisotropy needs the renderer ; we will upgrade later in initGraph()
+  tex.minFilter = THREE.LinearMipMapLinearFilter;
+  tex.magFilter = THREE.LinearFilter;
+  tex.needsUpdate = true;
+  state.textures.set(node.id, tex);
+  return tex;
+}
+
+function tierSpec(node) {
+  if (node.attractor_tier === 'μ0') return { clearcoat: 0.55, reflectivity: 0.40 };
+  if (node.attractor_tier === 'μ1') return { clearcoat: 0.45, reflectivity: 0.35 };
+  if (node.canonical)               return { clearcoat: 0.35, reflectivity: 0.30 };
+  return                                   { clearcoat: 0.25, reflectivity: 0.20 };
+}
+
+// ─────────────────── billiard mesh (sphere + halo) ──────────────
+function makeBilliardMesh(node) {
+  const cached = state.meshes.get(node.id);
+  if (cached) return cached;
+
+  const radius = 2 + (node.weight ?? 0.5) * 10;
+  const geo = new THREE.SphereGeometry(radius, 32, 16);
+  const tex = makeBilliardTexture(node);
+  const tier = tierSpec(node);
+
+  const matOpts = {
+    map: tex,
+    color: 0xffffff,
+    metalness: 0.15,
+    roughness: 0.45,
+    transparent: true,
+    opacity: 1.0
+  };
+  // MeshPhysicalMaterial-only props (gracefully fall back if missing)
+  if (THREE.MeshPhysicalMaterial) {
+    matOpts.clearcoat = tier.clearcoat;
+    matOpts.clearcoatRoughness = 0.20;
+    matOpts.reflectivity = tier.reflectivity;
+  }
+  const Material = THREE.MeshPhysicalMaterial || THREE.MeshStandardMaterial;
+  const mat = new Material(matOpts);
+
+  const mesh = new THREE.Mesh(geo, mat);
+  mesh.userData.zoranNodeId = node.id;
+  mesh.userData.zoranBaseRadius = radius;
+  mesh.userData.zoranHoverScale = 1.0;
+
+  // Halo torus around the sphere (face camera, hidden by default)
+  const ringGeo = new THREE.TorusGeometry(radius * 1.18, Math.max(0.08, radius * 0.04), 8, 48);
+  const ringMat = new THREE.MeshBasicMaterial({
+    color: 0xffcc4d, transparent: true, opacity: 0.85, depthWrite: false
+  });
+  const ring = new THREE.Mesh(ringGeo, ringMat);
+  ring.visible = false;
+  mesh.add(ring);
+  state.halos.set(node.id, ring);
+
+  state.meshes.set(node.id, mesh);
+  state.targetOpacity.set(node.id, 1.0);
+  return mesh;
+}
+
+// ─────────────────────── highlight / state sync ───────────────
+function recomputeOpacityTargets() {
+  for (const n of state.graphView.nodes) {
+    let target = 1.0;
+    if (state.branchVisible && !state.branchVisible.has(n.id)) target = 0.18;
+    else if (state.highlightNodes.size > 0 && !state.highlightNodes.has(n.id)) target = 0.32;
+    state.targetOpacity.set(n.id, target);
+  }
+}
+
+function updateHalos() {
+  if (!state.fg) return;
+  const cam = state.fg.camera();
+  for (const [id, halo] of state.halos.entries()) {
+    const visible = !!(state.selected && state.selected.id === id);
+    halo.visible = visible;
+    if (visible && cam && halo.parent) {
+      // Object3D.lookAt accepts a world-space target ; works for children.
+      halo.lookAt(cam.position);
+    }
+  }
+}
+
+function tickAnimation() {
+  // Per-frame opacity lerp + hover scale lerp + halo facing
+  for (const [id, mesh] of state.meshes.entries()) {
+    const target = state.targetOpacity.get(id) ?? 1.0;
+    const cur = mesh.material.opacity;
+    if (Math.abs(cur - target) > 0.005) {
+      mesh.material.opacity = cur + (target - cur) * 0.18;
+      mesh.material.transparent = mesh.material.opacity < 0.99;
+    }
+    const tgtScale = mesh.userData.zoranHoverScale ?? 1.0;
+    const curScale = mesh.scale.x;
+    if (Math.abs(curScale - tgtScale) > 0.003) {
+      const next = curScale + (tgtScale - curScale) * 0.20;
+      mesh.scale.set(next, next, next);
+    }
+  }
+  updateHalos();
+  requestAnimationFrame(tickAnimation);
+}
+
+// ───────────────────── lighting (PBR) ──────────────────────────
+function setupLighting() {
+  const scene = state.fg.scene();
+  // Soft cool ambient
+  const ambient = new THREE.AmbientLight(0x404858, 0.45);
+  scene.add(ambient);
+  // Cool rim (fill from back-bottom)
+  const rim = new THREE.DirectionalLight(0x6080a0, 0.30);
+  rim.position.set(-40, -20, -60);
+  scene.add(rim);
+  // Note : 3d-force-graph already adds its own AmbientLight + DirectionalLight ;
+  // we only complement to make clearcoat readable.
+}
+
+// ───────────────────────── status / sidebar ────────────────────
 function setStatus() {
   $('#status-mission').textContent = `MISSION ${MISSION}`;
   const n = state.graphView.nodes.length;
@@ -70,21 +288,7 @@ function buildSidebar() {
   }
 }
 
-function escAttr(s) { return String(s).replace(/"/g, '&quot;'); }
-
-function familyColor(family) {
-  const map = {
-    ULG:'#4ea3ff', DVE:'#3ad17a', UDE:'#ffcc4d', GHUC:'#b86bff',
-    WP11:'#5ad1c4', WP12:'#5a8cff', SDE:'#ff8a4e', PAL:'#b86bff'
-  };
-  return map[family] || '#888';
-}
-
-function escapeShort(s) {
-  const t = String(s);
-  return t.length > 30 ? t.slice(0, 28) + '…' : t;
-}
-
+// ───────────────────────── selection / nav ─────────────────────
 function selectNode(id, focus) {
   const node = state.graphView.nodes.find(n => n.id === id);
   if (!node) return;
@@ -118,11 +322,8 @@ function computeHighlight(node) {
     const t = typeof l.target === 'object' ? l.target.id : l.target;
     if (s === node.id || t === node.id) state.highlightLinks.add(l);
   }
-  if (state.focusBranch) {
-    state.branchVisible = branchFrom(state.graphView, node.id);
-  } else {
-    state.branchVisible = null;
-  }
+  state.branchVisible = state.focusBranch ? branchFrom(state.graphView, node.id) : null;
+  recomputeOpacityTargets();
 }
 
 function focusFamily(familyId) {
@@ -144,6 +345,7 @@ function updateHistoryButtons() {
   $('#btn-forward').disabled = !state.history.canForward();
 }
 
+// ─────────────────────────── graph init ────────────────────────
 function initGraph() {
   state.graphView = state.graph;
   const el = document.getElementById('graph');
@@ -152,15 +354,9 @@ function initGraph() {
     .backgroundColor('rgba(0,0,0,0)')
     .graphData(state.graphView)
     .nodeId('id')
-    .nodeLabel(n => `${n.id} · ${n.title}`)
-    .nodeColor(n => {
-      if (state.branchVisible && !state.branchVisible.has(n.id)) return 'rgba(80,90,110,0.10)';
-      if (state.highlightNodes.size === 0) return n.color;
-      return state.highlightNodes.has(n.id) ? n.color : 'rgba(120,130,150,0.20)';
-    })
-    .nodeVal(n => 2 + (n.weight ?? 0.5) * 10)
-    .nodeOpacity(0.94)
-    .nodeResolution(20)
+    .nodeLabel(() => '')                  // disable native tooltip per V2 spec
+    .nodeThreeObject(n => makeBilliardMesh(n))
+    .nodeThreeObjectExtend(false)         // replace default sphere entirely
     .linkColor(l => {
       if (state.branchVisible) {
         const s = typeof l.source === 'object' ? l.source.id : l.source;
@@ -177,11 +373,23 @@ function initGraph() {
     .linkOpacity(0.55)
     .enableNodeDrag(true)
     .onNodeClick(n => selectNode(n.id, true))
+    .onNodeHover(n => {
+      // Reset prior hover
+      for (const mesh of state.meshes.values()) mesh.userData.zoranHoverScale = 1.0;
+      if (n) {
+        const m = state.meshes.get(n.id);
+        if (m) m.userData.zoranHoverScale = 1.10;
+        document.body.style.cursor = 'pointer';
+      } else {
+        document.body.style.cursor = '';
+      }
+    })
     .onBackgroundClick(() => {
       state.selected = null;
       state.highlightNodes = new Set();
       state.highlightLinks = new Set();
       state.branchVisible = null;
+      recomputeOpacityTargets();
       renderDetail(null);
       document.querySelectorAll('#index li').forEach(li => li.classList.remove('active'));
       state.fg.refresh();
@@ -197,9 +405,25 @@ function initGraph() {
     return 60;
   });
 
+  // Apply anisotropy now that renderer exists
+  try {
+    const ren = state.fg.renderer();
+    if (ren && ren.capabilities && ren.capabilities.getMaxAnisotropy) {
+      const maxAniso = ren.capabilities.getMaxAnisotropy();
+      for (const tex of state.textures.values()) {
+        tex.anisotropy = maxAniso;
+        tex.needsUpdate = true;
+      }
+    }
+  } catch (_) { /* renderer may not be ready synchronously ; fallback OK */ }
+
+  setupLighting();
+  recomputeOpacityTargets();
+
+  // FPS
   const fpsEl = $('#status-fps');
   let frames = 0, last = performance.now();
-  function tick() {
+  function fpsTick() {
     frames += 1;
     const now = performance.now();
     if (now - last >= 1000) {
@@ -207,9 +431,12 @@ function initGraph() {
       frames = 0;
       last = now;
     }
-    requestAnimationFrame(tick);
+    requestAnimationFrame(fpsTick);
   }
-  tick();
+  fpsTick();
+
+  // Per-frame state animation
+  requestAnimationFrame(tickAnimation);
 
   window.addEventListener('resize', () => {
     state.fg.width(el.clientWidth);
@@ -217,6 +444,80 @@ function initGraph() {
   });
 }
 
+// ───────────────────── draggable panel ─────────────────────
+function setupDraggablePanel() {
+  const panel = $('#detail');
+  const header = $('#detail-header');
+  if (!panel || !header) return;
+
+  let dragging = false;
+  let startX = 0, startY = 0, startLeft = 0, startTop = 0;
+
+  header.addEventListener('pointerdown', e => {
+    if (e.target && e.target.id === 'detail-close') return;
+    dragging = true;
+    try { header.setPointerCapture(e.pointerId); } catch (_) { /* ignore */ }
+    const rect = panel.getBoundingClientRect();
+    startX = e.clientX; startY = e.clientY;
+    startLeft = rect.left; startTop = rect.top;
+    panel.style.transition = 'none';
+    document.body.style.userSelect = 'none';
+  });
+
+  function onMove(e) {
+    if (!dragging) return;
+    let left = startLeft + (e.clientX - startX);
+    let top  = startTop  + (e.clientY - startY);
+    const w = panel.offsetWidth, h = Math.min(panel.offsetHeight, window.innerHeight);
+    left = Math.max(0, Math.min(window.innerWidth - w, left));
+    top  = Math.max(48, Math.min(window.innerHeight - 60, top));
+    panel.style.left  = left + 'px';
+    panel.style.top   = top  + 'px';
+    panel.style.right = 'auto';
+  }
+
+  function onUp() {
+    if (!dragging) return;
+    dragging = false;
+    document.body.style.userSelect = '';
+    const rect = panel.getBoundingClientRect();
+    try {
+      localStorage.setItem('zoran.panel.pos',
+        JSON.stringify({ left: rect.left, top: rect.top }));
+    } catch (_) { /* localStorage unavailable */ }
+  }
+
+  window.addEventListener('pointermove', onMove);
+  window.addEventListener('pointerup', onUp);
+  window.addEventListener('pointercancel', onUp);
+
+  // Restore saved position once
+  try {
+    const raw = localStorage.getItem('zoran.panel.pos');
+    if (raw) {
+      const saved = JSON.parse(raw);
+      if (Number.isFinite(saved.left) && Number.isFinite(saved.top)) {
+        const left = Math.max(0, Math.min(window.innerWidth - 380, saved.left));
+        const top  = Math.max(48, Math.min(window.innerHeight - 200, saved.top));
+        panel.style.left = left + 'px';
+        panel.style.top  = top  + 'px';
+        panel.style.right = 'auto';
+      }
+    }
+  } catch (_) { /* ignore */ }
+
+  // Reset position via Shift+R
+  window.addEventListener('keydown', e => {
+    if (e.shiftKey && (e.key === 'R' || e.key === 'r')) {
+      panel.style.left = '';
+      panel.style.top  = '60px';
+      panel.style.right = '16px';
+      try { localStorage.removeItem('zoran.panel.pos'); } catch (_) {}
+    }
+  });
+}
+
+// ────────────────────────── controls ───────────────────────────
 function wireControls() {
   $('#btn-back').addEventListener('click', () => {
     const id = state.history.back();
@@ -233,7 +534,7 @@ function wireControls() {
     state.focusBranch = !state.focusBranch;
     $('#btn-focus').classList.toggle('active', state.focusBranch);
     if (state.selected) computeHighlight(state.selected);
-    else state.branchVisible = null;
+    else { state.branchVisible = null; recomputeOpacityTargets(); }
     state.fg.refresh();
   });
   $('#btn-prune').addEventListener('click', () => {
@@ -242,6 +543,7 @@ function wireControls() {
     state.graphView = state.pruning ? prune(state.graph, 0.65) : state.graph;
     state.fg.graphData(state.graphView);
     state.lastAudit = auditGraph(state.graphView);
+    recomputeOpacityTargets();
     setStatus();
   });
   $('#btn-oracle').addEventListener('click', () => {
@@ -252,11 +554,13 @@ function wireControls() {
     alert(text);
     setStatus();
   });
-  $('#detail-close').addEventListener('click', () => {
+  $('#detail-close').addEventListener('click', e => {
+    e.stopPropagation();
     renderDetail(null);
     state.highlightNodes = new Set();
     state.highlightLinks = new Set();
     state.branchVisible = null;
+    recomputeOpacityTargets();
     state.fg.refresh();
   });
 
@@ -281,14 +585,22 @@ function wireControls() {
 
   window.addEventListener('keydown', e => {
     if (e.target && /input|textarea/i.test(e.target.tagName)) return;
-    if (e.key === 'Escape') { renderDetail(null); state.highlightNodes = new Set(); state.highlightLinks = new Set(); state.branchVisible = null; state.fg.refresh(); }
-    if (e.key === 'r' || e.key === 'R') state.fg.zoomToFit(800, 60);
+    if (e.key === 'Escape') {
+      renderDetail(null);
+      state.highlightNodes = new Set();
+      state.highlightLinks = new Set();
+      state.branchVisible = null;
+      recomputeOpacityTargets();
+      state.fg.refresh();
+    }
+    if (e.key === 'r' && !e.shiftKey) state.fg.zoomToFit(800, 60);
     if (e.key === 'p' || e.key === 'P') $('#btn-prune').click();
     if (e.key === 'o' || e.key === 'O') $('#btn-oracle').click();
     if (e.key === 'f' || e.key === 'F') {
       state.focusBranch = !state.focusBranch;
+      $('#btn-focus').classList.toggle('active', state.focusBranch);
       if (state.selected) computeHighlight(state.selected);
-      else state.branchVisible = null;
+      else { state.branchVisible = null; recomputeOpacityTargets(); }
       state.fg.refresh();
     }
     if (e.altKey && e.key === 'ArrowLeft')  $('#btn-back').click();
@@ -311,6 +623,7 @@ function applyHistory(id) {
   updateHistoryButtons();
 }
 
+// ─────────────────────────── boot ──────────────────────────────
 async function boot() {
   try {
     state.dataset = await loadLaws();
@@ -320,10 +633,12 @@ async function boot() {
     state.lastAudit = auditGraph(state.graph);
     buildSidebar();
     initGraph();
+    setupDraggablePanel();
     wireControls();
     setStatus();
     updateHistoryButtons();
-    console.log('%cZORAN — Arbre Relationnel des Lois (P0.5)', 'color:#ffcc4d;font-size:14px;font-weight:bold');
+    console.log('%cZORAN — Arbre Relationnel des Lois (P0.5 INT v2)',
+      'color:#ffcc4d;font-size:14px;font-weight:bold');
     console.log('mission_id:', MISSION);
     console.log('audit:', state.lastAudit);
   } catch (err) {

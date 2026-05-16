@@ -11,7 +11,10 @@ DATA = ROOT / "app" / "data" / "laws.json"
 NODE_REQUIRED = {
     "id", "title", "canonical", "palieronic", "family",
     "S_local", "S_global", "stability", "weight",
+    "frames",
 }
+FRAMES_REQUIRED = {"local", "intermediate", "global", "proxies", "limits"}
+INTERMEDIATE_LEVELS = {"micro", "meso", "macro", "systémique"}
 VALID_KINDS = {"parent", "derives", "iso", "contradicts", "related", "absorbed_into", "depends"}
 CANONICAL_FAMILIES = {"ULG", "DVE", "UDE", "GHUC", "WP11", "WP12", "SDE", "PAL"}
 
@@ -38,6 +41,21 @@ def main() -> int:
                 errors.append(f"{n['id']}.{k}: out of range or non-numeric ({v!r})")
         if (n.get("S_local") or 0) - (n.get("S_global") or 0) > 0.30:
             warnings.append(f"{n['id']}: false_coherence gap={(n['S_local']-n['S_global']):.2f}")
+        # Frames structure
+        frames = n.get("frames") or {}
+        f_missing = FRAMES_REQUIRED - frames.keys()
+        if f_missing:
+            errors.append(f"{n['id']}.frames: missing keys {sorted(f_missing)}")
+        for fk in ("local", "global", "proxies", "limits"):
+            v = frames.get(fk)
+            if v is not None and (not isinstance(v, list) or any(not isinstance(x, str) for x in v)):
+                errors.append(f"{n['id']}.frames.{fk}: must be list[str]")
+        if frames.get("intermediate") is not None:
+            for entry in frames["intermediate"]:
+                if not isinstance(entry, dict) or "level" not in entry or "scope" not in entry:
+                    errors.append(f"{n['id']}.frames.intermediate: entries require 'level' + 'scope'")
+                elif entry["level"] not in INTERMEDIATE_LEVELS:
+                    errors.append(f"{n['id']}.frames.intermediate: level '{entry['level']}' not in {sorted(INTERMEDIATE_LEVELS)}")
 
     # Families
     for f in families:

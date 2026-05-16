@@ -47,8 +47,12 @@
 
   <main id="graph"></main>
 
-  <section id="detail" class="hidden" aria-hidden="true">
-    <button id="detail-close" title="Fermer (Esc)">×</button>
+  <section id="detail" class="hidden" aria-hidden="true" role="dialog" aria-labelledby="detail-title-mini">
+    <header id="detail-header" class="drag-handle" title="Glisser pour déplacer">
+      <span id="detail-handle" aria-hidden="true">⋮⋮</span>
+      <span id="detail-title-mini"></span>
+      <button id="detail-close" title="Fermer (Esc)">×</button>
+    </header>
     <div id="detail-body"></div>
   </section>
 
