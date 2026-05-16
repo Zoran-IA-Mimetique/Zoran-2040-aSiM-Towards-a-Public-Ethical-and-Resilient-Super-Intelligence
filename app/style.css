@@ -944,6 +944,107 @@ details.sup-section[open] > summary::before { transform: rotate(90deg); }
   font-family: ui-monospace, monospace;
   font-size: 10px; color: var(--fg-2);
 }
+
+/* ARGUMENTED_RUNTIME_RANKING UX v2 — header XL + compact cards */
+.sup-ranking-section { display: flex; flex-direction: column; gap: 8px; }
+.sup-winner-xl {
+  background: linear-gradient(135deg, rgba(255,204,77,0.18), rgba(255,156,46,0.06));
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  padding: 16px 18px;
+  box-shadow: 0 4px 16px rgba(255,204,77,0.15);
+}
+.sup-winner-xl.grade-excellent { border-color: #3ad17a; background: linear-gradient(135deg, rgba(58,209,122,0.18), rgba(58,209,122,0.04)); box-shadow: 0 4px 16px rgba(58,209,122,0.20); }
+.sup-winner-xl.grade-good      { border-color: var(--canonical); background: linear-gradient(135deg, rgba(78,163,255,0.18), rgba(78,163,255,0.04)); box-shadow: 0 4px 16px rgba(78,163,255,0.18); }
+.sup-winner-xl.grade-bad,
+.sup-winner-xl.grade-low       { border-color: var(--unstable); background: linear-gradient(135deg, rgba(255,107,107,0.18), rgba(255,107,107,0.04)); }
+.sup-winner-xl-head {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 8px;
+}
+.sup-winner-xl-pos {
+  font-family: ui-monospace, monospace; font-weight: 900;
+  font-size: 28px; line-height: 1;
+  color: var(--accent);
+  min-width: 44px;
+}
+.sup-winner-xl.grade-excellent .sup-winner-xl-pos { color: #3ad17a; }
+.sup-winner-xl.grade-good      .sup-winner-xl-pos { color: var(--canonical); }
+.sup-winner-xl.grade-bad .sup-winner-xl-pos,
+.sup-winner-xl.grade-low .sup-winner-xl-pos { color: var(--unstable); }
+.sup-winner-xl-label { flex: 1; font-size: 17px; font-weight: 700; color: var(--fg-0); }
+.sup-winner-xl-grade {
+  font-family: ui-monospace, monospace;
+  font-size: 32px; font-weight: 900; line-height: 1;
+  padding: 8px 14px; border-radius: 8px;
+  background: rgba(0,0,0,0.30);
+  border: 2px solid currentColor;
+}
+.sup-winner-xl-grade small { font-size: 14px; opacity: 0.7; font-weight: 700; }
+.sup-winner-xl-grade.grade-excellent { color: #3ad17a; }
+.sup-winner-xl-grade.grade-good      { color: var(--canonical); }
+.sup-winner-xl-grade.grade-mid       { color: var(--accent); }
+.sup-winner-xl-grade.grade-low       { color: #ff9c2e; }
+.sup-winner-xl-grade.grade-bad       { color: var(--unstable); }
+.sup-winner-xl-summary {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--fg-0);
+  margin-top: 6px;
+  font-style: italic;
+}
+
+.sup-ranking-others { display: flex; flex-direction: column; gap: 6px; }
+.sup-ranking-card-compact {
+  display: grid;
+  grid-template-columns: 32px 1fr 70px 2fr;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: rgba(20,24,38,0.45);
+  border: 1px solid var(--line);
+  border-left-width: 4px;
+  border-radius: 6px;
+}
+.sup-ranking-card-compact.grade-excellent { border-left-color: #3ad17a; }
+.sup-ranking-card-compact.grade-good      { border-left-color: var(--canonical); }
+.sup-ranking-card-compact.grade-mid       { border-left-color: var(--accent); }
+.sup-ranking-card-compact.grade-low       { border-left-color: #ff9c2e; }
+.sup-ranking-card-compact.grade-bad       { border-left-color: var(--unstable); }
+.sup-ranking-card-compact .sup-ranking-pos {
+  font-family: ui-monospace, monospace; font-weight: 800; font-size: 16px;
+  color: var(--fg-2);
+}
+.sup-ranking-card-compact .sup-ranking-label { font-size: 12px; font-weight: 700; color: var(--fg-0); }
+.sup-ranking-grade-small {
+  font-family: ui-monospace, monospace;
+  font-size: 16px; font-weight: 800;
+  text-align: right;
+  padding: 2px 8px; border-radius: 4px;
+  background: var(--bg-2); border: 1px solid currentColor;
+}
+.sup-ranking-grade-small small { font-size: 10px; opacity: 0.7; font-weight: 600; }
+.sup-ranking-grade-small.grade-excellent { color: #3ad17a; }
+.sup-ranking-grade-small.grade-good      { color: var(--canonical); }
+.sup-ranking-grade-small.grade-mid       { color: var(--accent); }
+.sup-ranking-grade-small.grade-low       { color: #ff9c2e; }
+.sup-ranking-grade-small.grade-bad       { color: var(--unstable); }
+.sup-ranking-summary {
+  font-size: 11px;
+  color: var(--fg-1);
+  font-style: italic;
+  line-height: 1.4;
+}
+@media (max-width: 600px) {
+  .sup-ranking-card-compact {
+    grid-template-columns: 28px 1fr 60px;
+    grid-template-rows: auto auto;
+  }
+  .sup-ranking-summary {
+    grid-column: 1 / -1;
+    margin-top: 4px;
+  }
+}
 .sup-winner-tag {
   background: var(--accent); color: #07080c;
   font-size: 10px; font-weight: 800;

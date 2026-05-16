@@ -231,13 +231,21 @@ export function renderComparison(result) {
       </div>
     </div>`;
 
-  // ─── 1bis) CLASSEMENT ARGUMENTÉ /20 (priorité haute mission ARGUMENTED_RANKING) ───
+  // ─── 1bis) CLASSEMENT ARGUMENTÉ /20 — TRI UNIQUE pour TOUS les blocs ───
   // Tri par grade_20 décroissant (fallback runtime_superiority si grade manquant)
+  // Ce sortedByGrade est utilisé partout (deltas, concrete, reforms, responses)
+  // pour garantir une UX cohérente du #1 au #4.
   const sortedByGrade = [...deltas].sort((a, b) => {
     const ga = a.argumented_grade_20 ?? (10 + a.runtime_superiority * 10);
     const gb = b.argumented_grade_20 ?? (10 + b.runtime_superiority * 10);
     return gb - ga;
   });
+  // Mapping label → rank pour propager l'ordre dans toutes les sections
+  const labelToRank = new Map();
+  sortedByGrade.forEach((d, i) => labelToRank.set(d.label, i + 1));
+  // Tri identique des reformulations / réponses (par label match)
+  const sortedResponses = [...result.responses].sort((a, b) =>
+    (labelToRank.get(a.label) || 99) - (labelToRank.get(b.label) || 99));
   const gradeClass = g => {
     if (g == null) return '';
     if (g >= 18) return 'grade-excellent';
@@ -246,21 +254,58 @@ export function renderComparison(result) {
     if (g >= 8)  return 'grade-low';
     return 'grade-bad';
   };
-  const rankingBlock = `
-    <details class="sup-section" open>
-      <summary>★ Classement argumenté /20 (mission ARGUMENTED_RUNTIME_RANKING)</summary>
+  // Helper : phrase synthétique humaine (comment du juge, ou fallback)
+  const humanSummary = d => {
+    if (d.comment && d.comment.trim()) return d.comment;
+    const bits = [];
+    if (d.strengths && d.strengths.length) bits.push(d.strengths.slice(0, 2).join(', '));
+    if (d.weaknesses && d.weaknesses.length) bits.push('mais ' + d.weaknesses[0]);
+    return bits.length ? bits.join(' — ') : '(pas de synthèse disponible)';
+  };
+
+  // ─── BLOC #1 WINNER : HEADER XL (priorité maximale, immédiatement lisible) ───
+  const winnerCardXL = sortedByGrade.length ? (() => {
+    const d = sortedByGrade[0];
+    const grade = d.argumented_grade_20;
+    const gradeStr = grade != null ? grade.toFixed(1) : '—';
+    const gCls = gradeClass(grade);
+    return `<div class="sup-winner-xl ${gCls}">
+      <div class="sup-winner-xl-head">
+        <span class="sup-winner-xl-pos">#1</span>
+        <span class="sup-winner-xl-label">${escHtml(d.label)}</span>
+        <span class="sup-winner-xl-grade ${gCls}">${gradeStr}<small>/20</small></span>
+      </div>
+      <div class="sup-winner-xl-summary">${escHtml(humanSummary(d))}</div>
+    </div>`;
+  })() : '';
+
+  // ─── BLOC #2 #3 #4 : COMPACTS sous le winner ───
+  const otherRankings = sortedByGrade.slice(1).map((d, idx) => {
+    const i = idx + 2;
+    const grade = d.argumented_grade_20;
+    const gradeStr = grade != null ? grade.toFixed(1) : '—';
+    const gCls = gradeClass(grade);
+    return `<div class="sup-ranking-card-compact ${gCls}">
+      <span class="sup-ranking-pos">#${i}</span>
+      <span class="sup-ranking-label">${escHtml(d.label)}</span>
+      <span class="sup-ranking-grade-small ${gCls}">${gradeStr}<small>/20</small></span>
+      <span class="sup-ranking-summary">${escHtml(humanSummary(d))}</span>
+    </div>`;
+  }).join('');
+
+  // ─── DÉTAILS argumentés (forts/faibles/flags) — REPLIÉ par défaut ───
+  const argumentedDetails = `
+    <details class="sup-section">
+      <summary>Détails argumentés — forts / faibles / flags</summary>
       <div class="sup-ranking-list">
         ${sortedByGrade.map((d, i) => {
-          const grade = d.argumented_grade_20;
-          const gradeStr = grade != null ? grade.toFixed(1) : '—';
-          const gCls = gradeClass(grade);
           const isWin = i === 0;
           const colorClass = d.label.toLowerCase().includes('claude brut') ? 'baseline' : `rank-${(i+1)}`;
           return `<div class="sup-ranking-card ${colorClass} ${isWin ? 'winner' : ''}">
             <div class="sup-ranking-head">
               <span class="sup-ranking-pos">#${i+1}</span>
               <span class="sup-ranking-label">${escHtml(d.label)}</span>
-              <span class="sup-ranking-grade ${gCls}">${gradeStr}<small>/20</small></span>
+              <span class="sup-ranking-grade ${gradeClass(d.argumented_grade_20)}">${d.argumented_grade_20 != null ? d.argumented_grade_20.toFixed(1) : '—'}<small>/20</small></span>
             </div>
             ${d.strengths && d.strengths.length ? `<div class="sup-arg-list sup-arg-strengths">
               <strong>✓ Forts :</strong> ${d.strengths.map(s => `<span>${escHtml(s)}</span>`).join('')}
@@ -282,8 +327,16 @@ export function renderComparison(result) {
       </div>
     </details>`;
 
-  // ─── 2) TABLE DELTAS (priorité haute selon mission) ───
-  const sortedByRank = [...deltas].sort((a, b) => b.runtime_superiority - a.runtime_superiority);
+  // Bloc final ranking : XL winner + autres compacts + accordéon détails
+  const rankingBlock = `
+    <div class="sup-ranking-section">
+      ${winnerCardXL}
+      ${otherRankings ? `<div class="sup-ranking-others">${otherRankings}</div>` : ''}
+      ${argumentedDetails}
+    </div>`;
+
+  // ─── 2) TABLE DELTAS triée par grade /20 (UX cohérente avec ranking) ───
+  const sortedByRank = sortedByGrade;
   const deltaTable = `
     <div class="sup-deltas-table">
       <div class="sup-deltas-row sup-deltas-header">
@@ -342,11 +395,12 @@ export function renderComparison(result) {
       </div>
     </details>`;
 
-  // ─── 3) REFORMULATIONS condensées (1-2 lignes par candidat) ───
-  const reforms = result.responses.map((r, idx) => {
+  // ─── 3) REFORMULATIONS condensées — triées par grade /20 (UX cohérente) ───
+  const reforms = sortedResponses.map((r, idx) => {
     if (!r.reformulation) return '';
-    const isWin = verdict && r.label.includes(verdict);
-    const colorClass = idx === 0 ? 'baseline' : `rank-${idx}`;
+    const rank = labelToRank.get(r.label) || (idx + 1);
+    const isWin = rank === 1;
+    const colorClass = r.strategy === 'baseline' ? 'baseline' : `rank-${rank}`;
     return `<div class="sup-reform-row ${colorClass} ${isWin ? 'winner' : ''}">
       <span class="sup-reform-label">${escHtml(r.label)}</span>
       <span class="sup-reform-text">"${escHtml(r.reformulation)}"</span>
@@ -363,10 +417,11 @@ export function renderComparison(result) {
     <details class="sup-section" ${result.partial ? 'open' : ''}>
       <summary>Réponses complètes (texte ▶ dépliable)</summary>
       <div class="sup-resp-list">
-        ${result.responses.map((r, idx) => {
+        ${sortedResponses.map((r, idx) => {
           const d = deltas.find(x => x.label === r.label);
-          const isWin = verdict && r.label.includes(verdict);
-          const colorClass = idx === 0 ? 'baseline' : `rank-${idx}`;
+          const rank = labelToRank.get(r.label) || (idx + 1);
+          const isWin = rank === 1;
+          const colorClass = r.strategy === 'baseline' ? 'baseline' : `rank-${rank}`;
           // Mission SILENT_LAW_GUIDANCE : warning visible si jargon ZORAN détecté
           const jargonChips = (r.jargon_terms_found && r.jargon_terms_found.length > 0)
             ? `<div class="sup-jargon-warn">⚠ Jargon ZORAN détecté (${r.jargon_terms_found.length}) :

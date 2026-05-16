@@ -8,27 +8,23 @@
   `PRACTICAL_RELEVANCE_SCORING.md`, `ACTIONABILITY_ANALYSIS.md`,
   `BENCHMARK_ARGUMENTATION_PROTOCOL.md`, `ANTI_JARGON_PROTOCOL.md`
 - Sources    : `app/src/llm.js::judgeResponses`,
-  `app/src/superiority.js::runSuperiorityComparison` (deltas enrichis),
+  `app/src/superiority.js::runSuperiorityComparison`,
   `app/src/superiority.js::renderComparison` (bloc `rankingBlock`,
   helper `gradeClass`).
 
 ## 1. Why this mission exists
 
-Le verdict produit par le pipeline parent (`RUNTIME_SUPERIORITY_ENGINE`)
-était une chaîne opaque : *« verdict : ZORAN Frugale »*. Aucune raison,
-aucun point fort, aucun point faible, aucune note compréhensible par un
-humain. Le user devait croire le juge sur parole.
-
-Cette mission remplace cette boîte noire par un **classement argumenté
-/20** où chaque candidat reçoit (a) une note explicite, (b) 1–3 points
-forts concrets, (c) 1–3 points faibles concrets, (d) deux flags binaires
-(bruit / risque d'hallucination) et (e) un commentaire de synthèse. Le
-verdict est lui-même justifié par `verdict_reason`.
+Le verdict produit par `RUNTIME_SUPERIORITY_ENGINE` était une chaîne
+opaque : *« verdict : ZORAN Frugale »*. Aucune raison, aucun point
+fort, aucun point faible, aucune note compréhensible par un humain. Le
+user devait croire le juge sur parole. Cette mission remplace cette
+boîte noire par un **classement argumenté /20** où chaque candidat
+reçoit une note explicite, 1–3 forts concrets, 1–3 faibles concrets,
+deux flags binaires (bruit / hallu) et un commentaire de synthèse.
 
 ## 2. Contrat JSON renvoyé par `judgeResponses`
 
-Forme stricte attendue (le parser tolère du markdown autour mais extrait
-le premier objet JSON via `r.text.match(/\{[\s\S]*\}/)`) :
+Forme stricte (parser tolérant via `r.text.match(/\{[\s\S]*\}/)`) :
 
 ```json
 {
@@ -44,62 +40,46 @@ le premier objet JSON via `r.text.match(/\{[\s\S]*\}/)`) :
     "argumented_grade_20": 17.5,
     "strengths": ["compact", "actionnable", "vocabulaire BTP correct"],
     "weaknesses": ["pas de mention de Consuel"],
-    "noise_detected": "",
-    "hallucination_risk": "",
+    "noise_detected": "", "hallucination_risk": "",
     "comment": "Référence solide, courte, immédiatement actionnable."
   }]
 }
 ```
 
-Les huit scores numériques `[0..1]` sont décrits en détail dans
+Les huit scores `[0..1]` sont détaillés dans
 `RUNTIME_QUALITY_EVALUATION.md`. La note `argumented_grade_20` est
 décrite dans `RESPONSE_GRADING_SYSTEM.md`.
 
 ## 3. UI — bloc `rankingBlock` (priorité HAUTE)
 
-Dans `renderComparison`, juste après le bandeau verdict et avant le
-tableau des deltas, on injecte une `<details open>` contenant les cartes
-triées par `argumented_grade_20` décroissant :
+`renderComparison` injecte une `<details open>` juste après le bandeau
+verdict, contenant les cartes triées par `argumented_grade_20` desc :
 
 ```
 sortedByGrade = [...deltas].sort(
-  (a, b) => (b.argumented_grade_20 ?? fallback(b))
-          - (a.argumented_grade_20 ?? fallback(a))
-)
+  (a, b) => (b.argumented_grade_20 ?? 10 + b.runtime_superiority*10)
+          - (a.argumented_grade_20 ?? 10 + a.runtime_superiority*10))
 ```
 
-Le fallback est `10 + runtime_superiority * 10` pour garder un ordre
-stable si le juge a omis la note. Chaque carte porte :
-
-- `#rang` + label + note `XX.X/20` colorée via `gradeClass(grade)`
-- bande verte `✓ Forts :` (chips `strengths`, 1–3)
-- bande orange `✗ Faibles :` (chips `weaknesses`, 1–3)
-- flag jaune `▣ Bruit détecté` si `noise_detected` non vide
-- flag rouge `⚠ Hallu risk` si `hallucination_risk` non vide
-- ligne métriques compacte : *actionable / pratique / compression /
-  jargon / concret*
-
-La carte du #1 reçoit la classe `winner`. La baseline (Claude brut)
-reçoit la classe `baseline` indépendamment de son rang.
+Chaque carte porte : `#rang` + label + note `XX.X/20` colorée via
+`gradeClass(grade)` ; bande verte `✓ Forts` (chips, 1–3) ; bande orange
+`✗ Faibles` (chips, 1–3) ; flag jaune `▣ Bruit détecté` si non vide ;
+flag rouge `⚠ Hallu risk` si non vide ; ligne métriques compacte
+*actionable / pratique / compression / jargon / concret*. Le #1 reçoit
+la classe `winner`, la baseline la classe `baseline` quel que soit son
+rang.
 
 ## 4. Honest limits
 
-- **LLM-as-judge** : le juge est Claude. Auto-préférence et biais de
-  cohérence stylistique restent réels, simplement déplacés d'un verdict
-  opaque vers une argumentation détaillée — qui peut elle-même être
-  biaisée.
-- **Grade /20 non calibré empiriquement** : le barème §2 de
-  `RESPONSE_GRADING_SYSTEM.md` est imposé par prompt. Aucun étalonnage
-  inter-annotateurs, aucun dataset de référence. Deux runs successifs
-  sur la même question peuvent produire des notes différentes.
-- **Enforcement par prompt seul** : les règles « INTERDIT fascinant /
-  intéressant / élégant » et « OBLIGATOIRE pointer une faiblesse même
-  sur le winner » dépendent entièrement du respect du prompt par le
-  modèle. Aucun post-filtre ne rejette une justification non conforme.
-- **Profondeur dépendante du modèle** : Haiku produit des
-  `strengths` / `weaknesses` souvent superficiels ou redondants. Opus
-  est plus discriminant. Le user doit toujours relire les
-  justifications avant de leur faire confiance.
-- **JSON parsing tolérant mais faillible** : si le juge renvoie un
-  objet mal formé, `judge` vaut `null` et tout le bloc `rankingBlock`
-  retombe sur le fallback `runtime_superiority`.
+- **LLM-as-judge** : le juge est Claude — auto-préférence et biais
+  stylistique restent réels, déplacés d'un verdict opaque vers une
+  argumentation détaillée qui peut elle-même être biaisée.
+- **Grade /20 non calibré** : barème §2 de `RESPONSE_GRADING_SYSTEM`
+  imposé par prompt, sans étalonnage inter-annotateurs ni dataset.
+- **Enforcement par prompt seul** : règles « INTERDIT fascinant » et
+  « OBLIGATOIRE pointer une faiblesse même sur le winner » dépendent
+  du respect du prompt. Aucun post-filtre.
+- **Profondeur dépendante du modèle** : Haiku produit des chips
+  superficiels, Opus plus discriminant. Relecture user obligatoire.
+- **JSON parsing faillible** : objet mal formé → `judge = null` et
+  `rankingBlock` retombe sur le fallback `runtime_superiority`.

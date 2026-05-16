@@ -79,16 +79,12 @@ Le prompt empile trois protections contre une note tirée du chapeau :
 
 - **Barème prompt-only** : aucun étalonnage psychométrique, pas de
   dataset annoté humain, pas de cohérence inter-runs garantie.
-- **Note non reproductible** : la même question rejouée à 1 minute
-  d'intervalle peut produire 16.5 puis 17.5 selon la température du
-  modèle et l'ordre de présentation des candidats.
+- **Note non reproductible** : la même question rejouée peut produire
+  16.5 puis 17.5 selon la température et l'ordre des candidats.
 - **Échelle française biaisée vers le centre** : Claude tend à donner
-  des notes entre 13 et 17, rarement 19 ou 5. Le tri reste utile mais
-  l'écart absolu doit être lu avec prudence.
-- **Color coding subjectif** : les seuils 18 / 15 / 12 / 8 sont
-  cohérents avec une grille scolaire française, ils ne reflètent aucune
-  validation empirique.
-- **Pas de comparabilité inter-questions** : un 16/20 sur une question
-  BTP n'a pas la même signification qu'un 16/20 sur une question
-  médicale. Le tri n'est valide qu'à l'intérieur d'une même
-  comparaison.
+  13-17, rarement 19 ou 5. Tri utile mais écart absolu à lire avec
+  prudence.
+- **Color coding subjectif** : seuils 18 / 15 / 12 / 8 alignés sur la
+  grille scolaire française, sans validation empirique.
+- **Pas de comparabilité inter-questions** : un 16/20 BTP ≠ un 16/20
+  médical. Tri valide seulement à l'intérieur d'une même comparaison.
