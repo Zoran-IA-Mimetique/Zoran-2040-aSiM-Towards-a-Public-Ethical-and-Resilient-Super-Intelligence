@@ -64,10 +64,12 @@
 
   <main id="graph"></main>
 
-  <!-- Étiquette flottante de la loi-réponse (mission UX : visibilité intégrale) -->
+  <!-- Étiquette flottante enrichie : réponse multi-cadres + parents + cadres -->
   <div id="answer-label-overlay" aria-live="polite">
-    <span class="ans-id"></span>
-    <span class="ans-title"></span>
+    <div class="ans-id"></div>
+    <div class="ans-title"></div>
+    <div class="ans-frames"></div>
+    <div class="ans-parents"></div>
   </div>
 
   <section id="detail" class="hidden" aria-hidden="true" role="dialog" aria-labelledby="detail-title-mini">

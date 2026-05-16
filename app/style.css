@@ -552,7 +552,6 @@ body.sidebar-hidden #graph {
   border-bottom: 2px solid #ff6b6b;
 }
 #answer-label-overlay .ans-id {
-  display: block;
   font-family: ui-monospace, monospace;
   font-size: 11px;
   opacity: 0.90;
@@ -560,9 +559,77 @@ body.sidebar-hidden #graph {
   letter-spacing: 0.6px;
 }
 #answer-label-overlay .ans-title {
-  display: block;
   font-size: 16px;
   line-height: 1.35;
+  margin-bottom: 8px;
+}
+#answer-label-overlay .ans-frames {
+  border-top: 1px solid rgba(255,255,255,0.25);
+  padding-top: 8px;
+  margin-top: 4px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+#answer-label-overlay .ans-frames .ans-frames-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.85;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+#answer-label-overlay .ans-frames .ans-frame-row {
+  display: flex;
+  gap: 6px;
+  margin: 2px 0;
+}
+#answer-label-overlay .ans-frames .ans-frame-tier {
+  flex: 0 0 auto;
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: rgba(0,0,0,0.30);
+  letter-spacing: 0.5px;
+  align-self: flex-start;
+  margin-top: 1px;
+}
+#answer-label-overlay .ans-frames .ans-frame-tier.t-global       { color: #ffdf66; }
+#answer-label-overlay .ans-frames .ans-frame-tier.t-intermediate { color: #b8ffaa; }
+#answer-label-overlay .ans-frames .ans-frame-tier.t-local        { color: #aad4ff; }
+#answer-label-overlay .ans-frames .ans-frame-tier.t-proxies      { color: #d8aaff; }
+#answer-label-overlay .ans-frames .ans-frame-tier.t-limits       { color: #ffbbbb; }
+#answer-label-overlay .ans-frames .ans-frame-content {
+  flex: 1 1 auto;
+  color: rgba(255,255,255,0.95);
+}
+#answer-label-overlay .ans-parents {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255,255,255,0.25);
+  font-size: 10px;
+  text-align: left;
+  font-weight: 400;
+}
+#answer-label-overlay .ans-parents .ans-parents-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.85;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+#answer-label-overlay .ans-parents .ans-parent-id {
+  display: inline-block;
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 3px;
+  background: rgba(0,0,0,0.30);
+  margin: 2px 3px 0 0;
 }
 @keyframes zoran-label-fade-in {
   from { opacity: 0; transform: translate(-50%, -90%); }

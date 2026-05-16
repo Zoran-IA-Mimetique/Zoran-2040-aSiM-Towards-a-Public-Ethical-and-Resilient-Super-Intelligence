@@ -33,6 +33,11 @@ const MISSION = 'ZORAN_INT_V2_20260515';
 // ─────────────────────────── helpers ───────────────────────────
 function avg(a) { return a.length ? a.reduce((x,y)=>x+y,0) / a.length : 0; }
 function escAttr(s) { return String(s).replace(/"/g, '&quot;'); }
+function esc(s) {
+  return String(s ?? '')
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
 function escapeShort(s) {
   const t = String(s);
   return t.length > 30 ? t.slice(0, 28) + '…' : t;
@@ -563,6 +568,34 @@ function updateAnswerLabel() {
   if (idSpan.textContent !== state.answerLawId) {
     idSpan.textContent = state.answerLawId;
     titleSpan.textContent = state.answerContext?.law_title || node.title || '';
+    // Réponse cohérente multi-cadres : frames utilisés (mission)
+    const framesEl = overlay.querySelector('.ans-frames');
+    const parentsEl = overlay.querySelector('.ans-parents');
+    const mf = state.answerContext?.multiFrameAnswer;
+    if (mf && mf.tiers_used && mf.tiers_used.length > 0) {
+      const tierGlyph = { global:'◉', intermediate:'◆', local:'◈', proxies:'◇', limits:'⊘' };
+      const tierLabel = { global:'GLOBAL', intermediate:'INTER', local:'LOCAL', proxies:'PROXY', limits:'LIMITE' };
+      const rows = mf.tiers_used.slice(0, 5).map(tier => {
+        const items = mf[tier].slice(0, 2);
+        if (!items.length) return '';
+        const content = items.map(t => esc(t)).join(' · ');
+        return `<div class="ans-frame-row">
+          <span class="ans-frame-tier t-${tier}">${tierGlyph[tier]} ${tierLabel[tier]}</span>
+          <span class="ans-frame-content">${content}</span>
+        </div>`;
+      }).join('');
+      framesEl.innerHTML = `<div class="ans-frames-label">Réponse multi-cadres (${mf.tiers_used.length} cadres)</div>${rows}`;
+    } else {
+      framesEl.innerHTML = '';
+    }
+    // Lois parentes (filiation utilisée)
+    if (mf && mf.parents && mf.parents.length > 0) {
+      const chips = mf.parents.slice(0, 6).map(pid =>
+        `<span class="ans-parent-id">${esc(pid)}</span>`).join('');
+      parentsEl.innerHTML = `<div class="ans-parents-label">Lois parentes (${mf.parents.length})</div>${chips}`;
+    } else {
+      parentsEl.innerHTML = '';
+    }
   }
   // Convert NDC to viewport pixels (offset au-dessus du mesh : ~radius * 3)
   const graphEl = document.getElementById('graph');
@@ -1485,11 +1518,24 @@ async function boot() {
     wireControls();
     // Mission RUNTIME_COGNITIVE_PATH_COMPETITION : chat bar + 6 routes
     // + mission REALTIME_ROUTE_VISUALIZATION : activer les routes dans le graphe
+    // + parentsMap pour répondre multi-cadres avec lois parentes
+    const parentsMap = new Map();
+    for (const e of (state.graph.links || state.graph.edges || [])) {
+      if (e.kind !== 'parent') continue;
+      const s = typeof e.source === 'object' ? e.source.id : e.source;
+      const t = typeof e.target === 'object' ? e.target.id : e.target;
+      // Convention edges parent : source = parent, target = child
+      // (vérifié dans laws.json : GHUC-002-a-i → GHUC-002-a means GHUC-002-a-i parent of GHUC-002-a)
+      // En réalité on collecte les DEUX sens pour robustesse
+      if (!parentsMap.has(t)) parentsMap.set(t, []);
+      parentsMap.get(t).push(s);
+    }
     wireChatBar(
       state.graph.nodes,
       id => selectNode(id, true),
       result => activateRoutes(result),
-      () => deactivateRoutes()
+      () => deactivateRoutes(),
+      parentsMap
     );
     setStatus();
     updateHistoryButtons();

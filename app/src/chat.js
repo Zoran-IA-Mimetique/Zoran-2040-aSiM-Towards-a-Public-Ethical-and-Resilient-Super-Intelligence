@@ -129,7 +129,36 @@ function oracleEliminate(s) {
   return fails;
 }
 
-export function compete(question, nodes) {
+// Stringify une entrée de cadre (peut être string ou objet { level, scope })
+function frameEntryText(e) {
+  if (!e) return '';
+  if (typeof e === 'string') return e;
+  if (typeof e === 'object') {
+    if (e.scope && e.level) return `${e.scope} (${e.level})`;
+    return e.scope || e.label || e.level || JSON.stringify(e);
+  }
+  return String(e);
+}
+
+// Compose la "réponse cohérente multi-cadres" à partir des frames de la loi
+function composeMultiFrameAnswer(node, parents) {
+  if (!node) return null;
+  const frames = node.frames || {};
+  const ans = {
+    global:       (frames.global       || []).map(frameEntryText).filter(Boolean),
+    intermediate: (frames.intermediate || []).map(frameEntryText).filter(Boolean),
+    local:        (frames.local        || []).map(frameEntryText).filter(Boolean),
+    proxies:      (frames.proxies      || []).map(frameEntryText).filter(Boolean),
+    limits:       (frames.limits       || []).map(frameEntryText).filter(Boolean),
+    parents:      parents || [],
+  };
+  const tiersUsed = ['global','intermediate','local','proxies','limits']
+    .filter(k => ans[k].length > 0);
+  ans.tiers_used = tiersUsed;
+  return ans;
+}
+
+export function compete(question, nodes, parentsMap) {
   const qTokens = tokens(question);
   // OFF-TOPIC DETECTION : si max topic_score sur tout le corpus < 0.10,
   // la question n'a aucune accroche lexicale dans ZORAN → on le dit
@@ -176,12 +205,21 @@ export function compete(question, nodes) {
   // THE answer = première loi du winner route (priority-ordered)
   // C'est l'étiquette qui répond à la question. Off-topic → null.
   const answerLawId = (!offTopic && winnerRoute) ? winnerRoute.laws_used[0] : null;
-  // Trouver le nœud complet pour cette loi
+  // Trouver le nœud complet pour cette loi + parents
   const answerNode = answerLawId ? nodes.find(n => n.id === answerLawId) : null;
+  const parents = answerNode
+    ? Array.from(new Set([
+        ...(answerNode.parent_laws || []),
+        ...((parentsMap && parentsMap.get(answerNode.id)) || []),
+      ]))
+    : [];
+  const multiFrame = answerNode ? composeMultiFrameAnswer(answerNode, parents) : null;
   const answerContext = answerNode ? {
     question,
     law_id: answerNode.id,
     law_title: answerNode.title,
+    law_description: answerNode.html_description || answerNode.description || '',
+    multiFrameAnswer: multiFrame,
     why: {
       winning_strategy: winnerRoute.label || winnerRoute.strategy,
       selection_score: winnerRoute.selection_score,
@@ -305,7 +343,7 @@ export function renderResults(result, onPickLaw) {
   });
 }
 
-export function wireChatBar(nodes, onPickLaw, onCompete, onClearRoutes) {
+export function wireChatBar(nodes, onPickLaw, onCompete, onClearRoutes, parentsMap) {
   const bar = document.getElementById('chat-bar');
   const input = document.getElementById('chat-input');
   const sendBtn = document.getElementById('chat-send');
@@ -318,7 +356,7 @@ export function wireChatBar(nodes, onPickLaw, onCompete, onClearRoutes) {
   function submit() {
     const q = (input.value || '').trim();
     if (!q) return;
-    const result = compete(q, nodes);
+    const result = compete(q, nodes, parentsMap);
     renderResults(result, onPickLaw);
     // Mission REALTIME_ROUTE_VISUALIZATION : activer les routes dans le graphe
     if (onCompete) onCompete(result);
