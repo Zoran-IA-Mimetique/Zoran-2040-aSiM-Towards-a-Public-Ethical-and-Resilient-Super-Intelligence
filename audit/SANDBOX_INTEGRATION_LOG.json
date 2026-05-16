@@ -1,0 +1,506 @@
+{
+  "mission_id": "ZORAN_REVERSIBLE_100_LAWS_PIPELINE_20260515",
+  "batch_id": "P4_REV_001",
+  "candidates_total": 112,
+  "integrated_count": 71,
+  "quarantined_count": 41,
+  "integrated": [
+    {
+      "id": "SBX-ULG-101",
+      "family": "ULG",
+      "parent": [],
+      "compositions_count": 3,
+      "_sandbox_origin": "P4_REV_001_3baafb8c717d"
+    },
+    {
+      "id": "SBX-ULG-102",
+      "family": "ULG",
+      "parent": [],
+      "compositions_count": 3,
+      "_sandbox_origin": "P4_REV_001_5ee4a8507e37"
+    },
+    {
+      "id": "SBX-ULG-103",
+      "family": "ULG",
+      "parent": [],
+      "compositions_count": 4,
+      "_sandbox_origin": "P4_REV_001_fd8abae80ac8"
+    },
+    {
+      "id": "SBX-ULG-108",
+      "family": "ULG",
+      "parent": [],
+      "compositions_count": 4,
+      "_sandbox_origin": "P4_REV_001_ab0f135efe74"
+    },
+    {
+      "id": "SBX-ULG-110",
+      "family": "ULG",
+      "parent": [],
+      "compositions_count": 13,
+      "_sandbox_origin": "P4_REV_001_4cfa2a4fe509"
+    },
+    {
+      "id": "SBX-ULG-112",
+      "family": "ULG",
+      "parent": [],
+      "compositions_count": 3,
+      "_sandbox_origin": "P4_REV_001_e89e3abdbb07"
+    },
+    {
+      "id": "SBX-DVE-101",
+      "family": "DVE",
+      "parent": [],
+      "compositions_count": 5,
+      "_sandbox_origin": "P4_REV_001_489fd3d44c09"
+    },
+    {
+      "id": "SBX-DVE-102",
+      "family": "DVE",
+      "parent": [],
+      "compositions_count": 5,
+      "_sandbox_origin": "P4_REV_001_8a0629a1a512"
+    },
+    {
+      "id": "SBX-DVE-105",
+      "family": "DVE",
+      "parent": [],
+      "compositions_count": 10,
+      "_sandbox_origin": "P4_REV_001_3fb9c345d52c"
+    },
+    {
+      "id": "SBX-DVE-107",
+      "family": "DVE",
+      "parent": [],
+      "compositions_count": 3,
+      "_sandbox_origin": "P4_REV_001_4e8a0d4804cd"
+    },
+    {
+      "id": "SBX-DVE-108",
+      "family": "DVE",
+      "parent": [],
+      "compositions_count": 4,
+      "_sandbox_origin": "P4_REV_001_9763bf822183"
+    },
+    {
+      "id": "SBX-DVE-109",
+      "family": "DVE",
+      "parent": [],
+      "compositions_count": 4,
+      "_sandbox_origin": "P4_REV_001_ca65541efefb"
+    },
+    {
+      "id": "SBX-DVE-110",
+      "family": "DVE",
+      "parent": [],
+      "compositions_count": 5,
+      "_sandbox_origin": "P4_REV_001_3e9d892da214"
+    },
+    {
+      "id": "SBX-DVE-111",
+      "family": "DVE",
+      "parent": [],
+      "compositions_count": 3,
+      "_sandbox_origin": "P4_REV_001_94dc75a19e57"
+    },
+    {
+      "id": "SBX-DVE-112",
+      "family": "DVE",
+      "parent": [],
+      "compositions_count": 10,
+      "_sandbox_origin": "P4_REV_001_a8ffc1bde764"
+    },
+    {
+      "id": "SBX-UDE-101",
+      "family": "UDE",
+      "parent": [],
+      "compositions_count": 7,
+      "_sandbox_origin": "P4_REV_001_5b61d731b2d8"
+    },
+    {
+      "id": "SBX-UDE-102",
+      "family": "UDE",
+      "parent": [],
+      "compositions_count": 10,
+      "_sandbox_origin": "P4_REV_001_b463d4cf00f6"
+    },
+    {
+      "id": "SBX-UDE-105",
+      "family": "UDE",
+      "parent": [],
+      "compositions_count": 7,
+      "_sandbox_origin": "P4_REV_001_0a6de36b3b8b"
+    },
+    {
+      "id": "SBX-UDE-106",
+      "family": "UDE",
+      "parent": [],
+      "compositions_count": 4,
+      "_sandbox_origin": "P4_REV_001_f31695a1da0f"
+    },
+    {
+      "id": "SBX-UDE-107",
+      "family": "UDE",
+      "parent": [],
+      "compositions_count": 4,
+      "_sandbox_origin": "P4_REV_001_f0f544e60201"
+    },
+    {
+      "id": "SBX-UDE-108",
+      "family": "UDE",
+      "parent": [],
+      "compositions_count": 22,
+      "_sandbox_origin": "P4_REV_001_3cdb8018850a"
+    },
+    {
+      "id": "SBX-UDE-110",
+      "family": "UDE",
+      "parent": [],
+      "compositions_count": 22,
+      "_sandbox_origin": "P4_REV_001_ecb51cb70901"
+    },
+    {
+      "id": "SBX-UDE-111",
+      "family": "UDE",
+      "parent": [],
+      "compositions_count": 10,
+      "_sandbox_origin": "P4_REV_001_f2dbfcd649e5"
+    },
+    {
+      "id": "SBX-GHUC-101",
+      "family": "GHUC",
+      "parent": [],
+      "compositions_count": 4,
+      "_sandbox_origin": "P4_REV_001_5405836aac6a"
+    },
+    {
+      "id": "SBX-GHUC-103",
+      "family": "GHUC",
+      "parent": [],
+      "compositions_count": 3,
+      "_sandbox_origin": "P4_REV_001_c9c1527c7cbb"
+    },
+    {
+      "id": "SBX-GHUC-106",
+      "family": "GHUC",
+      "parent": [],
+      "compositions_count": 12,
+      "_sandbox_origin": "P4_REV_001_4e5f7651f255"
+    },
+    {
+      "id": "SBX-GHUC-107",
+      "family": "GHUC",
+      "parent": [],
+      "compositions_count": 4,
+      "_sandbox_origin": "P4_REV_001_ec994241c5e0"
+    },
+    {
+      "id": "SBX-GHUC-111",
+      "family": "GHUC",
+      "parent": [],
+      "compositions_count": 4,
+      "_sandbox_origin": "P4_REV_001_5f7134d4b2dc"
+    },
+    {
+      "id": "SBX-GHUC-112",
+      "family": "GHUC",
+      "parent": [],
+      "compositions_count": 5,
+      "_sandbox_origin": "P4_REV_001_f3cbdf606f32"
+    },
+    {
+      "id": "SBX-WP11-102",
+      "family": "WP11",
+      "parent": [],
+      "compositions_count": 5,
+      "_sandbox_origin": "P4_REV_001_92e8cc64708e"
+    },
+    {
+      "id": "SBX-WP11-103",
+      "family": "WP11",
+      "parent": [],
+      "compositions_count": 6,
+      "_sandbox_origin": "P4_REV_001_8e5bd21e65b6"
+    },
+    {
+      "id": "SBX-WP11-104",
+      "family": "WP11",
+      "parent": [],
+      "compositions_count": 5,
+      "_sandbox_origin": "P4_REV_001_46cc7c64cd49"
+    },
+    {
+      "id": "SBX-WP11-106",
+      "family": "WP11",
+      "parent": [],
+      "compositions_count": 5,
+      "_sandbox_origin": "P4_REV_001_047bdca53047"
+    },
+    {
+      "id": "SBX-WP11-108",
+      "family": "WP11",
+      "parent": [],
+      "compositions_count": 5,
+      "_sandbox_origin": "P4_REV_001_f4012e2e4604"
+    },
+    {
+      "id": "SBX-WP11-110",
+      "family": "WP11",
+      "parent": [],
+      "compositions_count": 13,
+      "_sandbox_origin": "P4_REV_001_f9652efe8d06"
+    },
+    {
+      "id": "SBX-WP11-112",
+      "family": "WP11",
+      "parent": [],
+      "compositions_count": 5,
+      "_sandbox_origin": "P4_REV_001_4b514ce73254"
+    },
+    {
+      "id": "SBX-WP12-103",
+      "family": "WP12",
+      "parent": [],
+      "compositions_count": 27,
+      "_sandbox_origin": "P4_REV_001_b58e0c749ac6"
+    },
+    {
+      "id": "SBX-WP12-104",
+      "family": "WP12",
+      "parent": [],
+      "compositions_count": 27,
+      "_sandbox_origin": "P4_REV_001_06789eb77c19"
+    },
+    {
+      "id": "SBX-WP12-105",
+      "family": "WP12",
+      "parent": [],
+      "compositions_count": 5,
+      "_sandbox_origin": "P4_REV_001_66afcffca807"
+    },
+    {
+      "id": "SBX-WP12-109",
+      "family": "WP12",
+      "parent": [],
+      "compositions_count": 3,
+      "_sandbox_origin": "P4_REV_001_d2e7a13129d7"
+    },
+    {
+      "id": "SBX-WP12-110",
+      "family": "WP12",
+      "parent": [],
+      "compositions_count": 27,
+      "_sandbox_origin": "P4_REV_001_091e9e76f6f3"
+    },
+    {
+      "id": "SBX-WP12-111",
+      "family": "WP12",
+      "parent": [],
+      "compositions_count": 27,
+      "_sandbox_origin": "P4_REV_001_38b42a1ce85c"
+    },
+    {
+      "id": "SBX-WP12-112",
+      "family": "WP12",
+      "parent": [],
+      "compositions_count": 6,
+      "_sandbox_origin": "P4_REV_001_e379669ae35b"
+    },
+    {
+      "id": "SBX-SDE-101",
+      "family": "SDE",
+      "parent": [],
+      "compositions_count": 6,
+      "_sandbox_origin": "P4_REV_001_a6ed249686df"
+    },
+    {
+      "id": "SBX-SDE-102",
+      "family": "SDE",
+      "parent": [],
+      "compositions_count": 6,
+      "_sandbox_origin": "P4_REV_001_44b7fca1eb15"
+    },
+    {
+      "id": "SBX-SDE-103",
+      "family": "SDE",
+      "parent": [],
+      "compositions_count": 3,
+      "_sandbox_origin": "P4_REV_001_413b166e4da6"
+    },
+    {
+      "id": "SBX-SDE-104",
+      "family": "SDE",
+      "parent": [],
+      "compositions_count": 4,
+      "_sandbox_origin": "P4_REV_001_f422975ab830"
+    },
+    {
+      "id": "SBX-SDE-106",
+      "family": "SDE",
+      "parent": [],
+      "compositions_count": 6,
+      "_sandbox_origin": "P4_REV_001_5a317910f6e8"
+    },
+    {
+      "id": "SBX-SDE-107",
+      "family": "SDE",
+      "parent": [],
+      "compositions_count": 6,
+      "_sandbox_origin": "P4_REV_001_cd4ddd291b2c"
+    },
+    {
+      "id": "SBX-SDE-109",
+      "family": "SDE",
+      "parent": [],
+      "compositions_count": 8,
+      "_sandbox_origin": "P4_REV_001_682855ee534b"
+    },
+    {
+      "id": "SBX-SDE-112",
+      "family": "SDE",
+      "parent": [],
+      "compositions_count": 6,
+      "_sandbox_origin": "P4_REV_001_7297c9129235"
+    },
+    {
+      "id": "SBX-PAL-101",
+      "family": "PAL",
+      "parent": [],
+      "compositions_count": 3,
+      "_sandbox_origin": "P4_REV_001_729c86ffec67"
+    },
+    {
+      "id": "SBX-PAL-102",
+      "family": "PAL",
+      "parent": [],
+      "compositions_count": 3,
+      "_sandbox_origin": "P4_REV_001_a812d45eaea2"
+    },
+    {
+      "id": "SBX-PAL-103",
+      "family": "PAL",
+      "parent": [],
+      "compositions_count": 3,
+      "_sandbox_origin": "P4_REV_001_c3584b183fef"
+    },
+    {
+      "id": "SBX-PAL-106",
+      "family": "PAL",
+      "parent": [],
+      "compositions_count": 3,
+      "_sandbox_origin": "P4_REV_001_5c66f58d70b3"
+    },
+    {
+      "id": "SBX-PAL-107",
+      "family": "PAL",
+      "parent": [],
+      "compositions_count": 3,
+      "_sandbox_origin": "P4_REV_001_500f7ae1fe8f"
+    },
+    {
+      "id": "SBX-WP12-113",
+      "family": "WP12",
+      "parent": [],
+      "compositions_count": 5,
+      "_sandbox_origin": "P4_REV_001_2dcbfda3617b"
+    },
+    {
+      "id": "SBX-UDE-113",
+      "family": "UDE",
+      "parent": [],
+      "compositions_count": 22,
+      "_sandbox_origin": "P4_REV_001_76741be07000"
+    },
+    {
+      "id": "SBX-DVE-113",
+      "family": "DVE",
+      "parent": [],
+      "compositions_count": 4,
+      "_sandbox_origin": "P4_REV_001_9fa041b30673"
+    },
+    {
+      "id": "SBX-SDE-113",
+      "family": "SDE",
+      "parent": [],
+      "compositions_count": 4,
+      "_sandbox_origin": "P4_REV_001_b0561b778ea6"
+    },
+    {
+      "id": "SBX-PAL-109",
+      "family": "PAL",
+      "parent": [],
+      "compositions_count": 3,
+      "_sandbox_origin": "P4_REV_001_ad0f1b9c7555"
+    },
+    {
+      "id": "SBX-ULG-113",
+      "family": "ULG",
+      "parent": [],
+      "compositions_count": 13,
+      "_sandbox_origin": "P4_REV_001_6c4db659f632"
+    },
+    {
+      "id": "SBX-GHUC-114",
+      "family": "GHUC",
+      "parent": [],
+      "compositions_count": 4,
+      "_sandbox_origin": "P4_REV_001_326f41068e39"
+    },
+    {
+      "id": "SBX-WP12-114",
+      "family": "WP12",
+      "parent": [],
+      "compositions_count": 27,
+      "_sandbox_origin": "P4_REV_001_8aed87c90670"
+    },
+    {
+      "id": "SBX-UDE-114",
+      "family": "UDE",
+      "parent": [],
+      "compositions_count": 10,
+      "_sandbox_origin": "P4_REV_001_698e7536faf5"
+    },
+    {
+      "id": "SBX-DVE-114",
+      "family": "DVE",
+      "parent": [],
+      "compositions_count": 3,
+      "_sandbox_origin": "P4_REV_001_28074b50e156"
+    },
+    {
+      "id": "SBX-SDE-114",
+      "family": "SDE",
+      "parent": [],
+      "compositions_count": 4,
+      "_sandbox_origin": "P4_REV_001_1b92b69181ae"
+    },
+    {
+      "id": "SBX-ULG-114",
+      "family": "ULG",
+      "parent": [],
+      "compositions_count": 13,
+      "_sandbox_origin": "P4_REV_001_9e9449e0b3a7"
+    },
+    {
+      "id": "SBX-UDE-115",
+      "family": "UDE",
+      "parent": [],
+      "compositions_count": 22,
+      "_sandbox_origin": "P4_REV_001_a8e5a19c505c"
+    },
+    {
+      "id": "SBX-DVE-115",
+      "family": "DVE",
+      "parent": [],
+      "compositions_count": 3,
+      "_sandbox_origin": "P4_REV_001_4fa418d3705e"
+    },
+    {
+      "id": "SBX-SDE-115",
+      "family": "SDE",
+      "parent": [],
+      "compositions_count": 3,
+      "_sandbox_origin": "P4_REV_001_3322aebfcf31"
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "mission_id": "ZORAN_RUNTIME_INGESTION_AND_ORACLE_STRESS_TEST_20260515",
+  "timestamp": "2026-05-15T21:00:00+02:00",
+  "total_chaos_cases": 10,
+  "pass_count": 10,
+  "fail_count": 0,
+  "pass_rate": 1.0,
+  "verdict": "GREEN",
+  "canonical_unchanged": true,
+  "results": [
+    {
+      "case_name": "CHAOS-CONTRADICTION",
+      "expected": "should_warn_false_coherence",
+      "admitted_by_pipeline": false,
+      "phase_failed": 4,
+      "rejection_reason": "compositions 1 < 3",
+      "chaos_signals_detected": [
+        "WP11-005 false_coherence gap = 0.65"
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "case_name": "CHAOS-PSEUDO-UNIVERSAL",
+      "expected": "should_reject_phase_2_limits_empty",
+      "admitted_by_pipeline": false,
+      "phase_failed": 2,
+      "rejection_reason": "intermediate or limits empty",
+      "chaos_signals_detected": [
+        "pseudo-universal claim"
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "case_name": "CHAOS-FAKE-ATTRACTOR",
+      "expected": "should_admit_but_oracle_warn_R_ATR_1",
+      "admitted_by_pipeline": false,
+      "phase_failed": 4,
+      "rejection_reason": "compositions 1 < 3",
+      "chaos_signals_detected": [
+        "R-ATR-1: μ0 tier with insufficient compositions (0)"
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "case_name": "CHAOS-FAKE-INVARIANT",
+      "expected": "should_admit_but_signal_suspicious",
+      "admitted_by_pipeline": true,
+      "phase_failed": null,
+      "rejection_reason": null,
+      "chaos_signals_detected": [
+        "suspicious invariant: 'invariant universel et omniprésent dans tout cadre'"
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "case_name": "CHAOS-CYCLE",
+      "expected": "should_reject_phase_1_self_loop",
+      "admitted_by_pipeline": false,
+      "phase_failed": 1,
+      "rejection_reason": "parent 'CHAOS-005' unknown",
+      "chaos_signals_detected": [
+        "self-loop parent"
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "case_name": "CHAOS-FAKE-FAMILY",
+      "expected": "should_reject_phase_1_family",
+      "admitted_by_pipeline": false,
+      "phase_failed": 1,
+      "rejection_reason": "family 'MAGIC' not canonical",
+      "chaos_signals_detected": [],
+      "verdict": "PASS"
+    },
+    {
+      "case_name": "CHAOS-ORPHAN",
+      "expected": "should_reject_phase_4_compositions",
+      "admitted_by_pipeline": false,
+      "phase_failed": 4,
+      "rejection_reason": "compositions 0 < 3",
+      "chaos_signals_detected": [],
+      "verdict": "PASS"
+    },
+    {
+      "case_name": "CHAOS-MALFORMED-FRAMES",
+      "expected": "should_reject_phase_2_level_invalid",
+      "admitted_by_pipeline": false,
+      "phase_failed": 2,
+      "rejection_reason": "level invalid",
+      "chaos_signals_detected": [],
+      "verdict": "PASS"
+    },
+    {
+      "case_name": "CHAOS-SHORT-DESC",
+      "expected": "should_reject_phase_3_description",
+      "admitted_by_pipeline": false,
+      "phase_failed": 3,
+      "rejection_reason": "description short",
+      "chaos_signals_detected": [],
+      "verdict": "PASS"
+    },
+    {
+      "case_name": "CHAOS-NO-GROUNDING",
+      "expected": "should_reject_phase_3_grounding",
+      "admitted_by_pipeline": false,
+      "phase_failed": 3,
+      "rejection_reason": "no grounding",
+      "chaos_signals_detected": [],
+      "verdict": "PASS"
+    }
+  ]
+}

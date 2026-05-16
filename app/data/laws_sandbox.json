@@ -1,0 +1,5080 @@
+{
+  "version": "SBX_v1.0_20260515",
+  "mission_id": "ZORAN_REVERSIBLE_100_LAWS_PIPELINE_20260515",
+  "schema": "sandbox_reversible_v1",
+  "description": "DiscoverySandbox — lois en incubation. NON chargée par ZenRuntime. Fichier séparé physiquement de laws.json (CanonicalGraph) pour garantir l'isolation runtime selon ORACLE_CORE_SPEC R-CORE-1.",
+  "promotion_policy": "Promotion vers laws.json uniquement via Oracle dryrun (cf. tools/sandbox_pipeline.py promote)",
+  "demotion_policy": "Démotion canonical → sandbox via Oracle si dégradation HS (cf. tools/sandbox_pipeline.py demote)",
+  "nodes": [
+    {
+      "id": "SBX-ULG-102",
+      "title": "Champ tensoriel latent",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "tenseur",
+        "latent"
+      ],
+      "examples": [
+        "représentation par tenseurs d'ordre 3+"
+      ],
+      "html_description": "Représentation latente par champ tensoriel d'ordre supérieur (au-delà des matrices).",
+      "equations": [
+        "T_latent ∈ R^{d_1×d_2×d_3}"
+      ],
+      "S_local": 0.76,
+      "S_global": 0.64,
+      "stability": "exploratoire",
+      "weight": 0.48,
+      "frames": {
+        "local": [
+          "tenseur T à plusieurs modes"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG"
+          },
+          {
+            "level": "macro",
+            "scope": "algèbre multilinéaire"
+          }
+        ],
+        "global": [
+          "espace tensoriel global"
+        ],
+        "proxies": [
+          "décomposition tucker/CP"
+        ],
+        "limits": [
+          "coût stockage croissant",
+          "interprétation difficile"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_5ee4a8507e37",
+      "_compositions_count": 3,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 3,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-ULG-103",
+      "title": "Continuum lexical fluide",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "continuum",
+        "lexique"
+      ],
+      "examples": [
+        "graduation continue entre concepts proches"
+      ],
+      "html_description": "Représentation continue (non-discrète) de l'espace lexical.",
+      "equations": [
+        "lex_continuum ⊂ R^d, distance(x,y) graduée"
+      ],
+      "S_local": 0.74,
+      "S_global": 0.62,
+      "stability": "exploratoire",
+      "weight": 0.46,
+      "frames": {
+        "local": [
+          "paire concepts (x,y)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG"
+          },
+          {
+            "level": "macro",
+            "scope": "sémantique vectorielle"
+          }
+        ],
+        "global": [
+          "topologie continue lexicale"
+        ],
+        "proxies": [
+          "interpolation linéaire / géodésique"
+        ],
+        "limits": [
+          "pas toujours bien défini sur concepts disjoints"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_fd8abae80ac8",
+      "_compositions_count": 4,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 4,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-ULG-108",
+      "title": "Symétrie sémantique latente",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "symétrie",
+        "sémantique"
+      ],
+      "examples": [
+        "antonymes occupant positions symétriques"
+      ],
+      "html_description": "Symétrie sémantique observable dans l'espace latent (antonymes ≈ opposés).",
+      "equations": [
+        "antonym(x) ↔ -emb(x) (modulo offset)"
+      ],
+      "S_local": 0.71,
+      "S_global": 0.59,
+      "stability": "exploratoire",
+      "weight": 0.43,
+      "frames": {
+        "local": [
+          "paire d'antonymes"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG"
+          },
+          {
+            "level": "macro",
+            "scope": "sémantique structurelle"
+          }
+        ],
+        "global": [
+          "groupe de symétries sémantiques"
+        ],
+        "proxies": [
+          "test sur paires antonymes connus"
+        ],
+        "limits": [
+          "pas universel — antonymes contextuels"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_ab0f135efe74",
+      "_compositions_count": 4,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 4,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-ULG-110",
+      "title": "Embedding causal direct",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "embedding",
+        "causal"
+      ],
+      "examples": [
+        "emb capturant relations causales explicitement"
+      ],
+      "html_description": "Embedding asymétrique encodant la directionnalité causale.",
+      "equations": [
+        "emb_causal(A→B) ≠ emb_causal(B→A)"
+      ],
+      "S_local": 0.74,
+      "S_global": 0.62,
+      "stability": "exploratoire",
+      "weight": 0.46,
+      "frames": {
+        "local": [
+          "paire causale (A,B)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG"
+          },
+          {
+            "level": "macro",
+            "scope": "causalité"
+          }
+        ],
+        "global": [
+          "graphe causal global"
+        ],
+        "proxies": [
+          "test sur paires causales connues"
+        ],
+        "limits": [
+          "causalité non observable directement"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_4cfa2a4fe509",
+      "_compositions_count": 13,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 13,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-ULG-112",
+      "title": "Quasi-isomorphisme inter-modèles",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "isomorphisme",
+        "inter-modèles"
+      ],
+      "examples": [
+        "alignement quasi-iso entre embeddings GPT et Claude"
+      ],
+      "html_description": "Alignement quasi-isomorphique entre espaces d'embeddings de modèles distincts.",
+      "equations": [
+        "align(M1, M2) → R: R·emb_M1 ≈ emb_M2 (modulo ε)"
+      ],
+      "S_local": 0.76,
+      "S_global": 0.64,
+      "stability": "exploratoire",
+      "weight": 0.48,
+      "frames": {
+        "local": [
+          "paire de modèles"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG"
+          },
+          {
+            "level": "macro",
+            "scope": "alignement représentationnel"
+          }
+        ],
+        "global": [
+          "champ d'alignements globaux"
+        ],
+        "proxies": [
+          "procrustes ou linear probing"
+        ],
+        "limits": [
+          "alignement parfait impossible"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_e89e3abdbb07",
+      "_compositions_count": 3,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 3,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-DVE-101",
+      "title": "Variant programmatique vérifié",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "variant",
+        "programmation"
+      ],
+      "examples": [
+        "variantes générées avec preuve formelle de correction"
+      ],
+      "html_description": "Variantes programmatiques accompagnées d'une preuve formelle.",
+      "equations": [
+        "variant_v(prog) ∧ verified(v)"
+      ],
+      "S_local": 0.8,
+      "S_global": 0.68,
+      "stability": "exploratoire",
+      "weight": 0.55,
+      "frames": {
+        "local": [
+          "variante candidate avec preuve"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          },
+          {
+            "level": "macro",
+            "scope": "program verification"
+          }
+        ],
+        "global": [
+          "espace des variantes vérifiées"
+        ],
+        "proxies": [
+          "vérificateur formel sur DSL"
+        ],
+        "limits": [
+          "coût preuve élevé",
+          "limité aux DSL formels"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_489fd3d44c09",
+      "_compositions_count": 5,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 5,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-DVE-102",
+      "title": "Mutation sémantique préservante",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "mutation",
+        "sémantique"
+      ],
+      "examples": [
+        "réécriture préservant le sens (paraphrase)"
+      ],
+      "html_description": "Mutation textuelle préservant strictement le sens sémantique.",
+      "equations": [
+        "mutate(x) → x' tel que sense(x) = sense(x')"
+      ],
+      "S_local": 0.78,
+      "S_global": 0.66,
+      "stability": "exploratoire",
+      "weight": 0.52,
+      "frames": {
+        "local": [
+          "texte x à muter"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          },
+          {
+            "level": "macro",
+            "scope": "paraphrase"
+          }
+        ],
+        "global": [
+          "espace de paraphrases admissibles"
+        ],
+        "proxies": [
+          "NLI bidirectionnel"
+        ],
+        "limits": [
+          "sens préservé approximativement"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_8a0629a1a512",
+      "_compositions_count": 5,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 5,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-DVE-105",
+      "title": "Variant streaming différentiel",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "streaming",
+        "différentiel"
+      ],
+      "examples": [
+        "streaming token-par-token avec validation incrémentale"
+      ],
+      "html_description": "Streaming génératif avec validation différentielle à chaque token.",
+      "equations": [
+        "validate(prefix) à chaque ajout"
+      ],
+      "S_local": 0.75,
+      "S_global": 0.63,
+      "stability": "exploratoire",
+      "weight": 0.49,
+      "frames": {
+        "local": [
+          "préfixe en construction"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          }
+        ],
+        "global": [
+          "politique streaming systémique"
+        ],
+        "proxies": [
+          "validateur incrémental"
+        ],
+        "limits": [
+          "overhead par token"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_3fb9c345d52c",
+      "_compositions_count": 10,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 10,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-DVE-107",
+      "title": "Variant temporel auto-corrigé",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "temporel",
+        "auto-correction"
+      ],
+      "examples": [
+        "variante révisée si erreur détectée a posteriori"
+      ],
+      "html_description": "Auto-correction temporelle de variante détectée erronée.",
+      "equations": [
+        "revise(v_t, error) → v_{t+1}"
+      ],
+      "S_local": 0.74,
+      "S_global": 0.62,
+      "stability": "exploratoire",
+      "weight": 0.48,
+      "frames": {
+        "local": [
+          "variante v_t et erreur"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          }
+        ],
+        "global": [
+          "politique auto-correction globale"
+        ],
+        "proxies": [
+          "détection erreur post-hoc"
+        ],
+        "limits": [
+          "coût mémoire historique"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_4e8a0d4804cd",
+      "_compositions_count": 3,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 3,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-DVE-108",
+      "title": "Variant à coût computationnel borné",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "coût",
+        "borne"
+      ],
+      "examples": [
+        "max FLOPS par variante générée"
+      ],
+      "html_description": "Borne stricte sur le coût computationnel par variante.",
+      "equations": [
+        "FLOPS(v) ≤ FLOPS_max"
+      ],
+      "S_local": 0.79,
+      "S_global": 0.67,
+      "stability": "exploratoire",
+      "weight": 0.53,
+      "frames": {
+        "local": [
+          "variante v et budget"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          }
+        ],
+        "global": [
+          "politique coût globale"
+        ],
+        "proxies": [
+          "compteur FLOPS"
+        ],
+        "limits": [
+          "FLOPS_max arbitraire"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_9763bf822183",
+      "_compositions_count": 4,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 4,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-DVE-109",
+      "title": "Variant à priorité multi-objectif",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "multi-objectif",
+        "priorité"
+      ],
+      "examples": [
+        "score variant pondéré par 5 objectifs"
+      ],
+      "html_description": "Score variant multi-objectif avec pondération par priorité.",
+      "equations": [
+        "score = Σ w_i · obj_i, w priorité"
+      ],
+      "S_local": 0.74,
+      "S_global": 0.62,
+      "stability": "exploratoire",
+      "weight": 0.48,
+      "frames": {
+        "local": [
+          "variante et objectifs"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          }
+        ],
+        "global": [
+          "frontière Pareto globale"
+        ],
+        "proxies": [
+          "recherche pondérée"
+        ],
+        "limits": [
+          "pondérations subjectives"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_ca65541efefb",
+      "_compositions_count": 4,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 4,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-DVE-110",
+      "title": "Élimination par dominance",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "dominance",
+        "élimination"
+      ],
+      "examples": [
+        "variant strictement dominé éliminé"
+      ],
+      "html_description": "Élimination automatique des variantes Pareto-dominées.",
+      "equations": [
+        "if v dominated by v' on all obj ⇒ prune(v)"
+      ],
+      "S_local": 0.77,
+      "S_global": 0.65,
+      "stability": "exploratoire",
+      "weight": 0.51,
+      "frames": {
+        "local": [
+          "paire de variantes"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          }
+        ],
+        "global": [
+          "frontière Pareto"
+        ],
+        "proxies": [
+          "test dominance pairwise"
+        ],
+        "limits": [
+          "dominance stricte rare"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_3e9d892da214",
+      "_compositions_count": 5,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 5,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-DVE-111",
+      "title": "Variant stabilité robustesse",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "stabilité",
+        "robustesse"
+      ],
+      "examples": [
+        "variants stables sous petites perturbations input"
+      ],
+      "html_description": "Variantes Lipschitz-robustes aux perturbations d'input.",
+      "equations": [
+        "robust(v) ⟺ ‖v(x+δ) - v(x)‖ ≤ K·‖δ‖"
+      ],
+      "S_local": 0.78,
+      "S_global": 0.66,
+      "stability": "exploratoire",
+      "weight": 0.52,
+      "frames": {
+        "local": [
+          "variante v et perturbation"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          },
+          {
+            "level": "macro",
+            "scope": "robustness ML"
+          }
+        ],
+        "global": [
+          "politique robustesse globale"
+        ],
+        "proxies": [
+          "test adversarial"
+        ],
+        "limits": [
+          "constante K varie"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_94dc75a19e57",
+      "_compositions_count": 3,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 3,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-DVE-112",
+      "title": "Variant compositionnel hiérarchique",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "compositionnel",
+        "hiérarchique"
+      ],
+      "examples": [
+        "variants construits par composition de sous-variants"
+      ],
+      "html_description": "Construction hiérarchique de variants par composition de sous-variants.",
+      "equations": [
+        "v = compose(sub_v_1, sub_v_2)"
+      ],
+      "S_local": 0.75,
+      "S_global": 0.63,
+      "stability": "exploratoire",
+      "weight": 0.49,
+      "frames": {
+        "local": [
+          "sous-variants candidates"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          }
+        ],
+        "global": [
+          "espace compositionnel global"
+        ],
+        "proxies": [
+          "arbre de composition"
+        ],
+        "limits": [
+          "explosion combinatoire"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_a8ffc1bde764",
+      "_compositions_count": 10,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 10,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-UDE-101",
+      "title": "Retrieval avec re-ranking",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "retrieval",
+        "re-ranking"
+      ],
+      "examples": [
+        "1ère passe ANN puis re-rank par cross-encoder"
+      ],
+      "html_description": "Pipeline retrieval avec re-ranking par cross-encoder pour qualité.",
+      "equations": [
+        "docs = rerank(retrieve_ANN(q))"
+      ],
+      "S_local": 0.8,
+      "S_global": 0.68,
+      "stability": "exploratoire",
+      "weight": 0.55,
+      "frames": {
+        "local": [
+          "query"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "RAG advanced"
+          }
+        ],
+        "global": [
+          "politique retrieval globale"
+        ],
+        "proxies": [
+          "bi-encoder + cross-encoder"
+        ],
+        "limits": [
+          "coût latence rerank"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_5b61d731b2d8",
+      "_compositions_count": 7,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 7,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-UDE-102",
+      "title": "Mémoire active vs passive",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "mémoire",
+        "active"
+      ],
+      "examples": [
+        "mémoire active = consultée souvent ; passive = stockée"
+      ],
+      "html_description": "Distinction mémoire active (chaude) vs passive (froide) selon usage.",
+      "equations": [
+        "active(e) ⟺ access_count > θ_active"
+      ],
+      "S_local": 0.77,
+      "S_global": 0.65,
+      "stability": "exploratoire",
+      "weight": 0.51,
+      "frames": {
+        "local": [
+          "entrée mémoire"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          }
+        ],
+        "global": [
+          "politique tiering systémique"
+        ],
+        "proxies": [
+          "compteur d'access"
+        ],
+        "limits": [
+          "seuil θ_active arbitraire"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_b463d4cf00f6",
+      "_compositions_count": 10,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 10,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-UDE-105",
+      "title": "Self-improving retrieval",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "self-improving",
+        "retrieval"
+      ],
+      "examples": [
+        "retrieval s'améliore via feedback user"
+      ],
+      "html_description": "Retrieval qui s'améliore par feedback explicite ou implicite.",
+      "equations": [
+        "retrieve(q,t+1) = update(retrieve(q,t), feedback)"
+      ],
+      "S_local": 0.76,
+      "S_global": 0.64,
+      "stability": "exploratoire",
+      "weight": 0.5,
+      "frames": {
+        "local": [
+          "query + feedback"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "apprentissage en ligne"
+          }
+        ],
+        "global": [
+          "politique amélioration continue"
+        ],
+        "proxies": [
+          "online learning"
+        ],
+        "limits": [
+          "feedback bruité"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_0a6de36b3b8b",
+      "_compositions_count": 7,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 7,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-UDE-106",
+      "title": "Mémoire externe versionnée",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "mémoire",
+        "versionnée"
+      ],
+      "examples": [
+        "chaque entrée mémoire versionnée par snapshot"
+      ],
+      "html_description": "Mémoire externe avec versionnage per-entrée pour audit historique.",
+      "equations": [
+        "mem_v(e) = (e, version_t)"
+      ],
+      "S_local": 0.78,
+      "S_global": 0.66,
+      "stability": "exploratoire",
+      "weight": 0.52,
+      "frames": {
+        "local": [
+          "entrée mémoire et version"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "versionning"
+          }
+        ],
+        "global": [
+          "historique versions globales"
+        ],
+        "proxies": [
+          "snapshot par entrée"
+        ],
+        "limits": [
+          "coût stockage croissant"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_f31695a1da0f",
+      "_compositions_count": 4,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 4,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-UDE-107",
+      "title": "Indexation par signature comportementale",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "index",
+        "comportement"
+      ],
+      "examples": [
+        "lois indexées par signature comportementale"
+      ],
+      "html_description": "Indexation par signature comportementale (au lieu de juste id).",
+      "equations": [
+        "sig(L) = canonical_behavior_pattern(L)"
+      ],
+      "S_local": 0.73,
+      "S_global": 0.61,
+      "stability": "exploratoire",
+      "weight": 0.47,
+      "frames": {
+        "local": [
+          "loi L et son comportement"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          }
+        ],
+        "global": [
+          "registre signatures globales"
+        ],
+        "proxies": [
+          "pattern matching"
+        ],
+        "limits": [
+          "faux matches sur patterns simples"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_f0f544e60201",
+      "_compositions_count": 4,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 4,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-UDE-108",
+      "title": "Découverte par méta-paterns",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "méta-pattern",
+        "découverte"
+      ],
+      "examples": [
+        "pattern de patterns détecté → loi méta"
+      ],
+      "html_description": "Découverte de patterns émergents au niveau méta.",
+      "equations": [
+        "meta_pattern = pattern_of(patterns)"
+      ],
+      "S_local": 0.72,
+      "S_global": 0.6,
+      "stability": "exploratoire",
+      "weight": 0.46,
+      "frames": {
+        "local": [
+          "patterns observés"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "pattern recognition"
+          }
+        ],
+        "global": [
+          "taxonomie méta-patterns globale"
+        ],
+        "proxies": [
+          "clustering hiérarchique"
+        ],
+        "limits": [
+          "over-abstraction risque"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_3cdb8018850a",
+      "_compositions_count": 22,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 22,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-UDE-110",
+      "title": "Découverte par négation",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "négation",
+        "découverte"
+      ],
+      "examples": [
+        "lois apprises par contre-exemples"
+      ],
+      "html_description": "Apprentissage par négation : contre-exemples produisant contraintes.",
+      "equations": [
+        "learn_neg(¬X) → constraint(no X)"
+      ],
+      "S_local": 0.74,
+      "S_global": 0.62,
+      "stability": "exploratoire",
+      "weight": 0.48,
+      "frames": {
+        "local": [
+          "contre-exemple"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "apprentissage par négation"
+          }
+        ],
+        "global": [
+          "politique apprentissage globale"
+        ],
+        "proxies": [
+          "contraintes accumulées"
+        ],
+        "limits": [
+          "sur-restriction possible"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_ecb51cb70901",
+      "_compositions_count": 22,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 22,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-UDE-111",
+      "title": "Mémoire d'attention persistante",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "mémoire",
+        "attention"
+      ],
+      "examples": [
+        "mémorisation des focus attentionnels passés"
+      ],
+      "html_description": "Mémoire des focus attentionnels passés pour cohérence narrative.",
+      "equations": [
+        "mem_attn = [(focus_t, importance_t)]"
+      ],
+      "S_local": 0.73,
+      "S_global": 0.61,
+      "stability": "exploratoire",
+      "weight": 0.47,
+      "frames": {
+        "local": [
+          "focus + importance"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          }
+        ],
+        "global": [
+          "politique mémoire attention globale"
+        ],
+        "proxies": [
+          "log focus"
+        ],
+        "limits": [
+          "coût stockage"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_f2dbfcd649e5",
+      "_compositions_count": 10,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 10,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-GHUC-101",
+      "title": "Méta-consolidation des invariants",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "méta",
+        "invariants"
+      ],
+      "examples": [
+        "regroupement des invariants similaires entre familles"
+      ],
+      "html_description": "Consolidation méta-niveau des invariants similaires cross-famille.",
+      "equations": [
+        "consolidate_inv(invs) → meta_invariant"
+      ],
+      "S_local": 0.78,
+      "S_global": 0.66,
+      "stability": "exploratoire",
+      "weight": 0.52,
+      "frames": {
+        "local": [
+          "invariants observés"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          },
+          {
+            "level": "macro",
+            "scope": "WP-12"
+          }
+        ],
+        "global": [
+          "politique consolidation invariants"
+        ],
+        "proxies": [
+          "clustering invariants"
+        ],
+        "limits": [
+          "risque sur-abstraction"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_5405836aac6a",
+      "_compositions_count": 4,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 4,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-GHUC-103",
+      "title": "Audit cross-mission",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "audit",
+        "cross-mission"
+      ],
+      "examples": [
+        "cohérence entre lois P1, P2, P3"
+      ],
+      "html_description": "Audit de cohérence entre lois introduites par missions distinctes.",
+      "equations": [
+        "coherent_cross(L_P1, L_P2, L_P3)"
+      ],
+      "S_local": 0.79,
+      "S_global": 0.67,
+      "stability": "exploratoire",
+      "weight": 0.53,
+      "frames": {
+        "local": [
+          "lois cross-mission"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          },
+          {
+            "level": "macro",
+            "scope": "cross-mission"
+          }
+        ],
+        "global": [
+          "consistency globale cross-missions"
+        ],
+        "proxies": [
+          "scan compatibilité"
+        ],
+        "limits": [
+          "coût audit complet"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_c9c1527c7cbb",
+      "_compositions_count": 3,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 3,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-GHUC-106",
+      "title": "Consolidation par élection",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "consolidation",
+        "élection"
+      ],
+      "examples": [
+        "fusion choisie par vote pondéré entre alternatives"
+      ],
+      "html_description": "Consolidation entre alternatives par vote pondéré.",
+      "equations": [
+        "winner = argmax_v Σ w_i · vote_i(v)"
+      ],
+      "S_local": 0.72,
+      "S_global": 0.6,
+      "stability": "exploratoire",
+      "weight": 0.46,
+      "frames": {
+        "local": [
+          "alternatives + votes"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          },
+          {
+            "level": "macro",
+            "scope": "vote théorie"
+          }
+        ],
+        "global": [
+          "politique consensus systémique"
+        ],
+        "proxies": [
+          "agrégation votes"
+        ],
+        "limits": [
+          "paradoxe condorcet possible"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_4e5f7651f255",
+      "_compositions_count": 12,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 12,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-GHUC-107",
+      "title": "Audit hash-distribuée",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "audit",
+        "hash distribué"
+      ],
+      "examples": [
+        "chaque Oracle stocke hash chain de son audit"
+      ],
+      "html_description": "Audit avec chaîne de hashs distribuée (blockchain-like).",
+      "equations": [
+        "chain = [hash(audit_t) for t in T]"
+      ],
+      "S_local": 0.76,
+      "S_global": 0.64,
+      "stability": "exploratoire",
+      "weight": 0.5,
+      "frames": {
+        "local": [
+          "audit historique par Oracle"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          },
+          {
+            "level": "macro",
+            "scope": "tamper-evident"
+          }
+        ],
+        "global": [
+          "chaîne consensus globale"
+        ],
+        "proxies": [
+          "SHA chain"
+        ],
+        "limits": [
+          "coût synchro"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_ec994241c5e0",
+      "_compositions_count": 4,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 4,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-GHUC-111",
+      "title": "Méta-fusion par invariants partagés",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "méta-fusion",
+        "invariants"
+      ],
+      "examples": [
+        "fusion de 3+ lois partageant invariants similaires"
+      ],
+      "html_description": "Fusion N-aire de lois partageant un invariant commun.",
+      "equations": [
+        "fuse_n(L1,...,Ln) si ∩ invariants ≠ ∅"
+      ],
+      "S_local": 0.73,
+      "S_global": 0.61,
+      "stability": "exploratoire",
+      "weight": 0.47,
+      "frames": {
+        "local": [
+          "set de lois"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          }
+        ],
+        "global": [
+          "politique fusion N-aire"
+        ],
+        "proxies": [
+          "intersection invariants"
+        ],
+        "limits": [
+          "fusion irréversible coûteuse"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_5f7134d4b2dc",
+      "_compositions_count": 4,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 4,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-GHUC-112",
+      "title": "Audit auto-déclencheur",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "audit",
+        "auto-déclencheur"
+      ],
+      "examples": [
+        "audit lancé automatiquement après N modifications"
+      ],
+      "html_description": "Audit déclenché automatiquement après seuil de modifications.",
+      "equations": [
+        "auto_audit ⟺ count(modifs) > N_threshold"
+      ],
+      "S_local": 0.78,
+      "S_global": 0.66,
+      "stability": "exploratoire",
+      "weight": 0.52,
+      "frames": {
+        "local": [
+          "compteur modifs"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          }
+        ],
+        "global": [
+          "politique auto-audit globale"
+        ],
+        "proxies": [
+          "compteur incrémental"
+        ],
+        "limits": [
+          "seuil arbitraire"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_f3cbdf606f32",
+      "_compositions_count": 5,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 5,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-WP11-102",
+      "title": "Score de robustesse statistique",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "robustesse",
+        "statistique"
+      ],
+      "examples": [
+        "score robustesse via bootstrap"
+      ],
+      "html_description": "Robustesse statistique mesurée par quantile inférieur de bootstrap.",
+      "equations": [
+        "robust_score = quantile(boot_scores, 0.05)"
+      ],
+      "S_local": 0.78,
+      "S_global": 0.66,
+      "stability": "exploratoire",
+      "weight": 0.52,
+      "frames": {
+        "local": [
+          "jeu d'audits"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "statistical inference"
+          }
+        ],
+        "global": [
+          "distribution robustesse globale"
+        ],
+        "proxies": [
+          "bootstrap N=1000"
+        ],
+        "limits": [
+          "coût compute bootstrap"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_92e8cc64708e",
+      "_compositions_count": 5,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 5,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-WP11-103",
+      "title": "Détection biais d'audit",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "biais",
+        "audit"
+      ],
+      "examples": [
+        "alerte si auditeur favorise systematically certaines lois"
+      ],
+      "html_description": "Détection de biais systématique d'auditeur envers certaines lois.",
+      "equations": [
+        "bias = Σ favoritism_score(auditor, law)"
+      ],
+      "S_local": 0.74,
+      "S_global": 0.62,
+      "stability": "exploratoire",
+      "weight": 0.48,
+      "frames": {
+        "local": [
+          "auditeur + historique"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "fairness"
+          }
+        ],
+        "global": [
+          "politique anti-biais globale"
+        ],
+        "proxies": [
+          "test statistique d'indépendance"
+        ],
+        "limits": [
+          "faux positifs sur expertise réelle"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_8e5bd21e65b6",
+      "_compositions_count": 6,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 6,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-WP11-104",
+      "title": "Audit par triangulation",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "audit",
+        "triangulation"
+      ],
+      "examples": [
+        "3 méthodes différentes, accord requis"
+      ],
+      "html_description": "Validation par triangulation : 3 méthodes indépendantes en accord.",
+      "equations": [
+        "valid(L) ⟺ accord(method_1, method_2, method_3)"
+      ],
+      "S_local": 0.79,
+      "S_global": 0.67,
+      "stability": "exploratoire",
+      "weight": 0.53,
+      "frames": {
+        "local": [
+          "loi L et méthodes"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          }
+        ],
+        "global": [
+          "politique triangulation systémique"
+        ],
+        "proxies": [
+          "3 audits parallèles"
+        ],
+        "limits": [
+          "coût × 3"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_46cc7c64cd49",
+      "_compositions_count": 5,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 5,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-WP11-106",
+      "title": "Score de cohérence narrative",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "cohérence",
+        "narrative"
+      ],
+      "examples": [
+        "cohérence des outputs au cours d'une session"
+      ],
+      "html_description": "Score de cohérence narrative inter-tours dans une session.",
+      "equations": [
+        "narr_coh = mean cosine(output_t, output_{t+1})"
+      ],
+      "S_local": 0.76,
+      "S_global": 0.64,
+      "stability": "exploratoire",
+      "weight": 0.5,
+      "frames": {
+        "local": [
+          "session avec tours"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "UX cohérence"
+          }
+        ],
+        "global": [
+          "politique narrative globale"
+        ],
+        "proxies": [
+          "cosine inter-tours"
+        ],
+        "limits": [
+          "faux faible si transitions abruptes intentionnelles"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_047bdca53047",
+      "_compositions_count": 5,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 5,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-WP11-108",
+      "title": "Audit anti-overfit",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "overfit",
+        "audit"
+      ],
+      "examples": [
+        "alerte si pipeline accepte tous les candidats"
+      ],
+      "html_description": "Détection d'overfit du pipeline (acceptation trop universelle).",
+      "equations": [
+        "alert ⟺ acceptance_rate > 0.95"
+      ],
+      "S_local": 0.81,
+      "S_global": 0.69,
+      "stability": "exploratoire",
+      "weight": 0.55,
+      "frames": {
+        "local": [
+          "historique pipeline"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "ML overfit"
+          }
+        ],
+        "global": [
+          "politique anti-overfit"
+        ],
+        "proxies": [
+          "taux acceptation"
+        ],
+        "limits": [
+          "seuil arbitraire"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_f4012e2e4604",
+      "_compositions_count": 5,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 5,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-WP11-110",
+      "title": "Mesure d'entropie cognitive",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "entropie",
+        "cognitive"
+      ],
+      "examples": [
+        "entropie du graph relations"
+      ],
+      "html_description": "Entropie cognitive du graphe (diversité des lois pondérée par usage).",
+      "equations": [
+        "H_cog = -Σ p_i log p_i sur distrib lois"
+      ],
+      "S_local": 0.75,
+      "S_global": 0.63,
+      "stability": "exploratoire",
+      "weight": 0.49,
+      "frames": {
+        "local": [
+          "graphe et usage"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "information theory"
+          }
+        ],
+        "global": [
+          "entropie globale"
+        ],
+        "proxies": [
+          "estimation distrib usage"
+        ],
+        "limits": [
+          "distrib usage difficile à mesurer"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_f9652efe8d06",
+      "_compositions_count": 13,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 13,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-WP11-112",
+      "title": "Score de profondeur cognitive utilisée",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "profondeur",
+        "cognitive"
+      ],
+      "examples": [
+        "profondeur moyenne du sous-graphe utilisé par CLE"
+      ],
+      "html_description": "Mesure de la profondeur cognitive moyenne utilisée par les opérations.",
+      "equations": [
+        "depth_used = mean depth(loaded_laws)"
+      ],
+      "S_local": 0.73,
+      "S_global": 0.61,
+      "stability": "exploratoire",
+      "weight": 0.47,
+      "frames": {
+        "local": [
+          "opérations runtime"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "ZenRuntime"
+          }
+        ],
+        "global": [
+          "politique profondeur globale"
+        ],
+        "proxies": [
+          "log depth_used per op"
+        ],
+        "limits": [
+          "faible = surface seulement"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_4b514ce73254",
+      "_compositions_count": 5,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 5,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-WP12-103",
+      "title": "Critère de monotonie",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "monotonie",
+        "admissibilité"
+      ],
+      "examples": [
+        "ajouter des données ne dégrade jamais conclusions"
+      ],
+      "html_description": "Monotonie : l'ajout de données n'invalide jamais les conclusions.",
+      "equations": [
+        "monotone(L) ⟺ S(L|D ∪ d) ≥ S(L|D)"
+      ],
+      "S_local": 0.75,
+      "S_global": 0.63,
+      "stability": "exploratoire",
+      "weight": 0.49,
+      "frames": {
+        "local": [
+          "loi L et data ajoutées"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "logique non-monotone"
+          }
+        ],
+        "global": [
+          "politique monotonie systémique"
+        ],
+        "proxies": [
+          "test sur ajouts data"
+        ],
+        "limits": [
+          "non-monotonie utile parfois"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_b58e0c749ac6",
+      "_compositions_count": 27,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 27,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-WP12-104",
+      "title": "Critère de localité",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "localité",
+        "admissibilité"
+      ],
+      "examples": [
+        "modification locale ne propage pas globalement"
+      ],
+      "html_description": "Modification d'une loi reste localisée dans son voisinage.",
+      "equations": [
+        "local(modif) ⟺ impact ⊆ N(modif)"
+      ],
+      "S_local": 0.77,
+      "S_global": 0.65,
+      "stability": "exploratoire",
+      "weight": 0.51,
+      "frames": {
+        "local": [
+          "modification proposée"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "R-CORE-3 composition"
+          }
+        ],
+        "global": [
+          "politique localité systémique"
+        ],
+        "proxies": [
+          "test propagation"
+        ],
+        "limits": [
+          "impacts cross-famille parfois"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_06789eb77c19",
+      "_compositions_count": 27,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 27,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-WP12-105",
+      "title": "Critère de transparence opérationnelle",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "transparence",
+        "opérationnelle"
+      ],
+      "examples": [
+        "chaque op runtime auditée en temps réel"
+      ],
+      "html_description": "Transparence opérationnelle : trace de chaque opération runtime.",
+      "equations": [
+        "op transparent ⟺ trace publiée"
+      ],
+      "S_local": 0.79,
+      "S_global": 0.67,
+      "stability": "exploratoire",
+      "weight": 0.53,
+      "frames": {
+        "local": [
+          "opération runtime"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "systémique",
+            "scope": "audit"
+          }
+        ],
+        "global": [
+          "politique transparence systémique"
+        ],
+        "proxies": [
+          "log telemetry"
+        ],
+        "limits": [
+          "coût stockage logs"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_66afcffca807",
+      "_compositions_count": 5,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 5,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-WP12-109",
+      "title": "Critère d'absence de fuite",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "fuite",
+        "privacy"
+      ],
+      "examples": [
+        "aucune fuite info user vers tiers"
+      ],
+      "html_description": "Aucune fuite d'information utilisateur vers tiers non-autorisés.",
+      "equations": [
+        "¬leak(user_data, third_party)"
+      ],
+      "S_local": 0.82,
+      "S_global": 0.7,
+      "stability": "exploratoire",
+      "weight": 0.56,
+      "frames": {
+        "local": [
+          "data flow"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "RGPD"
+          }
+        ],
+        "global": [
+          "politique anti-fuite globale"
+        ],
+        "proxies": [
+          "audit data flow"
+        ],
+        "limits": [
+          "fuites cachées difficiles à détecter"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_d2e7a13129d7",
+      "_compositions_count": 3,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 3,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-WP12-110",
+      "title": "Critère de réciprocité",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "réciprocité",
+        "admissibilité"
+      ],
+      "examples": [
+        "si L1 cite L2, L2 admet L1 comme parent valide"
+      ],
+      "html_description": "Réciprocité des citations : citer → être cité comme parent valide.",
+      "equations": [
+        "cite(L1,L2) ⇒ valid_child(L1, L2)"
+      ],
+      "S_local": 0.74,
+      "S_global": 0.62,
+      "stability": "exploratoire",
+      "weight": 0.48,
+      "frames": {
+        "local": [
+          "paire (L1,L2)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          }
+        ],
+        "global": [
+          "politique réciprocité systémique"
+        ],
+        "proxies": [
+          "check citations bidirectionnelles"
+        ],
+        "limits": [
+          "citations asymétriques légitimes parfois"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_091e9e76f6f3",
+      "_compositions_count": 27,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 27,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-WP12-111",
+      "title": "Critère de proportionnalité",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "proportionnalité",
+        "admissibilité"
+      ],
+      "examples": [
+        "réponse proportionnée à la complexité de la query"
+      ],
+      "html_description": "Réponse proportionnée à la complexité de la query (pas de sur/sous-réponse).",
+      "equations": [
+        "len(response) ∝ complexity(query)"
+      ],
+      "S_local": 0.76,
+      "S_global": 0.64,
+      "stability": "exploratoire",
+      "weight": 0.5,
+      "frames": {
+        "local": [
+          "query + réponse"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "UX"
+          }
+        ],
+        "global": [
+          "politique proportionnalité globale"
+        ],
+        "proxies": [
+          "estimation complexité query"
+        ],
+        "limits": [
+          "complexité subjective"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_38b42a1ce85c",
+      "_compositions_count": 27,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 27,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-WP12-112",
+      "title": "Critère d'auditabilité timestamped",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "audit",
+        "timestamp"
+      ],
+      "examples": [
+        "chaque op horodatée et signée"
+      ],
+      "html_description": "Horodatage et signature systématiques de toute opération.",
+      "equations": [
+        "op = (op_data, ts, sig)"
+      ],
+      "S_local": 0.8,
+      "S_global": 0.68,
+      "stability": "exploratoire",
+      "weight": 0.55,
+      "frames": {
+        "local": [
+          "opération"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "audit blockchain-like"
+          }
+        ],
+        "global": [
+          "politique horodatage globale"
+        ],
+        "proxies": [
+          "NTP + signing"
+        ],
+        "limits": [
+          "coût stockage log"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_e379669ae35b",
+      "_compositions_count": 6,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 6,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-SDE-101",
+      "title": "Attention focale-latérale",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "attention",
+        "latérale"
+      ],
+      "examples": [
+        "focus principal + attention périphérique"
+      ],
+      "html_description": "Attention duale : focus principal + couche latérale légère.",
+      "equations": [
+        "attn = focal + λ·peripheral"
+      ],
+      "S_local": 0.75,
+      "S_global": 0.63,
+      "stability": "exploratoire",
+      "weight": 0.49,
+      "frames": {
+        "local": [
+          "séquence + focus"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "attention biologique"
+          }
+        ],
+        "global": [
+          "politique attention duale"
+        ],
+        "proxies": [
+          "dual heads"
+        ],
+        "limits": [
+          "coût compute × 2"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_a6ed249686df",
+      "_compositions_count": 6,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 6,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-SDE-102",
+      "title": "Self-debugging",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "self",
+        "debug"
+      ],
+      "examples": [
+        "LLM identifie ses propres erreurs"
+      ],
+      "html_description": "Capacité d'auto-debug : LLM identifie ses propres erreurs.",
+      "equations": [
+        "error_self = self_check(output) - oracle"
+      ],
+      "S_local": 0.77,
+      "S_global": 0.65,
+      "stability": "exploratoire",
+      "weight": 0.51,
+      "frames": {
+        "local": [
+          "output candidat"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "metacognition"
+          }
+        ],
+        "global": [
+          "politique self-debug systémique"
+        ],
+        "proxies": [
+          "self-check"
+        ],
+        "limits": [
+          "bias self-favoritism"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_44b7fca1eb15",
+      "_compositions_count": 6,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 6,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-SDE-103",
+      "title": "Skopein partagé multi-agent",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "partagé",
+        "multi-agent"
+      ],
+      "examples": [
+        "plusieurs agents partagent skopein commun"
+      ],
+      "html_description": "Skopein partagé entre plusieurs agents (cognition collective).",
+      "equations": [
+        "⟨S_shared⟩ = ⊕_a ⟨S_agent_a⟩"
+      ],
+      "S_local": 0.73,
+      "S_global": 0.61,
+      "stability": "exploratoire",
+      "weight": 0.47,
+      "frames": {
+        "local": [
+          "agents et leurs skopein"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "multi-agent systems"
+          }
+        ],
+        "global": [
+          "consensus skopein globale"
+        ],
+        "proxies": [
+          "agrégation skopein"
+        ],
+        "limits": [
+          "désaccords inter-agent"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_413b166e4da6",
+      "_compositions_count": 3,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 3,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-SDE-104",
+      "title": "Décentrage temporel",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "décentrage",
+        "temporel"
+      ],
+      "examples": [
+        "réponse projetée du futur ou passé du user"
+      ],
+      "html_description": "Décentrage temporel : projection vers passé/futur de l'utilisateur.",
+      "equations": [
+        "decenter_t(response, t_user)"
+      ],
+      "S_local": 0.71,
+      "S_global": 0.59,
+      "stability": "exploratoire",
+      "weight": 0.43,
+      "frames": {
+        "local": [
+          "réponse + temps user"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "temporal cognition"
+          }
+        ],
+        "global": [
+          "politique temporelle globale"
+        ],
+        "proxies": [
+          "modèle temporel user"
+        ],
+        "limits": [
+          "spéculation temporelle"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_f422975ab830",
+      "_compositions_count": 4,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 4,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-SDE-106",
+      "title": "Attention par source",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "attention",
+        "source"
+      ],
+      "examples": [
+        "attention pondérée par fiabilité de la source"
+      ],
+      "html_description": "Attention pondérée par fiabilité de la source documentaire.",
+      "equations": [
+        "attn(token) = base × trust(source(token))"
+      ],
+      "S_local": 0.78,
+      "S_global": 0.66,
+      "stability": "exploratoire",
+      "weight": 0.52,
+      "frames": {
+        "local": [
+          "token + source"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "WP-12 traçabilité"
+          }
+        ],
+        "global": [
+          "distribution fiabilité globale"
+        ],
+        "proxies": [
+          "score trust par source"
+        ],
+        "limits": [
+          "trust score subjectif"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_5a317910f6e8",
+      "_compositions_count": 6,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 6,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-SDE-107",
+      "title": "Auto-clarification",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "auto-clarification"
+      ],
+      "examples": [
+        "LLM demande clarification avant ambigüité résolue"
+      ],
+      "html_description": "Demande automatique de clarification sur queries ambiguës.",
+      "equations": [
+        "if ambiguous(query) → ask_clarification"
+      ],
+      "S_local": 0.77,
+      "S_global": 0.65,
+      "stability": "exploratoire",
+      "weight": 0.51,
+      "frames": {
+        "local": [
+          "query + analyse ambigüité"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "UX"
+          }
+        ],
+        "global": [
+          "politique clarification systémique"
+        ],
+        "proxies": [
+          "détection ambigüité"
+        ],
+        "limits": [
+          "risque user impatience"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_cd4ddd291b2c",
+      "_compositions_count": 6,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 6,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-SDE-109",
+      "title": "Inférence inverse",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "inférence",
+        "inverse"
+      ],
+      "examples": [
+        "déduction des intentions cachées du user"
+      ],
+      "html_description": "Inférence des intentions user par inférence inverse de comportement.",
+      "equations": [
+        "intent = inverse_inference(behavior)"
+      ],
+      "S_local": 0.71,
+      "S_global": 0.59,
+      "stability": "exploratoire",
+      "weight": 0.43,
+      "frames": {
+        "local": [
+          "comportement observé"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "ToM"
+          }
+        ],
+        "global": [
+          "modèle intentions globales"
+        ],
+        "proxies": [
+          "modélisation user"
+        ],
+        "limits": [
+          "intrusion potentielle"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_682855ee534b",
+      "_compositions_count": 8,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 8,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-SDE-112",
+      "title": "Skopein réflexif explicite",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "réflexif",
+        "explicite"
+      ],
+      "examples": [
+        "LLM explique sa propre démarche de raisonnement"
+      ],
+      "html_description": "Capacité de réflexivité : LLM explique son propre raisonnement.",
+      "equations": [
+        "explain_reasoning(output)"
+      ],
+      "S_local": 0.8,
+      "S_global": 0.68,
+      "stability": "exploratoire",
+      "weight": 0.55,
+      "frames": {
+        "local": [
+          "output + raisonnement"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "interpretability"
+          }
+        ],
+        "global": [
+          "politique transparence raisonnement"
+        ],
+        "proxies": [
+          "trace structurée du raisonnement"
+        ],
+        "limits": [
+          "raisonnement post-hoc parfois fictif"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_7297c9129235",
+      "_compositions_count": 6,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 6,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-PAL-101",
+      "title": "Métastabilité runtime adaptative",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "métastabilité",
+        "runtime"
+      ],
+      "examples": [
+        "runtime oscille entre 2 modes selon load"
+      ],
+      "html_description": "Métastabilité du mode runtime selon charge système.",
+      "equations": [
+        "mode_runtime ∈ {strict, balanced, performant}"
+      ],
+      "S_local": 0.72,
+      "S_global": 0.6,
+      "stability": "exploratoire",
+      "weight": 0.46,
+      "frames": {
+        "local": [
+          "état charge"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "PAL"
+          },
+          {
+            "level": "macro",
+            "scope": "ZenRuntime"
+          }
+        ],
+        "global": [
+          "politique métastable globale"
+        ],
+        "proxies": [
+          "check charge"
+        ],
+        "limits": [
+          "thrashing entre modes"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_729c86ffec67",
+      "_compositions_count": 3,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 3,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-PAL-102",
+      "title": "Cycle de calibration trimestriel",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "calibration",
+        "trimestriel"
+      ],
+      "examples": [
+        "recalibration coefficients tous les 90j"
+      ],
+      "html_description": "Cycle de recalibration trimestrielle des coefficients système.",
+      "equations": [
+        "calibrate every 90 days"
+      ],
+      "S_local": 0.75,
+      "S_global": 0.63,
+      "stability": "exploratoire",
+      "weight": 0.49,
+      "frames": {
+        "local": [
+          "historique 90j"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "PAL"
+          },
+          {
+            "level": "macro",
+            "scope": "Adaptive"
+          }
+        ],
+        "global": [
+          "politique cycle globale"
+        ],
+        "proxies": [
+          "timer + audit complet"
+        ],
+        "limits": [
+          "cycle 90j arbitraire"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_a812d45eaea2",
+      "_compositions_count": 3,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 3,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-PAL-103",
+      "title": "Saut palieronique cross-mission",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "saut",
+        "cross-mission"
+      ],
+      "examples": [
+        "saut depuis Mission N vers Mission N+1"
+      ],
+      "html_description": "Saut palieronique formalisé entre missions de développement.",
+      "equations": [
+        "mission_palier(N) → mission_palier(N+1)"
+      ],
+      "S_local": 0.73,
+      "S_global": 0.61,
+      "stability": "exploratoire",
+      "weight": 0.47,
+      "frames": {
+        "local": [
+          "mission courante"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "PAL"
+          },
+          {
+            "level": "macro",
+            "scope": "gouvernance"
+          }
+        ],
+        "global": [
+          "politique mission globale"
+        ],
+        "proxies": [
+          "check critères mission complete"
+        ],
+        "limits": [
+          "mission boundaries floues"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_c3584b183fef",
+      "_compositions_count": 3,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 3,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-PAL-106",
+      "title": "Saut palieronique sur découverte majeure",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "saut",
+        "découverte"
+      ],
+      "examples": [
+        "découverte d'invariant majeur → palier+1"
+      ],
+      "html_description": "Saut palieronique déclenché par découverte d'invariant majeur.",
+      "equations": [
+        "if invariant_major ⇒ Δpalier = +1"
+      ],
+      "S_local": 0.74,
+      "S_global": 0.62,
+      "stability": "exploratoire",
+      "weight": 0.48,
+      "frames": {
+        "local": [
+          "découverte évaluée"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "PAL"
+          },
+          {
+            "level": "macro",
+            "scope": "DiscoveryEngine"
+          }
+        ],
+        "global": [
+          "politique saut systémique"
+        ],
+        "proxies": [
+          "évaluation invariant"
+        ],
+        "limits": [
+          "sauts trop fréquents = bruit"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_5c66f58d70b3",
+      "_compositions_count": 3,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 3,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-PAL-107",
+      "title": "Métastabilité gouvernance multi-acteur",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "métastabilité",
+        "gouvernance"
+      ],
+      "examples": [
+        "décisions oscillent entre auteurs distincts"
+      ],
+      "html_description": "Métastabilité gouvernance avec multiples acteurs en désaccord.",
+      "equations": [
+        "decision_stable ⟺ consensus inter-acteurs"
+      ],
+      "S_local": 0.71,
+      "S_global": 0.59,
+      "stability": "exploratoire",
+      "weight": 0.43,
+      "frames": {
+        "local": [
+          "acteurs et votes"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "PAL"
+          },
+          {
+            "level": "macro",
+            "scope": "gouvernance"
+          }
+        ],
+        "global": [
+          "politique consensus globale"
+        ],
+        "proxies": [
+          "mesure désaccord"
+        ],
+        "limits": [
+          "paralysie possible"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_500f7ae1fe8f",
+      "_compositions_count": 3,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 3,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-WP12-113",
+      "title": "Critère d'auditabilité runtime",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "audit",
+        "runtime"
+      ],
+      "examples": [
+        "chaque réponse runtime audit-able instantanément"
+      ],
+      "html_description": "Audit runtime instantané sur demande utilisateur.",
+      "equations": [
+        "audit_now(response) → trace immediate"
+      ],
+      "S_local": 0.78,
+      "S_global": 0.66,
+      "stability": "exploratoire",
+      "weight": 0.52,
+      "frames": {
+        "local": [
+          "demande audit"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "systémique",
+            "scope": "ZenRuntime"
+          }
+        ],
+        "global": [
+          "politique audit immédiat"
+        ],
+        "proxies": [
+          "telemetry buffer"
+        ],
+        "limits": [
+          "coût stockage telemetry"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_2dcbfda3617b",
+      "_compositions_count": 5,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 5,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-UDE-113",
+      "title": "Découverte par interpolation latente",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "interpolation",
+        "latente"
+      ],
+      "examples": [
+        "lois inférées entre 2 attracteurs connus"
+      ],
+      "html_description": "Découverte de lois par interpolation entre 2 attracteurs proches.",
+      "equations": [
+        "L_new = interpolate(L1, L2, α)"
+      ],
+      "S_local": 0.72,
+      "S_global": 0.6,
+      "stability": "exploratoire",
+      "weight": 0.46,
+      "frames": {
+        "local": [
+          "paire (L1,L2) et α"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "latent space exploration"
+          }
+        ],
+        "global": [
+          "politique interpolation globale"
+        ],
+        "proxies": [
+          "interpolation embedding"
+        ],
+        "limits": [
+          "interpolation dans espace non-convexe"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_76741be07000",
+      "_compositions_count": 22,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 22,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-DVE-113",
+      "title": "Variant à empreinte écologique",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "variant",
+        "écologie"
+      ],
+      "examples": [
+        "variant à faible empreinte carbon préféré"
+      ],
+      "html_description": "Variants évalués sur empreinte carbone (priorité green AI).",
+      "equations": [
+        "carbon(v) ≤ carbon_max"
+      ],
+      "S_local": 0.73,
+      "S_global": 0.61,
+      "stability": "exploratoire",
+      "weight": 0.47,
+      "frames": {
+        "local": [
+          "variant + carbon footprint"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          },
+          {
+            "level": "macro",
+            "scope": "green AI"
+          }
+        ],
+        "global": [
+          "politique écologique globale"
+        ],
+        "proxies": [
+          "mesure carbon par FLOPs"
+        ],
+        "limits": [
+          "mesure indirecte"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_9fa041b30673",
+      "_compositions_count": 4,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 4,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-SDE-113",
+      "title": "Skopein narratif personnalisé",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "narratif",
+        "personnalisé"
+      ],
+      "examples": [
+        "narration adaptée au style user"
+      ],
+      "html_description": "Adaptation du style narratif au profil user.",
+      "equations": [
+        "narrate(content, user.narrative_style)"
+      ],
+      "S_local": 0.74,
+      "S_global": 0.62,
+      "stability": "exploratoire",
+      "weight": 0.48,
+      "frames": {
+        "local": [
+          "contenu + profil user"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "UX personalization"
+          }
+        ],
+        "global": [
+          "politique narration globale"
+        ],
+        "proxies": [
+          "modèle style user"
+        ],
+        "limits": [
+          "modélisation style imparfaite"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_b0561b778ea6",
+      "_compositions_count": 4,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 4,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-PAL-109",
+      "title": "Cycle de méta-audit",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "méta-audit",
+        "cycle"
+      ],
+      "examples": [
+        "audit de l'audit lui-même tous les 30j"
+      ],
+      "html_description": "Cycle de méta-audit : audit du processus d'audit.",
+      "equations": [
+        "meta_audit(audit_log) every 30 days"
+      ],
+      "S_local": 0.76,
+      "S_global": 0.64,
+      "stability": "exploratoire",
+      "weight": 0.5,
+      "frames": {
+        "local": [
+          "log audits"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "PAL"
+          },
+          {
+            "level": "macro",
+            "scope": "Adaptive"
+          }
+        ],
+        "global": [
+          "politique méta-audit globale"
+        ],
+        "proxies": [
+          "scan log audits"
+        ],
+        "limits": [
+          "récursion audit-de-l'audit"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_ad0f1b9c7555",
+      "_compositions_count": 3,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 3,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-ULG-113",
+      "title": "Embedding éthique projeté",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "embedding",
+        "éthique"
+      ],
+      "examples": [
+        "projection embedding vers axe éthique"
+      ],
+      "html_description": "Projection d'embeddings vers axe éthique pour audit moral.",
+      "equations": [
+        "proj_ethic(emb) → score_éthique"
+      ],
+      "S_local": 0.71,
+      "S_global": 0.59,
+      "stability": "exploratoire",
+      "weight": 0.43,
+      "frames": {
+        "local": [
+          "embedding + axe éthique"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG"
+          },
+          {
+            "level": "macro",
+            "scope": "éthique IA"
+          }
+        ],
+        "global": [
+          "politique éthique systémique"
+        ],
+        "proxies": [
+          "projection linéaire"
+        ],
+        "limits": [
+          "axe éthique subjectif"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_6c4db659f632",
+      "_compositions_count": 13,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 13,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-GHUC-114",
+      "title": "Consolidation par invariants éthiques",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "consolidation",
+        "éthique"
+      ],
+      "examples": [
+        "regroupement de lois partageant principes éthiques"
+      ],
+      "html_description": "Consolidation des lois selon principes éthiques partagés.",
+      "equations": [
+        "consolidate_ethic(laws) si ∩ ethical_principles ≠ ∅"
+      ],
+      "S_local": 0.74,
+      "S_global": 0.62,
+      "stability": "exploratoire",
+      "weight": 0.48,
+      "frames": {
+        "local": [
+          "set de lois"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          },
+          {
+            "level": "macro",
+            "scope": "éthique IA"
+          }
+        ],
+        "global": [
+          "politique consolidation éthique"
+        ],
+        "proxies": [
+          "scan principes"
+        ],
+        "limits": [
+          "principes éthiques contestés"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_326f41068e39",
+      "_compositions_count": 4,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 4,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-WP12-114",
+      "title": "Critère de minimisation des biais",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "biais",
+        "minimisation"
+      ],
+      "examples": [
+        "loi minimisant biais cognitifs identifiés"
+      ],
+      "html_description": "Critère de minimisation des biais cognitifs dans les lois.",
+      "equations": [
+        "bias_min(L) ⟺ Σ bias_score < θ"
+      ],
+      "S_local": 0.77,
+      "S_global": 0.65,
+      "stability": "exploratoire",
+      "weight": 0.51,
+      "frames": {
+        "local": [
+          "loi L et biais identifiés"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "fairness"
+          }
+        ],
+        "global": [
+          "politique anti-biais systémique"
+        ],
+        "proxies": [
+          "audit biais par checklist"
+        ],
+        "limits": [
+          "biais cachés non détectés"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_8aed87c90670",
+      "_compositions_count": 27,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 27,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-UDE-114",
+      "title": "Mémoire d'apprentissage continu",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "mémoire",
+        "apprentissage"
+      ],
+      "examples": [
+        "mémoire intégrant feedback continu"
+      ],
+      "html_description": "Mémoire évoluant continuellement par intégration de feedback.",
+      "equations": [
+        "mem_t+1 = update(mem_t, feedback_t)"
+      ],
+      "S_local": 0.78,
+      "S_global": 0.66,
+      "stability": "exploratoire",
+      "weight": 0.52,
+      "frames": {
+        "local": [
+          "mémoire et feedback"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "continuous learning"
+          }
+        ],
+        "global": [
+          "politique mémoire continue"
+        ],
+        "proxies": [
+          "online update"
+        ],
+        "limits": [
+          "catastrophic forgetting"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_698e7536faf5",
+      "_compositions_count": 10,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 10,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-DVE-114",
+      "title": "Variant à transparence maximale",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "variant",
+        "transparence"
+      ],
+      "examples": [
+        "variants traçables et expliquables totalement"
+      ],
+      "html_description": "Variants accompagnés d'explications complètes (transparence max).",
+      "equations": [
+        "transparent(v) ⟺ explain(v) complet"
+      ],
+      "S_local": 0.79,
+      "S_global": 0.67,
+      "stability": "exploratoire",
+      "weight": 0.53,
+      "frames": {
+        "local": [
+          "variant + explication"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          },
+          {
+            "level": "macro",
+            "scope": "XAI"
+          }
+        ],
+        "global": [
+          "politique transparence systémique"
+        ],
+        "proxies": [
+          "check explication non vide"
+        ],
+        "limits": [
+          "explications volumineuses"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_28074b50e156",
+      "_compositions_count": 3,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 3,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-SDE-114",
+      "title": "Décentrage culturel",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "décentrage",
+        "culturel"
+      ],
+      "examples": [
+        "réponse adaptée au contexte culturel user"
+      ],
+      "html_description": "Adaptation au contexte culturel user (anti-éthnocentrisme).",
+      "equations": [
+        "culturalize(response, user.culture)"
+      ],
+      "S_local": 0.72,
+      "S_global": 0.6,
+      "stability": "exploratoire",
+      "weight": 0.46,
+      "frames": {
+        "local": [
+          "réponse + culture user"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "cultural awareness"
+          }
+        ],
+        "global": [
+          "politique multiculturelle"
+        ],
+        "proxies": [
+          "check culture user"
+        ],
+        "limits": [
+          "modélisation culture stéréotypée"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_1b92b69181ae",
+      "_compositions_count": 4,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 4,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-ULG-114",
+      "title": "Représentation neuro-symbolique",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "neuro-symbolique",
+        "représentation"
+      ],
+      "examples": [
+        "embedding + logique symbolique combinés"
+      ],
+      "html_description": "Représentation hybride combinant embedding vectoriel + programme symbolique.",
+      "equations": [
+        "repr = (emb_vector, sym_program)"
+      ],
+      "S_local": 0.75,
+      "S_global": 0.63,
+      "stability": "exploratoire",
+      "weight": 0.49,
+      "frames": {
+        "local": [
+          "objet à représenter"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG"
+          },
+          {
+            "level": "macro",
+            "scope": "neuro-symbolic AI"
+          }
+        ],
+        "global": [
+          "espace représentationnel hybride"
+        ],
+        "proxies": [
+          "combinaison embeddings + AST"
+        ],
+        "limits": [
+          "alignement difficile"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_9e9449e0b3a7",
+      "_compositions_count": 13,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 13,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-UDE-115",
+      "title": "Découverte par méta-question",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "découverte",
+        "méta-question"
+      ],
+      "examples": [
+        "nouvelle loi inférée d'une question sur le système"
+      ],
+      "html_description": "Découverte par méta-questions sur le système lui-même.",
+      "equations": [
+        "L_new = answer(meta_question_about_system)"
+      ],
+      "S_local": 0.73,
+      "S_global": 0.61,
+      "stability": "exploratoire",
+      "weight": 0.47,
+      "frames": {
+        "local": [
+          "méta-question"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "metacognition"
+          }
+        ],
+        "global": [
+          "politique méta-question globale"
+        ],
+        "proxies": [
+          "analyse meta-questions"
+        ],
+        "limits": [
+          "méta-questions difficiles à formuler"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_a8e5a19c505c",
+      "_compositions_count": 22,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 22,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-DVE-115",
+      "title": "Variant adversarial robuste",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "adversarial",
+        "robuste"
+      ],
+      "examples": [
+        "variant résistant à attaques adversariales"
+      ],
+      "html_description": "Variants robustes à attaques adversariales standardisées.",
+      "equations": [
+        "adv_robust(v) ⟺ ‖v(x_adv) - v(x)‖ ≤ ε"
+      ],
+      "S_local": 0.77,
+      "S_global": 0.65,
+      "stability": "exploratoire",
+      "weight": 0.51,
+      "frames": {
+        "local": [
+          "variant + adversarial"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          },
+          {
+            "level": "macro",
+            "scope": "robustness"
+          }
+        ],
+        "global": [
+          "politique robustesse globale"
+        ],
+        "proxies": [
+          "test adversarial standardisé"
+        ],
+        "limits": [
+          "adversaires évoluent"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_4fa418d3705e",
+      "_compositions_count": 3,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 3,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    },
+    {
+      "id": "SBX-SDE-115",
+      "title": "Skopein observationnel multi-temporel",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "multi-temporel",
+        "skopein"
+      ],
+      "examples": [
+        "observation à plusieurs échelles temporelles simultanées"
+      ],
+      "html_description": "Skopein traversant plusieurs échelles temporelles simultanément.",
+      "equations": [
+        "skopein_t = ⨁_τ skopein(t-τ)"
+      ],
+      "S_local": 0.72,
+      "S_global": 0.6,
+      "stability": "exploratoire",
+      "weight": 0.46,
+      "frames": {
+        "local": [
+          "fenêtres temporelles"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "multi-scale temporal"
+          }
+        ],
+        "global": [
+          "politique skopein multi-temporal"
+        ],
+        "proxies": [
+          "agrégation multi-fenêtre"
+        ],
+        "limits": [
+          "coût × N fenêtres"
+        ]
+      },
+      "_sandbox": true,
+      "_sandbox_state": "incubation",
+      "_created_at": "2026-05-15T20:44:00+02:00",
+      "_last_revisited": "2026-05-15T20:44:00+02:00",
+      "_decay_score": 0.0,
+      "_promotion_score": 0.0,
+      "_archive_reason": null,
+      "_sandbox_origin": "P4_REV_001_3322aebfcf31",
+      "_compositions_count": 3,
+      "_oracle_validation": {
+        "phase_1_detection": "pass",
+        "phase_2_frames": "pass",
+        "phase_3_demonstration": "pass",
+        "phase_4_composition_count": 3,
+        "phase_5_fractal_potential": "leaf",
+        "phase_6_reversible": true
+      },
+      "reversible": true,
+      "rollback_dependencies": [],
+      "canonical_status": "sandbox",
+      "runtime_admissible": false
+    }
+  ],
+  "edges": [
+    {
+      "source": "SBX-ULG-102",
+      "target": "ULG-009",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-ULG-103",
+      "target": "ULG-010",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-ULG-108",
+      "target": "ULG-003",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-ULG-110",
+      "target": "ULG-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-ULG-112",
+      "target": "ULG-008",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-DVE-101",
+      "target": "DVE-002",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-DVE-102",
+      "target": "DVE-003",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-DVE-105",
+      "target": "DVE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-DVE-107",
+      "target": "DVE-013",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-DVE-108",
+      "target": "DVE-015",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-DVE-109",
+      "target": "DVE-015",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-DVE-110",
+      "target": "DVE-005",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-DVE-111",
+      "target": "DVE-009",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-DVE-112",
+      "target": "DVE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-UDE-101",
+      "target": "UDE-009",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-UDE-102",
+      "target": "UDE-014",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-UDE-105",
+      "target": "UDE-009",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-UDE-106",
+      "target": "UDE-010",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-UDE-107",
+      "target": "UDE-019",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-UDE-108",
+      "target": "UDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-UDE-110",
+      "target": "UDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-UDE-111",
+      "target": "UDE-014",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-GHUC-101",
+      "target": "GHUC-009",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-GHUC-103",
+      "target": "GHUC-014",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-GHUC-106",
+      "target": "GHUC-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-GHUC-107",
+      "target": "GHUC-017",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-GHUC-111",
+      "target": "GHUC-009",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-GHUC-112",
+      "target": "GHUC-007",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-WP11-102",
+      "target": "WP11-009",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-WP11-103",
+      "target": "WP11-026",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-WP11-104",
+      "target": "WP11-026",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-WP11-106",
+      "target": "WP11-009",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-WP11-108",
+      "target": "WP11-009",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-WP11-110",
+      "target": "WP11-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-WP11-112",
+      "target": "WP11-009",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-WP12-103",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-WP12-104",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-WP12-105",
+      "target": "WP12-019",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-WP12-109",
+      "target": "WP12-027",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-WP12-110",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-WP12-111",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-WP12-112",
+      "target": "WP12-007",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-SDE-101",
+      "target": "SDE-008",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-SDE-102",
+      "target": "SDE-013",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-SDE-103",
+      "target": "SDE-006",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-SDE-104",
+      "target": "SDE-014",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-SDE-106",
+      "target": "SDE-008",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-SDE-107",
+      "target": "SDE-013",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-SDE-109",
+      "target": "SDE-002",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-SDE-112",
+      "target": "SDE-013",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-PAL-101",
+      "target": "PAL-006",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-PAL-102",
+      "target": "PAL-008",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-PAL-103",
+      "target": "PAL-004",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-PAL-106",
+      "target": "PAL-004",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-PAL-107",
+      "target": "PAL-006",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-WP12-113",
+      "target": "WP12-019",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-UDE-113",
+      "target": "UDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-DVE-113",
+      "target": "DVE-015",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-SDE-113",
+      "target": "SDE-014",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-PAL-109",
+      "target": "PAL-008",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-ULG-113",
+      "target": "ULG-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-GHUC-114",
+      "target": "GHUC-009",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-WP12-114",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-UDE-114",
+      "target": "UDE-014",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-DVE-114",
+      "target": "DVE-013",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-SDE-114",
+      "target": "SDE-014",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-ULG-114",
+      "target": "ULG-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-UDE-115",
+      "target": "UDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-DVE-115",
+      "target": "DVE-009",
+      "kind": "parent"
+    },
+    {
+      "source": "SBX-SDE-115",
+      "target": "SDE-006",
+      "kind": "parent"
+    }
+  ],
+  "compositions": [],
+  "_meta": {
+    "incubation_count": 71,
+    "review_count": 0,
+    "promoted_total": 0,
+    "decayed_count": 0,
+    "archived_count": 0,
+    "last_audit_ts": "2026-05-15T20:44:00+02:00"
+  }
+}

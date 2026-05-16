@@ -1,0 +1,12 @@
+{
+  "entries": [
+    {
+      "ts": "2026-05-15T20:55:00+02:00",
+      "primary": "SBX-ULG-101",
+      "cascade_removed": [
+        "SBX-ULG-101"
+      ],
+      "verdict": "rollback_clean"
+    }
+  ]
+}
