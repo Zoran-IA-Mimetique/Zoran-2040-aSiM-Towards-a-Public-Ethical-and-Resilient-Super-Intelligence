@@ -112,8 +112,8 @@
       "visual_weight": 0.82,
       "runtime_weight": 1.0,
       "structural_rank": 125.0,
-      "_fy": 126.5,
-      "_compositions_count": 10
+      "_fy": 101.5,
+      "_compositions_count": 11
     },
     {
       "id": "ULG-002",
@@ -164,8 +164,8 @@
       "visual_weight": 0.686,
       "runtime_weight": 0.822,
       "structural_rank": 39.1,
-      "_fy": -102.2,
-      "_compositions_count": 14
+      "_fy": -96.2,
+      "_compositions_count": 15
     },
     {
       "id": "ULG-003",
@@ -220,8 +220,8 @@
       "visual_weight": 0.622,
       "runtime_weight": 0.795,
       "structural_rank": 38.8,
-      "_fy": -111.1,
-      "_compositions_count": 12
+      "_fy": -116.1,
+      "_compositions_count": 13
     },
     {
       "id": "ULG-004",
@@ -272,8 +272,8 @@
       "visual_weight": 0.556,
       "runtime_weight": 0.767,
       "structural_rank": 18.1,
-      "_fy": -142.8,
-      "_compositions_count": 11
+      "_fy": -169.8,
+      "_compositions_count": 12
     },
     {
       "id": "ULG-005",
@@ -328,8 +328,8 @@
       "visual_weight": 0.506,
       "runtime_weight": 0.746,
       "structural_rank": 18.4,
-      "_fy": -161.0,
-      "_compositions_count": 10
+      "_fy": -146.0,
+      "_compositions_count": 11
     },
     {
       "id": "DVE-001",
@@ -385,8 +385,8 @@
       "visual_weight": 0.815,
       "runtime_weight": 0.998,
       "structural_rank": 124.8,
-      "_fy": 104.9,
-      "_compositions_count": 10
+      "_fy": 111.9,
+      "_compositions_count": 11
     },
     {
       "id": "DVE-002",
@@ -440,8 +440,8 @@
       "visual_weight": 0.653,
       "runtime_weight": 0.809,
       "structural_rank": 38.9,
-      "_fy": -93.8,
-      "_compositions_count": 10
+      "_fy": -97.8,
+      "_compositions_count": 11
     },
     {
       "id": "DVE-003",
@@ -491,8 +491,8 @@
       "visual_weight": 0.649,
       "runtime_weight": 0.807,
       "structural_rank": 38.7,
-      "_fy": -103.2,
-      "_compositions_count": 10
+      "_fy": -96.2,
+      "_compositions_count": 11
     },
     {
       "id": "DVE-004",
@@ -542,12 +542,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.489,
-      "visual_weight": 0.462,
-      "runtime_weight": 0.727,
+      "topological_weight": 0.519,
+      "visual_weight": 0.483,
+      "runtime_weight": 0.736,
       "structural_rank": 18.3,
-      "_fy": -153.2,
-      "_compositions_count": 8
+      "_fy": -141.2,
+      "_compositions_count": 9
     },
     {
       "id": "DVE-005",
@@ -598,8 +598,8 @@
       "visual_weight": 0.58,
       "runtime_weight": 0.777,
       "structural_rank": 17.9,
-      "_fy": -165.2,
-      "_compositions_count": 11
+      "_fy": -150.2,
+      "_compositions_count": 12
     },
     {
       "id": "UDE-001",
@@ -654,8 +654,8 @@
       "visual_weight": 0.778,
       "runtime_weight": 0.982,
       "structural_rank": 114.7,
-      "_fy": 98.6,
-      "_compositions_count": 19
+      "_fy": 79.6,
+      "_compositions_count": 20
     },
     {
       "id": "UDE-002",
@@ -709,8 +709,8 @@
       "visual_weight": 0.533,
       "runtime_weight": 0.757,
       "structural_rank": 28.9,
-      "_fy": -142.9,
-      "_compositions_count": 18
+      "_fy": -136.9,
+      "_compositions_count": 19
     },
     {
       "id": "UDE-003",
@@ -760,8 +760,8 @@
       "visual_weight": 0.467,
       "runtime_weight": 0.729,
       "structural_rank": 8.2,
-      "_fy": -166.5,
-      "_compositions_count": 18
+      "_fy": -169.5,
+      "_compositions_count": 19
     },
     {
       "id": "UDE-004",
@@ -816,8 +816,8 @@
       "visual_weight": 0.464,
       "runtime_weight": 0.727,
       "structural_rank": 8.1,
-      "_fy": -190.9,
-      "_compositions_count": 17
+      "_fy": -171.9,
+      "_compositions_count": 18
     },
     {
       "id": "UDE-005",
@@ -871,8 +871,8 @@
       "visual_weight": 0.458,
       "runtime_weight": 0.725,
       "structural_rank": 7.8,
-      "_fy": -187.6,
-      "_compositions_count": 19
+      "_fy": -189.6,
+      "_compositions_count": 20
     },
     {
       "id": "GHUC-001",
@@ -931,8 +931,8 @@
       "visual_weight": 0.82,
       "runtime_weight": 1.0,
       "structural_rank": 165.0,
-      "_fy": 209.5,
-      "_compositions_count": 12
+      "_fy": 211.5,
+      "_compositions_count": 15
     },
     {
       "id": "GHUC-002",
@@ -982,12 +982,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.806,
-      "visual_weight": 0.685,
-      "runtime_weight": 0.822,
+      "topological_weight": 0.846,
+      "visual_weight": 0.713,
+      "runtime_weight": 0.834,
       "structural_rank": 39.0,
-      "_fy": -101.4,
-      "_compositions_count": 15
+      "_fy": -104.4,
+      "_compositions_count": 19
     },
     {
       "id": "GHUC-002-a",
@@ -1033,12 +1033,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 2,
-      "topological_weight": 0.533,
-      "visual_weight": 0.493,
-      "runtime_weight": 0.74,
+      "topological_weight": 0.563,
+      "visual_weight": 0.514,
+      "runtime_weight": 0.749,
       "structural_rank": 3.1,
-      "_fy": -203.2,
-      "_compositions_count": 7
+      "_fy": -206.2,
+      "_compositions_count": 8
     },
     {
       "id": "GHUC-002-a-i",
@@ -1089,7 +1089,7 @@
       "visual_weight": 0.338,
       "runtime_weight": 0.674,
       "structural_rank": -10.6,
-      "_fy": -237.5,
+      "_fy": -219.5,
       "_compositions_count": 3
     },
     {
@@ -1141,7 +1141,7 @@
       "visual_weight": 0.336,
       "runtime_weight": 0.673,
       "structural_rank": -10.7,
-      "_fy": -232.8,
+      "_fy": -230.8,
       "_compositions_count": 3
     },
     {
@@ -1188,12 +1188,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 2,
-      "topological_weight": 0.531,
-      "visual_weight": 0.492,
-      "runtime_weight": 0.739,
+      "topological_weight": 0.561,
+      "visual_weight": 0.513,
+      "runtime_weight": 0.748,
       "structural_rank": 3.0,
-      "_fy": -189.4,
-      "_compositions_count": 7
+      "_fy": -201.4,
+      "_compositions_count": 8
     },
     {
       "id": "GHUC-002-b-i",
@@ -1244,7 +1244,7 @@
       "visual_weight": 0.337,
       "runtime_weight": 0.673,
       "structural_rank": -10.7,
-      "_fy": -218.6,
+      "_fy": -215.6,
       "_compositions_count": 3
     },
     {
@@ -1296,7 +1296,7 @@
       "visual_weight": 0.335,
       "runtime_weight": 0.672,
       "structural_rank": -10.8,
-      "_fy": -223.9,
+      "_fy": -228.9,
       "_compositions_count": 3
     },
     {
@@ -1352,8 +1352,8 @@
       "visual_weight": 0.659,
       "runtime_weight": 0.811,
       "structural_rank": 39.1,
-      "_fy": -103.1,
-      "_compositions_count": 13
+      "_fy": -114.1,
+      "_compositions_count": 16
     },
     {
       "id": "GHUC-004",
@@ -1402,8 +1402,8 @@
       "visual_weight": 0.595,
       "runtime_weight": 0.783,
       "structural_rank": 18.6,
-      "_fy": -165.5,
-      "_compositions_count": 11
+      "_fy": -166.5,
+      "_compositions_count": 14
     },
     {
       "id": "WP11-001",
@@ -1453,12 +1453,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 0,
-      "topological_weight": 0.965,
-      "visual_weight": 0.796,
-      "runtime_weight": 0.99,
+      "topological_weight": 0.995,
+      "visual_weight": 0.817,
+      "runtime_weight": 0.999,
       "structural_rank": 124.8,
       "_fy": 98.1,
-      "_compositions_count": 9
+      "_compositions_count": 13
     },
     {
       "id": "WP11-002",
@@ -1508,8 +1508,8 @@
       "visual_weight": 0.66,
       "runtime_weight": 0.811,
       "structural_rank": 39.2,
-      "_fy": -98.0,
-      "_compositions_count": 11
+      "_fy": -116.0,
+      "_compositions_count": 15
     },
     {
       "id": "WP11-003",
@@ -1559,12 +1559,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.733,
-      "visual_weight": 0.633,
-      "runtime_weight": 0.8,
+      "topological_weight": 0.772,
+      "visual_weight": 0.661,
+      "runtime_weight": 0.812,
       "structural_rank": 39.2,
-      "_fy": -88.9,
-      "_compositions_count": 10
+      "_fy": -102.9,
+      "_compositions_count": 15
     },
     {
       "id": "WP11-004",
@@ -1613,12 +1613,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.673,
-      "visual_weight": 0.591,
-      "runtime_weight": 0.782,
+      "topological_weight": 0.703,
+      "visual_weight": 0.612,
+      "runtime_weight": 0.791,
       "structural_rank": 39.6,
-      "_fy": -98.0,
-      "_compositions_count": 9
+      "_fy": -96.0,
+      "_compositions_count": 13
     },
     {
       "id": "WP11-005",
@@ -1668,7 +1668,7 @@
       "visual_weight": 0.557,
       "runtime_weight": 0.767,
       "structural_rank": 3.8,
-      "_fy": -192.5,
+      "_fy": -184.5,
       "_compositions_count": 8
     },
     {
@@ -1722,8 +1722,8 @@
       "visual_weight": 0.779,
       "runtime_weight": 0.982,
       "structural_rank": 114.7,
-      "_fy": 79.8,
-      "_compositions_count": 20
+      "_fy": 87.8,
+      "_compositions_count": 24
     },
     {
       "id": "WP12-002",
@@ -1772,8 +1772,8 @@
       "visual_weight": 0.545,
       "runtime_weight": 0.762,
       "structural_rank": 29.4,
-      "_fy": -141.5,
-      "_compositions_count": 19
+      "_fy": -122.5,
+      "_compositions_count": 23
     },
     {
       "id": "WP12-003",
@@ -1822,8 +1822,8 @@
       "visual_weight": 0.472,
       "runtime_weight": 0.731,
       "structural_rank": 8.4,
-      "_fy": -174.9,
-      "_compositions_count": 18
+      "_fy": -180.9,
+      "_compositions_count": 22
     },
     {
       "id": "WP12-004",
@@ -1872,8 +1872,8 @@
       "visual_weight": 0.469,
       "runtime_weight": 0.73,
       "structural_rank": 8.3,
-      "_fy": -178.2,
-      "_compositions_count": 18
+      "_fy": -190.2,
+      "_compositions_count": 22
     },
     {
       "id": "WP12-005",
@@ -1926,8 +1926,8 @@
       "visual_weight": 0.475,
       "runtime_weight": 0.732,
       "structural_rank": 8.6,
-      "_fy": -179.6,
-      "_compositions_count": 18
+      "_fy": -181.6,
+      "_compositions_count": 22
     },
     {
       "id": "SDE-001",
@@ -1978,7 +1978,7 @@
       "visual_weight": 0.808,
       "runtime_weight": 0.995,
       "structural_rank": 124.5,
-      "_fy": 123.1,
+      "_fy": 98.1,
       "_compositions_count": 10
     },
     {
@@ -2028,7 +2028,7 @@
       "visual_weight": 0.707,
       "runtime_weight": 0.832,
       "structural_rank": 38.8,
-      "_fy": -110.0,
+      "_fy": -113.0,
       "_compositions_count": 16
     },
     {
@@ -2078,7 +2078,7 @@
       "visual_weight": 0.589,
       "runtime_weight": 0.781,
       "structural_rank": 18.4,
-      "_fy": -156.1,
+      "_fy": -152.1,
       "_compositions_count": 12
     },
     {
@@ -2128,7 +2128,7 @@
       "visual_weight": 0.475,
       "runtime_weight": 0.732,
       "structural_rank": 7.9,
-      "_fy": -171.2,
+      "_fy": -179.2,
       "_compositions_count": 9
     },
     {
@@ -2178,7 +2178,7 @@
       "visual_weight": 0.48,
       "runtime_weight": 0.734,
       "structural_rank": 18.1,
-      "_fy": -159.6,
+      "_fy": -146.6,
       "_compositions_count": 9
     },
     {
@@ -2230,12 +2230,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 0,
-      "topological_weight": 0.922,
-      "visual_weight": 0.765,
-      "runtime_weight": 0.977,
+      "topological_weight": 0.982,
+      "visual_weight": 0.807,
+      "runtime_weight": 0.995,
       "structural_rank": 124.4,
-      "_fy": 112.0,
-      "_compositions_count": 8
+      "_fy": 106.0,
+      "_compositions_count": 10
     },
     {
       "id": "PAL-002",
@@ -2284,8 +2284,8 @@
       "visual_weight": 0.618,
       "runtime_weight": 0.794,
       "structural_rank": 18.4,
-      "_fy": -145.0,
-      "_compositions_count": 11
+      "_fy": -152.0,
+      "_compositions_count": 13
     },
     {
       "id": "PAL-003",
@@ -2330,12 +2330,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.458,
-      "visual_weight": 0.44,
-      "runtime_weight": 0.717,
+      "topological_weight": 0.517,
+      "visual_weight": 0.482,
+      "runtime_weight": 0.735,
       "structural_rank": 18.2,
-      "_fy": -157.4,
-      "_compositions_count": 7
+      "_fy": -143.4,
+      "_compositions_count": 9
     },
     {
       "id": "PAL-004",
@@ -2384,12 +2384,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.478,
-      "visual_weight": 0.455,
-      "runtime_weight": 0.724,
+      "topological_weight": 0.538,
+      "visual_weight": 0.497,
+      "runtime_weight": 0.742,
       "structural_rank": 7.9,
-      "_fy": -174.1,
-      "_compositions_count": 8
+      "_fy": -189.1,
+      "_compositions_count": 10
     },
     {
       "id": "PAL-005",
@@ -2439,12 +2439,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.593,
-      "visual_weight": 0.535,
-      "runtime_weight": 0.758,
+      "topological_weight": 0.623,
+      "visual_weight": 0.556,
+      "runtime_weight": 0.767,
       "structural_rank": 18.1,
-      "_fy": -152.8,
-      "_compositions_count": 9
+      "_fy": -148.8,
+      "_compositions_count": 11
     },
     {
       "id": "ULG-002-a",
@@ -2494,7 +2494,7 @@
       "visual_weight": 0.504,
       "runtime_weight": 0.744,
       "structural_rank": 3.6,
-      "_fy": -195.0,
+      "_fy": -199.0,
       "_compositions_count": 7
     },
     {
@@ -2545,7 +2545,7 @@
       "visual_weight": 0.502,
       "runtime_weight": 0.744,
       "structural_rank": 3.5,
-      "_fy": -184.2,
+      "_fy": -186.2,
       "_compositions_count": 7
     },
     {
@@ -2596,7 +2596,7 @@
       "visual_weight": 0.346,
       "runtime_weight": 0.677,
       "structural_rank": -10.2,
-      "_fy": -227.6,
+      "_fy": -240.6,
       "_compositions_count": 3
     },
     {
@@ -2647,7 +2647,7 @@
       "visual_weight": 0.343,
       "runtime_weight": 0.675,
       "structural_rank": -10.4,
-      "_fy": -224.0,
+      "_fy": -233.0,
       "_compositions_count": 3
     },
     {
@@ -2698,7 +2698,7 @@
       "visual_weight": 0.341,
       "runtime_weight": 0.675,
       "structural_rank": -10.5,
-      "_fy": -233.2,
+      "_fy": -241.2,
       "_compositions_count": 3
     },
     {
@@ -2753,7 +2753,7 @@
       "visual_weight": 0.365,
       "runtime_weight": 0.685,
       "structural_rank": -10.3,
-      "_fy": -232.9,
+      "_fy": -228.9,
       "_compositions_count": 4
     },
     {
@@ -2804,7 +2804,7 @@
       "visual_weight": 0.48,
       "runtime_weight": 0.734,
       "structural_rank": -1.5,
-      "_fy": -193.8,
+      "_fy": -210.8,
       "_compositions_count": 6
     },
     {
@@ -2855,7 +2855,7 @@
       "visual_weight": 0.475,
       "runtime_weight": 0.732,
       "structural_rank": -1.8,
-      "_fy": -214.4,
+      "_fy": -216.4,
       "_compositions_count": 6
     },
     {
@@ -2906,7 +2906,7 @@
       "visual_weight": 0.346,
       "runtime_weight": 0.677,
       "structural_rank": -10.2,
-      "_fy": -216.6,
+      "_fy": -235.6,
       "_compositions_count": 3
     },
     {
@@ -2957,7 +2957,7 @@
       "visual_weight": 0.344,
       "runtime_weight": 0.676,
       "structural_rank": -10.3,
-      "_fy": -213.9,
+      "_fy": -227.9,
       "_compositions_count": 3
     },
     {
@@ -3008,7 +3008,7 @@
       "visual_weight": 0.335,
       "runtime_weight": 0.672,
       "structural_rank": -10.8,
-      "_fy": -225.9,
+      "_fy": -221.9,
       "_compositions_count": 3
     },
     {
@@ -3059,7 +3059,7 @@
       "visual_weight": 0.332,
       "runtime_weight": 0.671,
       "structural_rank": -10.9,
-      "_fy": -222.2,
+      "_fy": -219.2,
       "_compositions_count": 3
     },
     {
@@ -3110,7 +3110,7 @@
       "visual_weight": 0.478,
       "runtime_weight": 0.734,
       "structural_rank": -1.6,
-      "_fy": -218.0,
+      "_fy": -200.0,
       "_compositions_count": 6
     },
     {
@@ -3161,7 +3161,7 @@
       "visual_weight": 0.475,
       "runtime_weight": 0.732,
       "structural_rank": -1.8,
-      "_fy": -201.4,
+      "_fy": -199.4,
       "_compositions_count": 6
     },
     {
@@ -3212,7 +3212,7 @@
       "visual_weight": 0.346,
       "runtime_weight": 0.677,
       "structural_rank": -10.2,
-      "_fy": -239.6,
+      "_fy": -225.6,
       "_compositions_count": 3
     },
     {
@@ -3263,7 +3263,7 @@
       "visual_weight": 0.343,
       "runtime_weight": 0.675,
       "structural_rank": -10.4,
-      "_fy": -237.0,
+      "_fy": -235.0,
       "_compositions_count": 3
     },
     {
@@ -3314,7 +3314,7 @@
       "visual_weight": 0.341,
       "runtime_weight": 0.675,
       "structural_rank": -10.5,
-      "_fy": -220.2,
+      "_fy": -227.2,
       "_compositions_count": 3
     },
     {
@@ -3365,7 +3365,7 @@
       "visual_weight": 0.342,
       "runtime_weight": 0.675,
       "structural_rank": -10.4,
-      "_fy": -235.1,
+      "_fy": -241.1,
       "_compositions_count": 3
     },
     {
@@ -3416,7 +3416,7 @@
       "visual_weight": 0.538,
       "runtime_weight": 0.759,
       "structural_rank": 3.2,
-      "_fy": -178.9,
+      "_fy": -189.9,
       "_compositions_count": 9
     },
     {
@@ -3467,7 +3467,7 @@
       "visual_weight": 0.535,
       "runtime_weight": 0.758,
       "structural_rank": 3.1,
-      "_fy": -187.2,
+      "_fy": -207.2,
       "_compositions_count": 9
     },
     {
@@ -3518,7 +3518,7 @@
       "visual_weight": 0.341,
       "runtime_weight": 0.675,
       "structural_rank": -10.5,
-      "_fy": -236.2,
+      "_fy": -214.2,
       "_compositions_count": 3
     },
     {
@@ -3569,7 +3569,7 @@
       "visual_weight": 0.338,
       "runtime_weight": 0.674,
       "structural_rank": -10.6,
-      "_fy": -227.5,
+      "_fy": -215.5,
       "_compositions_count": 3
     },
     {
@@ -3620,7 +3620,7 @@
       "visual_weight": 0.339,
       "runtime_weight": 0.674,
       "structural_rank": -10.6,
-      "_fy": -213.4,
+      "_fy": -226.4,
       "_compositions_count": 3
     },
     {
@@ -3671,7 +3671,7 @@
       "visual_weight": 0.335,
       "runtime_weight": 0.672,
       "structural_rank": -10.8,
-      "_fy": -241.9,
+      "_fy": -218.9,
       "_compositions_count": 3
     },
     {
@@ -3722,7 +3722,7 @@
       "visual_weight": 0.491,
       "runtime_weight": 0.739,
       "structural_rank": 3.0,
-      "_fy": -187.5,
+      "_fy": -195.5,
       "_compositions_count": 7
     },
     {
@@ -3773,7 +3773,7 @@
       "visual_weight": 0.489,
       "runtime_weight": 0.738,
       "structural_rank": 2.9,
-      "_fy": -193.8,
+      "_fy": -179.8,
       "_compositions_count": 7
     },
     {
@@ -3824,7 +3824,7 @@
       "visual_weight": 0.338,
       "runtime_weight": 0.674,
       "structural_rank": -10.6,
-      "_fy": -224.5,
+      "_fy": -237.5,
       "_compositions_count": 3
     },
     {
@@ -3875,7 +3875,7 @@
       "visual_weight": 0.336,
       "runtime_weight": 0.673,
       "structural_rank": -10.7,
-      "_fy": -214.8,
+      "_fy": -241.8,
       "_compositions_count": 3
     },
     {
@@ -3926,7 +3926,7 @@
       "visual_weight": 0.339,
       "runtime_weight": 0.674,
       "structural_rank": -10.6,
-      "_fy": -229.4,
+      "_fy": -217.4,
       "_compositions_count": 3
     },
     {
@@ -3977,7 +3977,7 @@
       "visual_weight": 0.407,
       "runtime_weight": 0.703,
       "structural_rank": -7.7,
-      "_fy": -232.1,
+      "_fy": -211.1,
       "_compositions_count": 5
     },
     {
@@ -4028,7 +4028,7 @@
       "visual_weight": 0.398,
       "runtime_weight": 0.699,
       "structural_rank": -1.8,
-      "_fy": -207.4,
+      "_fy": -204.4,
       "_compositions_count": 5
     },
     {
@@ -4079,7 +4079,7 @@
       "visual_weight": 0.395,
       "runtime_weight": 0.698,
       "structural_rank": -1.9,
-      "_fy": -203.8,
+      "_fy": -197.8,
       "_compositions_count": 5
     },
     {
@@ -4130,7 +4130,7 @@
       "visual_weight": 0.393,
       "runtime_weight": 0.697,
       "structural_rank": -2.0,
-      "_fy": -212.0,
+      "_fy": -208.0,
       "_compositions_count": 5
     },
     {
@@ -4181,7 +4181,7 @@
       "visual_weight": 0.391,
       "runtime_weight": 0.696,
       "structural_rank": -2.1,
-      "_fy": -218.2,
+      "_fy": -209.2,
       "_compositions_count": 5
     },
     {
@@ -4236,8 +4236,8 @@
       "visual_weight": 0.5,
       "runtime_weight": 0.743,
       "structural_rank": 18.1,
-      "_fy": -145.8,
-      "_compositions_count": 10
+      "_fy": -148.8,
+      "_compositions_count": 11
     },
     {
       "id": "UDE-006",
@@ -4291,8 +4291,8 @@
       "visual_weight": 0.465,
       "runtime_weight": 0.728,
       "structural_rank": 8.1,
-      "_fy": -176.8,
-      "_compositions_count": 17
+      "_fy": -168.8,
+      "_compositions_count": 18
     },
     {
       "id": "UDE-007",
@@ -4342,8 +4342,8 @@
       "visual_weight": 0.461,
       "runtime_weight": 0.726,
       "structural_rank": 7.9,
-      "_fy": -190.2,
-      "_compositions_count": 17
+      "_fy": -167.2,
+      "_compositions_count": 18
     },
     {
       "id": "WP11-006",
@@ -4393,12 +4393,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 2,
-      "topological_weight": 0.515,
-      "visual_weight": 0.48,
-      "runtime_weight": 0.734,
-      "structural_rank": -1.5,
-      "_fy": -204.8,
-      "_compositions_count": 6
+      "topological_weight": 0.545,
+      "visual_weight": 0.502,
+      "runtime_weight": 0.744,
+      "structural_rank": 3.5,
+      "_fy": -196.2,
+      "_compositions_count": 7
     },
     {
       "id": "WP12-006",
@@ -4448,8 +4448,8 @@
       "visual_weight": 0.471,
       "runtime_weight": 0.731,
       "structural_rank": 8.4,
-      "_fy": -171.0,
-      "_compositions_count": 18
+      "_fy": -178.0,
+      "_compositions_count": 22
     },
     {
       "id": "WP12-007",
@@ -4495,12 +4495,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.585,
-      "visual_weight": 0.53,
-      "runtime_weight": 0.756,
+      "topological_weight": 0.665,
+      "visual_weight": 0.585,
+      "runtime_weight": 0.78,
       "structural_rank": 8.5,
-      "_fy": -175.8,
-      "_compositions_count": 21
+      "_fy": -186.8,
+      "_compositions_count": 27
     },
     {
       "id": "SDE-006",
@@ -4550,7 +4550,7 @@
       "visual_weight": 0.498,
       "runtime_weight": 0.742,
       "structural_rank": 18.0,
-      "_fy": -166.0,
+      "_fy": -144.0,
       "_compositions_count": 10
     },
     {
@@ -4596,12 +4596,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.474,
-      "visual_weight": 0.452,
-      "runtime_weight": 0.722,
+      "topological_weight": 0.534,
+      "visual_weight": 0.494,
+      "runtime_weight": 0.74,
       "structural_rank": 17.8,
-      "_fy": -157.5,
-      "_compositions_count": 8
+      "_fy": -170.5,
+      "_compositions_count": 10
     },
     {
       "id": "DVE-006",
@@ -4655,7 +4655,7 @@
       "visual_weight": 0.395,
       "runtime_weight": 0.698,
       "structural_rank": -1.9,
-      "_fy": -190.8,
+      "_fy": -214.8,
       "_compositions_count": 5
     },
     {
@@ -4706,12 +4706,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.678,
-      "visual_weight": 0.595,
-      "runtime_weight": 0.783,
+      "topological_weight": 0.718,
+      "visual_weight": 0.623,
+      "runtime_weight": 0.795,
       "structural_rank": 18.6,
-      "_fy": -142.5,
-      "_compositions_count": 12
+      "_fy": -156.5,
+      "_compositions_count": 16
     },
     {
       "id": "WP11-007",
@@ -4761,12 +4761,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.495,
-      "visual_weight": 0.466,
-      "runtime_weight": 0.728,
+      "topological_weight": 0.755,
+      "visual_weight": 0.648,
+      "runtime_weight": 0.806,
       "structural_rank": 18.5,
-      "_fy": -155.8,
-      "_compositions_count": 8
+      "_fy": -142.8,
+      "_compositions_count": 18
     },
     {
       "id": "WP12-008",
@@ -4816,8 +4816,8 @@
       "visual_weight": 0.469,
       "runtime_weight": 0.73,
       "structural_rank": 8.3,
-      "_fy": -180.2,
-      "_compositions_count": 18
+      "_fy": -165.2,
+      "_compositions_count": 22
     },
     {
       "id": "ULG-008",
@@ -4871,8 +4871,8 @@
       "visual_weight": 0.503,
       "runtime_weight": 0.744,
       "structural_rank": 18.2,
-      "_fy": -161.4,
-      "_compositions_count": 11
+      "_fy": -163.4,
+      "_compositions_count": 12
     },
     {
       "id": "ULG-009",
@@ -4922,12 +4922,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.51,
-      "visual_weight": 0.477,
-      "runtime_weight": 0.733,
+      "topological_weight": 0.58,
+      "visual_weight": 0.526,
+      "runtime_weight": 0.754,
       "structural_rank": 18.0,
-      "_fy": -158.0,
-      "_compositions_count": 9
+      "_fy": -154.0,
+      "_compositions_count": 11
     },
     {
       "id": "ULG-010",
@@ -4977,12 +4977,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.519,
-      "visual_weight": 0.483,
-      "runtime_weight": 0.736,
+      "topological_weight": 0.629,
+      "visual_weight": 0.56,
+      "runtime_weight": 0.769,
       "structural_rank": 18.3,
-      "_fy": -169.2,
-      "_compositions_count": 9
+      "_fy": -155.2,
+      "_compositions_count": 12
     },
     {
       "id": "ULG-011",
@@ -5032,12 +5032,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.517,
-      "visual_weight": 0.482,
-      "runtime_weight": 0.735,
+      "topological_weight": 0.547,
+      "visual_weight": 0.503,
+      "runtime_weight": 0.744,
       "structural_rank": 18.2,
-      "_fy": -149.4,
-      "_compositions_count": 9
+      "_fy": -158.4,
+      "_compositions_count": 10
     },
     {
       "id": "ULG-012",
@@ -5091,7 +5091,7 @@
       "visual_weight": 0.353,
       "runtime_weight": 0.68,
       "structural_rank": -4.9,
-      "_fy": -209.2,
+      "_fy": -199.2,
       "_compositions_count": 3
     },
     {
@@ -5146,7 +5146,7 @@
       "visual_weight": 0.354,
       "runtime_weight": 0.68,
       "structural_rank": -4.8,
-      "_fy": -210.1,
+      "_fy": -226.1,
       "_compositions_count": 3
     },
     {
@@ -5201,7 +5201,7 @@
       "visual_weight": 0.391,
       "runtime_weight": 0.696,
       "structural_rank": -2.1,
-      "_fy": -203.2,
+      "_fy": -194.2,
       "_compositions_count": 5
     },
     {
@@ -5252,7 +5252,7 @@
       "visual_weight": 0.351,
       "runtime_weight": 0.679,
       "structural_rank": -5.0,
-      "_fy": -227.5,
+      "_fy": -207.5,
       "_compositions_count": 3
     },
     {
@@ -5307,7 +5307,7 @@
       "visual_weight": 0.353,
       "runtime_weight": 0.68,
       "structural_rank": -4.9,
-      "_fy": -204.2,
+      "_fy": -216.2,
       "_compositions_count": 3
     },
     {
@@ -5362,7 +5362,7 @@
       "visual_weight": 0.389,
       "runtime_weight": 0.695,
       "structural_rank": -2.2,
-      "_fy": -218.5,
+      "_fy": -213.5,
       "_compositions_count": 5
     },
     {
@@ -5417,12 +5417,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 2,
-      "topological_weight": 0.465,
-      "visual_weight": 0.445,
-      "runtime_weight": 0.72,
+      "topological_weight": 0.675,
+      "visual_weight": 0.592,
+      "runtime_weight": 0.782,
       "structural_rank": 3.5,
-      "_fy": -179.2,
-      "_compositions_count": 7
+      "_fy": -191.2,
+      "_compositions_count": 10
     },
     {
       "id": "DVE-009",
@@ -5472,12 +5472,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.458,
-      "visual_weight": 0.44,
-      "runtime_weight": 0.717,
+      "topological_weight": 0.487,
+      "visual_weight": 0.461,
+      "runtime_weight": 0.726,
       "structural_rank": 18.2,
-      "_fy": -149.4,
-      "_compositions_count": 7
+      "_fy": -142.4,
+      "_compositions_count": 8
     },
     {
       "id": "DVE-010",
@@ -5531,7 +5531,7 @@
       "visual_weight": 0.379,
       "runtime_weight": 0.691,
       "structural_rank": -4.7,
-      "_fy": -226.6,
+      "_fy": -223.6,
       "_compositions_count": 4
     },
     {
@@ -5586,7 +5586,7 @@
       "visual_weight": 0.378,
       "runtime_weight": 0.691,
       "structural_rank": -4.7,
-      "_fy": -201.8,
+      "_fy": -202.8,
       "_compositions_count": 4
     },
     {
@@ -5637,12 +5637,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.484,
-      "visual_weight": 0.459,
-      "runtime_weight": 0.725,
+      "topological_weight": 0.514,
+      "visual_weight": 0.48,
+      "runtime_weight": 0.734,
       "structural_rank": 18.1,
-      "_fy": -166.6,
-      "_compositions_count": 8
+      "_fy": -144.6,
+      "_compositions_count": 9
     },
     {
       "id": "DVE-013",
@@ -5700,7 +5700,7 @@
       "visual_weight": 0.384,
       "runtime_weight": 0.693,
       "structural_rank": -4.5,
-      "_fy": -203.1,
+      "_fy": -206.1,
       "_compositions_count": 4
     },
     {
@@ -5751,7 +5751,7 @@
       "visual_weight": 0.398,
       "runtime_weight": 0.699,
       "structural_rank": -1.8,
-      "_fy": -214.4,
+      "_fy": -200.4,
       "_compositions_count": 5
     },
     {
@@ -5802,12 +5802,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.455,
-      "visual_weight": 0.438,
-      "runtime_weight": 0.716,
+      "topological_weight": 0.484,
+      "visual_weight": 0.459,
+      "runtime_weight": 0.725,
       "structural_rank": 18.1,
-      "_fy": -148.6,
-      "_compositions_count": 7
+      "_fy": -156.6,
+      "_compositions_count": 8
     },
     {
       "id": "UDE-009",
@@ -5861,12 +5861,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.505,
-      "visual_weight": 0.473,
-      "runtime_weight": 0.732,
+      "topological_weight": 0.665,
+      "visual_weight": 0.585,
+      "runtime_weight": 0.78,
       "structural_rank": 8.5,
-      "_fy": -164.8,
-      "_compositions_count": 19
+      "_fy": -184.8,
+      "_compositions_count": 24
     },
     {
       "id": "UDE-010",
@@ -5916,12 +5916,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.499,
-      "visual_weight": 0.469,
-      "runtime_weight": 0.73,
+      "topological_weight": 0.579,
+      "visual_weight": 0.525,
+      "runtime_weight": 0.754,
       "structural_rank": 8.3,
-      "_fy": -192.2,
-      "_compositions_count": 17
+      "_fy": -194.2,
+      "_compositions_count": 20
     },
     {
       "id": "UDE-011",
@@ -5975,8 +5975,8 @@
       "visual_weight": 0.468,
       "runtime_weight": 0.729,
       "structural_rank": 8.2,
-      "_fy": -180.4,
-      "_compositions_count": 17
+      "_fy": -190.4,
+      "_compositions_count": 18
     },
     {
       "id": "UDE-012",
@@ -6030,8 +6030,8 @@
       "visual_weight": 0.465,
       "runtime_weight": 0.728,
       "structural_rank": 8.1,
-      "_fy": -172.8,
-      "_compositions_count": 17
+      "_fy": -187.8,
+      "_compositions_count": 18
     },
     {
       "id": "UDE-013",
@@ -6085,8 +6085,8 @@
       "visual_weight": 0.461,
       "runtime_weight": 0.726,
       "structural_rank": 7.9,
-      "_fy": -173.2,
-      "_compositions_count": 17
+      "_fy": -194.2,
+      "_compositions_count": 18
     },
     {
       "id": "UDE-014",
@@ -6136,12 +6136,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.49,
-      "visual_weight": 0.463,
-      "runtime_weight": 0.727,
+      "topological_weight": 0.69,
+      "visual_weight": 0.603,
+      "runtime_weight": 0.787,
       "structural_rank": 8.0,
-      "_fy": -174.0,
-      "_compositions_count": 17
+      "_fy": -169.0,
+      "_compositions_count": 24
     },
     {
       "id": "UDE-015",
@@ -6191,8 +6191,8 @@
       "visual_weight": 0.464,
       "runtime_weight": 0.727,
       "structural_rank": 8.1,
-      "_fy": -167.9,
-      "_compositions_count": 17
+      "_fy": -186.9,
+      "_compositions_count": 18
     },
     {
       "id": "UDE-017",
@@ -6242,8 +6242,8 @@
       "visual_weight": 0.46,
       "runtime_weight": 0.726,
       "structural_rank": 7.8,
-      "_fy": -171.4,
-      "_compositions_count": 17
+      "_fy": -192.4,
+      "_compositions_count": 18
     },
     {
       "id": "UDE-018",
@@ -6293,8 +6293,8 @@
       "visual_weight": 0.462,
       "runtime_weight": 0.727,
       "structural_rank": 7.9,
-      "_fy": -186.1,
-      "_compositions_count": 17
+      "_fy": -169.1,
+      "_compositions_count": 18
     },
     {
       "id": "UDE-019",
@@ -6344,12 +6344,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.493,
-      "visual_weight": 0.465,
-      "runtime_weight": 0.728,
+      "topological_weight": 0.573,
+      "visual_weight": 0.521,
+      "runtime_weight": 0.752,
       "structural_rank": 8.1,
-      "_fy": -192.8,
-      "_compositions_count": 18
+      "_fy": -176.8,
+      "_compositions_count": 21
     },
     {
       "id": "GHUC-006",
@@ -6403,12 +6403,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 2,
-      "topological_weight": 0.375,
-      "visual_weight": 0.382,
-      "runtime_weight": 0.693,
-      "structural_rank": -4.5,
-      "_fy": -198.2,
-      "_compositions_count": 4
+      "topological_weight": 0.405,
+      "visual_weight": 0.403,
+      "runtime_weight": 0.702,
+      "structural_rank": -1.5,
+      "_fy": -189.8,
+      "_compositions_count": 5
     },
     {
       "id": "GHUC-007",
@@ -6462,12 +6462,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.496,
-      "visual_weight": 0.468,
-      "runtime_weight": 0.729,
+      "topological_weight": 0.676,
+      "visual_weight": 0.594,
+      "runtime_weight": 0.783,
       "structural_rank": 18.6,
-      "_fy": -154.6,
-      "_compositions_count": 8
+      "_fy": -159.6,
+      "_compositions_count": 14
     },
     {
       "id": "GHUC-008",
@@ -6521,12 +6521,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.561,
-      "visual_weight": 0.513,
-      "runtime_weight": 0.748,
+      "topological_weight": 0.601,
+      "visual_weight": 0.541,
+      "runtime_weight": 0.76,
       "structural_rank": 18.7,
-      "_fy": -157.2,
-      "_compositions_count": 10
+      "_fy": -151.2,
+      "_compositions_count": 14
     },
     {
       "id": "GHUC-009",
@@ -6576,7 +6576,7 @@
       "visual_weight": 0.376,
       "runtime_weight": 0.69,
       "structural_rank": -4.8,
-      "_fy": -205.0,
+      "_fy": -224.0,
       "_compositions_count": 4
     },
     {
@@ -6627,12 +6627,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 2,
-      "topological_weight": 0.37,
-      "visual_weight": 0.379,
-      "runtime_weight": 0.691,
-      "structural_rank": -4.7,
-      "_fy": -225.6,
-      "_compositions_count": 4
+      "topological_weight": 0.4,
+      "visual_weight": 0.4,
+      "runtime_weight": 0.7,
+      "structural_rank": -1.6,
+      "_fy": -201.1,
+      "_compositions_count": 5
     },
     {
       "id": "GHUC-011",
@@ -6682,12 +6682,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 2,
-      "topological_weight": 0.393,
-      "visual_weight": 0.395,
-      "runtime_weight": 0.698,
+      "topological_weight": 0.423,
+      "visual_weight": 0.416,
+      "runtime_weight": 0.707,
       "structural_rank": -1.9,
-      "_fy": -211.8,
-      "_compositions_count": 5
+      "_fy": -199.8,
+      "_compositions_count": 6
     },
     {
       "id": "GHUC-012",
@@ -6733,12 +6733,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 2,
-      "topological_weight": 0.397,
-      "visual_weight": 0.398,
-      "runtime_weight": 0.699,
+      "topological_weight": 0.427,
+      "visual_weight": 0.419,
+      "runtime_weight": 0.708,
       "structural_rank": -1.8,
-      "_fy": -191.4,
-      "_compositions_count": 5
+      "_fy": -206.4,
+      "_compositions_count": 6
     },
     {
       "id": "GHUC-013",
@@ -6788,7 +6788,7 @@
       "visual_weight": 0.401,
       "runtime_weight": 0.701,
       "structural_rank": -1.6,
-      "_fy": -205.0,
+      "_fy": -218.0,
       "_compositions_count": 5
     },
     {
@@ -6839,12 +6839,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 2,
-      "topological_weight": 0.364,
-      "visual_weight": 0.375,
-      "runtime_weight": 0.689,
-      "structural_rank": -4.8,
-      "_fy": -209.1,
-      "_compositions_count": 4
+      "topological_weight": 0.394,
+      "visual_weight": 0.396,
+      "runtime_weight": 0.698,
+      "structural_rank": -1.9,
+      "_fy": -211.6,
+      "_compositions_count": 5
     },
     {
       "id": "GHUC-015",
@@ -6898,12 +6898,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.519,
-      "visual_weight": 0.483,
-      "runtime_weight": 0.736,
+      "topological_weight": 0.549,
+      "visual_weight": 0.504,
+      "runtime_weight": 0.745,
       "structural_rank": 18.3,
-      "_fy": -164.2,
-      "_compositions_count": 9
+      "_fy": -156.2,
+      "_compositions_count": 12
     },
     {
       "id": "WP11-008",
@@ -6957,12 +6957,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 2,
-      "topological_weight": 0.357,
-      "visual_weight": 0.37,
-      "runtime_weight": 0.687,
+      "topological_weight": 0.387,
+      "visual_weight": 0.391,
+      "runtime_weight": 0.696,
       "structural_rank": -4.1,
-      "_fy": -205.2,
-      "_compositions_count": 3
+      "_fy": -218.2,
+      "_compositions_count": 4
     },
     {
       "id": "WP11-009",
@@ -7012,12 +7012,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.498,
-      "visual_weight": 0.469,
-      "runtime_weight": 0.729,
+      "topological_weight": 0.558,
+      "visual_weight": 0.511,
+      "runtime_weight": 0.747,
       "structural_rank": 18.6,
-      "_fy": -158.5,
-      "_compositions_count": 8
+      "_fy": -157.5,
+      "_compositions_count": 12
     },
     {
       "id": "WP11-010",
@@ -7122,12 +7122,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 3,
-      "topological_weight": 0.444,
-      "visual_weight": 0.431,
-      "runtime_weight": 0.713,
-      "structural_rank": -6.2,
-      "_fy": -224.5,
-      "_compositions_count": 6
+      "topological_weight": 0.474,
+      "visual_weight": 0.452,
+      "runtime_weight": 0.722,
+      "structural_rank": -1.2,
+      "_fy": -199.0,
+      "_compositions_count": 7
     },
     {
       "id": "WP11-012",
@@ -7181,7 +7181,7 @@
       "visual_weight": 0.378,
       "runtime_weight": 0.691,
       "structural_rank": -9.7,
-      "_fy": -211.2,
+      "_fy": -227.2,
       "_compositions_count": 4
     },
     {
@@ -7232,12 +7232,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.492,
-      "visual_weight": 0.464,
-      "runtime_weight": 0.728,
+      "topological_weight": 0.552,
+      "visual_weight": 0.506,
+      "runtime_weight": 0.746,
       "structural_rank": 18.4,
-      "_fy": -162.0,
-      "_compositions_count": 8
+      "_fy": -141.0,
+      "_compositions_count": 12
     },
     {
       "id": "WP11-014",
@@ -7287,12 +7287,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.481,
-      "visual_weight": 0.457,
-      "runtime_weight": 0.724,
+      "topological_weight": 0.541,
+      "visual_weight": 0.499,
+      "runtime_weight": 0.742,
       "structural_rank": 18.1,
-      "_fy": -144.9,
-      "_compositions_count": 8
+      "_fy": -167.9,
+      "_compositions_count": 12
     },
     {
       "id": "WP11-015",
@@ -7346,7 +7346,7 @@
       "visual_weight": 0.381,
       "runtime_weight": 0.692,
       "structural_rank": -9.6,
-      "_fy": -227.9,
+      "_fy": -233.9,
       "_compositions_count": 4
     },
     {
@@ -7397,7 +7397,7 @@
       "visual_weight": 0.376,
       "runtime_weight": 0.69,
       "structural_rank": -4.8,
-      "_fy": -199.0,
+      "_fy": -224.0,
       "_compositions_count": 4
     },
     {
@@ -7452,12 +7452,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.501,
-      "visual_weight": 0.471,
-      "runtime_weight": 0.73,
+      "topological_weight": 0.561,
+      "visual_weight": 0.513,
+      "runtime_weight": 0.748,
       "structural_rank": 18.7,
-      "_fy": -161.2,
-      "_compositions_count": 8
+      "_fy": -162.2,
+      "_compositions_count": 12
     },
     {
       "id": "WP12-009",
@@ -7511,12 +7511,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.506,
-      "visual_weight": 0.475,
-      "runtime_weight": 0.732,
+      "topological_weight": 0.587,
+      "visual_weight": 0.531,
+      "runtime_weight": 0.756,
       "structural_rank": 8.6,
-      "_fy": -168.6,
-      "_compositions_count": 19
+      "_fy": -183.6,
+      "_compositions_count": 25
     },
     {
       "id": "WP12-010",
@@ -7566,12 +7566,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.511,
-      "visual_weight": 0.478,
-      "runtime_weight": 0.733,
+      "topological_weight": 0.551,
+      "visual_weight": 0.506,
+      "runtime_weight": 0.745,
       "structural_rank": 8.7,
-      "_fy": -180.2,
-      "_compositions_count": 18
+      "_fy": -172.2,
+      "_compositions_count": 23
     },
     {
       "id": "WP12-011",
@@ -7625,8 +7625,8 @@
       "visual_weight": 0.48,
       "runtime_weight": 0.734,
       "structural_rank": 8.8,
-      "_fy": -182.0,
-      "_compositions_count": 18
+      "_fy": -170.0,
+      "_compositions_count": 23
     },
     {
       "id": "WP12-012",
@@ -7680,8 +7680,8 @@
       "visual_weight": 0.481,
       "runtime_weight": 0.735,
       "structural_rank": 8.8,
-      "_fy": -183.9,
-      "_compositions_count": 18
+      "_fy": -190.9,
+      "_compositions_count": 22
     },
     {
       "id": "WP12-013",
@@ -7735,8 +7735,8 @@
       "visual_weight": 0.466,
       "runtime_weight": 0.728,
       "structural_rank": 8.2,
-      "_fy": -193.6,
-      "_compositions_count": 18
+      "_fy": -170.6,
+      "_compositions_count": 22
     },
     {
       "id": "WP12-014",
@@ -7790,8 +7790,8 @@
       "visual_weight": 0.469,
       "runtime_weight": 0.73,
       "structural_rank": 8.3,
-      "_fy": -188.2,
-      "_compositions_count": 18
+      "_fy": -186.2,
+      "_compositions_count": 22
     },
     {
       "id": "WP12-015",
@@ -7845,8 +7845,8 @@
       "visual_weight": 0.477,
       "runtime_weight": 0.733,
       "structural_rank": 8.7,
-      "_fy": -173.4,
-      "_compositions_count": 19
+      "_fy": -170.4,
+      "_compositions_count": 23
     },
     {
       "id": "WP12-016",
@@ -7900,8 +7900,8 @@
       "visual_weight": 0.475,
       "runtime_weight": 0.732,
       "structural_rank": 8.6,
-      "_fy": -187.6,
-      "_compositions_count": 18
+      "_fy": -185.6,
+      "_compositions_count": 22
     },
     {
       "id": "WP12-017",
@@ -7955,12 +7955,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 2,
-      "topological_weight": 0.293,
-      "visual_weight": 0.325,
-      "runtime_weight": 0.668,
-      "structural_rank": -4.6,
-      "_fy": -212.4,
-      "_compositions_count": 3
+      "topological_weight": 0.353,
+      "visual_weight": 0.367,
+      "runtime_weight": 0.686,
+      "structural_rank": -1.6,
+      "_fy": -199.9,
+      "_compositions_count": 5
     },
     {
       "id": "WP12-018",
@@ -8014,8 +8014,8 @@
       "visual_weight": 0.471,
       "runtime_weight": 0.731,
       "structural_rank": 8.4,
-      "_fy": -170.0,
-      "_compositions_count": 18
+      "_fy": -190.0,
+      "_compositions_count": 22
     },
     {
       "id": "WP12-019",
@@ -8069,12 +8069,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 2,
-      "topological_weight": 0.323,
-      "visual_weight": 0.346,
-      "runtime_weight": 0.677,
-      "structural_rank": -4.6,
-      "_fy": -209.4,
-      "_compositions_count": 4
+      "topological_weight": 0.523,
+      "visual_weight": 0.486,
+      "runtime_weight": 0.737,
+      "structural_rank": 3.4,
+      "_fy": -196.4,
+      "_compositions_count": 8
     },
     {
       "id": "WP12-020",
@@ -8132,8 +8132,8 @@
       "visual_weight": 0.477,
       "runtime_weight": 0.733,
       "structural_rank": 8.7,
-      "_fy": -165.4,
-      "_compositions_count": 18
+      "_fy": -179.4,
+      "_compositions_count": 23
     },
     {
       "id": "SDE-008",
@@ -8183,12 +8183,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 2,
-      "topological_weight": 0.367,
-      "visual_weight": 0.377,
-      "runtime_weight": 0.69,
-      "structural_rank": -4.8,
-      "_fy": -209.9,
-      "_compositions_count": 4
+      "topological_weight": 0.578,
+      "visual_weight": 0.524,
+      "runtime_weight": 0.753,
+      "structural_rank": 3.2,
+      "_fy": -204.9,
+      "_compositions_count": 7
     },
     {
       "id": "SDE-009",
@@ -8246,7 +8246,7 @@
       "visual_weight": 0.508,
       "runtime_weight": 0.746,
       "structural_rank": 18.5,
-      "_fy": -160.8,
+      "_fy": -141.8,
       "_compositions_count": 10
     },
     {
@@ -8301,7 +8301,7 @@
       "visual_weight": 0.376,
       "runtime_weight": 0.69,
       "structural_rank": -4.8,
-      "_fy": -216.0,
+      "_fy": -221.0,
       "_compositions_count": 4
     },
     {
@@ -8356,7 +8356,7 @@
       "visual_weight": 0.436,
       "runtime_weight": 0.715,
       "structural_rank": 3.0,
-      "_fy": -186.4,
+      "_fy": -203.4,
       "_compositions_count": 7
     },
     {
@@ -8411,7 +8411,7 @@
       "visual_weight": 0.477,
       "runtime_weight": 0.733,
       "structural_rank": 18.0,
-      "_fy": -155.0,
+      "_fy": -166.0,
       "_compositions_count": 9
     },
     {
@@ -8466,12 +8466,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 2,
-      "topological_weight": 0.493,
-      "visual_weight": 0.465,
-      "runtime_weight": 0.728,
+      "topological_weight": 0.633,
+      "visual_weight": 0.563,
+      "runtime_weight": 0.77,
       "structural_rank": 3.4,
-      "_fy": -199.4,
-      "_compositions_count": 8
+      "_fy": -196.4,
+      "_compositions_count": 10
     },
     {
       "id": "SDE-014",
@@ -8525,7 +8525,7 @@
       "visual_weight": 0.437,
       "runtime_weight": 0.716,
       "structural_rank": 3.1,
-      "_fy": -185.2,
+      "_fy": -206.2,
       "_compositions_count": 7
     },
     {
@@ -8584,7 +8584,7 @@
       "visual_weight": 0.384,
       "runtime_weight": 0.693,
       "structural_rank": -4.5,
-      "_fy": -212.1,
+      "_fy": -211.1,
       "_compositions_count": 4
     },
     {
@@ -8643,8 +8643,8 @@
       "visual_weight": 0.513,
       "runtime_weight": 0.748,
       "structural_rank": 18.7,
-      "_fy": -158.2,
-      "_compositions_count": 10
+      "_fy": -153.2,
+      "_compositions_count": 11
     },
     {
       "id": "SDE-017",
@@ -8698,7 +8698,7 @@
       "visual_weight": 0.479,
       "runtime_weight": 0.734,
       "structural_rank": 18.1,
-      "_fy": -144.8,
+      "_fy": -150.8,
       "_compositions_count": 9
     },
     {
@@ -8749,12 +8749,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.45,
-      "visual_weight": 0.435,
-      "runtime_weight": 0.715,
+      "topological_weight": 0.51,
+      "visual_weight": 0.477,
+      "runtime_weight": 0.733,
       "structural_rank": 18.0,
-      "_fy": -166.0,
-      "_compositions_count": 7
+      "_fy": -145.0,
+      "_compositions_count": 9
     },
     {
       "id": "PAL-008",
@@ -8804,12 +8804,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.455,
-      "visual_weight": 0.438,
-      "runtime_weight": 0.716,
+      "topological_weight": 0.514,
+      "visual_weight": 0.48,
+      "runtime_weight": 0.734,
       "structural_rank": 18.1,
-      "_fy": -157.6,
-      "_compositions_count": 7
+      "_fy": -162.6,
+      "_compositions_count": 9
     },
     {
       "id": "PAL-010",
@@ -8867,7 +8867,7 @@
       "visual_weight": 0.357,
       "runtime_weight": 0.682,
       "structural_rank": -4.7,
-      "_fy": -208.8,
+      "_fy": -223.8,
       "_compositions_count": 3
     },
     {
@@ -8922,7 +8922,7 @@
       "visual_weight": 0.397,
       "runtime_weight": 0.699,
       "structural_rank": -1.8,
-      "_fy": -203.5,
+      "_fy": -198.5,
       "_compositions_count": 5
     },
     {
@@ -8981,7 +8981,7 @@
       "visual_weight": 0.35,
       "runtime_weight": 0.679,
       "structural_rank": -15.1,
-      "_fy": -235.6,
+      "_fy": -252.6,
       "_compositions_count": 3
     },
     {
@@ -9036,7 +9036,7 @@
       "visual_weight": 0.352,
       "runtime_weight": 0.679,
       "structural_rank": -5.0,
-      "_fy": -204.4,
+      "_fy": -217.4,
       "_compositions_count": 3
     },
     {
@@ -9091,7 +9091,7 @@
       "visual_weight": 0.358,
       "runtime_weight": 0.682,
       "structural_rank": -9.7,
-      "_fy": -219.1,
+      "_fy": -232.1,
       "_compositions_count": 3
     },
     {
@@ -9146,8 +9146,8 @@
       "visual_weight": 0.465,
       "runtime_weight": 0.728,
       "structural_rank": 8.1,
-      "_fy": -185.8,
-      "_compositions_count": 17
+      "_fy": -166.8,
+      "_compositions_count": 18
     },
     {
       "id": "GHUC-016",
@@ -9201,12 +9201,12 @@
       },
       "runtime_admissible": true,
       "hierarchical_depth": 1,
-      "topological_weight": 0.493,
-      "visual_weight": 0.465,
-      "runtime_weight": 0.728,
+      "topological_weight": 0.553,
+      "visual_weight": 0.507,
+      "runtime_weight": 0.746,
       "structural_rank": 18.4,
-      "_fy": -166.9,
-      "_compositions_count": 8
+      "_fy": -149.9,
+      "_compositions_count": 11
     },
     {
       "id": "WP12-021",
@@ -9264,8 +9264,8 @@
       "visual_weight": 0.477,
       "runtime_weight": 0.733,
       "structural_rank": 8.7,
-      "_fy": -180.4,
-      "_compositions_count": 18
+      "_fy": -189.4,
+      "_compositions_count": 22
     },
     {
       "id": "SDE-018",
@@ -9319,7 +9319,7 @@
       "visual_weight": 0.435,
       "runtime_weight": 0.715,
       "structural_rank": 3.0,
-      "_fy": -184.5,
+      "_fy": -182.5,
       "_compositions_count": 7
     },
     {
@@ -9374,7 +9374,7 @@
       "visual_weight": 0.394,
       "runtime_weight": 0.697,
       "structural_rank": -2.0,
-      "_fy": -191.9,
+      "_fy": -192.9,
       "_compositions_count": 5
     },
     {
@@ -9433,8 +9433,3701 @@
       "visual_weight": 0.381,
       "runtime_weight": 0.692,
       "structural_rank": -4.6,
-      "_fy": -197.4,
+      "_fy": -202.4,
       "_compositions_count": 4
+    },
+    {
+      "id": "WP11-020",
+      "title": "Type-checking strict des frames",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "typage",
+        "frames"
+      ],
+      "examples": [
+        "frames.intermediate doit être list[{level,scope}]"
+      ],
+      "html_description": "Validation de type stricte du champ frames sur tous les nœuds (rigueur formelle).",
+      "equations": [
+        "type_check(frames) ⟺ schema_match(frames, FrameSchema)"
+      ],
+      "S_local": 0.92,
+      "S_global": 0.81,
+      "stability": "stable",
+      "weight": 0.74,
+      "frames": {
+        "local": [
+          "nœud n et ses frames"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "WP12 admissibilité"
+          }
+        ],
+        "global": [
+          "politique de typage systémique"
+        ],
+        "proxies": [
+          "validateur Python sur load"
+        ],
+        "limits": [
+          "schéma rigide — pas de polymorphisme"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.561,
+      "visual_weight": 0.513,
+      "runtime_weight": 0.748,
+      "structural_rank": 18.7,
+      "_fy": -162.2,
+      "_compositions_count": 13
+    },
+    {
+      "id": "WP11-021",
+      "title": "Type-safety des compositions",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "typage",
+        "composition"
+      ],
+      "examples": [
+        "composition admissible si types compatibles"
+      ],
+      "html_description": "Une composition est admissible seulement si les types output/input sont compatibles.",
+      "equations": [
+        "compose(L1,L2) ⟺ output_type(L1) = input_type(L2)"
+      ],
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "stability": "stable",
+      "weight": 0.69,
+      "frames": {
+        "local": [
+          "paire (L1,L2)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "calcul typé"
+          }
+        ],
+        "global": [
+          "graphe de compatibilité types globale"
+        ],
+        "proxies": [
+          "inférence statique"
+        ],
+        "limits": [
+          "dépend de la qualité du système de types"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.464,
+      "visual_weight": 0.444,
+      "runtime_weight": 0.719,
+      "structural_rank": 3.4,
+      "_fy": -189.4,
+      "_compositions_count": 7
+    },
+    {
+      "id": "WP12-022",
+      "title": "Critère de calculabilité",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "calculabilité",
+        "admissibilité"
+      ],
+      "examples": [
+        "loi admissible si elle est calculable en temps fini"
+      ],
+      "html_description": "Une loi n'est admissible que si elle est en principe calculable en temps fini.",
+      "equations": [
+        "computable(L) ⟺ ∃ algorithme(L) terminant"
+      ],
+      "S_local": 0.89,
+      "S_global": 0.79,
+      "stability": "stable",
+      "weight": 0.7,
+      "frames": {
+        "local": [
+          "loi L"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "théorie calculabilité"
+          }
+        ],
+        "global": [
+          "espace des lois calculables global"
+        ],
+        "proxies": [
+          "proof via reduction"
+        ],
+        "limits": [
+          "Halting problem — limite théorique"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.505,
+      "visual_weight": 0.473,
+      "runtime_weight": 0.732,
+      "structural_rank": 8.5,
+      "_fy": -165.8,
+      "_compositions_count": 22
+    },
+    {
+      "id": "ULG-019",
+      "title": "Grammaire context-free latente",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "grammaire",
+        "context-free"
+      ],
+      "examples": [
+        "sous-grammaire CFG dans l'espace latent"
+      ],
+      "html_description": "Sous-classe de la grammaire latente : structures context-free.",
+      "equations": [
+        "L_latent ⊂ CFG"
+      ],
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "stability": "stable",
+      "weight": 0.62,
+      "frames": {
+        "local": [
+          "énoncé latent"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG"
+          },
+          {
+            "level": "macro",
+            "scope": "linguistique formelle"
+          }
+        ],
+        "global": [
+          "clôture CFG du langage latent"
+        ],
+        "proxies": [
+          "test parse Earley"
+        ],
+        "limits": [
+          "beaucoup de phénomènes non-CFG"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.333,
+      "visual_weight": 0.353,
+      "runtime_weight": 0.68,
+      "structural_rank": -4.9,
+      "_fy": -206.2,
+      "_compositions_count": 3
+    },
+    {
+      "id": "ULG-020",
+      "title": "Vérification formelle de cadre",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "formel",
+        "vérification"
+      ],
+      "examples": [
+        "cadre vérifié par theorem prover"
+      ],
+      "html_description": "Vérification formelle d'un cadre par theorem prover (Coq/Lean/Isabelle).",
+      "equations": [
+        "verify(F) ⟺ ⊢_T F (provable)"
+      ],
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "stability": "stable",
+      "weight": 0.63,
+      "frames": {
+        "local": [
+          "cadre F et système de preuve T"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG"
+          },
+          {
+            "level": "macro",
+            "scope": "logique formelle"
+          }
+        ],
+        "global": [
+          "système de preuve global"
+        ],
+        "proxies": [
+          "theorem prover"
+        ],
+        "limits": [
+          "incomplet — Gödel"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.544,
+      "visual_weight": 0.501,
+      "runtime_weight": 0.743,
+      "structural_rank": 18.1,
+      "_fy": -160.6,
+      "_compositions_count": 10
+    },
+    {
+      "id": "UDE-021",
+      "title": "Algorithme de retrieval déterministe",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "déterminisme",
+        "retrieval"
+      ],
+      "examples": [
+        "même query → même résultats reproductibles"
+      ],
+      "html_description": "Le retrieval doit être déterministe (reproductible) pour audit.",
+      "equations": [
+        "retrieve(q,seed) idempotent"
+      ],
+      "S_local": 0.91,
+      "S_global": 0.81,
+      "stability": "stable",
+      "weight": 0.73,
+      "frames": {
+        "local": [
+          "query q et seed"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "reproductibilité"
+          },
+          {
+            "level": "systémique",
+            "scope": "audit"
+          }
+        ],
+        "global": [
+          "politique de déterminisme systémique"
+        ],
+        "proxies": [
+          "test idempotence"
+        ],
+        "limits": [
+          "coût : pas de stochasticité utile"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.359,
+      "visual_weight": 0.372,
+      "runtime_weight": 0.688,
+      "structural_rank": -1.4,
+      "_fy": -217.4,
+      "_compositions_count": 5
+    },
+    {
+      "id": "GHUC-017",
+      "title": "Calcul de hash épistémique",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "hash",
+        "épistémique"
+      ],
+      "examples": [
+        "empreinte unique de chaque loi pour audit"
+      ],
+      "html_description": "Hash épistémique d'une loi pour traçabilité immuable.",
+      "equations": [
+        "hash_ep(L) = SHA256(canonical_form(L))"
+      ],
+      "S_local": 0.92,
+      "S_global": 0.82,
+      "stability": "stable",
+      "weight": 0.75,
+      "frames": {
+        "local": [
+          "loi L"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          },
+          {
+            "level": "macro",
+            "scope": "traçabilité"
+          }
+        ],
+        "global": [
+          "registre global des hashs"
+        ],
+        "proxies": [
+          "SHA256"
+        ],
+        "limits": [
+          "collisions improbables mais possibles"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.642,
+      "visual_weight": 0.57,
+      "runtime_weight": 0.773,
+      "structural_rank": 18.8,
+      "_fy": -167.1,
+      "_compositions_count": 13
+    },
+    {
+      "id": "GHUC-018",
+      "title": "Calcul de delta entre versions",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "delta",
+        "versionnage"
+      ],
+      "examples": [
+        "diff entre v1.0 et v1.1 d'une loi"
+      ],
+      "html_description": "Calcul du delta entre deux versions d'une loi pour audit incremental.",
+      "equations": [
+        "delta(L_v1,L_v2) = symmetric_difference"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "stability": "stable",
+      "weight": 0.65,
+      "frames": {
+        "local": [
+          "paire (L_v1,L_v2)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          }
+        ],
+        "global": [
+          "historique global des deltas"
+        ],
+        "proxies": [
+          "diff structurel"
+        ],
+        "limits": [
+          "coût quadratique sur grandes lois"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.338,
+      "visual_weight": 0.356,
+      "runtime_weight": 0.681,
+      "structural_rank": -4.8,
+      "_fy": -222.9,
+      "_compositions_count": 3
+    },
+    {
+      "id": "WP11-022",
+      "title": "Borne d'erreur numérique",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "erreur",
+        "numérique"
+      ],
+      "examples": [
+        "S_global précis à ±0.001 près"
+      ],
+      "html_description": "Borne d'erreur sur calculs numériques de S_global.",
+      "equations": [
+        "|S_global_calc - S_global_exact| ≤ ε"
+      ],
+      "S_local": 0.87,
+      "S_global": 0.77,
+      "stability": "stable",
+      "weight": 0.66,
+      "frames": {
+        "local": [
+          "calcul S_global"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "arithmétique flottante"
+          }
+        ],
+        "global": [
+          "précision globale du système"
+        ],
+        "proxies": [
+          "analyse arrondi IEEE 754"
+        ],
+        "limits": [
+          "erreur cumulative sur longues chaînes"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.369,
+      "visual_weight": 0.378,
+      "runtime_weight": 0.691,
+      "structural_rank": -4.7,
+      "_fy": -220.8,
+      "_compositions_count": 4
+    },
+    {
+      "id": "WP11-024",
+      "title": "Audit incrémental sur diff",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "audit",
+        "incrémental"
+      ],
+      "examples": [
+        "audit ne re-calcule que les nœuds touchés par diff"
+      ],
+      "html_description": "Audit ne traite que les nœuds touchés par le dernier changement.",
+      "equations": [
+        "audit_inc(graph,diff) = audit_full(touched_nodes)"
+      ],
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "stability": "stable",
+      "weight": 0.68,
+      "frames": {
+        "local": [
+          "graphe + diff"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "performance audit"
+          }
+        ],
+        "global": [
+          "coût audit global réduit"
+        ],
+        "proxies": [
+          "diff structurel"
+        ],
+        "limits": [
+          "effets cross-nœud peuvent être manqués"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.462,
+      "visual_weight": 0.443,
+      "runtime_weight": 0.719,
+      "structural_rank": 3.4,
+      "_fy": -185.5,
+      "_compositions_count": 7
+    },
+    {
+      "id": "WP11-026",
+      "title": "Réplication d'audit indépendant",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "réplication",
+        "indépendance"
+      ],
+      "examples": [
+        "2 instances Oracle audit la même loi → mêmes verdicts"
+      ],
+      "html_description": "Tout audit doit être réplicable indépendamment par 2 Oracles distincts.",
+      "equations": [
+        "audit_R1(L) ≡ audit_R2(L)"
+      ],
+      "S_local": 0.9,
+      "S_global": 0.8,
+      "stability": "stable",
+      "weight": 0.71,
+      "frames": {
+        "local": [
+          "loi L et 2 Oracles"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "systémique",
+            "scope": "Oracle distribué"
+          }
+        ],
+        "global": [
+          "consensus global"
+        ],
+        "proxies": [
+          "replay sur Oracle 2"
+        ],
+        "limits": [
+          "coût communication inter-Oracle"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.607,
+      "visual_weight": 0.545,
+      "runtime_weight": 0.762,
+      "structural_rank": 3.5,
+      "_fy": -194.1,
+      "_compositions_count": 9
+    },
+    {
+      "id": "WP12-024",
+      "title": "Critère de signature cryptographique",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "signature",
+        "cryptographie"
+      ],
+      "examples": [
+        "chaque commit signé par auteur pour anti-tampering"
+      ],
+      "html_description": "Tout commit au CanonicalGraph doit être signé cryptographiquement.",
+      "equations": [
+        "valid(commit) ⟺ verify_sig(commit, public_key)"
+      ],
+      "S_local": 0.91,
+      "S_global": 0.81,
+      "stability": "stable",
+      "weight": 0.73,
+      "frames": {
+        "local": [
+          "commit + signature"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "sécurité supply chain"
+          }
+        ],
+        "global": [
+          "politique signature systémique"
+        ],
+        "proxies": [
+          "GPG/SSH signing"
+        ],
+        "limits": [
+          "gestion des clés non triviale"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.359,
+      "visual_weight": 0.372,
+      "runtime_weight": 0.688,
+      "structural_rank": -1.4,
+      "_fy": -217.4,
+      "_compositions_count": 5
+    },
+    {
+      "id": "WP12-027",
+      "title": "Critère de min-disclosure",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "disclosure",
+        "minimal"
+      ],
+      "examples": [
+        "audit révèle seulement ce qui est nécessaire"
+      ],
+      "html_description": "Un audit ne révèle que les informations strictement nécessaires (privacy by design).",
+      "equations": [
+        "disclose(audit) = strict_minimum"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "stability": "stable",
+      "weight": 0.65,
+      "frames": {
+        "local": [
+          "audit et destinataire"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "privacy"
+          }
+        ],
+        "global": [
+          "politique disclosure systémique"
+        ],
+        "proxies": [
+          "filter par need-to-know"
+        ],
+        "limits": [
+          "risque sous-disclosure"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.418,
+      "visual_weight": 0.412,
+      "runtime_weight": 0.705,
+      "structural_rank": -1.8,
+      "_fy": -191.4,
+      "_compositions_count": 6
+    },
+    {
+      "id": "WP11-027",
+      "title": "Mesure de couverture d'audit",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "couverture",
+        "audit"
+      ],
+      "examples": [
+        "fraction des lois auditées dans la fenêtre"
+      ],
+      "html_description": "Mesure de la couverture des audits sur fenêtre temporelle.",
+      "equations": [
+        "coverage = |lois_auditées| / |lois_totales|"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "stability": "stable",
+      "weight": 0.65,
+      "frames": {
+        "local": [
+          "fenêtre + log audits"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          }
+        ],
+        "global": [
+          "politique couverture globale"
+        ],
+        "proxies": [
+          "log d'audit horodaté"
+        ],
+        "limits": [
+          "couverture lente sur grand graphe"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.458,
+      "visual_weight": 0.44,
+      "runtime_weight": 0.717,
+      "structural_rank": 3.2,
+      "_fy": -188.9,
+      "_compositions_count": 7
+    },
+    {
+      "id": "WP11-028",
+      "title": "Détection de régression",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "régression",
+        "détection"
+      ],
+      "examples": [
+        "alerte si une loi qui passait échoue maintenant"
+      ],
+      "html_description": "Détection de régression : une loi changeant de verdict d'admissibilité.",
+      "equations": [
+        "regression(L) ⟺ verdict_now ≠ verdict_before"
+      ],
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "stability": "stable",
+      "weight": 0.68,
+      "frames": {
+        "local": [
+          "loi L à 2 timestamps"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "CI/CD"
+          }
+        ],
+        "global": [
+          "historique des verdicts global"
+        ],
+        "proxies": [
+          "diff verdicts"
+        ],
+        "limits": [
+          "faux positifs sur ajustements de critères"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.342,
+      "visual_weight": 0.359,
+      "runtime_weight": 0.683,
+      "structural_rank": -9.6,
+      "_fy": -223.0,
+      "_compositions_count": 3
+    },
+    {
+      "id": "WP11-029",
+      "title": "Quorum d'audit",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "quorum",
+        "audit"
+      ],
+      "examples": [
+        "modification critique requiert 3 audits indépendants"
+      ],
+      "html_description": "Certaines actions critiques exigent un quorum d'audits indépendants.",
+      "equations": [
+        "quorum(action) = N_audits_required(action)"
+      ],
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "stability": "stable",
+      "weight": 0.64,
+      "frames": {
+        "local": [
+          "action et nombre requis"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "gouvernance"
+          }
+        ],
+        "global": [
+          "politique quorum systémique"
+        ],
+        "proxies": [
+          "compteur d'audits"
+        ],
+        "limits": [
+          "coût coordination"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.336,
+      "visual_weight": 0.355,
+      "runtime_weight": 0.681,
+      "structural_rank": -9.8,
+      "_fy": -229.5,
+      "_compositions_count": 3
+    },
+    {
+      "id": "GHUC-021",
+      "title": "Audit hiérarchique de famille",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "audit",
+        "hiérarchique"
+      ],
+      "examples": [
+        "audit séparé par famille puis consolidé"
+      ],
+      "html_description": "Audit consolidé décomposé par famille puis agrégé.",
+      "equations": [
+        "audit_global = ⨁_F audit_family(F)"
+      ],
+      "S_local": 0.87,
+      "S_global": 0.77,
+      "stability": "stable",
+      "weight": 0.67,
+      "frames": {
+        "local": [
+          "graphe et familles"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          },
+          {
+            "level": "macro",
+            "scope": "modularité"
+          }
+        ],
+        "global": [
+          "consolidation globale"
+        ],
+        "proxies": [
+          "audit par famille"
+        ],
+        "limits": [
+          "effets cross-famille manqués"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.37,
+      "visual_weight": 0.379,
+      "runtime_weight": 0.691,
+      "structural_rank": -4.7,
+      "_fy": -204.6,
+      "_compositions_count": 4
+    },
+    {
+      "id": "WP12-028",
+      "title": "Bornage des affirmations",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "bornage",
+        "affirmations"
+      ],
+      "examples": [
+        "réponse limitée aux lois chargées"
+      ],
+      "html_description": "Toute affirmation runtime est bornée par la closure des lois chargées.",
+      "equations": [
+        "claim ∈ closure(loaded_laws)"
+      ],
+      "S_local": 0.93,
+      "S_global": 0.83,
+      "stability": "stable",
+      "weight": 0.77,
+      "frames": {
+        "local": [
+          "réponse runtime"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "ZenRuntime"
+          },
+          {
+            "level": "systémique",
+            "scope": "anti-hallucination"
+          }
+        ],
+        "global": [
+          "politique bornage systémique"
+        ],
+        "proxies": [
+          "check closure(loaded)"
+        ],
+        "limits": [
+          "réponses partielles fréquentes"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.305,
+      "visual_weight": 0.334,
+      "runtime_weight": 0.672,
+      "structural_rank": -4.2,
+      "_fy": -209.4,
+      "_compositions_count": 3
+    },
+    {
+      "id": "WP12-029",
+      "title": "Citation obligatoire en réponse",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "citation",
+        "réponse"
+      ],
+      "examples": [
+        "chaque claim cite la loi qui le supporte"
+      ],
+      "html_description": "Toute affirmation runtime doit citer la loi de support en référence.",
+      "equations": [
+        "each_claim(response) → cite(law)"
+      ],
+      "S_local": 0.92,
+      "S_global": 0.82,
+      "stability": "stable",
+      "weight": 0.74,
+      "frames": {
+        "local": [
+          "réponse"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "systémique",
+            "scope": "anti-hallucination"
+          }
+        ],
+        "global": [
+          "politique citation systémique"
+        ],
+        "proxies": [
+          "lookup law_id par claim"
+        ],
+        "limits": [
+          "réponse plus longue"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.301,
+      "visual_weight": 0.331,
+      "runtime_weight": 0.67,
+      "structural_rank": -4.3,
+      "_fy": -204.8,
+      "_compositions_count": 3
+    },
+    {
+      "id": "DVE-018",
+      "title": "Refus génératif sur lacune",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "refus",
+        "générative"
+      ],
+      "examples": [
+        "pas de génération si lois manquantes"
+      ],
+      "html_description": "Refus de génération si les lois nécessaires sont absentes du CanonicalGraph.",
+      "equations": [
+        "refuse_gen() if missing_laws ≠ ∅"
+      ],
+      "S_local": 0.94,
+      "S_global": 0.84,
+      "stability": "stable",
+      "weight": 0.78,
+      "frames": {
+        "local": [
+          "query et lois disponibles"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          },
+          {
+            "level": "macro",
+            "scope": "ZenRuntime"
+          },
+          {
+            "level": "systémique",
+            "scope": "anti-hallucination"
+          }
+        ],
+        "global": [
+          "politique refus systémique"
+        ],
+        "proxies": [
+          "check missing_laws via CLE"
+        ],
+        "limits": [
+          "frustration user"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.487,
+      "visual_weight": 0.461,
+      "runtime_weight": 0.726,
+      "structural_rank": -6.1,
+      "_fy": -204.2,
+      "_compositions_count": 6
+    },
+    {
+      "id": "DVE-019",
+      "title": "Génération bornée par confiance",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "confiance",
+        "génération"
+      ],
+      "examples": [
+        "génération seulement si confiance > seuil"
+      ],
+      "html_description": "Génération conditionnée à un seuil de confiance estimé.",
+      "equations": [
+        "gen() if confidence ≥ θ_conf"
+      ],
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "stability": "stable",
+      "weight": 0.69,
+      "frames": {
+        "local": [
+          "query et estimation confiance"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          }
+        ],
+        "global": [
+          "politique confiance systémique"
+        ],
+        "proxies": [
+          "confidence par modèle"
+        ],
+        "limits": [
+          "mauvaise calibration possible"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 4,
+      "topological_weight": 0.344,
+      "visual_weight": 0.36,
+      "runtime_weight": 0.683,
+      "structural_rank": -14.6,
+      "_fy": -248.4,
+      "_compositions_count": 3
+    },
+    {
+      "id": "SDE-019",
+      "title": "Self-doubt obligatoire",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "doute",
+        "self"
+      ],
+      "examples": [
+        "LLM vérifie chaque claim avant émission"
+      ],
+      "html_description": "Vérification systématique de chaque claim par self-doubt avant émission.",
+      "equations": [
+        "each_claim(out) → doubt_check(claim)"
+      ],
+      "S_local": 0.91,
+      "S_global": 0.81,
+      "stability": "stable",
+      "weight": 0.73,
+      "frames": {
+        "local": [
+          "claim candidat"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "WP-12 anti-hallu"
+          },
+          {
+            "level": "systémique",
+            "scope": "Oracle"
+          }
+        ],
+        "global": [
+          "politique self-doubt systémique"
+        ],
+        "proxies": [
+          "second pass NLI"
+        ],
+        "limits": [
+          "coût latence ~2x"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.35,
+      "visual_weight": 0.365,
+      "runtime_weight": 0.685,
+      "structural_rank": -9.3,
+      "_fy": -209.4,
+      "_compositions_count": 3
+    },
+    {
+      "id": "UDE-022",
+      "title": "Validation source-doc",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "validation",
+        "source"
+      ],
+      "examples": [
+        "claim cité doit pointer vers doc source vérifiable"
+      ],
+      "html_description": "Validation que les sources citées sont accessibles et vérifiables.",
+      "equations": [
+        "valid_cite(claim) ⟺ source(cite) accessible"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "stability": "stable",
+      "weight": 0.65,
+      "frames": {
+        "local": [
+          "citation"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "WP-12 traçabilité"
+          }
+        ],
+        "global": [
+          "politique source systémique"
+        ],
+        "proxies": [
+          "http_check / doc_lookup"
+        ],
+        "limits": [
+          "sources peuvent disparaître (link rot)"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.347,
+      "visual_weight": 0.363,
+      "runtime_weight": 0.684,
+      "structural_rank": -1.8,
+      "_fy": -212.4,
+      "_compositions_count": 5
+    },
+    {
+      "id": "WP12-031",
+      "title": "Critère de scope explicite",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "scope",
+        "admissibilité"
+      ],
+      "examples": [
+        "réponse précise son scope (cadre d'application)"
+      ],
+      "html_description": "Toute réponse précise explicitement son scope d'application.",
+      "equations": [
+        "response.scope ⊆ loaded_laws.scopes"
+      ],
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "stability": "stable",
+      "weight": 0.68,
+      "frames": {
+        "local": [
+          "réponse"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "FRAMES"
+          }
+        ],
+        "global": [
+          "politique scope systémique"
+        ],
+        "proxies": [
+          "intersection des scopes lois"
+        ],
+        "limits": [
+          "scope trop large = hubris"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.502,
+      "visual_weight": 0.471,
+      "runtime_weight": 0.731,
+      "structural_rank": 8.4,
+      "_fy": -190.0,
+      "_compositions_count": 22
+    },
+    {
+      "id": "DVE-020",
+      "title": "Anti-fabrication de citations",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "citation",
+        "fabrication"
+      ],
+      "examples": [
+        "pas de citation inventée"
+      ],
+      "html_description": "Refus catégorique de citations fabriquées (hallucinées).",
+      "equations": [
+        "valid_cite ⟺ exists_in_canonical(cite)"
+      ],
+      "S_local": 0.95,
+      "S_global": 0.85,
+      "stability": "stable",
+      "weight": 0.8,
+      "frames": {
+        "local": [
+          "citation candidate"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          },
+          {
+            "level": "macro",
+            "scope": "WP-12"
+          },
+          {
+            "level": "systémique",
+            "scope": "anti-hallucination"
+          }
+        ],
+        "global": [
+          "politique anti-fabrication globale"
+        ],
+        "proxies": [
+          "lookup CanonicalGraph"
+        ],
+        "limits": [
+          "faux positifs possibles si delete récent"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.45,
+      "visual_weight": 0.435,
+      "runtime_weight": 0.715,
+      "structural_rank": -6.0,
+      "_fy": -219.0,
+      "_compositions_count": 6
+    },
+    {
+      "id": "SDE-021",
+      "title": "Décomposition claim atomique",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "claim",
+        "décomposition"
+      ],
+      "examples": [
+        "réponse décomposée en claims atomiques vérifiables"
+      ],
+      "html_description": "Réponse décomposée en claims atomiques individuellement vérifiables.",
+      "equations": [
+        "response = ⋃ atomic_claims_i"
+      ],
+      "S_local": 0.87,
+      "S_global": 0.77,
+      "stability": "stable",
+      "weight": 0.67,
+      "frames": {
+        "local": [
+          "réponse complexe"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "WP-11 audit"
+          }
+        ],
+        "global": [
+          "claims atomiques globaux"
+        ],
+        "proxies": [
+          "NLP sentence splitting"
+        ],
+        "limits": [
+          "décomposition imparfaite"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.341,
+      "visual_weight": 0.358,
+      "runtime_weight": 0.682,
+      "structural_rank": -9.7,
+      "_fy": -219.1,
+      "_compositions_count": 3
+    },
+    {
+      "id": "WP12-032",
+      "title": "Quarantine sur hallucination répétée",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "quarantine",
+        "hallucination"
+      ],
+      "examples": [
+        "loi avec hallu_score > θ → quarantine"
+      ],
+      "html_description": "Démotion automatique d'une loi vers sandbox si hallu_score dépasse seuil.",
+      "equations": [
+        "if hallu_score(L) > θ_h ⇒ demote_to_sandbox(L)"
+      ],
+      "S_local": 0.89,
+      "S_global": 0.79,
+      "stability": "stable",
+      "weight": 0.7,
+      "frames": {
+        "local": [
+          "loi L et hallu_score"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "Sandbox"
+          }
+        ],
+        "global": [
+          "politique quarantine globale"
+        ],
+        "proxies": [
+          "check seuil par audit régulier"
+        ],
+        "limits": [
+          "seuil θ_h calibrable — risque thrashing"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.295,
+      "visual_weight": 0.327,
+      "runtime_weight": 0.669,
+      "structural_rank": -4.5,
+      "_fy": -226.2,
+      "_compositions_count": 3
+    },
+    {
+      "id": "DVE-021",
+      "title": "Cap hallucination par génération",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "cap",
+        "hallucination"
+      ],
+      "examples": [
+        "max 1 claim douteux par réponse"
+      ],
+      "html_description": "Cap sur nombre de claims incertains par réponse.",
+      "equations": [
+        "count(uncertain_claims, response) ≤ N_max"
+      ],
+      "S_local": 0.87,
+      "S_global": 0.77,
+      "stability": "stable",
+      "weight": 0.67,
+      "frames": {
+        "local": [
+          "réponse en construction"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          }
+        ],
+        "global": [
+          "politique cap systémique"
+        ],
+        "proxies": [
+          "compteur en runtime"
+        ],
+        "limits": [
+          "réponse tronquée si cap atteint"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.37,
+      "visual_weight": 0.379,
+      "runtime_weight": 0.691,
+      "structural_rank": -9.7,
+      "_fy": -220.1,
+      "_compositions_count": 4
+    },
+    {
+      "id": "UDE-024",
+      "title": "Mémoire de travail bornée",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "mémoire",
+        "working"
+      ],
+      "examples": [
+        "WM avec capacity limitée à K items"
+      ],
+      "html_description": "Mémoire de travail à capacité bornée (Miller-style).",
+      "equations": [
+        "|WM| ≤ K"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "stability": "stable",
+      "weight": 0.65,
+      "frames": {
+        "local": [
+          "working memory"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "cognitive science"
+          }
+        ],
+        "global": [
+          "politique WM globale"
+        ],
+        "proxies": [
+          "compteur K items"
+        ],
+        "limits": [
+          "K arbitraire — calibration"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.408,
+      "visual_weight": 0.405,
+      "runtime_weight": 0.702,
+      "structural_rank": 3.2,
+      "_fy": -177.9,
+      "_compositions_count": 7
+    },
+    {
+      "id": "UDE-025",
+      "title": "Distillation épisodique",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "distillation",
+        "épisodique"
+      ],
+      "examples": [
+        "événements anciens distillés en patterns"
+      ],
+      "html_description": "Distillation des événements anciens en patterns abstraits (anti-bloat mémoire).",
+      "equations": [
+        "distill(events_old) = patterns"
+      ],
+      "S_local": 0.84,
+      "S_global": 0.73,
+      "stability": "stable",
+      "weight": 0.62,
+      "frames": {
+        "local": [
+          "events anciens"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          }
+        ],
+        "global": [
+          "politique distillation globale"
+        ],
+        "proxies": [
+          "clustering + summarization"
+        ],
+        "limits": [
+          "perte d'info granulaire"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.403,
+      "visual_weight": 0.402,
+      "runtime_weight": 0.701,
+      "structural_rank": 3.1,
+      "_fy": -178.2,
+      "_compositions_count": 7
+    },
+    {
+      "id": "UDE-026",
+      "title": "Index temporal hiérarchique",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "index",
+        "temporal"
+      ],
+      "examples": [
+        "index par jour/semaine/mois pour query rapide"
+      ],
+      "html_description": "Index temporel hiérarchique pour query mémoire efficace.",
+      "equations": [
+        "index_t = {day:[],week:[],month:[]}"
+      ],
+      "S_local": 0.82,
+      "S_global": 0.71,
+      "stability": "stable",
+      "weight": 0.6,
+      "frames": {
+        "local": [
+          "timestamp"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "databases"
+          }
+        ],
+        "global": [
+          "index global"
+        ],
+        "proxies": [
+          "B-tree temporal"
+        ],
+        "limits": [
+          "query cross-window coûteux"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.28,
+      "visual_weight": 0.316,
+      "runtime_weight": 0.664,
+      "structural_rank": -5.0,
+      "_fy": -218.5,
+      "_compositions_count": 3
+    },
+    {
+      "id": "UDE-028",
+      "title": "Mémoire associative",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "mémoire",
+        "associative"
+      ],
+      "examples": [
+        "recall par similarité (pas par ID exact)"
+      ],
+      "html_description": "Recall par similarité approximative (mémoire associative).",
+      "equations": [
+        "recall(query) = top_k similar(query, store)"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "stability": "stable",
+      "weight": 0.65,
+      "frames": {
+        "local": [
+          "query"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "content-addressable memory"
+          }
+        ],
+        "global": [
+          "store global vectoriel"
+        ],
+        "proxies": [
+          "ANN search"
+        ],
+        "limits": [
+          "faux positifs"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.288,
+      "visual_weight": 0.321,
+      "runtime_weight": 0.666,
+      "structural_rank": -4.8,
+      "_fy": -223.9,
+      "_compositions_count": 3
+    },
+    {
+      "id": "UDE-029",
+      "title": "Compression mémoire long-terme",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "compression",
+        "mémoire"
+      ],
+      "examples": [
+        "events anciens compressés en summaries"
+      ],
+      "html_description": "Compression de la mémoire long-terme par summarization.",
+      "equations": [
+        "compress_lt(events_t<T) = summaries"
+      ],
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "stability": "stable",
+      "weight": 0.63,
+      "frames": {
+        "local": [
+          "events anciens"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          }
+        ],
+        "global": [
+          "politique compression globale"
+        ],
+        "proxies": [
+          "summarization model"
+        ],
+        "limits": [
+          "perte de détails non récupérables"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.405,
+      "visual_weight": 0.403,
+      "runtime_weight": 0.701,
+      "structural_rank": 3.1,
+      "_fy": -184.1,
+      "_compositions_count": 7
+    },
+    {
+      "id": "UDE-030",
+      "title": "Indexation par tags sémantiques",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "index",
+        "tags"
+      ],
+      "examples": [
+        "tags auto-extraits pour query rapide"
+      ],
+      "html_description": "Indexation par tags sémantiques auto-extraits.",
+      "equations": [
+        "tag_index[t] = events with tag t"
+      ],
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "stability": "stable",
+      "weight": 0.61,
+      "frames": {
+        "local": [
+          "event"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          }
+        ],
+        "global": [
+          "taxonomie globale tags"
+        ],
+        "proxies": [
+          "NER + tagging"
+        ],
+        "limits": [
+          "tag taxonomy peut s'éroder"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.282,
+      "visual_weight": 0.317,
+      "runtime_weight": 0.664,
+      "structural_rank": -5.0,
+      "_fy": -204.4,
+      "_compositions_count": 3
+    },
+    {
+      "id": "UDE-031",
+      "title": "Sharding mémoire par contexte",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "sharding",
+        "contexte"
+      ],
+      "examples": [
+        "mémoire séparée par session user"
+      ],
+      "html_description": "Mémoire shardée par contexte (session, user, projet).",
+      "equations": [
+        "mem = ⋃_user mem_user"
+      ],
+      "S_local": 0.84,
+      "S_global": 0.73,
+      "stability": "stable",
+      "weight": 0.62,
+      "frames": {
+        "local": [
+          "events + contexte"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "WP-12 consentement"
+          }
+        ],
+        "global": [
+          "politique sharding systémique"
+        ],
+        "proxies": [
+          "routing par contexte"
+        ],
+        "limits": [
+          "coût sync inter-shards"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.403,
+      "visual_weight": 0.402,
+      "runtime_weight": 0.701,
+      "structural_rank": 3.1,
+      "_fy": -192.2,
+      "_compositions_count": 7
+    },
+    {
+      "id": "UDE-032",
+      "title": "Mémoire externe vs interne distinction",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "mémoire",
+        "distinction"
+      ],
+      "examples": [
+        "LLM weights ≠ vector DB ≠ context window"
+      ],
+      "html_description": "Distinction stricte entre mémoire interne (weights), externe (DB), et contextuelle.",
+      "equations": [
+        "mem ∈ {weights, vector_db, context}"
+      ],
+      "S_local": 0.91,
+      "S_global": 0.81,
+      "stability": "stable",
+      "weight": 0.73,
+      "frames": {
+        "local": [
+          "objet mémorisé"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "architecture LLM"
+          },
+          {
+            "level": "systémique",
+            "scope": "R-CORE-1"
+          }
+        ],
+        "global": [
+          "politique distinction systémique"
+        ],
+        "proxies": [
+          "routing par type"
+        ],
+        "limits": [
+          "frontières fluides en pratique"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.299,
+      "visual_weight": 0.33,
+      "runtime_weight": 0.67,
+      "structural_rank": -4.3,
+      "_fy": -211.9,
+      "_compositions_count": 3
+    },
+    {
+      "id": "UDE-034",
+      "title": "Retrieval par cluster sémantique",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "retrieval",
+        "cluster"
+      ],
+      "examples": [
+        "query trouve le cluster pertinent puis browse"
+      ],
+      "html_description": "Retrieval en deux étapes : cluster pertinent puis browse intra-cluster.",
+      "equations": [
+        "retrieve(q) = browse(nearest_cluster(q))"
+      ],
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "stability": "stable",
+      "weight": 0.64,
+      "frames": {
+        "local": [
+          "query"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "clustering"
+          }
+        ],
+        "global": [
+          "organisation globale en clusters"
+        ],
+        "proxies": [
+          "k-means + browse"
+        ],
+        "limits": [
+          "frontières clusters arbitraires"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.346,
+      "visual_weight": 0.362,
+      "runtime_weight": 0.684,
+      "structural_rank": -1.8,
+      "_fy": -217.5,
+      "_compositions_count": 5
+    },
+    {
+      "id": "UDE-035",
+      "title": "Mémoire d'erreurs (post-mortem)",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "erreurs",
+        "post-mortem"
+      ],
+      "examples": [
+        "mémoire des erreurs passées pour éviter répétition"
+      ],
+      "html_description": "Mémoire dédiée aux erreurs passées pour anti-répétition.",
+      "equations": [
+        "mem_err = [(error_t, context_t, fix_t)]"
+      ],
+      "S_local": 0.87,
+      "S_global": 0.77,
+      "stability": "stable",
+      "weight": 0.67,
+      "frames": {
+        "local": [
+          "erreur survenue"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "apprentissage par erreur"
+          }
+        ],
+        "global": [
+          "registre global d'erreurs"
+        ],
+        "proxies": [
+          "log + tagging"
+        ],
+        "limits": [
+          "coût recall sur grande mémoire d'erreurs"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.411,
+      "visual_weight": 0.407,
+      "runtime_weight": 0.703,
+      "structural_rank": 3.4,
+      "_fy": -184.6,
+      "_compositions_count": 7
+    },
+    {
+      "id": "GHUC-022",
+      "title": "Promotion sandbox automatique",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "promotion",
+        "sandbox"
+      ],
+      "examples": [
+        "loi sandbox qualifiée → CanonicalGraph"
+      ],
+      "html_description": "Promotion automatique d'une loi sandbox qualifiée vers CanonicalGraph.",
+      "equations": [
+        "if _promotion_score ≥ 0.75 ∧ Core_OK ⇒ promote"
+      ],
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "stability": "stable",
+      "weight": 0.68,
+      "frames": {
+        "local": [
+          "loi sandbox"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          },
+          {
+            "level": "macro",
+            "scope": "DiscoverySandbox"
+          },
+          {
+            "level": "systémique",
+            "scope": "gouvernance"
+          }
+        ],
+        "global": [
+          "pipeline promotion globale"
+        ],
+        "proxies": [
+          "check critères automatique"
+        ],
+        "limits": [
+          "risque promotion prématurée — Core gate"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.432,
+      "visual_weight": 0.422,
+      "runtime_weight": 0.71,
+      "structural_rank": -1.6,
+      "_fy": -217.0,
+      "_compositions_count": 6
+    },
+    {
+      "id": "GHUC-023",
+      "title": "Démotion automatique sur HS↓",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "démotion",
+        "HS"
+      ],
+      "examples": [
+        "loi qui dégrade HS → démotion sandbox"
+      ],
+      "html_description": "Démotion automatique d'une loi canonique qui dégrade HS.",
+      "equations": [
+        "if HS_with(L) < HS_without(L) ⇒ demote(L)"
+      ],
+      "S_local": 0.89,
+      "S_global": 0.79,
+      "stability": "stable",
+      "weight": 0.7,
+      "frames": {
+        "local": [
+          "loi candidate à démotion"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          },
+          {
+            "level": "systémique",
+            "scope": "gouvernance"
+          }
+        ],
+        "global": [
+          "pipeline démotion globale"
+        ],
+        "proxies": [
+          "audit avant/après hypothétique"
+        ],
+        "limits": [
+          "coût audit doublé"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.345,
+      "visual_weight": 0.361,
+      "runtime_weight": 0.683,
+      "structural_rank": -4.5,
+      "_fy": -214.2,
+      "_compositions_count": 3
+    },
+    {
+      "id": "GHUC-024",
+      "title": "Versionnage sémantique du graph",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "versionnage",
+        "semver"
+      ],
+      "examples": [
+        "graph v3.2.1 vs v3.3.0 (MAJOR/MINOR/PATCH)"
+      ],
+      "html_description": "Versionnage sémantique strict du CanonicalGraph (semver).",
+      "equations": [
+        "semver_bump(change) ∈ {MAJOR,MINOR,PATCH}"
+      ],
+      "S_local": 0.9,
+      "S_global": 0.8,
+      "stability": "stable",
+      "weight": 0.71,
+      "frames": {
+        "local": [
+          "change appliqué"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          },
+          {
+            "level": "macro",
+            "scope": "gestion version"
+          }
+        ],
+        "global": [
+          "historique versions globales"
+        ],
+        "proxies": [
+          "bump auto sur type de change"
+        ],
+        "limits": [
+          "semver subjectif sur cas frontière"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.347,
+      "visual_weight": 0.363,
+      "runtime_weight": 0.684,
+      "structural_rank": -4.5,
+      "_fy": -206.1,
+      "_compositions_count": 3
+    },
+    {
+      "id": "WP11-032",
+      "title": "Mesure de santé continue",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "santé",
+        "continue"
+      ],
+      "examples": [
+        "snapshot HS toutes les 60s"
+      ],
+      "html_description": "Snapshot continu de santé du système (HS, S_global, density).",
+      "equations": [
+        "health(t) = compute_HS(graph(t))"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "stability": "stable",
+      "weight": 0.66,
+      "frames": {
+        "local": [
+          "graphe à instant t"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "monitoring"
+          }
+        ],
+        "global": [
+          "historique santé globale"
+        ],
+        "proxies": [
+          "timer + audit"
+        ],
+        "limits": [
+          "coût continu du monitoring"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.549,
+      "visual_weight": 0.504,
+      "runtime_weight": 0.745,
+      "structural_rank": 18.3,
+      "_fy": -146.2,
+      "_compositions_count": 12
+    },
+    {
+      "id": "GHUC-025",
+      "title": "Méta-Oracle multi-version",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "méta",
+        "Oracle"
+      ],
+      "examples": [
+        "Oracle v1 + v2 doivent converger sur même verdict"
+      ],
+      "html_description": "Vérification que verdicts d'Oracle convergent à travers ses versions.",
+      "equations": [
+        "verdict_v1(L) ≡ verdict_v2(L)"
+      ],
+      "S_local": 0.84,
+      "S_global": 0.73,
+      "stability": "stable",
+      "weight": 0.62,
+      "frames": {
+        "local": [
+          "loi L et Oracle versions"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          },
+          {
+            "level": "macro",
+            "scope": "Oracle versionning"
+          }
+        ],
+        "global": [
+          "consensus inter-version"
+        ],
+        "proxies": [
+          "replay sur 2 versions"
+        ],
+        "limits": [
+          "coût replay"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.543,
+      "visual_weight": 0.5,
+      "runtime_weight": 0.743,
+      "structural_rank": 18.1,
+      "_fy": -141.8,
+      "_compositions_count": 11
+    },
+    {
+      "id": "GHUC-026",
+      "title": "Compression de log audit",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "compression",
+        "log"
+      ],
+      "examples": [
+        "logs anciens compressés en summaries"
+      ],
+      "html_description": "Compression des logs d'audit anciens en summaries pour storage.",
+      "equations": [
+        "compress_log(t<T) = aggregated"
+      ],
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "stability": "stable",
+      "weight": 0.61,
+      "frames": {
+        "local": [
+          "logs t<T"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          },
+          {
+            "level": "macro",
+            "scope": "stockage long terme"
+          }
+        ],
+        "global": [
+          "politique stockage globale"
+        ],
+        "proxies": [
+          "aggregation par fenêtre"
+        ],
+        "limits": [
+          "perte de granularité"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.421,
+      "visual_weight": 0.415,
+      "runtime_weight": 0.706,
+      "structural_rank": -2.0,
+      "_fy": -205.9,
+      "_compositions_count": 6
+    },
+    {
+      "id": "WP12-034",
+      "title": "Critère d'alignement avec spec",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "alignement",
+        "spec"
+      ],
+      "examples": [
+        "loi conforme à sa spec déclarée"
+      ],
+      "html_description": "Loi alignée avec sa spec déclarée (comportement ⊆ spec autorisée).",
+      "equations": [
+        "align(L, L.spec) ⟺ behavior(L) ⊆ spec_allowed"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "stability": "stable",
+      "weight": 0.65,
+      "frames": {
+        "local": [
+          "loi L et sa spec"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "contract programming"
+          }
+        ],
+        "global": [
+          "spec globale du système"
+        ],
+        "proxies": [
+          "test conformité"
+        ],
+        "limits": [
+          "spec souvent informelle"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.497,
+      "visual_weight": 0.468,
+      "runtime_weight": 0.729,
+      "structural_rank": 8.2,
+      "_fy": -167.4,
+      "_compositions_count": 22
+    },
+    {
+      "id": "PAL-017",
+      "title": "Cycle de vie palieronique",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "lifecycle",
+        "palieronique"
+      ],
+      "examples": [
+        "loi : sandbox → canonical → fractal_demonstrated"
+      ],
+      "html_description": "Cycle de vie d'une loi traversant les paliers sandbox → μ0.",
+      "equations": [
+        "lifecycle = [sandbox, review, canonical, μ1, μ0]"
+      ],
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "stability": "stable",
+      "weight": 0.64,
+      "frames": {
+        "local": [
+          "loi et état courant"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "PAL"
+          },
+          {
+            "level": "macro",
+            "scope": "gouvernance"
+          }
+        ],
+        "global": [
+          "distribution lifecycle globale"
+        ],
+        "proxies": [
+          "timeline + état courant"
+        ],
+        "limits": [
+          "beaucoup de lois bloquées en review"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.516,
+      "visual_weight": 0.481,
+      "runtime_weight": 0.735,
+      "structural_rank": 18.2,
+      "_fy": -149.5,
+      "_compositions_count": 9
+    },
+    {
+      "id": "WP11-034",
+      "title": "Métrique de progression structurelle",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "progression",
+        "métrique"
+      ],
+      "examples": [
+        "évolution HS par version graph"
+      ],
+      "html_description": "Métrique de progression structurelle entre versions du graph.",
+      "equations": [
+        "progression = HS(v_n) - HS(v_0)"
+      ],
+      "S_local": 0.87,
+      "S_global": 0.77,
+      "stability": "stable",
+      "weight": 0.67,
+      "frames": {
+        "local": [
+          "versions historique"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "monitoring"
+          }
+        ],
+        "global": [
+          "trend HS global"
+        ],
+        "proxies": [
+          "diff HS entre versions"
+        ],
+        "limits": [
+          "progression non-monotone possible"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.461,
+      "visual_weight": 0.442,
+      "runtime_weight": 0.718,
+      "structural_rank": 3.4,
+      "_fy": -198.6,
+      "_compositions_count": 7
+    },
+    {
+      "id": "GHUC-027",
+      "title": "Refactor batch sécurisé",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "refactor",
+        "batch"
+      ],
+      "examples": [
+        "refactor de N lois avec rollback en cas d'échec"
+      ],
+      "html_description": "Refactor par batch avec rollback complet si échec d'un seul élément.",
+      "equations": [
+        "refactor(batch) ∨ rollback_full(batch)"
+      ],
+      "S_local": 0.88,
+      "S_global": 0.78,
+      "stability": "stable",
+      "weight": 0.69,
+      "frames": {
+        "local": [
+          "batch de lois"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          },
+          {
+            "level": "systémique",
+            "scope": "gouvernance"
+          }
+        ],
+        "global": [
+          "politique refactor globale"
+        ],
+        "proxies": [
+          "transaction-like"
+        ],
+        "limits": [
+          "coût rollback sur grand batch"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.373,
+      "visual_weight": 0.381,
+      "runtime_weight": 0.692,
+      "structural_rank": -4.6,
+      "_fy": -223.4,
+      "_compositions_count": 4
+    },
+    {
+      "id": "WP12-035",
+      "title": "Critère de degradation gracieuse",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "degradation",
+        "gracieuse"
+      ],
+      "examples": [
+        "réponse partielle plutôt qu'erreur 500"
+      ],
+      "html_description": "Préférence pour degradation gracieuse plutôt qu'échec brutal.",
+      "equations": [
+        "if error ⇒ partial_response(available_data)"
+      ],
+      "S_local": 0.87,
+      "S_global": 0.77,
+      "stability": "stable",
+      "weight": 0.67,
+      "frames": {
+        "local": [
+          "erreur survenue"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "UX"
+          }
+        ],
+        "global": [
+          "politique UX systémique"
+        ],
+        "proxies": [
+          "partial_response_handler"
+        ],
+        "limits": [
+          "risque de masquer des problèmes critiques"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.501,
+      "visual_weight": 0.47,
+      "runtime_weight": 0.73,
+      "structural_rank": 8.3,
+      "_fy": -186.1,
+      "_compositions_count": 23
+    },
+    {
+      "id": "ULG-021",
+      "title": "Embedding compositionnel additif",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "embedding",
+        "compositionnel"
+      ],
+      "examples": [
+        "emb(king)-emb(man)+emb(woman) ≈ emb(queen)"
+      ],
+      "html_description": "Compositionnalité additive approximative des embeddings.",
+      "equations": [
+        "emb(compose(t1,t2)) ≈ f(emb(t1),emb(t2))"
+      ],
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "stability": "stable",
+      "weight": 0.61,
+      "frames": {
+        "local": [
+          "paire de tokens"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG"
+          },
+          {
+            "level": "macro",
+            "scope": "représentations distribuées"
+          }
+        ],
+        "global": [
+          "espace global d'embeddings"
+        ],
+        "proxies": [
+          "test analogies"
+        ],
+        "limits": [
+          "compositionnalité incomplète"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.361,
+      "visual_weight": 0.373,
+      "runtime_weight": 0.688,
+      "structural_rank": -5.0,
+      "_fy": -216.4,
+      "_compositions_count": 4
+    },
+    {
+      "id": "SDE-023",
+      "title": "Self-attention multi-tête",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "attention",
+        "multi-tête"
+      ],
+      "examples": [
+        "8 heads parallèles avec patterns distincts"
+      ],
+      "html_description": "Mécanisme d'attention multi-tête concatenant patterns parallèles.",
+      "equations": [
+        "attn = ⊕_h attn_head_h"
+      ],
+      "S_local": 0.84,
+      "S_global": 0.73,
+      "stability": "stable",
+      "weight": 0.62,
+      "frames": {
+        "local": [
+          "séquence d'inputs"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "Transformer architecture"
+          }
+        ],
+        "global": [
+          "champ global d'attention"
+        ],
+        "proxies": [
+          "dot-product softmax"
+        ],
+        "limits": [
+          "coût quadratique en longueur"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.363,
+      "visual_weight": 0.374,
+      "runtime_weight": 0.689,
+      "structural_rank": -9.9,
+      "_fy": -239.8,
+      "_compositions_count": 4
+    },
+    {
+      "id": "ULG-022",
+      "title": "Continuation latente",
+      "canonical": false,
+      "palieronic": false,
+      "family": "ULG",
+      "attractor_tier": null,
+      "domains": [
+        "continuation",
+        "latente"
+      ],
+      "examples": [
+        "next-token prediction à partir d'embedding"
+      ],
+      "html_description": "Prédiction du token suivant via décodage d'embedding contextualisé.",
+      "equations": [
+        "next(t1...tn) = decode(emb(t1...tn))"
+      ],
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "stability": "stable",
+      "weight": 0.63,
+      "frames": {
+        "local": [
+          "séquence + embedding contextualisé"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "ULG"
+          },
+          {
+            "level": "macro",
+            "scope": "autoregression"
+          }
+        ],
+        "global": [
+          "distribution next-token globale"
+        ],
+        "proxies": [
+          "softmax sur vocab"
+        ],
+        "limits": [
+          "biais de fréquence sur vocab"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.364,
+      "visual_weight": 0.375,
+      "runtime_weight": 0.689,
+      "structural_rank": -4.8,
+      "_fy": -200.1,
+      "_compositions_count": 4
+    },
+    {
+      "id": "SDE-024",
+      "title": "Position embedding",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "position",
+        "embedding"
+      ],
+      "examples": [
+        "RoPE, ALiBi, learned positional"
+      ],
+      "html_description": "Encodage positionnel pour mécanisme d'attention.",
+      "equations": [
+        "pos_emb(i) ∈ R^d"
+      ],
+      "S_local": 0.82,
+      "S_global": 0.71,
+      "stability": "stable",
+      "weight": 0.6,
+      "frames": {
+        "local": [
+          "position i"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          },
+          {
+            "level": "macro",
+            "scope": "architecture LLM"
+          }
+        ],
+        "global": [
+          "champ positionnel global"
+        ],
+        "proxies": [
+          "RoPE/ALiBi/learned"
+        ],
+        "limits": [
+          "limite à context_length max"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.36,
+      "visual_weight": 0.372,
+      "runtime_weight": 0.688,
+      "structural_rank": -10.0,
+      "_fy": -222.0,
+      "_compositions_count": 4
+    },
+    {
+      "id": "UDE-036",
+      "title": "Retrieval augmenté generation (RAG)",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "RAG",
+        "retrieval"
+      ],
+      "examples": [
+        "query → retrieve docs → generate avec docs"
+      ],
+      "html_description": "Retrieval-Augmented Generation : génération conditionnée à des docs récupérés.",
+      "equations": [
+        "response = generate(query | retrieve(query))"
+      ],
+      "S_local": 0.92,
+      "S_global": 0.82,
+      "stability": "stable",
+      "weight": 0.74,
+      "frames": {
+        "local": [
+          "query"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "RAG"
+          },
+          {
+            "level": "systémique",
+            "scope": "anti-hallucination"
+          }
+        ],
+        "global": [
+          "docs corpus global"
+        ],
+        "proxies": [
+          "pipeline retrieve→gen"
+        ],
+        "limits": [
+          "dépend qualité retriever"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.391,
+      "visual_weight": 0.394,
+      "runtime_weight": 0.697,
+      "structural_rank": -1.3,
+      "_fy": -199.2,
+      "_compositions_count": 6
+    },
+    {
+      "id": "DVE-022",
+      "title": "Few-shot variant generation",
+      "canonical": false,
+      "palieronic": false,
+      "family": "DVE",
+      "attractor_tier": null,
+      "domains": [
+        "few-shot",
+        "variant"
+      ],
+      "examples": [
+        "3 exemples in-context guident génération"
+      ],
+      "html_description": "Génération guidée par few-shot examples in-context.",
+      "equations": [
+        "gen(x | examples) better than gen(x)"
+      ],
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "stability": "stable",
+      "weight": 0.64,
+      "frames": {
+        "local": [
+          "query + few-shot examples"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "DVE"
+          },
+          {
+            "level": "macro",
+            "scope": "in-context learning"
+          }
+        ],
+        "global": [
+          "champ d'examples globaux"
+        ],
+        "proxies": [
+          "selection examples relevant"
+        ],
+        "limits": [
+          "context window limit"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.486,
+      "visual_weight": 0.46,
+      "runtime_weight": 0.726,
+      "structural_rank": 18.2,
+      "_fy": -162.5,
+      "_compositions_count": 8
+    },
+    {
+      "id": "WP12-036",
+      "title": "Critère d'explicabilité user",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "explicabilité",
+        "user"
+      ],
+      "examples": [
+        "réponse expliquée en termes accessibles"
+      ],
+      "html_description": "Réponse adaptée au niveau d'expertise user (explicabilité gradée).",
+      "equations": [
+        "explain(response, user_level)"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "stability": "stable",
+      "weight": 0.65,
+      "frames": {
+        "local": [
+          "réponse + profil user"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "UX cognitive"
+          }
+        ],
+        "global": [
+          "politique d'explicabilité globale"
+        ],
+        "proxies": [
+          "modèle level user"
+        ],
+        "limits": [
+          "mauvaise modélisation user → mauvaise adaptation"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.288,
+      "visual_weight": 0.321,
+      "runtime_weight": 0.666,
+      "structural_rank": -9.8,
+      "_fy": -228.4,
+      "_compositions_count": 3
+    },
+    {
+      "id": "WP12-040",
+      "title": "Critère d'audit user-initiable",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "audit",
+        "user"
+      ],
+      "examples": [
+        "user lance audit sur 1 réponse particulière"
+      ],
+      "html_description": "L'utilisateur peut initier un audit complet sur n'importe quelle réponse.",
+      "equations": [
+        "user.request_audit(response) → full_trace"
+      ],
+      "S_local": 0.87,
+      "S_global": 0.77,
+      "stability": "stable",
+      "weight": 0.67,
+      "frames": {
+        "local": [
+          "demande d'audit user"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "ZenRuntime"
+          },
+          {
+            "level": "systémique",
+            "scope": "transparence"
+          }
+        ],
+        "global": [
+          "politique audit user systémique"
+        ],
+        "proxies": [
+          "log + replay"
+        ],
+        "limits": [
+          "coût audit on-demand"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.291,
+      "visual_weight": 0.323,
+      "runtime_weight": 0.667,
+      "structural_rank": -9.7,
+      "_fy": -221.1,
+      "_compositions_count": 3
+    },
+    {
+      "id": "WP12-041",
+      "title": "Critère de vie privée par défaut",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP12",
+      "attractor_tier": null,
+      "domains": [
+        "privacy",
+        "default"
+      ],
+      "examples": [
+        "aucune mémoire persistante par défaut user"
+      ],
+      "html_description": "Vie privée stricte par défaut ; opt-in pour features mémoire.",
+      "equations": [
+        "default(privacy) = strict"
+      ],
+      "S_local": 0.91,
+      "S_global": 0.81,
+      "stability": "stable",
+      "weight": 0.73,
+      "frames": {
+        "local": [
+          "nouveau user"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP12"
+          },
+          {
+            "level": "macro",
+            "scope": "privacy by default"
+          }
+        ],
+        "global": [
+          "politique privacy globale"
+        ],
+        "proxies": [
+          "check defaults"
+        ],
+        "limits": [
+          "UX peut souffrir de la privacy stricte"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.299,
+      "visual_weight": 0.33,
+      "runtime_weight": 0.67,
+      "structural_rank": -9.3,
+      "_fy": -222.4,
+      "_compositions_count": 3
+    },
+    {
+      "id": "WP11-035",
+      "title": "Mesure de satisfaction user",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "satisfaction",
+        "user"
+      ],
+      "examples": [
+        "score satisfaction post-interaction"
+      ],
+      "html_description": "Mesure de satisfaction user post-interaction (signal de calibration).",
+      "equations": [
+        "sat = user_rating"
+      ],
+      "S_local": 0.81,
+      "S_global": 0.69,
+      "stability": "stable",
+      "weight": 0.58,
+      "frames": {
+        "local": [
+          "interaction"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "UX metrics"
+          }
+        ],
+        "global": [
+          "distribution satisfaction globale"
+        ],
+        "proxies": [
+          "rating explicite ou implicite"
+        ],
+        "limits": [
+          "bias par self-selection"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.537,
+      "visual_weight": 0.496,
+      "runtime_weight": 0.741,
+      "structural_rank": 17.9,
+      "_fy": -168.2,
+      "_compositions_count": 12
+    },
+    {
+      "id": "GHUC-029",
+      "title": "Audit de cohérence des compositions",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "audit",
+        "compositions"
+      ],
+      "examples": [
+        "chaque composition a invariants explicites"
+      ],
+      "html_description": "Audit que chaque composition a au moins un invariant préservé déclaré.",
+      "equations": [
+        "each composition.preserved ≠ ∅"
+      ],
+      "S_local": 0.91,
+      "S_global": 0.81,
+      "stability": "stable",
+      "weight": 0.73,
+      "frames": {
+        "local": [
+          "liste compositions"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          },
+          {
+            "level": "macro",
+            "scope": "R-CORE-3"
+          }
+        ],
+        "global": [
+          "registre global compositions"
+        ],
+        "proxies": [
+          "scan compositions[]"
+        ],
+        "limits": [
+          "invariants vagues passent test"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.379,
+      "visual_weight": 0.386,
+      "runtime_weight": 0.694,
+      "structural_rank": -4.3,
+      "_fy": -197.9,
+      "_compositions_count": 4
+    },
+    {
+      "id": "WP11-036",
+      "title": "Score d'unification cross-famille",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "unification",
+        "cross-famille"
+      ],
+      "examples": [
+        "nombre d'iso edges entre familles"
+      ],
+      "html_description": "Score d'unification mesuré par densité d'iso edges cross-famille.",
+      "equations": [
+        "unify_score = |iso_edges| / C(n_fam, 2)"
+      ],
+      "S_local": 0.85,
+      "S_global": 0.74,
+      "stability": "stable",
+      "weight": 0.64,
+      "frames": {
+        "local": [
+          "graphe + iso edges"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "topologie graphe"
+          }
+        ],
+        "global": [
+          "unification globale"
+        ],
+        "proxies": [
+          "count iso / pairs"
+        ],
+        "limits": [
+          "seuil θ"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.456,
+      "visual_weight": 0.439,
+      "runtime_weight": 0.717,
+      "structural_rank": 3.2,
+      "_fy": -198.0,
+      "_compositions_count": 7
+    },
+    {
+      "id": "UDE-037",
+      "title": "Découverte par bridge iso",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "découverte",
+        "iso"
+      ],
+      "examples": [
+        "nouvelle loi via bridge iso entre familles"
+      ],
+      "html_description": "Découverte de loi par construction de bridge iso entre familles.",
+      "equations": [
+        "L_new = bridge(F1.L1, F2.L2) avec invariants"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "stability": "stable",
+      "weight": 0.65,
+      "frames": {
+        "local": [
+          "paire (L1,L2)"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "unification"
+          }
+        ],
+        "global": [
+          "politique découverte iso globale"
+        ],
+        "proxies": [
+          "candidate bridges automatique"
+        ],
+        "limits": [
+          "bridge sans invariant inadmissible"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.497,
+      "visual_weight": 0.468,
+      "runtime_weight": 0.729,
+      "structural_rank": 8.2,
+      "_fy": -177.4,
+      "_compositions_count": 18
+    },
+    {
+      "id": "UDE-038",
+      "title": "Mémoire collective inter-session",
+      "canonical": false,
+      "palieronic": false,
+      "family": "UDE",
+      "attractor_tier": null,
+      "domains": [
+        "mémoire",
+        "collective"
+      ],
+      "examples": [
+        "leçons apprises traversant les sessions"
+      ],
+      "html_description": "Mémoire collective constitutuée des distillations inter-sessions.",
+      "equations": [
+        "mem_coll = ⋃_session distill(mem_session)"
+      ],
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "stability": "stable",
+      "weight": 0.61,
+      "frames": {
+        "local": [
+          "historique sessions"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "UDE"
+          },
+          {
+            "level": "macro",
+            "scope": "apprentissage continu"
+          }
+        ],
+        "global": [
+          "mémoire systémique globale"
+        ],
+        "proxies": [
+          "aggregation"
+        ],
+        "limits": [
+          "bias accumulation"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.402,
+      "visual_weight": 0.401,
+      "runtime_weight": 0.7,
+      "structural_rank": 3.0,
+      "_fy": -207.4,
+      "_compositions_count": 7
+    },
+    {
+      "id": "SDE-028",
+      "title": "Attention auto-régulée",
+      "canonical": false,
+      "palieronic": false,
+      "family": "SDE",
+      "attractor_tier": null,
+      "domains": [
+        "attention",
+        "auto-régulation"
+      ],
+      "examples": [
+        "attention diminue sur tokens à faible score"
+      ],
+      "html_description": "Auto-régulation de l'attention : ignore tokens à faible score.",
+      "equations": [
+        "attn(t) → 0 si score(t) < θ"
+      ],
+      "S_local": 0.83,
+      "S_global": 0.72,
+      "stability": "stable",
+      "weight": 0.61,
+      "frames": {
+        "local": [
+          "distribution attention"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "SDE"
+          }
+        ],
+        "global": [
+          "politique attention globale"
+        ],
+        "proxies": [
+          "seuil dynamique"
+        ],
+        "limits": [
+          "tokens importants peuvent être manqués"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.361,
+      "visual_weight": 0.373,
+      "runtime_weight": 0.688,
+      "structural_rank": -9.9,
+      "_fy": -229.9,
+      "_compositions_count": 4
+    },
+    {
+      "id": "WP11-037",
+      "title": "Score d'adaptabilité Adaptive",
+      "canonical": false,
+      "palieronic": false,
+      "family": "WP11",
+      "attractor_tier": null,
+      "domains": [
+        "adaptabilité",
+        "Adaptive"
+      ],
+      "examples": [
+        "fréquence de calibration coefficients"
+      ],
+      "html_description": "Score d'adaptabilité de l'OracleAdaptive (taux de recalibration).",
+      "equations": [
+        "adapt_score = N_calibrations / Δt"
+      ],
+      "S_local": 0.84,
+      "S_global": 0.73,
+      "stability": "stable",
+      "weight": 0.62,
+      "frames": {
+        "local": [
+          "historique calibrations"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "WP11"
+          },
+          {
+            "level": "macro",
+            "scope": "Adaptive"
+          }
+        ],
+        "global": [
+          "adaptabilité globale"
+        ],
+        "proxies": [
+          "compteur calibrations"
+        ],
+        "limits": [
+          "sur-adaptation = thrashing"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.543,
+      "visual_weight": 0.5,
+      "runtime_weight": 0.743,
+      "structural_rank": 18.1,
+      "_fy": -150.8,
+      "_compositions_count": 12
+    },
+    {
+      "id": "GHUC-030",
+      "title": "Méta-fractalité de la consolidation",
+      "canonical": false,
+      "palieronic": false,
+      "family": "GHUC",
+      "attractor_tier": null,
+      "domains": [
+        "méta",
+        "fractalité"
+      ],
+      "examples": [
+        "consolidation à plusieurs échelles itérée"
+      ],
+      "html_description": "Méta-fractalité : consolidation itérée à plusieurs échelles donne motif fractal.",
+      "equations": [
+        "consolidate_n(graph) = consolidate(consolidate_{n-1}(graph))"
+      ],
+      "S_local": 0.86,
+      "S_global": 0.75,
+      "stability": "stable",
+      "weight": 0.65,
+      "frames": {
+        "local": [
+          "graphe et nombre d'itérations"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "GHUC"
+          },
+          {
+            "level": "macro",
+            "scope": "R-CORE-3 composition"
+          }
+        ],
+        "global": [
+          "méta-graphe global"
+        ],
+        "proxies": [
+          "fixed-point analysis"
+        ],
+        "limits": [
+          "convergence non garantie"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.547,
+      "visual_weight": 0.503,
+      "runtime_weight": 0.744,
+      "structural_rank": 18.2,
+      "_fy": -146.4,
+      "_compositions_count": 11
+    },
+    {
+      "id": "PAL-019",
+      "title": "Saut palieronique méta-cohérent",
+      "canonical": false,
+      "palieronic": true,
+      "family": "PAL",
+      "attractor_tier": null,
+      "domains": [
+        "saut",
+        "méta"
+      ],
+      "examples": [
+        "promotion μ1→μ0 d'une racine canonique"
+      ],
+      "html_description": "Saut palieronique de promotion de tier (μ1→μ0) sous validation Core.",
+      "equations": [
+        "promote_tier(L, μ_n+1) ⟺ Core_OK ∧ HS↑"
+      ],
+      "S_local": 0.87,
+      "S_global": 0.77,
+      "stability": "stable",
+      "weight": 0.67,
+      "frames": {
+        "local": [
+          "loi candidate à promotion tier"
+        ],
+        "intermediate": [
+          {
+            "level": "meso",
+            "scope": "PAL"
+          },
+          {
+            "level": "macro",
+            "scope": "Oracle Core"
+          },
+          {
+            "level": "systémique",
+            "scope": "gouvernance"
+          }
+        ],
+        "global": [
+          "pipeline promotion globale"
+        ],
+        "proxies": [
+          "check Core + HS"
+        ],
+        "limits": [
+          "promotion irréversible — audit"
+        ]
+      },
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.52,
+      "visual_weight": 0.484,
+      "runtime_weight": 0.736,
+      "structural_rank": 18.4,
+      "_fy": -158.1,
+      "_compositions_count": 9
     }
   ],
   "edges": [
@@ -10576,6 +14269,430 @@
       "kind": "contradicts",
       "weight": 0.5,
       "domain": "index sémantique nécessite arêtes vs pruning par redondance les supprime"
+    },
+    {
+      "source": "WP11-020",
+      "target": "WP11-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-021",
+      "target": "WP11-007",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-022",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "ULG-019",
+      "target": "ULG-010",
+      "kind": "parent"
+    },
+    {
+      "source": "ULG-020",
+      "target": "ULG-001",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-021",
+      "target": "UDE-009",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-017",
+      "target": "GHUC-001",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-018",
+      "target": "GHUC-017",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-022",
+      "target": "WP11-003",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-024",
+      "target": "WP11-007",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-026",
+      "target": "WP11-007",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-024",
+      "target": "WP12-007",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-027",
+      "target": "WP12-007",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-027",
+      "target": "WP11-007",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-028",
+      "target": "WP11-026",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-029",
+      "target": "WP11-026",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-021",
+      "target": "GHUC-007",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-028",
+      "target": "WP12-009",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-029",
+      "target": "WP12-010",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-018",
+      "target": "DVE-008",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-019",
+      "target": "DVE-018",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-019",
+      "target": "SDE-013",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-022",
+      "target": "UDE-009",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-031",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-020",
+      "target": "DVE-008",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-021",
+      "target": "SDE-013",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-032",
+      "target": "WP12-009",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-021",
+      "target": "DVE-008",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-024",
+      "target": "UDE-014",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-025",
+      "target": "UDE-014",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-026",
+      "target": "UDE-019",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-028",
+      "target": "UDE-010",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-029",
+      "target": "UDE-014",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-030",
+      "target": "UDE-019",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-031",
+      "target": "UDE-014",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-032",
+      "target": "UDE-010",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-034",
+      "target": "UDE-009",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-035",
+      "target": "UDE-014",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-022",
+      "target": "GHUC-005",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-023",
+      "target": "GHUC-008",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-024",
+      "target": "GHUC-017",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-032",
+      "target": "WP11-001",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-025",
+      "target": "GHUC-001",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-026",
+      "target": "GHUC-002",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-034",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "PAL-017",
+      "target": "PAL-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-034",
+      "target": "WP11-007",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-027",
+      "target": "GHUC-007",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-035",
+      "target": "WP12-001",
+      "kind": "parent"
+    },
+    {
+      "source": "ULG-021",
+      "target": "ULG-010",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-023",
+      "target": "SDE-008",
+      "kind": "parent"
+    },
+    {
+      "source": "ULG-022",
+      "target": "ULG-009",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-024",
+      "target": "SDE-008",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-036",
+      "target": "UDE-009",
+      "kind": "parent"
+    },
+    {
+      "source": "DVE-022",
+      "target": "DVE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-036",
+      "target": "WP12-019",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-040",
+      "target": "WP12-019",
+      "kind": "parent"
+    },
+    {
+      "source": "WP12-041",
+      "target": "WP12-027",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-035",
+      "target": "WP11-001",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-029",
+      "target": "GHUC-007",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-036",
+      "target": "WP11-007",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-037",
+      "target": "UDE-001",
+      "kind": "parent"
+    },
+    {
+      "source": "UDE-038",
+      "target": "UDE-014",
+      "kind": "parent"
+    },
+    {
+      "source": "SDE-028",
+      "target": "SDE-008",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-037",
+      "target": "WP11-001",
+      "kind": "parent"
+    },
+    {
+      "source": "GHUC-030",
+      "target": "GHUC-001",
+      "kind": "parent"
+    },
+    {
+      "source": "PAL-019",
+      "target": "PAL-001",
+      "kind": "parent"
+    },
+    {
+      "source": "WP11-020",
+      "target": "WP12-011",
+      "kind": "iso",
+      "invariants": [
+        "typage strict frames ↔ typage strict edges (R-CORE-8)"
+      ],
+      "weight": 0.7
+    },
+    {
+      "source": "DVE-018",
+      "target": "SDE-016",
+      "kind": "iso",
+      "invariants": [
+        "refus génératif ↔ refus structuré sur lacune"
+      ],
+      "weight": 0.7
+    },
+    {
+      "source": "DVE-020",
+      "target": "WP12-029",
+      "kind": "iso",
+      "invariants": [
+        "anti-fabrication citations ↔ citation obligatoire en réponse"
+      ],
+      "weight": 0.72
+    },
+    {
+      "source": "UDE-036",
+      "target": "WP11-011",
+      "kind": "iso",
+      "invariants": [
+        "RAG ↔ audit hallucination par composition (vérification grounding)"
+      ],
+      "weight": 0.7
+    },
+    {
+      "source": "GHUC-022",
+      "target": "GHUC-023",
+      "kind": "iso",
+      "invariants": [
+        "promotion auto ↔ démotion auto — pipeline gouvernance"
+      ],
+      "weight": 0.72
+    },
+    {
+      "source": "WP12-041",
+      "target": "WP12-020",
+      "kind": "iso",
+      "invariants": [
+        "privacy by default ↔ critère consentement"
+      ],
+      "weight": 0.7
+    },
+    {
+      "source": "DVE-019",
+      "target": "DVE-020",
+      "kind": "contradicts",
+      "weight": 0.5,
+      "domain": "confiance générative vs anti-fabrication stricte (trade-off)"
+    },
+    {
+      "source": "DVE-020",
+      "target": "DVE-019",
+      "kind": "contradicts",
+      "weight": 0.5,
+      "domain": "confiance générative vs anti-fabrication stricte (trade-off)"
+    },
+    {
+      "source": "GHUC-022",
+      "target": "GHUC-023",
+      "kind": "contradicts",
+      "weight": 0.5,
+      "domain": "promotion auto vs démotion auto (tension dynamique du flux)"
+    },
+    {
+      "source": "GHUC-023",
+      "target": "GHUC-022",
+      "kind": "contradicts",
+      "weight": 0.5,
+      "domain": "promotion auto vs démotion auto (tension dynamique du flux)"
+    },
+    {
+      "source": "ULG-022",
+      "target": "ULG-021",
+      "kind": "related",
+      "weight": 0.4,
+      "reason": "continuation latente + embedding compositionnel — mécanismes liés"
     }
   ],
   "compositions": [
@@ -10931,6 +15048,118 @@
       "test_output": "decay correct, événements pertinents gardés",
       "delta_S_global": 0.0,
       "status": "admissible"
+    },
+    {
+      "pair": [
+        "DVE-018",
+        "SDE-016"
+      ],
+      "operator": "DVE-018 ∘ SDE-016",
+      "preserved": [
+        "refus génératif + refus structuré : double-protection anti-hallu runtime"
+      ],
+      "test_input": "query manquante de lois support",
+      "test_output": "refus avec citation des lois manquantes + suggestion exploration",
+      "delta_S_global": 0.02,
+      "status": "admissible"
+    },
+    {
+      "pair": [
+        "DVE-020",
+        "WP12-029"
+      ],
+      "operator": "DVE-020 ∘ WP12-029",
+      "preserved": [
+        "anti-fabrication + citation obligatoire : pipeline citation honnête"
+      ],
+      "test_input": "réponse contenant une citation",
+      "test_output": "citation vérifiée présente dans CanonicalGraph",
+      "delta_S_global": 0.02,
+      "status": "admissible"
+    },
+    {
+      "pair": [
+        "UDE-036",
+        "WP11-011"
+      ],
+      "operator": "UDE-036 ∘ WP11-011",
+      "preserved": [
+        "RAG + audit hallucination : grounding vérifié"
+      ],
+      "test_input": "query → docs récupérés → réponse",
+      "test_output": "réponse 100% grounded sur docs cités",
+      "delta_S_global": 0.02,
+      "status": "admissible"
+    },
+    {
+      "pair": [
+        "GHUC-022",
+        "GHUC-023"
+      ],
+      "operator": "GHUC-022 ⊕ GHUC-023",
+      "preserved": [
+        "promotion auto + démotion auto — équilibre dynamique"
+      ],
+      "test_input": "sandbox + canonical en évolution",
+      "test_output": "flux contrôlé lois entre couches",
+      "delta_S_global": 0.01,
+      "status": "admissible"
+    },
+    {
+      "pair": [
+        "WP11-024",
+        "WP11-026"
+      ],
+      "operator": "WP11-024 ∘ WP11-026",
+      "preserved": [
+        "audit incrémental + réplication : audit performant ET vérifié"
+      ],
+      "test_input": "diff sur graph + 2 Oracles",
+      "test_output": "verdict identique sur les 2 Oracles avec coût réduit",
+      "delta_S_global": 0.01,
+      "status": "admissible"
+    },
+    {
+      "pair": [
+        "UDE-024",
+        "UDE-029"
+      ],
+      "operator": "UDE-024 ∘ UDE-029",
+      "preserved": [
+        "WM bornée + compression LT : architecture mémoire tractable"
+      ],
+      "test_input": "flux d'événements continus",
+      "test_output": "mémoire stable bornée avec retention long-terme",
+      "delta_S_global": 0.0,
+      "status": "admissible"
+    },
+    {
+      "pair": [
+        "WP12-038",
+        "WP12-035"
+      ],
+      "operator": "WP12-038 ∘ WP12-035",
+      "preserved": [
+        "respect user-time + degradation gracieuse : UX honnête sous contrainte"
+      ],
+      "test_input": "erreur serveur",
+      "test_output": "réponse partielle concise",
+      "delta_S_global": 0.01,
+      "status": "admissible"
+    },
+    {
+      "pair": [
+        "ULG-022",
+        "ULG-023"
+      ],
+      "operator": "ULG-022 ∘ ULG-023",
+      "preserved": [
+        "continuation latente + beam search anti-collapse : génération diversifiée"
+      ],
+      "test_input": "embedding contextualisé + paramètre K beams",
+      "test_output": "next-tokens diversifiés sans mode collapse",
+      "delta_S_global": 0.01,
+      "status": "admissible"
     }
   ],
   "p0_5_meta": {
@@ -10943,7 +15172,7 @@
       "SDE",
       "PAL"
     ],
-    "compositions_demonstrated": 25,
+    "compositions_demonstrated": 32,
     "p1_integrated_count": 46,
     "p1_quarantined_count": 6,
     "p1_timestamp": "2026-05-15T19:53:00+02:00",
@@ -10951,6 +15180,10 @@
     "p2_integrated_count": 83,
     "p2_quarantined_count": 5,
     "p2_timestamp": "2026-05-15T20:30:00+02:00",
-    "p2_mission_id": "ZORAN_P2_DEMONSTRATED_EXPANSION_100_LAWS_20260515"
+    "p2_mission_id": "ZORAN_P2_DEMONSTRATED_EXPANSION_100_LAWS_20260515",
+    "p3_integrated_count": 67,
+    "p3_quarantined_count": 33,
+    "p3_timestamp": "2026-05-15T20:50:00+02:00",
+    "p3_mission_id": "ZORAN_P3_DEMONSTRATED_EXPANSION_100_LAWS_20260515"
   }
 }

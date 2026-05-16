@@ -1,28 +1,27 @@
 {
   "mission_id": "ZORAN_HIERARCHICAL_SPATIAL_TOPOLOGY_V3_20260515",
   "timestamp": "2026-05-15T20:39:00+02:00",
-  "nodes_count": 174,
-  "Y_max": 209.5,
-  "Y_min": -241.9,
-  "amplitude": 451.4,
-  "mu0_avg_Y": 209.5,
-  "mu1_avg_Y": 106.1,
-  "leaf_avg_Y": -211.3,
-  "verticality_coefficient": 0.932,
+  "nodes_count": 241,
+  "Y_max": 211.5,
+  "Y_min": -252.6,
+  "amplitude": 464.1,
+  "mu0_avg_Y": 211.5,
+  "mu1_avg_Y": 97.6,
+  "leaf_avg_Y": -211.6,
+  "verticality_coefficient": 0.912,
   "rank_distribution": {
-    "-20": 69,
-    "0": 85,
+    "-20": 105,
+    "0": 116,
     "20": 12,
     "100": 2,
     "120": 5,
     "160": 1
   },
-  "canopy_count": 5,
+  "canopy_count": 4,
   "family_in_canopy": {
     "ULG": 1,
     "DVE": 1,
     "GHUC": 1,
-    "SDE": 1,
     "PAL": 1
   },
   "dominant_family_in_canopy": null,
@@ -32,9 +31,9 @@
   "fractal_families": [
     "GHUC",
     "PAL",
-    "ULG",
     "DVE",
+    "SDE",
     "WP11",
-    "SDE"
+    "ULG"
   ]
 }

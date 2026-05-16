@@ -1,0 +1,305 @@
+{
+  "mission_id": "ZORAN_P3_DEMONSTRATED_EXPANSION_100_LAWS_20260515",
+  "candidates_total": 100,
+  "integrated_count": 67,
+  "quarantined_count": 33,
+  "quarantined": [
+    {
+      "id": "WP12-023",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP12-001",
+        "WP12-022"
+      ]
+    },
+    {
+      "id": "DVE-017",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "DVE-003",
+        "DVE-014"
+      ]
+    },
+    {
+      "id": "WP11-023",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP11-003",
+        "WP11-022"
+      ]
+    },
+    {
+      "id": "WP11-025",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP11-016",
+        "WP11-024"
+      ]
+    },
+    {
+      "id": "WP12-025",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP12-007",
+        "WP12-024"
+      ]
+    },
+    {
+      "id": "WP12-026",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP12-006",
+        "WP12-001"
+      ]
+    },
+    {
+      "id": "GHUC-019",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "GHUC-009",
+        "GHUC-004"
+      ]
+    },
+    {
+      "id": "GHUC-020",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "GHUC-003",
+        "GHUC-013"
+      ]
+    },
+    {
+      "id": "WP11-030",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP11-029",
+        "WP11-026"
+      ]
+    },
+    {
+      "id": "SDE-020",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "SDE-013",
+        "SDE-019"
+      ]
+    },
+    {
+      "id": "WP12-030",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP12-001",
+        "WP12-002"
+      ]
+    },
+    {
+      "id": "UDE-023",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "UDE-009",
+        "UDE-022"
+      ]
+    },
+    {
+      "id": "WP11-031",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP11-005",
+        "WP11-011"
+      ]
+    },
+    {
+      "id": "SDE-022",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "SDE-016",
+        "SDE-001"
+      ]
+    },
+    {
+      "id": "UDE-027",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "UDE-001",
+        "UDE-017"
+      ]
+    },
+    {
+      "id": "UDE-033",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "UDE-018",
+        "UDE-001"
+      ]
+    },
+    {
+      "id": "WP12-033",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP12-001",
+        "WP12-008"
+      ]
+    },
+    {
+      "id": "WP11-033",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP11-013",
+        "WP11-001"
+      ]
+    },
+    {
+      "id": "PAL-016",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "PAL-007",
+        "PAL-001"
+      ]
+    },
+    {
+      "id": "ULG-023",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "ULG-022",
+        "ULG-009"
+      ]
+    },
+    {
+      "id": "ULG-024",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "ULG-003",
+        "ULG-013"
+      ]
+    },
+    {
+      "id": "SDE-025",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "SDE-009",
+        "SDE-001"
+      ]
+    },
+    {
+      "id": "ULG-025",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "ULG-004",
+        "ULG-012"
+      ]
+    },
+    {
+      "id": "WP12-037",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP12-021",
+        "WP12-001"
+      ]
+    },
+    {
+      "id": "WP12-038",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP12-035",
+        "WP12-001"
+      ]
+    },
+    {
+      "id": "WP12-039",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP12-020",
+        "WP12-001"
+      ]
+    },
+    {
+      "id": "SDE-026",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "SDE-014",
+        "SDE-002"
+      ]
+    },
+    {
+      "id": "GHUC-028",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "GHUC-016",
+        "GHUC-001"
+      ]
+    },
+    {
+      "id": "SDE-027",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "SDE-006",
+        "SDE-001"
+      ]
+    },
+    {
+      "id": "PAL-018",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "PAL-008",
+        "PAL-001"
+      ]
+    },
+    {
+      "id": "DVE-023",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "DVE-002",
+        "DVE-013"
+      ]
+    },
+    {
+      "id": "WP12-042",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP12-015",
+        "WP12-001"
+      ]
+    },
+    {
+      "id": "ULG-026",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "ULG-001",
+        "ULG-008"
+      ]
+    }
+  ]
+}
