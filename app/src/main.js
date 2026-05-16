@@ -145,7 +145,10 @@ function makeBilliardMesh(node) {
   const cached = state.meshes.get(node.id);
   if (cached) return cached;
 
-  const radius = 2 + (node.weight ?? 0.5) * 10;
+  // V3 hierarchy : taille = topological_weight (fallback weight si pré-V3)
+  const tw = (typeof node.topological_weight === 'number')
+    ? node.topological_weight : (node.weight ?? 0.5);
+  const radius = 2 + tw * 12;
   const geo = new THREE.SphereGeometry(radius, 32, 16);
   const tex = makeBilliardTexture(node);
   const tier = tierSpec(node);
@@ -264,12 +267,25 @@ function setStatus() {
 function buildSidebar() {
   const famUl = $('#families');
   famUl.innerHTML = '';
+
+  // Compute per-family counts (Stage H)
+  const counts = {};
+  for (const n of state.graph.nodes) {
+    counts[n.family] = (counts[n.family] || 0) + 1;
+  }
+
   for (const f of state.graph.families) {
     const li = document.createElement('li');
     li.dataset.family = f.id;
     const inv = f.invariant ? ` <span class="fam-inv" title="${escAttr(f.invariant)}">·</span>` : '';
-    li.innerHTML = `<span class="swatch" style="background:${familyColor(f.id)}"></span>${f.id} — <span style="color:var(--fg-2)">${escapeShort(f.label.split('—').slice(1).join('—').trim() || f.label)}</span>${inv}`;
-    li.title = f.invariant ? `${f.label}\n\nInvariant: ${f.invariant}` : f.label;
+    const fractalMark = f.fractality_demonstrated ? ' <span class="fam-fractal" title="famille fractale démontrée">⊛</span>' : '';
+    const count = counts[f.id] || 0;
+    li.innerHTML = `<span class="swatch" style="background:${familyColor(f.id)}"></span>`
+      + `<span class="fam-id">${f.id}</span>`
+      + `<span class="fam-count" title="lois canoniques">${count}</span>`
+      + fractalMark
+      + ` <span style="color:var(--fg-2)">${escapeShort(f.label.split('—').slice(1).join('—').trim() || f.label)}</span>${inv}`;
+    li.title = f.invariant ? `${f.label}\n\nInvariant: ${f.invariant}\n\nLois canoniques : ${count}${f.fractality_demonstrated ? '\nFractalité démontrée ✓' : ''}` : f.label;
     li.addEventListener('click', () => focusFamily(f.id));
     famUl.appendChild(li);
   }
@@ -395,7 +411,7 @@ function initGraph() {
       state.fg.refresh();
     });
 
-  state.fg.d3Force('charge').strength(-90);
+  state.fg.d3Force('charge').strength(-110);
   state.fg.d3Force('link').distance(l => {
     if (l.kind === 'parent')        return 28 + 60 * (1 - (l.weight ?? 0.5));
     if (l.kind === 'iso')           return 50;
@@ -404,6 +420,17 @@ function initGraph() {
     if (l.kind === 'related')       return 90;
     return 60;
   });
+
+  // V3 — Verticalité hiérarchique : fy gèle Y selon structural_rank
+  for (const n of state.graphView.nodes) {
+    if (typeof n._fy === 'number') {
+      n.fy = n._fy;
+    }
+  }
+  // Damping fort pour stabilisation rapide de l'arbre
+  if (typeof state.fg.d3VelocityDecay === 'function') state.fg.d3VelocityDecay(0.45);
+  if (typeof state.fg.d3AlphaDecay === 'function') state.fg.d3AlphaDecay(0.025);
+  if (typeof state.fg.cooldownTime === 'function') state.fg.cooldownTime(8000);
 
   // Apply anisotropy now that renderer exists
   try {

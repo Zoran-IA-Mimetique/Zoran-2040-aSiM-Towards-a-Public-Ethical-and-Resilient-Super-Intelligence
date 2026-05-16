@@ -106,7 +106,14 @@
           "n'opère pas hors-cadre représentationnel"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 0,
+      "topological_weight": 1.0,
+      "visual_weight": 0.82,
+      "runtime_weight": 1.0,
+      "structural_rank": 125.0,
+      "_fy": 126.5,
+      "_compositions_count": 10
     },
     {
       "id": "ULG-002",
@@ -151,7 +158,14 @@
           "asymptote non observable"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.808,
+      "visual_weight": 0.686,
+      "runtime_weight": 0.822,
+      "structural_rank": 39.1,
+      "_fy": -102.2,
+      "_compositions_count": 14
     },
     {
       "id": "ULG-003",
@@ -200,7 +214,14 @@
           "ne couvre pas les invariants non-morphologiques"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.717,
+      "visual_weight": 0.622,
+      "runtime_weight": 0.795,
+      "structural_rank": 38.8,
+      "_fy": -111.1,
+      "_compositions_count": 12
     },
     {
       "id": "ULG-004",
@@ -245,7 +266,14 @@
           "non-définie hors zones échantillonnées"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.623,
+      "visual_weight": 0.556,
+      "runtime_weight": 0.767,
+      "structural_rank": 18.1,
+      "_fy": -142.8,
+      "_compositions_count": 11
     },
     {
       "id": "ULG-005",
@@ -294,7 +322,14 @@
           "n'évalue pas la stabilité hors loi d'échelle"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.552,
+      "visual_weight": 0.506,
+      "runtime_weight": 0.746,
+      "structural_rank": 18.4,
+      "_fy": -161.0,
+      "_compositions_count": 10
     },
     {
       "id": "DVE-001",
@@ -344,7 +379,14 @@
           "ne garantit pas la complétude de l'énumération"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 0,
+      "topological_weight": 0.992,
+      "visual_weight": 0.815,
+      "runtime_weight": 0.998,
+      "structural_rank": 124.8,
+      "_fy": 104.9,
+      "_compositions_count": 10
     },
     {
       "id": "DVE-002",
@@ -392,7 +434,14 @@
           "n'évalue pas la coût de la dérivation"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.762,
+      "visual_weight": 0.653,
+      "runtime_weight": 0.809,
+      "structural_rank": 38.9,
+      "_fy": -93.8,
+      "_compositions_count": 10
     },
     {
       "id": "DVE-003",
@@ -436,7 +485,14 @@
           "bifurcation acceptable à court terme peut dégrader à long terme"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.756,
+      "visual_weight": 0.649,
+      "runtime_weight": 0.807,
+      "structural_rank": 38.7,
+      "_fy": -103.2,
+      "_compositions_count": 10
     },
     {
       "id": "DVE-004",
@@ -484,7 +540,14 @@
           "dépend de la définition courante de WP-12"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.489,
+      "visual_weight": 0.462,
+      "runtime_weight": 0.727,
+      "structural_rank": 18.3,
+      "_fy": -153.2,
+      "_compositions_count": 8
     },
     {
       "id": "DVE-005",
@@ -529,7 +592,14 @@
           "ne distingue pas entropie informative vs bruit"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.657,
+      "visual_weight": 0.58,
+      "runtime_weight": 0.777,
+      "structural_rank": 17.9,
+      "_fy": -165.2,
+      "_compositions_count": 11
     },
     {
       "id": "UDE-001",
@@ -578,7 +648,14 @@
           "fonctions gain et cost à définir par cadre"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 0,
+      "topological_weight": 0.94,
+      "visual_weight": 0.778,
+      "runtime_weight": 0.982,
+      "structural_rank": 114.7,
+      "_fy": 98.6,
+      "_compositions_count": 19
     },
     {
       "id": "UDE-002",
@@ -626,7 +703,14 @@
           "ne classifie pas par palier μ"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.591,
+      "visual_weight": 0.533,
+      "runtime_weight": 0.757,
+      "structural_rank": 28.9,
+      "_fy": -142.9,
+      "_compositions_count": 18
     },
     {
       "id": "UDE-003",
@@ -670,7 +754,14 @@
           "dépend du choix de φ"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.496,
+      "visual_weight": 0.467,
+      "runtime_weight": 0.729,
+      "structural_rank": 8.2,
+      "_fy": -166.5,
+      "_compositions_count": 18
     },
     {
       "id": "UDE-004",
@@ -719,7 +810,14 @@
           "ne mesure pas la profondeur de l'inconnu"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.491,
+      "visual_weight": 0.464,
+      "runtime_weight": 0.727,
+      "structural_rank": 8.1,
+      "_fy": -190.9,
+      "_compositions_count": 17
     },
     {
       "id": "UDE-005",
@@ -767,7 +865,14 @@
           "dépend de la qualité de la carte UDE-002"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.482,
+      "visual_weight": 0.458,
+      "runtime_weight": 0.725,
+      "structural_rank": 7.8,
+      "_fy": -187.6,
+      "_compositions_count": 19
     },
     {
       "id": "GHUC-001",
@@ -820,7 +925,14 @@
           "ne traite pas hors-canonique"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 0,
+      "topological_weight": 1.0,
+      "visual_weight": 0.82,
+      "runtime_weight": 1.0,
+      "structural_rank": 165.0,
+      "_fy": 209.5,
+      "_compositions_count": 12
     },
     {
       "id": "GHUC-002",
@@ -868,7 +980,14 @@
           "compressions agressives peuvent perdre des cas-frontière"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.806,
+      "visual_weight": 0.685,
+      "runtime_weight": 0.822,
+      "structural_rank": 39.0,
+      "_fy": -101.4,
+      "_compositions_count": 15
     },
     {
       "id": "GHUC-002-a",
@@ -912,7 +1031,14 @@
           "ne traite pas les inter-relations entre lois"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.533,
+      "visual_weight": 0.493,
+      "runtime_weight": 0.74,
+      "structural_rank": 3.1,
+      "_fy": -203.2,
+      "_compositions_count": 7
     },
     {
       "id": "GHUC-002-a-i",
@@ -957,7 +1083,14 @@
           "dépend de la qualité du dictionnaire de synonymes"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.312,
+      "visual_weight": 0.338,
+      "runtime_weight": 0.674,
+      "structural_rank": -10.6,
+      "_fy": -237.5,
+      "_compositions_count": 3
     },
     {
       "id": "GHUC-002-a-ii",
@@ -1002,7 +1135,14 @@
           "seuil θ de diversité subjectif"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.309,
+      "visual_weight": 0.336,
+      "runtime_weight": 0.673,
+      "structural_rank": -10.7,
+      "_fy": -232.8,
+      "_compositions_count": 3
     },
     {
       "id": "GHUC-002-b",
@@ -1046,7 +1186,14 @@
           "fusion irréversible — exige absorption traçable"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.531,
+      "visual_weight": 0.492,
+      "runtime_weight": 0.739,
+      "structural_rank": 3.0,
+      "_fy": -189.4,
+      "_compositions_count": 7
     },
     {
       "id": "GHUC-002-b-i",
@@ -1091,7 +1238,14 @@
           "seuil arbitraire — calibration nécessaire"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.31,
+      "visual_weight": 0.337,
+      "runtime_weight": 0.673,
+      "structural_rank": -10.7,
+      "_fy": -218.6,
+      "_compositions_count": 3
     },
     {
       "id": "GHUC-002-b-ii",
@@ -1136,7 +1290,14 @@
           "dépend de la qualité de l'extraction d'invariants"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.307,
+      "visual_weight": 0.335,
+      "runtime_weight": 0.672,
+      "structural_rank": -10.8,
+      "_fy": -223.9,
+      "_compositions_count": 3
     },
     {
       "id": "GHUC-003",
@@ -1185,7 +1346,14 @@
           "peut prune des cas-frontière utiles"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.769,
+      "visual_weight": 0.659,
+      "runtime_weight": 0.811,
+      "structural_rank": 39.1,
+      "_fy": -103.1,
+      "_compositions_count": 13
     },
     {
       "id": "GHUC-004",
@@ -1228,7 +1396,14 @@
           "fusion intransitive — F1⊕F2⊕F3 dépend de l'ordre"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.678,
+      "visual_weight": 0.595,
+      "runtime_weight": 0.783,
+      "structural_rank": 18.6,
+      "_fy": -165.5,
+      "_compositions_count": 11
     },
     {
       "id": "WP11-001",
@@ -1276,7 +1451,14 @@
           "S_local ⊥ S_global a priori — ne fournit PAS de relation déterministe"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 0,
+      "topological_weight": 0.965,
+      "visual_weight": 0.796,
+      "runtime_weight": 0.99,
+      "structural_rank": 124.8,
+      "_fy": 98.1,
+      "_compositions_count": 9
     },
     {
       "id": "WP11-002",
@@ -1320,7 +1502,14 @@
           "insensible à la cohérence systémique"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.771,
+      "visual_weight": 0.66,
+      "runtime_weight": 0.811,
+      "structural_rank": 39.2,
+      "_fy": -98.0,
+      "_compositions_count": 11
     },
     {
       "id": "WP11-003",
@@ -1368,7 +1557,14 @@
           "dépend de la calibration des coefficients α,β,γ,δ"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.733,
+      "visual_weight": 0.633,
+      "runtime_weight": 0.8,
+      "structural_rank": 39.2,
+      "_fy": -88.9,
+      "_compositions_count": 10
     },
     {
       "id": "WP11-004",
@@ -1415,7 +1611,14 @@
           "ne propose pas d'alternative — règle d'interdiction pure"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.673,
+      "visual_weight": 0.591,
+      "runtime_weight": 0.782,
+      "structural_rank": 39.6,
+      "_fy": -98.0,
+      "_compositions_count": 9
     },
     {
       "id": "WP11-005",
@@ -1459,7 +1662,14 @@
           "seuil arbitraire — calibration empirique nécessaire"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.624,
+      "visual_weight": 0.557,
+      "runtime_weight": 0.767,
+      "structural_rank": 3.8,
+      "_fy": -192.5,
+      "_compositions_count": 8
     },
     {
       "id": "WP12-001",
@@ -1506,7 +1716,14 @@
           "les trois critères peuvent être en tension (cf. contradiction WP12-003 ↔ WP12-004)"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 0,
+      "topological_weight": 0.941,
+      "visual_weight": 0.779,
+      "runtime_weight": 0.982,
+      "structural_rank": 114.7,
+      "_fy": 79.8,
+      "_compositions_count": 20
     },
     {
       "id": "WP12-002",
@@ -1549,7 +1766,14 @@
           "ne détecte pas les contradictions implicites"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.607,
+      "visual_weight": 0.545,
+      "runtime_weight": 0.762,
+      "structural_rank": 29.4,
+      "_fy": -141.5,
+      "_compositions_count": 19
     },
     {
       "id": "WP12-003",
@@ -1592,7 +1816,14 @@
           "en tension avec WP12-004 (fertilité) — cf. contradiction déclarée"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.503,
+      "visual_weight": 0.472,
+      "runtime_weight": 0.731,
+      "structural_rank": 8.4,
+      "_fy": -174.9,
+      "_compositions_count": 18
     },
     {
       "id": "WP12-004",
@@ -1635,7 +1866,14 @@
           "en tension avec WP12-003 (minimalité) — cf. contradiction déclarée"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.499,
+      "visual_weight": 0.469,
+      "runtime_weight": 0.73,
+      "structural_rank": 8.3,
+      "_fy": -178.2,
+      "_compositions_count": 18
     },
     {
       "id": "WP12-005",
@@ -1682,7 +1920,14 @@
           "dépend de la définition du voisinage N(F)"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.506,
+      "visual_weight": 0.475,
+      "runtime_weight": 0.732,
+      "structural_rank": 8.6,
+      "_fy": -179.6,
+      "_compositions_count": 18
     },
     {
       "id": "SDE-001",
@@ -1727,7 +1972,14 @@
           "ne couvre pas l'attention partielle"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 0,
+      "topological_weight": 0.983,
+      "visual_weight": 0.808,
+      "runtime_weight": 0.995,
+      "structural_rank": 124.5,
+      "_fy": 123.1,
+      "_compositions_count": 10
     },
     {
       "id": "SDE-002",
@@ -1770,7 +2022,14 @@
           "en tension avec ULG-003 (invariance morphologique) — cf. contradiction déclarée"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.839,
+      "visual_weight": 0.707,
+      "runtime_weight": 0.832,
+      "structural_rank": 38.8,
+      "_fy": -110.0,
+      "_compositions_count": 16
     },
     {
       "id": "SDE-003",
@@ -1813,7 +2072,14 @@
           "F_focal et F_diffuse non observables directement"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.67,
+      "visual_weight": 0.589,
+      "runtime_weight": 0.781,
+      "structural_rank": 18.4,
+      "_fy": -156.1,
+      "_compositions_count": 12
     },
     {
       "id": "SDE-004",
@@ -1856,7 +2122,14 @@
           "instabilité observée — variance sous perturbation à étudier"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.507,
+      "visual_weight": 0.475,
+      "runtime_weight": 0.732,
+      "structural_rank": 7.9,
+      "_fy": -171.2,
+      "_compositions_count": 9
     },
     {
       "id": "SDE-005",
@@ -1899,7 +2172,14 @@
           "σ peut être non-trivial pour certaines paires asymétriques"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.514,
+      "visual_weight": 0.48,
+      "runtime_weight": 0.734,
+      "structural_rank": 18.1,
+      "_fy": -159.6,
+      "_compositions_count": 9
     },
     {
       "id": "PAL-001",
@@ -1948,7 +2228,14 @@
           "S_global en proxy donc Δpalier en proxy"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 0,
+      "topological_weight": 0.922,
+      "visual_weight": 0.765,
+      "runtime_weight": 0.977,
+      "structural_rank": 124.4,
+      "_fy": 112.0,
+      "_compositions_count": 8
     },
     {
       "id": "PAL-002",
@@ -1991,7 +2278,14 @@
           "température T cognitive non mesurable directement"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.712,
+      "visual_weight": 0.618,
+      "runtime_weight": 0.794,
+      "structural_rank": 18.4,
+      "_fy": -145.0,
+      "_compositions_count": 11
     },
     {
       "id": "PAL-003",
@@ -2034,7 +2328,14 @@
           "seuil x_c contextuel — pas universel"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.458,
+      "visual_weight": 0.44,
+      "runtime_weight": 0.717,
+      "structural_rank": 18.2,
+      "_fy": -157.4,
+      "_compositions_count": 7
     },
     {
       "id": "PAL-004",
@@ -2081,7 +2382,14 @@
           "instabilité — cohérence post-saut non garantie"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.478,
+      "visual_weight": 0.455,
+      "runtime_weight": 0.724,
+      "structural_rank": 7.9,
+      "_fy": -174.1,
+      "_compositions_count": 8
     },
     {
       "id": "PAL-005",
@@ -2129,7 +2437,14 @@
           "S_global en proxy"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.593,
+      "visual_weight": 0.535,
+      "runtime_weight": 0.758,
+      "structural_rank": 18.1,
+      "_fy": -152.8,
+      "_compositions_count": 9
     },
     {
       "id": "ULG-002-a",
@@ -2173,7 +2488,14 @@
           "ne garantit pas la convergence des compositions de sous-cadres"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.548,
+      "visual_weight": 0.504,
+      "runtime_weight": 0.744,
+      "structural_rank": 3.6,
+      "_fy": -195.0,
+      "_compositions_count": 7
     },
     {
       "id": "ULG-002-b",
@@ -2217,7 +2539,14 @@
           "dépend de l'existence d'un T contractant — non garantie"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.545,
+      "visual_weight": 0.502,
+      "runtime_weight": 0.744,
+      "structural_rank": 3.5,
+      "_fy": -184.2,
+      "_compositions_count": 7
     },
     {
       "id": "ULG-002-a-i",
@@ -2261,7 +2590,14 @@
           "ne fournit pas la limite explicite"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.323,
+      "visual_weight": 0.346,
+      "runtime_weight": 0.677,
+      "structural_rank": -10.2,
+      "_fy": -227.6,
+      "_compositions_count": 3
     },
     {
       "id": "ULG-002-a-ii",
@@ -2305,7 +2641,14 @@
           "oscillations locales possibles — test à filtrage"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.318,
+      "visual_weight": 0.343,
+      "runtime_weight": 0.675,
+      "structural_rank": -10.4,
+      "_fy": -224.0,
+      "_compositions_count": 3
     },
     {
       "id": "ULG-002-b-i",
@@ -2349,7 +2692,14 @@
           "α trop élevé efface la structure ; α trop faible ralentit"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.315,
+      "visual_weight": 0.341,
+      "runtime_weight": 0.675,
+      "structural_rank": -10.5,
+      "_fy": -233.2,
+      "_compositions_count": 3
     },
     {
       "id": "ULG-002-b-ii",
@@ -2397,7 +2747,14 @@
           "k trop faible perd l'invariant ULG-003"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.35,
+      "visual_weight": 0.365,
+      "runtime_weight": 0.685,
+      "structural_rank": -10.3,
+      "_fy": -232.9,
+      "_compositions_count": 4
     },
     {
       "id": "WP11-002-a",
@@ -2441,7 +2798,14 @@
           "faux positif si variance locale très basse mais N(x) artificiel"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.515,
+      "visual_weight": 0.48,
+      "runtime_weight": 0.734,
+      "structural_rank": -1.5,
+      "_fy": -193.8,
+      "_compositions_count": 6
     },
     {
       "id": "WP11-002-b",
@@ -2485,7 +2849,14 @@
           "γ statique — calibration nécessaire par cas"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.507,
+      "visual_weight": 0.475,
+      "runtime_weight": 0.732,
+      "structural_rank": -1.8,
+      "_fy": -214.4,
+      "_compositions_count": 6
     },
     {
       "id": "WP11-002-a-i",
@@ -2529,7 +2900,14 @@
           "dépend de la définition de N(x) (rayon)"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.323,
+      "visual_weight": 0.346,
+      "runtime_weight": 0.677,
+      "structural_rank": -10.2,
+      "_fy": -216.6,
+      "_compositions_count": 3
     },
     {
       "id": "WP11-002-a-ii",
@@ -2573,7 +2951,14 @@
           "ne teste pas les perturbations rares"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.32,
+      "visual_weight": 0.344,
+      "runtime_weight": 0.676,
+      "structural_rank": -10.3,
+      "_fy": -213.9,
+      "_compositions_count": 3
     },
     {
       "id": "WP11-002-b-i",
@@ -2617,7 +3002,14 @@
           "seuil σ²_max statique"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.307,
+      "visual_weight": 0.335,
+      "runtime_weight": 0.672,
+      "structural_rank": -10.8,
+      "_fy": -225.9,
+      "_compositions_count": 3
     },
     {
       "id": "WP11-002-b-ii",
@@ -2661,7 +3053,14 @@
           "κ statique — calibration"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.303,
+      "visual_weight": 0.332,
+      "runtime_weight": 0.671,
+      "structural_rank": -10.9,
+      "_fy": -222.2,
+      "_compositions_count": 3
     },
     {
       "id": "DVE-002-a",
@@ -2705,7 +3104,14 @@
           "ne couvre pas les sauts qualitatifs (cf. cas B)"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.512,
+      "visual_weight": 0.478,
+      "runtime_weight": 0.734,
+      "structural_rank": -1.6,
+      "_fy": -218.0,
+      "_compositions_count": 6
     },
     {
       "id": "DVE-002-b",
@@ -2749,7 +3155,14 @@
           "nombre de classes potentiellement non borné"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.507,
+      "visual_weight": 0.475,
+      "runtime_weight": 0.732,
+      "structural_rank": -1.8,
+      "_fy": -201.4,
+      "_compositions_count": 6
     },
     {
       "id": "DVE-002-a-i",
@@ -2793,7 +3206,14 @@
           "interpolation linéaire — ne couvre pas les chemins non-géodésiques"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.323,
+      "visual_weight": 0.346,
+      "runtime_weight": 0.677,
+      "structural_rank": -10.2,
+      "_fy": -239.6,
+      "_compositions_count": 3
     },
     {
       "id": "DVE-002-a-ii",
@@ -2837,7 +3257,14 @@
           "F* peut sortir de l'espace admissible (cf. WP12)"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.318,
+      "visual_weight": 0.343,
+      "runtime_weight": 0.675,
+      "structural_rank": -10.4,
+      "_fy": -237.0,
+      "_compositions_count": 3
     },
     {
       "id": "DVE-002-b-i",
@@ -2881,7 +3308,14 @@
           "dépend de la qualité de l'extraction des invariants"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.315,
+      "visual_weight": 0.341,
+      "runtime_weight": 0.675,
+      "structural_rank": -10.5,
+      "_fy": -220.2,
+      "_compositions_count": 3
     },
     {
       "id": "DVE-002-b-ii",
@@ -2925,7 +3359,14 @@
           "ne garantit pas l'admissibilité conjointe des branches"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.317,
+      "visual_weight": 0.342,
+      "runtime_weight": 0.675,
+      "structural_rank": -10.4,
+      "_fy": -235.1,
+      "_compositions_count": 3
     },
     {
       "id": "SDE-002-a",
@@ -2969,7 +3410,14 @@
           "ne couvre pas l'auto-observation (cf. cas B)"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.598,
+      "visual_weight": 0.538,
+      "runtime_weight": 0.759,
+      "structural_rank": 3.2,
+      "_fy": -178.9,
+      "_compositions_count": 9
     },
     {
       "id": "SDE-002-b",
@@ -3013,7 +3461,14 @@
           "coût cognitif de la réflexion non modélisé"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.593,
+      "visual_weight": 0.535,
+      "runtime_weight": 0.758,
+      "structural_rank": 3.1,
+      "_fy": -187.2,
+      "_compositions_count": 9
     },
     {
       "id": "SDE-002-a-i",
@@ -3057,7 +3512,14 @@
           "ne couvre pas l'attention multi-cible"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.315,
+      "visual_weight": 0.341,
+      "runtime_weight": 0.675,
+      "structural_rank": -10.5,
+      "_fy": -236.2,
+      "_compositions_count": 3
     },
     {
       "id": "SDE-002-a-ii",
@@ -3101,7 +3563,14 @@
           "dilution potentielle de la cohérence locale"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.312,
+      "visual_weight": 0.338,
+      "runtime_weight": 0.674,
+      "structural_rank": -10.6,
+      "_fy": -227.5,
+      "_compositions_count": 3
     },
     {
       "id": "SDE-002-b-i",
@@ -3145,7 +3614,14 @@
           "σ trivial pour paires asymétriques"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.314,
+      "visual_weight": 0.339,
+      "runtime_weight": 0.674,
+      "structural_rank": -10.6,
+      "_fy": -213.4,
+      "_compositions_count": 3
     },
     {
       "id": "SDE-002-b-ii",
@@ -3189,7 +3665,14 @@
           "compositions instables (cf. SDE-004)"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.307,
+      "visual_weight": 0.335,
+      "runtime_weight": 0.672,
+      "structural_rank": -10.8,
+      "_fy": -241.9,
+      "_compositions_count": 3
     },
     {
       "id": "PAL-002-a",
@@ -3233,7 +3716,14 @@
           "ne couvre pas les transitions catastrophiques (cf. cas B)"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.53,
+      "visual_weight": 0.491,
+      "runtime_weight": 0.739,
+      "structural_rank": 3.0,
+      "_fy": -187.5,
+      "_compositions_count": 7
     },
     {
       "id": "PAL-002-b",
@@ -3277,7 +3767,14 @@
           "t* contextuel — pas universel"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.527,
+      "visual_weight": 0.489,
+      "runtime_weight": 0.738,
+      "structural_rank": 2.9,
+      "_fy": -193.8,
+      "_compositions_count": 7
     },
     {
       "id": "PAL-002-a-i",
@@ -3321,7 +3818,14 @@
           "ω_lente arbitraire"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.312,
+      "visual_weight": 0.338,
+      "runtime_weight": 0.674,
+      "structural_rank": -10.6,
+      "_fy": -224.5,
+      "_compositions_count": 3
     },
     {
       "id": "PAL-002-a-ii",
@@ -3365,7 +3869,14 @@
           "peut basculer en discret au-delà d'un seuil"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.309,
+      "visual_weight": 0.336,
+      "runtime_weight": 0.673,
+      "structural_rank": -10.7,
+      "_fy": -214.8,
+      "_compositions_count": 3
     },
     {
       "id": "PAL-002-b-i",
@@ -3409,7 +3920,14 @@
           "nature physique de φ non clarifiée"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.314,
+      "visual_weight": 0.339,
+      "runtime_weight": 0.674,
+      "structural_rank": -10.6,
+      "_fy": -229.4,
+      "_compositions_count": 3
     },
     {
       "id": "PAL-002-b-ii",
@@ -3453,7 +3971,14 @@
           "hystérésis arbitraire"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.41,
+      "visual_weight": 0.407,
+      "runtime_weight": 0.703,
+      "structural_rank": -7.7,
+      "_fy": -232.1,
+      "_compositions_count": 5
     },
     {
       "id": "GHUC-003-a",
@@ -3497,7 +4022,14 @@
           "ne traite pas les redondances cross-famille (cf. cas B)"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.397,
+      "visual_weight": 0.398,
+      "runtime_weight": 0.699,
+      "structural_rank": -1.8,
+      "_fy": -207.4,
+      "_compositions_count": 5
     },
     {
       "id": "GHUC-003-b",
@@ -3541,7 +4073,14 @@
           "nécessite absorption explicite (traçabilité)"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.393,
+      "visual_weight": 0.395,
+      "runtime_weight": 0.698,
+      "structural_rank": -1.9,
+      "_fy": -203.8,
+      "_compositions_count": 5
     },
     {
       "id": "GHUC-004-a",
@@ -3585,7 +4124,14 @@
           "ne traite pas les ponts cross-famille (cf. cas B)"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.39,
+      "visual_weight": 0.393,
+      "runtime_weight": 0.697,
+      "structural_rank": -2.0,
+      "_fy": -212.0,
+      "_compositions_count": 5
     },
     {
       "id": "GHUC-004-b",
@@ -3629,7 +4175,14 @@
           "fusion irréversible — audit obligatoire"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.387,
+      "visual_weight": 0.391,
+      "runtime_weight": 0.696,
+      "structural_rank": -2.1,
+      "_fy": -218.2,
+      "_compositions_count": 5
     },
     {
       "id": "ULG-006",
@@ -3677,7 +4230,14 @@
           "nombre d'invariants potentiellement infini"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.543,
+      "visual_weight": 0.5,
+      "runtime_weight": 0.743,
+      "structural_rank": 18.1,
+      "_fy": -145.8,
+      "_compositions_count": 10
     },
     {
       "id": "UDE-006",
@@ -3725,7 +4285,14 @@
           "faux positif si voisinage trop petit"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.493,
+      "visual_weight": 0.465,
+      "runtime_weight": 0.728,
+      "structural_rank": 8.1,
+      "_fy": -176.8,
+      "_compositions_count": 17
     },
     {
       "id": "UDE-007",
@@ -3769,7 +4336,14 @@
           "perturbations agressives peuvent dégrader S_global"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.487,
+      "visual_weight": 0.461,
+      "runtime_weight": 0.726,
+      "structural_rank": 7.9,
+      "_fy": -190.2,
+      "_compositions_count": 17
     },
     {
       "id": "WP11-006",
@@ -3817,7 +4391,14 @@
           "dépend de la qualité des audits historiques"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.515,
+      "visual_weight": 0.48,
+      "runtime_weight": 0.734,
+      "structural_rank": -1.5,
+      "_fy": -204.8,
+      "_compositions_count": 6
     },
     {
       "id": "WP12-006",
@@ -3861,7 +4442,14 @@
           "en tension potentielle avec absorptions GHUC (irréversibles)"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.502,
+      "visual_weight": 0.471,
+      "runtime_weight": 0.731,
+      "structural_rank": 8.4,
+      "_fy": -171.0,
+      "_compositions_count": 18
     },
     {
       "id": "WP12-007",
@@ -3905,7 +4493,14 @@
           "coût de stockage des traces non modélisé"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.585,
+      "visual_weight": 0.53,
+      "runtime_weight": 0.756,
+      "structural_rank": 8.5,
+      "_fy": -175.8,
+      "_compositions_count": 21
     },
     {
       "id": "SDE-006",
@@ -3949,7 +4544,14 @@
           "associativité instable au-delà de 3 termes (cf. SDE-004)"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.54,
+      "visual_weight": 0.498,
+      "runtime_weight": 0.742,
+      "structural_rank": 18.0,
+      "_fy": -166.0,
+      "_compositions_count": 10
     },
     {
       "id": "PAL-006",
@@ -3992,7 +4594,14 @@
           "instabilité fondamentale — non observable directement"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.474,
+      "visual_weight": 0.452,
+      "runtime_weight": 0.722,
+      "structural_rank": 17.8,
+      "_fy": -157.5,
+      "_compositions_count": 8
     },
     {
       "id": "DVE-006",
@@ -4040,7 +4649,14 @@
           "bifurcation force le choix — perd l'information de tension"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.393,
+      "visual_weight": 0.395,
+      "runtime_weight": 0.698,
+      "structural_rank": -1.9,
+      "_fy": -190.8,
+      "_compositions_count": 5
     },
     {
       "id": "GHUC-005",
@@ -4088,7 +4704,14 @@
           "audit bloque l'opération si ΔHS < 0 — friction tolérée"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.678,
+      "visual_weight": 0.595,
+      "runtime_weight": 0.783,
+      "structural_rank": 18.6,
+      "_fy": -142.5,
+      "_compositions_count": 12
     },
     {
       "id": "WP11-007",
@@ -4136,7 +4759,14 @@
           "dépend de la qualité du label validé/échoué"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.495,
+      "visual_weight": 0.466,
+      "runtime_weight": 0.728,
+      "structural_rank": 18.5,
+      "_fy": -155.8,
+      "_compositions_count": 8
     },
     {
       "id": "WP12-008",
@@ -4180,7 +4810,14 @@
           "méthodes stochastiques exigent seed explicite"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.499,
+      "visual_weight": 0.469,
+      "runtime_weight": 0.73,
+      "structural_rank": 8.3,
+      "_fy": -180.2,
+      "_compositions_count": 18
     },
     {
       "id": "ULG-008",
@@ -4228,7 +4865,14 @@
           "dépend du choix de θ ; modèles très différents peuvent diverger"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.547,
+      "visual_weight": 0.503,
+      "runtime_weight": 0.744,
+      "structural_rank": 18.2,
+      "_fy": -161.4,
+      "_compositions_count": 11
     },
     {
       "id": "ULG-009",
@@ -4276,7 +4920,14 @@
           "dépend de l'architecture du modèle"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.51,
+      "visual_weight": 0.477,
+      "runtime_weight": 0.733,
+      "structural_rank": 18.0,
+      "_fy": -158.0,
+      "_compositions_count": 9
     },
     {
       "id": "ULG-010",
@@ -4324,7 +4975,14 @@
           "compositionnalité non garantie pour > 5 tokens"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.519,
+      "visual_weight": 0.483,
+      "runtime_weight": 0.736,
+      "structural_rank": 18.3,
+      "_fy": -169.2,
+      "_compositions_count": 9
     },
     {
       "id": "ULG-011",
@@ -4372,7 +5030,14 @@
           "dépend de la qualité de l'estimation P"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.517,
+      "visual_weight": 0.482,
+      "runtime_weight": 0.735,
+      "structural_rank": 18.2,
+      "_fy": -149.4,
+      "_compositions_count": 9
     },
     {
       "id": "ULG-012",
@@ -4420,7 +5085,14 @@
           "compression agressive perd les nuances rares"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.333,
+      "visual_weight": 0.353,
+      "runtime_weight": 0.68,
+      "structural_rank": -4.9,
+      "_fy": -209.2,
+      "_compositions_count": 3
     },
     {
       "id": "ULG-013",
@@ -4468,7 +5140,14 @@
           "seuil δ subjectif"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.335,
+      "visual_weight": 0.354,
+      "runtime_weight": 0.68,
+      "structural_rank": -4.8,
+      "_fy": -210.1,
+      "_compositions_count": 3
     },
     {
       "id": "ULG-014",
@@ -4516,7 +5195,14 @@
           "échec sur ambiguïtés multiples"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.387,
+      "visual_weight": 0.391,
+      "runtime_weight": 0.696,
+      "structural_rank": -2.1,
+      "_fy": -203.2,
+      "_compositions_count": 5
     },
     {
       "id": "ULG-015",
@@ -4560,7 +5246,14 @@
           "estimation biaisée sur petit corpus"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.33,
+      "visual_weight": 0.351,
+      "runtime_weight": 0.679,
+      "structural_rank": -5.0,
+      "_fy": -227.5,
+      "_compositions_count": 3
     },
     {
       "id": "ULG-016",
@@ -4608,7 +5301,14 @@
           "dépend de la qualité de la traduction"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.333,
+      "visual_weight": 0.353,
+      "runtime_weight": 0.68,
+      "structural_rank": -4.9,
+      "_fy": -204.2,
+      "_compositions_count": 3
     },
     {
       "id": "ULG-017",
@@ -4656,7 +5356,14 @@
           "asymptote théorique non observable"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.384,
+      "visual_weight": 0.389,
+      "runtime_weight": 0.695,
+      "structural_rank": -2.2,
+      "_fy": -218.5,
+      "_compositions_count": 5
     },
     {
       "id": "DVE-008",
@@ -4708,7 +5415,14 @@
           "dépend de la complétude de la base de référence"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.465,
+      "visual_weight": 0.445,
+      "runtime_weight": 0.72,
+      "structural_rank": 3.5,
+      "_fy": -179.2,
+      "_compositions_count": 7
     },
     {
       "id": "DVE-009",
@@ -4756,7 +5470,14 @@
           "coût computationnel multiplié par |M|"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.458,
+      "visual_weight": 0.44,
+      "runtime_weight": 0.717,
+      "structural_rank": 18.2,
+      "_fy": -149.4,
+      "_compositions_count": 7
     },
     {
       "id": "DVE-010",
@@ -4804,7 +5525,14 @@
           "seuil τ contextuel"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.37,
+      "visual_weight": 0.379,
+      "runtime_weight": 0.691,
+      "structural_rank": -4.7,
+      "_fy": -226.6,
+      "_compositions_count": 4
     },
     {
       "id": "DVE-011",
@@ -4852,7 +5580,14 @@
           "seuil θ statique"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.369,
+      "visual_weight": 0.378,
+      "runtime_weight": 0.691,
+      "structural_rank": -4.7,
+      "_fy": -201.8,
+      "_compositions_count": 4
     },
     {
       "id": "DVE-012",
@@ -4900,7 +5635,14 @@
           "trade-off diversité/cohérence non linéaire"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.484,
+      "visual_weight": 0.459,
+      "runtime_weight": 0.725,
+      "structural_rank": 18.1,
+      "_fy": -166.6,
+      "_compositions_count": 8
     },
     {
       "id": "DVE-013",
@@ -4952,7 +5694,14 @@
           "coût de stockage proportionnel à |trace|"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.376,
+      "visual_weight": 0.384,
+      "runtime_weight": 0.693,
+      "structural_rank": -4.5,
+      "_fy": -203.1,
+      "_compositions_count": 4
     },
     {
       "id": "DVE-014",
@@ -4996,7 +5745,14 @@
           "faux arrêts si ε trop large"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.397,
+      "visual_weight": 0.398,
+      "runtime_weight": 0.699,
+      "structural_rank": -1.8,
+      "_fy": -214.4,
+      "_compositions_count": 5
     },
     {
       "id": "DVE-015",
@@ -5044,7 +5800,14 @@
           "pondérations dépendantes du domaine"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.455,
+      "visual_weight": 0.438,
+      "runtime_weight": 0.716,
+      "structural_rank": 18.1,
+      "_fy": -148.6,
+      "_compositions_count": 7
     },
     {
       "id": "UDE-009",
@@ -5096,7 +5859,14 @@
           "fragilité aux fausses ancres"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.505,
+      "visual_weight": 0.473,
+      "runtime_weight": 0.732,
+      "structural_rank": 8.5,
+      "_fy": -164.8,
+      "_compositions_count": 19
     },
     {
       "id": "UDE-010",
@@ -5144,7 +5914,14 @@
           "dépend de la qualité de l'embedding"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.499,
+      "visual_weight": 0.469,
+      "runtime_weight": 0.73,
+      "structural_rank": 8.3,
+      "_fy": -192.2,
+      "_compositions_count": 17
     },
     {
       "id": "UDE-011",
@@ -5192,7 +5969,14 @@
           "faux positifs sur corpus disparates"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.497,
+      "visual_weight": 0.468,
+      "runtime_weight": 0.729,
+      "structural_rank": 8.2,
+      "_fy": -180.4,
+      "_compositions_count": 17
     },
     {
       "id": "UDE-012",
@@ -5240,7 +6024,14 @@
           "limité aux relations formalisables"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.493,
+      "visual_weight": 0.465,
+      "runtime_weight": 0.728,
+      "structural_rank": 8.1,
+      "_fy": -172.8,
+      "_compositions_count": 17
     },
     {
       "id": "UDE-013",
@@ -5288,7 +6079,14 @@
           "sensible au choix du prior"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.487,
+      "visual_weight": 0.461,
+      "runtime_weight": 0.726,
+      "structural_rank": 7.9,
+      "_fy": -173.2,
+      "_compositions_count": 17
     },
     {
       "id": "UDE-014",
@@ -5336,7 +6134,14 @@
           "coût mémoire croissant linéairement"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.49,
+      "visual_weight": 0.463,
+      "runtime_weight": 0.727,
+      "structural_rank": 8.0,
+      "_fy": -174.0,
+      "_compositions_count": 17
     },
     {
       "id": "UDE-015",
@@ -5380,7 +6185,14 @@
           "taille bornée — éviction"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.491,
+      "visual_weight": 0.464,
+      "runtime_weight": 0.727,
+      "structural_rank": 8.1,
+      "_fy": -167.9,
+      "_compositions_count": 17
     },
     {
       "id": "UDE-017",
@@ -5424,7 +6236,14 @@
           "events critiques peuvent décayer trop vite"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.485,
+      "visual_weight": 0.46,
+      "runtime_weight": 0.726,
+      "structural_rank": 7.8,
+      "_fy": -171.4,
+      "_compositions_count": 17
     },
     {
       "id": "UDE-018",
@@ -5468,7 +6287,14 @@
           "risque de bias sur events fréquents"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.488,
+      "visual_weight": 0.462,
+      "runtime_weight": 0.727,
+      "structural_rank": 7.9,
+      "_fy": -186.1,
+      "_compositions_count": 17
     },
     {
       "id": "UDE-019",
@@ -5516,7 +6342,14 @@
           "coût mise à jour à chaque ajout"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.493,
+      "visual_weight": 0.465,
+      "runtime_weight": 0.728,
+      "structural_rank": 8.1,
+      "_fy": -192.8,
+      "_compositions_count": 18
     },
     {
       "id": "GHUC-006",
@@ -5568,7 +6401,14 @@
           "surcoût latence ~5-10ms"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.375,
+      "visual_weight": 0.382,
+      "runtime_weight": 0.693,
+      "structural_rank": -4.5,
+      "_fy": -198.2,
+      "_compositions_count": 4
     },
     {
       "id": "GHUC-007",
@@ -5620,7 +6460,14 @@
           "coût computationnel proportionnel à |graph|"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.496,
+      "visual_weight": 0.468,
+      "runtime_weight": 0.729,
+      "structural_rank": 18.6,
+      "_fy": -154.6,
+      "_compositions_count": 8
     },
     {
       "id": "GHUC-008",
@@ -5672,7 +6519,14 @@
           "rollback partiel impossible — atomique"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.561,
+      "visual_weight": 0.513,
+      "runtime_weight": 0.748,
+      "structural_rank": 18.7,
+      "_fy": -157.2,
+      "_compositions_count": 10
     },
     {
       "id": "GHUC-009",
@@ -5716,7 +6570,14 @@
           "fusion irréversible — audit"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.366,
+      "visual_weight": 0.376,
+      "runtime_weight": 0.69,
+      "structural_rank": -4.8,
+      "_fy": -205.0,
+      "_compositions_count": 4
     },
     {
       "id": "GHUC-010",
@@ -5764,7 +6625,14 @@
           "coût proportionnel à |sandbox|"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.37,
+      "visual_weight": 0.379,
+      "runtime_weight": 0.691,
+      "structural_rank": -4.7,
+      "_fy": -225.6,
+      "_compositions_count": 4
     },
     {
       "id": "GHUC-011",
@@ -5812,7 +6680,14 @@
           "perte de détail visuel — détail à la demande"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.393,
+      "visual_weight": 0.395,
+      "runtime_weight": 0.698,
+      "structural_rank": -1.9,
+      "_fy": -211.8,
+      "_compositions_count": 5
     },
     {
       "id": "GHUC-012",
@@ -5856,7 +6731,14 @@
           "seuils calibrables — risque faux positif"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.397,
+      "visual_weight": 0.398,
+      "runtime_weight": 0.699,
+      "structural_rank": -1.8,
+      "_fy": -191.4,
+      "_compositions_count": 5
     },
     {
       "id": "GHUC-013",
@@ -5900,7 +6782,14 @@
           "ne traite pas les related justifiés"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.402,
+      "visual_weight": 0.401,
+      "runtime_weight": 0.701,
+      "structural_rank": -1.6,
+      "_fy": -205.0,
+      "_compositions_count": 5
     },
     {
       "id": "GHUC-014",
@@ -5948,7 +6837,14 @@
           "coût proportionnel à |historique|"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.364,
+      "visual_weight": 0.375,
+      "runtime_weight": 0.689,
+      "structural_rank": -4.8,
+      "_fy": -209.1,
+      "_compositions_count": 4
     },
     {
       "id": "GHUC-015",
@@ -6000,7 +6896,14 @@
           "risque oscillation si feedback bruité"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.519,
+      "visual_weight": 0.483,
+      "runtime_weight": 0.736,
+      "structural_rank": 18.3,
+      "_fy": -164.2,
+      "_compositions_count": 9
     },
     {
       "id": "WP11-008",
@@ -6052,7 +6955,14 @@
           "dépend de la définition de C_comp"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.357,
+      "visual_weight": 0.37,
+      "runtime_weight": 0.687,
+      "structural_rank": -4.1,
+      "_fy": -205.2,
+      "_compositions_count": 3
     },
     {
       "id": "WP11-009",
@@ -6100,7 +7010,14 @@
           "pondérations subjectives à calibrer"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.498,
+      "visual_weight": 0.469,
+      "runtime_weight": 0.729,
+      "structural_rank": 18.6,
+      "_fy": -158.5,
+      "_compositions_count": 8
     },
     {
       "id": "WP11-010",
@@ -6144,7 +7061,14 @@
           "circularités utiles parfois (ex. récursion fractal)"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.373,
+      "visual_weight": 0.381,
+      "runtime_weight": 0.692,
+      "structural_rank": -9.6,
+      "_fy": -212.9,
+      "_compositions_count": 4
     },
     {
       "id": "WP11-011",
@@ -6196,7 +7120,14 @@
           "faux positifs sur paraphrases"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.444,
+      "visual_weight": 0.431,
+      "runtime_weight": 0.713,
+      "structural_rank": -6.2,
+      "_fy": -224.5,
+      "_compositions_count": 6
     },
     {
       "id": "WP11-012",
@@ -6244,7 +7175,14 @@
           "dépend de la qualité des audits"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.369,
+      "visual_weight": 0.378,
+      "runtime_weight": 0.691,
+      "structural_rank": -9.7,
+      "_fy": -211.2,
+      "_compositions_count": 4
     },
     {
       "id": "WP11-013",
@@ -6292,7 +7230,14 @@
           "fenêtre T à choisir avec soin"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.492,
+      "visual_weight": 0.464,
+      "runtime_weight": 0.728,
+      "structural_rank": 18.4,
+      "_fy": -162.0,
+      "_compositions_count": 8
     },
     {
       "id": "WP11-014",
@@ -6340,7 +7285,14 @@
           "coût communication inter-runtime"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.481,
+      "visual_weight": 0.457,
+      "runtime_weight": 0.724,
+      "structural_rank": 18.1,
+      "_fy": -144.9,
+      "_compositions_count": 8
     },
     {
       "id": "WP11-015",
@@ -6388,7 +7340,14 @@
           "faux positifs sur transitions intentionnelles"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.373,
+      "visual_weight": 0.381,
+      "runtime_weight": 0.692,
+      "structural_rank": -9.6,
+      "_fy": -227.9,
+      "_compositions_count": 4
     },
     {
       "id": "WP11-017",
@@ -6432,7 +7391,14 @@
           "écart faible peut masquer fragilité commune"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.366,
+      "visual_weight": 0.376,
+      "runtime_weight": 0.69,
+      "structural_rank": -4.8,
+      "_fy": -199.0,
+      "_compositions_count": 4
     },
     {
       "id": "WP11-018",
@@ -6484,7 +7450,14 @@
           "3 sources de rejet possibles"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.501,
+      "visual_weight": 0.471,
+      "runtime_weight": 0.73,
+      "structural_rank": 18.7,
+      "_fy": -161.2,
+      "_compositions_count": 8
     },
     {
       "id": "WP12-009",
@@ -6536,7 +7509,14 @@
           "dépend de la complétude des dépendances"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.506,
+      "visual_weight": 0.475,
+      "runtime_weight": 0.732,
+      "structural_rank": 8.6,
+      "_fy": -168.6,
+      "_compositions_count": 19
     },
     {
       "id": "WP12-010",
@@ -6584,7 +7564,14 @@
           "false positives sur usage générique"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.511,
+      "visual_weight": 0.478,
+      "runtime_weight": 0.733,
+      "structural_rank": 8.7,
+      "_fy": -180.2,
+      "_compositions_count": 18
     },
     {
       "id": "WP12-011",
@@ -6632,7 +7619,14 @@
           "schéma strict — pas de polymorphisme"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.514,
+      "visual_weight": 0.48,
+      "runtime_weight": 0.734,
+      "structural_rank": 8.8,
+      "_fy": -182.0,
+      "_compositions_count": 18
     },
     {
       "id": "WP12-012",
@@ -6680,7 +7674,14 @@
           "champs vagues passent encore le test"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.515,
+      "visual_weight": 0.481,
+      "runtime_weight": 0.735,
+      "structural_rank": 8.8,
+      "_fy": -183.9,
+      "_compositions_count": 18
     },
     {
       "id": "WP12-013",
@@ -6728,7 +7729,14 @@
           "en tension avec WP12-004 fertilité"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.494,
+      "visual_weight": 0.466,
+      "runtime_weight": 0.728,
+      "structural_rank": 8.2,
+      "_fy": -193.6,
+      "_compositions_count": 18
     },
     {
       "id": "WP12-014",
@@ -6776,7 +7784,14 @@
           "seuil θ subjectif"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.499,
+      "visual_weight": 0.469,
+      "runtime_weight": 0.73,
+      "structural_rank": 8.3,
+      "_fy": -188.2,
+      "_compositions_count": 18
     },
     {
       "id": "WP12-015",
@@ -6824,7 +7839,14 @@
           "coût croissant avec |invariants|"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.509,
+      "visual_weight": 0.477,
+      "runtime_weight": 0.733,
+      "structural_rank": 8.7,
+      "_fy": -173.4,
+      "_compositions_count": 19
     },
     {
       "id": "WP12-016",
@@ -6872,7 +7894,14 @@
           "risque d'over-marking proxy"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.506,
+      "visual_weight": 0.475,
+      "runtime_weight": 0.732,
+      "structural_rank": 8.6,
+      "_fy": -187.6,
+      "_compositions_count": 18
     },
     {
       "id": "WP12-017",
@@ -6924,7 +7953,14 @@
           "coût stockage croissant"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.293,
+      "visual_weight": 0.325,
+      "runtime_weight": 0.668,
+      "structural_rank": -4.6,
+      "_fy": -212.4,
+      "_compositions_count": 3
     },
     {
       "id": "WP12-018",
@@ -6972,7 +8008,14 @@
           "lois trop générales non réfutables"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.502,
+      "visual_weight": 0.471,
+      "runtime_weight": 0.731,
+      "structural_rank": 8.4,
+      "_fy": -170.0,
+      "_compositions_count": 18
     },
     {
       "id": "WP12-019",
@@ -7024,7 +8067,14 @@
           "coût latence audit"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.323,
+      "visual_weight": 0.346,
+      "runtime_weight": 0.677,
+      "structural_rank": -4.6,
+      "_fy": -209.4,
+      "_compositions_count": 4
     },
     {
       "id": "WP12-020",
@@ -7076,7 +8126,14 @@
           "consent peut être révoqué — à gérer"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.509,
+      "visual_weight": 0.477,
+      "runtime_weight": 0.733,
+      "structural_rank": 8.7,
+      "_fy": -165.4,
+      "_compositions_count": 18
     },
     {
       "id": "SDE-008",
@@ -7124,7 +8181,14 @@
           "k arbitraire — calibration nécessaire"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.367,
+      "visual_weight": 0.377,
+      "runtime_weight": 0.69,
+      "structural_rank": -4.8,
+      "_fy": -209.9,
+      "_compositions_count": 4
     },
     {
       "id": "SDE-009",
@@ -7176,7 +8240,14 @@
           "coût latence pour générer trace"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.555,
+      "visual_weight": 0.508,
+      "runtime_weight": 0.746,
+      "structural_rank": 18.5,
+      "_fy": -160.8,
+      "_compositions_count": 10
     },
     {
       "id": "SDE-010",
@@ -7224,7 +8295,14 @@
           "déséquilibre risque hallucination ou rigidité"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.366,
+      "visual_weight": 0.376,
+      "runtime_weight": 0.69,
+      "structural_rank": -4.8,
+      "_fy": -216.0,
+      "_compositions_count": 4
     },
     {
       "id": "SDE-011",
@@ -7272,7 +8350,14 @@
           "coût stockage doublé"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.452,
+      "visual_weight": 0.436,
+      "runtime_weight": 0.715,
+      "structural_rank": 3.0,
+      "_fy": -186.4,
+      "_compositions_count": 7
     },
     {
       "id": "SDE-012",
@@ -7320,7 +8405,14 @@
           "risque de perte d'information à chaque transition"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.51,
+      "visual_weight": 0.477,
+      "runtime_weight": 0.733,
+      "structural_rank": 18.0,
+      "_fy": -155.0,
+      "_compositions_count": 9
     },
     {
       "id": "SDE-013",
@@ -7372,7 +8464,14 @@
           "coût latence ~2x ; risque self-confirmation bias"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.493,
+      "visual_weight": 0.465,
+      "runtime_weight": 0.728,
+      "structural_rank": 3.4,
+      "_fy": -199.4,
+      "_compositions_count": 8
     },
     {
       "id": "SDE-014",
@@ -7420,7 +8519,14 @@
           "risque de mauvaise modélisation user"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.453,
+      "visual_weight": 0.437,
+      "runtime_weight": 0.716,
+      "structural_rank": 3.1,
+      "_fy": -185.2,
+      "_compositions_count": 7
     },
     {
       "id": "SDE-015",
@@ -7472,7 +8578,14 @@
           "réponse plus longue ; user peut vouloir version courte"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.376,
+      "visual_weight": 0.384,
+      "runtime_weight": 0.693,
+      "structural_rank": -4.5,
+      "_fy": -212.1,
+      "_compositions_count": 4
     },
     {
       "id": "SDE-016",
@@ -7524,7 +8637,14 @@
           "frustration user si refus fréquent"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.561,
+      "visual_weight": 0.513,
+      "runtime_weight": 0.748,
+      "structural_rank": 18.7,
+      "_fy": -158.2,
+      "_compositions_count": 10
     },
     {
       "id": "SDE-017",
@@ -7572,7 +8692,14 @@
           "dégrade au-delà d'un seuil de longueur"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.513,
+      "visual_weight": 0.479,
+      "runtime_weight": 0.734,
+      "structural_rank": 18.1,
+      "_fy": -144.8,
+      "_compositions_count": 9
     },
     {
       "id": "PAL-007",
@@ -7620,7 +8747,14 @@
           "transitions abruptes mal vécues par user"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.45,
+      "visual_weight": 0.435,
+      "runtime_weight": 0.715,
+      "structural_rank": 18.0,
+      "_fy": -166.0,
+      "_compositions_count": 7
     },
     {
       "id": "PAL-008",
@@ -7668,7 +8802,14 @@
           "risque oscillation si feedback contradictoire"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.455,
+      "visual_weight": 0.438,
+      "runtime_weight": 0.716,
+      "structural_rank": 18.1,
+      "_fy": -157.6,
+      "_compositions_count": 7
     },
     {
       "id": "PAL-010",
@@ -7720,7 +8861,14 @@
           "bloque modifications utiles aussi"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.339,
+      "visual_weight": 0.357,
+      "runtime_weight": 0.682,
+      "structural_rank": -4.7,
+      "_fy": -208.8,
+      "_compositions_count": 3
     },
     {
       "id": "PAL-012",
@@ -7768,7 +8916,14 @@
           "thrashing si HS oscille autour de θ"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.396,
+      "visual_weight": 0.397,
+      "runtime_weight": 0.699,
+      "structural_rank": -1.8,
+      "_fy": -203.5,
+      "_compositions_count": 5
     },
     {
       "id": "PAL-013",
@@ -7820,7 +8975,14 @@
           "mode emergency frustrant pour user"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 4,
+      "topological_weight": 0.329,
+      "visual_weight": 0.35,
+      "runtime_weight": 0.679,
+      "structural_rank": -15.1,
+      "_fy": -235.6,
+      "_compositions_count": 3
     },
     {
       "id": "PAL-014",
@@ -7868,7 +9030,14 @@
           "latence prolongée pour user"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.332,
+      "visual_weight": 0.352,
+      "runtime_weight": 0.679,
+      "structural_rank": -5.0,
+      "_fy": -204.4,
+      "_compositions_count": 3
     },
     {
       "id": "WP11-019",
@@ -7916,7 +9085,14 @@
           "coefficient 0.10 arbitraire — à recalibrer"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 3,
+      "topological_weight": 0.341,
+      "visual_weight": 0.358,
+      "runtime_weight": 0.682,
+      "structural_rank": -9.7,
+      "_fy": -219.1,
+      "_compositions_count": 3
     },
     {
       "id": "UDE-020",
@@ -7964,7 +9140,14 @@
           "taux de faux positifs croissant avec |détecteurs|"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.493,
+      "visual_weight": 0.465,
+      "runtime_weight": 0.728,
+      "structural_rank": 8.1,
+      "_fy": -185.8,
+      "_compositions_count": 17
     },
     {
       "id": "GHUC-016",
@@ -8016,7 +9199,14 @@
           "coût computationnel cross-mission"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.493,
+      "visual_weight": 0.465,
+      "runtime_weight": 0.728,
+      "structural_rank": 18.4,
+      "_fy": -166.9,
+      "_compositions_count": 8
     },
     {
       "id": "WP12-021",
@@ -8068,7 +9258,14 @@
           "frontière éthique contextuelle"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 1,
+      "topological_weight": 0.509,
+      "visual_weight": 0.477,
+      "runtime_weight": 0.733,
+      "structural_rank": 8.7,
+      "_fy": -180.4,
+      "_compositions_count": 18
     },
     {
       "id": "SDE-018",
@@ -8116,7 +9313,14 @@
           "risque de banalisation des contradictions"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.45,
+      "visual_weight": 0.435,
+      "runtime_weight": 0.715,
+      "structural_rank": 3.0,
+      "_fy": -184.5,
+      "_compositions_count": 7
     },
     {
       "id": "PAL-015",
@@ -8164,7 +9368,14 @@
           "élargissement coûteux en VRAM"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.391,
+      "visual_weight": 0.394,
+      "runtime_weight": 0.697,
+      "structural_rank": -2.0,
+      "_fy": -191.9,
+      "_compositions_count": 5
     },
     {
       "id": "DVE-016",
@@ -8216,7 +9427,14 @@
           "dépend complétude CanonicalGraph"
         ]
       },
-      "runtime_admissible": true
+      "runtime_admissible": true,
+      "hierarchical_depth": 2,
+      "topological_weight": 0.373,
+      "visual_weight": 0.381,
+      "runtime_weight": 0.692,
+      "structural_rank": -4.6,
+      "_fy": -197.4,
+      "_compositions_count": 4
     }
   ],
   "edges": [
