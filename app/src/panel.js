@@ -1,3 +1,13 @@
+// Wrap section content into a foldable <details> with yellow triangle.
+// `content` peut être vide → on retourne '' (pas de section vide).
+function fold(title, content, open = false) {
+  if (!content || !content.trim()) return '';
+  return `<details${open ? ' open' : ''} class="fold-section">
+    <summary>${title}</summary>
+    ${content}
+  </details>`;
+}
+
 function esc(s) {
   return String(s).replace(/[&<>"']/g, c => ({
     '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
@@ -744,42 +754,50 @@ export function renderDetail(node, graph, onPick) {
     </section>`;
   }
 
+  // Sections "loi" (titre+description+scores) et "réponse" toujours ouvertes.
+  // Toutes les autres : pliées par défaut avec triangle jaune ▶ / ▼.
+  const loiSection = `<section><p class="desc">${esc(node.html_description || '')}</p>
+    <div class="scores" style="margin-top:10px">
+      <div class="score"><div class="v">${(node.S_local  ?? 0).toFixed(2)}</div><div class="l">S_local</div></div>
+      <div class="score"><div class="v">${(node.S_global ?? 0).toFixed(2)}</div><div class="l">${esc(sGlobalLabel)}</div></div>
+    </div>
+  </section>`;
+  const eqSection = eqs ? `<section class="equations">${eqs}</section>` : '';
+  const exSection = ex  ? `<section><ul class="examples">${ex}</ul></section>` : '';
+  const doiSection = node.doi ? `<section><code>${esc(node.doi)}</code></section>` : '';
+
   body.innerHTML = `
     ${answerSection}
     <h2>${tierBadge(node)}${esc(node.title)}</h2>
     <div class="meta">${esc(node.id)} · famille <strong>${esc(node.family)}</strong> · poids ${(node.weight ?? 0).toFixed(2)}</div>
     <div class="tags">${tags(node)}</div>
-    <section><p class="desc">${esc(node.html_description || '')}</p></section>
-    <section><div class="scores">
-      <div class="score"><div class="v">${(node.S_local  ?? 0).toFixed(2)}</div><div class="l">S_local</div></div>
-      <div class="score"><div class="v">${(node.S_global ?? 0).toFixed(2)}</div><div class="l">${esc(sGlobalLabel)}</div></div>
-    </div></section>
-    ${framesBlock(node)}
-    ${eqs ? `<section class="equations"><h4>Équations</h4>${eqs}</section>` : ''}
-    ${ex  ? `<section><h4>Exemples</h4><ul class="examples">${ex}</ul></section>` : ''}
-    ${noiseBlock(node)}
-    ${provenanceBlock(node)}
-    ${superiorBlock(node)}
-    ${selectionBlock(node)}
-    ${generativeBlock(node)}
-    ${llmRelevanceBlock(node)}
-    ${experimentalBlock(node)}
-    ${propagatedBlock(node)}
-    ${boundaryBlock(node)}
-    ${distributedBlock(node)}
-    ${temporalBlock(node)}
-    ${familyInvariant}
-    ${fractalityBlock(graph, node)}
-    ${compositionsBlock(graph, node.id)}
-    ${relBlock('Parent',         buckets.parent)}
-    ${relBlock('Enfants',        buckets.child)}
-    ${relBlock('Dérive de',      buckets.derives)}
-    ${relBlock('Isomorphismes',  buckets.iso)}
-    ${relBlock('Contradictions', buckets.contradicts)}
-    ${relBlock('Reliées',        buckets.related)}
-    ${relBlock('Absorbe',        buckets.absorbed_into)}
-    ${relBlock('Dépend de',      buckets.depends)}
-    ${node.doi ? `<section><h4>DOI</h4><code>${esc(node.doi)}</code></section>` : ''}
+    ${fold('Loi · description', loiSection, true)}
+    ${fold('Cadres cognitifs',             framesBlock(node),                       false)}
+    ${fold('Équations',                    eqSection,                               false)}
+    ${fold('Exemples',                     exSection,                               false)}
+    ${fold('Bruit · signal/noise',         noiseBlock(node),                        false)}
+    ${fold('Provenance · rétention',       provenanceBlock(node),                   false)}
+    ${fold('Loi supérieure ★',             superiorBlock(node),                     false)}
+    ${fold('Sélection cognitive runtime',  selectionBlock(node),                    false)}
+    ${fold('Capacité générative',          generativeBlock(node),                   false)}
+    ${fold('Pertinence LLM',               llmRelevanceBlock(node),                 false)}
+    ${fold('Soutenabilité expérimentale',  experimentalBlock(node),                 false)}
+    ${fold('S propagé',                    propagatedBlock(node),                   false)}
+    ${fold('Bornage du sujet',             boundaryBlock(node),                     false)}
+    ${fold('Validation distribuée',        distributedBlock(node),                  false)}
+    ${fold('Pression temporelle',          temporalBlock(node),                     false)}
+    ${fold('Invariant de famille',         familyInvariant,                         false)}
+    ${fold('Fractalité',                   fractalityBlock(graph, node),            false)}
+    ${fold('Compositions ≥ 3',             compositionsBlock(graph, node.id),       false)}
+    ${fold('Parent',                       relBlock('Parent',        buckets.parent),        false)}
+    ${fold('Enfants',                      relBlock('Enfants',       buckets.child),         false)}
+    ${fold('Dérive de',                    relBlock('Dérive de',     buckets.derives),       false)}
+    ${fold('Isomorphismes',                relBlock('Isomorphismes', buckets.iso),           false)}
+    ${fold('Contradictions',               relBlock('Contradictions',buckets.contradicts),   false)}
+    ${fold('Reliées',                      relBlock('Reliées',       buckets.related),       false)}
+    ${fold('Absorbe',                      relBlock('Absorbe',       buckets.absorbed_into), false)}
+    ${fold('Dépend de',                    relBlock('Dépend de',     buckets.depends),       false)}
+    ${fold('DOI',                          doiSection,                              false)}
   `;
 
   body.querySelectorAll('a[data-pick]').forEach(a => {

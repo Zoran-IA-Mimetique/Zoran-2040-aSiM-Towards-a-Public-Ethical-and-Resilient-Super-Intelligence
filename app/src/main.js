@@ -534,7 +534,44 @@ function tickAnimation() {
     }
   }
   updateHalos();
+  updateAnswerLabel();
   requestAnimationFrame(tickAnimation);
+}
+
+// Étiquette flottante 3D→2D au-dessus de la loi-réponse
+const _answerProj = new THREE.Vector3();
+function updateAnswerLabel() {
+  const overlay = document.getElementById('answer-label-overlay');
+  if (!overlay) return;
+  if (!state.answerLawId || !state.activeRoutes || !state.fg) {
+    if (overlay.classList.contains('visible')) overlay.classList.remove('visible');
+    return;
+  }
+  const mesh = state.meshes.get(state.answerLawId);
+  if (!mesh) { overlay.classList.remove('visible'); return; }
+  const node = state.graphView.nodes.find(n => n.id === state.answerLawId);
+  if (!node) { overlay.classList.remove('visible'); return; }
+  // Projection 3D → 2D
+  _answerProj.set(node.x || 0, node.y || 0, node.z || 0);
+  const cam = state.fg.camera();
+  _answerProj.project(cam);
+  // Off-frustum check : si la loi est derrière la caméra ou très loin
+  if (_answerProj.z > 1 || _answerProj.z < -1) { overlay.classList.remove('visible'); return; }
+  // Set content (only when changes)
+  const idSpan = overlay.querySelector('.ans-id');
+  const titleSpan = overlay.querySelector('.ans-title');
+  if (idSpan.textContent !== state.answerLawId) {
+    idSpan.textContent = state.answerLawId;
+    titleSpan.textContent = state.answerContext?.law_title || node.title || '';
+  }
+  // Convert NDC to viewport pixels (offset au-dessus du mesh : ~radius * 3)
+  const graphEl = document.getElementById('graph');
+  const rect = graphEl.getBoundingClientRect();
+  const px = ((_answerProj.x + 1) / 2) * rect.width + rect.left;
+  const py = ((-_answerProj.y + 1) / 2) * rect.height + rect.top - 50;
+  overlay.style.left = Math.round(px) + 'px';
+  overlay.style.top  = Math.round(py) + 'px';
+  if (!overlay.classList.contains('visible')) overlay.classList.add('visible');
 }
 
 // ───────────────────── lighting (PBR) ──────────────────────────
