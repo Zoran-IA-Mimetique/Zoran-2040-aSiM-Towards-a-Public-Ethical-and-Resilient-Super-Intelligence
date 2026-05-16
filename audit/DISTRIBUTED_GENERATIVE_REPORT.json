@@ -1,0 +1,3150 @@
+{
+  "mission_id": "ZORAN_DISTRIBUTED_GENERATIVE_LAW_ENGINE_20260516",
+  "timestamp": "2026-05-16T01:12:00+02:00",
+  "laws_activated": 241,
+  "total_proposed": 476,
+  "total_accepted_to_sandbox": 50,
+  "rejection_breakdown": {
+    "pertinence_locale_insuffisante": 111
+  },
+  "avg_generative_relevance": 0.582,
+  "avg_derivation_validity": 0.763,
+  "avg_generation_entropy": 0.327,
+  "toxic_generators_count": 15,
+  "anti_explosion_cap": 50,
+  "all_results": [
+    {
+      "mother_id": "ULG-001",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.765,
+        "child_stability_score": 0.419,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.884
+      }
+    },
+    {
+      "mother_id": "ULG-002",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.38,
+        "child_stability_score": 0.473,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.745
+      }
+    },
+    {
+      "mother_id": "ULG-003",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.375,
+        "child_stability_score": 0.608,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.772
+      }
+    },
+    {
+      "mother_id": "ULG-004",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.712,
+        "child_stability_score": 0.651,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.93
+      }
+    },
+    {
+      "mother_id": "ULG-005",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.352,
+        "child_stability_score": 0.686,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.787
+      }
+    },
+    {
+      "mother_id": "DVE-001",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.36,
+        "child_stability_score": 0.38,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.726
+      }
+    },
+    {
+      "mother_id": "DVE-002",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.376,
+        "child_stability_score": 0.558,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.762
+      }
+    },
+    {
+      "mother_id": "DVE-003",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.792,
+        "child_stability_score": 0.605,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.921
+      }
+    },
+    {
+      "mother_id": "DVE-004",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.37,
+        "child_stability_score": 0.69,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.788
+      }
+    },
+    {
+      "mother_id": "DVE-005",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.348,
+        "child_stability_score": 0.509,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.752
+      }
+    },
+    {
+      "mother_id": "UDE-001",
+      "n_proposed": 1,
+      "n_accepted": 0,
+      "scores": {
+        "generative_relevance": 0.0,
+        "child_stability_score": 0.4,
+        "local_exploration_quality": 0.6,
+        "derivation_validity": 0.0,
+        "generation_entropy": 0.1,
+        "oracle_generation_confidence": 0.58
+      }
+    },
+    {
+      "mother_id": "UDE-002",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.347,
+        "child_stability_score": 0.598,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.77
+      }
+    },
+    {
+      "mother_id": "UDE-003",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.744,
+        "child_stability_score": 0.611,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.922
+      }
+    },
+    {
+      "mother_id": "UDE-004",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.756,
+        "child_stability_score": 0.595,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.919
+      }
+    },
+    {
+      "mother_id": "UDE-005",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.349,
+        "child_stability_score": 0.594,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.769
+      }
+    },
+    {
+      "mother_id": "GHUC-001",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.369,
+        "child_stability_score": 0.299,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.71
+      }
+    },
+    {
+      "mother_id": "GHUC-002",
+      "n_proposed": 1,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.745,
+        "child_stability_score": 0.449,
+        "local_exploration_quality": 0.6,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.1,
+        "oracle_generation_confidence": 0.89
+      }
+    },
+    {
+      "mother_id": "GHUC-002-a",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.781,
+        "child_stability_score": 0.71,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.942
+      }
+    },
+    {
+      "mother_id": "GHUC-002-a-i",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.366,
+        "child_stability_score": 0.835,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.817
+      }
+    },
+    {
+      "mother_id": "GHUC-002-a-ii",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.737,
+        "child_stability_score": 0.834,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.967
+      }
+    },
+    {
+      "mother_id": "GHUC-002-b",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.738,
+        "child_stability_score": 0.71,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.942
+      }
+    },
+    {
+      "mother_id": "GHUC-002-b-i",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.72,
+        "child_stability_score": 0.835,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.967
+      }
+    },
+    {
+      "mother_id": "GHUC-002-b-ii",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.348,
+        "child_stability_score": 0.835,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.817
+      }
+    },
+    {
+      "mother_id": "GHUC-003",
+      "n_proposed": 2,
+      "n_accepted": 0,
+      "scores": {
+        "generative_relevance": 0.0,
+        "child_stability_score": 0.4,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.58
+      }
+    },
+    {
+      "mother_id": "GHUC-004",
+      "n_proposed": 2,
+      "n_accepted": 0,
+      "scores": {
+        "generative_relevance": 0.0,
+        "child_stability_score": 0.4,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.58
+      }
+    },
+    {
+      "mother_id": "WP11-001",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.752,
+        "child_stability_score": 0.398,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.88
+      }
+    },
+    {
+      "mother_id": "WP11-002",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.347,
+        "child_stability_score": 0.535,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.757
+      }
+    },
+    {
+      "mother_id": "WP11-003",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.359,
+        "child_stability_score": 0.538,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.758
+      }
+    },
+    {
+      "mother_id": "WP11-004",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.724,
+        "child_stability_score": 0.534,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.907
+      }
+    },
+    {
+      "mother_id": "WP11-005",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.81,
+        "child_stability_score": 0.564,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.913
+      }
+    },
+    {
+      "mother_id": "WP12-001",
+      "n_proposed": 1,
+      "n_accepted": 0,
+      "scores": {
+        "generative_relevance": 0.0,
+        "child_stability_score": 0.4,
+        "local_exploration_quality": 0.6,
+        "derivation_validity": 0.0,
+        "generation_entropy": 0.1,
+        "oracle_generation_confidence": 0.58
+      }
+    },
+    {
+      "mother_id": "WP12-002",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.351,
+        "child_stability_score": 0.499,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.75
+      }
+    },
+    {
+      "mother_id": "WP12-003",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.362,
+        "child_stability_score": 0.525,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.755
+      }
+    },
+    {
+      "mother_id": "WP12-004",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.78,
+        "child_stability_score": 0.525,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.905
+      }
+    },
+    {
+      "mother_id": "WP12-005",
+      "n_proposed": 2,
+      "n_accepted": 0,
+      "scores": {
+        "generative_relevance": 0.0,
+        "child_stability_score": 0.4,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.58
+      }
+    },
+    {
+      "mother_id": "SDE-001",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.772,
+        "child_stability_score": 0.434,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.887
+      }
+    },
+    {
+      "mother_id": "SDE-002",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.74,
+        "child_stability_score": 0.469,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.894
+      }
+    },
+    {
+      "mother_id": "SDE-003",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.748,
+        "child_stability_score": 0.602,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.92
+      }
+    },
+    {
+      "mother_id": "SDE-004",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.346,
+        "child_stability_score": 0.717,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.793
+      }
+    },
+    {
+      "mother_id": "SDE-005",
+      "n_proposed": 2,
+      "n_accepted": 0,
+      "scores": {
+        "generative_relevance": 0.0,
+        "child_stability_score": 0.4,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.58
+      }
+    },
+    {
+      "mother_id": "PAL-001",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.777,
+        "child_stability_score": 0.57,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.914
+      }
+    },
+    {
+      "mother_id": "PAL-002",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.782,
+        "child_stability_score": 0.603,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.921
+      }
+    },
+    {
+      "mother_id": "PAL-003",
+      "n_proposed": 2,
+      "n_accepted": 0,
+      "scores": {
+        "generative_relevance": 0.0,
+        "child_stability_score": 0.4,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.58
+      }
+    },
+    {
+      "mother_id": "PAL-004",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.788,
+        "child_stability_score": 0.734,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.947
+      }
+    },
+    {
+      "mother_id": "PAL-005",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.38,
+        "child_stability_score": 0.684,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.787
+      }
+    },
+    {
+      "mother_id": "ULG-002-a",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.771,
+        "child_stability_score": 0.706,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.941
+      }
+    },
+    {
+      "mother_id": "ULG-002-b",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.752,
+        "child_stability_score": 0.708,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.942
+      }
+    },
+    {
+      "mother_id": "ULG-002-a-i",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.379,
+        "child_stability_score": 0.829,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.816
+      }
+    },
+    {
+      "mother_id": "ULG-002-a-ii",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.793,
+        "child_stability_score": 0.829,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.966
+      }
+    },
+    {
+      "mother_id": "ULG-002-b-i",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.807,
+        "child_stability_score": 0.83,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.966
+      }
+    },
+    {
+      "mother_id": "ULG-002-b-ii",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.349,
+        "child_stability_score": 0.816,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.813
+      }
+    },
+    {
+      "mother_id": "WP11-002-a",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.722,
+        "child_stability_score": 0.682,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.936
+      }
+    },
+    {
+      "mother_id": "WP11-002-b",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.365,
+        "child_stability_score": 0.684,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.787
+      }
+    },
+    {
+      "mother_id": "WP11-002-a-i",
+      "n_proposed": 2,
+      "n_accepted": 0,
+      "scores": {
+        "generative_relevance": 0.0,
+        "child_stability_score": 0.4,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.58
+      }
+    },
+    {
+      "mother_id": "WP11-002-a-ii",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.352,
+        "child_stability_score": 0.81,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.812
+      }
+    },
+    {
+      "mother_id": "WP11-002-b-i",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.378,
+        "child_stability_score": 0.814,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.813
+      }
+    },
+    {
+      "mother_id": "WP11-002-b-ii",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.376,
+        "child_stability_score": 0.813,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.813
+      }
+    },
+    {
+      "mother_id": "DVE-002-a",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.361,
+        "child_stability_score": 0.68,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.786
+      }
+    },
+    {
+      "mother_id": "DVE-002-b",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.768,
+        "child_stability_score": 0.681,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.936
+      }
+    },
+    {
+      "mother_id": "DVE-002-a-i",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.35,
+        "child_stability_score": 0.813,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.813
+      }
+    },
+    {
+      "mother_id": "DVE-002-a-ii",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.749,
+        "child_stability_score": 0.812,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.962
+      }
+    },
+    {
+      "mother_id": "DVE-002-b-i",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.367,
+        "child_stability_score": 0.813,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.813
+      }
+    },
+    {
+      "mother_id": "DVE-002-b-ii",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.793,
+        "child_stability_score": 0.814,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.963
+      }
+    },
+    {
+      "mother_id": "SDE-002-a",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.373,
+        "child_stability_score": 0.629,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.776
+      }
+    },
+    {
+      "mother_id": "SDE-002-b",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.364,
+        "child_stability_score": 0.628,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.776
+      }
+    },
+    {
+      "mother_id": "SDE-002-a-i",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.346,
+        "child_stability_score": 0.816,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.813
+      }
+    },
+    {
+      "mother_id": "SDE-002-a-ii",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.802,
+        "child_stability_score": 0.815,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.963
+      }
+    },
+    {
+      "mother_id": "SDE-002-b-i",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.726,
+        "child_stability_score": 0.817,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.963
+      }
+    },
+    {
+      "mother_id": "SDE-002-b-ii",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.753,
+        "child_stability_score": 0.816,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.963
+      }
+    },
+    {
+      "mother_id": "PAL-002-a",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.368,
+        "child_stability_score": 0.684,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.787
+      }
+    },
+    {
+      "mother_id": "PAL-002-b",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.378,
+        "child_stability_score": 0.671,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.784
+      }
+    },
+    {
+      "mother_id": "PAL-002-a-i",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.712,
+        "child_stability_score": 0.821,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.964
+      }
+    },
+    {
+      "mother_id": "PAL-002-a-ii",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.758,
+        "child_stability_score": 0.82,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.964
+      }
+    },
+    {
+      "mother_id": "PAL-002-b-i",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.812,
+        "child_stability_score": 0.821,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.964
+      }
+    },
+    {
+      "mother_id": "PAL-002-b-ii",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.357,
+        "child_stability_score": 0.797,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.809
+      }
+    },
+    {
+      "mother_id": "GHUC-003-a",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.363,
+        "child_stability_score": 0.692,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.788
+      }
+    },
+    {
+      "mother_id": "GHUC-003-b",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.776,
+        "child_stability_score": 0.693,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.939
+      }
+    },
+    {
+      "mother_id": "GHUC-004-a",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.832,
+        "child_stability_score": 0.718,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.944
+      }
+    },
+    {
+      "mother_id": "GHUC-004-b",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.81,
+        "child_stability_score": 0.719,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.944
+      }
+    },
+    {
+      "mother_id": "ULG-006",
+      "n_proposed": 2,
+      "n_accepted": 0,
+      "scores": {
+        "generative_relevance": 0.0,
+        "child_stability_score": 0.4,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.58
+      }
+    },
+    {
+      "mother_id": "UDE-006",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.342,
+        "child_stability_score": 0.566,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.763
+      }
+    },
+    {
+      "mother_id": "UDE-007",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.824,
+        "child_stability_score": 0.58,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.916
+      }
+    },
+    {
+      "mother_id": "WP11-006",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.36,
+        "child_stability_score": 0.704,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.791
+      }
+    },
+    {
+      "mother_id": "WP12-006",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.808,
+        "child_stability_score": 0.495,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.899
+      }
+    },
+    {
+      "mother_id": "WP12-007",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.793,
+        "child_stability_score": 0.419,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.884
+      }
+    },
+    {
+      "mother_id": "SDE-006",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.359,
+        "child_stability_score": 0.687,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.787
+      }
+    },
+    {
+      "mother_id": "PAL-006",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.357,
+        "child_stability_score": 0.718,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.794
+      }
+    },
+    {
+      "mother_id": "DVE-006",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.808,
+        "child_stability_score": 0.765,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.953
+      }
+    },
+    {
+      "mother_id": "GHUC-005",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.818,
+        "child_stability_score": 0.505,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.901
+      }
+    },
+    {
+      "mother_id": "WP11-007",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.748,
+        "child_stability_score": 0.464,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.893
+      }
+    },
+    {
+      "mother_id": "WP12-008",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.344,
+        "child_stability_score": 0.525,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.755
+      }
+    },
+    {
+      "mother_id": "ULG-008",
+      "n_proposed": 2,
+      "n_accepted": 0,
+      "scores": {
+        "generative_relevance": 0.0,
+        "child_stability_score": 0.4,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.58
+      }
+    },
+    {
+      "mother_id": "ULG-009",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.746,
+        "child_stability_score": 0.659,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.932
+      }
+    },
+    {
+      "mother_id": "ULG-010",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.773,
+        "child_stability_score": 0.636,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.927
+      }
+    },
+    {
+      "mother_id": "ULG-011",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.369,
+        "child_stability_score": 0.686,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.787
+      }
+    },
+    {
+      "mother_id": "ULG-012",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.37,
+        "child_stability_score": 0.813,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.813
+      }
+    },
+    {
+      "mother_id": "ULG-013",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.379,
+        "child_stability_score": 0.784,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.807
+      }
+    },
+    {
+      "mother_id": "ULG-014",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.362,
+        "child_stability_score": 0.762,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.802
+      }
+    },
+    {
+      "mother_id": "ULG-015",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.79,
+        "child_stability_score": 0.828,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.966
+      }
+    },
+    {
+      "mother_id": "ULG-016",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.825,
+        "child_stability_score": 0.783,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.957
+      }
+    },
+    {
+      "mother_id": "ULG-017",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.8,
+        "child_stability_score": 0.761,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.952
+      }
+    },
+    {
+      "mother_id": "DVE-008",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.353,
+        "child_stability_score": 0.489,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.748
+      }
+    },
+    {
+      "mother_id": "DVE-009",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.793,
+        "child_stability_score": 0.69,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.938
+      }
+    },
+    {
+      "mother_id": "DVE-010",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.726,
+        "child_stability_score": 0.796,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.959
+      }
+    },
+    {
+      "mother_id": "DVE-011",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.764,
+        "child_stability_score": 0.8,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.96
+      }
+    },
+    {
+      "mother_id": "DVE-012",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.752,
+        "child_stability_score": 0.69,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.938
+      }
+    },
+    {
+      "mother_id": "DVE-013",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.734,
+        "child_stability_score": 0.778,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.956
+      }
+    },
+    {
+      "mother_id": "DVE-014",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.78,
+        "child_stability_score": 0.811,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.962
+      }
+    },
+    {
+      "mother_id": "DVE-015",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.759,
+        "child_stability_score": 0.69,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.938
+      }
+    },
+    {
+      "mother_id": "UDE-009",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.75,
+        "child_stability_score": 0.368,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.874
+      }
+    },
+    {
+      "mother_id": "UDE-010",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.778,
+        "child_stability_score": 0.541,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.908
+      }
+    },
+    {
+      "mother_id": "UDE-011",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.768,
+        "child_stability_score": 0.596,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.919
+      }
+    },
+    {
+      "mother_id": "UDE-012",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.765,
+        "child_stability_score": 0.596,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.919
+      }
+    },
+    {
+      "mother_id": "UDE-013",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.817,
+        "child_stability_score": 0.595,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.919
+      }
+    },
+    {
+      "mother_id": "UDE-014",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.358,
+        "child_stability_score": 0.434,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.737
+      }
+    },
+    {
+      "mother_id": "UDE-015",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.753,
+        "child_stability_score": 0.61,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.922
+      }
+    },
+    {
+      "mother_id": "UDE-017",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.766,
+        "child_stability_score": 0.579,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.916
+      }
+    },
+    {
+      "mother_id": "UDE-018",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.806,
+        "child_stability_score": 0.61,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.922
+      }
+    },
+    {
+      "mother_id": "UDE-019",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.784,
+        "child_stability_score": 0.547,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.909
+      }
+    },
+    {
+      "mother_id": "GHUC-006",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.786,
+        "child_stability_score": 0.767,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.953
+      }
+    },
+    {
+      "mother_id": "GHUC-007",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.381,
+        "child_stability_score": 0.587,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.767
+      }
+    },
+    {
+      "mother_id": "GHUC-008",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.73,
+        "child_stability_score": 0.501,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.9
+      }
+    },
+    {
+      "mother_id": "GHUC-009",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.815,
+        "child_stability_score": 0.813,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.963
+      }
+    },
+    {
+      "mother_id": "GHUC-010",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.77,
+        "child_stability_score": 0.781,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.956
+      }
+    },
+    {
+      "mother_id": "GHUC-011",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.826,
+        "child_stability_score": 0.732,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.946
+      }
+    },
+    {
+      "mother_id": "GHUC-012",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.36,
+        "child_stability_score": 0.748,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.8
+      }
+    },
+    {
+      "mother_id": "GHUC-013",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.776,
+        "child_stability_score": 0.782,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.956
+      }
+    },
+    {
+      "mother_id": "GHUC-014",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.769,
+        "child_stability_score": 0.78,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.956
+      }
+    },
+    {
+      "mother_id": "GHUC-015",
+      "n_proposed": 1,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.818,
+        "child_stability_score": 0.67,
+        "local_exploration_quality": 0.6,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.1,
+        "oracle_generation_confidence": 0.934
+      }
+    },
+    {
+      "mother_id": "WP11-008",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.363,
+        "child_stability_score": 0.774,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.805
+      }
+    },
+    {
+      "mother_id": "WP11-009",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.811,
+        "child_stability_score": 0.648,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.93
+      }
+    },
+    {
+      "mother_id": "WP11-010",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.773,
+        "child_stability_score": 0.763,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.953
+      }
+    },
+    {
+      "mother_id": "WP11-011",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.374,
+        "child_stability_score": 0.502,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.75
+      }
+    },
+    {
+      "mother_id": "WP11-012",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.709,
+        "child_stability_score": 0.812,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.962
+      }
+    },
+    {
+      "mother_id": "WP11-013",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.355,
+        "child_stability_score": 0.647,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.779
+      }
+    },
+    {
+      "mother_id": "WP11-014",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.777,
+        "child_stability_score": 0.646,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.929
+      }
+    },
+    {
+      "mother_id": "WP11-015",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.782,
+        "child_stability_score": 0.748,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.95
+      }
+    },
+    {
+      "mother_id": "WP11-017",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.381,
+        "child_stability_score": 0.805,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.811
+      }
+    },
+    {
+      "mother_id": "WP11-018",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.766,
+        "child_stability_score": 0.633,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.927
+      }
+    },
+    {
+      "mother_id": "WP12-009",
+      "n_proposed": 1,
+      "n_accepted": 0,
+      "scores": {
+        "generative_relevance": 0.0,
+        "child_stability_score": 0.4,
+        "local_exploration_quality": 0.6,
+        "derivation_validity": 0.0,
+        "generation_entropy": 0.1,
+        "oracle_generation_confidence": 0.58
+      }
+    },
+    {
+      "mother_id": "WP12-010",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.732,
+        "child_stability_score": 0.46,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.892
+      }
+    },
+    {
+      "mother_id": "WP12-011",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.344,
+        "child_stability_score": 0.461,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.742
+      }
+    },
+    {
+      "mother_id": "WP12-012",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.359,
+        "child_stability_score": 0.512,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.752
+      }
+    },
+    {
+      "mother_id": "WP12-013",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.774,
+        "child_stability_score": 0.509,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.902
+      }
+    },
+    {
+      "mother_id": "WP12-014",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.742,
+        "child_stability_score": 0.51,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.902
+      }
+    },
+    {
+      "mother_id": "WP12-015",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.832,
+        "child_stability_score": 0.443,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.889
+      }
+    },
+    {
+      "mother_id": "WP12-016",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.778,
+        "child_stability_score": 0.51,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.902
+      }
+    },
+    {
+      "mother_id": "WP12-017",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.807,
+        "child_stability_score": 0.743,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.949
+      }
+    },
+    {
+      "mother_id": "WP12-018",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.746,
+        "child_stability_score": 0.51,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.902
+      }
+    },
+    {
+      "mother_id": "WP12-019",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.759,
+        "child_stability_score": 0.66,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.932
+      }
+    },
+    {
+      "mother_id": "WP12-020",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.374,
+        "child_stability_score": 0.433,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.737
+      }
+    },
+    {
+      "mother_id": "SDE-008",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.785,
+        "child_stability_score": 0.725,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.945
+      }
+    },
+    {
+      "mother_id": "SDE-009",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.366,
+        "child_stability_score": 0.659,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.782
+      }
+    },
+    {
+      "mother_id": "SDE-010",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.358,
+        "child_stability_score": 0.798,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.81
+      }
+    },
+    {
+      "mother_id": "SDE-011",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.777,
+        "child_stability_score": 0.734,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.947
+      }
+    },
+    {
+      "mother_id": "SDE-012",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.818,
+        "child_stability_score": 0.702,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.94
+      }
+    },
+    {
+      "mother_id": "SDE-013",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.793,
+        "child_stability_score": 0.548,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.91
+      }
+    },
+    {
+      "mother_id": "SDE-014",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.811,
+        "child_stability_score": 0.734,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.947
+      }
+    },
+    {
+      "mother_id": "SDE-015",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.803,
+        "child_stability_score": 0.785,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.957
+      }
+    },
+    {
+      "mother_id": "SDE-016",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.359,
+        "child_stability_score": 0.55,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.76
+      }
+    },
+    {
+      "mother_id": "SDE-017",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.347,
+        "child_stability_score": 0.703,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.791
+      }
+    },
+    {
+      "mother_id": "PAL-007",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.354,
+        "child_stability_score": 0.734,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.797
+      }
+    },
+    {
+      "mother_id": "PAL-008",
+      "n_proposed": 2,
+      "n_accepted": 0,
+      "scores": {
+        "generative_relevance": 0.0,
+        "child_stability_score": 0.4,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.58
+      }
+    },
+    {
+      "mother_id": "PAL-010",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.736,
+        "child_stability_score": 0.8,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.96
+      }
+    },
+    {
+      "mother_id": "PAL-012",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.766,
+        "child_stability_score": 0.789,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.958
+      }
+    },
+    {
+      "mother_id": "PAL-013",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.806,
+        "child_stability_score": 0.795,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.959
+      }
+    },
+    {
+      "mother_id": "PAL-014",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.359,
+        "child_stability_score": 0.814,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.813
+      }
+    },
+    {
+      "mother_id": "WP11-019",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.756,
+        "child_stability_score": 0.812,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.962
+      }
+    },
+    {
+      "mother_id": "UDE-020",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.75,
+        "child_stability_score": 0.596,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.919
+      }
+    },
+    {
+      "mother_id": "GHUC-016",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.734,
+        "child_stability_score": 0.671,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.934
+      }
+    },
+    {
+      "mother_id": "WP12-021",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.359,
+        "child_stability_score": 0.496,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.749
+      }
+    },
+    {
+      "mother_id": "SDE-018",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.355,
+        "child_stability_score": 0.734,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.797
+      }
+    },
+    {
+      "mother_id": "PAL-015",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.341,
+        "child_stability_score": 0.789,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.808
+      }
+    },
+    {
+      "mother_id": "DVE-016",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.778,
+        "child_stability_score": 0.786,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.957
+      }
+    },
+    {
+      "mother_id": "WP11-020",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.778,
+        "child_stability_score": 0.597,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.919
+      }
+    },
+    {
+      "mother_id": "WP11-021",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.811,
+        "child_stability_score": 0.756,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.951
+      }
+    },
+    {
+      "mother_id": "WP12-022",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.364,
+        "child_stability_score": 0.51,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.752
+      }
+    },
+    {
+      "mother_id": "ULG-019",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.353,
+        "child_stability_score": 0.811,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.812
+      }
+    },
+    {
+      "mother_id": "ULG-020",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.354,
+        "child_stability_score": 0.685,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.787
+      }
+    },
+    {
+      "mother_id": "UDE-021",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.794,
+        "child_stability_score": 0.747,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.949
+      }
+    },
+    {
+      "mother_id": "GHUC-017",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.748,
+        "child_stability_score": 0.633,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.927
+      }
+    },
+    {
+      "mother_id": "GHUC-018",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.776,
+        "child_stability_score": 0.821,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.964
+      }
+    },
+    {
+      "mother_id": "WP11-022",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.805,
+        "child_stability_score": 0.787,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.957
+      }
+    },
+    {
+      "mother_id": "WP11-024",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.791,
+        "child_stability_score": 0.726,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.945
+      }
+    },
+    {
+      "mother_id": "WP11-026",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.363,
+        "child_stability_score": 0.673,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.785
+      }
+    },
+    {
+      "mother_id": "WP12-024",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.771,
+        "child_stability_score": 0.759,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.952
+      }
+    },
+    {
+      "mother_id": "WP12-027",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.787,
+        "child_stability_score": 0.707,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.941
+      }
+    },
+    {
+      "mother_id": "WP11-027",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.756,
+        "child_stability_score": 0.77,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.954
+      }
+    },
+    {
+      "mother_id": "WP11-028",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.744,
+        "child_stability_score": 0.815,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.963
+      }
+    },
+    {
+      "mother_id": "WP11-029",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.807,
+        "child_stability_score": 0.814,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.963
+      }
+    },
+    {
+      "mother_id": "GHUC-021",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.354,
+        "child_stability_score": 0.793,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.809
+      }
+    },
+    {
+      "mother_id": "WP12-028",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.366,
+        "child_stability_score": 0.774,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.805
+      }
+    },
+    {
+      "mother_id": "WP12-029",
+      "n_proposed": 1,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.767,
+        "child_stability_score": 0.701,
+        "local_exploration_quality": 0.6,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.1,
+        "oracle_generation_confidence": 0.94
+      }
+    },
+    {
+      "mother_id": "DVE-018",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.372,
+        "child_stability_score": 0.568,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.764
+      }
+    },
+    {
+      "mother_id": "DVE-019",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.353,
+        "child_stability_score": 0.819,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.814
+      }
+    },
+    {
+      "mother_id": "SDE-019",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.359,
+        "child_stability_score": 0.778,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.806
+      }
+    },
+    {
+      "mother_id": "UDE-022",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.744,
+        "child_stability_score": 0.76,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.952
+      }
+    },
+    {
+      "mother_id": "WP12-031",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.741,
+        "child_stability_score": 0.51,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.902
+      }
+    },
+    {
+      "mother_id": "DVE-020",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.821,
+        "child_stability_score": 0.623,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.925
+      }
+    },
+    {
+      "mother_id": "SDE-021",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.35,
+        "child_stability_score": 0.792,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.808
+      }
+    },
+    {
+      "mother_id": "WP12-032",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.764,
+        "child_stability_score": 0.788,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.958
+      }
+    },
+    {
+      "mother_id": "DVE-021",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.763,
+        "child_stability_score": 0.746,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.949
+      }
+    },
+    {
+      "mother_id": "UDE-024",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.38,
+        "child_stability_score": 0.734,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.797
+      }
+    },
+    {
+      "mother_id": "UDE-025",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.356,
+        "child_stability_score": 0.779,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.806
+      }
+    },
+    {
+      "mother_id": "UDE-026",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.347,
+        "child_stability_score": 0.79,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.808
+      }
+    },
+    {
+      "mother_id": "UDE-028",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.752,
+        "child_stability_score": 0.81,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.962
+      }
+    },
+    {
+      "mother_id": "UDE-029",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.73,
+        "child_stability_score": 0.749,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.95
+      }
+    },
+    {
+      "mother_id": "UDE-030",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.723,
+        "child_stability_score": 0.805,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.961
+      }
+    },
+    {
+      "mother_id": "UDE-031",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.375,
+        "child_stability_score": 0.764,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.803
+      }
+    },
+    {
+      "mother_id": "UDE-032",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.805,
+        "child_stability_score": 0.797,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.959
+      }
+    },
+    {
+      "mother_id": "UDE-034",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.785,
+        "child_stability_score": 0.76,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.952
+      }
+    },
+    {
+      "mother_id": "UDE-035",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.768,
+        "child_stability_score": 0.765,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.953
+      }
+    },
+    {
+      "mother_id": "GHUC-022",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.839,
+        "child_stability_score": 0.648,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.93
+      }
+    },
+    {
+      "mother_id": "GHUC-023",
+      "n_proposed": 2,
+      "n_accepted": 0,
+      "scores": {
+        "generative_relevance": 0.0,
+        "child_stability_score": 0.4,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.58
+      }
+    },
+    {
+      "mother_id": "GHUC-024",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.747,
+        "child_stability_score": 0.807,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.961
+      }
+    },
+    {
+      "mother_id": "WP11-032",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.816,
+        "child_stability_score": 0.646,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.929
+      }
+    },
+    {
+      "mother_id": "GHUC-025",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.38,
+        "child_stability_score": 0.684,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.787
+      }
+    },
+    {
+      "mother_id": "GHUC-026",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.815,
+        "child_stability_score": 0.732,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.946
+      }
+    },
+    {
+      "mother_id": "WP12-034",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.76,
+        "child_stability_score": 0.509,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.902
+      }
+    },
+    {
+      "mother_id": "PAL-017",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.362,
+        "child_stability_score": 0.735,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.797
+      }
+    },
+    {
+      "mother_id": "WP11-034",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.839,
+        "child_stability_score": 0.755,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.951
+      }
+    },
+    {
+      "mother_id": "GHUC-027",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.354,
+        "child_stability_score": 0.794,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.809
+      }
+    },
+    {
+      "mother_id": "WP12-035",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.765,
+        "child_stability_score": 0.48,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.896
+      }
+    },
+    {
+      "mother_id": "ULG-021",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.742,
+        "child_stability_score": 0.811,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.962
+      }
+    },
+    {
+      "mother_id": "SDE-023",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.808,
+        "child_stability_score": 0.806,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.961
+      }
+    },
+    {
+      "mother_id": "ULG-022",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.383,
+        "child_stability_score": 0.796,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.809
+      }
+    },
+    {
+      "mother_id": "SDE-024",
+      "n_proposed": 2,
+      "n_accepted": 0,
+      "scores": {
+        "generative_relevance": 0.0,
+        "child_stability_score": 0.4,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.58
+      }
+    },
+    {
+      "mother_id": "UDE-036",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.385,
+        "child_stability_score": 0.646,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.779
+      }
+    },
+    {
+      "mother_id": "DVE-022",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.756,
+        "child_stability_score": 0.69,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.938
+      }
+    },
+    {
+      "mother_id": "WP12-036",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.782,
+        "child_stability_score": 0.815,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.963
+      }
+    },
+    {
+      "mother_id": "WP12-040",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.729,
+        "child_stability_score": 0.801,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.96
+      }
+    },
+    {
+      "mother_id": "WP12-041",
+      "n_proposed": 2,
+      "n_accepted": 0,
+      "scores": {
+        "generative_relevance": 0.0,
+        "child_stability_score": 0.4,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.58
+      }
+    },
+    {
+      "mother_id": "WP11-035",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.722,
+        "child_stability_score": 0.645,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.929
+      }
+    },
+    {
+      "mother_id": "GHUC-029",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.79,
+        "child_stability_score": 0.794,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.959
+      }
+    },
+    {
+      "mother_id": "WP11-036",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.773,
+        "child_stability_score": 0.755,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.951
+      }
+    },
+    {
+      "mother_id": "UDE-037",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.782,
+        "child_stability_score": 0.596,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.919
+      }
+    },
+    {
+      "mother_id": "UDE-038",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.366,
+        "child_stability_score": 0.764,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.803
+      }
+    },
+    {
+      "mother_id": "SDE-028",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.749,
+        "child_stability_score": 0.821,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.964
+      }
+    },
+    {
+      "mother_id": "WP11-037",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.805,
+        "child_stability_score": 0.646,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.929
+      }
+    },
+    {
+      "mother_id": "GHUC-030",
+      "n_proposed": 2,
+      "n_accepted": 1,
+      "scores": {
+        "generative_relevance": 0.374,
+        "child_stability_score": 0.685,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 0.5,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.787
+      }
+    },
+    {
+      "mother_id": "PAL-019",
+      "n_proposed": 2,
+      "n_accepted": 2,
+      "scores": {
+        "generative_relevance": 0.784,
+        "child_stability_score": 0.721,
+        "local_exploration_quality": 0.7,
+        "derivation_validity": 1.0,
+        "generation_entropy": 0.333,
+        "oracle_generation_confidence": 0.944
+      }
+    }
+  ]
+}

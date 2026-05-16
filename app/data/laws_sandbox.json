@@ -4714,6 +4714,956 @@
       "rollback_dependencies": [],
       "canonical_status": "sandbox",
       "runtime_admissible": false
+    },
+    {
+      "id": "ULG-GHUC-004-a-d1",
+      "parent_id": "GHUC-004-a",
+      "family": "ULG",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique ULG autour de GHUC-004-a",
+      "estimated_S_local": 0.849,
+      "estimated_propagation_cost": 0.282,
+      "title": "Fille dérivée de GHUC-004-a",
+      "description": "Comble lacune topologique ULG autour de GHUC-004-a",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "GHUC-004-a",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "WP12-UDE-024-d2",
+      "parent_id": "UDE-024",
+      "family": "WP12",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique WP12 autour de UDE-024",
+      "estimated_S_local": 0.849,
+      "estimated_propagation_cost": 0.266,
+      "title": "Fille dérivée de UDE-024",
+      "description": "Comble lacune topologique WP12 autour de UDE-024",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "UDE-024",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "DVE-UDE-032-d1",
+      "parent_id": "UDE-032",
+      "family": "DVE",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique DVE autour de UDE-032",
+      "estimated_S_local": 0.848,
+      "estimated_propagation_cost": 0.203,
+      "title": "Fille dérivée de UDE-032",
+      "description": "Comble lacune topologique DVE autour de UDE-032",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "UDE-032",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "WP11-ULG-002-a-i-d1",
+      "parent_id": "ULG-002-a-i",
+      "family": "WP11",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique WP11 autour de ULG-002-a-i",
+      "estimated_S_local": 0.847,
+      "estimated_propagation_cost": 0.171,
+      "title": "Fille dérivée de ULG-002-a-i",
+      "description": "Comble lacune topologique WP11 autour de ULG-002-a-i",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "ULG-002-a-i",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "PAL-WP12-016-d2",
+      "parent_id": "WP12-016",
+      "family": "PAL",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique PAL autour de WP12-016",
+      "estimated_S_local": 0.846,
+      "estimated_propagation_cost": 0.49,
+      "title": "Fille dérivée de WP12-016",
+      "description": "Comble lacune topologique PAL autour de WP12-016",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "WP12-016",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "WP12-ULG-002-d2",
+      "parent_id": "ULG-002",
+      "family": "WP12",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique WP12 autour de ULG-002",
+      "estimated_S_local": 0.844,
+      "estimated_propagation_cost": 0.527,
+      "title": "Fille dérivée de ULG-002",
+      "description": "Comble lacune topologique WP12 autour de ULG-002",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "ULG-002",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "ULG-GHUC-011-d1",
+      "parent_id": "GHUC-011",
+      "family": "ULG",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique ULG autour de GHUC-011",
+      "estimated_S_local": 0.844,
+      "estimated_propagation_cost": 0.268,
+      "title": "Fille dérivée de GHUC-011",
+      "description": "Comble lacune topologique ULG autour de GHUC-011",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "GHUC-011",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "PAL-SDE-013-d1",
+      "parent_id": "SDE-013",
+      "family": "PAL",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique PAL autour de SDE-013",
+      "estimated_S_local": 0.844,
+      "estimated_propagation_cost": 0.452,
+      "title": "Fille dérivée de SDE-013",
+      "description": "Comble lacune topologique PAL autour de SDE-013",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "SDE-013",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "WP11-GHUC-022-d2",
+      "parent_id": "GHUC-022",
+      "family": "WP11",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique WP11 autour de GHUC-022",
+      "estimated_S_local": 0.844,
+      "estimated_propagation_cost": 0.352,
+      "title": "Fille dérivée de GHUC-022",
+      "description": "Comble lacune topologique WP11 autour de GHUC-022",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "GHUC-022",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "ULG-GHUC-009-d1",
+      "parent_id": "GHUC-009",
+      "family": "ULG",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique ULG autour de GHUC-009",
+      "estimated_S_local": 0.843,
+      "estimated_propagation_cost": 0.187,
+      "title": "Fille dérivée de GHUC-009",
+      "description": "Comble lacune topologique ULG autour de GHUC-009",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "GHUC-009",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "DVE-WP12-006-d1",
+      "parent_id": "WP12-006",
+      "family": "DVE",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique DVE autour de WP12-006",
+      "estimated_S_local": 0.842,
+      "estimated_propagation_cost": 0.505,
+      "title": "Fille dérivée de WP12-006",
+      "description": "Comble lacune topologique DVE autour de WP12-006",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "WP12-006",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "WP11-GHUC-013-d2",
+      "parent_id": "GHUC-013",
+      "family": "WP11",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique WP11 autour de GHUC-013",
+      "estimated_S_local": 0.841,
+      "estimated_propagation_cost": 0.218,
+      "title": "Fille dérivée de GHUC-013",
+      "description": "Comble lacune topologique WP11 autour de GHUC-013",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "GHUC-013",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "DVE-WP12-015-d1",
+      "parent_id": "WP12-015",
+      "family": "DVE",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique DVE autour de WP12-015",
+      "estimated_S_local": 0.841,
+      "estimated_propagation_cost": 0.557,
+      "title": "Fille dérivée de WP12-015",
+      "description": "Comble lacune topologique DVE autour de WP12-015",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "WP12-015",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "UDE-SDE-011-d2",
+      "parent_id": "SDE-011",
+      "family": "UDE",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique UDE autour de SDE-011",
+      "estimated_S_local": 0.841,
+      "estimated_propagation_cost": 0.266,
+      "title": "Fille dérivée de SDE-011",
+      "description": "Comble lacune topologique UDE autour de SDE-011",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "SDE-011",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "UDE-SDE-012-d2",
+      "parent_id": "SDE-012",
+      "family": "UDE",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique UDE autour de SDE-012",
+      "estimated_S_local": 0.841,
+      "estimated_propagation_cost": 0.298,
+      "title": "Fille dérivée de SDE-012",
+      "description": "Comble lacune topologique UDE autour de SDE-012",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "SDE-012",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "PAL-DVE-020-d1",
+      "parent_id": "DVE-020",
+      "family": "PAL",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique PAL autour de DVE-020",
+      "estimated_S_local": 0.841,
+      "estimated_propagation_cost": 0.377,
+      "title": "Fille dérivée de DVE-020",
+      "description": "Comble lacune topologique PAL autour de DVE-020",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "DVE-020",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "DVE-UDE-036-d1",
+      "parent_id": "UDE-036",
+      "family": "DVE",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique DVE autour de UDE-036",
+      "estimated_S_local": 0.841,
+      "estimated_propagation_cost": 0.354,
+      "title": "Fille dérivée de UDE-036",
+      "description": "Comble lacune topologique DVE autour de UDE-036",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "UDE-036",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "ISO-WP11-029-d2",
+      "parent_id": "WP11-029",
+      "family": "ISO",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique ISO autour de WP11-029",
+      "estimated_S_local": 0.84,
+      "estimated_propagation_cost": 0.186,
+      "title": "Fille dérivée de WP11-029",
+      "description": "Comble lacune topologique ISO autour de WP11-029",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "WP11-029",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "PAL-DVE-002-d2",
+      "parent_id": "DVE-002",
+      "family": "PAL",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique PAL autour de DVE-002",
+      "estimated_S_local": 0.839,
+      "estimated_propagation_cost": 0.442,
+      "title": "Fille dérivée de DVE-002",
+      "description": "Comble lacune topologique PAL autour de DVE-002",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "DVE-002",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "ISO-WP11-010-d2",
+      "parent_id": "WP11-010",
+      "family": "ISO",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique ISO autour de WP11-010",
+      "estimated_S_local": 0.839,
+      "estimated_propagation_cost": 0.237,
+      "title": "Fille dérivée de WP11-010",
+      "description": "Comble lacune topologique ISO autour de WP11-010",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "WP11-010",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "ULG-WP11-034-d1",
+      "parent_id": "WP11-034",
+      "family": "ULG",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique ULG autour de WP11-034",
+      "estimated_S_local": 0.839,
+      "estimated_propagation_cost": 0.245,
+      "title": "Fille dérivée de WP11-034",
+      "description": "Comble lacune topologique ULG autour de WP11-034",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "WP11-034",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "ISO-WP11-034-d2",
+      "parent_id": "WP11-034",
+      "family": "ISO",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique ISO autour de WP11-034",
+      "estimated_S_local": 0.839,
+      "estimated_propagation_cost": 0.245,
+      "title": "Fille dérivée de WP11-034",
+      "description": "Comble lacune topologique ISO autour de WP11-034",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "WP11-034",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "ULG-WP11-014-d1",
+      "parent_id": "WP11-014",
+      "family": "ULG",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique ULG autour de WP11-014",
+      "estimated_S_local": 0.838,
+      "estimated_propagation_cost": 0.354,
+      "title": "Fille dérivée de WP11-014",
+      "description": "Comble lacune topologique ULG autour de WP11-014",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "WP11-014",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "WP12-ULG-022-d2",
+      "parent_id": "ULG-022",
+      "family": "WP12",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique WP12 autour de ULG-022",
+      "estimated_S_local": 0.838,
+      "estimated_propagation_cost": 0.204,
+      "title": "Fille dérivée de ULG-022",
+      "description": "Comble lacune topologique WP12 autour de ULG-022",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "ULG-022",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "DVE-UDE-013-d1",
+      "parent_id": "UDE-013",
+      "family": "DVE",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique DVE autour de UDE-013",
+      "estimated_S_local": 0.837,
+      "estimated_propagation_cost": 0.405,
+      "title": "Fille dérivée de UDE-013",
+      "description": "Comble lacune topologique DVE autour de UDE-013",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "UDE-013",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "ULG-WP11-017-d1",
+      "parent_id": "WP11-017",
+      "family": "ULG",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique ULG autour de WP11-017",
+      "estimated_S_local": 0.837,
+      "estimated_propagation_cost": 0.195,
+      "title": "Fille dérivée de WP11-017",
+      "description": "Comble lacune topologique ULG autour de WP11-017",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "WP11-017",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "WP12-ULG-002-b-i-d2",
+      "parent_id": "ULG-002-b-i",
+      "family": "WP12",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique WP12 autour de ULG-002-b-i",
+      "estimated_S_local": 0.836,
+      "estimated_propagation_cost": 0.17,
+      "title": "Fille dérivée de ULG-002-b-i",
+      "description": "Comble lacune topologique WP12 autour de ULG-002-b-i",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "ULG-002-b-i",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "DVE-UDE-019-d1",
+      "parent_id": "UDE-019",
+      "family": "DVE",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique DVE autour de UDE-019",
+      "estimated_S_local": 0.836,
+      "estimated_propagation_cost": 0.453,
+      "title": "Fille dérivée de UDE-019",
+      "description": "Comble lacune topologique DVE autour de UDE-019",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "UDE-019",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "ULG-GHUC-007-d1",
+      "parent_id": "GHUC-007",
+      "family": "ULG",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique ULG autour de GHUC-007",
+      "estimated_S_local": 0.836,
+      "estimated_propagation_cost": 0.413,
+      "title": "Fille dérivée de GHUC-007",
+      "description": "Comble lacune topologique ULG autour de GHUC-007",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "GHUC-007",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "ULG-WP11-015-d1",
+      "parent_id": "WP11-015",
+      "family": "ULG",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique ULG autour de WP11-015",
+      "estimated_S_local": 0.836,
+      "estimated_propagation_cost": 0.252,
+      "title": "Fille dérivée de WP11-015",
+      "description": "Comble lacune topologique ULG autour de WP11-015",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "WP11-015",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "ULG-WP11-037-d1",
+      "parent_id": "WP11-037",
+      "family": "ULG",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique ULG autour de WP11-037",
+      "estimated_S_local": 0.836,
+      "estimated_propagation_cost": 0.354,
+      "title": "Fille dérivée de WP11-037",
+      "description": "Comble lacune topologique ULG autour de WP11-037",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "WP11-037",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "SDE-PAL-005-d2",
+      "parent_id": "PAL-005",
+      "family": "SDE",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique SDE autour de PAL-005",
+      "estimated_S_local": 0.835,
+      "estimated_propagation_cost": 0.316,
+      "title": "Fille dérivée de PAL-005",
+      "description": "Comble lacune topologique SDE autour de PAL-005",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "PAL-005",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "WP12-DVE-003-d1",
+      "parent_id": "DVE-003",
+      "family": "WP12",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique WP12 autour de DVE-003",
+      "estimated_S_local": 0.834,
+      "estimated_propagation_cost": 0.395,
+      "title": "Fille dérivée de DVE-003",
+      "description": "Comble lacune topologique WP12 autour de DVE-003",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "DVE-003",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "ULG-GHUC-022-d1",
+      "parent_id": "GHUC-022",
+      "family": "ULG",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique ULG autour de GHUC-022",
+      "estimated_S_local": 0.834,
+      "estimated_propagation_cost": 0.352,
+      "title": "Fille dérivée de GHUC-022",
+      "description": "Comble lacune topologique ULG autour de GHUC-022",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "GHUC-022",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "ULG-GHUC-030-d1",
+      "parent_id": "GHUC-030",
+      "family": "ULG",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique ULG autour de GHUC-030",
+      "estimated_S_local": 0.834,
+      "estimated_propagation_cost": 0.315,
+      "title": "Fille dérivée de GHUC-030",
+      "description": "Comble lacune topologique ULG autour de GHUC-030",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "GHUC-030",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "WP12-ULG-002-a-ii-d2",
+      "parent_id": "ULG-002-a-ii",
+      "family": "WP12",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique WP12 autour de ULG-002-a-ii",
+      "estimated_S_local": 0.833,
+      "estimated_propagation_cost": 0.171,
+      "title": "Fille dérivée de ULG-002-a-ii",
+      "description": "Comble lacune topologique WP12 autour de ULG-002-a-ii",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "ULG-002-a-ii",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "ISO-WP11-024-d2",
+      "parent_id": "WP11-024",
+      "family": "ISO",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique ISO autour de WP11-024",
+      "estimated_S_local": 0.833,
+      "estimated_propagation_cost": 0.274,
+      "title": "Fille dérivée de WP11-024",
+      "description": "Comble lacune topologique ISO autour de WP11-024",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "WP11-024",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "PAL-SDE-023-d1",
+      "parent_id": "SDE-023",
+      "family": "PAL",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique PAL autour de SDE-023",
+      "estimated_S_local": 0.833,
+      "estimated_propagation_cost": 0.194,
+      "title": "Fille dérivée de SDE-023",
+      "description": "Comble lacune topologique PAL autour de SDE-023",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "SDE-023",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "ULG-GHUC-004-b-d1",
+      "parent_id": "GHUC-004-b",
+      "family": "ULG",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique ULG autour de GHUC-004-b",
+      "estimated_S_local": 0.832,
+      "estimated_propagation_cost": 0.281,
+      "title": "Fille dérivée de GHUC-004-b",
+      "description": "Comble lacune topologique ULG autour de GHUC-004-b",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "GHUC-004-b",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "WP12-DVE-016-d1",
+      "parent_id": "DVE-016",
+      "family": "WP12",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique WP12 autour de DVE-016",
+      "estimated_S_local": 0.832,
+      "estimated_propagation_cost": 0.214,
+      "title": "Fille dérivée de DVE-016",
+      "description": "Comble lacune topologique WP12 autour de DVE-016",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "DVE-016",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "WP11-GHUC-002-a-d2",
+      "parent_id": "GHUC-002-a",
+      "family": "WP11",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique WP11 autour de GHUC-002-a",
+      "estimated_S_local": 0.831,
+      "estimated_propagation_cost": 0.29,
+      "title": "Fille dérivée de GHUC-002-a",
+      "description": "Comble lacune topologique WP11 autour de GHUC-002-a",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "GHUC-002-a",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "DVE-WP12-027-d1",
+      "parent_id": "WP12-027",
+      "family": "DVE",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique DVE autour de WP12-027",
+      "estimated_S_local": 0.831,
+      "estimated_propagation_cost": 0.293,
+      "title": "Fille dérivée de WP12-027",
+      "description": "Comble lacune topologique DVE autour de WP12-027",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "WP12-027",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "ULG-GHUC-005-d1",
+      "parent_id": "GHUC-005",
+      "family": "ULG",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique ULG autour de GHUC-005",
+      "estimated_S_local": 0.83,
+      "estimated_propagation_cost": 0.495,
+      "title": "Fille dérivée de GHUC-005",
+      "description": "Comble lacune topologique ULG autour de GHUC-005",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "GHUC-005",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "WP11-ULG-013-d1",
+      "parent_id": "ULG-013",
+      "family": "WP11",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique WP11 autour de ULG-013",
+      "estimated_S_local": 0.83,
+      "estimated_propagation_cost": 0.216,
+      "title": "Fille dérivée de ULG-013",
+      "description": "Comble lacune topologique WP11 autour de ULG-013",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "ULG-013",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "WP12-UDE-012-d2",
+      "parent_id": "UDE-012",
+      "family": "WP12",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique WP12 autour de UDE-012",
+      "estimated_S_local": 0.83,
+      "estimated_propagation_cost": 0.404,
+      "title": "Fille dérivée de UDE-012",
+      "description": "Comble lacune topologique WP12 autour de UDE-012",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "UDE-012",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "ULG-WP11-022-d1",
+      "parent_id": "WP11-022",
+      "family": "ULG",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique ULG autour de WP11-022",
+      "estimated_S_local": 0.83,
+      "estimated_propagation_cost": 0.213,
+      "title": "Fille dérivée de WP11-022",
+      "description": "Comble lacune topologique ULG autour de WP11-022",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "WP11-022",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "ULG-GHUC-026-d1",
+      "parent_id": "GHUC-026",
+      "family": "ULG",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique ULG autour de GHUC-026",
+      "estimated_S_local": 0.83,
+      "estimated_propagation_cost": 0.268,
+      "title": "Fille dérivée de GHUC-026",
+      "description": "Comble lacune topologique ULG autour de GHUC-026",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "GHUC-026",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "WP12-ULG-003-d2",
+      "parent_id": "ULG-003",
+      "family": "WP12",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique WP12 autour de ULG-003",
+      "estimated_S_local": 0.829,
+      "estimated_propagation_cost": 0.392,
+      "title": "Fille dérivée de ULG-003",
+      "description": "Comble lacune topologique WP12 autour de ULG-003",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "ULG-003",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "DVE-WP12-004-d1",
+      "parent_id": "WP12-004",
+      "family": "DVE",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique DVE autour de WP12-004",
+      "estimated_S_local": 0.829,
+      "estimated_propagation_cost": 0.475,
+      "title": "Fille dérivée de WP12-004",
+      "description": "Comble lacune topologique DVE autour de WP12-004",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "WP12-004",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
+    },
+    {
+      "id": "ULG-WP11-002-b-ii-d1",
+      "parent_id": "WP11-002-b-ii",
+      "family": "ULG",
+      "generation_type": "derivation_local",
+      "rationale": "Comble lacune topologique ULG autour de WP11-002-b-ii",
+      "estimated_S_local": 0.829,
+      "estimated_propagation_cost": 0.187,
+      "title": "Fille dérivée de WP11-002-b-ii",
+      "description": "Comble lacune topologique ULG autour de WP11-002-b-ii",
+      "status": "sandbox_candidate",
+      "generation_oracle_accepted": true,
+      "mother_id": "WP11-002-b-ii",
+      "needs": [
+        "propagation_test",
+        "temporal_test",
+        "composition_test"
+      ]
     }
   ],
   "edges": [
@@ -5076,5 +6026,14 @@
     "decayed_count": 0,
     "archived_count": 0,
     "last_audit_ts": "2026-05-15T20:44:00+02:00"
+  },
+  "meta": {
+    "last_generation_run": "2026-05-16T01:12:00+02:00",
+    "mission": "ZORAN_DISTRIBUTED_GENERATIVE_LAW_ENGINE_20260516",
+    "total_proposed": 476,
+    "total_accepted": 365,
+    "rejection_breakdown": {
+      "pertinence_locale_insuffisante": 111
+    }
   }
 }

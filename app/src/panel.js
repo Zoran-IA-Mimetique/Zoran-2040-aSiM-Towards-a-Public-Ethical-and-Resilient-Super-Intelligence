@@ -478,6 +478,104 @@ function temporalBlock(node) {
   </section>`;
 }
 
+function generativeBlock(node) {
+  if (node.generative_relevance == null) return '';
+  const gr = node.generative_relevance;
+  const cs = node.child_stability_score ?? 0;
+  const leq = node.local_exploration_quality ?? 0;
+  const dv = node.derivation_validity ?? 0;
+  const ge = node.generation_entropy ?? 0;
+  const ogc = node.oracle_generation_confidence ?? 0;
+  const scope = node.generative_scope || [];
+  const forbidden = node.forbidden_expansions || [];
+  const depthLimit = node.generation_depth_limit ?? 0;
+  const genCost = node.generation_cost ?? 0;
+  const profile = gr >= 0.60 ? 'attracteur génératif'
+                : gr >= 0.40 ? 'générateur correct'
+                : gr >= 0.25 ? 'générateur faible'
+                : 'stérile';
+  const profileColor = gr >= 0.60 ? '#3ad17a'
+                     : gr >= 0.40 ? 'var(--accent)'
+                     : gr >= 0.25 ? 'var(--fg-2)'
+                     : 'var(--unstable)';
+  const scopeBadges = scope.slice(0, 6).map(s =>
+    `<span style="display:inline-block;background:var(--bg-2);color:var(--canonical);font-size:9px;padding:1px 5px;border-radius:3px;margin:1px;border:1px solid var(--line)">${esc(s)}</span>`
+  ).join('');
+  return `<section>
+    <h4>Capacité générative distribuée</h4>
+    <div class="frames">
+      <div class="frames-row"><span class="frames-glyph">⚛</span>
+        <span class="frames-label">Profil génér.</span>
+        <span class="frames-content"><strong style="color:${profileColor}">${profile}</strong> · relevance ${gr.toFixed(3)}</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">≼</span>
+        <span class="frames-label">Scope autorisé</span>
+        <span class="frames-content">${scopeBadges || '<span style="color:var(--fg-2)">aucun</span>'}</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⊘</span>
+        <span class="frames-label">Profondeur lim</span>
+        <span class="frames-content"><strong>${depthLimit}</strong> · ${forbidden.length} expansions interdites</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">✓</span>
+        <span class="frames-label">Validité dériv.</span>
+        <span class="frames-content"><strong>${dv.toFixed(3)}</strong> · stabilité filles ${cs.toFixed(2)}</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">≀</span>
+        <span class="frames-label">Entropie gén.</span>
+        <span class="frames-content"><strong>${ge.toFixed(3)}</strong> · qual. explo. ${leq.toFixed(2)}</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⊙</span>
+        <span class="frames-label">Oracle conf.</span>
+        <span class="frames-content"><strong>${ogc.toFixed(3)}</strong> · coût gén. ${genCost.toFixed(2)}</span>
+      </div>
+    </div>
+  </section>`;
+}
+
+function selectionBlock(node) {
+  if (node.selection_priority == null) return '';
+  const sp = node.selection_priority;
+  const tr = node.topic_relevance ?? 0;
+  const ig = node.information_gain ?? 0;
+  const ce = node.cognitive_efficiency ?? 0;
+  const mpc = node.minimum_precision_contribution ?? 0;
+  const rcr = node.runtime_cost_ratio ?? 0;
+  const pe = node.propagation_efficiency ?? 0;
+  const adm = node.threshold_admissibility;
+  const tier = sp >= 0.55 ? 'haute priorité'
+             : sp >= 0.45 ? 'admissible'
+             : sp >= 0.30 ? 'marginal'
+             : 'rejeté seuil';
+  const tierColor = sp >= 0.55 ? '#3ad17a'
+                  : sp >= 0.45 ? 'var(--accent)'
+                  : sp >= 0.30 ? 'var(--fg-2)'
+                  : 'var(--unstable)';
+  const admDot = adm
+    ? '<span style="color:#3ad17a">✓ admis</span>'
+    : '<span style="color:var(--unstable)">✗ sous seuil</span>';
+  return `<section>
+    <h4>Sélection cognitive runtime</h4>
+    <div class="frames">
+      <div class="frames-row"><span class="frames-glyph">▲</span>
+        <span class="frames-label">Priorité sél.</span>
+        <span class="frames-content"><strong style="color:${tierColor}">${tier}</strong> · ${sp.toFixed(3)} · ${admDot}</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⊕</span>
+        <span class="frames-label">Sujet pertin.</span>
+        <span class="frames-content"><strong>${tr.toFixed(3)}</strong> · gain info ${ig.toFixed(2)}</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⚖</span>
+        <span class="frames-label">Cog. efficiency</span>
+        <span class="frames-content"><strong>${ce.toFixed(3)}</strong> · contrib. précis. ${mpc.toFixed(2)}</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⊟</span>
+        <span class="frames-label">Coût runtime</span>
+        <span class="frames-content"><strong>${rcr.toFixed(3)}</strong> · propag. eff. ${pe.toFixed(2)}</span>
+      </div>
+    </div>
+  </section>`;
+}
+
 export function renderDetail(node, graph, onPick) {
   const detail = document.getElementById('detail');
   const body = document.getElementById('detail-body');
@@ -514,6 +612,8 @@ export function renderDetail(node, graph, onPick) {
     ${eqs ? `<section class="equations"><h4>Équations</h4>${eqs}</section>` : ''}
     ${ex  ? `<section><h4>Exemples</h4><ul class="examples">${ex}</ul></section>` : ''}
     ${superiorBlock(node)}
+    ${selectionBlock(node)}
+    ${generativeBlock(node)}
     ${llmRelevanceBlock(node)}
     ${experimentalBlock(node)}
     ${propagatedBlock(node)}

@@ -179,6 +179,19 @@ const classesLabel = await page.locator('.frames-label:has-text("Classes")').cou
 console.log(`  Sustainability sect. : ${sustLabel > 0 ? 'présente' : 'absente'}`);
 console.log(`  Frugality score      : ${fragLabel > 0 ? 'présente' : 'absente'}`);
 console.log(`  Classes badges       : ${classesLabel > 0 ? 'présente' : 'absente'}`);
+// New : generative + selection sections (missions 2026-05-16)
+const genLabel = await page.locator('.frames-label:has-text("Profil génér")').count();
+const scopeLabel = await page.locator('.frames-label:has-text("Scope")').count();
+const oracleLabel = await page.locator('.frames-label:has-text("Oracle conf")').count();
+const selLabel = await page.locator('.frames-label:has-text("Priorité sél")').count();
+const topicLabel = await page.locator('.frames-label:has-text("Sujet pertin")').count();
+const ceLabel = await page.locator('.frames-label:has-text("Cog. efficiency")').count();
+console.log(`  Generative profile   : ${genLabel > 0 ? 'présente' : 'absente'}`);
+console.log(`  Generative scope     : ${scopeLabel > 0 ? 'présente' : 'absente'}`);
+console.log(`  Oracle confidence    : ${oracleLabel > 0 ? 'présente' : 'absente'}`);
+console.log(`  Selection priority   : ${selLabel > 0 ? 'présente' : 'absente'}`);
+console.log(`  Topic relevance      : ${topicLabel > 0 ? 'présente' : 'absente'}`);
+console.log(`  Cog. efficiency      : ${ceLabel > 0 ? 'présente' : 'absente'}`);
 
 // Scroll panel to expose experimental section for screenshot
 await page.evaluate(() => {
