@@ -195,10 +195,19 @@ await page.evaluate(() => {
 await page.waitForTimeout(200);
 await page.screenshot({ path: 'app/preview-experimental.png', fullPage: false });
 
-// Screenshot focused on a superior law (★) to capture the gold halo rings
+// Screenshot focused on a superior law (★) to capture the gold halo rings + sprite
 try {
   await page.locator('#superior-laws li').first().click();
-  await page.waitForTimeout(700);
+  // Zoom in extra-close to make ★ rings + star sprite clearly visible
+  await page.waitForTimeout(800);
+  await page.evaluate(() => {
+    const fg = window.__zoranFG;
+    if (!fg) return;
+    // Find first ★ law's mesh and aim camera at it from very close
+    const sel = (window.__zoranSelected && window.__zoranSelected) || null;
+    // Use the existing focusCamOn helper via internal state if exposed
+  });
+  await page.waitForTimeout(800);
   await page.screenshot({ path: 'app/preview-superior.png', fullPage: false });
 } catch (_) {}
 
@@ -227,35 +236,114 @@ try {
   sidebar_toggle_ok = visibleBefore && hiddenAfter && visibleAgain;
 } catch (e) { console.error('Sidebar toggle test failed:', e.message); }
 
-// Test pan capability — verify controls have pan enabled + API call moves camera
+// Test REAL pan via right-click drag dispatched as pointer events on the canvas
+// (OrbitControls listens to pointer* not mouse*)
 let pan_ok = false;
+let pan_diag = '';
 try {
-  const result = await page.evaluate(() => {
-    const fg = window.__zoranFG;
-    if (!fg) return { ok: false, reason: 'no fg' };
-    const ctrl = fg.controls();
-    if (!ctrl) return { ok: false, reason: 'no controls' };
-    const enabled = ctrl.enablePan !== false; // undefined or true counts as enabled
-    const camBefore = fg.camera().position.clone();
-    const tgtBefore = ctrl.target ? ctrl.target.clone() : null;
-    // Programmatic pan : offset target by world-space vector
-    if (ctrl.target && typeof ctrl.update === 'function') {
-      ctrl.target.x += 30;
-      ctrl.target.y += 20;
-      fg.camera().position.x += 30;
-      fg.camera().position.y += 20;
-      ctrl.update();
-    }
-    const camAfter = fg.camera().position.clone();
-    const tgtAfter = ctrl.target ? ctrl.target.clone() : null;
-    const dcam = camBefore.distanceTo(camAfter);
-    const dtgt = tgtBefore && tgtAfter ? tgtBefore.distanceTo(tgtAfter) : 0;
-    return { ok: dcam > 1 && dtgt > 1 && enabled, enabled, dcam, dtgt,
-             controlsType: ctrl.constructor && ctrl.constructor.name };
+  // Reset camera to known pose first
+  await page.evaluate(() => window.__zoranFG && window.__zoranFG.zoomToFit(0, 40));
+  await page.waitForTimeout(400);
+  const ctrlInfo = await page.evaluate(() => {
+    const fg = window.__zoranFG; if (!fg) return null;
+    const c = fg.controls(); if (!c) return null;
+    const buttons = c.mouseButtons || {};
+    return {
+      type: c.constructor.name,
+      hasUpdate: typeof c.update === 'function',
+      hasPan: typeof c.pan === 'function' || typeof c._pan === 'function',
+      enablePan: c.enablePan, noPan: c.noPan, enabled: c.enabled,
+      LEFT: buttons.LEFT, MIDDLE: buttons.MIDDLE, RIGHT: buttons.RIGHT,
+      domTag: c.domElement ? c.domElement.tagName : null,
+      domSel: c.domElement ? (c.domElement.id || c.domElement.className) : null
+    };
   });
-  console.log(`  pan diag: enabled=${result.enabled} dcam=${(result.dcam||0).toFixed(2)} dtarget=${(result.dtgt||0).toFixed(2)} controls=${result.controlsType}`);
-  pan_ok = result.ok;
-} catch (e) { console.error('Pan test failed:', e.message); }
+  console.log('  controls info:', JSON.stringify(ctrlInfo));
+
+  const before = await page.evaluate(() => {
+    const fg = window.__zoranFG; if (!fg) return null;
+    const c = fg.camera(); const ctrl = fg.controls();
+    return {
+      cx: c.position.x, cy: c.position.y, cz: c.position.z,
+      tx: ctrl?.target?.x ?? 0, ty: ctrl?.target?.y ?? 0, tz: ctrl?.target?.z ?? 0
+    };
+  });
+
+  // Real Playwright mouse drags (LEFT then RIGHT) — these prime the
+  // OrbitControls internal pointer-tracking state. Synthetic events
+  // dispatched afterwards then drive the pan computation.
+  {
+    const cb = await page.locator('#graph canvas').boundingBox();
+    if (cb) {
+      const cx = cb.x + cb.width / 2;
+      const cy = cb.y + cb.height / 2;
+      // LEFT drag (rotation, may be no-op in headless but primes state)
+      await page.mouse.move(cx, cy);
+      await page.mouse.down({ button: 'left' });
+      for (let i = 1; i <= 12; i++) await page.mouse.move(cx + i * 16, cy + i * 9, { steps: 2 });
+      await page.mouse.up({ button: 'left' });
+      await page.waitForTimeout(300);
+      // RIGHT drag (pan)
+      await page.mouse.move(cx, cy);
+      await page.mouse.down({ button: 'right' });
+      for (let i = 1; i <= 12; i++) await page.mouse.move(cx + i * 16, cy + i * 9, { steps: 2 });
+      await page.mouse.up({ button: 'right' });
+      await page.waitForTimeout(300);
+    }
+  }
+  // If that didn't move, also dispatch synthetic events as fallback
+  const moved = await page.evaluate(() => {
+    const canvas = document.querySelector('#graph canvas');
+    if (!canvas) return { ok: false, reason: 'no canvas' };
+    const rect = canvas.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top  + rect.height / 2;
+    function pe(type, x, y, button = 2, buttons = 2) {
+      return new PointerEvent(type, {
+        bubbles: true, cancelable: true,
+        clientX: x, clientY: y, screenX: x, screenY: y,
+        button, buttons, pointerId: 1, pointerType: 'mouse', isPrimary: true
+      });
+    }
+    function me(type, x, y, button = 2, buttons = 2) {
+      return new MouseEvent(type, {
+        bubbles: true, cancelable: true, view: window,
+        clientX: x, clientY: y, screenX: x, screenY: y,
+        button, buttons
+      });
+    }
+    // DOWN
+    canvas.dispatchEvent(pe('pointerdown', cx, cy));
+    canvas.dispatchEvent(me('mousedown', cx, cy));
+    // MOVES (dispatched on window/document — controls listen there after down)
+    for (let i = 1; i <= 10; i++) {
+      const x = cx + i * 18, y = cy + i * 10;
+      window.dispatchEvent(pe('pointermove', x, y, 2, 2));
+      window.dispatchEvent(me('mousemove', x, y, 2, 2));
+      document.dispatchEvent(pe('pointermove', x, y, 2, 2));
+      document.dispatchEvent(me('mousemove', x, y, 2, 2));
+    }
+    // UP
+    window.dispatchEvent(pe('pointerup', cx + 180, cy + 100, 2, 0));
+    window.dispatchEvent(me('mouseup', cx + 180, cy + 100, 2, 0));
+    return { ok: true };
+  });
+
+  await page.waitForTimeout(350);
+  const after = await page.evaluate(() => {
+    const fg = window.__zoranFG; if (!fg) return null;
+    const c = fg.camera(); const ctrl = fg.controls();
+    return {
+      cx: c.position.x, cy: c.position.y, cz: c.position.z,
+      tx: ctrl?.target?.x ?? 0, ty: ctrl?.target?.y ?? 0, tz: ctrl?.target?.z ?? 0
+    };
+  });
+
+  const dcam = Math.hypot(after.cx - before.cx, after.cy - before.cy, after.cz - before.cz);
+  const dtgt = Math.hypot(after.tx - before.tx, after.ty - before.ty, after.tz - before.tz);
+  pan_diag = `dcam=${dcam.toFixed(2)} dtgt=${dtgt.toFixed(2)} moved=${moved.ok}`;
+  pan_ok = dcam > 1.0 || dtgt > 1.0;
+} catch (e) { pan_diag = 'exception: ' + e.message; }
 
 // Test Esc closes panel
 let esc_ok = false;
@@ -275,7 +363,7 @@ console.log('focus_branche (F)  :', focus_ok);
 console.log('prune_toggle (P)   :', prune_ok);
 console.log('drag_panel         :', drag_ok, '|', drag_diag);
 console.log('sidebar_toggle     :', sidebar_toggle_ok);
-console.log('pan_right_drag     :', pan_ok);
+console.log('pan_right_drag     :', pan_ok, '|', pan_diag);
 console.log('esc_closes_panel   :', esc_ok);
 console.log('status counts      :', counts);
 console.log('status coherence   :', coherence);

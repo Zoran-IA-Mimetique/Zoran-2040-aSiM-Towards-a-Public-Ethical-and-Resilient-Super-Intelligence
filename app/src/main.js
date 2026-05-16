@@ -189,17 +189,51 @@ function makeBilliardMesh(node) {
   // Mission ZORAN_DYNAMIC_VELOCITY_HIERARCHY_GRAPH : les ★ doivent
   // être visibles DANS LE GRAPHE (pas seulement sidebar/panel).
   if (node.superior_law_candidate) {
+    // Inner bright gold ring (orbit plane independent — face camera each frame)
     const supRing1 = new THREE.Mesh(
-      new THREE.TorusGeometry(radius * 1.35, Math.max(0.06, radius * 0.03), 8, 64),
-      new THREE.MeshBasicMaterial({ color: 0xffcc4d, transparent: true, opacity: 0.55, depthWrite: false })
+      new THREE.TorusGeometry(radius * 1.40, Math.max(0.10, radius * 0.06), 10, 80),
+      new THREE.MeshBasicMaterial({ color: 0xffd34d, transparent: true, opacity: 0.95, depthWrite: false })
     );
+    // Outer warm-orange aura
     const supRing2 = new THREE.Mesh(
-      new THREE.TorusGeometry(radius * 1.55, Math.max(0.04, radius * 0.02), 8, 64),
-      new THREE.MeshBasicMaterial({ color: 0xff9c2e, transparent: true, opacity: 0.30, depthWrite: false })
+      new THREE.TorusGeometry(radius * 1.70, Math.max(0.07, radius * 0.04), 10, 80),
+      new THREE.MeshBasicMaterial({ color: 0xff9c2e, transparent: true, opacity: 0.65, depthWrite: false })
+    );
+    // Wide glow corona (soft)
+    const supRing3 = new THREE.Mesh(
+      new THREE.TorusGeometry(radius * 2.05, Math.max(0.05, radius * 0.025), 8, 64),
+      new THREE.MeshBasicMaterial({ color: 0xffe88a, transparent: true, opacity: 0.30, depthWrite: false })
     );
     mesh.add(supRing1);
     mesh.add(supRing2);
-    mesh.userData.zoranSuperiorRings = [supRing1, supRing2];
+    mesh.add(supRing3);
+    mesh.userData.zoranSuperiorRings = [supRing1, supRing2, supRing3];
+
+    // Star sprite floating above the sphere
+    const starCanvas = document.createElement('canvas');
+    starCanvas.width = 128; starCanvas.height = 128;
+    const sctx = starCanvas.getContext('2d');
+    sctx.clearRect(0, 0, 128, 128);
+    sctx.fillStyle = '#ffd34d';
+    sctx.font = 'bold 96px serif';
+    sctx.textAlign = 'center';
+    sctx.textBaseline = 'middle';
+    sctx.shadowColor = '#ffcc4d';
+    sctx.shadowBlur = 22;
+    sctx.fillText('★', 64, 70);
+    const starTex = new THREE.CanvasTexture(starCanvas);
+    starTex.minFilter = THREE.LinearFilter;
+    const starMat = new THREE.SpriteMaterial({
+      map: starTex, color: 0xffffff, transparent: true,
+      depthWrite: false, depthTest: false
+    });
+    const star = new THREE.Sprite(starMat);
+    const starScale = Math.max(6, radius * 1.1);
+    star.scale.set(starScale, starScale, 1);
+    star.position.set(0, radius * 1.95, 0);
+    star.renderOrder = 999;
+    mesh.add(star);
+    mesh.userData.zoranSuperiorStar = star;
   }
 
   state.meshes.set(node.id, mesh);
@@ -229,10 +263,18 @@ function updateHalos() {
       halo.lookAt(cam.position);
     }
   }
-  // Persistent superior_law rings — orient toward camera
+  // Persistent superior_law rings — orient toward camera + soft pulse
+  const t = performance.now() * 0.001;
+  const pulse = 1.0 + Math.sin(t * 1.6) * 0.06;
   for (const mesh of state.meshes.values()) {
     const rings = mesh.userData.zoranSuperiorRings;
-    if (rings) for (const r of rings) r.lookAt(cam.position);
+    if (rings) {
+      for (let i = 0; i < rings.length; i++) {
+        rings[i].lookAt(cam.position);
+        rings[i].scale.set(pulse, pulse, 1);
+      }
+    }
+    // Star sprite already auto-billboarded (Sprite always faces camera)
   }
 }
 
