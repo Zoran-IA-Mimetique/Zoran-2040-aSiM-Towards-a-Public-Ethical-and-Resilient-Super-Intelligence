@@ -552,6 +552,17 @@ function updateAnswerLabel() {
     if (overlay.classList.contains('visible')) overlay.classList.remove('visible');
     return;
   }
+  // CORRECTIF UX : masquer l'étiquette flottante quand le panneau détail
+  // affiche la MÊME loi (sinon double affichage qui chevauche)
+  const detail = document.getElementById('detail');
+  const panelShowingAnswer = detail
+    && !detail.classList.contains('hidden')
+    && state.selected
+    && state.selected.id === state.answerLawId;
+  if (panelShowingAnswer) {
+    if (overlay.classList.contains('visible')) overlay.classList.remove('visible');
+    return;
+  }
   const mesh = state.meshes.get(state.answerLawId);
   if (!mesh) { overlay.classList.remove('visible'); return; }
   const node = state.graphView.nodes.find(n => n.id === state.answerLawId);
@@ -1143,6 +1154,17 @@ function initGraph() {
   window.addEventListener('resize', () => {
     state.fg.width(el.clientWidth);
     state.fg.height(el.clientHeight);
+    // CORRECTIF : reclamp chat popup si viewport rétrécit
+    const popup = document.getElementById('chat-results');
+    if (popup && !popup.classList.contains('hidden')) {
+      const w = popup.offsetWidth, h = popup.offsetHeight;
+      if (w > window.innerWidth - 32) popup.style.width = (window.innerWidth - 32) + 'px';
+      if (h > window.innerHeight - 100) popup.style.height = (window.innerHeight - 100) + 'px';
+      // reclamp position aussi
+      const r = popup.getBoundingClientRect();
+      if (r.right > window.innerWidth - 8) popup.style.left = Math.max(8, window.innerWidth - popup.offsetWidth - 8) + 'px';
+      if (r.bottom > window.innerHeight - 8) popup.style.top = Math.max(48, window.innerHeight - popup.offsetHeight - 8) + 'px';
+    }
   });
 }
 
@@ -1261,20 +1283,27 @@ function setupDraggableChatPopup() {
       const raw = localStorage.getItem('zoran.chat.pos');
       if (raw) {
         const s = JSON.parse(raw);
-        if (Number.isFinite(s.left) && Number.isFinite(s.top)) {
-          popup.style.transform = 'none';
-          popup.style.left = Math.max(0, Math.min(window.innerWidth - 80, s.left)) + 'px';
-          popup.style.top  = Math.max(48, Math.min(window.innerHeight - 60, s.top)) + 'px';
-          popup.style.bottom = 'auto'; popup.style.right = 'auto';
-        }
+        // Clamp width/height d'abord (utilisé pour clamp position après)
+        let effW = popup.offsetWidth || 880;
+        let effH = popup.offsetHeight || 560;
         if (Number.isFinite(s.w) && s.w >= 360) {
-          popup.style.width = s.w + 'px';
+          effW = Math.min(s.w, window.innerWidth - 32);
+          popup.style.width = effW + 'px';
         }
         if (Number.isFinite(s.h) && s.h >= 280) {
-          popup.style.height = s.h + 'px';
+          effH = Math.min(s.h, window.innerHeight - 100);
+          popup.style.height = effH + 'px';
         } else {
-          // Override stale tiny height from previous minimized sessions
           popup.style.removeProperty('height');
+        }
+        // Clamp position : left + width doit rester ≤ viewport, top + height aussi
+        if (Number.isFinite(s.left) && Number.isFinite(s.top)) {
+          popup.style.transform = 'none';
+          const maxLeft = Math.max(0, window.innerWidth - effW - 8);
+          const maxTop  = Math.max(48, window.innerHeight - effH - 8);
+          popup.style.left = Math.max(0, Math.min(maxLeft, s.left)) + 'px';
+          popup.style.top  = Math.max(48, Math.min(maxTop, s.top)) + 'px';
+          popup.style.bottom = 'auto'; popup.style.right = 'auto';
         }
       }
       // mission directive : force expanded on every show

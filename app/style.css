@@ -425,7 +425,10 @@ body.sidebar-hidden #graph {
 #chat-results-body {
   padding: 14px;
   overflow-y: auto;
+  overflow-x: hidden;             /* évite scroll horizontal accidentel */
   flex: 1 1 auto;
+  word-break: normal;
+  overflow-wrap: break-word;
 }
 .route-card {
   border: 1px solid var(--line);
@@ -694,7 +697,13 @@ body.sidebar-hidden #graph {
 }
 .llm-answer-box.loading .llm-label { color: var(--accent); }
 .llm-answer-box.error   .llm-label { color: var(--unstable); }
-.llm-answer-box .llm-body { white-space: pre-wrap; }
+.llm-answer-box .llm-body {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;        /* casse mots/URLs longs */
+  word-break: normal;
+  max-width: 100%;
+}
+.llm-answer-box { max-width: 100%; box-sizing: border-box; word-break: normal; }
 .llm-answer-box .llm-meta {
   font-size: 10px; color: var(--fg-2);
   margin-top: 10px; padding-top: 8px;
