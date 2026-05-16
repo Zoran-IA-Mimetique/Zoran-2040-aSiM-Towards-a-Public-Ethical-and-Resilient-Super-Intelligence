@@ -10,6 +10,8 @@
 
 import { synthesizeBaseline, synthesizeRoute, judgeResponses, reformulateQuestion } from './llm.js';
 import { jargonDensity, userDistance, practicalUsefulness, metaNoise, concreteRuntimeAlignment, detectJargonTerms } from './jargon.js';
+import { computeDomainFitness, shouldSkipRoute, getStrategyProfile } from './route_specialization.js';
+import { detectTruncation, completionIntegrity, truncationPenalty, terrainAlignment, fieldActionability } from './completion.js';
 
 // Top 3 routes utilisées pour la compétition (sous-ensemble — coût API maîtrisé)
 const SUPERIORITY_ROUTES = ['frugale', 'anti_hallucination', 'structurelle'];
@@ -19,12 +21,32 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
   console.log('[ZORAN sup] START — question=', question.slice(0, 60));
 
   // Construit le set [{stratName, route, laws}] pour les 3 stratégies
+  // Mission ROUTE_SPECIALIZATION : skip routes hors-domaine fitness < 0.30
+  const detectedStructures = routeResults.structures || [];
   const zoranSpecs = [];
+  const skippedRoutes = [];
   for (const stratName of SUPERIORITY_ROUTES) {
     const route = routeResults.routes.find(r => r.strategy === stratName);
     if (!route) continue;
+    const fitness = computeDomainFitness(stratName, detectedStructures);
+    if (shouldSkipRoute(stratName, detectedStructures)) {
+      // Route skippée pour économie API + propreté benchmark
+      skippedRoutes.push({
+        strategy: stratName,
+        label: route.label || stratName,
+        domain_fitness: +fitness.toFixed(3),
+        profile: getStrategyProfile(stratName),
+        reason: `domain_fitness=${fitness.toFixed(2)} < 0.30 — hors domaine de spécialisation`,
+      });
+      console.log(`[ZORAN sup] SKIP ${stratName} : fitness=${fitness.toFixed(2)}`);
+      continue;
+    }
     const laws = (route.laws_used || []).map(id => allNodes.find(n => n.id === id)).filter(Boolean);
-    zoranSpecs.push({ stratName, route, laws });
+    zoranSpecs.push({ stratName, route, laws, domain_fitness: +fitness.toFixed(3) });
+  }
+  if (zoranSpecs.length === 0) {
+    // Toutes les routes ZORAN hors-domaine → on garde Claude brut seul
+    console.warn('[ZORAN sup] toutes routes ZORAN hors-domaine — Claude brut seul');
   }
 
   // 1. REFORMULATION en parallèle : chaque stratégie reformule la question
@@ -86,8 +108,7 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
     console.warn('[ZORAN sup] FAIL — no responses at all');
     return { ok: false, reason: 'no_responses', responses };
   }
-  // Mission SILENT_LAW_GUIDANCE : mesure objective du méta-bruit par réponse
-  // (jargon ZORAN détecté, distance domaine user, utilité concrète)
+  // Mission SILENT_LAW_GUIDANCE + RUNTIME_SPECIALIZATION : mesures locales
   for (const r of responses) {
     r.jargon_density = +jargonDensity(r.text).toFixed(3);
     r.user_distance  = +userDistance(r.text, question).toFixed(3);
@@ -95,6 +116,21 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
     r.meta_noise     = +metaNoise({ answerText: r.text, questionText: question }).toFixed(3);
     r.concrete_runtime_alignment = +concreteRuntimeAlignment({ answerText: r.text, questionText: question }).toFixed(3);
     r.jargon_terms_found = detectJargonTerms(r.text);
+    // Mission RESPONSE_COMPLETION : détection troncature
+    const trunc = detectTruncation(r.text, r.usage);
+    r.truncated = trunc.truncated;
+    r.truncation_reasons = trunc.reasons;
+    r.completion_integrity = completionIntegrity(r.text, r.usage);
+    r.truncation_penalty = truncationPenalty(r.text, r.usage);
+    // Mission métriques recalibrées : terrain alignment
+    r.terrain_alignment = +terrainAlignment(r.text).toFixed(3);
+    // domain_fitness déjà calculé pour les ZORAN (skippées exclues)
+    if (r.strategy !== 'baseline') {
+      const spec = zoranSpecs.find(s => s.stratName === r.strategy);
+      r.domain_fitness = spec ? spec.domain_fitness : null;
+    } else {
+      r.domain_fitness = 1.0; // baseline universel
+    }
   }
   console.log('[ZORAN sup] meta-bruit par réponse :',
     responses.map(r => `${r.label}: jargon=${r.jargon_density} concret=${r.concrete_runtime_alignment}`).join(' | '));
@@ -155,19 +191,32 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
         actionability_score: s.actionability_score ?? 0,
         practical_relevance: s.practical_relevance ?? 0,
         compression_quality: s.compression_quality ?? 0,
+        // Mission RUNTIME_SPECIALIZATION + RESPONSE_COMPLETION
+        domain_fitness: respObj.domain_fitness ?? null,
+        terrain_alignment: respObj.terrain_alignment ?? 0,
+        completion_integrity: respObj.completion_integrity ?? 1,
+        truncated: respObj.truncated || false,
+        truncation_penalty: respObj.truncation_penalty || 0,
+        truncation_reasons: respObj.truncation_reasons || [],
+        field_actionability: +fieldActionability({
+          text: respObj.text,
+          judgeActionability: s.actionability_score ?? 0.5,
+        }).toFixed(3),
         argumented_grade_20: s.argumented_grade_20 ?? null,
         strengths: s.strengths || [],
         weaknesses: s.weaknesses || [],
         noise_detected: s.noise_detected || '',
         hallucination_risk: s.hallucination_risk || '',
-        // Score composite revisité : intègre concret + anti-jargon
+        // Score composite : intègre concret + anti-jargon - pénalité troncature
         runtime_superiority: +(
-          0.25 * (s.precision - baselineScore.precision)
-          + 0.25 * (baselineScore.hallucination - s.hallucination)
-          + 0.15 * (baselineScore.noise - s.noise)
-          + 0.15 * (s.coherence - baselineScore.coherence)
+          0.22 * (s.precision - baselineScore.precision)
+          + 0.22 * (baselineScore.hallucination - s.hallucination)
+          + 0.13 * (baselineScore.noise - s.noise)
+          + 0.13 * (s.coherence - baselineScore.coherence)
           + 0.10 * ((respObj.concrete_runtime_alignment ?? 0.5) - (responses[0].concrete_runtime_alignment ?? 0.5))
           + 0.10 * ((responses[0].meta_noise ?? 0.5) - (respObj.meta_noise ?? 0.5))
+          + 0.10 * ((respObj.terrain_alignment ?? 0) - (responses[0].terrain_alignment ?? 0))
+          - (respObj.truncation_penalty ?? 0)
         ).toFixed(3),
         comment: s.comment || '',
       });
@@ -190,6 +239,8 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
     verdict: judge?.verdict || null,
     reformulation_divergence: judge?.reformulation_divergence ?? null,
     response_divergence: judge?.response_divergence ?? null,
+    skippedRoutes,                      // mission ROUTE_SPECIALIZATION
+    detectedStructures,
     latency_ms: dt,
   };
 }
@@ -269,6 +320,12 @@ export function renderComparison(result) {
     const grade = d.argumented_grade_20;
     const gradeStr = grade != null ? grade.toFixed(1) : '—';
     const gCls = gradeClass(grade);
+    const truncBadge = d.truncated
+      ? `<div class="sup-trunc-warn">⚠ Réponse tronquée détectée (${d.truncation_penalty.toFixed(2)} pénalité) — ${d.truncation_reasons?.join(', ') || 'fin abrupte'}</div>`
+      : '';
+    const fitBadge = (d.domain_fitness != null && d.domain_fitness < 0.6)
+      ? `<div class="sup-fit-warn">⚠ Domain fitness faible (${d.domain_fitness}) — route possiblement hors spécialisation</div>`
+      : '';
     return `<div class="sup-winner-xl ${gCls}">
       <div class="sup-winner-xl-head">
         <span class="sup-winner-xl-pos">#1</span>
@@ -276,6 +333,8 @@ export function renderComparison(result) {
         <span class="sup-winner-xl-grade ${gCls}">${gradeStr}<small>/20</small></span>
       </div>
       <div class="sup-winner-xl-summary">${escHtml(humanSummary(d))}</div>
+      ${truncBadge}
+      ${fitBadge}
     </div>`;
   })() : '';
 
@@ -327,9 +386,21 @@ export function renderComparison(result) {
       </div>
     </details>`;
 
-  // Bloc final ranking : XL winner + autres compacts + accordéon détails
+  // Bandeau "Routes skippées" — mission ROUTE_SPECIALIZATION
+  const skippedBanner = (result.skippedRoutes && result.skippedRoutes.length > 0)
+    ? `<div class="sup-skipped-banner">
+        <strong>⊘ Routes ZORAN skippées hors-domaine (${result.skippedRoutes.length}) :</strong>
+        ${result.skippedRoutes.map(s =>
+          `<span class="sup-skipped-chip" title="${escHtml(s.profile?.label_domains_forts || '')}">${escHtml(s.label)} (fitness ${s.domain_fitness})</span>`
+        ).join(' ')}
+        <div class="sup-skipped-note">économie API + bruit benchmark évité</div>
+      </div>`
+    : '';
+
+  // Bloc final ranking : skipped + XL winner + autres compacts + accordéon
   const rankingBlock = `
     <div class="sup-ranking-section">
+      ${skippedBanner}
       ${winnerCardXL}
       ${otherRankings ? `<div class="sup-ranking-others">${otherRankings}</div>` : ''}
       ${argumentedDetails}

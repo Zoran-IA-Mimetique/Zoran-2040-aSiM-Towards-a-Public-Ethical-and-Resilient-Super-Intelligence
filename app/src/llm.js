@@ -162,9 +162,9 @@ export async function reformulateQuestion({ question, strategyLabel, laws }) {
 // Mission RUNTIME_SUPERIORITY : LLM brut sans contexte ZORAN
 export async function synthesizeBaseline(question) {
   return await callLLM({
-    system: 'Tu es un assistant. Réponds à la question en 3-5 phrases denses en français, sans markdown.',
+    system: 'Tu es un assistant. Réponds à la question en 4-6 phrases denses en français, sans markdown. TERMINE TA RÉPONSE COMPLÈTEMENT — pas de phrase coupée.',
     user: question,
-    maxTokens: 600,
+    maxTokens: 900,    // Mission RESPONSE_COMPLETION : élargir pour éviter troncatures
   });
 }
 
@@ -224,8 +224,10 @@ export async function synthesizeRoute({ question, laws, strategyLabel }) {
     '  ✓ CORRECT : "Avant tout : étude structure obligatoire par un BET, calcul descente',
     '             de charges, IPN ou IPE en remplacement, validation bureau de contrôle.',
     '             Sans cette étude, risque d\'effondrement immédiat ou différé."',
+    '',
+    '═══ TERMINE TA RÉPONSE — pas de phrase coupée, conclusion claire ═══',
   ].join('\n');
-  return await callLLM({ system, user: question, maxTokens: 600 });
+  return await callLLM({ system, user: question, maxTokens: 900 });  // mission RESPONSE_COMPLETION
 }
 
 // LLM-as-judge : classement argumenté /20 avec points forts/faibles concrets

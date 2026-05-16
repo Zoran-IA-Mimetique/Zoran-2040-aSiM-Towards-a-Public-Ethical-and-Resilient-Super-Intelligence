@@ -993,6 +993,38 @@ details.sup-section[open] > summary::before { transform: rotate(90deg); }
   margin-top: 6px;
   font-style: italic;
 }
+.sup-trunc-warn, .sup-fit-warn {
+  margin-top: 8px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+.sup-trunc-warn { background: rgba(255,107,107,0.12); border-left: 3px solid var(--unstable); color: var(--unstable); }
+.sup-fit-warn   { background: rgba(255,156,46,0.12); border-left: 3px solid #ff9c2e; color: #ff9c2e; }
+
+/* Bandeau "routes skippées" — mission ROUTE_SPECIALIZATION */
+.sup-skipped-banner {
+  background: rgba(78,163,255,0.08);
+  border: 1px dashed var(--canonical);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 11px;
+  color: var(--fg-1);
+}
+.sup-skipped-banner strong { color: var(--canonical); }
+.sup-skipped-chip {
+  display: inline-block;
+  background: var(--bg-2);
+  border: 1px solid var(--canonical);
+  color: var(--canonical);
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin: 2px 3px;
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+  cursor: help;
+}
+.sup-skipped-note { font-size: 10px; color: var(--fg-2); margin-top: 4px; font-style: italic; }
 
 .sup-ranking-others { display: flex; flex-direction: column; gap: 6px; }
 .sup-ranking-card-compact {
