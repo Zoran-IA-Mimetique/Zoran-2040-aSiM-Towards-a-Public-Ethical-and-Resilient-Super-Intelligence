@@ -131,22 +131,35 @@ try {
 // Take a screenshot WITH panel open (selected GHUC-001) BEFORE Esc test
 await page.locator('#index li[data-id="GHUC-001"]').first().click();
 await page.waitForTimeout(600);
+// Scroll the detail panel down to expose distributed + temporal sections
+await page.evaluate(() => {
+  const body = document.getElementById('detail-body');
+  if (body) body.scrollTop = body.scrollHeight / 2;
+});
+await page.waitForTimeout(200);
 await page.screenshot({ path: 'app/preview-live.png', fullPage: false });
 
 // Verify the Superior Laws section is populated AND the badge appears
 const supSectionCount = await page.locator('#superior-laws li').count();
 const supBadgeVisible = await page.locator('.z-superior-badge').count();
 const supSectionLabel = await page.locator('.frames-label:has-text("Probability")').count();
+const tempSectionCount = await page.locator('#temporal-laws li').count();
+const tempPanelLabel = await page.locator('.frames-label:has-text("Pression cohér")').count();
+const distPanelLabel = await page.locator('.frames-label:has-text("Validation")').count();
 console.log(`\n  Superior Laws sidebar : ${supSectionCount} items`);
 console.log(`  ★ SUPÉRIEURE badge   : ${supBadgeVisible > 0 ? 'visible' : 'absent'}`);
 console.log(`  Probability section  : ${supSectionLabel > 0 ? 'présente' : 'absente'}`);
+console.log(`  Temporal sidebar     : ${tempSectionCount} items`);
+console.log(`  Pression cohérence   : ${tempPanelLabel > 0 ? 'présente' : 'absente'}`);
+console.log(`  Validation distrib.  : ${distPanelLabel > 0 ? 'présente' : 'absente'}`);
 
 // Second screenshot — sidebar visible (panel closed)
 await page.keyboard.press('Escape');
 await page.waitForTimeout(300);
-// Scroll sidebar to the Superior Laws section
-const supHeader = await page.locator('h3:has-text("Lois supérieures")').first();
-await supHeader.scrollIntoViewIfNeeded({ timeout: 2000 }).catch(() => {});
+// Scroll sidebar to expose the Temporal Selection section
+const tempHeader = await page.locator('h3:has-text("Sélection temporelle")').first();
+await tempHeader.scrollIntoViewIfNeeded({ timeout: 2000 }).catch(() => {});
+await page.waitForTimeout(200);
 await page.screenshot({ path: 'app/preview-sidebar.png', fullPage: false });
 
 // Test Esc closes panel

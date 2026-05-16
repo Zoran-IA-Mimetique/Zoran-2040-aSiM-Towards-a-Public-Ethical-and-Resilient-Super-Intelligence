@@ -166,6 +166,97 @@ function superiorBlock(node) {
   </section>`;
 }
 
+function distributedBlock(node) {
+  if (node.distributed_validation_score == null) return '';
+  const dvs = node.distributed_validation_score;
+  const gss = node.graph_survival_score ?? 0;
+  const cr = node.composition_resilience ?? 0;
+  const cgs = node.cross_graph_stability ?? 0;
+  const hc = node.hierarchical_confidence ?? 0;
+  const confLabel = hc >= 0.70 ? '<span style="color:var(--accent)">forte</span>' :
+                    hc >= 0.50 ? '<span style="color:#3ad17a">modérée</span>' :
+                    '<span style="color:var(--fg-2)">faible</span>';
+  return `<section>
+    <h4>Validation distribuée (graphe entier)</h4>
+    <div class="frames">
+      <div class="frames-row"><span class="frames-glyph">⇄</span>
+        <span class="frames-label">Validation</span>
+        <span class="frames-content"><strong>${dvs.toFixed(3)}</strong> · compatibilités voisinage</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">▲</span>
+        <span class="frames-label">Survie graphe</span>
+        <span class="frames-content"><strong>${gss.toFixed(3)}</strong> · impact si retrait</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⊙</span>
+        <span class="frames-label">Résilience comp.</span>
+        <span class="frames-content"><strong>${cr.toFixed(3)}</strong> · stabilité compositions</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⊕</span>
+        <span class="frames-label">Stabilité cross-G</span>
+        <span class="frames-content"><strong>${cgs.toFixed(3)}</strong> · à travers familles</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">★</span>
+        <span class="frames-label">Confiance hiér.</span>
+        <span class="frames-content"><strong>${hc.toFixed(3)}</strong> · consensus ${confLabel}</span>
+      </div>
+    </div>
+  </section>`;
+}
+
+function temporalBlock(node) {
+  if (node.temporal_stability == null) return '';
+  const ts = node.temporal_stability;
+  const pr = node.perturbation_resistance ?? 0;
+  const ss = node.survival_score ?? 0;
+  const csp = node.cross_scale_persistence ?? 0;
+  const mc = node.maintenance_cost ?? 0;
+  const cp = node.collapse_probability ?? 0;
+  const sps = node.selection_pressure_score ?? 0;
+  const cps = node.coherence_pressure_score ?? 0;
+  const dsr = node.dynamic_selection_rank ?? null;
+  const dsrBadge = dsr !== null && dsr <= 25
+    ? `<span style="color:var(--accent);font-weight:700">rang #${dsr} · top 25</span>`
+    : dsr !== null ? `<span style="color:var(--fg-2)">rang #${dsr}</span>` : '';
+  const collapseColor = cp <= 0.30 ? '#3ad17a' : cp <= 0.60 ? 'var(--accent)' : 'var(--unstable)';
+  return `<section>
+    <h4>Sélection temporelle (dynamique réelle) ${dsrBadge}</h4>
+    <div class="frames">
+      <div class="frames-row"><span class="frames-glyph">⌚</span>
+        <span class="frames-label">Stabilité temp.</span>
+        <span class="frames-content"><strong>${ts.toFixed(3)}</strong></span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⨯</span>
+        <span class="frames-label">Résist. pertur.</span>
+        <span class="frames-content"><strong>${pr.toFixed(3)}</strong></span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">↯</span>
+        <span class="frames-label">Survie</span>
+        <span class="frames-content"><strong>${ss.toFixed(3)}</strong> · sous retrait dépendance</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⊞</span>
+        <span class="frames-label">Persistance</span>
+        <span class="frames-content"><strong>${csp.toFixed(3)}</strong> · multi-échelle</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">€</span>
+        <span class="frames-label">Coût maint.</span>
+        <span class="frames-content"><strong>${mc.toFixed(3)}</strong> · plus haut = moins coûteux</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⚠</span>
+        <span class="frames-label">P(collapse)</span>
+        <span class="frames-content"><strong style="color:${collapseColor}">${cp.toFixed(3)}</strong></span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">Π</span>
+        <span class="frames-label">Pression sél.</span>
+        <span class="frames-content"><strong>${sps.toFixed(3)}</strong></span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">▾</span>
+        <span class="frames-label">Pression cohér.</span>
+        <span class="frames-content"><strong>${cps.toFixed(3)}</strong> · ce que "le réel" sélectionne</span>
+      </div>
+    </div>
+  </section>`;
+}
+
 export function renderDetail(node, graph, onPick) {
   const detail = document.getElementById('detail');
   const body = document.getElementById('detail-body');
@@ -202,6 +293,8 @@ export function renderDetail(node, graph, onPick) {
     ${eqs ? `<section class="equations"><h4>Équations</h4>${eqs}</section>` : ''}
     ${ex  ? `<section><h4>Exemples</h4><ul class="examples">${ex}</ul></section>` : ''}
     ${superiorBlock(node)}
+    ${distributedBlock(node)}
+    ${temporalBlock(node)}
     ${familyInvariant}
     ${fractalityBlock(graph, node)}
     ${compositionsBlock(graph, node.id)}

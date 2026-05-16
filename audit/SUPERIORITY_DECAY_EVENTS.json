@@ -1,0 +1,37 @@
+{
+  "mission_id": "ZORAN_DISTRIBUTED_LAW_VALIDATION_ENGINE_20260515",
+  "timestamp": "2026-05-15T21:15:00+02:00",
+  "decay_events_count": 0,
+  "promotion_events_count": 4,
+  "decay_events": [],
+  "promotion_events": [
+    {
+      "id": "ULG-001",
+      "event": "promotion",
+      "reason": "dvs=0.587 hc=0.704",
+      "from": "candidate",
+      "to": "superior"
+    },
+    {
+      "id": "ULG-002",
+      "event": "promotion",
+      "reason": "dvs=0.733 hc=0.648",
+      "from": "candidate",
+      "to": "superior"
+    },
+    {
+      "id": "DVE-001",
+      "event": "promotion",
+      "reason": "dvs=0.515 hc=0.812",
+      "from": "candidate",
+      "to": "superior"
+    },
+    {
+      "id": "WP11-003",
+      "event": "promotion",
+      "reason": "dvs=0.769 hc=0.622",
+      "from": "candidate",
+      "to": "superior"
+    }
+  ]
+}

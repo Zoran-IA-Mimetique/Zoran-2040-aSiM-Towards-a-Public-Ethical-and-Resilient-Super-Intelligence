@@ -327,6 +327,32 @@ function buildSidebar() {
       }
     }
   }
+
+  // Section "Sélection temporelle" — top 25 par dynamic_selection_rank
+  const tempUl = $('#temporal-laws');
+  if (tempUl) {
+    tempUl.innerHTML = '';
+    const tempLaws = state.graph.nodes
+      .filter(n => n.dynamic_selection_rank != null)
+      .sort((a, b) => (a.dynamic_selection_rank ?? 9999) - (b.dynamic_selection_rank ?? 9999))
+      .slice(0, 25);
+    if (tempLaws.length === 0) {
+      tempUl.innerHTML = '<li style="color:var(--fg-2)">non calculée</li>';
+    } else {
+      for (const n of tempLaws) {
+        const li = document.createElement('li');
+        li.dataset.id = n.id;
+        const cps = (n.coherence_pressure_score ?? 0).toFixed(2);
+        const rank = n.dynamic_selection_rank;
+        li.innerHTML = `<span class="swatch" style="background:${n.color}"></span>
+          <span style="font-size:9px;color:var(--fg-2);margin-right:4px">#${rank}</span>
+          ${n.id}<span class="prob">${cps}</span>`;
+        li.title = `${n.title}\n\nRank dynamique: #${rank}\nCoherence pressure: ${cps}`;
+        li.addEventListener('click', () => selectNode(n.id, true));
+        tempUl.appendChild(li);
+      }
+    }
+  }
 }
 
 // ───────────────────────── selection / nav ─────────────────────
