@@ -1,0 +1,21 @@
+category,baseline,frugale,anti_hallucination,structurelle,runtime_rapide,temporal_survival,propagation_forte
+Ambiguës,2,1,0,0,0,0,0
+Auditabilité,1,0,1,0,0,0,0
+BTP structurel,0,2,1,0,1,0,0
+Causalité,0,1,0,1,0,0,0
+Compression/précision,1,0,1,0,0,0,0
+Contradictions réglementaires,1,1,1,0,0,0,0
+Décision incertitude,0,1,0,0,2,0,0
+Hallucination trap,0,1,0,0,1,0,0
+Hors distribution,2,0,0,0,0,0,0
+IA robustesse,1,1,0,0,0,0,0
+Juridique contradictoire,2,0,0,0,0,0,0
+Long-context,1,1,0,0,0,0,0
+Multi-objectifs,1,1,0,0,0,0,0
+Médecine ambiguë,0,0,1,1,2,0,0
+Pathologies lentes,0,1,0,0,1,0,1
+Physique théorique,1,0,1,1,0,0,0
+Propagation contraintes,0,1,0,0,0,0,1
+Systèmes dynamiques,0,1,1,0,0,0,0
+Théories émergentes,2,0,0,0,0,0,0
+Épistémologie,2,1,0,0,0,0,0

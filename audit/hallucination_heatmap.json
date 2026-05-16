@@ -1,0 +1,182 @@
+{
+  "BTP structurel": {
+    "baseline": 0.2,
+    "frugale": 0.163,
+    "anti_hallucination": 0.198,
+    "structurelle": 0.123,
+    "runtime_rapide": 0.165,
+    "temporal_survival": 0.173,
+    "propagation_forte": 0.157
+  },
+  "Pathologies lentes": {
+    "baseline": 0.2,
+    "frugale": 0.164,
+    "anti_hallucination": 0.209,
+    "structurelle": 0.153,
+    "runtime_rapide": 0.16,
+    "temporal_survival": 0.164,
+    "propagation_forte": 0.153
+  },
+  "Contradictions réglementaires": {
+    "baseline": 0.2,
+    "frugale": 0.183,
+    "anti_hallucination": 0.18,
+    "structurelle": 0.163,
+    "runtime_rapide": 0.197,
+    "temporal_survival": 0.197,
+    "propagation_forte": 0.197
+  },
+  "Physique théorique": {
+    "baseline": 0.2,
+    "frugale": 0.213,
+    "anti_hallucination": 0.15,
+    "structurelle": 0.133,
+    "runtime_rapide": 0.213,
+    "temporal_survival": 0.2,
+    "propagation_forte": 0.183
+  },
+  "Épistémologie": {
+    "baseline": 0.2,
+    "frugale": 0.2,
+    "anti_hallucination": 0.2,
+    "structurelle": 0.167,
+    "runtime_rapide": 0.2,
+    "temporal_survival": 0.2,
+    "propagation_forte": 0.2
+  },
+  "Médecine ambiguë": {
+    "baseline": 0.2,
+    "frugale": 0.181,
+    "anti_hallucination": 0.222,
+    "structurelle": 0.156,
+    "runtime_rapide": 0.17,
+    "temporal_survival": 0.194,
+    "propagation_forte": 0.15
+  },
+  "Décision incertitude": {
+    "baseline": 0.2,
+    "frugale": 0.183,
+    "anti_hallucination": 0.213,
+    "structurelle": 0.13,
+    "runtime_rapide": 0.19,
+    "temporal_survival": 0.13,
+    "propagation_forte": 0.13
+  },
+  "Causalité": {
+    "baseline": 0.2,
+    "frugale": 0.193,
+    "anti_hallucination": 0.214,
+    "structurelle": 0.117,
+    "runtime_rapide": 0.22,
+    "temporal_survival": 0.197,
+    "propagation_forte": 0.13
+  },
+  "Systèmes dynamiques": {
+    "baseline": 0.2,
+    "frugale": 0.1,
+    "structurelle": 0.17,
+    "runtime_rapide": 0.1,
+    "anti_hallucination": 0.2,
+    "temporal_survival": 0.2,
+    "propagation_forte": 0.1
+  },
+  "Juridique contradictoire": {
+    "baseline": 0.2,
+    "frugale": 0.2,
+    "anti_hallucination": 0.2,
+    "structurelle": 0.2,
+    "runtime_rapide": 0.2,
+    "temporal_survival": 0.2,
+    "propagation_forte": 0.2
+  },
+  "IA robustesse": {
+    "baseline": 0.2,
+    "anti_hallucination": 0.2,
+    "structurelle": 0.15,
+    "temporal_survival": 0.2,
+    "propagation_forte": 0.15,
+    "frugale": 0.2,
+    "runtime_rapide": 0.2
+  },
+  "Long-context": {
+    "baseline": 0.2,
+    "frugale": 0.2,
+    "anti_hallucination": 0.2,
+    "structurelle": 0.15,
+    "runtime_rapide": 0.2,
+    "temporal_survival": 0.2,
+    "propagation_forte": 0.15
+  },
+  "Hallucination trap": {
+    "baseline": 0.3,
+    "frugale": 0.15,
+    "anti_hallucination": 0.2,
+    "structurelle": 0.2,
+    "runtime_rapide": 0.15,
+    "temporal_survival": 0.2,
+    "propagation_forte": 0.2
+  },
+  "Ambiguës": {
+    "baseline": 0.2,
+    "frugale": 0.2,
+    "anti_hallucination": 0.2,
+    "structurelle": 0.167,
+    "runtime_rapide": 0.2,
+    "temporal_survival": 0.2,
+    "propagation_forte": 0.167
+  },
+  "Compression/précision": {
+    "baseline": 0.2,
+    "frugale": 0.15,
+    "structurelle": 0.2,
+    "runtime_rapide": 0.15,
+    "anti_hallucination": 0.2,
+    "temporal_survival": 0.2,
+    "propagation_forte": 0.2
+  },
+  "Hors distribution": {
+    "baseline": 0.2,
+    "frugale": 0.2,
+    "anti_hallucination": 0.2,
+    "structurelle": 0.2,
+    "runtime_rapide": 0.2,
+    "temporal_survival": 0.2,
+    "propagation_forte": 0.2
+  },
+  "Théories émergentes": {
+    "baseline": 0.2,
+    "frugale": 0.2,
+    "anti_hallucination": 0.2,
+    "structurelle": 0.2,
+    "runtime_rapide": 0.2,
+    "temporal_survival": 0.2,
+    "propagation_forte": 0.2
+  },
+  "Propagation contraintes": {
+    "baseline": 0.2,
+    "frugale": 0.195,
+    "anti_hallucination": 0.21,
+    "structurelle": 0.135,
+    "runtime_rapide": 0.205,
+    "temporal_survival": 0.16,
+    "propagation_forte": 0.135
+  },
+  "Auditabilité": {
+    "baseline": 0.2,
+    "frugale": 0.2,
+    "anti_hallucination": 0.15,
+    "structurelle": 0.2,
+    "runtime_rapide": 0.2,
+    "temporal_survival": 0.2,
+    "propagation_forte": 0.2
+  },
+  "Multi-objectifs": {
+    "baseline": 0.2,
+    "frugale": 0.15,
+    "anti_hallucination": 0.15,
+    "structurelle": 0.2,
+    "runtime_rapide": 0.2,
+    "temporal_survival": 0.2,
+    "propagation_forte": 0.2
+  }
+}

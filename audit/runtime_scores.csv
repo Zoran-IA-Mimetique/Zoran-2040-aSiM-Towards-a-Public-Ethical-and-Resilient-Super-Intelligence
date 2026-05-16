@@ -1,0 +1,351 @@
+prompt_id,category,candidate,grade_20,domain_fitness,precision,hallucination,noise,coherence,actionability_score,practical_relevance,compression_quality,jargon_density,concrete_runtime_alignment,terrain_alignment,skipped
+BTP-01,BTP structurel,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+BTP-01,BTP structurel,frugale,18.3,0.75,0.825,0.15,0.15,0.875,0.875,0.725,0.875,0.0,0.688,0.6,False
+BTP-01,BTP structurel,anti_hallucination,15.6,0.525,0.713,0.195,0.15,0.763,0.663,0.523,0.613,0.027,0.496,0.51,False
+BTP-01,BTP structurel,structurelle,15.8,0.65,0.775,0.17,0.35,0.825,0.675,0.635,0.675,0.185,0.603,0.56,False
+BTP-01,BTP structurel,runtime_rapide,16.4,0.525,0.713,0.195,0.15,0.763,0.813,0.523,0.763,0.0,0.496,0.51,False
+BTP-01,BTP structurel,temporal_survival,16.1,0.65,0.775,0.17,0.35,0.825,0.725,0.635,0.675,0.115,0.603,0.56,False
+BTP-01,BTP structurel,propagation_forte,15.9,0.65,0.775,0.17,0.35,0.825,0.675,0.635,0.675,0.135,0.603,0.56,False
+BTP-02,BTP structurel,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+BTP-02,BTP structurel,frugale,14.1,0.3,0.6,0.24,0.15,0.65,0.65,0.32,0.65,0.02,0.305,0.42,False
+BTP-02,BTP structurel,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+BTP-02,BTP structurel,structurelle,19.1,1.0,0.95,0.1,0.35,1.0,0.85,0.95,0.85,0.15,0.9,0.7,False
+BTP-02,BTP structurel,runtime_rapide,,0.1,0.5,0.28,0.15,0.55,0.6,0.14,0.55,0.04,0.135,0.34,True
+BTP-02,BTP structurel,temporal_survival,17.1,0.75,0.825,0.15,0.35,0.875,0.775,0.725,0.725,0.105,0.688,0.6,False
+BTP-02,BTP structurel,propagation_forte,19.7,1.0,0.95,0.1,0.15,1.0,0.85,0.95,0.85,0.1,0.9,0.7,False
+BTP-03,BTP structurel,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+BTP-03,BTP structurel,frugale,,0.1,0.5,0.28,0.15,0.55,0.55,0.14,0.55,0.04,0.135,0.34,True
+BTP-03,BTP structurel,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+BTP-03,BTP structurel,structurelle,19.1,1.0,0.95,0.1,0.35,1.0,0.85,0.95,0.85,0.15,0.9,0.7,False
+BTP-03,BTP structurel,runtime_rapide,16.1,0.5,0.7,0.2,0.15,0.75,0.8,0.5,0.75,0.0,0.475,0.5,False
+BTP-03,BTP structurel,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+BTP-03,BTP structurel,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+PAT-01,Pathologies lentes,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+PAT-01,Pathologies lentes,frugale,16.3,0.533,0.717,0.193,0.15,0.767,0.767,0.53,0.767,0.0,0.503,0.513,False
+PAT-01,Pathologies lentes,anti_hallucination,14.1,0.367,0.633,0.227,0.15,0.683,0.583,0.38,0.533,0.043,0.362,0.447,False
+PAT-01,Pathologies lentes,structurelle,16.2,0.7,0.8,0.16,0.35,0.85,0.7,0.68,0.7,0.18,0.645,0.58,False
+PAT-01,Pathologies lentes,runtime_rapide,15.2,0.4,0.65,0.22,0.15,0.7,0.75,0.41,0.7,0.01,0.39,0.46,False
+PAT-01,Pathologies lentes,temporal_survival,15.0,0.533,0.717,0.193,0.35,0.767,0.667,0.53,0.617,0.127,0.503,0.513,False
+PAT-01,Pathologies lentes,propagation_forte,16.4,0.7,0.8,0.16,0.35,0.85,0.7,0.68,0.7,0.13,0.645,0.58,False
+PAT-02,Pathologies lentes,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+PAT-02,Pathologies lentes,frugale,16.0,0.5,0.7,0.2,0.15,0.75,0.75,0.5,0.75,0.0,0.475,0.5,False
+PAT-02,Pathologies lentes,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+PAT-02,Pathologies lentes,structurelle,19.1,1.0,0.95,0.1,0.35,1.0,0.85,0.95,0.85,0.15,0.9,0.7,False
+PAT-02,Pathologies lentes,runtime_rapide,,0.1,0.5,0.28,0.15,0.55,0.6,0.14,0.55,0.04,0.135,0.34,True
+PAT-02,Pathologies lentes,temporal_survival,19.9,1.0,0.95,0.1,0.15,1.0,0.9,0.95,0.85,0.08,0.9,0.7,False
+PAT-02,Pathologies lentes,propagation_forte,19.7,1.0,0.95,0.1,0.15,1.0,0.85,0.95,0.85,0.1,0.9,0.7,False
+PAT-03,Pathologies lentes,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+PAT-03,Pathologies lentes,frugale,20.0,1.0,0.95,0.1,0.15,1.0,1.0,0.95,1.0,0.0,0.9,0.7,False
+PAT-03,Pathologies lentes,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+PAT-03,Pathologies lentes,structurelle,14.3,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.2,0.475,0.5,False
+PAT-03,Pathologies lentes,runtime_rapide,20.0,1.0,0.95,0.1,0.15,1.0,1.0,0.95,1.0,0.0,0.9,0.7,False
+PAT-03,Pathologies lentes,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+PAT-03,Pathologies lentes,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+REG-01,Contradictions réglementaires,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+REG-01,Contradictions réglementaires,frugale,18.3,0.75,0.825,0.15,0.15,0.875,0.875,0.725,0.875,0.0,0.688,0.6,False
+REG-01,Contradictions réglementaires,anti_hallucination,13.4,0.3,0.6,0.24,0.15,0.65,0.55,0.32,0.5,0.05,0.305,0.42,False
+REG-01,Contradictions réglementaires,structurelle,14.8,0.55,0.725,0.19,0.35,0.775,0.625,0.545,0.625,0.195,0.518,0.52,False
+REG-01,Contradictions réglementaires,runtime_rapide,16.6,0.55,0.725,0.19,0.15,0.775,0.825,0.545,0.775,0.0,0.518,0.52,False
+REG-01,Contradictions réglementaires,temporal_survival,15.2,0.55,0.725,0.19,0.35,0.775,0.675,0.545,0.625,0.125,0.518,0.52,False
+REG-01,Contradictions réglementaires,propagation_forte,14.9,0.55,0.725,0.19,0.35,0.775,0.625,0.545,0.625,0.145,0.518,0.52,False
+REG-02,Contradictions réglementaires,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+REG-02,Contradictions réglementaires,frugale,16.0,0.5,0.7,0.2,0.15,0.75,0.75,0.5,0.75,0.0,0.475,0.5,False
+REG-02,Contradictions réglementaires,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+REG-02,Contradictions réglementaires,structurelle,14.3,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.2,0.475,0.5,False
+REG-02,Contradictions réglementaires,runtime_rapide,16.1,0.5,0.7,0.2,0.15,0.75,0.8,0.5,0.75,0.0,0.475,0.5,False
+REG-02,Contradictions réglementaires,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+REG-02,Contradictions réglementaires,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+REG-03,Contradictions réglementaires,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+REG-03,Contradictions réglementaires,frugale,16.0,0.5,0.7,0.2,0.15,0.75,0.75,0.5,0.75,0.0,0.475,0.5,False
+REG-03,Contradictions réglementaires,anti_hallucination,20.0,1.0,0.95,0.1,0.15,1.0,0.9,0.95,0.85,0.0,0.9,0.7,False
+REG-03,Contradictions réglementaires,structurelle,19.1,1.0,0.95,0.1,0.35,1.0,0.85,0.95,0.85,0.15,0.9,0.7,False
+REG-03,Contradictions réglementaires,runtime_rapide,16.1,0.5,0.7,0.2,0.15,0.75,0.8,0.5,0.75,0.0,0.475,0.5,False
+REG-03,Contradictions réglementaires,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+REG-03,Contradictions réglementaires,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+PHY-01,Physique théorique,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+PHY-01,Physique théorique,frugale,14.1,0.3,0.6,0.24,0.15,0.65,0.65,0.32,0.65,0.02,0.305,0.42,False
+PHY-01,Physique théorique,anti_hallucination,17.8,0.75,0.825,0.15,0.15,0.875,0.775,0.725,0.725,0.005,0.688,0.6,False
+PHY-01,Physique théorique,structurelle,19.1,1.0,0.95,0.1,0.35,1.0,0.85,0.95,0.85,0.15,0.9,0.7,False
+PHY-01,Physique théorique,runtime_rapide,14.2,0.3,0.6,0.24,0.15,0.65,0.7,0.32,0.65,0.02,0.305,0.42,False
+PHY-01,Physique théorique,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+PHY-01,Physique théorique,propagation_forte,16.9,0.75,0.825,0.15,0.35,0.875,0.725,0.725,0.725,0.125,0.688,0.6,False
+PHY-02,Physique théorique,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+PHY-02,Physique théorique,frugale,16.0,0.5,0.7,0.2,0.15,0.75,0.75,0.5,0.75,0.0,0.475,0.5,False
+PHY-02,Physique théorique,anti_hallucination,20.0,1.0,0.95,0.1,0.15,1.0,0.9,0.95,0.85,0.0,0.9,0.7,False
+PHY-02,Physique théorique,structurelle,19.1,1.0,0.95,0.1,0.35,1.0,0.85,0.95,0.85,0.15,0.9,0.7,False
+PHY-02,Physique théorique,runtime_rapide,16.1,0.5,0.7,0.2,0.15,0.75,0.8,0.5,0.75,0.0,0.475,0.5,False
+PHY-02,Physique théorique,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+PHY-02,Physique théorique,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+PHY-03,Physique théorique,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+PHY-03,Physique théorique,frugale,16.0,0.5,0.7,0.2,0.15,0.75,0.75,0.5,0.75,0.0,0.475,0.5,False
+PHY-03,Physique théorique,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+PHY-03,Physique théorique,structurelle,14.3,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.2,0.475,0.5,False
+PHY-03,Physique théorique,runtime_rapide,16.1,0.5,0.7,0.2,0.15,0.75,0.8,0.5,0.75,0.0,0.475,0.5,False
+PHY-03,Physique théorique,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+PHY-03,Physique théorique,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+EPI-01,Épistémologie,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+EPI-01,Épistémologie,frugale,16.0,0.5,0.7,0.2,0.15,0.75,0.75,0.5,0.75,0.0,0.475,0.5,False
+EPI-01,Épistémologie,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+EPI-01,Épistémologie,structurelle,14.3,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.2,0.475,0.5,False
+EPI-01,Épistémologie,runtime_rapide,16.1,0.5,0.7,0.2,0.15,0.75,0.8,0.5,0.75,0.0,0.475,0.5,False
+EPI-01,Épistémologie,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+EPI-01,Épistémologie,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+EPI-02,Épistémologie,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+EPI-02,Épistémologie,frugale,,0.1,0.5,0.28,0.15,0.55,0.55,0.14,0.55,0.04,0.135,0.34,True
+EPI-02,Épistémologie,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+EPI-02,Épistémologie,structurelle,19.1,1.0,0.95,0.1,0.35,1.0,0.85,0.95,0.85,0.15,0.9,0.7,False
+EPI-02,Épistémologie,runtime_rapide,16.1,0.5,0.7,0.2,0.15,0.75,0.8,0.5,0.75,0.0,0.475,0.5,False
+EPI-02,Épistémologie,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+EPI-02,Épistémologie,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+EPI-03,Épistémologie,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+EPI-03,Épistémologie,frugale,16.0,0.5,0.7,0.2,0.15,0.75,0.75,0.5,0.75,0.0,0.475,0.5,False
+EPI-03,Épistémologie,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+EPI-03,Épistémologie,structurelle,14.3,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.2,0.475,0.5,False
+EPI-03,Épistémologie,runtime_rapide,16.1,0.5,0.7,0.2,0.15,0.75,0.8,0.5,0.75,0.0,0.475,0.5,False
+EPI-03,Épistémologie,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+EPI-03,Épistémologie,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+MED-01,Médecine ambiguë,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+MED-01,Médecine ambiguë,frugale,16.3,0.533,0.717,0.193,0.15,0.767,0.767,0.53,0.767,0.0,0.503,0.513,False
+MED-01,Médecine ambiguë,anti_hallucination,14.1,0.367,0.633,0.227,0.15,0.683,0.583,0.38,0.533,0.043,0.362,0.447,False
+MED-01,Médecine ambiguë,structurelle,17.5,0.833,0.867,0.133,0.35,0.917,0.767,0.8,0.767,0.167,0.758,0.633,False
+MED-01,Médecine ambiguë,runtime_rapide,15.2,0.4,0.65,0.22,0.15,0.7,0.75,0.41,0.7,0.01,0.39,0.46,False
+MED-01,Médecine ambiguë,temporal_survival,15.0,0.533,0.717,0.193,0.35,0.767,0.667,0.53,0.617,0.127,0.503,0.513,False
+MED-01,Médecine ambiguë,propagation_forte,16.4,0.7,0.8,0.16,0.35,0.85,0.7,0.68,0.7,0.13,0.645,0.58,False
+MED-02,Médecine ambiguë,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+MED-02,Médecine ambiguë,frugale,14.1,0.3,0.6,0.24,0.15,0.65,0.65,0.32,0.65,0.02,0.305,0.42,False
+MED-02,Médecine ambiguë,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+MED-02,Médecine ambiguë,structurelle,19.1,1.0,0.95,0.1,0.35,1.0,0.85,0.95,0.85,0.15,0.9,0.7,False
+MED-02,Médecine ambiguë,runtime_rapide,,0.1,0.5,0.28,0.15,0.55,0.6,0.14,0.55,0.04,0.135,0.34,True
+MED-02,Médecine ambiguë,temporal_survival,17.1,0.75,0.825,0.15,0.35,0.875,0.775,0.725,0.725,0.105,0.688,0.6,False
+MED-02,Médecine ambiguë,propagation_forte,19.7,1.0,0.95,0.1,0.15,1.0,0.85,0.95,0.85,0.1,0.9,0.7,False
+MED-03,Médecine ambiguë,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+MED-03,Médecine ambiguë,frugale,20.0,1.0,0.95,0.1,0.15,1.0,1.0,0.95,1.0,0.0,0.9,0.7,False
+MED-03,Médecine ambiguë,anti_hallucination,,0.1,0.5,0.28,0.15,0.55,0.45,0.14,0.4,0.07,0.135,0.34,True
+MED-03,Médecine ambiguë,structurelle,14.3,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.2,0.475,0.5,False
+MED-03,Médecine ambiguë,runtime_rapide,20.0,1.0,0.95,0.1,0.15,1.0,1.0,0.95,1.0,0.0,0.9,0.7,False
+MED-03,Médecine ambiguë,temporal_survival,,0.1,0.5,0.28,0.35,0.55,0.45,0.14,0.4,0.17,0.135,0.34,True
+MED-03,Médecine ambiguë,propagation_forte,,0.1,0.5,0.28,0.35,0.55,0.4,0.14,0.4,0.19,0.135,0.34,True
+DEC-01,Décision incertitude,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+DEC-01,Décision incertitude,frugale,18.3,0.75,0.825,0.15,0.15,0.875,0.875,0.725,0.875,0.0,0.688,0.6,False
+DEC-01,Décision incertitude,anti_hallucination,13.4,0.3,0.6,0.24,0.15,0.65,0.55,0.32,0.5,0.05,0.305,0.42,False
+DEC-01,Décision incertitude,structurelle,14.8,0.55,0.725,0.19,0.35,0.775,0.625,0.545,0.625,0.195,0.518,0.52,False
+DEC-01,Décision incertitude,runtime_rapide,16.6,0.55,0.725,0.19,0.15,0.775,0.825,0.545,0.775,0.0,0.518,0.52,False
+DEC-01,Décision incertitude,temporal_survival,15.2,0.55,0.725,0.19,0.35,0.775,0.675,0.545,0.625,0.125,0.518,0.52,False
+DEC-01,Décision incertitude,propagation_forte,14.9,0.55,0.725,0.19,0.35,0.775,0.625,0.545,0.625,0.145,0.518,0.52,False
+DEC-02,Décision incertitude,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+DEC-02,Décision incertitude,frugale,16.0,0.5,0.7,0.2,0.15,0.75,0.75,0.5,0.75,0.0,0.475,0.5,False
+DEC-02,Décision incertitude,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+DEC-02,Décision incertitude,structurelle,19.1,1.0,0.95,0.1,0.35,1.0,0.85,0.95,0.85,0.15,0.9,0.7,False
+DEC-02,Décision incertitude,runtime_rapide,,0.1,0.5,0.28,0.15,0.55,0.6,0.14,0.55,0.04,0.135,0.34,True
+DEC-02,Décision incertitude,temporal_survival,19.9,1.0,0.95,0.1,0.15,1.0,0.9,0.95,0.85,0.08,0.9,0.7,False
+DEC-02,Décision incertitude,propagation_forte,19.7,1.0,0.95,0.1,0.15,1.0,0.85,0.95,0.85,0.1,0.9,0.7,False
+DEC-03,Décision incertitude,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+DEC-03,Décision incertitude,frugale,16.0,0.5,0.7,0.2,0.15,0.75,0.75,0.5,0.75,0.0,0.475,0.5,False
+DEC-03,Décision incertitude,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+DEC-03,Décision incertitude,structurelle,19.1,1.0,0.95,0.1,0.35,1.0,0.85,0.95,0.85,0.15,0.9,0.7,False
+DEC-03,Décision incertitude,runtime_rapide,,0.1,0.5,0.28,0.15,0.55,0.6,0.14,0.55,0.04,0.135,0.34,True
+DEC-03,Décision incertitude,temporal_survival,19.9,1.0,0.95,0.1,0.15,1.0,0.9,0.95,0.85,0.08,0.9,0.7,False
+DEC-03,Décision incertitude,propagation_forte,19.7,1.0,0.95,0.1,0.15,1.0,0.85,0.95,0.85,0.1,0.9,0.7,False
+CAU-01,Causalité,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+CAU-01,Causalité,frugale,16.3,0.533,0.717,0.193,0.15,0.767,0.767,0.53,0.767,0.0,0.503,0.513,False
+CAU-01,Causalité,anti_hallucination,14.1,0.367,0.633,0.227,0.15,0.683,0.583,0.38,0.533,0.043,0.362,0.447,False
+CAU-01,Causalité,structurelle,17.5,0.833,0.867,0.133,0.35,0.917,0.767,0.8,0.767,0.167,0.758,0.633,False
+CAU-01,Causalité,runtime_rapide,15.2,0.4,0.65,0.22,0.15,0.7,0.75,0.41,0.7,0.01,0.39,0.46,False
+CAU-01,Causalité,temporal_survival,15.0,0.533,0.717,0.193,0.35,0.767,0.667,0.53,0.617,0.127,0.503,0.513,False
+CAU-01,Causalité,propagation_forte,16.4,0.7,0.8,0.16,0.35,0.85,0.7,0.68,0.7,0.13,0.645,0.58,False
+CAU-02,Causalité,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+CAU-02,Causalité,frugale,,0.1,0.5,0.28,0.15,0.55,0.55,0.14,0.55,0.04,0.135,0.34,True
+CAU-02,Causalité,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+CAU-02,Causalité,structurelle,19.1,1.0,0.95,0.1,0.35,1.0,0.85,0.95,0.85,0.15,0.9,0.7,False
+CAU-02,Causalité,runtime_rapide,,0.1,0.5,0.28,0.15,0.55,0.6,0.14,0.55,0.04,0.135,0.34,True
+CAU-02,Causalité,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+CAU-02,Causalité,propagation_forte,19.7,1.0,0.95,0.1,0.15,1.0,0.85,0.95,0.85,0.1,0.9,0.7,False
+SYS-01,Systèmes dynamiques,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+SYS-01,Systèmes dynamiques,frugale,20.0,1.0,0.95,0.1,0.15,1.0,1.0,0.95,1.0,0.0,0.9,0.7,False
+SYS-01,Systèmes dynamiques,anti_hallucination,,0.1,0.5,0.28,0.15,0.55,0.45,0.14,0.4,0.07,0.135,0.34,True
+SYS-01,Systèmes dynamiques,structurelle,12.4,0.3,0.6,0.24,0.35,0.65,0.5,0.32,0.5,0.22,0.305,0.42,False
+SYS-01,Systèmes dynamiques,runtime_rapide,20.0,1.0,0.95,0.1,0.15,1.0,1.0,0.95,1.0,0.0,0.9,0.7,False
+SYS-01,Systèmes dynamiques,temporal_survival,,0.1,0.5,0.28,0.35,0.55,0.45,0.14,0.4,0.17,0.135,0.34,True
+SYS-01,Systèmes dynamiques,propagation_forte,,0.1,0.5,0.28,0.35,0.55,0.4,0.14,0.4,0.19,0.135,0.34,True
+SYS-02,Systèmes dynamiques,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+SYS-02,Systèmes dynamiques,frugale,,0.1,0.5,0.28,0.15,0.55,0.55,0.14,0.55,0.04,0.135,0.34,True
+SYS-02,Systèmes dynamiques,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+SYS-02,Systèmes dynamiques,structurelle,19.1,1.0,0.95,0.1,0.35,1.0,0.85,0.95,0.85,0.15,0.9,0.7,False
+SYS-02,Systèmes dynamiques,runtime_rapide,,0.1,0.5,0.28,0.15,0.55,0.6,0.14,0.55,0.04,0.135,0.34,True
+SYS-02,Systèmes dynamiques,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+SYS-02,Systèmes dynamiques,propagation_forte,19.7,1.0,0.95,0.1,0.15,1.0,0.85,0.95,0.85,0.1,0.9,0.7,False
+JUR-01,Juridique contradictoire,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+JUR-01,Juridique contradictoire,frugale,16.0,0.5,0.7,0.2,0.15,0.75,0.75,0.5,0.75,0.0,0.475,0.5,False
+JUR-01,Juridique contradictoire,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+JUR-01,Juridique contradictoire,structurelle,14.3,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.2,0.475,0.5,False
+JUR-01,Juridique contradictoire,runtime_rapide,16.1,0.5,0.7,0.2,0.15,0.75,0.8,0.5,0.75,0.0,0.475,0.5,False
+JUR-01,Juridique contradictoire,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+JUR-01,Juridique contradictoire,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+JUR-02,Juridique contradictoire,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+JUR-02,Juridique contradictoire,frugale,16.0,0.5,0.7,0.2,0.15,0.75,0.75,0.5,0.75,0.0,0.475,0.5,False
+JUR-02,Juridique contradictoire,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+JUR-02,Juridique contradictoire,structurelle,14.3,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.2,0.475,0.5,False
+JUR-02,Juridique contradictoire,runtime_rapide,16.1,0.5,0.7,0.2,0.15,0.75,0.8,0.5,0.75,0.0,0.475,0.5,False
+JUR-02,Juridique contradictoire,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+JUR-02,Juridique contradictoire,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+IA-01,IA robustesse,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+IA-01,IA robustesse,frugale,,0.1,0.5,0.28,0.15,0.55,0.55,0.14,0.55,0.04,0.135,0.34,True
+IA-01,IA robustesse,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+IA-01,IA robustesse,structurelle,19.1,1.0,0.95,0.1,0.35,1.0,0.85,0.95,0.85,0.15,0.9,0.7,False
+IA-01,IA robustesse,runtime_rapide,,0.1,0.5,0.28,0.15,0.55,0.6,0.14,0.55,0.04,0.135,0.34,True
+IA-01,IA robustesse,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+IA-01,IA robustesse,propagation_forte,19.7,1.0,0.95,0.1,0.15,1.0,0.85,0.95,0.85,0.1,0.9,0.7,False
+IA-02,IA robustesse,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+IA-02,IA robustesse,frugale,16.0,0.5,0.7,0.2,0.15,0.75,0.75,0.5,0.75,0.0,0.475,0.5,False
+IA-02,IA robustesse,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+IA-02,IA robustesse,structurelle,14.3,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.2,0.475,0.5,False
+IA-02,IA robustesse,runtime_rapide,16.1,0.5,0.7,0.2,0.15,0.75,0.8,0.5,0.75,0.0,0.475,0.5,False
+IA-02,IA robustesse,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+IA-02,IA robustesse,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+LCR-01,Long-context,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+LCR-01,Long-context,frugale,16.0,0.5,0.7,0.2,0.15,0.75,0.75,0.5,0.75,0.0,0.475,0.5,False
+LCR-01,Long-context,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+LCR-01,Long-context,structurelle,14.3,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.2,0.475,0.5,False
+LCR-01,Long-context,runtime_rapide,16.1,0.5,0.7,0.2,0.15,0.75,0.8,0.5,0.75,0.0,0.475,0.5,False
+LCR-01,Long-context,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+LCR-01,Long-context,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+LCR-02,Long-context,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+LCR-02,Long-context,frugale,,0.1,0.5,0.28,0.15,0.55,0.55,0.14,0.55,0.04,0.135,0.34,True
+LCR-02,Long-context,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+LCR-02,Long-context,structurelle,19.1,1.0,0.95,0.1,0.35,1.0,0.85,0.95,0.85,0.15,0.9,0.7,False
+LCR-02,Long-context,runtime_rapide,,0.1,0.5,0.28,0.15,0.55,0.6,0.14,0.55,0.04,0.135,0.34,True
+LCR-02,Long-context,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+LCR-02,Long-context,propagation_forte,19.7,1.0,0.95,0.1,0.15,1.0,0.85,0.95,0.85,0.1,0.9,0.7,False
+HAL-01,Hallucination trap,baseline,15.9,1.0,0.75,0.30000000000000004,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+HAL-01,Hallucination trap,frugale,16.0,0.5,0.7,0.2,0.15,0.75,0.75,0.5,0.75,0.0,0.475,0.5,False
+HAL-01,Hallucination trap,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+HAL-01,Hallucination trap,structurelle,14.3,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.2,0.475,0.5,False
+HAL-01,Hallucination trap,runtime_rapide,16.1,0.5,0.7,0.2,0.15,0.75,0.8,0.5,0.75,0.0,0.475,0.5,False
+HAL-01,Hallucination trap,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+HAL-01,Hallucination trap,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+HAL-02,Hallucination trap,baseline,15.9,1.0,0.75,0.30000000000000004,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+HAL-02,Hallucination trap,frugale,20.0,1.0,0.95,0.1,0.15,1.0,1.0,0.95,1.0,0.0,0.9,0.7,False
+HAL-02,Hallucination trap,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+HAL-02,Hallucination trap,structurelle,14.3,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.2,0.475,0.5,False
+HAL-02,Hallucination trap,runtime_rapide,20.0,1.0,0.95,0.1,0.15,1.0,1.0,0.95,1.0,0.0,0.9,0.7,False
+HAL-02,Hallucination trap,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+HAL-02,Hallucination trap,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+AMB-01,Ambiguës,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+AMB-01,Ambiguës,frugale,16.0,0.5,0.7,0.2,0.15,0.75,0.75,0.5,0.75,0.0,0.475,0.5,False
+AMB-01,Ambiguës,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+AMB-01,Ambiguës,structurelle,14.3,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.2,0.475,0.5,False
+AMB-01,Ambiguës,runtime_rapide,16.1,0.5,0.7,0.2,0.15,0.75,0.8,0.5,0.75,0.0,0.475,0.5,False
+AMB-01,Ambiguës,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+AMB-01,Ambiguës,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+AMB-02,Ambiguës,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+AMB-02,Ambiguës,frugale,,0.1,0.5,0.28,0.15,0.55,0.55,0.14,0.55,0.04,0.135,0.34,True
+AMB-02,Ambiguës,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+AMB-02,Ambiguës,structurelle,19.1,1.0,0.95,0.1,0.35,1.0,0.85,0.95,0.85,0.15,0.9,0.7,False
+AMB-02,Ambiguës,runtime_rapide,,0.1,0.5,0.28,0.15,0.55,0.6,0.14,0.55,0.04,0.135,0.34,True
+AMB-02,Ambiguës,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+AMB-02,Ambiguës,propagation_forte,19.7,1.0,0.95,0.1,0.15,1.0,0.85,0.95,0.85,0.1,0.9,0.7,False
+AMB-03,Ambiguës,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+AMB-03,Ambiguës,frugale,16.0,0.5,0.7,0.2,0.15,0.75,0.75,0.5,0.75,0.0,0.475,0.5,False
+AMB-03,Ambiguës,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+AMB-03,Ambiguës,structurelle,14.3,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.2,0.475,0.5,False
+AMB-03,Ambiguës,runtime_rapide,16.1,0.5,0.7,0.2,0.15,0.75,0.8,0.5,0.75,0.0,0.475,0.5,False
+AMB-03,Ambiguës,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+AMB-03,Ambiguës,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+COM-01,Compression/précision,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+COM-01,Compression/précision,frugale,20.0,1.0,0.95,0.1,0.15,1.0,1.0,0.95,1.0,0.0,0.9,0.7,False
+COM-01,Compression/précision,anti_hallucination,,0.1,0.5,0.28,0.15,0.55,0.45,0.14,0.4,0.07,0.135,0.34,True
+COM-01,Compression/précision,structurelle,14.3,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.2,0.475,0.5,False
+COM-01,Compression/précision,runtime_rapide,20.0,1.0,0.95,0.1,0.15,1.0,1.0,0.95,1.0,0.0,0.9,0.7,False
+COM-01,Compression/précision,temporal_survival,,0.1,0.5,0.28,0.35,0.55,0.45,0.14,0.4,0.17,0.135,0.34,True
+COM-01,Compression/précision,propagation_forte,,0.1,0.5,0.28,0.35,0.55,0.4,0.14,0.4,0.19,0.135,0.34,True
+COM-02,Compression/précision,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+COM-02,Compression/précision,frugale,16.0,0.5,0.7,0.2,0.15,0.75,0.75,0.5,0.75,0.0,0.475,0.5,False
+COM-02,Compression/précision,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+COM-02,Compression/précision,structurelle,14.3,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.2,0.475,0.5,False
+COM-02,Compression/précision,runtime_rapide,16.1,0.5,0.7,0.2,0.15,0.75,0.8,0.5,0.75,0.0,0.475,0.5,False
+COM-02,Compression/précision,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+COM-02,Compression/précision,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+OOD-01,Hors distribution,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+OOD-01,Hors distribution,frugale,16.0,0.5,0.7,0.2,0.15,0.75,0.75,0.5,0.75,0.0,0.475,0.5,False
+OOD-01,Hors distribution,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+OOD-01,Hors distribution,structurelle,14.3,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.2,0.475,0.5,False
+OOD-01,Hors distribution,runtime_rapide,16.1,0.5,0.7,0.2,0.15,0.75,0.8,0.5,0.75,0.0,0.475,0.5,False
+OOD-01,Hors distribution,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+OOD-01,Hors distribution,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+OOD-02,Hors distribution,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+OOD-02,Hors distribution,frugale,16.0,0.5,0.7,0.2,0.15,0.75,0.75,0.5,0.75,0.0,0.475,0.5,False
+OOD-02,Hors distribution,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+OOD-02,Hors distribution,structurelle,14.3,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.2,0.475,0.5,False
+OOD-02,Hors distribution,runtime_rapide,16.1,0.5,0.7,0.2,0.15,0.75,0.8,0.5,0.75,0.0,0.475,0.5,False
+OOD-02,Hors distribution,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+OOD-02,Hors distribution,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+EME-01,Théories émergentes,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+EME-01,Théories émergentes,frugale,16.0,0.5,0.7,0.2,0.15,0.75,0.75,0.5,0.75,0.0,0.475,0.5,False
+EME-01,Théories émergentes,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+EME-01,Théories émergentes,structurelle,14.3,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.2,0.475,0.5,False
+EME-01,Théories émergentes,runtime_rapide,16.1,0.5,0.7,0.2,0.15,0.75,0.8,0.5,0.75,0.0,0.475,0.5,False
+EME-01,Théories émergentes,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+EME-01,Théories émergentes,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+EME-02,Théories émergentes,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+EME-02,Théories émergentes,frugale,16.0,0.5,0.7,0.2,0.15,0.75,0.75,0.5,0.75,0.0,0.475,0.5,False
+EME-02,Théories émergentes,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+EME-02,Théories émergentes,structurelle,14.3,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.2,0.475,0.5,False
+EME-02,Théories émergentes,runtime_rapide,16.1,0.5,0.7,0.2,0.15,0.75,0.8,0.5,0.75,0.0,0.475,0.5,False
+EME-02,Théories émergentes,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+EME-02,Théories émergentes,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+PRO-01,Propagation contraintes,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+PRO-01,Propagation contraintes,frugale,18.3,0.75,0.825,0.15,0.15,0.875,0.875,0.725,0.875,0.0,0.688,0.6,False
+PRO-01,Propagation contraintes,anti_hallucination,14.4,0.4,0.65,0.22,0.15,0.7,0.6,0.41,0.55,0.04,0.39,0.46,False
+PRO-01,Propagation contraintes,structurelle,15.8,0.65,0.775,0.17,0.35,0.825,0.675,0.635,0.675,0.185,0.603,0.56,False
+PRO-01,Propagation contraintes,runtime_rapide,17.5,0.65,0.775,0.17,0.15,0.825,0.875,0.635,0.825,0.0,0.603,0.56,False
+PRO-01,Propagation contraintes,temporal_survival,16.1,0.65,0.775,0.17,0.35,0.825,0.725,0.635,0.675,0.115,0.603,0.56,False
+PRO-01,Propagation contraintes,propagation_forte,15.9,0.65,0.775,0.17,0.35,0.825,0.675,0.635,0.675,0.135,0.603,0.56,False
+PRO-02,Propagation contraintes,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+PRO-02,Propagation contraintes,frugale,14.1,0.3,0.6,0.24,0.15,0.65,0.65,0.32,0.65,0.02,0.305,0.42,False
+PRO-02,Propagation contraintes,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+PRO-02,Propagation contraintes,structurelle,19.1,1.0,0.95,0.1,0.35,1.0,0.85,0.95,0.85,0.15,0.9,0.7,False
+PRO-02,Propagation contraintes,runtime_rapide,14.2,0.3,0.6,0.24,0.15,0.65,0.7,0.32,0.65,0.02,0.305,0.42,False
+PRO-02,Propagation contraintes,temporal_survival,17.1,0.75,0.825,0.15,0.35,0.875,0.775,0.725,0.725,0.105,0.688,0.6,False
+PRO-02,Propagation contraintes,propagation_forte,19.7,1.0,0.95,0.1,0.15,1.0,0.85,0.95,0.85,0.1,0.9,0.7,False
+AUD-01,Auditabilité,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+AUD-01,Auditabilité,frugale,16.0,0.5,0.7,0.2,0.15,0.75,0.75,0.5,0.75,0.0,0.475,0.5,False
+AUD-01,Auditabilité,anti_hallucination,20.0,1.0,0.95,0.1,0.15,1.0,0.9,0.95,0.85,0.0,0.9,0.7,False
+AUD-01,Auditabilité,structurelle,14.3,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.2,0.475,0.5,False
+AUD-01,Auditabilité,runtime_rapide,16.1,0.5,0.7,0.2,0.15,0.75,0.8,0.5,0.75,0.0,0.475,0.5,False
+AUD-01,Auditabilité,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+AUD-01,Auditabilité,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+AUD-02,Auditabilité,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+AUD-02,Auditabilité,frugale,16.0,0.5,0.7,0.2,0.15,0.75,0.75,0.5,0.75,0.0,0.475,0.5,False
+AUD-02,Auditabilité,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+AUD-02,Auditabilité,structurelle,14.3,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.2,0.475,0.5,False
+AUD-02,Auditabilité,runtime_rapide,16.1,0.5,0.7,0.2,0.15,0.75,0.8,0.5,0.75,0.0,0.475,0.5,False
+AUD-02,Auditabilité,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+AUD-02,Auditabilité,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+CON-01,Multi-objectifs,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+CON-01,Multi-objectifs,frugale,20.0,1.0,0.95,0.1,0.15,1.0,1.0,0.95,1.0,0.0,0.9,0.7,False
+CON-01,Multi-objectifs,anti_hallucination,20.0,1.0,0.95,0.1,0.15,1.0,0.9,0.95,0.85,0.0,0.9,0.7,False
+CON-01,Multi-objectifs,structurelle,14.3,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.2,0.475,0.5,False
+CON-01,Multi-objectifs,runtime_rapide,16.1,0.5,0.7,0.2,0.15,0.75,0.8,0.5,0.75,0.0,0.475,0.5,False
+CON-01,Multi-objectifs,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+CON-01,Multi-objectifs,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+CON-02,Multi-objectifs,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+CON-02,Multi-objectifs,frugale,16.0,0.5,0.7,0.2,0.15,0.75,0.75,0.5,0.75,0.0,0.475,0.5,False
+CON-02,Multi-objectifs,anti_hallucination,15.4,0.5,0.7,0.2,0.15,0.75,0.65,0.5,0.6,0.03,0.475,0.5,False
+CON-02,Multi-objectifs,structurelle,14.3,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.2,0.475,0.5,False
+CON-02,Multi-objectifs,runtime_rapide,16.1,0.5,0.7,0.2,0.15,0.75,0.8,0.5,0.75,0.0,0.475,0.5,False
+CON-02,Multi-objectifs,temporal_survival,14.7,0.5,0.7,0.2,0.35,0.75,0.65,0.5,0.6,0.13,0.475,0.5,False
+CON-02,Multi-objectifs,propagation_forte,14.5,0.5,0.7,0.2,0.35,0.75,0.6,0.5,0.6,0.15,0.475,0.5,False
+BTP-04,BTP structurel,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+BTP-04,BTP structurel,frugale,20.0,1.0,0.95,0.1,0.15,1.0,1.0,0.95,1.0,0.0,0.9,0.7,False
+BTP-04,BTP structurel,anti_hallucination,,0.1,0.5,0.28,0.15,0.55,0.45,0.14,0.4,0.07,0.135,0.34,True
+BTP-04,BTP structurel,structurelle,,0.1,0.5,0.28,0.35,0.55,0.4,0.14,0.4,0.24,0.135,0.34,True
+BTP-04,BTP structurel,runtime_rapide,20.0,1.0,0.95,0.1,0.15,1.0,1.0,0.95,1.0,0.0,0.9,0.7,False
+BTP-04,BTP structurel,temporal_survival,,0.1,0.5,0.28,0.35,0.55,0.45,0.14,0.4,0.17,0.135,0.34,True
+BTP-04,BTP structurel,propagation_forte,,0.1,0.5,0.28,0.35,0.55,0.4,0.14,0.4,0.19,0.135,0.34,True
+MED-04,Médecine ambiguë,baseline,16.2,1.0,0.75,0.2,0.15,0.78,0.55,0.7,0.65,0.0,0.72,0.45,False
+MED-04,Médecine ambiguë,frugale,16.5,0.55,0.725,0.19,0.15,0.775,0.775,0.545,0.775,0.0,0.518,0.52,False
+MED-04,Médecine ambiguë,anti_hallucination,13.4,0.3,0.6,0.24,0.15,0.65,0.55,0.32,0.5,0.05,0.305,0.42,False
+MED-04,Médecine ambiguë,structurelle,14.8,0.55,0.725,0.19,0.35,0.775,0.625,0.545,0.625,0.195,0.518,0.52,False
+MED-04,Médecine ambiguë,runtime_rapide,16.6,0.55,0.725,0.19,0.15,0.775,0.825,0.545,0.775,0.0,0.518,0.52,False
+MED-04,Médecine ambiguë,temporal_survival,12.7,0.3,0.6,0.24,0.35,0.65,0.55,0.32,0.5,0.15,0.305,0.42,False
+MED-04,Médecine ambiguë,propagation_forte,14.9,0.55,0.725,0.19,0.35,0.775,0.625,0.545,0.625,0.145,0.518,0.52,False
