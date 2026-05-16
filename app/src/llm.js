@@ -11,13 +11,22 @@
 
 const KEY_STORAGE = 'zoran.anthropic.key';
 const MODEL_STORAGE = 'zoran.anthropic.model';
-const ECONOMY_STORAGE = 'zoran.economy.mode';   // ⚠ renommé (sémantique inversée)
+const ECONOMY_STORAGE = 'zoran.economy.mode';
+const MIGRATION_TAG = 'zoran.migration.v2_multi_default';
 const DEFAULT_MODEL = 'claude-sonnet-4-6';
 const API_URL = 'https://api.anthropic.com/v1/messages';
 
-// Auto-migration : si ancienne clé 'zoran.bench.enabled' présente, l'efface
-// (semantic flip : auparavant true = comparaison, maintenant true = économe)
-try { localStorage.removeItem('zoran.bench.enabled'); } catch (_) {}
+// MIGRATION v2 : force-reset economy mode pour tous les utilisateurs
+// (les versions précédentes pouvaient avoir laissé un état incohérent
+//  dans localStorage qui forçait le single-answer mode).
+try {
+  if (localStorage.getItem(MIGRATION_TAG) !== '1') {
+    localStorage.removeItem('zoran.bench.enabled');
+    localStorage.removeItem(ECONOMY_STORAGE);      // ← force défaut = multi-winner ON
+    localStorage.setItem(MIGRATION_TAG, '1');
+    console.log('[ZORAN] migration v2 appliquée : economy mode reset → multi-winner par défaut');
+  }
+} catch (_) {}
 
 // Renvoie true si l'utilisateur a coché "Mode économe" (1 seule réponse)
 // Par défaut false = comparaison multi-winner complète activée

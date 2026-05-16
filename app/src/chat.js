@@ -383,12 +383,13 @@ async function runSynthesis(result) {
   const node = window.state?.graph?.nodes?.find(n => n.id === ctx.law_id);
   if (!node) return;
 
-  // Mission MULTI_WINNER_REFORMULATION : par défaut, lance la comparaison
-  // 4 candidats (Claude brut + 3 ZORAN avec reformulations). Désactivable
-  // via "Mode économe" dans ⚙ pour passer en synthèse unique.
-  //
-  // Économe = checkbox cochée explicitement (defaut = comparaison complète)
-  const economeMode = getBenchmarkEnabled(); // checkbox réutilisée comme "mode économe"
+  // Mission MULTI_WINNER_REFORMULATION : TOUJOURS lancer la comparaison
+  // complète quand la clé API est présente (Claude brut + 3 ZORAN + juge).
+  // Le mode économe (1 seule réponse) reste accessible via décochage du toggle
+  // ET nécessite réglage explicite (state inverse au défaut).
+  const economeMode = getBenchmarkEnabled();
+  console.log('[ZORAN] runSynthesis — economeMode=', economeMode,
+              '· apiKey=', hasApiKey() ? 'present' : 'absent');
   if (!economeMode) {
     box.innerHTML = `
       <div class="llm-label">⚖ Comparaison runtime — CLAUDE brut + 3 routes ZORAN (≈7 appels API en parallèle…)</div>
