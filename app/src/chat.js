@@ -1,11 +1,18 @@
 // ZORAN — chat.js
 // Mission ZORAN_RUNTIME_COGNITIVE_PATH_COMPETITION_ENGINE_20260516
+import { synthesizeAnswer, hasApiKey, getApiKey, setApiKey, getModel, setModel } from './llm.js';
 //
 // Port browser de runtime_cognitive_path_competition_engine.py
 // Génère 6 routes cognitives concurrentes pour une question, score chacune,
 // élimine via Oracle, désigne le gagnant. Inclut 2 baselines pour comparaison.
 
 const K = 10;
+
+function esc(s) {
+  return String(s ?? '')
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
 
 function tokens(text) {
   if (!text) return new Set();
@@ -316,19 +323,37 @@ export function renderResults(result, onPickLaw) {
         ZORAN couvre : cohérence, propagation, runtime, frugalité, temporalité,
         bornage, hallucination, loi supérieure.
       </div>`
-    : `<div style="background:linear-gradient(135deg,rgba(255,68,68,0.18),rgba(255,107,107,0.05));
-                   border:1px solid #ff4444; color:#ffdddd;
-                   padding:16px 18px; border-radius:8px; margin-bottom:14px;
-                   font-size:14px; line-height:1.55">
-        <div style="font-size:16px;color:#ff4444;margin-bottom:6px"><strong>● Loi clignotante rouge</strong></div>
-        La réponse à ta question se lit directement sur l'étiquette de la loi
-        rouge qui clignote dans le graphe. <strong>Pique dessus</strong> pour
-        ouvrir le panneau détaillé : pourquoi cette loi a été retenue, ses
-        scores, ses parents/enfants, ses équations.
+    : '';
+
+  // Zone réponse LLM — toujours présente, état initial selon clé API
+  const llmInitial = hasApiKey()
+    ? `<div class="llm-answer-box loading" id="llm-answer-box">
+        <div class="llm-label">🧠 Réponse ZORAN — synthèse en cours…</div>
+        <div class="llm-body">Claude compose une réponse cohérente multi-cadres à partir de la loi retenue…</div>
+      </div>`
+    : `<div class="llm-answer-box error" id="llm-answer-box">
+        <div class="llm-label">⚠ Synthèse LLM désactivée</div>
+        <div class="llm-body">ZORAN a retenu la loi <strong>${esc(result.answerContext?.law_id || '—')}</strong>
+          ${result.answerContext ? `— <em>${esc(result.answerContext.law_title)}</em>` : ''} mais ne peut pas
+          composer une réponse en langage naturel sans clé API Claude.
+          <br><br><strong>Cliquez ⚙ dans la barre du chat pour configurer une clé Anthropic.</strong>
+          Sinon, lisez l'étiquette rouge flottante sur la loi clignotante (cadres + parents).
+        </div>
       </div>`;
 
+  const winnerCardBanner = result.answerContext
+    ? `<div style="background:linear-gradient(135deg,rgba(255,68,68,0.18),rgba(255,107,107,0.05));
+                   border:1px solid #ff4444; color:#ffdddd;
+                   padding:12px 16px; border-radius:8px; margin-bottom:14px;
+                   font-size:13px; line-height:1.55">
+        <div style="font-size:14px;color:#ff4444;margin-bottom:4px"><strong>● ${esc(result.answerContext.law_id)} — ${esc(result.answerContext.law_title)}</strong></div>
+        <span style="color:rgba(255,221,221,0.85)">Loi retenue runtime, clignote rouge dans le graphe. Pique dessus pour le détail.</span>
+      </div>`
+    : '';
+
   // Routes details en accordéon — repliés par défaut pour ne pas surcharger
-  body.innerHTML = `${offTopicBanner}<details style="margin-top:8px"><summary style="cursor:pointer;font-size:11px;color:var(--fg-2);text-transform:uppercase;letter-spacing:1px;padding:4px 0">
+  body.innerHTML = `${offTopicBanner}${winnerCardBanner}${llmInitial}
+  <details style="margin-top:8px"><summary style="cursor:pointer;font-size:11px;color:var(--fg-2);text-transform:uppercase;letter-spacing:1px;padding:4px 0">
     Détails compétition routes (${result.routes.length} générées · ${result.routes.filter(r => !r.eliminated).length} survivantes)
   </summary>
   <div style="margin-top:10px">
@@ -337,13 +362,88 @@ export function renderResults(result, onPickLaw) {
   ${blHtml}
   </div></details>`;
 
+  // Lancement async de la synthèse LLM si clé présente (et pas off-topic)
+  if (hasApiKey() && !result.offTopic && result.answerContext) {
+    runSynthesis(result);
+  }
+
   // Wire law-id clicks
   body.querySelectorAll('a[data-pick]').forEach(a => {
     a.addEventListener('click', () => onPickLaw(a.dataset.pick));
   });
 }
 
+async function runSynthesis(result) {
+  const box = document.getElementById('llm-answer-box');
+  if (!box) return;
+  const ctx = result.answerContext;
+  if (!ctx) return;
+  // Trouver le node depuis ctx + window.state
+  const node = window.state?.graph?.nodes?.find(n => n.id === ctx.law_id);
+  if (!node) return;
+  const t0 = performance.now();
+  const r = await synthesizeAnswer({
+    question: result.question,
+    node,
+    multiFrame: ctx.multiFrameAnswer,
+    parents: ctx.multiFrameAnswer?.parents || [],
+  });
+  const dt = Math.round(performance.now() - t0);
+  if (r.ok) {
+    box.classList.remove('loading');
+    box.classList.add('answered');
+    box.innerHTML = `
+      <div class="llm-label">🧠 Réponse ZORAN — synthèse multi-cadres</div>
+      <div class="llm-body">${esc(r.answer)}</div>
+      <div class="llm-meta">modèle ${esc(r.model || '?')} · ${r.usage?.input_tokens || '?'} in / ${r.usage?.output_tokens || '?'} out · ${dt}ms · loi ${esc(ctx.law_id)}</div>
+    `;
+  } else {
+    box.classList.remove('loading');
+    box.classList.add('error');
+    box.innerHTML = `
+      <div class="llm-label">⚠ Synthèse impossible (${esc(r.reason || 'unknown')})</div>
+      <div class="llm-body">${esc(r.message || 'Erreur inconnue.')}</div>
+    `;
+  }
+}
+
+function setupSettingsModal() {
+  const modal = document.getElementById('settings-modal');
+  const btn = document.getElementById('chat-settings');
+  const close = document.getElementById('settings-close');
+  const backdrop = modal.querySelector('.settings-backdrop');
+  const keyInput = document.getElementById('settings-key');
+  const modelSel = document.getElementById('settings-model');
+  const save = document.getElementById('settings-save');
+  const clear = document.getElementById('settings-clear');
+  if (!modal || !btn) return;
+
+  function open() {
+    keyInput.value = getApiKey();
+    modelSel.value = getModel();
+    modal.classList.remove('hidden');
+  }
+  function shut() { modal.classList.add('hidden'); }
+
+  btn.addEventListener('click', open);
+  close.addEventListener('click', shut);
+  backdrop.addEventListener('click', shut);
+  save.addEventListener('click', () => {
+    setApiKey(keyInput.value.trim());
+    setModel(modelSel.value);
+    shut();
+  });
+  clear.addEventListener('click', () => {
+    setApiKey('');
+    keyInput.value = '';
+  });
+  window.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) shut();
+  });
+}
+
 export function wireChatBar(nodes, onPickLaw, onCompete, onClearRoutes, parentsMap) {
+  setupSettingsModal();
   const bar = document.getElementById('chat-bar');
   const input = document.getElementById('chat-input');
   const sendBtn = document.getElementById('chat-send');

@@ -83,12 +83,47 @@
 
   <!-- Chat bar bottom-centered (mission RUNTIME_COGNITIVE_PATH_COMPETITION) -->
   <section id="chat-bar" aria-label="Question au graphe">
+    <button id="chat-settings" title="Réglages clé API Claude" aria-label="Réglages LLM">⚙</button>
     <button id="chat-mic" title="Dictée vocale" aria-label="Activer micro">🎙</button>
     <button id="chat-file" title="Charger fichier" aria-label="Charger fichier">📎</button>
     <input id="chat-file-input" type="file" accept=".txt,.md,.json,.csv,.pdf" hidden>
     <input id="chat-input" type="text" placeholder="Pose une question au graphe — Entrée pour faire concourir 6 routes…" autocomplete="off">
     <button id="chat-send" title="Soumettre (Entrée)" aria-label="Envoyer">↑</button>
   </section>
+
+  <!-- Modal réglages API -->
+  <div id="settings-modal" class="hidden" role="dialog" aria-labelledby="settings-title">
+    <div class="settings-backdrop"></div>
+    <div class="settings-box">
+      <header>
+        <span id="settings-title">Synthèse LLM — Claude API</span>
+        <button id="settings-close" aria-label="Fermer">×</button>
+      </header>
+      <div class="settings-body">
+        <p style="font-size:12px;color:var(--fg-2);line-height:1.5;margin:0 0 12px 0">
+          Sans clé API, ZORAN affiche la loi retenue + ses cadres mais ne synthétise pas de réponse en langage naturel.
+          Avec une clé Anthropic, ZORAN appelle Claude pour composer une réponse cohérente multi-cadres.
+        </p>
+        <label for="settings-key" style="display:block;font-size:11px;color:var(--fg-2);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px">Clé API Anthropic</label>
+        <input id="settings-key" type="password" placeholder="sk-ant-..." autocomplete="off"
+               style="width:100%;height:34px;padding:0 10px;background:var(--bg-2);color:var(--fg-0);border:1px solid var(--line);border-radius:5px;font-family:ui-monospace,monospace;font-size:12px;outline:none">
+        <label for="settings-model" style="display:block;font-size:11px;color:var(--fg-2);margin:14px 0 4px 0;text-transform:uppercase;letter-spacing:1px">Modèle</label>
+        <select id="settings-model" style="width:100%;height:34px;padding:0 10px;background:var(--bg-2);color:var(--fg-0);border:1px solid var(--line);border-radius:5px;font-size:13px;outline:none">
+          <option value="claude-haiku-4-5-20251001">Haiku 4.5 — rapide, peu cher</option>
+          <option value="claude-sonnet-4-6" selected>Sonnet 4.6 — équilibré</option>
+          <option value="claude-opus-4-7">Opus 4.7 — plus capable</option>
+        </select>
+        <p style="font-size:10px;color:var(--fg-2);margin:14px 0 0 0;line-height:1.5">
+          ⚠ La clé est stockée en localStorage et envoyée depuis le navigateur (entête anthropic-dangerous-direct-browser-access).
+          Utilise une clé restreinte / un usage personnel uniquement.
+        </p>
+        <div style="display:flex;gap:8px;margin-top:18px;justify-content:flex-end">
+          <button id="settings-clear" style="background:var(--bg-2);color:var(--unstable);border:1px solid var(--line);border-radius:5px;padding:7px 14px;font-size:12px;cursor:pointer">Effacer la clé</button>
+          <button id="settings-save" style="background:var(--canonical);color:#07080c;border:none;border-radius:5px;padding:7px 18px;font-size:12px;font-weight:700;cursor:pointer">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <section id="chat-results" class="hidden" aria-hidden="true">
     <header id="chat-results-header">

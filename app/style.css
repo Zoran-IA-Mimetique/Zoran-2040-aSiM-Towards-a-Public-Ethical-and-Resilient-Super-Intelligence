@@ -636,6 +636,72 @@ body.sidebar-hidden #graph {
   to   { opacity: 1; transform: translate(-50%, -100%); }
 }
 
+/* Modal réglages clé API */
+#settings-modal { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; }
+#settings-modal.hidden { display: none; }
+.settings-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(7,8,12,0.75);
+  backdrop-filter: blur(4px);
+}
+.settings-box {
+  position: relative; z-index: 1;
+  width: min(460px, calc(100vw - 40px));
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 14px 50px rgba(0,0,0,0.65);
+  overflow: hidden;
+}
+.settings-box > header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(20,24,38,0.95), rgba(13,16,24,0.85));
+  font-size: 13px; font-weight: 600;
+}
+.settings-box > header button {
+  background: transparent; color: var(--fg-2); border: none;
+  cursor: pointer; font-size: 20px; line-height: 1; width: 26px; height: 26px;
+}
+.settings-box > header button:hover { color: var(--fg-0); }
+.settings-body { padding: 18px 20px; }
+
+/* Réponse LLM synthétisée dans le popup chat */
+.llm-answer-box {
+  background: linear-gradient(135deg, rgba(78,163,255,0.12), rgba(186,107,255,0.06));
+  border: 1px solid var(--canonical);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--fg-0);
+  position: relative;
+}
+.llm-answer-box.loading {
+  border-color: var(--accent);
+  background: linear-gradient(135deg, rgba(255,204,77,0.10), rgba(255,156,46,0.04));
+}
+.llm-answer-box.error {
+  border-color: var(--unstable);
+  background: rgba(255,107,107,0.06);
+  font-size: 12px;
+}
+.llm-answer-box .llm-label {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--canonical); margin-bottom: 8px; font-weight: 700;
+}
+.llm-answer-box.loading .llm-label { color: var(--accent); }
+.llm-answer-box.error   .llm-label { color: var(--unstable); }
+.llm-answer-box .llm-body { white-space: pre-wrap; }
+.llm-answer-box .llm-meta {
+  font-size: 10px; color: var(--fg-2);
+  margin-top: 10px; padding-top: 8px;
+  border-top: 1px dotted rgba(120,130,150,0.20);
+  font-family: ui-monospace, monospace;
+}
+
 #statusbar {
   position: fixed; bottom: 0; left: 0; right: 0; height: 28px;
   background: var(--bg-1); border-top: 1px solid var(--line);
