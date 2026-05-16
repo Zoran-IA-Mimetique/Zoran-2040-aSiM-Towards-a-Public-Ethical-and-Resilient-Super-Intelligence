@@ -131,6 +131,16 @@ function oracleEliminate(s) {
 
 export function compete(question, nodes) {
   const qTokens = tokens(question);
+  // OFF-TOPIC DETECTION : si max topic_score sur tout le corpus < 0.10,
+  // la question n'a aucune accroche lexicale dans ZORAN → on le dit
+  // honnêtement plutôt que de forcer 6 routes aléatoires sans signal.
+  let maxTopic = 0;
+  for (const n of nodes) {
+    const t = topicScore(n, qTokens);
+    if (t > maxTopic) maxTopic = t;
+  }
+  const offTopic = maxTopic < 0.10 && qTokens.size > 0;
+
   const routes = [];
   for (const [name, strat] of Object.entries(STRATEGIES)) {
     const laws = pickTopK(nodes, strat.rank, qTokens, K);
@@ -162,7 +172,12 @@ export function compete(question, nodes) {
     laws_used: seeded.map(l => l.id), ...scoreRoute(seeded),
   });
   const survivors = routes.filter(r => !r.eliminated).sort((a, b) => b.selection_score - a.selection_score);
-  return { question, routes, baselines, winner: survivors[0]?.route_id || null };
+  return {
+    question, routes, baselines,
+    winner: survivors[0]?.route_id || null,
+    offTopic,
+    maxTopicRelevance: maxTopic,
+  };
 }
 
 function fmt(v) { return (v ?? 0).toFixed(3); }
@@ -178,6 +193,11 @@ export function renderResults(result, onPickLaw) {
   qSpan.textContent = `Q: ${result.question}`;
   const wasHidden = panel.classList.contains('hidden');
   panel.classList.remove('hidden');
+  // FORCE expanded on every new question (mission UX : impossible to miss)
+  panel.classList.remove('minimized');
+  const minBtn = document.getElementById('chat-results-min');
+  if (minBtn) { minBtn.textContent = '–'; minBtn.title = 'Minimiser'; }
+  try { localStorage.setItem('zoran.chat.min', '0'); } catch (_) {}
   panel.setAttribute('aria-hidden', 'false');
   if (wasHidden) panel.dispatchEvent(new CustomEvent('zoran-show'));
 
@@ -220,7 +240,21 @@ export function renderResults(result, onPickLaw) {
       <span>bruit ${fmt(b.noise_generated)}</span>
     </div>`).join('');
 
-  body.innerHTML = `<div style="font-size:11px;color:var(--fg-2);margin-bottom:8px">
+  const offTopicBanner = result.offTopic
+    ? `<div style="background:rgba(255,107,107,0.10);border:1px solid var(--unstable);
+                  color:var(--unstable);padding:10px 12px;border-radius:6px;
+                  margin-bottom:12px;font-size:12px;line-height:1.45">
+        <strong>⚠ Question hors-domaine ZORAN</strong><br>
+        Aucune loi du graphe ne correspond lexicalement à cette question
+        (max topic_relevance = ${result.maxTopicRelevance.toFixed(3)}).
+        Les routes ci-dessous sont calculées par fallback structurel — elles
+        ne reflètent <em>pas</em> un raisonnement pertinent. ZORAN couvre :
+        cohérence, propagation, runtime, frugalité, temporalité,
+        bornage, hallucination, loi supérieure.
+      </div>`
+    : '';
+
+  body.innerHTML = `${offTopicBanner}<div style="font-size:11px;color:var(--fg-2);margin-bottom:8px">
     ${result.routes.length} routes générées · ${result.routes.filter(r => !r.eliminated).length} survivantes ·
     winner : <strong style="color:var(--accent)">${winner || 'aucun'}</strong>
   </div>

@@ -312,6 +312,28 @@ export function activateRoutes(competitionResult) {
   state.routeMode = true;
   document.body.classList.add('route-mode');
   applyRouteVisualization();
+  flyCamToWinner();
+}
+
+// Fly camera to center of winner route laws (mission UX : impossible to miss)
+function flyCamToWinner() {
+  if (!state.activeRoutes || !state.fg) return;
+  let winner = null;
+  for (const r of state.activeRoutes.values()) if (r.winner) { winner = r; break; }
+  if (!winner || !winner.laws.size) return;
+  const nodes = state.graphView.nodes.filter(n => winner.laws.has(n.id));
+  if (!nodes.length) return;
+  // Centroid of winner laws
+  let cx = 0, cy = 0, cz = 0;
+  for (const n of nodes) { cx += n.x || 0; cy += n.y || 0; cz += n.z || 0; }
+  cx /= nodes.length; cy /= nodes.length; cz /= nodes.length;
+  const r = Math.sqrt(cx*cx + cy*cy + cz*cz) || 1;
+  const dist = 220;
+  state.fg.cameraPosition(
+    { x: cx + dist * cx / r, y: cy + dist * cy / r, z: cz + dist * cz / r },
+    { x: cx, y: cy, z: cz },
+    900
+  );
 }
 
 export function deactivateRoutes() {
@@ -325,6 +347,9 @@ export function deactivateRoutes() {
       mesh.material.emissive.setHex(0x000000);
     }
     mesh.userData.zoranWinnerPulse = false;
+    if (mesh.userData.zoranWinnerSprite) {
+      mesh.userData.zoranWinnerSprite.visible = false;
+    }
   }
   state.activeRoutes = null;
   state.routeMode = false;
@@ -370,12 +395,38 @@ function applyRouteVisualization() {
         mesh.material.emissiveIntensity = 0.65; // tickAnimation va animer ce chiffre
         mesh.userData.zoranWinnerPulse = true;
         mesh.userData.zoranHoverScale = 1.30;
+        // Ajout d'un sprite "★" billboard sur chaque loi WINNER si absent
+        if (!mesh.userData.zoranWinnerSprite) {
+          const cv = document.createElement('canvas');
+          cv.width = 128; cv.height = 128;
+          const sx = cv.getContext('2d');
+          sx.clearRect(0,0,128,128);
+          sx.fillStyle = '#ffd34d';
+          sx.shadowColor = '#ff9c2e'; sx.shadowBlur = 26;
+          sx.font = 'bold 92px serif'; sx.textAlign='center'; sx.textBaseline='middle';
+          sx.fillText('★', 64, 70);
+          const tex = new THREE.CanvasTexture(cv);
+          tex.minFilter = THREE.LinearFilter;
+          const spMat = new THREE.SpriteMaterial({
+            map: tex, transparent: true, depthTest: false, depthWrite: false
+          });
+          const sprite = new THREE.Sprite(spMat);
+          const base = mesh.userData.zoranBaseRadius || 4;
+          const scl = Math.max(8, base * 1.6);
+          sprite.scale.set(scl, scl, 1);
+          sprite.position.set(0, base * 2.2, 0);
+          sprite.renderOrder = 1000;
+          mesh.add(sprite);
+          mesh.userData.zoranWinnerSprite = sprite;
+        }
+        mesh.userData.zoranWinnerSprite.visible = true;
       } else if (mesh.material && mesh.material.emissive) {
         // Route survivor : glow modéré + scale 1.10
         mesh.material.emissive.setHex(dom.color.hex);
         mesh.material.emissiveIntensity = dom.eliminated ? 0.0 : 0.30;
         mesh.userData.zoranWinnerPulse = false;
         mesh.userData.zoranHoverScale = dom.eliminated ? 0.92 : 1.10;
+        if (mesh.userData.zoranWinnerSprite) mesh.userData.zoranWinnerSprite.visible = false;
       }
       // Opacity : eliminated = très faded (0.18), survivor = full
       state.targetOpacity.set(id, dom.eliminated ? 0.18 : 1.0);
@@ -389,8 +440,8 @@ function applyRouteVisualization() {
         mesh.material.emissiveIntensity = 0;
       }
       mesh.userData.zoranWinnerPulse = false;
-      mesh.userData.zoranHoverScale = 0.92; // léger shrink pour reculer
-      // 0.06 : presque invisible mais structure devinée (silence visuel ≥ 0.90)
+      mesh.userData.zoranHoverScale = 0.92;
+      if (mesh.userData.zoranWinnerSprite) mesh.userData.zoranWinnerSprite.visible = false;
       state.targetOpacity.set(id, 0.06);
     }
   }
