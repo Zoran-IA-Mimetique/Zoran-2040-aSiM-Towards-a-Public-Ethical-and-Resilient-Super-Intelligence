@@ -279,17 +279,15 @@ function routeColorOf(strategy) {
 }
 
 export function activateRoutes(competitionResult) {
-  // Build the active routes registry from a path competition result
   state.activeRoutes = new Map();
+  state.routeActivatedAt = performance.now(); // P1.3 — persistance 5 sec
   const routes = competitionResult.routes || [];
   const winner = competitionResult.winner;
-  // Sort by selection_score desc, take top 6 max
   const sorted = [...routes].sort((a, b) => b.selection_score - a.selection_score).slice(0, 6);
   for (let i = 0; i < sorted.length; i++) {
     const r = sorted[i];
     const col = routeColorOf(r.strategy);
     const laws = new Set(r.laws_used);
-    // Edges: between any 2 laws of this route
     const edges = new Set();
     for (const l of state.graphView.links) {
       const s = typeof l.source === 'object' ? l.source.id : l.source;
@@ -297,16 +295,15 @@ export function activateRoutes(competitionResult) {
       if (laws.has(s) && laws.has(t)) edges.add(l);
     }
     state.activeRoutes.set(r.route_id, {
-      route_id: r.route_id,
-      strategy: r.strategy,
-      label: r.label || r.strategy,
-      color: col,
-      laws,
-      edges,
+      route_id: r.route_id, strategy: r.strategy,
+      label: r.label || r.strategy, color: col, laws, edges,
       eliminated: !!r.eliminated,
       winner: r.route_id === winner,
-      rank: i + 1,
-      strength: Math.max(0.3, r.selection_score),
+      rank: i + 1, strength: Math.max(0.3, r.selection_score),
+      // P1.1 — propagation lumineuse : ordre prioritaire des lois (priority chain)
+      lawsOrdered: r.laws_used,
+      // P1.2 — fade progressif : démarre à eliminatedFadeFrom et glisse
+      eliminatedFadeFrom: r.eliminated ? 0.65 : 1.0,
     });
   }
   state.routeMode = true;
@@ -353,6 +350,7 @@ export function deactivateRoutes() {
   }
   state.activeRoutes = null;
   state.routeMode = false;
+  state.routeActivatedAt = null;
   document.body.classList.remove('route-mode');
   // Reset hover scales to normal
   for (const mesh of state.meshes.values()) {
@@ -428,8 +426,21 @@ function applyRouteVisualization() {
         mesh.userData.zoranHoverScale = dom.eliminated ? 0.92 : 1.10;
         if (mesh.userData.zoranWinnerSprite) mesh.userData.zoranWinnerSprite.visible = false;
       }
-      // Opacity : eliminated = très faded (0.18), survivor = full
-      state.targetOpacity.set(id, dom.eliminated ? 0.18 : 1.0);
+      // P1.2 — fade progressif : eliminated commence à 0.65 (visible "mourant")
+      // puis tickAnimation/timer descend à 0.18 sur ~2.5s
+      if (dom.eliminated) {
+        state.targetOpacity.set(id, 0.65);
+        // Schedule slow drop to 0.18 over 2.5s
+        if (!mesh.userData.zoranFadeScheduled) {
+          mesh.userData.zoranFadeScheduled = true;
+          setTimeout(() => {
+            if (state.routeMode) state.targetOpacity.set(id, 0.18);
+            mesh.userData.zoranFadeScheduled = false;
+          }, 2500);
+        }
+      } else {
+        state.targetOpacity.set(id, 1.0);
+      }
     } else {
       // HORS ROUTES : effondrement quasi-total (mission : "quasi invisible")
       if (mesh.material && mesh.material.color) {
@@ -478,13 +489,16 @@ function updateHalos() {
 function tickAnimation() {
   // Per-frame opacity lerp + hover scale lerp + halo facing + winner BLINK
   const t = performance.now() * 0.001;
-  // Mission CLAUDE_RUNTIME_GRAPH_PATHS_AND_POPUP_FIX : vrai clignotement visible
-  // Winner emissive : 0.30 → 0.85 → 0.30 sinusoïdal, 1.4 Hz (perceptible humain)
-  const winnerEmissive = 0.30 + (Math.sin(t * 1.4 * Math.PI * 2) * 0.5 + 0.5) * 0.55;
-  // Winner opacity : oscillation 0.75 ↔ 1.0 pour blink franc
+  // P1.3 — Persistance 5 sec : intensité boostée les 5 premières secondes
+  // après activation, puis légère atténuation pour éviter fatigue oculaire
+  let persistBoost = 1.0;
+  if (state.routeActivatedAt) {
+    const elapsedSec = (performance.now() - state.routeActivatedAt) / 1000;
+    persistBoost = elapsedSec < 5.0 ? 1.20 : 0.95;
+  }
+  const winnerEmissive = (0.30 + (Math.sin(t * 1.4 * Math.PI * 2) * 0.5 + 0.5) * 0.55) * persistBoost;
   const winnerOpacity = 0.75 + (Math.sin(t * 1.4 * Math.PI * 2) * 0.5 + 0.5) * 0.25;
-  // Winner scale : respiration 0.97 ↔ 1.05 multiplicateur sur base scale
-  const winnerScaleMul = 0.97 + (Math.sin(t * 1.4 * Math.PI * 2) * 0.5 + 0.5) * 0.08;
+  const winnerScaleMul = (0.97 + (Math.sin(t * 1.4 * Math.PI * 2) * 0.5 + 0.5) * 0.08) * (persistBoost === 1.20 ? 1.05 : 1.0);
   for (const [id, mesh] of state.meshes.entries()) {
     const isWinner = mesh.userData.zoranWinnerPulse;
     const target = state.targetOpacity.get(id) ?? 1.0;
@@ -812,17 +826,38 @@ function initGraph() {
       return state.highlightLinks.has(l) ? 1.6 : 0.4;
     })
     .linkDirectionalParticles(l => {
-      // Particules animées sur edges WINNER pour visualiser la propagation
+      // P1.1 — Propagation lumineuse forte sur edges WINNER (6 particles)
+      // + visibilité sur routes survivors actives (2 particles)
       if (state.activeRoutes) {
+        let isWinner = false, isSurvivor = false;
         for (const route of state.activeRoutes.values()) {
-          if (route.edges.has(l) && route.winner) return 3;
+          if (!route.edges.has(l)) continue;
+          if (route.winner) { isWinner = true; break; }
+          if (!route.eliminated) isSurvivor = true;
         }
+        if (isWinner) return 6;
+        if (isSurvivor) return 2;
         return 0;
       }
       return (state.particlesEnabled && state.highlightLinks.has(l) ? 2 : 0);
     })
-    .linkDirectionalParticleSpeed(0.008)
-    .linkDirectionalParticleWidth(2.5)
+    .linkDirectionalParticleSpeed(l => {
+      // P1.1 — vitesse plus rapide sur winner pour suggérer flux causal
+      if (state.activeRoutes) {
+        for (const route of state.activeRoutes.values()) {
+          if (route.edges.has(l) && route.winner) return 0.018;
+        }
+      }
+      return 0.008;
+    })
+    .linkDirectionalParticleWidth(l => {
+      if (state.activeRoutes) {
+        for (const route of state.activeRoutes.values()) {
+          if (route.edges.has(l) && route.winner) return 4.5;
+        }
+      }
+      return 2.5;
+    })
     .linkOpacity(0.55)
     .enableNodeDrag(true)
     .onNodeClick(n => selectNode(n.id, true))
