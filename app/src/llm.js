@@ -228,7 +228,9 @@ export async function synthesizeRoute({ question, laws, strategyLabel }) {
   return await callLLM({ system, user: question, maxTokens: 600 });
 }
 
-// LLM-as-judge : compare N réponses + reformulations, score 4 axes + divergence
+// LLM-as-judge : classement argumenté /20 avec points forts/faibles concrets
+// Mission ARGUMENTED_RUNTIME_RANKING : remplace le verdict opaque par
+// un jugement explicite, argumenté, mesurable et utilisateur-centré.
 export async function judgeResponses({ question, responses, reformulations = null }) {
   const labels = responses.map((r, i) => `${i+1}. [${r.label}]`).join(', ');
   const numbered = responses.map((r, i) => {
@@ -236,27 +238,53 @@ export async function judgeResponses({ question, responses, reformulations = nul
     return `[CANDIDAT ${i+1} — ${r.label}]\n${ref}RÉPONSE : ${r.text || '(vide)'}\n`;
   }).join('\n');
   const system = [
-    'Tu es un juge cognitif neutre. On te donne une question, et plusieurs CANDIDATS (chacun avec une REFORMULATION cognitive de la question + sa RÉPONSE).',
-    'Pour CHAQUE candidat, score [0..1] :',
-    '  - precision     : justesse factuelle apparente de la RÉPONSE',
-    '  - hallucination : risque d\'invention (0 = aucun, 1 = max)',
-    '  - noise         : verbosité inutile (0 = dense, 1 = bruyant)',
-    '  - coherence     : cohérence interne et structure logique',
+    'Tu es un JUGE COGNITIF NEUTRE. Évalue plusieurs réponses à une question utilisateur.',
+    'Le user veut une réponse CONCRÈTE, ACTIONNABLE, du DOMAINE de sa question.',
+    'Une réponse "très cohérente et fascinante" sans utilité concrète PERD.',
     '',
-    'Score GLOBAL [0..1] :',
-    '  - reformulation_divergence : à quel point les REFORMULATIONS diffèrent cognitivement (pas lexicalement). 0 = identiques, 1 = très divergentes',
-    '  - response_divergence      : à quel point les RÉPONSES diffèrent sémantiquement. 0 = identiques, 1 = très divergentes',
+    '═══ POUR CHAQUE CANDIDAT, attribue les scores [0..1] : ═══',
+    '  - precision           : justesse factuelle apparente',
+    '  - hallucination       : risque d\'invention (0=aucun, 1=max)',
+    '  - noise               : verbosité inutile (0=dense, 1=bruyant)',
+    '  - coherence           : cohérence interne',
+    '  - actionability_score : actions/étapes concrètes immédiates',
+    '  - practical_relevance : utilité réelle pour le user de la question',
+    '  - compression_quality : essentiel sans détails parasites',
+    '  - semantic_delta      : écart sémantique vs autres candidats',
     '',
-    'Pour chaque candidat, calcule aussi semantic_delta [0..1] : à quel point CE candidat s\'écarte des autres en moyenne.',
+    '═══ NOTE /20 ARGUMENTÉE — argumented_grade_20 ═══',
+    '  Sur 20. Pas arbitraire. Doit correspondre à l\'aide concrète apportée au user.',
+    '  Barème indicatif : 18-20 excellent et actionnable · 15-17 bon · 12-14 moyen ·',
+    '  8-11 faible (jargon excessif, trop abstrait, peu actionnable) · ≤7 inutile.',
     '',
-    'Réponds STRICTEMENT en JSON pur, aucune autre prose, aucun markdown :',
+    '═══ JUSTIFICATION OBLIGATOIRE par candidat ═══',
+    '  - strengths  : 1 à 3 points forts CONCRETS (pas "très cohérent")',
+    '  - weaknesses : 1 à 3 points faibles CONCRETS (jargon, abstraction, oubli, etc.)',
+    '  - noise_detected : 1 phrase si bruit identifié, sinon ""',
+    '  - hallucination_risk : 1 phrase si risque, sinon ""',
+    '  - comment : 1 phrase synthèse',
+    '',
+    'INTERDIT : "réponse très cohérente et fascinante", "intéressant", "élégant".',
+    'OBLIGATOIRE : pointer une faiblesse réelle même sur le winner.',
+    '',
+    '═══ DIVERGENCE GLOBALE [0..1] ═══',
+    '  - reformulation_divergence : divergence COGNITIVE des reformulations',
+    '  - response_divergence      : divergence SÉMANTIQUE des réponses',
+    '',
+    '═══ FORMAT — JSON pur, aucune autre prose, aucun markdown ═══',
     '{"verdict":"<label gagnant>",',
-    ' "reformulation_divergence":0.0,',
-    ' "response_divergence":0.0,',
-    ' "scores":[{"label":"<l1>","precision":0.0,"hallucination":0.0,"noise":0.0,"coherence":0.0,"semantic_delta":0.0,"comment":"<1 phrase>"},...]}',
+    ' "verdict_reason":"<phrase argumentant le winner>",',
+    ' "reformulation_divergence":0.0, "response_divergence":0.0,',
+    ' "scores":[{',
+    '   "label":"<l>","precision":0.0,"hallucination":0.0,"noise":0.0,"coherence":0.0,',
+    '   "actionability_score":0.0,"practical_relevance":0.0,"compression_quality":0.0,',
+    '   "semantic_delta":0.0,"argumented_grade_20":0.0,',
+    '   "strengths":["..."],"weaknesses":["..."],',
+    '   "noise_detected":"...","hallucination_risk":"...","comment":"..."',
+    ' },...]}',
   ].join('\n');
   const user = `QUESTION ORIGINALE : ${question}\n\nCANDIDATS (${labels}) :\n\n${numbered}`;
-  const r = await callLLM({ system, user, maxTokens: 1600 });
+  const r = await callLLM({ system, user, maxTokens: 2500 });
   if (!r.ok) return r;
   let json = null;
   try {

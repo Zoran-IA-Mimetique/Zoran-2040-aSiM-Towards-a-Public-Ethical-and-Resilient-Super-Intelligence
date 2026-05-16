@@ -151,6 +151,15 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
         hallucination_delta: +(s.hallucination - baselineScore.hallucination).toFixed(3),
         noise_delta: +(s.noise - baselineScore.noise).toFixed(3),
         coherence_delta: +(s.coherence - baselineScore.coherence).toFixed(3),
+        // Nouveaux scores juge (mission ARGUMENTED_RUNTIME_RANKING)
+        actionability_score: s.actionability_score ?? 0,
+        practical_relevance: s.practical_relevance ?? 0,
+        compression_quality: s.compression_quality ?? 0,
+        argumented_grade_20: s.argumented_grade_20 ?? null,
+        strengths: s.strengths || [],
+        weaknesses: s.weaknesses || [],
+        noise_detected: s.noise_detected || '',
+        hallucination_risk: s.hallucination_risk || '',
         // Score composite revisité : intègre concret + anti-jargon
         runtime_superiority: +(
           0.25 * (s.precision - baselineScore.precision)
@@ -206,6 +215,7 @@ export function renderComparison(result) {
   const partialNotice = result.partial
     ? `<div class="sup-warn" style="margin-bottom:6px">⚠ Mode partiel — seule réponse Claude brut a abouti (3 ZORAN ont échoué : crédit/limite ?). Aucun jugement comparatif possible.</div>`
     : '';
+  const verdictReason = judge?.verdict_reason ? `<div style="font-size:11px;color:var(--fg-2);font-style:italic;margin-top:4px">${escHtml(judge.verdict_reason)}</div>` : '';
   const verdictBanner = `
     <div class="sup-verdict">
       ${partialNotice}
@@ -213,12 +223,64 @@ export function renderComparison(result) {
         <strong>★ Verdict :</strong> ${escHtml(verdict || 'aucun')} ·
         ${result.responses.length} candidat${result.responses.length>1?'s':''} · ${result.latency_ms}ms
       </div>
+      ${verdictReason}
       <div class="sup-divergence">
         ${divergenceBadge(refDiv, 'reformulation_divergence')}
         ${divergenceBadge(respDiv, 'response_divergence')}
         ${(refDiv != null && refDiv < 0.30) ? '<span class="sup-warn">⚠ reformulations trop proches</span>' : ''}
       </div>
     </div>`;
+
+  // ─── 1bis) CLASSEMENT ARGUMENTÉ /20 (priorité haute mission ARGUMENTED_RANKING) ───
+  // Tri par grade_20 décroissant (fallback runtime_superiority si grade manquant)
+  const sortedByGrade = [...deltas].sort((a, b) => {
+    const ga = a.argumented_grade_20 ?? (10 + a.runtime_superiority * 10);
+    const gb = b.argumented_grade_20 ?? (10 + b.runtime_superiority * 10);
+    return gb - ga;
+  });
+  const gradeClass = g => {
+    if (g == null) return '';
+    if (g >= 18) return 'grade-excellent';
+    if (g >= 15) return 'grade-good';
+    if (g >= 12) return 'grade-mid';
+    if (g >= 8)  return 'grade-low';
+    return 'grade-bad';
+  };
+  const rankingBlock = `
+    <details class="sup-section" open>
+      <summary>★ Classement argumenté /20 (mission ARGUMENTED_RUNTIME_RANKING)</summary>
+      <div class="sup-ranking-list">
+        ${sortedByGrade.map((d, i) => {
+          const grade = d.argumented_grade_20;
+          const gradeStr = grade != null ? grade.toFixed(1) : '—';
+          const gCls = gradeClass(grade);
+          const isWin = i === 0;
+          const colorClass = d.label.toLowerCase().includes('claude brut') ? 'baseline' : `rank-${(i+1)}`;
+          return `<div class="sup-ranking-card ${colorClass} ${isWin ? 'winner' : ''}">
+            <div class="sup-ranking-head">
+              <span class="sup-ranking-pos">#${i+1}</span>
+              <span class="sup-ranking-label">${escHtml(d.label)}</span>
+              <span class="sup-ranking-grade ${gCls}">${gradeStr}<small>/20</small></span>
+            </div>
+            ${d.strengths && d.strengths.length ? `<div class="sup-arg-list sup-arg-strengths">
+              <strong>✓ Forts :</strong> ${d.strengths.map(s => `<span>${escHtml(s)}</span>`).join('')}
+            </div>` : ''}
+            ${d.weaknesses && d.weaknesses.length ? `<div class="sup-arg-list sup-arg-weaknesses">
+              <strong>✗ Faibles :</strong> ${d.weaknesses.map(w => `<span>${escHtml(w)}</span>`).join('')}
+            </div>` : ''}
+            ${d.noise_detected ? `<div class="sup-arg-flag">▣ Bruit détecté : ${escHtml(d.noise_detected)}</div>` : ''}
+            ${d.hallucination_risk ? `<div class="sup-arg-flag sup-arg-hallu">⚠ Hallu risk : ${escHtml(d.hallucination_risk)}</div>` : ''}
+            <div class="sup-arg-metrics">
+              actionable ${(d.actionability_score ?? 0).toFixed(2)} ·
+              pratique ${(d.practical_relevance ?? 0).toFixed(2)} ·
+              compression ${(d.compression_quality ?? 0).toFixed(2)} ·
+              jargon ${(d.jargon_density ?? 0).toFixed(2)} ·
+              concret ${(d.concrete_runtime_alignment ?? 0).toFixed(2)}
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    </details>`;
 
   // ─── 2) TABLE DELTAS (priorité haute selon mission) ───
   const sortedByRank = [...deltas].sort((a, b) => b.runtime_superiority - a.runtime_superiority);
@@ -335,6 +397,7 @@ export function renderComparison(result) {
 
   return `<div class="superiority-container">
     ${verdictBanner}
+    ${rankingBlock}
     ${deltaTable}
     ${concreteTable}
     ${reformsBlock}
