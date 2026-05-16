@@ -335,8 +335,10 @@ function setStatus() {
   const sandbox  = state.sandboxCount ?? 0;
   const cores    = state.coresDetected ?? 0;
   const runtimeAdm = nodes.filter(x => x.threshold_admissibility === true).length;
+  const keepRt = nodes.filter(x => x.keep_runtime === true).length;
+  const noisy  = nodes.filter(x => x.keep_runtime === false && x.signal_to_noise != null).length;
   $('#status-counts').textContent =
-      `nodes ${n} · links ${l} · fam ${fam} · ★${superior} · frugal ${frugal} · toxic ${toxic} · sandbox ${sandbox} · runtime ${runtimeAdm} · cores ${cores}`;
+      `nodes ${n} · links ${l} · fam ${fam} · ★${superior} · frugal ${frugal} · toxic ${toxic} · sandbox ${sandbox} · keep ${keepRt} · noise ${noisy} · cores ${cores}`;
   const m = state.lastAudit?.metrics;
   if (m) {
     $('#status-coherence').textContent =

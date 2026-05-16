@@ -576,6 +576,55 @@ function selectionBlock(node) {
   </section>`;
 }
 
+function noiseBlock(node) {
+  if (node.signal_to_noise == null) return '';
+  const snr = node.signal_to_noise;
+  const nc = node.noise_contribution ?? 0;
+  const rg = node.runtime_gain ?? 0;
+  const fr = node.frugality_ratio ?? 0;
+  const dr = node.drift_risk ?? 0;
+  const ppc = node.precision_per_cost ?? 0;
+  const su = node.structural_usefulness ?? 0;
+  const keep = node.keep_runtime;
+  const verdict = keep
+    ? '<strong style="color:#3ad17a">✓ keep runtime</strong>'
+    : '<strong style="color:var(--unstable)">✗ noise/reject</strong>';
+  const snrColor = snr >= 0.70 ? '#3ad17a'
+                 : snr >= 0.50 ? 'var(--accent)'
+                 : snr >= 0.30 ? 'var(--fg-2)'
+                 : 'var(--unstable)';
+  const ncColor = nc <= 0.30 ? '#3ad17a'
+                : nc <= 0.50 ? 'var(--accent)' : 'var(--unstable)';
+  // ascii bar [▮▮▮▯▯] for S/N
+  const bars = Math.round(snr * 5);
+  const bar = '▮'.repeat(bars) + '▯'.repeat(5 - bars);
+  return `<section>
+    <h4>Bruit runtime · signal-to-noise</h4>
+    <div class="frames">
+      <div class="frames-row"><span class="frames-glyph">≷</span>
+        <span class="frames-label">Décision</span>
+        <span class="frames-content">${verdict} · gain ${rg.toFixed(3)}</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">∿</span>
+        <span class="frames-label">S/N ratio</span>
+        <span class="frames-content"><strong style="color:${snrColor}">${snr.toFixed(3)}</strong> <span style="font-family:ui-monospace,monospace;color:${snrColor}">${bar}</span></span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⌗</span>
+        <span class="frames-label">Bruit ajouté</span>
+        <span class="frames-content"><strong style="color:${ncColor}">${nc.toFixed(3)}</strong> · drift ${dr.toFixed(2)}</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">€</span>
+        <span class="frames-label">Frugalité</span>
+        <span class="frames-content"><strong>${fr.toFixed(3)}</strong> · précision/coût ${ppc.toFixed(2)}</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">▣</span>
+        <span class="frames-label">Util. struct.</span>
+        <span class="frames-content"><strong>${su.toFixed(3)}</strong> · indépendante du runtime</span>
+      </div>
+    </div>
+  </section>`;
+}
+
 function provenanceBlock(node) {
   if (!node.sha512 && !node.law_relevance_index) return '';
   const lri = node.law_relevance_index;
@@ -660,6 +709,7 @@ export function renderDetail(node, graph, onPick) {
     ${framesBlock(node)}
     ${eqs ? `<section class="equations"><h4>Équations</h4>${eqs}</section>` : ''}
     ${ex  ? `<section><h4>Exemples</h4><ul class="examples">${ex}</ul></section>` : ''}
+    ${noiseBlock(node)}
     ${provenanceBlock(node)}
     ${superiorBlock(node)}
     ${selectionBlock(node)}

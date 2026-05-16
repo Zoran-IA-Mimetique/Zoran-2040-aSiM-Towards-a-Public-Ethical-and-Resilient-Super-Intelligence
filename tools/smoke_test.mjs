@@ -179,6 +179,16 @@ const classesLabel = await page.locator('.frames-label:has-text("Classes")').cou
 console.log(`  Sustainability sect. : ${sustLabel > 0 ? 'présente' : 'absente'}`);
 console.log(`  Frugality score      : ${fragLabel > 0 ? 'présente' : 'absente'}`);
 console.log(`  Classes badges       : ${classesLabel > 0 ? 'présente' : 'absente'}`);
+// NEW (mission ZORAN_NOISE_MINIMIZATION) : noise + signal-to-noise UI
+const noiseDec = await page.locator('.frames-label:has-text("Décision")').count();
+const snrLabel = await page.locator('.frames-label:has-text("S/N ratio")').count();
+const noiseAddLabel = await page.locator('.frames-label:has-text("Bruit ajouté")').count();
+const frLabel = await page.locator('.frames-label:has-text("Frugalité")').count();
+console.log(`  Noise decision       : ${noiseDec > 0 ? 'présente' : 'absente'}`);
+console.log(`  S/N ratio bar        : ${snrLabel > 0 ? 'présente' : 'absente'}`);
+console.log(`  Noise contribution   : ${noiseAddLabel > 0 ? 'présente' : 'absente'}`);
+console.log(`  Frugality ratio      : ${frLabel > 0 ? 'présente' : 'absente'}`);
+
 // NEW : provenance + cores + counters (missions 2026-05-16 night)
 const provLabel = await page.locator('.frames-label:has-text("SHA + version")').count();
 const filLabel = await page.locator('.frames-label:has-text("Filiation")').count();
