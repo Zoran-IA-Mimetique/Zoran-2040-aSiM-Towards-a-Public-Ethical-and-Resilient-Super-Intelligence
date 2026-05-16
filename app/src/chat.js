@@ -198,8 +198,15 @@ export function renderResults(result, onPickLaw) {
   const minBtn = document.getElementById('chat-results-min');
   if (minBtn) { minBtn.textContent = '–'; minBtn.title = 'Minimiser'; }
   try { localStorage.setItem('zoran.chat.min', '0'); } catch (_) {}
+  // CORRECTIF : si height inline héritée < min usable, la retirer pour
+  // laisser CSS height (560px par défaut) s'appliquer.
+  const currentH = parseFloat(panel.style.height || '0');
+  if (currentH > 0 && currentH < 280) {
+    panel.style.removeProperty('height');
+  }
   panel.setAttribute('aria-hidden', 'false');
-  if (wasHidden) panel.dispatchEvent(new CustomEvent('zoran-show'));
+  // Toujours dispatch zoran-show pour que la restauration position/taille s'exécute
+  panel.dispatchEvent(new CustomEvent('zoran-show'));
 
   const routesSorted = [...result.routes].sort((a, b) => b.selection_score - a.selection_score);
   const winner = result.winner;

@@ -1150,9 +1150,11 @@ function setupDraggableChatPopup() {
   });
 
   // Persist resize via ResizeObserver
+  // CORRECTIF UX : ne pas sauver h pendant minimized (sinon 42px persiste)
   try {
     const ro = new ResizeObserver(() => {
       if (popup.classList.contains('hidden')) return;
+      if (popup.classList.contains('minimized')) return; // skip save in minimized
       try {
         const saved = JSON.parse(localStorage.getItem('zoran.chat.pos') || '{}');
         localStorage.setItem('zoran.chat.pos', JSON.stringify({
@@ -1164,6 +1166,8 @@ function setupDraggableChatPopup() {
   } catch (_) {}
 
   // Restore saved position+size on first show
+  // CORRECTIF UX : ignorer height < min usable (280px) — corrige bug
+  // popup-stuck-at-42px hérité des sessions précédentes.
   popup.addEventListener('zoran-show', () => {
     try {
       const raw = localStorage.getItem('zoran.chat.pos');
@@ -1175,16 +1179,20 @@ function setupDraggableChatPopup() {
           popup.style.top  = Math.max(48, Math.min(window.innerHeight - 60, s.top)) + 'px';
           popup.style.bottom = 'auto'; popup.style.right = 'auto';
         }
-        if (Number.isFinite(s.w) && Number.isFinite(s.h)) {
+        if (Number.isFinite(s.w) && s.w >= 360) {
           popup.style.width = s.w + 'px';
+        }
+        if (Number.isFinite(s.h) && s.h >= 280) {
           popup.style.height = s.h + 'px';
+        } else {
+          // Override stale tiny height from previous minimized sessions
+          popup.style.removeProperty('height');
         }
       }
-      if (localStorage.getItem('zoran.chat.min') === '1') {
-        popup.classList.add('minimized');
-        const b = document.getElementById('chat-results-min');
-        if (b) { b.textContent = '+'; b.title = 'Restaurer'; }
-      }
+      // mission directive : force expanded on every show
+      popup.classList.remove('minimized');
+      const b = document.getElementById('chat-results-min');
+      if (b) { b.textContent = '–'; b.title = 'Minimiser'; }
     } catch (_) {}
   });
 

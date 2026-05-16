@@ -370,9 +370,10 @@ body.sidebar-hidden #graph {
   left: 50%;
   transform: translateX(-50%);
   width: min(880px, calc(100vw - 48px));
-  max-height: calc(100vh - 220px);
+  height: min(560px, calc(100vh - 220px));
+  max-height: calc(100vh - 160px);
   min-width: 360px;
-  min-height: 80px;
+  min-height: 280px;
   background: rgba(13, 16, 24, 0.92);
   border: 1px solid var(--line);
   border-radius: 10px;
@@ -388,9 +389,22 @@ body.sidebar-hidden #graph {
   height: 42px !important;
   min-height: 42px;
   overflow: hidden;
+  resize: none;
 }
 #chat-results.minimized #chat-results-body { display: none; }
-#chat-results.minimized { resize: none; }
+
+/* Resize handle (mission UX : dimensionnable visible) */
+#chat-results::after {
+  content: "";
+  position: absolute;
+  right: 2px; bottom: 2px;
+  width: 14px; height: 14px;
+  background:
+    linear-gradient(135deg, transparent 0%, transparent 50%, var(--fg-2) 50%, var(--fg-2) 60%, transparent 60%, transparent 70%, var(--fg-2) 70%, var(--fg-2) 80%, transparent 80%);
+  pointer-events: none;
+  opacity: 0.6;
+}
+#chat-results.minimized::after { display: none; }
 #chat-results-header {
   display: flex; align-items: center; gap: 10px;
   padding: 8px 14px;
