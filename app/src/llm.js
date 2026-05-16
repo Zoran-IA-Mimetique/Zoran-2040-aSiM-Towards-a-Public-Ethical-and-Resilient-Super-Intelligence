@@ -417,8 +417,10 @@ export async function judgeResponses({ question, responses, reformulations = nul
     ' },...]}',
   ].join('\n');
   const user = `QUESTION ORIGINALE : ${question}\n\nCANDIDATS (${labels}) :\n\n${numbered}`;
-  // SINGLE_WINNER : si 2 candidats seulement, max_tokens réduit (économie)
-  const judgeMaxTokens = responses.length <= 2 ? 1500 : 2500;
+  // Adaptation max_tokens selon nombre candidats (économie)
+  // 2 candidats : 1500 / 3 candidats : 2000 / 4+ : 2500
+  const judgeMaxTokens = responses.length <= 2 ? 1500
+                       : responses.length === 3 ? 2000 : 2500;
   const r = await callLLM({ system, user, maxTokens: judgeMaxTokens });
   if (!r.ok) return r;
   let json = null;

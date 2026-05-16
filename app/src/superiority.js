@@ -13,6 +13,7 @@ import { jargonDensity, userDistance, practicalUsefulness, metaNoise, concreteRu
 import { computeDomainFitness, shouldSkipRoute, getStrategyProfile } from './route_specialization.js';
 import { detectTruncation, completionIntegrity, truncationPenalty, terrainAlignment, fieldActionability } from './completion.js';
 import { detectDomain } from './domain_detection.js';
+import { diagnoseWeaknesses, generateClaudePlusRezo, activationMatrix } from './rezo_engine.js';
 
 // Top 3 routes utilisées pour la compétition (sous-ensemble — coût API maîtrisé)
 const SUPERIORITY_ROUTES = ['frugale', 'anti_hallucination', 'structurelle'];
@@ -113,6 +114,45 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
   if (orchestratedResult.ok) responses.push(orchestratedResult);
   for (const r of respResults) {
     if (r.status === 'fulfilled' && r.value.ok) responses.push(r.value);
+  }
+
+  // PIVOT ARCHITECTURAL : Claude + ReZo (augmentation ciblée des faiblesses)
+  // ZORAN devient moteur d'augmentation, pas remplaçant.
+  // Diagnostique les faiblesses du Claude brut → injections ciblées.
+  console.log('[ZORAN sup] Claude + ReZo : diagnostic + augmentation ciblée');
+  let claudeRezoResult = null;
+  if (baselineResult.ok && baselineResult.text) {
+    const diagnosis = diagnoseWeaknesses({
+      text: baselineResult.text,
+      question,
+    });
+    console.log('[ZORAN sup] diagnostic Claude brut :',
+      `${diagnosis.weaknesses.length} faiblesses`,
+      diagnosis.weaknesses.map(w => w.code).join(', '));
+    if (diagnosis.weaknesses.length > 0) {
+      const rezoCall = await generateClaudePlusRezo({
+        question,
+        claudeAnswer: baselineResult.text,
+        diagnosis,
+      });
+      if (rezoCall.ok && rezoCall.finalAnswer) {
+        claudeRezoResult = {
+          label: 'CLAUDE + ReZo',
+          strategy: 'claude_rezo',
+          text: rezoCall.finalAnswer,
+          laws_used: diagnosis.injections_needed,
+          reformulation: `(augmentation ciblée : ${diagnosis.weaknesses.map(w => w.code).join(', ')})`,
+          rationale: rezoCall.rationale,
+          weaknesses_addressed: rezoCall.weaknesses_addressed,
+          ok: true,
+          model: rezoCall.model,
+          usage: rezoCall.usage,
+        };
+        responses.push(claudeRezoResult);
+      }
+    } else {
+      console.log('[ZORAN sup] Claude brut déjà optimal — ReZo skip');
+    }
   }
 
   if (responses.length < 1) {
@@ -536,7 +576,7 @@ export function renderComparison(result) {
   // Mission DOMAIN_LAW_SELECTION_AND_SINGLE_WINNER_RUNTIME_20260516
   // Affichage simplifié : SEULEMENT 2 candidats (ZORAN orchestré + Claude brut)
   // au lieu de 6+. Les routes individuelles sont calculées en interne.
-  const isSingleWinnerMode = sortedByGrade.length <= 2; // exactement baseline + orchestrated
+  const isSingleWinnerMode = sortedByGrade.length <= 3; // baseline + orchestrated + Claude+ReZo
   if (isSingleWinnerMode) {
     return `<div class="superiority-container">
       ${verdictBanner}
