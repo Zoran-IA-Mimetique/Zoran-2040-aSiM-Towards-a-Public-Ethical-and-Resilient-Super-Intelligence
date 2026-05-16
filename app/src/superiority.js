@@ -9,6 +9,7 @@
 // Retourne un tableau comparatif avec deltas ZORAN vs baseline.
 
 import { synthesizeBaseline, synthesizeRoute, judgeResponses, reformulateQuestion } from './llm.js';
+import { jargonDensity, userDistance, practicalUsefulness, metaNoise, concreteRuntimeAlignment, detectJargonTerms } from './jargon.js';
 
 // Top 3 routes utilisées pour la compétition (sous-ensemble — coût API maîtrisé)
 const SUPERIORITY_ROUTES = ['frugale', 'anti_hallucination', 'structurelle'];
@@ -85,6 +86,18 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
     console.warn('[ZORAN sup] FAIL — no responses at all');
     return { ok: false, reason: 'no_responses', responses };
   }
+  // Mission SILENT_LAW_GUIDANCE : mesure objective du méta-bruit par réponse
+  // (jargon ZORAN détecté, distance domaine user, utilité concrète)
+  for (const r of responses) {
+    r.jargon_density = +jargonDensity(r.text).toFixed(3);
+    r.user_distance  = +userDistance(r.text, question).toFixed(3);
+    r.practical_usefulness = +practicalUsefulness(r.text).toFixed(3);
+    r.meta_noise     = +metaNoise({ answerText: r.text, questionText: question }).toFixed(3);
+    r.concrete_runtime_alignment = +concreteRuntimeAlignment({ answerText: r.text, questionText: question }).toFixed(3);
+    r.jargon_terms_found = detectJargonTerms(r.text);
+  }
+  console.log('[ZORAN sup] meta-bruit par réponse :',
+    responses.map(r => `${r.label}: jargon=${r.jargon_density} concret=${r.concrete_runtime_alignment}`).join(' | '));
   if (responses.length < 2) {
     // Only 1 response succeeded → skip judge, return as partial result
     console.warn('[ZORAN sup] PARTIAL — only 1 response (showing it without judge)');
@@ -117,6 +130,8 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
     for (const r of responses) {
       const s = judge.scores.find(x => x.label === r.label);
       if (!s) continue;
+      // Mission SILENT_LAW_GUIDANCE : enrichit deltas avec scores méta-bruit
+      const respObj = responses.find(rr => rr.label === r.label) || {};
       deltas.push({
         label: r.label,
         precision: s.precision,
@@ -124,19 +139,27 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
         noise: s.noise,
         coherence: s.coherence,
         semantic_delta: s.semantic_delta ?? 0,
+        // Métriques objectives méta-bruit (mesurées localement, pas par juge)
+        jargon_density: respObj.jargon_density ?? 0,
+        user_distance: respObj.user_distance ?? 0,
+        practical_usefulness: respObj.practical_usefulness ?? 0,
+        meta_noise: respObj.meta_noise ?? 0,
+        concrete_runtime_alignment: respObj.concrete_runtime_alignment ?? 0,
+        jargon_terms_found: respObj.jargon_terms_found || [],
         // Deltas vs baseline (positif = ZORAN mieux sauf hallu/noise où négatif = mieux)
         precision_delta: +(s.precision - baselineScore.precision).toFixed(3),
         hallucination_delta: +(s.hallucination - baselineScore.hallucination).toFixed(3),
         noise_delta: +(s.noise - baselineScore.noise).toFixed(3),
         coherence_delta: +(s.coherence - baselineScore.coherence).toFixed(3),
-        // Score composite : haut = mieux
+        // Score composite revisité : intègre concret + anti-jargon
         runtime_superiority: +(
-          0.30 * (s.precision - baselineScore.precision)
-          + 0.30 * (baselineScore.hallucination - s.hallucination)
-          + 0.20 * (baselineScore.noise - s.noise)
-          + 0.20 * (s.coherence - baselineScore.coherence)
+          0.25 * (s.precision - baselineScore.precision)
+          + 0.25 * (baselineScore.hallucination - s.hallucination)
+          + 0.15 * (baselineScore.noise - s.noise)
+          + 0.15 * (s.coherence - baselineScore.coherence)
+          + 0.10 * ((respObj.concrete_runtime_alignment ?? 0.5) - (responses[0].concrete_runtime_alignment ?? 0.5))
+          + 0.10 * ((responses[0].meta_noise ?? 0.5) - (respObj.meta_noise ?? 0.5))
         ).toFixed(3),
-        // winner_delta : écart vs meilleur score sur l'axe précision
         comment: s.comment || '',
       });
     }
@@ -227,6 +250,36 @@ export function renderComparison(result) {
       `).join('')}
     </div>`;
 
+  // ─── 2bis) TABLE QUALITÉ RUNTIME CONCRET (mesures locales objectives) ───
+  // jargon, distance domaine user, utilité pratique, méta-bruit composite,
+  // alignement runtime concret → tous calculés client-side via jargon.js
+  const concreteTable = `
+    <details class="sup-section" open>
+      <summary>Qualité runtime concret (mesures objectives — anti-jargon ZORAN)</summary>
+      <div class="sup-deltas-table" style="margin-top:8px">
+        <div class="sup-deltas-row sup-deltas-header" style="grid-template-columns:24px 1fr 60px 60px 64px 60px 70px">
+          <span class="sup-col-rank">#</span>
+          <span class="sup-col-label">Candidat</span>
+          <span class="sup-col-num" title="jargon_density">jargon</span>
+          <span class="sup-col-num" title="user_distance — distance vocabulaire question">u.dist</span>
+          <span class="sup-col-num" title="practical_usefulness">pratique</span>
+          <span class="sup-col-num" title="meta_noise composite">méta-N</span>
+          <span class="sup-col-sup" title="concrete_runtime_alignment">concret</span>
+        </div>
+        ${sortedByRank.map((d, i) => `
+          <div class="sup-deltas-row ${i === 0 ? 'is-rank-1' : ''}" style="grid-template-columns:24px 1fr 60px 60px 64px 60px 70px">
+            <span class="sup-col-rank">${i+1}</span>
+            <span class="sup-col-label">${escHtml(d.label)}</span>
+            <span class="sup-col-num ${d.jargon_density <= 0.03 ? 'good' : d.jargon_density >= 0.10 ? 'bad' : ''}">${(d.jargon_density ?? 0).toFixed(3)}</span>
+            <span class="sup-col-num ${d.user_distance <= 0.30 ? 'good' : d.user_distance >= 0.60 ? 'bad' : ''}">${(d.user_distance ?? 0).toFixed(3)}</span>
+            <span class="sup-col-num ${d.practical_usefulness >= 0.65 ? 'good' : d.practical_usefulness <= 0.30 ? 'bad' : ''}">${(d.practical_usefulness ?? 0).toFixed(3)}</span>
+            <span class="sup-col-num ${d.meta_noise <= 0.20 ? 'good' : d.meta_noise >= 0.45 ? 'bad' : ''}">${(d.meta_noise ?? 0).toFixed(3)}</span>
+            <span class="sup-col-sup ${d.concrete_runtime_alignment >= 0.70 ? 'good' : d.concrete_runtime_alignment <= 0.40 ? 'bad' : ''}">${(d.concrete_runtime_alignment ?? 0).toFixed(3)}</span>
+          </div>
+        `).join('')}
+      </div>
+    </details>`;
+
   // ─── 3) REFORMULATIONS condensées (1-2 lignes par candidat) ───
   const reforms = result.responses.map((r, idx) => {
     if (!r.reformulation) return '';
@@ -252,12 +305,23 @@ export function renderComparison(result) {
           const d = deltas.find(x => x.label === r.label);
           const isWin = verdict && r.label.includes(verdict);
           const colorClass = idx === 0 ? 'baseline' : `rank-${idx}`;
+          // Mission SILENT_LAW_GUIDANCE : warning visible si jargon ZORAN détecté
+          const jargonChips = (r.jargon_terms_found && r.jargon_terms_found.length > 0)
+            ? `<div class="sup-jargon-warn">⚠ Jargon ZORAN détecté (${r.jargon_terms_found.length}) :
+                ${r.jargon_terms_found.slice(0, 8).map(t => `<code>${escHtml(t)}</code>`).join(' ')}</div>`
+            : '<div class="sup-jargon-ok">✓ Aucun jargon ZORAN — réponse propre domaine user</div>';
           return `<div class="sup-resp-card ${colorClass} ${isWin ? 'winner' : ''}">
             <div class="sup-resp-head">
               <strong>${escHtml(r.label)}</strong>
               ${isWin ? '<span class="sup-winner-tag">★ WINNER</span>' : ''}
+              <span class="sup-resp-badges">
+                jargon ${(r.jargon_density ?? 0).toFixed(2)} ·
+                concret ${(r.concrete_runtime_alignment ?? 0).toFixed(2)} ·
+                u.dist ${(r.user_distance ?? 0).toFixed(2)}
+              </span>
             </div>
             <div class="sup-resp-text">${escHtml(r.text)}</div>
+            ${jargonChips}
             ${d?.comment ? `<div class="sup-comment">${escHtml(d.comment)}</div>` : ''}
             ${r.strategy === 'baseline'
               ? '<div class="sup-laws sup-laws-none">Lois ZORAN utilisées : <strong>AUCUNE</strong> · réponse Claude brute, pour comparaison</div>'
@@ -272,6 +336,7 @@ export function renderComparison(result) {
   return `<div class="superiority-container">
     ${verdictBanner}
     ${deltaTable}
+    ${concreteTable}
     ${reformsBlock}
     ${responsesBlock}
   </div>`;

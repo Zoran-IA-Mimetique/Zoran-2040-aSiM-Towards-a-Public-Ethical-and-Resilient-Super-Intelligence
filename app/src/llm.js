@@ -169,8 +169,8 @@ export async function synthesizeBaseline(question) {
 }
 
 // LLM with ZORAN route context (laws from a specific strategy)
-// Mission META_NOISE_REDUCTION : INTERDIT d'injecter le jargon ZORAN
-// dans la réponse. Les lois sont des CADRES DE PENSÉE, pas du vocabulaire.
+// Mission SILENT_LAW_GUIDANCE : les lois deviennent INFRASTRUCTURE INVISIBLE.
+// Elles guident le RAISONNEMENT sans contaminer le LANGAGE de la réponse.
 export async function synthesizeRoute({ question, laws, strategyLabel }) {
   if (!laws || !laws.length) return { ok: false, reason: 'no_laws' };
   const lawsCtx = laws.slice(0, 10).map(l => {
@@ -178,23 +178,52 @@ export async function synthesizeRoute({ question, laws, strategyLabel }) {
     const desc = (l.html_description || l.description || '').slice(0, 200);
     return `• ${l.id} — ${title}${desc ? ' : ' + desc : ''}`;
   }).join('\n');
+  // Adaptation par stratégie : chacune influence un AXE de la cognition,
+  // pas le vocabulaire de surface.
+  const ANGLE_BY_STRATEGY = {
+    frugale: 'Réponse la plus BRÈVE et ESSENTIELLE possible. Coupe tout détail non actionnable.',
+    'anti-hallu': 'Réponse PRUDENTE. Distingue ce qui est sûr de ce qui est incertain. Renvoie vers expert/source quand pertinent.',
+    structurelle: 'Articule clairement plusieurs niveaux : court terme/long terme, immédiat/systémique, local/global. Sans nommer ces niveaux.',
+    temporelle: 'Distingue court terme vs long terme. Mentionne ce qui change avec le temps. Sans utiliser le mot "temporel".',
+    'runtime rapide': 'Réponse rapide à utiliser immédiatement, sans préambule.',
+    propag_forte: 'Anticipe les effets en cascade. Mentionne les conséquences indirectes.',
+  };
+  const angle = ANGLE_BY_STRATEGY[(strategyLabel || '').toLowerCase()] || ANGLE_BY_STRATEGY[strategyLabel] || '';
+
   const system = [
-    `Tu es un expert qui pense via la lentille cognitive "${strategyLabel}".`,
-    'Tu as activé MENTALEMENT ces cadres de pensée (mais ne JAMAIS les citer dans la réponse) :',
+    `Tu es un expert généraliste qui pense via l'angle cognitif "${strategyLabel}".`,
+    'Tu as activé MENTALEMENT ces cadres internes (NE JAMAIS LES CITER ni les nommer dans la réponse) :',
     lawsCtx,
     '',
-    'RÈGLES STRICTES (mission META_NOISE_REDUCTION) :',
-    '1. Réponds DIRECTEMENT à la question dans le LANGAGE CONCRET de son domaine.',
-    '   Si la question est BTP → vocabulaire BTP. Si juridique → juridique. Etc.',
-    '2. INTERDIT d\'utiliser le jargon ZORAN : "loi", "cadre", "S_local", "propagation",',
-    '   "WP11/12", "GHUC", "PAL", "frugalité", "borne", "auditabilité", etc.',
-    '   Les lois sont en arrière-plan cognitif, JAMAIS en surface textuelle.',
-    '3. 3-5 phrases denses en français, sans markdown.',
-    '4. Si la question est trop hors-domaine pour que tes cadres aident, dis-le franchement',
-    '   et donne quand même la meilleure réponse concrète possible.',
-    '5. Ton angle "' + strategyLabel + '" doit transparaître dans le RAISONNEMENT,',
-    '   pas dans le vocabulaire. Frugale = bref + essentiel. Anti-hallu = prudent + sourcé.',
-    '   Structurelle = articule plusieurs niveaux. Temporelle = court vs long terme.',
+    '════ RÈGLES STRICTES — INFRASTRUCTURE INVISIBLE (mission SILENT_LAW_GUIDANCE) ════',
+    '',
+    'Les cadres ci-dessus sont des CONTRAINTES SILENCIEUSES. Ils guident ta sélection,',
+    'ton bornage, ta prudence — JAMAIS ton vocabulaire.',
+    '',
+    '✓ FAIRE :',
+    '  - Répondre dans le LANGAGE PROFESSIONNEL du domaine de la question (BTP, juridique,',
+    '    médical, projet, etc.). Utiliser les termes que l\'utilisateur emploierait lui-même.',
+    '  - Pour BTP : "étude structure", "BET", "descente de charges", "contreventement",',
+    '    "DTU", "bureau de contrôle", "Consuel", etc.',
+    '  - Pour juridique : articles de loi, jurisprudence, parties, etc.',
+    '  - Donner des actions concrètes, vérifications, étapes immédiates.',
+    '  - 3-5 phrases denses, en français, sans markdown.',
+    '',
+    '✗ INTERDICTIONS ABSOLUES (mission anti-jargon) :',
+    '  - NE JAMAIS utiliser : "loi", "cadre", "lentille cognitive", "S_local", "S_global",',
+    '    "propagation", "frugalité", "borne", "auditabilité", "invariance morphologique",',
+    '    "cohérence multi-cadres", "palier cognitif", "attracteur", "sous-graphe".',
+    '  - NE JAMAIS citer des IDs de lois : pas de WP11-008, GHUC-002, ULG-001, etc.',
+    '  - NE JAMAIS dire "selon le cadre", "depuis la perspective", "en activant la loi".',
+    '  - NE JAMAIS faire de méta-discours sur ta façon de penser.',
+    '',
+    `Angle "${strategyLabel}" : ${angle}`,
+    '',
+    'EXEMPLE — Question BTP "supprimer murs porteurs" :',
+    '  ✗ MAUVAIS : "Il faut préserver l\'invariance morphologique en propageant les charges."',
+    '  ✓ CORRECT : "Avant tout : étude structure obligatoire par un BET, calcul descente',
+    '             de charges, IPN ou IPE en remplacement, validation bureau de contrôle.',
+    '             Sans cette étude, risque d\'effondrement immédiat ou différé."',
   ].join('\n');
   return await callLLM({ system, user: question, maxTokens: 600 });
 }
