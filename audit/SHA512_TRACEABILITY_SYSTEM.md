@@ -1,82 +1,103 @@
-# SHA512_TRACEABILITY_SYSTEM — Spec
+# SHA512 TRACEABILITY SYSTEM
 
-**Mission**: `ZORAN_LAW_PROVENANCE_AND_RELEVANCE_INDEX_SYSTEM_20260516`
-**Implémentation**: `tools/law_provenance_engine.py` (fonction `compute_sha512`)
-**Archive**: `audit/LAW_PROVENANCE_ARCHIVE.json`
-**Cross-refs**: `LAW_PROVENANCE_ENGINE.md`, `LAW_VERSIONING_PROTOCOL.md`
+**Mission** : `ZORAN_LAW_PROVENANCE_AND_RELEVANCE_INDEX_SYSTEM_20260516`
+**Timestamp** : `2026-05-16T13:14:37+00:00`
+**Cross-refs** : `LAW_PROVENANCE_ENGINE.md`, `LAW_VERSIONING_PROTOCOL.md`
 
-## Principe
+Sous-système de hash déterministe garantissant qu'une loi a **une et une
+seule** empreinte SHA512 stable dans le temps, indépendante du jitter de
+sérialisation.
 
-Chaque loi ZORAN doit posséder une empreinte cryptographique forte,
-**déterministe et reproductible** sur n'importe quelle machine, à partir
-de son contenu sémantique stable. SHA512 a été choisi pour sa résistance
-aux collisions et sa marge sur la croissance future du corpus (cible
-> 10 000 lois).
+---
 
-## Algorithme
+## 1. Spécification du hash
 
-```python
-content    = stable_content(node)          # filtre sur HASH_FIELDS
-serialized = json.dumps(content,
-                        sort_keys=True,    # ordre déterministe
-                        ensure_ascii=False,
-                        separators=(',', ':'))   # zéro whitespace
-sha512     = hashlib.sha512(serialized.encode("utf-8")).hexdigest()
-sha_short  = sha512[:12]
+```
+sha512 = SHA-512(
+    json.dumps(
+        stable_content(node),
+        sort_keys=True,           # ordre déterministe
+        ensure_ascii=False,       # UTF-8 préservé
+        separators=(',', ':')     # zéro whitespace
+    ).encode("utf-8")
+)
 ```
 
-### Pourquoi ces options
+Le contenu stable est extrait via `HASH_FIELDS` (14 champs définis dans
+`LAW_PROVENANCE_ENGINE.md` §2). Les champs métadata (timestamps, scores
+runtime, statuts) sont **exclus** : ils peuvent muter sans déclencher
+une bump de version contenu.
 
-| Option                   | Raison                                              |
-|--------------------------|-----------------------------------------------------|
-| `sort_keys=True`         | Ordre stable des clés JSON → hash reproductible     |
-| `separators=(',',':')`   | Pas d'espace → pas de drift de whitespace           |
-| `ensure_ascii=False`     | Préserve caractères UTF-8 (accents, mathématiques)  |
-| Listes triées            | Ordre `tags` / `domains` indifférent au hash        |
+### Normalisation des listes
 
-## Affichage
+```
+SI list[str] :   sorted(list)     → ordre alphabétique stable
+SINON       :   conservé tel quel  (ex: equations ordonnées)
+```
 
-`sha_short` (12 premiers caractères) est exposé dans le panneau loi UI
-pour identification rapide. Exemples extraits de
-`LAW_PROVENANCE_ARCHIVE.json` :
+---
 
-| ID         | sha_short      |
-|------------|----------------|
-| ULG-001    | `dc93c298a9ee` |
-| GHUC-001   | `11f669e13a1d` |
-| WP11-001   | `28dbaafedb17` |
-| WP12-001   | `80cec39d5011` |
-| DVE-001    | `61fc6ec5ad09` |
+## 2. Affichage UI
 
-Le SHA512 complet reste stocké dans `app/data/laws.json` pour audit.
+```
+sha_short = sha512[:12]   # ex: "dc93c298a9ee"
+```
 
-## Garanties mesurées
+Affiché dans le panel de loi pour identification rapide. Le SHA complet
+reste disponible via clic / debug. Aucune collision constatée sur les
+préfixes 12 caractères dans le corpus actuel (361 lois).
 
-| Métrique                       | Valeur cible | Valeur observée |
-|--------------------------------|--------------|-----------------|
-| SHA512 canoniques uniques      | 241 / 241    | **241 / 241**   |
-| SHA512 sandbox uniques         | 120 / 120    | **120 / 120**   |
-| Collisions toutes catégories   | 0            | **0**           |
-| Lois sans hash                 | 0            | **0**           |
+Exemples extraits de `LAW_PROVENANCE_ARCHIVE.json` :
 
-Probabilité théorique de collision SHA512 sur 361 lois : `~ 2⁻⁵⁰⁰`.
-Aucune collision observée sur 6 runs successifs.
+```
+ULG-001     → dc93c298a9ee
+ULG-002     → 3dbb33b53ec6
+DVE-001     → 61fc6ec5ad09
+GHUC-001    → 11f669e13a1d
+GHUC-002-a  → 44571358c7e5
+```
 
-## Recalcul indépendant
+---
 
-Toute partie tierce peut recalculer un hash en :
-1. Lisant le nœud dans `laws.json`
-2. Filtrant sur `HASH_FIELDS` (cf. `LAW_PROVENANCE_ENGINE.md`)
-3. Sérialisant avec les mêmes options
-4. Appliquant SHA512
+## 3. Résultats de traçabilité
 
-Mismatch → preuve d'altération.
+| corpus | total | hashed | uniques | collisions |
+|---|---:|---:|---:|---:|
+| canonique (`laws.json`) | 241 | 241 | 241 | **0** |
+| sandbox (`laws_sandbox.json`) | 120 | 120 | 120 | **0** |
+| **total** | **361** | **361** | **361** | **0** |
+
+→ Espace SHA512 (2^512) très largement suffisant ; aucune collision
+même probabiliste attendue sur des corpus 10^9× plus grands.
+
+---
+
+## 4. Détection de mutation
+
+Toute modification d'un champ de `HASH_FIELDS` produit un SHA différent.
+L'engine de provenance compare `old_sha` ↔ `new_sha` à chaque run :
+
+```
+SI new_sha ≠ old_sha :
+   version += 1
+   last_modified_utc = now()
+   collision_check(new_sha ∈ hashes_seen)
+```
+
+→ Aucun changement silencieux possible. Le diff de contenu est
+**immédiatement visible** dans `PROVENANCE_AUDIT_REPORT.json`
+(`versioned` counter).
+
+---
 
 ## SIGNATURE
 
 ```
-ALGO:           SHA512 / JSON sort_keys / no whitespace
-SHA_SHORT_LEN:  12 hex chars
-COLLISIONS:     0 sur 361 lois
-REPRO:          déterministe, multi-machine
+ALGORITHM:        SHA-512 (FIPS 180-4)
+SERIALIZATION:    json sort_keys + no whitespace + UTF-8
+DISPLAY_SHORT:    first 12 hex chars
+CANONICAL:        241/241 uniques, 0 collisions
+SANDBOX:          120/120 uniques, 0 collisions
 ```
+
+🔶

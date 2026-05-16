@@ -1,87 +1,103 @@
-# LAW_VERSIONING_PROTOCOL — Spec
+# LAW VERSIONING PROTOCOL
 
-**Mission**: `ZORAN_LAW_PROVENANCE_AND_RELEVANCE_INDEX_SYSTEM_20260516`
-**Implémentation**: `tools/law_provenance_engine.py`
-**Archive**: `audit/LAW_PROVENANCE_ARCHIVE.json`
-**Cross-refs**: `LAW_PROVENANCE_ENGINE.md`, `SHA512_TRACEABILITY_SYSTEM.md`
+**Mission** : `ZORAN_LAW_PROVENANCE_AND_RELEVANCE_INDEX_SYSTEM_20260516`
+**Timestamp** : `2026-05-16T13:14:37+00:00`
+**Cross-refs** : `LAW_PROVENANCE_ENGINE.md`, `SHA512_TRACEABILITY_SYSTEM.md`,
+`PROVENANCE_AUDIT_REPORT.md`
 
-## Règles de versioning
+Protocole de versionnage des lois : règles d'incrément, préservation
+temporelle, garde-fous anti-cycle, archivage snapshot.
 
-Le versioning ZORAN est **content-driven** : une loi n'incrémente que si
-son contenu sémantique stable change (i.e. son `sha512` change). Les
-modifications de scores runtime, timestamps ou statuts dérivés
-n'incrémentent pas la version.
+---
 
-```
-version_initial   = 1                       # nouvelle loi
-version_t+1       = version_t + 1           # si sha512_t+1 != sha512_t
-version_t+1       = version_t               # sinon (idempotent)
-```
+## 1. Règles de version
 
-## Champs temporels
-
-| Champ                | Comportement                                       |
-|----------------------|----------------------------------------------------|
-| `creation_epoch`     | Epoch UNIX, **préservé** une fois posé             |
-| `timestamp_utc`      | ISO-8601 création, **préservé** une fois posé      |
-| `last_modified_utc`  | ISO-8601, **réécrit à chaque run** du moteur       |
-| `version`            | Int monotonique, incrémenté sur changement contenu |
-
-Cette séparation permet :
-- audit d'âge d'une loi (`creation_epoch`)
-- audit de fréquence de touch (`last_modified_utc`)
-- audit de fréquence de mutation réelle (`version`)
-
-## Chaîne de dérivation
+| règle | comportement |
+|---|---|
+| init | `version = 1` à la première annotation |
+| mutation contenu | `version++` si `sha512` change |
+| mutation métadata | version **inchangée** (timestamps, scores) |
+| max increment / run | 1 (idempotent sur même contenu) |
 
 ```
-derivation_chain : string[]    # ordonnée ancêtres → racine
-max_depth        : 10          # garde-fou anti-cycle
+SI sha512_old ∧ sha512_old ≠ sha512_new :
+    version = version + 1
+SINON SI ¬sha512_old :
+    version = 1
+SINON :
+    version unchanged
 ```
 
-Construction par `derive_chain()` :
-1. Part du nœud courant
-2. Récupère `parent_laws[0]` (parent chronologique)
-3. Si parent déjà dans la chaîne → **STOP** (cycle détecté)
-4. Sinon ajoute, descend, max 10 hops
+Sur le run actuel : **0 versioned** (tous nouveaux), **241 new_provenance**
+canoniques + **120 new_provenance** sandbox.
 
-Garantit terminaison + détection cycles + reconstruction filiation.
+---
 
-## Snapshot d'archive
+## 2. Préservation temporelle
 
-À chaque run, `LAW_PROVENANCE_ARCHIVE.json` est réécrit :
+| champ | mise à jour |
+|---|---|
+| `creation_epoch` | jamais (immuable, fixé au premier run) |
+| `timestamp_utc` | jamais (création originelle préservée) |
+| `last_modified_utc` | à chaque run engine |
 
-```json
+Cette dissociation permet à l'audit de répondre à :
+- **« Quand cette loi est-elle née ? »** → `creation_epoch`
+- **« Quand a-t-elle muté pour la dernière fois ? »** → `last_modified_utc`
+  conjugué à `version`
+
+---
+
+## 3. Chaîne de dérivation et garde-fou cycle
+
+```
+derivation_chain = [parent₀, parent₁, ..., parentₙ]
+max_depth = 10                # plafond strict
+cycle_guard: if p ∈ chain: break
+```
+
+L'algorithme `derive_chain()` remonte l'ancêtre primaire (premier parent
+chronologique) jusqu'à :
+1. atteindre une racine (`parent_laws == []`)
+2. atteindre `max_depth = 10` couches
+3. détecter un cycle (parent déjà visité)
+
+→ Garantie : **aucune boucle infinie**, **aucune explosion mémoire**.
+
+---
+
+## 4. Archive snapshot
+
+À chaque run, `LAW_PROVENANCE_ARCHIVE.json` est régénéré :
+
+```jsonc
 {
   "mission_id": "ZORAN_LAW_PROVENANCE_AND_RELEVANCE_INDEX_SYSTEM_20260516",
   "snapshot_utc": "2026-05-16T13:14:37.278901+00:00",
   "canonical_count": 241,
   "sandbox_count": 120,
-  "canonical_hashes": { "ULG-001": "dc93c298a9ee", ... }
+  "canonical_hashes": {
+    "ULG-001": "dc93c298a9ee",
+    "ULG-002": "3dbb33b53ec6",
+    ...
+  }
 }
 ```
 
-Cette archive sert de **point de rollback** : toute divergence future
-entre `laws.json` et le snapshot est détectable hash-par-hash.
+→ Rollback possible : tout `sha_short` archivé peut être recroisé avec
+`git log` de `laws.json` pour reconstituer l'état exact d'une loi à une
+date donnée.
 
-## État courant (run 2026-05-16)
-
-| Compteur                       | Valeur |
-|--------------------------------|--------|
-| Lois canoniques versionnées++  | 0      |
-| Lois sandbox versionnées++     | 0      |
-| Nouvelles provenance posées    | 361    |
-| Cycles dérivation détectés     | 0      |
-
-Toutes les lois sont en `version = 1` (premier run d'initialisation).
-Les runs suivants ne ré-incrémenteront que sur changement effectif.
+---
 
 ## SIGNATURE
 
 ```
-TRIGGER:        sha512 delta
-MAX_DEPTH:      10
-RESET_FIELDS:   last_modified_utc
-PRESERVED:      creation_epoch, timestamp_utc
-ARCHIVE:        LAW_PROVENANCE_ARCHIVE.json
+PROTOCOL:             version starts at 1, ++ on content mutation
+PRESERVED_FIELDS:     creation_epoch, timestamp_utc (immuables)
+MAX_CHAIN_DEPTH:      10
+CYCLE_GUARD:          actif (parent ∈ chain → break)
+SNAPSHOT_FILE:        audit/LAW_PROVENANCE_ARCHIVE.json
 ```
+
+🔶

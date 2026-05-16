@@ -1,88 +1,99 @@
-# LAW_RELEVANCE_INDEX_ENGINE — Spec
+# LAW RELEVANCE INDEX ENGINE
 
-**Mission**: `ZORAN_LAW_PROVENANCE_AND_RELEVANCE_INDEX_SYSTEM_20260516`
-**Implémentation**: `tools/law_relevance_index_engine.py`
-**Rapport runtime**: `audit/LAW_RELEVANCE_INDEX_REPORT.json`
-**Cross-refs**: `LAW_RETENTION_THRESHOLDS.md`, `CANONICAL_SELECTION_SYSTEM.md`
+**Mission** : `ZORAN_LAW_PROVENANCE_AND_RELEVANCE_INDEX_SYSTEM_20260516`
+**Timestamp** : `2026-05-16T02:04:00+02:00`
+**Cross-refs** : `LAW_RETENTION_THRESHOLDS.md`, `CANONICAL_SELECTION_SYSTEM.md`,
+`LAW_PROVENANCE_ENGINE.md`
 
-## Principe
+Spec principale du moteur de pertinence. Calcule **8 scores** par loi et
+détermine sa destination dans le pipeline de rétention.
 
-Quantifier la **pertinence réelle** de chaque loi via 8 scores
-indépendants puis composer un index unique `law_relevance_index ∈ [0,1]`,
-agrégé en `keep_probability` qui détermine le destin de la loi
-(canonical, runtime_candidate, sandbox, archive, purge_candidate).
+---
 
-## Les 8 scores
+## 1. Les 8 scores
 
-| Score                       | Formule sommaire                                              |
-|-----------------------------|---------------------------------------------------------------|
-| `structural_uniqueness`     | `1 − (taille_famille − 1) / 50`, clamp [0,1]                  |
-| `cross_domain_relevance`    | step : 1d→0.45, 2d→0.65, ≥3d→0.85                             |
-| `anti_hallucination_value`  | base + `+0.20` si kind ∈ {boundary, contradicts}              |
-| `propagation_efficiency_v2` | `(impact / propag_cost) / 4 + 0.10`, clamp [0,1]              |
-| `runtime_usefulness`        | `0.35·velocity + 0.25·prop_v2 + 0.20·anti_hallu + 0.20·frug`  |
-| `temporal_survival`         | repris du moteur temporel, fallback 0.5                       |
-| `law_relevance_index`       | composite (voir ci-dessous)                                   |
-| `keep_probability`          | `LRI + bonus − malus`, clamp [0,1]                            |
+| score | formule |
+|---|---|
+| `structural_uniqueness` | `1 − (taille_famille − 1)/50`, capé [0, 1] |
+| `cross_domain_relevance` | 0.85 si ≥3 domaines · 0.65 si =2 · 0.45 si =1 · 0.30 sinon |
+| `anti_hallucination_value` | `anti_hallucination_score + 0.20` si `kind ∈ {boundary, contradicts}` |
+| `propagation_efficiency_v2` | `(impact / max(0.05, prop_cost)) / 4 + 0.10`, capé [0, 1] |
+| `runtime_usefulness` | `0.35·velocity + 0.25·propag_v2 + 0.20·anti_hallu + 0.20·frugality` |
+| `temporal_survival` | hérité (calculé en amont) |
+| `law_relevance_index` | composite (cf. §2) |
+| `keep_probability` | LRI + bonus − malus (cf. §3) |
 
-## Formule LRI
+---
 
-```
-law_relevance_index =
-    0.25 · runtime_usefulness
-  + 0.20 · propagation_efficiency_v2
-  + 0.15 · temporal_survival
-  + 0.15 · cross_domain_relevance
-  + 0.10 · anti_hallucination_value
-  + 0.10 · structural_uniqueness
-  + 0.05 · llm_relevance_score
-```
-
-Poids prioritaires : utilité runtime (25 %) et efficacité de propagation
-(20 %) — une loi doit servir et ne pas coûter cher.
-
-## Formule keep_probability
+## 2. Law Relevance Index (LRI)
 
 ```
-keep_probability = LRI
-                 + 0.10 si superior_law_candidate
-                 + 0.15 si attractor_tier == "fondateur"
-                 − 0.20 si experimental_classes == ["toxique_propagationnelle"]
+LRI = 0.25 · runtime_usefulness
+    + 0.20 · propagation_efficiency_v2
+    + 0.15 · temporal_survival
+    + 0.15 · cross_domain_relevance
+    + 0.10 · anti_hallucination_value
+    + 0.10 · structural_uniqueness
+    + 0.05 · llm_relevance_score
 ```
 
-Le bonus fondateur protège l'ossature historique. Le bonus superior
-protège les lois reconnues structurellement supérieures. Le malus
-toxique sanctionne les lois qui propagent du bruit.
+Plage [0, 1]. Composite calibré pour favoriser :
+1. utilité runtime (poids cumulé 0.45 via runtime + propagation)
+2. portée temporelle et inter-domaine (0.30)
+3. unicité structurelle + anti-hallu (0.20)
+4. signal LLM secondaire (0.05)
 
-## Résultats runtime (run 2026-05-16)
+→ **avg_law_relevance_index = 0.576** sur les 241 lois canoniques.
 
-| Métrique                       | Valeur  |
-|--------------------------------|---------|
-| Lois scorées                   | 241     |
-| Avg `law_relevance_index`      | 0.576   |
-| Avg `keep_probability`         | 0.588   |
-| canonical (≥ 0.80)             | 0       |
-| runtime_candidate (0.60–0.80)  | 121     |
-| sandbox (0.40–0.60)            | 120     |
-| archive (0.20–0.40)            | 0       |
-| purge_candidate (< 0.20)       | 0       |
+---
 
-Pour la distribution détaillée et la stratégie de seuils voir
-`LAW_RETENTION_THRESHOLDS.md`.
+## 3. Keep Probability (KP)
 
-## Garde-fous
+```
+KP = LRI
+   + 0.10 si superior_law_candidate
+   + 0.15 si attractor_tier == "fondateur"
+   − 0.20 si experimental_classes == ["toxique_propagationnelle"]
+```
 
-- Clamp `[0, 1]` strict sur tous les scores
-- Fallbacks `0.4 / 0.5` sur scores manquants (jamais `None` propagé)
-- Bonus / malus bornés (jamais > +0.25 ni < −0.20 cumulés)
-- Aucun score n'écrase un autre : LRI reste composite
+Capé [0, 1]. Représente la **probabilité finale** de conserver la loi.
+
+→ **avg_keep_probability = 0.588** sur les 241 lois canoniques.
+
+L'écart KP − LRI ≈ +0.012 reflète la dominance modeste des bonus
+fondateur/supérieur sur les malus toxiques (très rares).
+
+---
+
+## 4. Pipeline d'exécution
+
+```
+1. Charger laws.json (241 nœuds)
+2. Pour chaque nœud :
+     a. Calcul des 6 scores composantes
+     b. LRI = composite pondéré
+     c. KP  = LRI + bonus − malus
+     d. retention_status = seuil(KP)   → cf. LAW_RETENTION_THRESHOLDS.md
+3. Injecter les 8 scores + retention_status dans le nœud
+4. Sauvegarder laws.json + écrire LAW_RELEVANCE_INDEX_REPORT.json
+```
+
+Distribution résultante : **121 runtime_candidate / 120 sandbox / 0
+canonical / 0 archive / 0 purge**.
+
+---
 
 ## SIGNATURE
 
 ```
-MISSION_ID:    ZORAN_LAW_PROVENANCE_AND_RELEVANCE_INDEX_SYSTEM_20260516
-SCORES:        8 par loi
-AVG_LRI:       0.576
-AVG_KP:        0.588
-DISTRIBUTION:  0 / 121 / 120 / 0 / 0
+ENGINE:               tools/law_relevance_index_engine.py
+SCORES_INJECTED:      8 par loi × 241 lois
+LRI_WEIGHTS:          25/20/15/15/10/10/5
+BONUSES:              superior +0.10, fondateur +0.15
+MALUS:                toxique_propagationnelle −0.20
+AVG_LRI:              0.576
+AVG_KP:               0.588
+REPORT:               audit/LAW_RELEVANCE_INDEX_REPORT.json
 ```
+
+🔶
