@@ -697,7 +697,55 @@ export function renderDetail(node, graph, onPick) {
     ? 'S_global (loi)'
     : 'S_global (proxy)';
 
+  // Section "Réponse à votre question" si cette loi est la loi-réponse
+  // (mission UX : pique sur la loi rouge → contexte de la question affiché ici)
+  let answerSection = '';
+  const w = (typeof window !== 'undefined' && window.state) ? window.state : null;
+  if (w && w.answerLawId === node.id && w.answerContext) {
+    const ctx = w.answerContext;
+    answerSection = `<section style="background:linear-gradient(135deg,rgba(255,58,58,0.16),rgba(255,107,107,0.05));
+                          border:1px solid #ff4444; border-radius:8px;
+                          padding:14px 16px; margin-bottom:14px">
+      <div style="font-size:11px;color:#ff8888;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">
+        ● Réponse à votre question
+      </div>
+      <div style="font-family:ui-monospace,monospace;font-size:12px;color:var(--fg-1);margin-bottom:10px;padding:6px 10px;background:rgba(0,0,0,0.30);border-radius:4px">
+        ${esc(ctx.question)}
+      </div>
+      <div style="font-size:13px;color:var(--fg-0);line-height:1.5;margin-bottom:10px">
+        Cette loi a été retenue runtime pour répondre à votre question.
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px">
+        <div style="background:var(--bg-2);padding:5px 8px;border-radius:3px;border:1px solid var(--line)">
+          <span style="color:var(--fg-2)">Stratégie gagnante :</span>
+          <strong style="color:var(--accent);margin-left:4px">${esc(ctx.why.winning_strategy)}</strong>
+        </div>
+        <div style="background:var(--bg-2);padding:5px 8px;border-radius:3px;border:1px solid var(--line)">
+          <span style="color:var(--fg-2)">Score sélection :</span>
+          <strong style="color:#3ad17a;margin-left:4px">${(ctx.why.selection_score ?? 0).toFixed(3)}</strong>
+        </div>
+        <div style="background:var(--bg-2);padding:5px 8px;border-radius:3px;border:1px solid var(--line)">
+          <span style="color:var(--fg-2)">Précision moyenne :</span>
+          <strong style="margin-left:4px">${(ctx.why.precision_score ?? 0).toFixed(3)}</strong>
+        </div>
+        <div style="background:var(--bg-2);padding:5px 8px;border-radius:3px;border:1px solid var(--line)">
+          <span style="color:var(--fg-2)">Anti-hallucination :</span>
+          <strong style="margin-left:4px">${(ctx.why.hallucination_resistance ?? 0).toFixed(3)}</strong>
+        </div>
+        <div style="background:var(--bg-2);padding:5px 8px;border-radius:3px;border:1px solid var(--line)">
+          <span style="color:var(--fg-2)">Topic match :</span>
+          <strong style="margin-left:4px">${(ctx.why.topic_match ?? 0).toFixed(3)}</strong>
+        </div>
+        <div style="background:var(--bg-2);padding:5px 8px;border-radius:3px;border:1px solid var(--line)">
+          <span style="color:var(--fg-2)">Oracle :</span>
+          <strong style="color:#3ad17a;margin-left:4px">✓ survécu</strong>
+        </div>
+      </div>
+    </section>`;
+  }
+
   body.innerHTML = `
+    ${answerSection}
     <h2>${tierBadge(node)}${esc(node.title)}</h2>
     <div class="meta">${esc(node.id)} · famille <strong>${esc(node.family)}</strong> · poids ${(node.weight ?? 0).toFixed(2)}</div>
     <div class="tags">${tags(node)}</div>

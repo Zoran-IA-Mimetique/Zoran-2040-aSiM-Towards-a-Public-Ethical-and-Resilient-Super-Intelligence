@@ -172,9 +172,31 @@ export function compete(question, nodes) {
     laws_used: seeded.map(l => l.id), ...scoreRoute(seeded),
   });
   const survivors = routes.filter(r => !r.eliminated).sort((a, b) => b.selection_score - a.selection_score);
+  const winnerRoute = survivors[0] || null;
+  // THE answer = première loi du winner route (priority-ordered)
+  // C'est l'étiquette qui répond à la question. Off-topic → null.
+  const answerLawId = (!offTopic && winnerRoute) ? winnerRoute.laws_used[0] : null;
+  // Trouver le nœud complet pour cette loi
+  const answerNode = answerLawId ? nodes.find(n => n.id === answerLawId) : null;
+  const answerContext = answerNode ? {
+    question,
+    law_id: answerNode.id,
+    law_title: answerNode.title,
+    why: {
+      winning_strategy: winnerRoute.label || winnerRoute.strategy,
+      selection_score: winnerRoute.selection_score,
+      precision_score: winnerRoute.precision_score,
+      hallucination_resistance: winnerRoute.hallucination_resistance,
+      topic_match: topicScore(answerNode, qTokens),
+      survived_oracle: true,
+    }
+  } : null;
+
   return {
     question, routes, baselines,
-    winner: survivors[0]?.route_id || null,
+    winner: winnerRoute?.route_id || null,
+    answerLawId,
+    answerContext,
     offTopic,
     maxTopicRelevance: maxTopic,
   };
@@ -249,25 +271,33 @@ export function renderResults(result, onPickLaw) {
 
   const offTopicBanner = result.offTopic
     ? `<div style="background:rgba(255,107,107,0.10);border:1px solid var(--unstable);
-                  color:var(--unstable);padding:10px 12px;border-radius:6px;
-                  margin-bottom:12px;font-size:12px;line-height:1.45">
+                  color:var(--unstable);padding:14px 16px;border-radius:6px;
+                  margin-bottom:12px;font-size:13px;line-height:1.5">
         <strong>⚠ Question hors-domaine ZORAN</strong><br>
-        Aucune loi du graphe ne correspond lexicalement à cette question
-        (max topic_relevance = ${result.maxTopicRelevance.toFixed(3)}).
-        Les routes ci-dessous sont calculées par fallback structurel — elles
-        ne reflètent <em>pas</em> un raisonnement pertinent. ZORAN couvre :
-        cohérence, propagation, runtime, frugalité, temporalité,
+        Aucune loi du graphe ne correspond lexicalement (max topic = ${result.maxTopicRelevance.toFixed(3)}).
+        ZORAN couvre : cohérence, propagation, runtime, frugalité, temporalité,
         bornage, hallucination, loi supérieure.
       </div>`
-    : '';
+    : `<div style="background:linear-gradient(135deg,rgba(255,68,68,0.18),rgba(255,107,107,0.05));
+                   border:1px solid #ff4444; color:#ffdddd;
+                   padding:16px 18px; border-radius:8px; margin-bottom:14px;
+                   font-size:14px; line-height:1.55">
+        <div style="font-size:16px;color:#ff4444;margin-bottom:6px"><strong>● Loi clignotante rouge</strong></div>
+        La réponse à ta question se lit directement sur l'étiquette de la loi
+        rouge qui clignote dans le graphe. <strong>Pique dessus</strong> pour
+        ouvrir le panneau détaillé : pourquoi cette loi a été retenue, ses
+        scores, ses parents/enfants, ses équations.
+      </div>`;
 
-  body.innerHTML = `${offTopicBanner}<div style="font-size:11px;color:var(--fg-2);margin-bottom:8px">
-    ${result.routes.length} routes générées · ${result.routes.filter(r => !r.eliminated).length} survivantes ·
-    winner : <strong style="color:var(--accent)">${winner || 'aucun'}</strong>
-  </div>
+  // Routes details en accordéon — repliés par défaut pour ne pas surcharger
+  body.innerHTML = `${offTopicBanner}<details style="margin-top:8px"><summary style="cursor:pointer;font-size:11px;color:var(--fg-2);text-transform:uppercase;letter-spacing:1px;padding:4px 0">
+    Détails compétition routes (${result.routes.length} générées · ${result.routes.filter(r => !r.eliminated).length} survivantes)
+  </summary>
+  <div style="margin-top:10px">
   ${routeHtml}
   <h4 style="font-size:10px;color:var(--fg-2);margin:10px 0 4px 0;text-transform:uppercase">Baselines (référence)</h4>
-  ${blHtml}`;
+  ${blHtml}
+  </div></details>`;
 
   // Wire law-id clicks
   body.querySelectorAll('a[data-pick]').forEach(a => {
