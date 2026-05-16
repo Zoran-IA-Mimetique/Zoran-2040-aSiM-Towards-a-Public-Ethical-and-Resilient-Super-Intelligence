@@ -105,7 +105,8 @@
           "ne calcule pas la pragmatique",
           "n'opère pas hors-cadre représentationnel"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "ULG-002",
@@ -149,7 +150,8 @@
           "n'évalue pas la vitesse de convergence",
           "asymptote non observable"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "ULG-003",
@@ -197,7 +199,8 @@
           "ne traite pas les transformations non-Aut",
           "ne couvre pas les invariants non-morphologiques"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "ULG-004",
@@ -241,7 +244,8 @@
           "instable quand ε → 0 sans renormalisation",
           "non-définie hors zones échantillonnées"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "ULG-005",
@@ -289,7 +293,8 @@
           "fractalité dynamique du signal, distincte de la fractalité du graphe ZORAN",
           "n'évalue pas la stabilité hors loi d'échelle"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "DVE-001",
@@ -338,7 +343,8 @@
           "ne juge pas la qualité finale d'une variante",
           "ne garantit pas la complétude de l'énumération"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "DVE-002",
@@ -385,7 +391,8 @@
           "ne réalise pas l'admissibilité — délègue à WP-12",
           "n'évalue pas la coût de la dérivation"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "DVE-003",
@@ -428,7 +435,8 @@
           "seuil δ doit être calibré par cas",
           "bifurcation acceptable à court terme peut dégrader à long terme"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "DVE-004",
@@ -475,7 +483,8 @@
           "ne caractérise pas la frontière fine",
           "dépend de la définition courante de WP-12"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "DVE-005",
@@ -519,7 +528,8 @@
           "seuil H_max statique — non adaptatif",
           "ne distingue pas entropie informative vs bruit"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "UDE-001",
@@ -567,7 +577,8 @@
           "maximum local seulement, pas garanti global",
           "fonctions gain et cost à définir par cadre"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "UDE-002",
@@ -614,7 +625,8 @@
           "échantillonnage discret peut manquer attracteurs étroits",
           "ne classifie pas par palier μ"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "UDE-003",
@@ -657,7 +669,8 @@
           "résonance ≠ vérité — peut produire fausses résonances (cf. WP11-005)",
           "dépend du choix de φ"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "UDE-004",
@@ -705,7 +718,8 @@
           "frontière mouvante — résultat instantané seulement",
           "ne mesure pas la profondeur de l'inconnu"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "UDE-005",
@@ -752,7 +766,8 @@
           "ne garantit pas la cohérence post-saut",
           "dépend de la qualité de la carte UDE-002"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "GHUC-001",
@@ -804,7 +819,8 @@
           "ne génère pas — consolide seulement",
           "ne traite pas hors-canonique"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "GHUC-002",
@@ -851,7 +867,8 @@
           "définition de I_struct opérationnelle, pas formelle",
           "compressions agressives peuvent perdre des cas-frontière"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "GHUC-002-a",
@@ -894,7 +911,8 @@
         "limits": [
           "ne traite pas les inter-relations entre lois"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "GHUC-002-a-i",
@@ -938,7 +956,8 @@
         "limits": [
           "dépend de la qualité du dictionnaire de synonymes"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "GHUC-002-a-ii",
@@ -982,7 +1001,8 @@
         "limits": [
           "seuil θ de diversité subjectif"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "GHUC-002-b",
@@ -1025,7 +1045,8 @@
         "limits": [
           "fusion irréversible — exige absorption traçable"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "GHUC-002-b-i",
@@ -1069,7 +1090,8 @@
         "limits": [
           "seuil arbitraire — calibration nécessaire"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "GHUC-002-b-ii",
@@ -1113,7 +1135,8 @@
         "limits": [
           "dépend de la qualité de l'extraction d'invariants"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "GHUC-003",
@@ -1161,7 +1184,8 @@
           "seuil θ statique — pas adaptatif",
           "peut prune des cas-frontière utiles"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "GHUC-004",
@@ -1203,7 +1227,8 @@
         "limits": [
           "fusion intransitive — F1⊕F2⊕F3 dépend de l'ordre"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "WP11-001",
@@ -1250,7 +1275,8 @@
         "limits": [
           "S_local ⊥ S_global a priori — ne fournit PAS de relation déterministe"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "WP11-002",
@@ -1293,7 +1319,8 @@
           "taille de N(x) à choisir par cas",
           "insensible à la cohérence systémique"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "WP11-003",
@@ -1340,7 +1367,8 @@
           "proxy tant que C_composition < seuil R-S2",
           "dépend de la calibration des coefficients α,β,γ,δ"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "WP11-004",
@@ -1386,7 +1414,8 @@
         "limits": [
           "ne propose pas d'alternative — règle d'interdiction pure"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "WP11-005",
@@ -1429,7 +1458,8 @@
         "limits": [
           "seuil arbitraire — calibration empirique nécessaire"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "WP12-001",
@@ -1475,7 +1505,8 @@
         "limits": [
           "les trois critères peuvent être en tension (cf. contradiction WP12-003 ↔ WP12-004)"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "WP12-002",
@@ -1517,7 +1548,8 @@
         "limits": [
           "ne détecte pas les contradictions implicites"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "WP12-003",
@@ -1559,7 +1591,8 @@
         "limits": [
           "en tension avec WP12-004 (fertilité) — cf. contradiction déclarée"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "WP12-004",
@@ -1601,7 +1634,8 @@
         "limits": [
           "en tension avec WP12-003 (minimalité) — cf. contradiction déclarée"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "WP12-005",
@@ -1647,7 +1681,8 @@
         "limits": [
           "dépend de la définition du voisinage N(F)"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "SDE-001",
@@ -1691,7 +1726,8 @@
           "ne formalise pas le saut focal/diffus",
           "ne couvre pas l'attention partielle"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "SDE-002",
@@ -1733,7 +1769,8 @@
         "limits": [
           "en tension avec ULG-003 (invariance morphologique) — cf. contradiction déclarée"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "SDE-003",
@@ -1775,7 +1812,8 @@
         "limits": [
           "F_focal et F_diffuse non observables directement"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "SDE-004",
@@ -1817,7 +1855,8 @@
         "limits": [
           "instabilité observée — variance sous perturbation à étudier"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "SDE-005",
@@ -1859,7 +1898,8 @@
         "limits": [
           "σ peut être non-trivial pour certaines paires asymétriques"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "PAL-001",
@@ -1907,7 +1947,8 @@
           "nature du quantum φ à clarifier",
           "S_global en proxy donc Δpalier en proxy"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "PAL-002",
@@ -1949,7 +1990,8 @@
         "limits": [
           "température T cognitive non mesurable directement"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "PAL-003",
@@ -1991,7 +2033,8 @@
         "limits": [
           "seuil x_c contextuel — pas universel"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "PAL-004",
@@ -2037,7 +2080,8 @@
         "limits": [
           "instabilité — cohérence post-saut non garantie"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "PAL-005",
@@ -2084,7 +2128,8 @@
           "k borné par la connectivité du spectre",
           "S_global en proxy"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "ULG-002-a",
@@ -2127,7 +2172,8 @@
         "limits": [
           "ne garantit pas la convergence des compositions de sous-cadres"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "ULG-002-b",
@@ -2170,7 +2216,8 @@
         "limits": [
           "dépend de l'existence d'un T contractant — non garantie"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "ULG-002-a-i",
@@ -2213,7 +2260,8 @@
         "limits": [
           "ne fournit pas la limite explicite"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "ULG-002-a-ii",
@@ -2256,7 +2304,8 @@
         "limits": [
           "oscillations locales possibles — test à filtrage"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "ULG-002-b-i",
@@ -2299,7 +2348,8 @@
         "limits": [
           "α trop élevé efface la structure ; α trop faible ralentit"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "ULG-002-b-ii",
@@ -2346,7 +2396,8 @@
         "limits": [
           "k trop faible perd l'invariant ULG-003"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "WP11-002-a",
@@ -2389,7 +2440,8 @@
         "limits": [
           "faux positif si variance locale très basse mais N(x) artificiel"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "WP11-002-b",
@@ -2432,7 +2484,8 @@
         "limits": [
           "γ statique — calibration nécessaire par cas"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "WP11-002-a-i",
@@ -2475,7 +2528,8 @@
         "limits": [
           "dépend de la définition de N(x) (rayon)"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "WP11-002-a-ii",
@@ -2518,7 +2572,8 @@
         "limits": [
           "ne teste pas les perturbations rares"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "WP11-002-b-i",
@@ -2561,7 +2616,8 @@
         "limits": [
           "seuil σ²_max statique"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "WP11-002-b-ii",
@@ -2604,7 +2660,8 @@
         "limits": [
           "κ statique — calibration"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "DVE-002-a",
@@ -2647,7 +2704,8 @@
         "limits": [
           "ne couvre pas les sauts qualitatifs (cf. cas B)"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "DVE-002-b",
@@ -2690,7 +2748,8 @@
         "limits": [
           "nombre de classes potentiellement non borné"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "DVE-002-a-i",
@@ -2733,7 +2792,8 @@
         "limits": [
           "interpolation linéaire — ne couvre pas les chemins non-géodésiques"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "DVE-002-a-ii",
@@ -2776,7 +2836,8 @@
         "limits": [
           "F* peut sortir de l'espace admissible (cf. WP12)"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "DVE-002-b-i",
@@ -2819,7 +2880,8 @@
         "limits": [
           "dépend de la qualité de l'extraction des invariants"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "DVE-002-b-ii",
@@ -2862,7 +2924,8 @@
         "limits": [
           "ne garantit pas l'admissibilité conjointe des branches"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "SDE-002-a",
@@ -2905,7 +2968,8 @@
         "limits": [
           "ne couvre pas l'auto-observation (cf. cas B)"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "SDE-002-b",
@@ -2948,7 +3012,8 @@
         "limits": [
           "coût cognitif de la réflexion non modélisé"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "SDE-002-a-i",
@@ -2991,7 +3056,8 @@
         "limits": [
           "ne couvre pas l'attention multi-cible"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "SDE-002-a-ii",
@@ -3034,7 +3100,8 @@
         "limits": [
           "dilution potentielle de la cohérence locale"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "SDE-002-b-i",
@@ -3077,7 +3144,8 @@
         "limits": [
           "σ trivial pour paires asymétriques"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "SDE-002-b-ii",
@@ -3120,7 +3188,8 @@
         "limits": [
           "compositions instables (cf. SDE-004)"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "PAL-002-a",
@@ -3163,7 +3232,8 @@
         "limits": [
           "ne couvre pas les transitions catastrophiques (cf. cas B)"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "PAL-002-b",
@@ -3206,7 +3276,8 @@
         "limits": [
           "t* contextuel — pas universel"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "PAL-002-a-i",
@@ -3249,7 +3320,8 @@
         "limits": [
           "ω_lente arbitraire"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "PAL-002-a-ii",
@@ -3292,7 +3364,8 @@
         "limits": [
           "peut basculer en discret au-delà d'un seuil"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "PAL-002-b-i",
@@ -3335,7 +3408,8 @@
         "limits": [
           "nature physique de φ non clarifiée"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "PAL-002-b-ii",
@@ -3378,7 +3452,8 @@
         "limits": [
           "hystérésis arbitraire"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "GHUC-003-a",
@@ -3421,7 +3496,8 @@
         "limits": [
           "ne traite pas les redondances cross-famille (cf. cas B)"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "GHUC-003-b",
@@ -3464,7 +3540,8 @@
         "limits": [
           "nécessite absorption explicite (traçabilité)"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "GHUC-004-a",
@@ -3507,7 +3584,8 @@
         "limits": [
           "ne traite pas les ponts cross-famille (cf. cas B)"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "GHUC-004-b",
@@ -3550,7 +3628,8 @@
         "limits": [
           "fusion irréversible — audit obligatoire"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "ULG-006",
@@ -3597,7 +3676,8 @@
         "limits": [
           "nombre d'invariants potentiellement infini"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "UDE-006",
@@ -3644,7 +3724,8 @@
         "limits": [
           "faux positif si voisinage trop petit"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "UDE-007",
@@ -3687,7 +3768,8 @@
         "limits": [
           "perturbations agressives peuvent dégrader S_global"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "WP11-006",
@@ -3734,7 +3816,8 @@
         "limits": [
           "dépend de la qualité des audits historiques"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "WP12-006",
@@ -3777,7 +3860,8 @@
         "limits": [
           "en tension potentielle avec absorptions GHUC (irréversibles)"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "WP12-007",
@@ -3820,7 +3904,8 @@
         "limits": [
           "coût de stockage des traces non modélisé"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "SDE-006",
@@ -3863,7 +3948,8 @@
         "limits": [
           "associativité instable au-delà de 3 termes (cf. SDE-004)"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "PAL-006",
@@ -3905,7 +3991,8 @@
         "limits": [
           "instabilité fondamentale — non observable directement"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "DVE-006",
@@ -3952,7 +4039,8 @@
         "limits": [
           "bifurcation force le choix — perd l'information de tension"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "GHUC-005",
@@ -3999,7 +4087,8 @@
         "limits": [
           "audit bloque l'opération si ΔHS < 0 — friction tolérée"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "WP11-007",
@@ -4046,7 +4135,8 @@
         "limits": [
           "dépend de la qualité du label validé/échoué"
         ]
-      }
+      },
+      "runtime_admissible": true
     },
     {
       "id": "WP12-008",
@@ -4089,7 +4179,8 @@
         "limits": [
           "méthodes stochastiques exigent seed explicite"
         ]
-      }
+      },
+      "runtime_admissible": true
     }
   ],
   "edges": [
