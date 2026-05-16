@@ -11,15 +11,21 @@
 
 const KEY_STORAGE = 'zoran.anthropic.key';
 const MODEL_STORAGE = 'zoran.anthropic.model';
-const BENCH_STORAGE = 'zoran.bench.enabled';
+const ECONOMY_STORAGE = 'zoran.economy.mode';   // ⚠ renommé (sémantique inversée)
 const DEFAULT_MODEL = 'claude-sonnet-4-6';
 const API_URL = 'https://api.anthropic.com/v1/messages';
 
+// Auto-migration : si ancienne clé 'zoran.bench.enabled' présente, l'efface
+// (semantic flip : auparavant true = comparaison, maintenant true = économe)
+try { localStorage.removeItem('zoran.bench.enabled'); } catch (_) {}
+
+// Renvoie true si l'utilisateur a coché "Mode économe" (1 seule réponse)
+// Par défaut false = comparaison multi-winner complète activée
 export function getBenchmarkEnabled() {
-  try { return localStorage.getItem(BENCH_STORAGE) === '1'; } catch (_) { return false; }
+  try { return localStorage.getItem(ECONOMY_STORAGE) === '1'; } catch (_) { return false; }
 }
 export function setBenchmarkEnabled(on) {
-  try { localStorage.setItem(BENCH_STORAGE, on ? '1' : '0'); } catch (_) {}
+  try { localStorage.setItem(ECONOMY_STORAGE, on ? '1' : '0'); } catch (_) {}
 }
 
 export function getApiKey() {

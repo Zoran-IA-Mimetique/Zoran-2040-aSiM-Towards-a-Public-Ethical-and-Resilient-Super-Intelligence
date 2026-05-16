@@ -383,12 +383,16 @@ async function runSynthesis(result) {
   const node = window.state?.graph?.nodes?.find(n => n.id === ctx.law_id);
   if (!node) return;
 
-  // Mission RUNTIME_SUPERIORITY : si benchmark mode activé, lance la
-  // comparaison ZORAN vs baseline LLM avec LLM-as-judge.
-  if (getBenchmarkEnabled()) {
+  // Mission MULTI_WINNER_REFORMULATION : par défaut, lance la comparaison
+  // 4 candidats (Claude brut + 3 ZORAN avec reformulations). Désactivable
+  // via "Mode économe" dans ⚙ pour passer en synthèse unique.
+  //
+  // Économe = checkbox cochée explicitement (defaut = comparaison complète)
+  const economeMode = getBenchmarkEnabled(); // checkbox réutilisée comme "mode économe"
+  if (!economeMode) {
     box.innerHTML = `
-      <div class="llm-label">⚖ Benchmark runtime — ZORAN vs LLM baseline (≈5 appels API…)</div>
-      <div class="llm-body">Lancement de 1 baseline + 3 routes ZORAN + 1 juge en parallèle…</div>
+      <div class="llm-label">⚖ Comparaison runtime — CLAUDE brut + 3 routes ZORAN (≈7 appels API en parallèle…)</div>
+      <div class="llm-body">Reformulations cognitives × 3 → réponses → juge…</div>
     `;
     const allNodes = window.state?.graph?.nodes || [];
     const cmp = await runSuperiorityComparison({
@@ -399,12 +403,12 @@ async function runSynthesis(result) {
     box.classList.remove('loading');
     if (cmp.ok) {
       box.classList.remove('error');
-      box.innerHTML = `<div class="llm-label">⚖ Runtime superiority — comparatif jugé</div>
+      box.innerHTML = `<div class="llm-label">⚖ Comparaison runtime — CLAUDE brut vs 3 routes ZORAN</div>
         ${renderComparison(cmp)}`;
     } else {
       box.classList.add('error');
-      box.innerHTML = `<div class="llm-label">⚠ Benchmark échoué (${esc(cmp.reason || '?')})</div>
-        <div class="llm-body">${esc(cmp.message || 'Trop peu de réponses valides ou juge non parsable.')}</div>`;
+      box.innerHTML = `<div class="llm-label">⚠ Comparaison runtime échouée (${esc(cmp.reason || '?')})</div>
+        <div class="llm-body">${esc(cmp.message || 'Trop peu de réponses valides ou juge non parsable — vérifiez la clé API.')}</div>`;
     }
     return;
   }
