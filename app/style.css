@@ -265,6 +265,32 @@ html, body {
   letter-spacing: 0.5px;
   vertical-align: middle;
 }
+.z-superior-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #ffcc4d, #ff9c2e);
+  color: #07080c;
+  font-weight: 800;
+  font-size: 9px;
+  padding: 2px 7px;
+  border-radius: 3px;
+  margin-right: 6px;
+  font-family: ui-monospace, monospace;
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+  box-shadow: 0 0 8px rgba(255, 204, 77, 0.4);
+}
+.superior-star {
+  color: var(--accent);
+  font-weight: 700;
+  margin-right: 4px;
+}
+#superior-laws { font-size: 11px; }
+#superior-laws li .prob {
+  font-family: ui-monospace, monospace;
+  color: var(--accent);
+  font-size: 10px;
+  margin-left: 4px;
+}
 
 #statusbar {
   position: fixed; bottom: 0; left: 0; right: 0; height: 28px;

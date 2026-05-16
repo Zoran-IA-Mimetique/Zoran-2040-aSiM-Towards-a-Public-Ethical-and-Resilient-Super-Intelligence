@@ -247,6 +247,22 @@ def run():
         if s["superior_law_probability"] >= 0.50
         and not s["false_superior_flags"]
     ]
+    superior_ids = {s["id"] for s in superior_candidates}
+
+    # INJECT scores back into nodes (for UI visibility)
+    score_by_id = {s["id"]: s for s in scored}
+    for n in nodes:
+        s = score_by_id[n["id"]]
+        n["superior_law_probability"] = s["superior_law_probability"]
+        n["superior_law_candidate"] = n["id"] in superior_ids
+        n["superior_score_detail"] = {
+            "composition": round(s["composition_score"], 3),
+            "multi_scale": s["multi_scale_score"],
+            "branches_explained": s["branches_explained"],
+            "cross_domain": s["cross_domain_score"],
+            "reusability": s["reusability_score"]
+        }
+    DATA.write_text(json.dumps(g, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
     # Output
     CANDIDATES_OUT.parent.mkdir(parents=True, exist_ok=True)
@@ -271,6 +287,7 @@ def run():
     print(f"  Lois analysées        : {len(nodes)}")
     print(f"  Candidates supérieurs : {len(superior_candidates)} (probability ≥ 0.50)")
     print(f"  Faux candidates       : {len(false_candidates)} (flags détectés)")
+    print(f"  ✓ Scores injectés sur les nœuds (superior_law_candidate + probability)")
     print(f"\n  TOP 10 superior candidates :")
     for s in superior_candidates[:10]:
         print(f"    {s['id']:18s}  p={s['superior_law_probability']:.3f}  "

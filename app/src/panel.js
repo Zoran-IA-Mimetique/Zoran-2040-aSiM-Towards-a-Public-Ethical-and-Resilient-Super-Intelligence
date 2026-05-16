@@ -5,8 +5,15 @@ function esc(s) {
 }
 
 function tierBadge(node) {
-  if (!node.attractor_tier) return '';
-  return `<span class="z-tier-badge">${esc(node.attractor_tier)}</span>`;
+  const parts = [];
+  if (node.superior_law_candidate) {
+    const p = (node.superior_law_probability ?? 0).toFixed(2);
+    parts.push(`<span class="z-superior-badge" title="Loi supérieure détectée (probability ${p})">★ SUPÉRIEURE</span>`);
+  }
+  if (node.attractor_tier) {
+    parts.push(`<span class="z-tier-badge">${esc(node.attractor_tier)}</span>`);
+  }
+  return parts.join('');
 }
 
 function tags(node) {
@@ -120,6 +127,45 @@ function fractalityBlock(graph, node) {
     <p class="desc">${esc(family.fractality_proof_motif || 'motif fractal démontré')}</p></section>`;
 }
 
+function superiorBlock(node) {
+  const p = node.superior_law_probability;
+  if (p == null) return '';
+  const isCand = node.superior_law_candidate;
+  const detail = node.superior_score_detail || {};
+  const label = isCand ? 'Loi supérieure détectée' : 'Score loi supérieure';
+  return `<section>
+    <h4>${esc(label)} ${isCand ? '★' : ''}</h4>
+    <div class="frames">
+      <div class="frames-row"><span class="frames-glyph">Σ</span>
+        <span class="frames-label">Probability</span>
+        <span class="frames-content"><strong>${p.toFixed(3)}</strong>
+        ${isCand ? '<span style="color:var(--accent);margin-left:8px">≥ 0.50 ✓</span>' :
+                   '<span style="color:var(--fg-2);margin-left:8px">< 0.50</span>'}</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⊙</span>
+        <span class="frames-label">Composition</span>
+        <span class="frames-content">${(detail.composition ?? 0).toFixed(2)}</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">◉</span>
+        <span class="frames-label">Multi-échelle</span>
+        <span class="frames-content">${detail.multi_scale ?? 0} niveau(x)</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⊕</span>
+        <span class="frames-label">Branches</span>
+        <span class="frames-content">${detail.branches_explained ?? 0} expliquées</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">↻</span>
+        <span class="frames-label">Cross-domain</span>
+        <span class="frames-content">${detail.cross_domain ?? 0} domaines</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⊗</span>
+        <span class="frames-label">Réutilisabilité</span>
+        <span class="frames-content">${detail.reusability ?? 0} citations entrantes</span>
+      </div>
+    </div>
+  </section>`;
+}
+
 export function renderDetail(node, graph, onPick) {
   const detail = document.getElementById('detail');
   const body = document.getElementById('detail-body');
@@ -155,6 +201,7 @@ export function renderDetail(node, graph, onPick) {
     ${framesBlock(node)}
     ${eqs ? `<section class="equations"><h4>Équations</h4>${eqs}</section>` : ''}
     ${ex  ? `<section><h4>Exemples</h4><ul class="examples">${ex}</ul></section>` : ''}
+    ${superiorBlock(node)}
     ${familyInvariant}
     ${fractalityBlock(graph, node)}
     ${compositionsBlock(graph, node.id)}

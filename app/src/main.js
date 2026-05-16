@@ -297,10 +297,35 @@ function buildSidebar() {
     const li = document.createElement('li');
     li.dataset.id = n.id;
     const tierBadge = n.attractor_tier ? ` <span class="tier-badge">${n.attractor_tier}</span>` : '';
-    li.innerHTML = `<span class="swatch" style="background:${n.color}"></span>${n.id}${tierBadge} <span style="color:var(--fg-2)">${escapeShort(n.title)}</span>`;
-    li.title = n.title;
+    const supStar = n.superior_law_candidate ? '<span class="superior-star" title="Loi supérieure">★</span>' : '';
+    li.innerHTML = `<span class="swatch" style="background:${n.color}"></span>${supStar}${n.id}${tierBadge} <span style="color:var(--fg-2)">${escapeShort(n.title)}</span>`;
+    li.title = n.superior_law_candidate
+      ? `${n.title}\n\n★ Loi supérieure (probability ${(n.superior_law_probability ?? 0).toFixed(3)})`
+      : n.title;
     li.addEventListener('click', () => selectNode(n.id, true));
     idxUl.appendChild(li);
+  }
+
+  // Section "Lois supérieures" — top par probability
+  const supUl = $('#superior-laws');
+  if (supUl) {
+    supUl.innerHTML = '';
+    const supLaws = state.graph.nodes
+      .filter(n => n.superior_law_candidate)
+      .sort((a, b) => (b.superior_law_probability ?? 0) - (a.superior_law_probability ?? 0));
+    if (supLaws.length === 0) {
+      supUl.innerHTML = '<li style="color:var(--fg-2)">aucune détectée</li>';
+    } else {
+      for (const n of supLaws) {
+        const li = document.createElement('li');
+        li.dataset.id = n.id;
+        const p = (n.superior_law_probability ?? 0).toFixed(2);
+        li.innerHTML = `<span class="swatch" style="background:${n.color}"></span>${n.id}<span class="prob">${p}</span>`;
+        li.title = `${n.title}\n\nProbability: ${p}\nFamille: ${n.family}`;
+        li.addEventListener('click', () => selectNode(n.id, true));
+        supUl.appendChild(li);
+      }
+    }
   }
 }
 

@@ -113,7 +113,16 @@
       "runtime_weight": 1.0,
       "structural_rank": 125.0,
       "_fy": 101.5,
-      "_compositions_count": 11
+      "_compositions_count": 11,
+      "superior_law_probability": 0.762,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.733,
+        "multi_scale": 2,
+        "branches_explained": 25,
+        "cross_domain": 22,
+        "reusability": 1
+      }
     },
     {
       "id": "ULG-002",
@@ -165,7 +174,16 @@
       "runtime_weight": 0.822,
       "structural_rank": 39.1,
       "_fy": -96.2,
-      "_compositions_count": 15
+      "_compositions_count": 15,
+      "superior_law_probability": 0.59,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 1,
+        "branches_explained": 8,
+        "cross_domain": 10,
+        "reusability": 1
+      }
     },
     {
       "id": "ULG-003",
@@ -221,7 +239,16 @@
       "runtime_weight": 0.795,
       "structural_rank": 38.8,
       "_fy": -116.1,
-      "_compositions_count": 13
+      "_compositions_count": 13,
+      "superior_law_probability": 0.506,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 0.867,
+        "multi_scale": 2,
+        "branches_explained": 2,
+        "cross_domain": 9,
+        "reusability": 2
+      }
     },
     {
       "id": "ULG-004",
@@ -273,7 +300,16 @@
       "runtime_weight": 0.767,
       "structural_rank": 18.1,
       "_fy": -169.8,
-      "_compositions_count": 12
+      "_compositions_count": 12,
+      "superior_law_probability": 0.407,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.8,
+        "multi_scale": 1,
+        "branches_explained": 2,
+        "cross_domain": 7,
+        "reusability": 0
+      }
     },
     {
       "id": "ULG-005",
@@ -329,7 +365,16 @@
       "runtime_weight": 0.746,
       "structural_rank": 18.4,
       "_fy": -146.0,
-      "_compositions_count": 11
+      "_compositions_count": 11,
+      "superior_law_probability": 0.425,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.733,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 6,
+        "reusability": 1
+      }
     },
     {
       "id": "DVE-001",
@@ -386,7 +431,16 @@
       "runtime_weight": 0.998,
       "structural_rank": 124.8,
       "_fy": 111.9,
-      "_compositions_count": 11
+      "_compositions_count": 11,
+      "superior_law_probability": 0.758,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.733,
+        "multi_scale": 2,
+        "branches_explained": 25,
+        "cross_domain": 18,
+        "reusability": 3
+      }
     },
     {
       "id": "DVE-002",
@@ -441,7 +495,16 @@
       "runtime_weight": 0.809,
       "structural_rank": 38.9,
       "_fy": -97.8,
-      "_compositions_count": 11
+      "_compositions_count": 11,
+      "superior_law_probability": 0.526,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 0.733,
+        "multi_scale": 2,
+        "branches_explained": 7,
+        "cross_domain": 7,
+        "reusability": 0
+      }
     },
     {
       "id": "DVE-003",
@@ -492,7 +555,16 @@
       "runtime_weight": 0.807,
       "structural_rank": 38.7,
       "_fy": -96.2,
-      "_compositions_count": 11
+      "_compositions_count": 11,
+      "superior_law_probability": 0.444,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.733,
+        "multi_scale": 1,
+        "branches_explained": 3,
+        "cross_domain": 7,
+        "reusability": 0
+      }
     },
     {
       "id": "DVE-004",
@@ -547,7 +619,16 @@
       "runtime_weight": 0.736,
       "structural_rank": 18.3,
       "_fy": -141.2,
-      "_compositions_count": 9
+      "_compositions_count": 9,
+      "superior_law_probability": 0.384,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.6,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 1
+      }
     },
     {
       "id": "DVE-005",
@@ -599,7 +680,16 @@
       "runtime_weight": 0.777,
       "structural_rank": 17.9,
       "_fy": -150.2,
-      "_compositions_count": 12
+      "_compositions_count": 12,
+      "superior_law_probability": 0.488,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.8,
+        "multi_scale": 1,
+        "branches_explained": 7,
+        "cross_domain": 9,
+        "reusability": 1
+      }
     },
     {
       "id": "UDE-001",
@@ -655,7 +745,16 @@
       "runtime_weight": 0.982,
       "structural_rank": 114.7,
       "_fy": 79.6,
-      "_compositions_count": 20
+      "_compositions_count": 20,
+      "superior_law_probability": 0.797,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 32,
+        "cross_domain": 24,
+        "reusability": 1
+      }
     },
     {
       "id": "UDE-002",
@@ -710,7 +809,16 @@
       "runtime_weight": 0.757,
       "structural_rank": 28.9,
       "_fy": -136.9,
-      "_compositions_count": 19
+      "_compositions_count": 19,
+      "superior_law_probability": 0.489,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 5,
+        "reusability": 1
+      }
     },
     {
       "id": "UDE-003",
@@ -761,7 +869,16 @@
       "runtime_weight": 0.729,
       "structural_rank": 8.2,
       "_fy": -169.5,
-      "_compositions_count": 19
+      "_compositions_count": 19,
+      "superior_law_probability": 0.412,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 5,
+        "reusability": 2
+      }
     },
     {
       "id": "UDE-004",
@@ -817,7 +934,16 @@
       "runtime_weight": 0.727,
       "structural_rank": 8.1,
       "_fy": -171.9,
-      "_compositions_count": 18
+      "_compositions_count": 18,
+      "superior_law_probability": 0.428,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-005",
@@ -872,7 +998,16 @@
       "runtime_weight": 0.725,
       "structural_rank": 7.8,
       "_fy": -189.6,
-      "_compositions_count": 20
+      "_compositions_count": 20,
+      "superior_law_probability": 0.468,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 6,
+        "reusability": 2
+      }
     },
     {
       "id": "GHUC-001",
@@ -932,7 +1067,16 @@
       "runtime_weight": 1.0,
       "structural_rank": 165.0,
       "_fy": 211.5,
-      "_compositions_count": 15
+      "_compositions_count": 15,
+      "superior_law_probability": 0.86,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 3,
+        "branches_explained": 36,
+        "cross_domain": 19,
+        "reusability": 1
+      }
     },
     {
       "id": "GHUC-002",
@@ -987,7 +1131,16 @@
       "runtime_weight": 0.834,
       "structural_rank": 39.0,
       "_fy": -104.4,
-      "_compositions_count": 19
+      "_compositions_count": 19,
+      "superior_law_probability": 0.691,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 9,
+        "cross_domain": 13,
+        "reusability": 3
+      }
     },
     {
       "id": "GHUC-002-a",
@@ -1038,7 +1191,16 @@
       "runtime_weight": 0.749,
       "structural_rank": 3.1,
       "_fy": -206.2,
-      "_compositions_count": 8
+      "_compositions_count": 8,
+      "superior_law_probability": 0.351,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.533,
+        "multi_scale": 1,
+        "branches_explained": 2,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "GHUC-002-a-i",
@@ -1090,7 +1252,16 @@
       "runtime_weight": 0.674,
       "structural_rank": -10.6,
       "_fy": -219.5,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.222,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "GHUC-002-a-ii",
@@ -1142,7 +1313,16 @@
       "runtime_weight": 0.673,
       "structural_rank": -10.7,
       "_fy": -230.8,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.217,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "GHUC-002-b",
@@ -1193,7 +1373,16 @@
       "runtime_weight": 0.748,
       "structural_rank": 3.0,
       "_fy": -201.4,
-      "_compositions_count": 8
+      "_compositions_count": 8,
+      "superior_law_probability": 0.349,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.533,
+        "multi_scale": 1,
+        "branches_explained": 2,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "GHUC-002-b-i",
@@ -1245,7 +1434,16 @@
       "runtime_weight": 0.673,
       "structural_rank": -10.7,
       "_fy": -215.6,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.222,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "GHUC-002-b-ii",
@@ -1297,7 +1495,16 @@
       "runtime_weight": 0.672,
       "structural_rank": -10.8,
       "_fy": -228.9,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.22,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "GHUC-003",
@@ -1353,7 +1560,16 @@
       "runtime_weight": 0.811,
       "structural_rank": 39.1,
       "_fy": -114.1,
-      "_compositions_count": 16
+      "_compositions_count": 16,
+      "superior_law_probability": 0.591,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 3,
+        "cross_domain": 11,
+        "reusability": 3
+      }
     },
     {
       "id": "GHUC-004",
@@ -1403,7 +1619,16 @@
       "runtime_weight": 0.783,
       "structural_rank": 18.6,
       "_fy": -166.5,
-      "_compositions_count": 14
+      "_compositions_count": 14,
+      "superior_law_probability": 0.464,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.933,
+        "multi_scale": 1,
+        "branches_explained": 3,
+        "cross_domain": 6,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-001",
@@ -1458,7 +1683,16 @@
       "runtime_weight": 0.999,
       "structural_rank": 124.8,
       "_fy": 98.1,
-      "_compositions_count": 13
+      "_compositions_count": 13,
+      "superior_law_probability": 0.792,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 0.867,
+        "multi_scale": 2,
+        "branches_explained": 36,
+        "cross_domain": 23,
+        "reusability": 1
+      }
     },
     {
       "id": "WP11-002",
@@ -1509,7 +1743,16 @@
       "runtime_weight": 0.811,
       "structural_rank": 39.2,
       "_fy": -116.0,
-      "_compositions_count": 15
+      "_compositions_count": 15,
+      "superior_law_probability": 0.54,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 1,
+        "branches_explained": 7,
+        "cross_domain": 8,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-003",
@@ -1564,7 +1807,16 @@
       "runtime_weight": 0.812,
       "structural_rank": 39.2,
       "_fy": -102.9,
-      "_compositions_count": 15
+      "_compositions_count": 15,
+      "superior_law_probability": 0.585,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 5,
+        "cross_domain": 8,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-004",
@@ -1618,7 +1870,16 @@
       "runtime_weight": 0.791,
       "structural_rank": 39.6,
       "_fy": -96.0,
-      "_compositions_count": 13
+      "_compositions_count": 13,
+      "superior_law_probability": 0.525,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 0.867,
+        "multi_scale": 2,
+        "branches_explained": 4,
+        "cross_domain": 5,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-005",
@@ -1669,7 +1930,16 @@
       "runtime_weight": 0.767,
       "structural_rank": 3.8,
       "_fy": -184.5,
-      "_compositions_count": 8
+      "_compositions_count": 8,
+      "superior_law_probability": 0.427,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.533,
+        "multi_scale": 1,
+        "branches_explained": 3,
+        "cross_domain": 10,
+        "reusability": 3
+      }
     },
     {
       "id": "WP12-001",
@@ -1723,7 +1993,16 @@
       "runtime_weight": 0.982,
       "structural_rank": 114.7,
       "_fy": 87.8,
-      "_compositions_count": 24
+      "_compositions_count": 24,
+      "superior_law_probability": 0.822,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 32,
+        "cross_domain": 31,
+        "reusability": 2
+      }
     },
     {
       "id": "WP12-002",
@@ -1773,7 +2052,16 @@
       "runtime_weight": 0.762,
       "structural_rank": 29.4,
       "_fy": -122.5,
-      "_compositions_count": 23
+      "_compositions_count": 23,
+      "superior_law_probability": 0.441,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 2,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-003",
@@ -1823,7 +2111,16 @@
       "runtime_weight": 0.731,
       "structural_rank": 8.4,
       "_fy": -180.9,
-      "_compositions_count": 22
+      "_compositions_count": 22,
+      "superior_law_probability": 0.409,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 2
+      }
     },
     {
       "id": "WP12-004",
@@ -1873,7 +2170,16 @@
       "runtime_weight": 0.73,
       "structural_rank": 8.3,
       "_fy": -190.2,
-      "_compositions_count": 22
+      "_compositions_count": 22,
+      "superior_law_probability": 0.405,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 2
+      }
     },
     {
       "id": "WP12-005",
@@ -1927,7 +2233,16 @@
       "runtime_weight": 0.732,
       "structural_rank": 8.6,
       "_fy": -181.6,
-      "_compositions_count": 22
+      "_compositions_count": 22,
+      "superior_law_probability": 0.445,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 2,
+        "reusability": 0
+      }
     },
     {
       "id": "SDE-001",
@@ -1979,7 +2294,16 @@
       "runtime_weight": 0.995,
       "structural_rank": 124.5,
       "_fy": 98.1,
-      "_compositions_count": 10
+      "_compositions_count": 10,
+      "superior_law_probability": 0.696,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 0.667,
+        "multi_scale": 1,
+        "branches_explained": 27,
+        "cross_domain": 16,
+        "reusability": 1
+      }
     },
     {
       "id": "SDE-002",
@@ -2029,7 +2353,16 @@
       "runtime_weight": 0.832,
       "structural_rank": 38.8,
       "_fy": -113.0,
-      "_compositions_count": 16
+      "_compositions_count": 16,
+      "superior_law_probability": 0.634,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 1,
+        "branches_explained": 12,
+        "cross_domain": 12,
+        "reusability": 2
+      }
     },
     {
       "id": "SDE-003",
@@ -2079,7 +2412,16 @@
       "runtime_weight": 0.781,
       "structural_rank": 18.4,
       "_fy": -152.1,
-      "_compositions_count": 12
+      "_compositions_count": 12,
+      "superior_law_probability": 0.469,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.8,
+        "multi_scale": 1,
+        "branches_explained": 6,
+        "cross_domain": 8,
+        "reusability": 0
+      }
     },
     {
       "id": "SDE-004",
@@ -2129,7 +2471,16 @@
       "runtime_weight": 0.732,
       "structural_rank": 7.9,
       "_fy": -179.2,
-      "_compositions_count": 9
+      "_compositions_count": 9,
+      "superior_law_probability": 0.308,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.6,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "SDE-005",
@@ -2179,7 +2530,16 @@
       "runtime_weight": 0.734,
       "structural_rank": 18.1,
       "_fy": -146.6,
-      "_compositions_count": 9
+      "_compositions_count": 9,
+      "superior_law_probability": 0.317,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.6,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "PAL-001",
@@ -2235,7 +2595,16 @@
       "runtime_weight": 0.995,
       "structural_rank": 124.4,
       "_fy": 106.0,
-      "_compositions_count": 10
+      "_compositions_count": 10,
+      "superior_law_probability": 0.732,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 0.667,
+        "multi_scale": 2,
+        "branches_explained": 20,
+        "cross_domain": 15,
+        "reusability": 1
+      }
     },
     {
       "id": "PAL-002",
@@ -2285,7 +2654,16 @@
       "runtime_weight": 0.794,
       "structural_rank": 18.4,
       "_fy": -152.0,
-      "_compositions_count": 13
+      "_compositions_count": 13,
+      "superior_law_probability": 0.512,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 0.867,
+        "multi_scale": 1,
+        "branches_explained": 9,
+        "cross_domain": 7,
+        "reusability": 0
+      }
     },
     {
       "id": "PAL-003",
@@ -2335,7 +2713,16 @@
       "runtime_weight": 0.735,
       "structural_rank": 18.2,
       "_fy": -143.4,
-      "_compositions_count": 9
+      "_compositions_count": 9,
+      "superior_law_probability": 0.313,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.6,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "PAL-004",
@@ -2389,7 +2776,16 @@
       "runtime_weight": 0.742,
       "structural_rank": 7.9,
       "_fy": -189.1,
-      "_compositions_count": 10
+      "_compositions_count": 10,
+      "superior_law_probability": 0.382,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.667,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 1
+      }
     },
     {
       "id": "PAL-005",
@@ -2444,7 +2840,16 @@
       "runtime_weight": 0.767,
       "structural_rank": 18.1,
       "_fy": -148.8,
-      "_compositions_count": 11
+      "_compositions_count": 11,
+      "superior_law_probability": 0.436,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.733,
+        "multi_scale": 2,
+        "branches_explained": 2,
+        "cross_domain": 7,
+        "reusability": 0
+      }
     },
     {
       "id": "ULG-002-a",
@@ -2495,7 +2900,16 @@
       "runtime_weight": 0.744,
       "structural_rank": 3.6,
       "_fy": -199.0,
-      "_compositions_count": 7
+      "_compositions_count": 7,
+      "superior_law_probability": 0.349,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.467,
+        "multi_scale": 1,
+        "branches_explained": 2,
+        "cross_domain": 6,
+        "reusability": 0
+      }
     },
     {
       "id": "ULG-002-b",
@@ -2546,7 +2960,16 @@
       "runtime_weight": 0.744,
       "structural_rank": 3.5,
       "_fy": -186.2,
-      "_compositions_count": 7
+      "_compositions_count": 7,
+      "superior_law_probability": 0.339,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.467,
+        "multi_scale": 1,
+        "branches_explained": 2,
+        "cross_domain": 5,
+        "reusability": 0
+      }
     },
     {
       "id": "ULG-002-a-i",
@@ -2597,7 +3020,16 @@
       "runtime_weight": 0.677,
       "structural_rank": -10.2,
       "_fy": -240.6,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.229,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "ULG-002-a-ii",
@@ -2648,7 +3080,16 @@
       "runtime_weight": 0.675,
       "structural_rank": -10.4,
       "_fy": -233.0,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.226,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "ULG-002-b-i",
@@ -2699,7 +3140,16 @@
       "runtime_weight": 0.675,
       "structural_rank": -10.5,
       "_fy": -241.2,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.217,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "ULG-002-b-ii",
@@ -2754,7 +3204,16 @@
       "runtime_weight": 0.685,
       "structural_rank": -10.3,
       "_fy": -228.9,
-      "_compositions_count": 4
+      "_compositions_count": 4,
+      "superior_law_probability": 0.287,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.267,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 1
+      }
     },
     {
       "id": "WP11-002-a",
@@ -2805,7 +3264,16 @@
       "runtime_weight": 0.734,
       "structural_rank": -1.5,
       "_fy": -210.8,
-      "_compositions_count": 6
+      "_compositions_count": 6,
+      "superior_law_probability": 0.341,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.4,
+        "multi_scale": 1,
+        "branches_explained": 2,
+        "cross_domain": 6,
+        "reusability": 1
+      }
     },
     {
       "id": "WP11-002-b",
@@ -2856,7 +3324,16 @@
       "runtime_weight": 0.732,
       "structural_rank": -1.8,
       "_fy": -216.4,
-      "_compositions_count": 6
+      "_compositions_count": 6,
+      "superior_law_probability": 0.337,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.4,
+        "multi_scale": 1,
+        "branches_explained": 2,
+        "cross_domain": 6,
+        "reusability": 1
+      }
     },
     {
       "id": "WP11-002-a-i",
@@ -2907,7 +3384,16 @@
       "runtime_weight": 0.677,
       "structural_rank": -10.2,
       "_fy": -235.6,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.226,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-002-a-ii",
@@ -2958,7 +3444,16 @@
       "runtime_weight": 0.676,
       "structural_rank": -10.3,
       "_fy": -227.9,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.223,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-002-b-i",
@@ -3009,7 +3504,16 @@
       "runtime_weight": 0.672,
       "structural_rank": -10.8,
       "_fy": -221.9,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.209,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-002-b-ii",
@@ -3060,7 +3564,16 @@
       "runtime_weight": 0.671,
       "structural_rank": -10.9,
       "_fy": -219.2,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.206,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "DVE-002-a",
@@ -3111,7 +3624,16 @@
       "runtime_weight": 0.734,
       "structural_rank": -1.6,
       "_fy": -200.0,
-      "_compositions_count": 6
+      "_compositions_count": 6,
+      "superior_law_probability": 0.337,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.4,
+        "multi_scale": 1,
+        "branches_explained": 2,
+        "cross_domain": 5,
+        "reusability": 1
+      }
     },
     {
       "id": "DVE-002-b",
@@ -3162,7 +3684,16 @@
       "runtime_weight": 0.732,
       "structural_rank": -1.8,
       "_fy": -199.4,
-      "_compositions_count": 6
+      "_compositions_count": 6,
+      "superior_law_probability": 0.332,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.4,
+        "multi_scale": 1,
+        "branches_explained": 2,
+        "cross_domain": 5,
+        "reusability": 1
+      }
     },
     {
       "id": "DVE-002-a-i",
@@ -3213,7 +3744,16 @@
       "runtime_weight": 0.677,
       "structural_rank": -10.2,
       "_fy": -225.6,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.221,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "DVE-002-a-ii",
@@ -3264,7 +3804,16 @@
       "runtime_weight": 0.675,
       "structural_rank": -10.4,
       "_fy": -235.0,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.219,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "DVE-002-b-i",
@@ -3315,7 +3864,16 @@
       "runtime_weight": 0.675,
       "structural_rank": -10.5,
       "_fy": -227.2,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.216,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "DVE-002-b-ii",
@@ -3366,7 +3924,16 @@
       "runtime_weight": 0.675,
       "structural_rank": -10.4,
       "_fy": -241.1,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.218,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "SDE-002-a",
@@ -3417,7 +3984,16 @@
       "runtime_weight": 0.759,
       "structural_rank": 3.2,
       "_fy": -189.9,
-      "_compositions_count": 9
+      "_compositions_count": 9,
+      "superior_law_probability": 0.375,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.6,
+        "multi_scale": 1,
+        "branches_explained": 2,
+        "cross_domain": 5,
+        "reusability": 1
+      }
     },
     {
       "id": "SDE-002-b",
@@ -3468,7 +4044,16 @@
       "runtime_weight": 0.758,
       "structural_rank": 3.1,
       "_fy": -207.2,
-      "_compositions_count": 9
+      "_compositions_count": 9,
+      "superior_law_probability": 0.371,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.6,
+        "multi_scale": 1,
+        "branches_explained": 2,
+        "cross_domain": 5,
+        "reusability": 1
+      }
     },
     {
       "id": "SDE-002-a-i",
@@ -3519,7 +4104,16 @@
       "runtime_weight": 0.675,
       "structural_rank": -10.5,
       "_fy": -214.2,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.216,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "SDE-002-a-ii",
@@ -3570,7 +4164,16 @@
       "runtime_weight": 0.674,
       "structural_rank": -10.6,
       "_fy": -215.5,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.213,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "SDE-002-b-i",
@@ -3621,7 +4224,16 @@
       "runtime_weight": 0.674,
       "structural_rank": -10.6,
       "_fy": -226.4,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.214,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "SDE-002-b-ii",
@@ -3672,7 +4284,16 @@
       "runtime_weight": 0.672,
       "structural_rank": -10.8,
       "_fy": -218.9,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.209,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "PAL-002-a",
@@ -3723,7 +4344,16 @@
       "runtime_weight": 0.739,
       "structural_rank": 3.0,
       "_fy": -195.5,
-      "_compositions_count": 7
+      "_compositions_count": 7,
+      "superior_law_probability": 0.338,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.467,
+        "multi_scale": 1,
+        "branches_explained": 2,
+        "cross_domain": 5,
+        "reusability": 1
+      }
     },
     {
       "id": "PAL-002-b",
@@ -3774,7 +4404,16 @@
       "runtime_weight": 0.738,
       "structural_rank": 2.9,
       "_fy": -179.8,
-      "_compositions_count": 7
+      "_compositions_count": 7,
+      "superior_law_probability": 0.345,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.467,
+        "multi_scale": 1,
+        "branches_explained": 3,
+        "cross_domain": 5,
+        "reusability": 1
+      }
     },
     {
       "id": "PAL-002-a-i",
@@ -3825,7 +4464,16 @@
       "runtime_weight": 0.674,
       "structural_rank": -10.6,
       "_fy": -237.5,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.21,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "PAL-002-a-ii",
@@ -3876,7 +4524,16 @@
       "runtime_weight": 0.673,
       "structural_rank": -10.7,
       "_fy": -241.8,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.206,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "PAL-002-b-i",
@@ -3927,7 +4584,16 @@
       "runtime_weight": 0.674,
       "structural_rank": -10.6,
       "_fy": -217.4,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.211,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "PAL-002-b-ii",
@@ -3978,7 +4644,16 @@
       "runtime_weight": 0.703,
       "structural_rank": -7.7,
       "_fy": -211.1,
-      "_compositions_count": 5
+      "_compositions_count": 5,
+      "superior_law_probability": 0.28,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.333,
+        "multi_scale": 1,
+        "branches_explained": 1,
+        "cross_domain": 5,
+        "reusability": 1
+      }
     },
     {
       "id": "GHUC-003-a",
@@ -4029,7 +4704,16 @@
       "runtime_weight": 0.699,
       "structural_rank": -1.8,
       "_fy": -204.4,
-      "_compositions_count": 5
+      "_compositions_count": 5,
+      "superior_law_probability": 0.288,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.333,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 1
+      }
     },
     {
       "id": "GHUC-003-b",
@@ -4080,7 +4764,16 @@
       "runtime_weight": 0.698,
       "structural_rank": -1.9,
       "_fy": -197.8,
-      "_compositions_count": 5
+      "_compositions_count": 5,
+      "superior_law_probability": 0.285,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.333,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 1
+      }
     },
     {
       "id": "GHUC-004-a",
@@ -4131,7 +4824,16 @@
       "runtime_weight": 0.697,
       "structural_rank": -2.0,
       "_fy": -208.0,
-      "_compositions_count": 5
+      "_compositions_count": 5,
+      "superior_law_probability": 0.275,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.333,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 1
+      }
     },
     {
       "id": "GHUC-004-b",
@@ -4182,7 +4884,16 @@
       "runtime_weight": 0.696,
       "structural_rank": -2.1,
       "_fy": -209.2,
-      "_compositions_count": 5
+      "_compositions_count": 5,
+      "superior_law_probability": 0.271,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.333,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 1
+      }
     },
     {
       "id": "ULG-006",
@@ -4237,7 +4948,16 @@
       "runtime_weight": 0.743,
       "structural_rank": 18.1,
       "_fy": -148.8,
-      "_compositions_count": 11
+      "_compositions_count": 11,
+      "superior_law_probability": 0.397,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.733,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-006",
@@ -4292,7 +5012,16 @@
       "runtime_weight": 0.728,
       "structural_rank": 8.1,
       "_fy": -168.8,
-      "_compositions_count": 18
+      "_compositions_count": 18,
+      "superior_law_probability": 0.434,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-007",
@@ -4343,7 +5072,16 @@
       "runtime_weight": 0.726,
       "structural_rank": 7.9,
       "_fy": -167.2,
-      "_compositions_count": 18
+      "_compositions_count": 18,
+      "superior_law_probability": 0.392,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-006",
@@ -4398,7 +5136,16 @@
       "runtime_weight": 0.744,
       "structural_rank": 3.5,
       "_fy": -196.2,
-      "_compositions_count": 7
+      "_compositions_count": 7,
+      "superior_law_probability": 0.381,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.467,
+        "multi_scale": 2,
+        "branches_explained": 2,
+        "cross_domain": 5,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-006",
@@ -4449,7 +5196,16 @@
       "runtime_weight": 0.731,
       "structural_rank": 8.4,
       "_fy": -178.0,
-      "_compositions_count": 22
+      "_compositions_count": 22,
+      "superior_law_probability": 0.41,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 2
+      }
     },
     {
       "id": "WP12-007",
@@ -4500,7 +5256,16 @@
       "runtime_weight": 0.78,
       "structural_rank": 8.5,
       "_fy": -186.8,
-      "_compositions_count": 27
+      "_compositions_count": 27,
+      "superior_law_probability": 0.548,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 1,
+        "branches_explained": 7,
+        "cross_domain": 10,
+        "reusability": 2
+      }
     },
     {
       "id": "SDE-006",
@@ -4551,7 +5316,16 @@
       "runtime_weight": 0.742,
       "structural_rank": 18.0,
       "_fy": -144.0,
-      "_compositions_count": 10
+      "_compositions_count": 10,
+      "superior_law_probability": 0.342,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.667,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "PAL-006",
@@ -4601,7 +5375,16 @@
       "runtime_weight": 0.74,
       "structural_rank": 17.8,
       "_fy": -170.5,
-      "_compositions_count": 10
+      "_compositions_count": 10,
+      "superior_law_probability": 0.327,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.667,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "DVE-006",
@@ -4656,7 +5439,16 @@
       "runtime_weight": 0.698,
       "structural_rank": -1.9,
       "_fy": -214.8,
-      "_compositions_count": 5
+      "_compositions_count": 5,
+      "superior_law_probability": 0.286,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.333,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 2,
+        "reusability": 0
+      }
     },
     {
       "id": "GHUC-005",
@@ -4711,7 +5503,16 @@
       "runtime_weight": 0.795,
       "structural_rank": 18.6,
       "_fy": -156.5,
-      "_compositions_count": 16
+      "_compositions_count": 16,
+      "superior_law_probability": 0.547,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 4,
+        "cross_domain": 8,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-007",
@@ -4766,7 +5567,16 @@
       "runtime_weight": 0.806,
       "structural_rank": 18.5,
       "_fy": -142.8,
-      "_compositions_count": 18
+      "_compositions_count": 18,
+      "superior_law_probability": 0.614,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 8,
+        "cross_domain": 12,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-008",
@@ -4817,7 +5627,16 @@
       "runtime_weight": 0.73,
       "structural_rank": 8.3,
       "_fy": -165.2,
-      "_compositions_count": 22
+      "_compositions_count": 22,
+      "superior_law_probability": 0.397,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 2,
+        "reusability": 0
+      }
     },
     {
       "id": "ULG-008",
@@ -4872,7 +5691,16 @@
       "runtime_weight": 0.744,
       "structural_rank": 18.2,
       "_fy": -163.4,
-      "_compositions_count": 12
+      "_compositions_count": 12,
+      "superior_law_probability": 0.432,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.8,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 5,
+        "reusability": 1
+      }
     },
     {
       "id": "ULG-009",
@@ -4927,7 +5755,16 @@
       "runtime_weight": 0.754,
       "structural_rank": 18.0,
       "_fy": -154.0,
-      "_compositions_count": 11
+      "_compositions_count": 11,
+      "superior_law_probability": 0.42,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.733,
+        "multi_scale": 2,
+        "branches_explained": 1,
+        "cross_domain": 6,
+        "reusability": 0
+      }
     },
     {
       "id": "ULG-010",
@@ -4982,7 +5819,16 @@
       "runtime_weight": 0.769,
       "structural_rank": 18.3,
       "_fy": -155.2,
-      "_compositions_count": 12
+      "_compositions_count": 12,
+      "superior_law_probability": 0.461,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.8,
+        "multi_scale": 2,
+        "branches_explained": 2,
+        "cross_domain": 7,
+        "reusability": 0
+      }
     },
     {
       "id": "ULG-011",
@@ -5037,7 +5883,16 @@
       "runtime_weight": 0.744,
       "structural_rank": 18.2,
       "_fy": -158.4,
-      "_compositions_count": 10
+      "_compositions_count": 10,
+      "superior_law_probability": 0.384,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.667,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "ULG-012",
@@ -5092,7 +5947,16 @@
       "runtime_weight": 0.68,
       "structural_rank": -4.9,
       "_fy": -199.2,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.266,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "ULG-013",
@@ -5147,7 +6011,16 @@
       "runtime_weight": 0.68,
       "structural_rank": -4.8,
       "_fy": -226.1,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.268,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "ULG-014",
@@ -5202,7 +6075,16 @@
       "runtime_weight": 0.696,
       "structural_rank": -2.1,
       "_fy": -194.2,
-      "_compositions_count": 5
+      "_compositions_count": 5,
+      "superior_law_probability": 0.286,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.333,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "ULG-015",
@@ -5253,7 +6135,16 @@
       "runtime_weight": 0.679,
       "structural_rank": -5.0,
       "_fy": -207.5,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.221,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "ULG-016",
@@ -5308,7 +6199,16 @@
       "runtime_weight": 0.68,
       "structural_rank": -4.9,
       "_fy": -216.2,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.266,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "ULG-017",
@@ -5363,7 +6263,16 @@
       "runtime_weight": 0.695,
       "structural_rank": -2.2,
       "_fy": -213.5,
-      "_compositions_count": 5
+      "_compositions_count": 5,
+      "superior_law_probability": 0.287,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.333,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "DVE-008",
@@ -5422,7 +6331,16 @@
       "runtime_weight": 0.782,
       "structural_rank": 3.5,
       "_fy": -191.2,
-      "_compositions_count": 10
+      "_compositions_count": 10,
+      "superior_law_probability": 0.57,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 0.667,
+        "multi_scale": 3,
+        "branches_explained": 4,
+        "cross_domain": 14,
+        "reusability": 5
+      }
     },
     {
       "id": "DVE-009",
@@ -5477,7 +6395,16 @@
       "runtime_weight": 0.726,
       "structural_rank": 18.2,
       "_fy": -142.4,
-      "_compositions_count": 8
+      "_compositions_count": 8,
+      "superior_law_probability": 0.352,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.533,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "DVE-010",
@@ -5532,7 +6459,16 @@
       "runtime_weight": 0.691,
       "structural_rank": -4.7,
       "_fy": -223.6,
-      "_compositions_count": 4
+      "_compositions_count": 4,
+      "superior_law_probability": 0.276,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.267,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 2,
+        "reusability": 0
+      }
     },
     {
       "id": "DVE-011",
@@ -5587,7 +6523,16 @@
       "runtime_weight": 0.691,
       "structural_rank": -4.7,
       "_fy": -202.8,
-      "_compositions_count": 4
+      "_compositions_count": 4,
+      "superior_law_probability": 0.288,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.267,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "DVE-012",
@@ -5642,7 +6587,16 @@
       "runtime_weight": 0.734,
       "structural_rank": 18.1,
       "_fy": -144.6,
-      "_compositions_count": 9
+      "_compositions_count": 9,
+      "superior_law_probability": 0.384,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.6,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 6,
+        "reusability": 2
+      }
     },
     {
       "id": "DVE-013",
@@ -5701,7 +6655,16 @@
       "runtime_weight": 0.693,
       "structural_rank": -4.5,
       "_fy": -206.1,
-      "_compositions_count": 4
+      "_compositions_count": 4,
+      "superior_law_probability": 0.325,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.267,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "DVE-014",
@@ -5752,7 +6715,16 @@
       "runtime_weight": 0.699,
       "structural_rank": -1.8,
       "_fy": -200.4,
-      "_compositions_count": 5
+      "_compositions_count": 5,
+      "superior_law_probability": 0.277,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.333,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 5,
+        "reusability": 2
+      }
     },
     {
       "id": "DVE-015",
@@ -5807,7 +6779,16 @@
       "runtime_weight": 0.725,
       "structural_rank": 18.1,
       "_fy": -156.6,
-      "_compositions_count": 8
+      "_compositions_count": 8,
+      "superior_law_probability": 0.35,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.533,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-009",
@@ -5866,7 +6847,16 @@
       "runtime_weight": 0.78,
       "structural_rank": 8.5,
       "_fy": -184.8,
-      "_compositions_count": 24
+      "_compositions_count": 24,
+      "superior_law_probability": 0.604,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 3,
+        "branches_explained": 4,
+        "cross_domain": 11,
+        "reusability": 1
+      }
     },
     {
       "id": "UDE-010",
@@ -5921,7 +6911,16 @@
       "runtime_weight": 0.754,
       "structural_rank": 8.3,
       "_fy": -194.2,
-      "_compositions_count": 20
+      "_compositions_count": 20,
+      "superior_law_probability": 0.489,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 2,
+        "cross_domain": 6,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-011",
@@ -5976,7 +6975,16 @@
       "runtime_weight": 0.729,
       "structural_rank": 8.2,
       "_fy": -190.4,
-      "_compositions_count": 18
+      "_compositions_count": 18,
+      "superior_law_probability": 0.439,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-012",
@@ -6031,7 +7039,16 @@
       "runtime_weight": 0.728,
       "structural_rank": 8.1,
       "_fy": -187.8,
-      "_compositions_count": 18
+      "_compositions_count": 18,
+      "superior_law_probability": 0.436,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-013",
@@ -6086,7 +7103,16 @@
       "runtime_weight": 0.726,
       "structural_rank": 7.9,
       "_fy": -194.2,
-      "_compositions_count": 18
+      "_compositions_count": 18,
+      "superior_law_probability": 0.429,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-014",
@@ -6141,7 +7167,16 @@
       "runtime_weight": 0.787,
       "structural_rank": 8.0,
       "_fy": -169.0,
-      "_compositions_count": 24
+      "_compositions_count": 24,
+      "superior_law_probability": 0.574,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 6,
+        "cross_domain": 12,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-015",
@@ -6192,7 +7227,16 @@
       "runtime_weight": 0.727,
       "structural_rank": 8.1,
       "_fy": -186.9,
-      "_compositions_count": 18
+      "_compositions_count": 18,
+      "superior_law_probability": 0.405,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-017",
@@ -6243,7 +7287,16 @@
       "runtime_weight": 0.726,
       "structural_rank": 7.8,
       "_fy": -192.4,
-      "_compositions_count": 18
+      "_compositions_count": 18,
+      "superior_law_probability": 0.398,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-018",
@@ -6294,7 +7347,16 @@
       "runtime_weight": 0.727,
       "structural_rank": 7.9,
       "_fy": -169.1,
-      "_compositions_count": 18
+      "_compositions_count": 18,
+      "superior_law_probability": 0.403,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-019",
@@ -6349,7 +7411,16 @@
       "runtime_weight": 0.752,
       "structural_rank": 8.1,
       "_fy": -176.8,
-      "_compositions_count": 21
+      "_compositions_count": 21,
+      "superior_law_probability": 0.504,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 2,
+        "cross_domain": 8,
+        "reusability": 2
+      }
     },
     {
       "id": "GHUC-006",
@@ -6408,7 +7479,16 @@
       "runtime_weight": 0.702,
       "structural_rank": -1.5,
       "_fy": -189.8,
-      "_compositions_count": 5
+      "_compositions_count": 5,
+      "superior_law_probability": 0.343,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.333,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "GHUC-007",
@@ -6467,7 +7547,16 @@
       "runtime_weight": 0.783,
       "structural_rank": 18.6,
       "_fy": -159.6,
-      "_compositions_count": 14
+      "_compositions_count": 14,
+      "superior_law_probability": 0.548,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 0.933,
+        "multi_scale": 3,
+        "branches_explained": 3,
+        "cross_domain": 7,
+        "reusability": 0
+      }
     },
     {
       "id": "GHUC-008",
@@ -6526,7 +7615,16 @@
       "runtime_weight": 0.76,
       "structural_rank": 18.7,
       "_fy": -151.2,
-      "_compositions_count": 14
+      "_compositions_count": 14,
+      "superior_law_probability": 0.533,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 0.933,
+        "multi_scale": 3,
+        "branches_explained": 1,
+        "cross_domain": 7,
+        "reusability": 1
+      }
     },
     {
       "id": "GHUC-009",
@@ -6577,7 +7675,16 @@
       "runtime_weight": 0.69,
       "structural_rank": -4.8,
       "_fy": -224.0,
-      "_compositions_count": 4
+      "_compositions_count": 4,
+      "superior_law_probability": 0.242,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.267,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "GHUC-010",
@@ -6632,7 +7739,16 @@
       "runtime_weight": 0.7,
       "structural_rank": -1.6,
       "_fy": -201.1,
-      "_compositions_count": 5
+      "_compositions_count": 5,
+      "superior_law_probability": 0.302,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.333,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "GHUC-011",
@@ -6687,7 +7803,16 @@
       "runtime_weight": 0.707,
       "structural_rank": -1.9,
       "_fy": -199.8,
-      "_compositions_count": 6
+      "_compositions_count": 6,
+      "superior_law_probability": 0.302,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.4,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 2,
+        "reusability": 0
+      }
     },
     {
       "id": "GHUC-012",
@@ -6738,7 +7863,16 @@
       "runtime_weight": 0.708,
       "structural_rank": -1.8,
       "_fy": -206.4,
-      "_compositions_count": 6
+      "_compositions_count": 6,
+      "superior_law_probability": 0.276,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.4,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "GHUC-013",
@@ -6789,7 +7923,16 @@
       "runtime_weight": 0.701,
       "structural_rank": -1.6,
       "_fy": -218.0,
-      "_compositions_count": 5
+      "_compositions_count": 5,
+      "superior_law_probability": 0.285,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.333,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 5,
+        "reusability": 2
+      }
     },
     {
       "id": "GHUC-014",
@@ -6844,7 +7987,16 @@
       "runtime_weight": 0.698,
       "structural_rank": -1.9,
       "_fy": -211.6,
-      "_compositions_count": 5
+      "_compositions_count": 5,
+      "superior_law_probability": 0.294,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.333,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "GHUC-015",
@@ -6903,7 +8055,16 @@
       "runtime_weight": 0.745,
       "structural_rank": 18.3,
       "_fy": -156.2,
-      "_compositions_count": 12
+      "_compositions_count": 12,
+      "superior_law_probability": 0.471,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.8,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 5,
+        "reusability": 1
+      }
     },
     {
       "id": "WP11-008",
@@ -6962,7 +8123,16 @@
       "runtime_weight": 0.696,
       "structural_rank": -4.1,
       "_fy": -218.2,
-      "_compositions_count": 4
+      "_compositions_count": 4,
+      "superior_law_probability": 0.336,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.267,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-009",
@@ -7017,7 +8187,16 @@
       "runtime_weight": 0.747,
       "structural_rank": 18.6,
       "_fy": -157.5,
-      "_compositions_count": 12
+      "_compositions_count": 12,
+      "superior_law_probability": 0.421,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.8,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-010",
@@ -7068,7 +8247,16 @@
       "runtime_weight": 0.692,
       "structural_rank": -9.6,
       "_fy": -212.9,
-      "_compositions_count": 4
+      "_compositions_count": 4,
+      "superior_law_probability": 0.25,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.267,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-011",
@@ -7127,7 +8315,16 @@
       "runtime_weight": 0.722,
       "structural_rank": -1.2,
       "_fy": -199.0,
-      "_compositions_count": 7
+      "_compositions_count": 7,
+      "superior_law_probability": 0.46,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.467,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 9,
+        "reusability": 3
+      }
     },
     {
       "id": "WP11-012",
@@ -7182,7 +8379,16 @@
       "runtime_weight": 0.691,
       "structural_rank": -9.7,
       "_fy": -227.2,
-      "_compositions_count": 4
+      "_compositions_count": 4,
+      "superior_law_probability": 0.303,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.267,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 1
+      }
     },
     {
       "id": "WP11-013",
@@ -7237,7 +8443,16 @@
       "runtime_weight": 0.746,
       "structural_rank": 18.4,
       "_fy": -141.0,
-      "_compositions_count": 12
+      "_compositions_count": 12,
+      "superior_law_probability": 0.417,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.8,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-014",
@@ -7292,7 +8507,16 @@
       "runtime_weight": 0.742,
       "structural_rank": 18.1,
       "_fy": -167.9,
-      "_compositions_count": 12
+      "_compositions_count": 12,
+      "superior_law_probability": 0.407,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.8,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-015",
@@ -7347,7 +8571,16 @@
       "runtime_weight": 0.692,
       "structural_rank": -9.6,
       "_fy": -233.9,
-      "_compositions_count": 4
+      "_compositions_count": 4,
+      "superior_law_probability": 0.294,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.267,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-017",
@@ -7398,7 +8631,16 @@
       "runtime_weight": 0.69,
       "structural_rank": -4.8,
       "_fy": -224.0,
-      "_compositions_count": 4
+      "_compositions_count": 4,
+      "superior_law_probability": 0.242,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.267,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-018",
@@ -7457,7 +8699,16 @@
       "runtime_weight": 0.748,
       "structural_rank": 18.7,
       "_fy": -162.2,
-      "_compositions_count": 12
+      "_compositions_count": 12,
+      "superior_law_probability": 0.462,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.8,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-009",
@@ -7516,7 +8767,16 @@
       "runtime_weight": 0.756,
       "structural_rank": 8.6,
       "_fy": -183.6,
-      "_compositions_count": 25
+      "_compositions_count": 25,
+      "superior_law_probability": 0.552,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 3,
+        "branches_explained": 2,
+        "cross_domain": 7,
+        "reusability": 1
+      }
     },
     {
       "id": "WP12-010",
@@ -7571,7 +8831,16 @@
       "runtime_weight": 0.745,
       "structural_rank": 8.7,
       "_fy": -172.2,
-      "_compositions_count": 23
+      "_compositions_count": 23,
+      "superior_law_probability": 0.465,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 1,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-011",
@@ -7626,7 +8895,16 @@
       "runtime_weight": 0.734,
       "structural_rank": 8.8,
       "_fy": -170.0,
-      "_compositions_count": 23
+      "_compositions_count": 23,
+      "superior_law_probability": 0.468,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 1
+      }
     },
     {
       "id": "WP12-012",
@@ -7681,7 +8959,16 @@
       "runtime_weight": 0.735,
       "structural_rank": 8.8,
       "_fy": -190.9,
-      "_compositions_count": 22
+      "_compositions_count": 22,
+      "superior_law_probability": 0.456,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-013",
@@ -7736,7 +9023,16 @@
       "runtime_weight": 0.728,
       "structural_rank": 8.2,
       "_fy": -170.6,
-      "_compositions_count": 22
+      "_compositions_count": 22,
+      "superior_law_probability": 0.437,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-014",
@@ -7791,7 +9087,16 @@
       "runtime_weight": 0.73,
       "structural_rank": 8.3,
       "_fy": -186.2,
-      "_compositions_count": 22
+      "_compositions_count": 22,
+      "superior_law_probability": 0.434,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 2,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-015",
@@ -7846,7 +9151,16 @@
       "runtime_weight": 0.733,
       "structural_rank": 8.7,
       "_fy": -170.4,
-      "_compositions_count": 23
+      "_compositions_count": 23,
+      "superior_law_probability": 0.472,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 1
+      }
     },
     {
       "id": "WP12-016",
@@ -7901,7 +9215,16 @@
       "runtime_weight": 0.732,
       "structural_rank": 8.6,
       "_fy": -185.6,
-      "_compositions_count": 22
+      "_compositions_count": 22,
+      "superior_law_probability": 0.444,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 2,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-017",
@@ -7960,7 +9283,16 @@
       "runtime_weight": 0.686,
       "structural_rank": -1.6,
       "_fy": -199.9,
-      "_compositions_count": 5
+      "_compositions_count": 5,
+      "superior_law_probability": 0.345,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.333,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-018",
@@ -8015,7 +9347,16 @@
       "runtime_weight": 0.731,
       "structural_rank": 8.4,
       "_fy": -190.0,
-      "_compositions_count": 22
+      "_compositions_count": 22,
+      "superior_law_probability": 0.439,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 2,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-019",
@@ -8074,7 +9415,16 @@
       "runtime_weight": 0.737,
       "structural_rank": 3.4,
       "_fy": -196.4,
-      "_compositions_count": 8
+      "_compositions_count": 8,
+      "superior_law_probability": 0.42,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.533,
+        "multi_scale": 3,
+        "branches_explained": 2,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-020",
@@ -8133,7 +9483,16 @@
       "runtime_weight": 0.733,
       "structural_rank": 8.7,
       "_fy": -179.4,
-      "_compositions_count": 23
+      "_compositions_count": 23,
+      "superior_law_probability": 0.516,
+      "superior_law_candidate": true,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 5,
+        "reusability": 1
+      }
     },
     {
       "id": "SDE-008",
@@ -8188,7 +9547,16 @@
       "runtime_weight": 0.753,
       "structural_rank": 3.2,
       "_fy": -204.9,
-      "_compositions_count": 7
+      "_compositions_count": 7,
+      "superior_law_probability": 0.399,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.467,
+        "multi_scale": 2,
+        "branches_explained": 3,
+        "cross_domain": 7,
+        "reusability": 0
+      }
     },
     {
       "id": "SDE-009",
@@ -8247,7 +9615,16 @@
       "runtime_weight": 0.746,
       "structural_rank": 18.5,
       "_fy": -141.8,
-      "_compositions_count": 10
+      "_compositions_count": 10,
+      "superior_law_probability": 0.431,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.667,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "SDE-010",
@@ -8302,7 +9679,16 @@
       "runtime_weight": 0.69,
       "structural_rank": -4.8,
       "_fy": -221.0,
-      "_compositions_count": 4
+      "_compositions_count": 4,
+      "superior_law_probability": 0.279,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.267,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "SDE-011",
@@ -8357,7 +9743,16 @@
       "runtime_weight": 0.715,
       "structural_rank": 3.0,
       "_fy": -203.4,
-      "_compositions_count": 7
+      "_compositions_count": 7,
+      "superior_law_probability": 0.325,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.467,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "SDE-012",
@@ -8412,7 +9807,16 @@
       "runtime_weight": 0.733,
       "structural_rank": 18.0,
       "_fy": -166.0,
-      "_compositions_count": 9
+      "_compositions_count": 9,
+      "superior_law_probability": 0.363,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.6,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "SDE-013",
@@ -8471,7 +9875,16 @@
       "runtime_weight": 0.77,
       "structural_rank": 3.4,
       "_fy": -196.4,
-      "_compositions_count": 10
+      "_compositions_count": 10,
+      "superior_law_probability": 0.497,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.667,
+        "multi_scale": 3,
+        "branches_explained": 2,
+        "cross_domain": 8,
+        "reusability": 1
+      }
     },
     {
       "id": "SDE-014",
@@ -8526,7 +9939,16 @@
       "runtime_weight": 0.716,
       "structural_rank": 3.1,
       "_fy": -206.2,
-      "_compositions_count": 7
+      "_compositions_count": 7,
+      "superior_law_probability": 0.327,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.467,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "SDE-015",
@@ -8585,7 +10007,16 @@
       "runtime_weight": 0.693,
       "structural_rank": -4.5,
       "_fy": -211.1,
-      "_compositions_count": 4
+      "_compositions_count": 4,
+      "superior_law_probability": 0.328,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.267,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "SDE-016",
@@ -8644,7 +10075,16 @@
       "runtime_weight": 0.748,
       "structural_rank": 18.7,
       "_fy": -153.2,
-      "_compositions_count": 11
+      "_compositions_count": 11,
+      "superior_law_probability": 0.495,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.733,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 7,
+        "reusability": 2
+      }
     },
     {
       "id": "SDE-017",
@@ -8699,7 +10139,16 @@
       "runtime_weight": 0.734,
       "structural_rank": 18.1,
       "_fy": -150.8,
-      "_compositions_count": 9
+      "_compositions_count": 9,
+      "superior_law_probability": 0.366,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.6,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "PAL-007",
@@ -8754,7 +10203,16 @@
       "runtime_weight": 0.733,
       "structural_rank": 18.0,
       "_fy": -145.0,
-      "_compositions_count": 9
+      "_compositions_count": 9,
+      "superior_law_probability": 0.363,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.6,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "PAL-008",
@@ -8809,7 +10267,16 @@
       "runtime_weight": 0.734,
       "structural_rank": 18.1,
       "_fy": -162.6,
-      "_compositions_count": 9
+      "_compositions_count": 9,
+      "superior_law_probability": 0.366,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.6,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "PAL-010",
@@ -8868,7 +10335,16 @@
       "runtime_weight": 0.682,
       "structural_rank": -4.7,
       "_fy": -223.8,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.305,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "PAL-012",
@@ -8923,7 +10399,16 @@
       "runtime_weight": 0.699,
       "structural_rank": -1.8,
       "_fy": -198.5,
-      "_compositions_count": 5
+      "_compositions_count": 5,
+      "superior_law_probability": 0.289,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.333,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 2,
+        "reusability": 0
+      }
     },
     {
       "id": "PAL-013",
@@ -8982,7 +10467,16 @@
       "runtime_weight": 0.679,
       "structural_rank": -15.1,
       "_fy": -252.6,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.294,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "PAL-014",
@@ -9037,7 +10531,16 @@
       "runtime_weight": 0.679,
       "structural_rank": -5.0,
       "_fy": -217.4,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.26,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-019",
@@ -9092,7 +10595,16 @@
       "runtime_weight": 0.682,
       "structural_rank": -9.7,
       "_fy": -232.1,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.27,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-020",
@@ -9147,7 +10659,16 @@
       "runtime_weight": 0.728,
       "structural_rank": 8.1,
       "_fy": -166.8,
-      "_compositions_count": 18
+      "_compositions_count": 18,
+      "superior_law_probability": 0.436,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "GHUC-016",
@@ -9206,7 +10727,16 @@
       "runtime_weight": 0.746,
       "structural_rank": 18.4,
       "_fy": -149.9,
-      "_compositions_count": 11
+      "_compositions_count": 11,
+      "superior_law_probability": 0.443,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.733,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-021",
@@ -9265,7 +10795,16 @@
       "runtime_weight": 0.733,
       "structural_rank": 8.7,
       "_fy": -189.4,
-      "_compositions_count": 22
+      "_compositions_count": 22,
+      "superior_law_probability": 0.49,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "SDE-018",
@@ -9320,7 +10859,16 @@
       "runtime_weight": 0.715,
       "structural_rank": 3.0,
       "_fy": -182.5,
-      "_compositions_count": 7
+      "_compositions_count": 7,
+      "superior_law_probability": 0.323,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.467,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "PAL-015",
@@ -9375,7 +10923,16 @@
       "runtime_weight": 0.697,
       "structural_rank": -2.0,
       "_fy": -192.9,
-      "_compositions_count": 5
+      "_compositions_count": 5,
+      "superior_law_probability": 0.286,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.333,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 2,
+        "reusability": 0
+      }
     },
     {
       "id": "DVE-016",
@@ -9434,7 +10991,16 @@
       "runtime_weight": 0.692,
       "structural_rank": -4.6,
       "_fy": -202.4,
-      "_compositions_count": 4
+      "_compositions_count": 4,
+      "superior_law_probability": 0.332,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.267,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-020",
@@ -9489,7 +11055,16 @@
       "runtime_weight": 0.748,
       "structural_rank": 18.7,
       "_fy": -162.2,
-      "_compositions_count": 13
+      "_compositions_count": 13,
+      "superior_law_probability": 0.455,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.867,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 5,
+        "reusability": 1
+      }
     },
     {
       "id": "WP11-021",
@@ -9544,7 +11119,16 @@
       "runtime_weight": 0.719,
       "structural_rank": 3.4,
       "_fy": -189.4,
-      "_compositions_count": 7
+      "_compositions_count": 7,
+      "superior_law_probability": 0.337,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.467,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-022",
@@ -9599,7 +11183,16 @@
       "runtime_weight": 0.732,
       "structural_rank": 8.5,
       "_fy": -165.8,
-      "_compositions_count": 22
+      "_compositions_count": 22,
+      "superior_law_probability": 0.442,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 2,
+        "reusability": 0
+      }
     },
     {
       "id": "ULG-019",
@@ -9654,7 +11247,16 @@
       "runtime_weight": 0.68,
       "structural_rank": -4.9,
       "_fy": -206.2,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.26,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "ULG-020",
@@ -9709,7 +11311,16 @@
       "runtime_weight": 0.743,
       "structural_rank": 18.1,
       "_fy": -160.6,
-      "_compositions_count": 10
+      "_compositions_count": 10,
+      "superior_law_probability": 0.384,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.667,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-021",
@@ -9768,7 +11379,16 @@
       "runtime_weight": 0.688,
       "structural_rank": -1.4,
       "_fy": -217.4,
-      "_compositions_count": 5
+      "_compositions_count": 5,
+      "superior_law_probability": 0.342,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.333,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "GHUC-017",
@@ -9823,7 +11443,16 @@
       "runtime_weight": 0.773,
       "structural_rank": 18.8,
       "_fy": -167.1,
-      "_compositions_count": 13
+      "_compositions_count": 13,
+      "superior_law_probability": 0.487,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.867,
+        "multi_scale": 2,
+        "branches_explained": 2,
+        "cross_domain": 7,
+        "reusability": 0
+      }
     },
     {
       "id": "GHUC-018",
@@ -9874,7 +11503,16 @@
       "runtime_weight": 0.681,
       "structural_rank": -4.8,
       "_fy": -222.9,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.234,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-022",
@@ -9929,7 +11567,16 @@
       "runtime_weight": 0.691,
       "structural_rank": -4.7,
       "_fy": -220.8,
-      "_compositions_count": 4
+      "_compositions_count": 4,
+      "superior_law_probability": 0.286,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.267,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-024",
@@ -9984,7 +11631,16 @@
       "runtime_weight": 0.719,
       "structural_rank": 3.4,
       "_fy": -185.5,
-      "_compositions_count": 7
+      "_compositions_count": 7,
+      "superior_law_probability": 0.337,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.467,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-026",
@@ -10039,7 +11695,16 @@
       "runtime_weight": 0.762,
       "structural_rank": 3.5,
       "_fy": -194.1,
-      "_compositions_count": 9
+      "_compositions_count": 9,
+      "superior_law_probability": 0.427,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.6,
+        "multi_scale": 2,
+        "branches_explained": 2,
+        "cross_domain": 7,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-024",
@@ -10094,7 +11759,16 @@
       "runtime_weight": 0.688,
       "structural_rank": -1.4,
       "_fy": -217.4,
-      "_compositions_count": 5
+      "_compositions_count": 5,
+      "superior_law_probability": 0.311,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.333,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-027",
@@ -10149,7 +11823,16 @@
       "runtime_weight": 0.705,
       "structural_rank": -1.8,
       "_fy": -191.4,
-      "_compositions_count": 6
+      "_compositions_count": 6,
+      "superior_law_probability": 0.343,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.4,
+        "multi_scale": 2,
+        "branches_explained": 1,
+        "cross_domain": 6,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-027",
@@ -10200,7 +11883,16 @@
       "runtime_weight": 0.717,
       "structural_rank": 3.2,
       "_fy": -188.9,
-      "_compositions_count": 7
+      "_compositions_count": 7,
+      "superior_law_probability": 0.293,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.467,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-028",
@@ -10255,7 +11947,16 @@
       "runtime_weight": 0.683,
       "structural_rank": -9.6,
       "_fy": -223.0,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.278,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-029",
@@ -10310,7 +12011,16 @@
       "runtime_weight": 0.681,
       "structural_rank": -9.8,
       "_fy": -229.5,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.27,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "GHUC-021",
@@ -10365,7 +12075,16 @@
       "runtime_weight": 0.691,
       "structural_rank": -4.7,
       "_fy": -204.6,
-      "_compositions_count": 4
+      "_compositions_count": 4,
+      "superior_law_probability": 0.292,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.267,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-028",
@@ -10424,7 +12143,16 @@
       "runtime_weight": 0.672,
       "structural_rank": -4.2,
       "_fy": -209.4,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.319,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-029",
@@ -10479,7 +12207,16 @@
       "runtime_weight": 0.67,
       "structural_rank": -4.3,
       "_fy": -204.8,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.292,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 1
+      }
     },
     {
       "id": "DVE-018",
@@ -10538,7 +12275,16 @@
       "runtime_weight": 0.726,
       "structural_rank": -6.1,
       "_fy": -204.2,
-      "_compositions_count": 6
+      "_compositions_count": 6,
+      "superior_law_probability": 0.421,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.4,
+        "multi_scale": 3,
+        "branches_explained": 1,
+        "cross_domain": 7,
+        "reusability": 1
+      }
     },
     {
       "id": "DVE-019",
@@ -10589,7 +12335,16 @@
       "runtime_weight": 0.683,
       "structural_rank": -14.6,
       "_fy": -248.4,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.259,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 6,
+        "reusability": 2
+      }
     },
     {
       "id": "SDE-019",
@@ -10648,7 +12403,16 @@
       "runtime_weight": 0.685,
       "structural_rank": -9.3,
       "_fy": -209.4,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.314,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-022",
@@ -10703,7 +12467,16 @@
       "runtime_weight": 0.684,
       "structural_rank": -1.8,
       "_fy": -212.4,
-      "_compositions_count": 5
+      "_compositions_count": 5,
+      "superior_law_probability": 0.299,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.333,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-031",
@@ -10758,7 +12531,16 @@
       "runtime_weight": 0.731,
       "structural_rank": 8.4,
       "_fy": -190.0,
-      "_compositions_count": 22
+      "_compositions_count": 22,
+      "superior_law_probability": 0.441,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 2,
+        "reusability": 0
+      }
     },
     {
       "id": "DVE-020",
@@ -10817,7 +12599,16 @@
       "runtime_weight": 0.715,
       "structural_rank": -6.0,
       "_fy": -219.0,
-      "_compositions_count": 6
+      "_compositions_count": 6,
+      "superior_law_probability": 0.414,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.4,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 7,
+        "reusability": 3
+      }
     },
     {
       "id": "SDE-021",
@@ -10872,7 +12663,16 @@
       "runtime_weight": 0.682,
       "structural_rank": -9.7,
       "_fy": -219.1,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.276,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-032",
@@ -10927,7 +12727,16 @@
       "runtime_weight": 0.669,
       "structural_rank": -4.5,
       "_fy": -226.2,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.275,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "DVE-021",
@@ -10978,7 +12787,16 @@
       "runtime_weight": 0.691,
       "structural_rank": -9.7,
       "_fy": -220.1,
-      "_compositions_count": 4
+      "_compositions_count": 4,
+      "superior_law_probability": 0.255,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.267,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-024",
@@ -11033,7 +12851,16 @@
       "runtime_weight": 0.702,
       "structural_rank": 3.2,
       "_fy": -177.9,
-      "_compositions_count": 7
+      "_compositions_count": 7,
+      "superior_law_probability": 0.325,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.467,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-025",
@@ -11084,7 +12911,16 @@
       "runtime_weight": 0.701,
       "structural_rank": 3.1,
       "_fy": -178.2,
-      "_compositions_count": 7
+      "_compositions_count": 7,
+      "superior_law_probability": 0.284,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.467,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-026",
@@ -11139,7 +12975,16 @@
       "runtime_weight": 0.664,
       "structural_rank": -5.0,
       "_fy": -218.5,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.253,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-028",
@@ -11194,7 +13039,16 @@
       "runtime_weight": 0.666,
       "structural_rank": -4.8,
       "_fy": -223.9,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.26,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-029",
@@ -11245,7 +13099,16 @@
       "runtime_weight": 0.701,
       "structural_rank": 3.1,
       "_fy": -184.1,
-      "_compositions_count": 7
+      "_compositions_count": 7,
+      "superior_law_probability": 0.286,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.467,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-030",
@@ -11296,7 +13159,16 @@
       "runtime_weight": 0.664,
       "structural_rank": -5.0,
       "_fy": -204.4,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.217,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-031",
@@ -11351,7 +13223,16 @@
       "runtime_weight": 0.701,
       "structural_rank": 3.1,
       "_fy": -192.2,
-      "_compositions_count": 7
+      "_compositions_count": 7,
+      "superior_law_probability": 0.328,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.467,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-032",
@@ -11410,7 +13291,16 @@
       "runtime_weight": 0.67,
       "structural_rank": -4.3,
       "_fy": -211.9,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.309,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-034",
@@ -11465,7 +13355,16 @@
       "runtime_weight": 0.684,
       "structural_rank": -1.8,
       "_fy": -217.5,
-      "_compositions_count": 5
+      "_compositions_count": 5,
+      "superior_law_probability": 0.291,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.333,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-035",
@@ -11520,7 +13419,16 @@
       "runtime_weight": 0.703,
       "structural_rank": 3.4,
       "_fy": -184.6,
-      "_compositions_count": 7
+      "_compositions_count": 7,
+      "superior_law_probability": 0.337,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.467,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "GHUC-022",
@@ -11579,7 +13487,16 @@
       "runtime_weight": 0.71,
       "structural_rank": -1.6,
       "_fy": -217.0,
-      "_compositions_count": 6
+      "_compositions_count": 6,
+      "superior_law_probability": 0.395,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.4,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 6,
+        "reusability": 3
+      }
     },
     {
       "id": "GHUC-023",
@@ -11634,7 +13551,16 @@
       "runtime_weight": 0.683,
       "structural_rank": -4.5,
       "_fy": -214.2,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.304,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 5,
+        "reusability": 3
+      }
     },
     {
       "id": "GHUC-024",
@@ -11689,7 +13615,16 @@
       "runtime_weight": 0.684,
       "structural_rank": -4.5,
       "_fy": -206.1,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.281,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-032",
@@ -11744,7 +13679,16 @@
       "runtime_weight": 0.745,
       "structural_rank": 18.3,
       "_fy": -146.2,
-      "_compositions_count": 12
+      "_compositions_count": 12,
+      "superior_law_probability": 0.413,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.8,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "GHUC-025",
@@ -11799,7 +13743,16 @@
       "runtime_weight": 0.743,
       "structural_rank": 18.1,
       "_fy": -141.8,
-      "_compositions_count": 11
+      "_compositions_count": 11,
+      "superior_law_probability": 0.396,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.733,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "GHUC-026",
@@ -11854,7 +13807,16 @@
       "runtime_weight": 0.706,
       "structural_rank": -2.0,
       "_fy": -205.9,
-      "_compositions_count": 6
+      "_compositions_count": 6,
+      "superior_law_probability": 0.302,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.4,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 2,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-034",
@@ -11909,7 +13871,16 @@
       "runtime_weight": 0.729,
       "structural_rank": 8.2,
       "_fy": -167.4,
-      "_compositions_count": 22
+      "_compositions_count": 22,
+      "superior_law_probability": 0.441,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "PAL-017",
@@ -11964,7 +13935,16 @@
       "runtime_weight": 0.735,
       "structural_rank": 18.2,
       "_fy": -149.5,
-      "_compositions_count": 9
+      "_compositions_count": 9,
+      "superior_law_probability": 0.368,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.6,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-034",
@@ -12019,7 +13999,16 @@
       "runtime_weight": 0.718,
       "structural_rank": 3.4,
       "_fy": -198.6,
-      "_compositions_count": 7
+      "_compositions_count": 7,
+      "superior_law_probability": 0.342,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.467,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "GHUC-027",
@@ -12074,7 +14063,16 @@
       "runtime_weight": 0.692,
       "structural_rank": -4.6,
       "_fy": -223.4,
-      "_compositions_count": 4
+      "_compositions_count": 4,
+      "superior_law_probability": 0.288,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.267,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-035",
@@ -12129,7 +14127,16 @@
       "runtime_weight": 0.73,
       "structural_rank": 8.3,
       "_fy": -186.1,
-      "_compositions_count": 23
+      "_compositions_count": 23,
+      "superior_law_probability": 0.446,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "ULG-021",
@@ -12184,7 +14191,16 @@
       "runtime_weight": 0.688,
       "structural_rank": -5.0,
       "_fy": -216.4,
-      "_compositions_count": 4
+      "_compositions_count": 4,
+      "superior_law_probability": 0.308,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.267,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 6,
+        "reusability": 1
+      }
     },
     {
       "id": "SDE-023",
@@ -12239,7 +14255,16 @@
       "runtime_weight": 0.689,
       "structural_rank": -9.9,
       "_fy": -239.8,
-      "_compositions_count": 4
+      "_compositions_count": 4,
+      "superior_law_probability": 0.278,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.267,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "ULG-022",
@@ -12294,7 +14319,16 @@
       "runtime_weight": 0.689,
       "structural_rank": -4.8,
       "_fy": -200.1,
-      "_compositions_count": 4
+      "_compositions_count": 4,
+      "superior_law_probability": 0.312,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.267,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 6,
+        "reusability": 1
+      }
     },
     {
       "id": "SDE-024",
@@ -12349,7 +14383,16 @@
       "runtime_weight": 0.688,
       "structural_rank": -10.0,
       "_fy": -222.0,
-      "_compositions_count": 4
+      "_compositions_count": 4,
+      "superior_law_probability": 0.281,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.267,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-036",
@@ -12408,7 +14451,16 @@
       "runtime_weight": 0.697,
       "structural_rank": -1.3,
       "_fy": -199.2,
-      "_compositions_count": 6
+      "_compositions_count": 6,
+      "superior_law_probability": 0.385,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.4,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 5,
+        "reusability": 1
+      }
     },
     {
       "id": "DVE-022",
@@ -12463,7 +14515,16 @@
       "runtime_weight": 0.726,
       "structural_rank": 18.2,
       "_fy": -162.5,
-      "_compositions_count": 8
+      "_compositions_count": 8,
+      "superior_law_probability": 0.351,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.533,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-036",
@@ -12518,7 +14579,16 @@
       "runtime_weight": 0.666,
       "structural_rank": -9.8,
       "_fy": -228.4,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.26,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-040",
@@ -12577,7 +14647,16 @@
       "runtime_weight": 0.667,
       "structural_rank": -9.7,
       "_fy": -221.1,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.295,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 2,
+        "reusability": 0
+      }
     },
     {
       "id": "WP12-041",
@@ -12632,7 +14711,16 @@
       "runtime_weight": 0.67,
       "structural_rank": -9.3,
       "_fy": -222.4,
-      "_compositions_count": 3
+      "_compositions_count": 3,
+      "superior_law_probability": 0.304,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.2,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 6,
+        "reusability": 1
+      }
     },
     {
       "id": "WP11-035",
@@ -12687,7 +14775,16 @@
       "runtime_weight": 0.741,
       "structural_rank": 17.9,
       "_fy": -168.2,
-      "_compositions_count": 12
+      "_compositions_count": 12,
+      "superior_law_probability": 0.401,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.8,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "GHUC-029",
@@ -12742,7 +14839,16 @@
       "runtime_weight": 0.694,
       "structural_rank": -4.3,
       "_fy": -197.9,
-      "_compositions_count": 4
+      "_compositions_count": 4,
+      "superior_law_probability": 0.299,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.267,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-036",
@@ -12797,7 +14903,16 @@
       "runtime_weight": 0.717,
       "structural_rank": 3.2,
       "_fy": -198.0,
-      "_compositions_count": 7
+      "_compositions_count": 7,
+      "superior_law_probability": 0.335,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.467,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-037",
@@ -12852,7 +14967,16 @@
       "runtime_weight": 0.729,
       "structural_rank": 8.2,
       "_fy": -177.4,
-      "_compositions_count": 18
+      "_compositions_count": 18,
+      "superior_law_probability": 0.441,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 1.0,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "UDE-038",
@@ -12907,7 +15031,16 @@
       "runtime_weight": 0.7,
       "structural_rank": 3.0,
       "_fy": -207.4,
-      "_compositions_count": 7
+      "_compositions_count": 7,
+      "superior_law_probability": 0.32,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.467,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "SDE-028",
@@ -12958,7 +15091,16 @@
       "runtime_weight": 0.688,
       "structural_rank": -9.9,
       "_fy": -229.9,
-      "_compositions_count": 4
+      "_compositions_count": 4,
+      "superior_law_probability": 0.238,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.267,
+        "multi_scale": 1,
+        "branches_explained": 0,
+        "cross_domain": 3,
+        "reusability": 0
+      }
     },
     {
       "id": "WP11-037",
@@ -13013,7 +15155,16 @@
       "runtime_weight": 0.743,
       "structural_rank": 18.1,
       "_fy": -150.8,
-      "_compositions_count": 12
+      "_compositions_count": 12,
+      "superior_law_probability": 0.409,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.8,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "GHUC-030",
@@ -13068,7 +15219,16 @@
       "runtime_weight": 0.744,
       "structural_rank": 18.2,
       "_fy": -146.4,
-      "_compositions_count": 11
+      "_compositions_count": 11,
+      "superior_law_probability": 0.399,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.733,
+        "multi_scale": 2,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     },
     {
       "id": "PAL-019",
@@ -13127,7 +15287,16 @@
       "runtime_weight": 0.736,
       "structural_rank": 18.4,
       "_fy": -158.1,
-      "_compositions_count": 9
+      "_compositions_count": 9,
+      "superior_law_probability": 0.412,
+      "superior_law_candidate": false,
+      "superior_score_detail": {
+        "composition": 0.6,
+        "multi_scale": 3,
+        "branches_explained": 0,
+        "cross_domain": 4,
+        "reusability": 0
+      }
     }
   ],
   "edges": [

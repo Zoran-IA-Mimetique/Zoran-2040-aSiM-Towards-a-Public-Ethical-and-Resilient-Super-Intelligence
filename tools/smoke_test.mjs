@@ -133,6 +133,22 @@ await page.locator('#index li[data-id="GHUC-001"]').first().click();
 await page.waitForTimeout(600);
 await page.screenshot({ path: 'app/preview-live.png', fullPage: false });
 
+// Verify the Superior Laws section is populated AND the badge appears
+const supSectionCount = await page.locator('#superior-laws li').count();
+const supBadgeVisible = await page.locator('.z-superior-badge').count();
+const supSectionLabel = await page.locator('.frames-label:has-text("Probability")').count();
+console.log(`\n  Superior Laws sidebar : ${supSectionCount} items`);
+console.log(`  ★ SUPÉRIEURE badge   : ${supBadgeVisible > 0 ? 'visible' : 'absent'}`);
+console.log(`  Probability section  : ${supSectionLabel > 0 ? 'présente' : 'absente'}`);
+
+// Second screenshot — sidebar visible (panel closed)
+await page.keyboard.press('Escape');
+await page.waitForTimeout(300);
+// Scroll sidebar to the Superior Laws section
+const supHeader = await page.locator('h3:has-text("Lois supérieures")').first();
+await supHeader.scrollIntoViewIfNeeded({ timeout: 2000 }).catch(() => {});
+await page.screenshot({ path: 'app/preview-sidebar.png', fullPage: false });
+
 // Test Esc closes panel
 let esc_ok = false;
 try {
