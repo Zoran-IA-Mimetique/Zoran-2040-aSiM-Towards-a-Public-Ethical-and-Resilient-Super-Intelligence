@@ -359,23 +359,23 @@ function applyRouteVisualization() {
       const winner = involved.find(r => r.winner);
       const dom = winner || involved.reduce((a, b) => a.strength >= b.strength ? a : b);
       if (mesh.material && mesh.material.color) {
-        // Tint plus marqué (75% blend) pour dominance visuelle
+        // Tint quasi-pur (90%) pour dominance maximale (mission UX explicite)
         const c = new THREE.Color(dom.color.hex);
         const orig = new THREE.Color(mesh.userData.zoranOrigColor);
-        mesh.material.color.copy(orig).lerp(c, 0.75);
+        mesh.material.color.copy(orig).lerp(c, 0.90);
       }
       if (mesh.material && mesh.material.emissive && dom.winner) {
-        // WINNER : glow fort + scale 1.18 pour dominance
+        // WINNER : glow fort + scale 1.30 — dominance immédiatement perceptible
         mesh.material.emissive.setHex(dom.color.hex);
-        mesh.material.emissiveIntensity = 0.40;
+        mesh.material.emissiveIntensity = 0.65; // tickAnimation va animer ce chiffre
         mesh.userData.zoranWinnerPulse = true;
-        mesh.userData.zoranHoverScale = 1.18;
+        mesh.userData.zoranHoverScale = 1.30;
       } else if (mesh.material && mesh.material.emissive) {
-        // Route survivor : glow modéré + scale 1.06
+        // Route survivor : glow modéré + scale 1.10
         mesh.material.emissive.setHex(dom.color.hex);
-        mesh.material.emissiveIntensity = dom.eliminated ? 0.0 : 0.22;
+        mesh.material.emissiveIntensity = dom.eliminated ? 0.0 : 0.30;
         mesh.userData.zoranWinnerPulse = false;
-        mesh.userData.zoranHoverScale = dom.eliminated ? 0.95 : 1.06;
+        mesh.userData.zoranHoverScale = dom.eliminated ? 0.92 : 1.10;
       }
       // Opacity : eliminated = très faded (0.18), survivor = full
       state.targetOpacity.set(id, dom.eliminated ? 0.18 : 1.0);
@@ -425,27 +425,34 @@ function updateHalos() {
 }
 
 function tickAnimation() {
-  // Per-frame opacity lerp + hover scale lerp + halo facing + winner pulse
+  // Per-frame opacity lerp + hover scale lerp + halo facing + winner BLINK
   const t = performance.now() * 0.001;
-  // Winner pulse — 1.1 Hz (lent), ±0.15 amplitude autour de 0.45
-  // (mission 2026-05-16 05:23 : dominance visuelle, sobre, lent, stable)
-  const winnerPulse = 0.45 + Math.sin(t * 1.1 * Math.PI * 2) * 0.15;
+  // Mission CLAUDE_RUNTIME_GRAPH_PATHS_AND_POPUP_FIX : vrai clignotement visible
+  // Winner emissive : 0.30 → 0.85 → 0.30 sinusoïdal, 1.4 Hz (perceptible humain)
+  const winnerEmissive = 0.30 + (Math.sin(t * 1.4 * Math.PI * 2) * 0.5 + 0.5) * 0.55;
+  // Winner opacity : oscillation 0.75 ↔ 1.0 pour blink franc
+  const winnerOpacity = 0.75 + (Math.sin(t * 1.4 * Math.PI * 2) * 0.5 + 0.5) * 0.25;
+  // Winner scale : respiration 0.97 ↔ 1.05 multiplicateur sur base scale
+  const winnerScaleMul = 0.97 + (Math.sin(t * 1.4 * Math.PI * 2) * 0.5 + 0.5) * 0.08;
   for (const [id, mesh] of state.meshes.entries()) {
+    const isWinner = mesh.userData.zoranWinnerPulse;
     const target = state.targetOpacity.get(id) ?? 1.0;
+    // Override opacity for winners with blink
+    const effectiveTarget = isWinner ? winnerOpacity : target;
     const cur = mesh.material.opacity;
-    if (Math.abs(cur - target) > 0.005) {
-      mesh.material.opacity = cur + (target - cur) * 0.18;
+    if (Math.abs(cur - effectiveTarget) > 0.005) {
+      mesh.material.opacity = cur + (effectiveTarget - cur) * (isWinner ? 0.35 : 0.18);
       mesh.material.transparent = mesh.material.opacity < 0.99;
     }
-    const tgtScale = mesh.userData.zoranHoverScale ?? 1.0;
+    const baseScale = mesh.userData.zoranHoverScale ?? 1.0;
+    const tgtScale = isWinner ? baseScale * winnerScaleMul : baseScale;
     const curScale = mesh.scale.x;
     if (Math.abs(curScale - tgtScale) > 0.003) {
-      const next = curScale + (tgtScale - curScale) * 0.20;
+      const next = curScale + (tgtScale - curScale) * (isWinner ? 0.30 : 0.20);
       mesh.scale.set(next, next, next);
     }
-    // Winner pulse — only for nodes flagged as winner-route members
-    if (mesh.userData.zoranWinnerPulse && mesh.material && mesh.material.emissive) {
-      mesh.material.emissiveIntensity = winnerPulse;
+    if (isWinner && mesh.material && mesh.material.emissive) {
+      mesh.material.emissiveIntensity = winnerEmissive;
     }
   }
   updateHalos();
@@ -965,6 +972,63 @@ function initGraph() {
   });
 }
 
+// ─── makeDraggable : helper partagé pour les panneaux draggables ───
+// Utilisé par #detail (panneau loi) ET #chat-results (popup routes).
+// (simplify skill : extraction commune, supprime ~80 lignes de duplication)
+function makeDraggable(panel, header, opts = {}) {
+  const { storageKey, ignoreIds = [], minTop = 48, bottomMargin = 60,
+          clampWidthBy = 80, useFullWidth = false,
+          onPostMove, persistSize = false } = opts;
+  if (!panel || !header) return;
+
+  let dragging = false;
+  let startX = 0, startY = 0, startLeft = 0, startTop = 0;
+
+  header.addEventListener('pointerdown', e => {
+    if (e.target && ignoreIds.includes(e.target.id)) return;
+    dragging = true;
+    try { header.setPointerCapture(e.pointerId); } catch (_) {}
+    const rect = panel.getBoundingClientRect();
+    startX = e.clientX; startY = e.clientY;
+    startLeft = rect.left; startTop = rect.top;
+    panel.style.transform = 'none';
+    panel.style.transition = 'none';
+    header.style.cursor = 'grabbing';
+    document.body.style.userSelect = 'none';
+  });
+
+  function onMove(e) {
+    if (!dragging) return;
+    let left = startLeft + (e.clientX - startX);
+    let top  = startTop  + (e.clientY - startY);
+    const w = useFullWidth ? panel.offsetWidth : clampWidthBy;
+    left = Math.max(0, Math.min(window.innerWidth - w, left));
+    top  = Math.max(minTop, Math.min(window.innerHeight - bottomMargin, top));
+    panel.style.left = left + 'px';
+    panel.style.top  = top  + 'px';
+    panel.style.bottom = 'auto';
+    panel.style.right = 'auto';
+  }
+  function onUp() {
+    if (!dragging) return;
+    dragging = false;
+    header.style.cursor = 'grab';
+    document.body.style.userSelect = '';
+    if (storageKey) {
+      try {
+        const rect = panel.getBoundingClientRect();
+        const payload = { left: rect.left, top: rect.top };
+        if (persistSize) { payload.w = panel.offsetWidth; payload.h = panel.offsetHeight; }
+        localStorage.setItem(storageKey, JSON.stringify(payload));
+      } catch (_) {}
+    }
+    if (onPostMove) onPostMove();
+  }
+  window.addEventListener('pointermove', onMove);
+  window.addEventListener('pointerup', onUp);
+  window.addEventListener('pointercancel', onUp);
+}
+
 // ───── DRAGGABLE_RUNTIME_RESPONSE_POPUP (mission 2026-05-16 05:08) ─────
 // Le popup #chat-results devient déplaçable, redimensionnable, minimisable,
 // pour permettre la coexistence graphe + réponse runtime.
@@ -991,54 +1055,19 @@ function setupDraggableChatPopup() {
     });
   }
 
-  let dragging = false;
-  let startX = 0, startY = 0, startLeft = 0, startTop = 0;
   header.style.cursor = 'grab';
-  header.addEventListener('pointerdown', e => {
-    if (e.target && (e.target.id === 'chat-results-close' || e.target.id === 'chat-results-min')) return;
-    dragging = true;
-    try { header.setPointerCapture(e.pointerId); } catch (_) {}
-    const rect = popup.getBoundingClientRect();
-    startX = e.clientX; startY = e.clientY;
-    startLeft = rect.left; startTop = rect.top;
-    popup.style.transform = 'none'; // disable centering transform
-    popup.style.transition = 'none';
-    header.style.cursor = 'grabbing';
-    document.body.style.userSelect = 'none';
+  makeDraggable(popup, header, {
+    storageKey: 'zoran.chat.pos',
+    ignoreIds: ['chat-results-close', 'chat-results-min'],
+    clampWidthBy: 80,
+    persistSize: true,
   });
-  function onMove(e) {
-    if (!dragging) return;
-    let left = startLeft + (e.clientX - startX);
-    let top  = startTop  + (e.clientY - startY);
-    const w = popup.offsetWidth, h = popup.offsetHeight;
-    left = Math.max(0, Math.min(window.innerWidth - 80, left));
-    top  = Math.max(48, Math.min(window.innerHeight - 60, top));
-    popup.style.left = left + 'px';
-    popup.style.top  = top  + 'px';
-    popup.style.bottom = 'auto';
-    popup.style.right = 'auto';
-  }
-  function onUp() {
-    if (!dragging) return;
-    dragging = false;
-    header.style.cursor = 'grab';
-    document.body.style.userSelect = '';
-    const rect = popup.getBoundingClientRect();
-    try {
-      localStorage.setItem('zoran.chat.pos',
-        JSON.stringify({ left: rect.left, top: rect.top, w: popup.offsetWidth, h: popup.offsetHeight }));
-    } catch (_) {}
-  }
-  window.addEventListener('pointermove', onMove);
-  window.addEventListener('pointerup', onUp);
-  window.addEventListener('pointercancel', onUp);
 
   // Persist resize via ResizeObserver
   try {
     const ro = new ResizeObserver(() => {
       if (popup.classList.contains('hidden')) return;
       try {
-        const r = popup.getBoundingClientRect();
         const saved = JSON.parse(localStorage.getItem('zoran.chat.pos') || '{}');
         localStorage.setItem('zoran.chat.pos', JSON.stringify({
           ...saved, w: popup.offsetWidth, h: popup.offsetHeight,
@@ -1088,46 +1117,11 @@ function setupDraggablePanel() {
   const header = $('#detail-header');
   if (!panel || !header) return;
 
-  let dragging = false;
-  let startX = 0, startY = 0, startLeft = 0, startTop = 0;
-
-  header.addEventListener('pointerdown', e => {
-    if (e.target && e.target.id === 'detail-close') return;
-    dragging = true;
-    try { header.setPointerCapture(e.pointerId); } catch (_) { /* ignore */ }
-    const rect = panel.getBoundingClientRect();
-    startX = e.clientX; startY = e.clientY;
-    startLeft = rect.left; startTop = rect.top;
-    panel.style.transition = 'none';
-    document.body.style.userSelect = 'none';
+  makeDraggable(panel, header, {
+    storageKey: 'zoran.panel.pos',
+    ignoreIds: ['detail-close'],
+    useFullWidth: true,
   });
-
-  function onMove(e) {
-    if (!dragging) return;
-    let left = startLeft + (e.clientX - startX);
-    let top  = startTop  + (e.clientY - startY);
-    const w = panel.offsetWidth, h = Math.min(panel.offsetHeight, window.innerHeight);
-    left = Math.max(0, Math.min(window.innerWidth - w, left));
-    top  = Math.max(48, Math.min(window.innerHeight - 60, top));
-    panel.style.left  = left + 'px';
-    panel.style.top   = top  + 'px';
-    panel.style.right = 'auto';
-  }
-
-  function onUp() {
-    if (!dragging) return;
-    dragging = false;
-    document.body.style.userSelect = '';
-    const rect = panel.getBoundingClientRect();
-    try {
-      localStorage.setItem('zoran.panel.pos',
-        JSON.stringify({ left: rect.left, top: rect.top }));
-    } catch (_) { /* localStorage unavailable */ }
-  }
-
-  window.addEventListener('pointermove', onMove);
-  window.addEventListener('pointerup', onUp);
-  window.addEventListener('pointercancel', onUp);
 
   // Restore saved position once
   try {
@@ -1142,7 +1136,7 @@ function setupDraggablePanel() {
         panel.style.right = 'auto';
       }
     }
-  } catch (_) { /* ignore */ }
+  } catch (_) {}
 
   // Reset position via Shift+R
   window.addEventListener('keydown', e => {
