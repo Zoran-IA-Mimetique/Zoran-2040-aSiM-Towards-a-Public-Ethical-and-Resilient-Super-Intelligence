@@ -176,8 +176,10 @@ export function renderResults(result, onPickLaw) {
   const qSpan = document.getElementById('chat-results-q');
   const panel = document.getElementById('chat-results');
   qSpan.textContent = `Q: ${result.question}`;
+  const wasHidden = panel.classList.contains('hidden');
   panel.classList.remove('hidden');
   panel.setAttribute('aria-hidden', 'false');
+  if (wasHidden) panel.dispatchEvent(new CustomEvent('zoran-show'));
 
   const routesSorted = [...result.routes].sort((a, b) => b.selection_score - a.selection_score);
   const winner = result.winner;
@@ -232,7 +234,7 @@ export function renderResults(result, onPickLaw) {
   });
 }
 
-export function wireChatBar(nodes, onPickLaw) {
+export function wireChatBar(nodes, onPickLaw, onCompete, onClearRoutes) {
   const bar = document.getElementById('chat-bar');
   const input = document.getElementById('chat-input');
   const sendBtn = document.getElementById('chat-send');
@@ -247,6 +249,8 @@ export function wireChatBar(nodes, onPickLaw) {
     if (!q) return;
     const result = compete(q, nodes);
     renderResults(result, onPickLaw);
+    // Mission REALTIME_ROUTE_VISUALIZATION : activer les routes dans le graphe
+    if (onCompete) onCompete(result);
     console.log('%cZORAN PATH COMPETITION', 'color:#ffcc4d;font-weight:bold', result);
   }
 

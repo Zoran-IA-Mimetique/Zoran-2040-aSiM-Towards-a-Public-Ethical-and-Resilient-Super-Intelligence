@@ -366,7 +366,9 @@ body.sidebar-hidden #graph {
   transform: translateX(-50%);
   width: min(880px, calc(100vw - 48px));
   max-height: calc(100vh - 220px);
-  background: rgba(13, 16, 24, 0.97);
+  min-width: 360px;
+  min-height: 80px;
+  background: rgba(13, 16, 24, 0.92);
   border: 1px solid var(--line);
   border-radius: 10px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.55);
@@ -374,8 +376,16 @@ body.sidebar-hidden #graph {
   display: flex; flex-direction: column;
   backdrop-filter: blur(10px);
   overflow: hidden;
+  resize: both;
 }
 #chat-results.hidden { display: none; }
+#chat-results.minimized {
+  height: 42px !important;
+  min-height: 42px;
+  overflow: hidden;
+}
+#chat-results.minimized #chat-results-body { display: none; }
+#chat-results.minimized { resize: none; }
 #chat-results-header {
   display: flex; align-items: center; gap: 10px;
   padding: 8px 14px;

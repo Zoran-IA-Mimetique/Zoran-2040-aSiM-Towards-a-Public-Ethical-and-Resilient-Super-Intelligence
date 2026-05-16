@@ -261,6 +261,130 @@ function applyLayerVisibility() {
   if (state.fg) state.fg.refresh();
 }
 
+// ─── REALTIME ROUTE VISUALIZATION (mission ZORAN_REALTIME_COGNITIVE_ROUTE_VISUALIZATION) ───
+// state.activeRoutes : Map<route_id, { color, laws:Set, edges:Set, eliminated:bool, winner:bool, rank, strength }>
+// max 6 routes simultanées (mission spec)
+
+const ROUTE_COLORS = {
+  frugale:            { hex: 0x3ad17a, css: '#3ad17a' },  // vert
+  anti_hallucination: { hex: 0xff6b6b, css: '#ff6b6b' },  // rouge
+  runtime_rapide:     { hex: 0x4dd6ff, css: '#4dd6ff' },  // cyan
+  propagation_forte:  { hex: 0xb86bff, css: '#b86bff' },  // violet
+  temporal_survival:  { hex: 0xff9c2e, css: '#ff9c2e' },  // orange
+  structurelle:       { hex: 0x4ea3ff, css: '#4ea3ff' },  // bleu
+};
+
+function routeColorOf(strategy) {
+  return ROUTE_COLORS[strategy] || { hex: 0xcccccc, css: '#cccccc' };
+}
+
+export function activateRoutes(competitionResult) {
+  // Build the active routes registry from a path competition result
+  state.activeRoutes = new Map();
+  const routes = competitionResult.routes || [];
+  const winner = competitionResult.winner;
+  // Sort by selection_score desc, take top 6 max
+  const sorted = [...routes].sort((a, b) => b.selection_score - a.selection_score).slice(0, 6);
+  for (let i = 0; i < sorted.length; i++) {
+    const r = sorted[i];
+    const col = routeColorOf(r.strategy);
+    const laws = new Set(r.laws_used);
+    // Edges: between any 2 laws of this route
+    const edges = new Set();
+    for (const l of state.graphView.links) {
+      const s = typeof l.source === 'object' ? l.source.id : l.source;
+      const t = typeof l.target === 'object' ? l.target.id : l.target;
+      if (laws.has(s) && laws.has(t)) edges.add(l);
+    }
+    state.activeRoutes.set(r.route_id, {
+      route_id: r.route_id,
+      strategy: r.strategy,
+      label: r.label || r.strategy,
+      color: col,
+      laws,
+      edges,
+      eliminated: !!r.eliminated,
+      winner: r.route_id === winner,
+      rank: i + 1,
+      strength: Math.max(0.3, r.selection_score),
+    });
+  }
+  state.routeMode = true;
+  applyRouteVisualization();
+}
+
+export function deactivateRoutes() {
+  // Restore original colors + drop route layer
+  for (const [id, mesh] of state.meshes.entries()) {
+    const orig = mesh.userData.zoranOrigColor;
+    if (orig && mesh.material && mesh.material.color) {
+      mesh.material.color.setHex(orig);
+    }
+    if (mesh.material && mesh.material.emissive) {
+      mesh.material.emissive.setHex(0x000000);
+    }
+    mesh.userData.zoranWinnerPulse = false;
+  }
+  state.activeRoutes = null;
+  state.routeMode = false;
+  recomputeOpacityTargets();
+  if (state.fg) state.fg.refresh();
+}
+
+function applyRouteVisualization() {
+  if (!state.activeRoutes) return;
+  // Determine, for each node, which routes use it + winner membership
+  const nodeRoutes = new Map(); // id -> [{ color, eliminated, winner, strength }]
+  for (const route of state.activeRoutes.values()) {
+    for (const lawId of route.laws) {
+      if (!nodeRoutes.has(lawId)) nodeRoutes.set(lawId, []);
+      nodeRoutes.get(lawId).push(route);
+    }
+  }
+  // Apply per-mesh tint
+  for (const [id, mesh] of state.meshes.entries()) {
+    if (!mesh.userData.zoranOrigColor && mesh.material && mesh.material.color) {
+      mesh.userData.zoranOrigColor = mesh.material.color.getHex();
+    }
+    const involved = nodeRoutes.get(id);
+    if (involved && involved.length > 0) {
+      // Pick dominant route : winner > best score
+      const winner = involved.find(r => r.winner);
+      const dom = winner || involved.reduce((a, b) => a.strength >= b.strength ? a : b);
+      if (mesh.material && mesh.material.color) {
+        // Tint toward route color (50% blend)
+        const c = new THREE.Color(dom.color.hex);
+        const orig = new THREE.Color(mesh.userData.zoranOrigColor);
+        mesh.material.color.copy(orig).lerp(c, 0.55);
+      }
+      if (mesh.material && mesh.material.emissive && dom.winner) {
+        mesh.material.emissive.setHex(dom.color.hex);
+        mesh.material.emissiveIntensity = 0.20;
+        mesh.userData.zoranWinnerPulse = true;
+      } else if (mesh.material && mesh.material.emissive) {
+        // soft glow for non-winner involved nodes
+        mesh.material.emissive.setHex(dom.color.hex);
+        mesh.material.emissiveIntensity = dom.eliminated ? 0.0 : 0.08;
+        mesh.userData.zoranWinnerPulse = false;
+      }
+      // Opacity : eliminated = faded, others normal
+      state.targetOpacity.set(id, dom.eliminated ? 0.30 : 1.0);
+    } else {
+      // Not in any route : dim heavily (mission : "routes rejetées s'atténuent")
+      if (mesh.material && mesh.material.color) {
+        mesh.material.color.setHex(mesh.userData.zoranOrigColor || 0x666666);
+      }
+      if (mesh.material && mesh.material.emissive) {
+        mesh.material.emissive.setHex(0x000000);
+        mesh.material.emissiveIntensity = 0;
+      }
+      mesh.userData.zoranWinnerPulse = false;
+      state.targetOpacity.set(id, 0.12);
+    }
+  }
+  if (state.fg) state.fg.refresh();
+}
+
 function updateHalos() {
   if (!state.fg) return;
   const cam = state.fg.camera();
@@ -289,7 +413,10 @@ function updateHalos() {
 }
 
 function tickAnimation() {
-  // Per-frame opacity lerp + hover scale lerp + halo facing
+  // Per-frame opacity lerp + hover scale lerp + halo facing + winner pulse
+  const t = performance.now() * 0.001;
+  // Soft winner pulse — 1.5 Hz, ±0.15 intensity (mission : sobre, lent, stable)
+  const winnerPulse = 0.20 + Math.sin(t * 1.5 * Math.PI * 2) * 0.10;
   for (const [id, mesh] of state.meshes.entries()) {
     const target = state.targetOpacity.get(id) ?? 1.0;
     const cur = mesh.material.opacity;
@@ -302,6 +429,10 @@ function tickAnimation() {
     if (Math.abs(curScale - tgtScale) > 0.003) {
       const next = curScale + (tgtScale - curScale) * 0.20;
       mesh.scale.set(next, next, next);
+    }
+    // Winner pulse — only for nodes flagged as winner-route members
+    if (mesh.userData.zoranWinnerPulse && mesh.material && mesh.material.emissive) {
+      mesh.material.emissiveIntensity = winnerPulse;
     }
   }
   updateHalos();
@@ -571,6 +702,22 @@ function initGraph() {
     .nodeThreeObject(n => makeBilliardMesh(n))
     .nodeThreeObjectExtend(false)         // replace default sphere entirely
     .linkColor(l => {
+      // ROUTE MODE — route winner edges = winner color, eliminated = grey
+      if (state.activeRoutes) {
+        let winnerColor = null;
+        let anyRouteColor = null;
+        let anyEliminatedOnly = true;
+        for (const route of state.activeRoutes.values()) {
+          if (route.edges.has(l)) {
+            anyRouteColor = route.color.css;
+            if (!route.eliminated) anyEliminatedOnly = false;
+            if (route.winner) { winnerColor = route.color.css; break; }
+          }
+        }
+        if (winnerColor) return winnerColor;
+        if (anyRouteColor) return anyEliminatedOnly ? 'rgba(120,130,150,0.10)' : anyRouteColor;
+        return 'rgba(120,130,150,0.02)';
+      }
       if (state.branchVisible) {
         const s = typeof l.source === 'object' ? l.source.id : l.source;
         const t = typeof l.target === 'object' ? l.target.id : l.target;
@@ -579,7 +726,19 @@ function initGraph() {
       if (state.highlightLinks.size === 0) return l.color;
       return state.highlightLinks.has(l) ? '#ffcc4d' : 'rgba(120,130,150,0.06)';
     })
-    .linkWidth(l => (state.highlightLinks.has(l) ? 1.6 : 0.4))
+    .linkWidth(l => {
+      if (state.activeRoutes) {
+        for (const route of state.activeRoutes.values()) {
+          if (route.edges.has(l)) {
+            if (route.winner) return 2.2;
+            if (route.eliminated) return 0.3;
+            return 1.0;
+          }
+        }
+        return 0.2;
+      }
+      return state.highlightLinks.has(l) ? 1.6 : 0.4;
+    })
     .linkDirectionalParticles(l => (state.particlesEnabled && state.highlightLinks.has(l) ? 2 : 0))
     .linkDirectionalParticleSpeed(0.006)
     .linkDirectionalParticleWidth(1.2)
@@ -778,6 +937,123 @@ function initGraph() {
     state.fg.width(el.clientWidth);
     state.fg.height(el.clientHeight);
   });
+}
+
+// ───── DRAGGABLE_RUNTIME_RESPONSE_POPUP (mission 2026-05-16 05:08) ─────
+// Le popup #chat-results devient déplaçable, redimensionnable, minimisable,
+// pour permettre la coexistence graphe + réponse runtime.
+function setupDraggableChatPopup() {
+  const popup = document.getElementById('chat-results');
+  const header = document.getElementById('chat-results-header');
+  const closeBtn = document.getElementById('chat-results-close');
+  if (!popup || !header) return;
+
+  // Add minimize button next to close
+  if (!document.getElementById('chat-results-min')) {
+    const minBtn = document.createElement('button');
+    minBtn.id = 'chat-results-min';
+    minBtn.title = 'Minimiser';
+    minBtn.textContent = '–';
+    minBtn.setAttribute('aria-label', 'Minimiser popup');
+    minBtn.style.cssText = 'width:26px;height:26px;background:transparent;color:var(--fg-2);border:none;cursor:pointer;font-size:18px;line-height:1';
+    header.insertBefore(minBtn, closeBtn);
+    minBtn.addEventListener('click', () => {
+      popup.classList.toggle('minimized');
+      minBtn.textContent = popup.classList.contains('minimized') ? '+' : '–';
+      minBtn.title = popup.classList.contains('minimized') ? 'Restaurer' : 'Minimiser';
+      try { localStorage.setItem('zoran.chat.min', popup.classList.contains('minimized') ? '1' : '0'); } catch (_) {}
+    });
+  }
+
+  let dragging = false;
+  let startX = 0, startY = 0, startLeft = 0, startTop = 0;
+  header.style.cursor = 'grab';
+  header.addEventListener('pointerdown', e => {
+    if (e.target && (e.target.id === 'chat-results-close' || e.target.id === 'chat-results-min')) return;
+    dragging = true;
+    try { header.setPointerCapture(e.pointerId); } catch (_) {}
+    const rect = popup.getBoundingClientRect();
+    startX = e.clientX; startY = e.clientY;
+    startLeft = rect.left; startTop = rect.top;
+    popup.style.transform = 'none'; // disable centering transform
+    popup.style.transition = 'none';
+    header.style.cursor = 'grabbing';
+    document.body.style.userSelect = 'none';
+  });
+  function onMove(e) {
+    if (!dragging) return;
+    let left = startLeft + (e.clientX - startX);
+    let top  = startTop  + (e.clientY - startY);
+    const w = popup.offsetWidth, h = popup.offsetHeight;
+    left = Math.max(0, Math.min(window.innerWidth - 80, left));
+    top  = Math.max(48, Math.min(window.innerHeight - 60, top));
+    popup.style.left = left + 'px';
+    popup.style.top  = top  + 'px';
+    popup.style.bottom = 'auto';
+    popup.style.right = 'auto';
+  }
+  function onUp() {
+    if (!dragging) return;
+    dragging = false;
+    header.style.cursor = 'grab';
+    document.body.style.userSelect = '';
+    const rect = popup.getBoundingClientRect();
+    try {
+      localStorage.setItem('zoran.chat.pos',
+        JSON.stringify({ left: rect.left, top: rect.top, w: popup.offsetWidth, h: popup.offsetHeight }));
+    } catch (_) {}
+  }
+  window.addEventListener('pointermove', onMove);
+  window.addEventListener('pointerup', onUp);
+  window.addEventListener('pointercancel', onUp);
+
+  // Persist resize via ResizeObserver
+  try {
+    const ro = new ResizeObserver(() => {
+      if (popup.classList.contains('hidden')) return;
+      try {
+        const r = popup.getBoundingClientRect();
+        const saved = JSON.parse(localStorage.getItem('zoran.chat.pos') || '{}');
+        localStorage.setItem('zoran.chat.pos', JSON.stringify({
+          ...saved, w: popup.offsetWidth, h: popup.offsetHeight,
+        }));
+      } catch (_) {}
+    });
+    ro.observe(popup);
+  } catch (_) {}
+
+  // Restore saved position+size on first show
+  popup.addEventListener('zoran-show', () => {
+    try {
+      const raw = localStorage.getItem('zoran.chat.pos');
+      if (raw) {
+        const s = JSON.parse(raw);
+        if (Number.isFinite(s.left) && Number.isFinite(s.top)) {
+          popup.style.transform = 'none';
+          popup.style.left = Math.max(0, Math.min(window.innerWidth - 80, s.left)) + 'px';
+          popup.style.top  = Math.max(48, Math.min(window.innerHeight - 60, s.top)) + 'px';
+          popup.style.bottom = 'auto'; popup.style.right = 'auto';
+        }
+        if (Number.isFinite(s.w) && Number.isFinite(s.h)) {
+          popup.style.width = s.w + 'px';
+          popup.style.height = s.h + 'px';
+        }
+      }
+      if (localStorage.getItem('zoran.chat.min') === '1') {
+        popup.classList.add('minimized');
+        const b = document.getElementById('chat-results-min');
+        if (b) { b.textContent = '+'; b.title = 'Restaurer'; }
+      }
+    } catch (_) {}
+  });
+
+  // Hook close to also clear routes from graph
+  if (closeBtn && !closeBtn.dataset.zoranWired) {
+    closeBtn.dataset.zoranWired = '1';
+    closeBtn.addEventListener('click', () => {
+      if (typeof deactivateRoutes === 'function') deactivateRoutes();
+    });
+  }
 }
 
 // ───────────────────── draggable panel ─────────────────────
@@ -1036,9 +1312,16 @@ async function boot() {
     buildSidebar();
     initGraph();
     setupDraggablePanel();
+    setupDraggableChatPopup();   // mission DRAGGABLE_RUNTIME_RESPONSE_POPUP
     wireControls();
     // Mission RUNTIME_COGNITIVE_PATH_COMPETITION : chat bar + 6 routes
-    wireChatBar(state.graph.nodes, id => selectNode(id, true));
+    // + mission REALTIME_ROUTE_VISUALIZATION : activer les routes dans le graphe
+    wireChatBar(
+      state.graph.nodes,
+      id => selectNode(id, true),
+      result => activateRoutes(result),
+      () => deactivateRoutes()
+    );
     setStatus();
     updateHistoryButtons();
     console.log('%cZORAN — Arbre Relationnel des Lois (P0.5 INT v2)',

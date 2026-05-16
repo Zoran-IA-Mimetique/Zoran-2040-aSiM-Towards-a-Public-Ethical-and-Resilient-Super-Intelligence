@@ -206,10 +206,78 @@ try {
   routes_ok = resultsVisible && routeCards === 6 && winnerCard === 1 && baselineRows === 2;
   // Screenshot the chat results
   await page.screenshot({ path: 'app/preview-chat.png', fullPage: false });
-  // Close
+} catch (e) { console.log('Chat test failed:', e.message); }
+
+// NEW (mission REALTIME_ROUTE_VISUALIZATION) : routes visibles dans le graphe
+let route_viz_ok = false;
+try {
+  const viz = await page.evaluate(() => {
+    // Count meshes whose color is tinted (not original) — proxy : material.emissive non-black for winner
+    let coloured = 0, winnerPulse = 0;
+    const meshes = document.querySelectorAll('canvas');
+    // Inspect via __zoranFG scene
+    const fg = window.__zoranFG;
+    if (!fg) return null;
+    const scene = fg.scene();
+    let tinted = 0, glowing = 0, dimmed = 0;
+    scene.traverse(obj => {
+      if (obj.isMesh && obj.material && obj.material.emissive) {
+        if (obj.material.emissiveIntensity > 0.02) glowing++;
+      }
+      if (obj.isMesh && obj.material && obj.material.opacity < 0.20) dimmed++;
+    });
+    return { glowing, dimmed };
+  });
+  console.log(`  Route viz : glowing=${viz?.glowing}  dimmed=${viz?.dimmed}`);
+  route_viz_ok = viz && viz.glowing > 0 && viz.dimmed > 100; // winner glows + ~200 nodes hors routes dimmed
+} catch (e) { console.log('Route viz test failed:', e.message); }
+
+// NEW (mission DRAGGABLE_RUNTIME_RESPONSE_POPUP) : draggable + minimize
+let popup_drag_ok = false;
+let popup_min_ok = false;
+try {
+  const before = await page.locator('#chat-results').boundingBox();
+  if (before) {
+    const handle = await page.locator('#chat-results-header').boundingBox();
+    if (handle) {
+      await page.mouse.move(handle.x + 100, handle.y + 12);
+      await page.mouse.down();
+      await page.mouse.move(handle.x - 200, handle.y + 150, { steps: 10 });
+      await page.mouse.up();
+      await page.waitForTimeout(200);
+      const after = await page.locator('#chat-results').boundingBox();
+      const dx = after ? Math.abs(after.x - before.x) : 0;
+      const dy = after ? Math.abs(after.y - before.y) : 0;
+      console.log(`  Popup drag : dx=${dx.toFixed(0)} dy=${dy.toFixed(0)}`);
+      popup_drag_ok = dx > 50 || dy > 50;
+    }
+  }
+  // Test minimize — use evaluate to click directly (avoid Playwright stacking issues)
+  await page.evaluate(() => {
+    const b = document.getElementById('chat-results-min');
+    if (b) b.click();
+  });
+  await page.waitForTimeout(250);
+  const isMin = await page.evaluate(() => {
+    const el = document.getElementById('chat-results');
+    return { has: !!el, hasMin: el ? el.classList.contains('minimized') : false,
+             btnExists: !!document.getElementById('chat-results-min') };
+  });
+  console.log(`  popup min diag : btn=${isMin.btnExists} hasMinClass=${isMin.hasMin}`);
+  popup_min_ok = isMin.hasMin;
+  await page.screenshot({ path: 'app/preview-routes-viz.png', fullPage: false });
+  // Restore via evaluate (avoid Playwright interception)
+  await page.evaluate(() => {
+    const b = document.getElementById('chat-results-min');
+    if (b) b.click();
+  });
+  await page.waitForTimeout(150);
+} catch (e) { console.log('Popup drag/min test failed:', e.message); }
+
+try {
   await page.locator('#chat-results-close').click();
   await page.waitForTimeout(200);
-} catch (e) { console.log('Chat test failed:', e.message); }
+} catch (_) {}
 
 // NEW (mission ZORAN_NOISE_MINIMIZATION) : noise + signal-to-noise UI
 const noiseDec = await page.locator('.frames-label:has-text("Décision")').count();
@@ -469,6 +537,9 @@ console.log('sidebar_toggle     :', sidebar_toggle_ok);
 console.log('manual_pan         :', manual_pan_ok);
 console.log('layer_toggle       :', layer_toggle_ok);
 console.log('chat_routes_compete:', routes_ok);
+console.log('route_viz_in_graph :', route_viz_ok);
+console.log('popup_draggable    :', popup_drag_ok);
+console.log('popup_minimize     :', popup_min_ok);
 console.log('pan_right_drag     :', pan_ok, '|', pan_diag);
 console.log('esc_closes_panel   :', esc_ok);
 console.log('status counts      :', counts);
@@ -480,5 +551,6 @@ for (const e of pageErrors) console.log('  ✗ ', e);
 
 const fail = !boot_ok || !click_ok || !focus_ok || !prune_ok || !drag_ok || !esc_ok
            || !sidebar_toggle_ok || !manual_pan_ok || !routes_ok
+           || !route_viz_ok || !popup_drag_ok || !popup_min_ok
            || pageErrors.length > 0 || consoleErrors.length > 0;
 process.exit(fail ? 1 : 0);
