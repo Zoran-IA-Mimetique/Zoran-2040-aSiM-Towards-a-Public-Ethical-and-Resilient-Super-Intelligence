@@ -129,9 +129,13 @@
           ⚠ La clé est stockée en localStorage et envoyée depuis le navigateur (entête anthropic-dangerous-direct-browser-access).
           Utilise une clé restreinte / un usage personnel uniquement.
         </p>
-        <div style="display:flex;gap:8px;margin-top:18px;justify-content:flex-end">
-          <button id="settings-clear" style="background:var(--bg-2);color:var(--unstable);border:1px solid var(--line);border-radius:5px;padding:7px 14px;font-size:12px;cursor:pointer">Effacer la clé</button>
-          <button id="settings-save" style="background:var(--canonical);color:#07080c;border:none;border-radius:5px;padding:7px 18px;font-size:12px;font-weight:700;cursor:pointer">Enregistrer</button>
+        <div style="display:flex;gap:8px;margin-top:18px;justify-content:space-between;flex-wrap:wrap">
+          <button id="settings-reset-cache" title="Vide tout localStorage + recharge avec cache-bust"
+                  style="background:var(--bg-2);color:var(--accent);border:1px solid var(--accent);border-radius:5px;padding:7px 14px;font-size:11px;cursor:pointer;font-weight:600">⟳ Reset cache + reload</button>
+          <div style="display:flex;gap:8px">
+            <button id="settings-clear" style="background:var(--bg-2);color:var(--unstable);border:1px solid var(--line);border-radius:5px;padding:7px 14px;font-size:12px;cursor:pointer">Effacer la clé</button>
+            <button id="settings-save" style="background:var(--canonical);color:#07080c;border:none;border-radius:5px;padding:7px 18px;font-size:12px;font-weight:700;cursor:pointer">Enregistrer</button>
+          </div>
         </div>
       </div>
     </div>
@@ -194,6 +198,18 @@
         console.log('[ZORAN] ⚙ key saved (length=' + keyInput.value.trim().length + ')');
       });
       clear.addEventListener('click', () => { setVal(KEY, ''); keyInput.value = ''; });
+      // Bouton "Reset cache + reload" : purge localStorage + force fetch fresh
+      const resetBtn = document.getElementById('settings-reset-cache');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          if (!confirm('Vider TOUT le localStorage ZORAN (clé API, position popup, settings...) et recharger ?')) return;
+          try { localStorage.clear(); } catch(_){}
+          // Force fresh fetch via query string timestamp
+          const url = new URL(location.href);
+          url.searchParams.set('_v', Date.now());
+          location.replace(url.toString());
+        });
+      }
       window.addEventListener('keydown', e => {
         if (e.key === 'Escape' && !modal.classList.contains('hidden')) shut();
       });
@@ -208,6 +224,7 @@
   })();
   </script>
 
-  <script type="module" src="./src/main.js"></script>
+  <!-- Cache-bust mobile-friendly : ?v=YYYYMMDDHHMM bump à chaque release majeur -->
+  <script type="module" src="./src/main.js?v=20260517-multi-winner-v3"></script>
 </body>
 </html>

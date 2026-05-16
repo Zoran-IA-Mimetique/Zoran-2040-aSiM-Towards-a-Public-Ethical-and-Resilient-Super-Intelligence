@@ -81,9 +81,23 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
     if (r.status === 'fulfilled' && r.value.ok) responses.push(r.value);
   }
 
+  if (responses.length < 1) {
+    console.warn('[ZORAN sup] FAIL — no responses at all');
+    return { ok: false, reason: 'no_responses', responses };
+  }
   if (responses.length < 2) {
-    console.warn('[ZORAN sup] FAIL — too few responses (got', responses.length, ')');
-    return { ok: false, reason: 'too_few_responses', responses };
+    // Only 1 response succeeded → skip judge, return as partial result
+    console.warn('[ZORAN sup] PARTIAL — only 1 response (showing it without judge)');
+    return {
+      ok: true,
+      partial: true,
+      question,
+      responses,
+      judge: null,
+      deltas: [],
+      verdict: responses[0].label,
+      latency_ms: Math.round(performance.now() - t0),
+    };
   }
 
   // 3. JUGE — score chaque réponse + reformulations + divergence
@@ -166,11 +180,15 @@ export function renderComparison(result) {
     const cls = v >= 0.30 ? 'good' : (v >= 0.15 ? '' : 'bad');
     return `<span class="${cls}">${label} ${v.toFixed(2)}</span>`;
   };
+  const partialNotice = result.partial
+    ? `<div class="sup-warn" style="margin-bottom:6px">⚠ Mode partiel — seule réponse Claude brut a abouti (3 ZORAN ont échoué : crédit/limite ?). Aucun jugement comparatif possible.</div>`
+    : '';
   const verdictBanner = `
     <div class="sup-verdict">
+      ${partialNotice}
       <div style="margin-bottom:6px">
-        <strong>★ Verdict juge :</strong> ${escHtml(verdict || 'aucun')} ·
-        ${result.responses.length} candidats · ${result.latency_ms}ms
+        <strong>★ Verdict :</strong> ${escHtml(verdict || 'aucun')} ·
+        ${result.responses.length} candidat${result.responses.length>1?'s':''} · ${result.latency_ms}ms
       </div>
       <div class="sup-divergence">
         ${divergenceBadge(refDiv, 'reformulation_divergence')}
@@ -225,9 +243,9 @@ export function renderComparison(result) {
       <div class="sup-reform-list">${reforms}</div>
     </details>` : '';
 
-  // ─── 4) RÉPONSES collapsées (priorité basse selon mission anti-inflation) ───
+  // ─── 4) RÉPONSES — ouvertes si partial (sinon collapsées priorité basse) ───
   const responsesBlock = `
-    <details class="sup-section">
+    <details class="sup-section" ${result.partial ? 'open' : ''}>
       <summary>Réponses complètes (texte ▶ dépliable)</summary>
       <div class="sup-resp-list">
         ${result.responses.map((r, idx) => {

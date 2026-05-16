@@ -3,6 +3,7 @@
 import { synthesizeAnswer, hasApiKey, getApiKey, setApiKey, getModel, setModel,
          getBenchmarkEnabled, setBenchmarkEnabled } from './llm.js';
 import { runSuperiorityComparison, renderComparison } from './superiority.js';
+import { mapStructural, structuralTopicBoost } from './structural_mapping.js';
 //
 // Port browser de runtime_cognitive_path_competition_engine.py
 // Génère 6 routes cognitives concurrentes pour une question, score chacune,
@@ -21,7 +22,7 @@ function tokens(text) {
   return new Set(text.split(/[\s.,;:()\[\]{}"'\-]+/).filter(Boolean).map(t => t.toLowerCase()));
 }
 
-function topicScore(node, qTokens) {
+function topicScore(node, qTokens, structMap) {
   if (qTokens.size === 0) return 0.5;
   const bag = new Set();
   for (const t of tokens(node.title || '')) bag.add(t);
@@ -30,56 +31,59 @@ function topicScore(node, qTokens) {
   for (const t of (node.domains || [])) bag.add(t.toLowerCase());
   let inter = 0;
   for (const t of qTokens) if (bag.has(t)) inter++;
-  return inter / Math.max(1, qTokens.size);
+  const lex = inter / Math.max(1, qTokens.size);
+  // Structural boost (mission STRUCTURAL_QUERY_MAPPING)
+  const struct = structMap ? structuralTopicBoost(node, structMap) : 0;
+  return Math.max(lex, struct);
 }
 
 const STRATEGIES = {
   frugale: {
     label: 'Frugale',
     desc: 'Coût minimal — privilégie frugality_score',
-    rank: (n, q) => -((n.frugality_score ?? 0.5)
+    rank: (n, q, sm) => -((n.frugality_score ?? 0.5)
                     - 0.5 * (n.propagation_cost ?? 0.5)
-                    + 0.30 * topicScore(n, q)),
+                    + 0.30 * topicScore(n, q, sm)),
   },
   anti_hallucination: {
     label: 'Anti-hallu',
     desc: 'Sécurité maximale — réduit dérive',
-    rank: (n, q) => -((n.anti_hallucination_score ?? 0.4)
-                    + 0.30 * topicScore(n, q)
+    rank: (n, q, sm) => -((n.anti_hallucination_score ?? 0.4)
+                    + 0.30 * topicScore(n, q, sm)
                     - 0.20 * (n.drift_risk ?? 0.3)),
   },
   propagation_forte: {
     label: 'Propag. forte',
     desc: 'Profondeur — explore loin',
-    rank: (n, q) => -((n.dependency_load ?? 0.3)
+    rank: (n, q, sm) => -((n.dependency_load ?? 0.3)
                     + 0.30 * (n.propagation_cost ?? 0.5)
-                    + 0.30 * topicScore(n, q)),
+                    + 0.30 * topicScore(n, q, sm)),
   },
   temporal_survival: {
     label: 'Temporel',
     desc: 'Stabilité long terme',
-    rank: (n, q) => -((n.temporal_resilience_score ?? 0.5)
-                    + 0.30 * topicScore(n, q)
+    rank: (n, q, sm) => -((n.temporal_resilience_score ?? 0.5)
+                    + 0.30 * topicScore(n, q, sm)
                     - 0.20 * (n.collapse_probability ?? 0)),
   },
   structurelle: {
     label: 'Structurelle',
     desc: 'Composition max — utilise réseau',
-    rank: (n, q) => -(((n.child_laws || []).length + (n.parent_laws || []).length)
-                    + 0.50 * topicScore(n, q)
+    rank: (n, q, sm) => -(((n.child_laws || []).length + (n.parent_laws || []).length)
+                    + 0.50 * topicScore(n, q, sm)
                     + 0.30 * (n.S_local ?? 0.7)),
   },
   runtime_rapide: {
     label: 'Runtime rapide',
     desc: 'Latence minimale',
-    rank: (n, q) => -((n.velocity_score ?? 0.4)
-                    + 0.30 * topicScore(n, q)
+    rank: (n, q, sm) => -((n.velocity_score ?? 0.4)
+                    + 0.30 * topicScore(n, q, sm)
                     - 0.30 * (n.propagation_cost ?? 0.5)),
   },
 };
 
-function pickTopK(nodes, rankFn, qTokens, k = K) {
-  return [...nodes].sort((a, b) => rankFn(a, qTokens) - rankFn(b, qTokens)).slice(0, k);
+function pickTopK(nodes, rankFn, qTokens, k = K, structMap = null) {
+  return [...nodes].sort((a, b) => rankFn(a, qTokens, structMap) - rankFn(b, qTokens, structMap)).slice(0, k);
 }
 
 function scoreRoute(laws) {
@@ -169,19 +173,26 @@ function composeMultiFrameAnswer(node, parents) {
 
 export function compete(question, nodes, parentsMap) {
   const qTokens = tokens(question);
-  // OFF-TOPIC DETECTION : si max topic_score sur tout le corpus < 0.10,
-  // la question n'a aucune accroche lexicale dans ZORAN → on le dit
-  // honnêtement plutôt que de forcer 6 routes aléatoires sans signal.
+  // Mission STRUCTURAL_QUERY_MAPPING : détecte structures cognitives
+  // implicites (risque, contradiction, hypothèse, propagation, temporal,
+  // bornage, auditabilité, décision, compression, comparaison, causalité)
+  // → utilise comme boost topic en plus du matching lexical brut.
+  const structMap = mapStructural(question);
+  // OFF-TOPIC : on prend en compte le score structural en plus du lexical
   let maxTopic = 0;
   for (const n of nodes) {
-    const t = topicScore(n, qTokens);
+    const tLex = topicScore(n, qTokens);
+    const tStr = structuralTopicBoost(n, structMap);
+    const t = Math.max(tLex, tStr);
     if (t > maxTopic) maxTopic = t;
   }
-  const offTopic = maxTopic < 0.10 && qTokens.size > 0;
+  // off-topic devient beaucoup plus rare : seulement si AUCUN match lexical
+  // ET AUCUN match structural
+  const offTopic = maxTopic < 0.10 && qTokens.size > 0 && structMap.structures.length === 0;
 
   const routes = [];
   for (const [name, strat] of Object.entries(STRATEGIES)) {
-    const laws = pickTopK(nodes, strat.rank, qTokens, K);
+    const laws = pickTopK(nodes, strat.rank, qTokens, K, structMap);
     const s = scoreRoute(laws);
     const fails = oracleEliminate(s);
     routes.push({
@@ -197,8 +208,8 @@ export function compete(question, nodes, parentsMap) {
   }
   // Baselines
   const bl_n = pickTopK(nodes,
-    (n, q) => -((n.selection_priority ?? 0) + 0.30 * topicScore(n, q)),
-    qTokens, K);
+    (n, q, sm) => -((n.selection_priority ?? 0) + 0.30 * topicScore(n, q, sm)),
+    qTokens, K, structMap);
   const baselines = [
     { baseline_id: 'BASELINE-naive_selection_priority',
       laws_used: bl_n.map(l => l.id), ...scoreRoute(bl_n) },
@@ -236,7 +247,7 @@ export function compete(question, nodes, parentsMap) {
       selection_score: winnerRoute.selection_score,
       precision_score: winnerRoute.precision_score,
       hallucination_resistance: winnerRoute.hallucination_resistance,
-      topic_match: topicScore(answerNode, qTokens),
+      topic_match: topicScore(answerNode, qTokens, structMap),
       survived_oracle: true,
     }
   } : null;
@@ -248,6 +259,8 @@ export function compete(question, nodes, parentsMap) {
     answerContext,
     offTopic,
     maxTopicRelevance: maxTopic,
+    structures: structMap.structures,           // structures cognitives détectées
+    structural_match_score: structMap.structural_match_score,
   };
 }
 
@@ -318,12 +331,25 @@ export function renderResults(result, onPickLaw) {
       <span>bruit ${fmt(b.noise_generated)}</span>
     </div>`).join('');
 
+  // Structures cognitives détectées (mission STRUCTURAL_QUERY_MAPPING)
+  const structuresBanner = (result.structures && result.structures.length > 0)
+    ? `<div style="background:rgba(78,163,255,0.10);border:1px solid var(--canonical);
+                color:var(--fg-1);padding:12px 14px;border-radius:6px;
+                margin-bottom:10px;font-size:12px;line-height:1.5">
+        <div style="font-size:11px;color:var(--canonical);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">
+          Structures cognitives détectées (${result.structures.length})
+        </div>
+        ${result.structures.map(s => `<span style="display:inline-block;background:var(--bg-2);border:1px solid var(--line);padding:2px 8px;border-radius:3px;margin:2px;font-size:11px"><strong>${esc(s.label)}</strong></span>`).join('')}
+        <div style="margin-top:6px;font-size:10px;color:var(--fg-2)">→ familles activées : ${[...new Set(result.structures.flatMap(s => s.families))].join(', ')}</div>
+      </div>`
+    : '';
+
   const offTopicBanner = result.offTopic
     ? `<div style="background:rgba(255,107,107,0.10);border:1px solid var(--unstable);
                   color:var(--unstable);padding:14px 16px;border-radius:6px;
                   margin-bottom:12px;font-size:13px;line-height:1.5">
         <strong>⚠ Question hors-domaine ZORAN</strong><br>
-        Aucune loi du graphe ne correspond lexicalement (max topic = ${result.maxTopicRelevance.toFixed(3)}).
+        Aucune correspondance lexicale ni structurelle détectée (max topic = ${result.maxTopicRelevance.toFixed(3)}).
         ZORAN couvre : cohérence, propagation, runtime, frugalité, temporalité,
         bornage, hallucination, loi supérieure.
       </div>`
@@ -356,7 +382,7 @@ export function renderResults(result, onPickLaw) {
     : '';
 
   // Routes details en accordéon — repliés par défaut pour ne pas surcharger
-  body.innerHTML = `${offTopicBanner}${winnerCardBanner}${llmInitial}
+  body.innerHTML = `${structuresBanner}${offTopicBanner}${winnerCardBanner}${llmInitial}
   <details style="margin-top:8px"><summary style="cursor:pointer;font-size:11px;color:var(--fg-2);text-transform:uppercase;letter-spacing:1px;padding:4px 0">
     Détails compétition routes (${result.routes.length} générées · ${result.routes.filter(r => !r.eliminated).length} survivantes)
   </summary>

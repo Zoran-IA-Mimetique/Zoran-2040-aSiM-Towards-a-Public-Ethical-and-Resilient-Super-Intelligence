@@ -169,6 +169,8 @@ export async function synthesizeBaseline(question) {
 }
 
 // LLM with ZORAN route context (laws from a specific strategy)
+// Mission META_NOISE_REDUCTION : INTERDIT d'injecter le jargon ZORAN
+// dans la réponse. Les lois sont des CADRES DE PENSÉE, pas du vocabulaire.
 export async function synthesizeRoute({ question, laws, strategyLabel }) {
   if (!laws || !laws.length) return { ok: false, reason: 'no_laws' };
   const lawsCtx = laws.slice(0, 10).map(l => {
@@ -177,11 +179,22 @@ export async function synthesizeRoute({ question, laws, strategyLabel }) {
     return `• ${l.id} — ${title}${desc ? ' : ' + desc : ''}`;
   }).join('\n');
   const system = [
-    `Tu es ZORAN-${strategyLabel}, sélectionne uniquement parmi les lois ci-dessous comme cadre cognitif.`,
-    'Lois activées par la stratégie :',
+    `Tu es un expert qui pense via la lentille cognitive "${strategyLabel}".`,
+    'Tu as activé MENTALEMENT ces cadres de pensée (mais ne JAMAIS les citer dans la réponse) :',
     lawsCtx,
     '',
-    'Réponds à la question en 3-5 phrases denses en français, sans markdown, en t\'appuyant uniquement sur ces lois.',
+    'RÈGLES STRICTES (mission META_NOISE_REDUCTION) :',
+    '1. Réponds DIRECTEMENT à la question dans le LANGAGE CONCRET de son domaine.',
+    '   Si la question est BTP → vocabulaire BTP. Si juridique → juridique. Etc.',
+    '2. INTERDIT d\'utiliser le jargon ZORAN : "loi", "cadre", "S_local", "propagation",',
+    '   "WP11/12", "GHUC", "PAL", "frugalité", "borne", "auditabilité", etc.',
+    '   Les lois sont en arrière-plan cognitif, JAMAIS en surface textuelle.',
+    '3. 3-5 phrases denses en français, sans markdown.',
+    '4. Si la question est trop hors-domaine pour que tes cadres aident, dis-le franchement',
+    '   et donne quand même la meilleure réponse concrète possible.',
+    '5. Ton angle "' + strategyLabel + '" doit transparaître dans le RAISONNEMENT,',
+    '   pas dans le vocabulaire. Frugale = bref + essentiel. Anti-hallu = prudent + sourcé.',
+    '   Structurelle = articule plusieurs niveaux. Temporelle = court vs long terme.',
   ].join('\n');
   return await callLLM({ system, user: question, maxTokens: 600 });
 }
