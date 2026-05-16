@@ -255,6 +255,65 @@ function propagatedBlock(node) {
   </section>`;
 }
 
+function experimentalBlock(node) {
+  if (node.runtime_sustainability == null) return '';
+  const rs = node.runtime_sustainability;
+  const lts = node.long_term_stability ?? 0;
+  const fs = node.frugality_score ?? 0;
+  const cs = node.collapse_sensitivity ?? 0;
+  const classes = node.experimental_classes || [];
+  const curve = node.propagated_cost_curve || [];
+  const classColor = c => ({
+    'fondatrice':'var(--canonical)',
+    'survivante':'#3ad17a',
+    'frugale':'var(--accent)',
+    'runtime_critique':'#b86bff',
+    'toxique_propagationnelle':'var(--unstable)',
+    'neutre':'var(--fg-2)'
+  }[c] || 'var(--fg-2)');
+  const classBadges = classes.map(c =>
+    `<span style="display:inline-block;background:${classColor(c)};color:#07080c;font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;margin:1px">${esc(c)}</span>`
+  ).join('');
+  const cursColor = cs > 0.50 ? 'var(--unstable)' : cs > 0.20 ? 'var(--accent)' : '#3ad17a';
+  // mini-curve sparkline
+  const sparkPath = curve.length > 1
+    ? curve.map((v, i) => `${i === 0 ? 'M' : 'L'} ${i * 20} ${30 - v * 25}`).join(' ')
+    : '';
+  return `<section>
+    <h4>Soutenabilité runtime (expérimentale)</h4>
+    <div class="frames">
+      <div class="frames-row"><span class="frames-glyph">★★</span>
+        <span class="frames-label">Classes</span>
+        <span class="frames-content">${classBadges || '<span style="color:var(--fg-2)">aucune</span>'}</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">∞</span>
+        <span class="frames-label">Sustainability</span>
+        <span class="frames-content"><strong>${rs.toFixed(3)}</strong> · long terme</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">≈</span>
+        <span class="frames-label">Long-term stab.</span>
+        <span class="frames-content"><strong>${lts.toFixed(3)}</strong> · variance inverse</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">€¢</span>
+        <span class="frames-label">Frugality</span>
+        <span class="frames-content"><strong>${fs.toFixed(3)}</strong> · impact / coût</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⚡</span>
+        <span class="frames-label">Collapse sens.</span>
+        <span class="frames-content"><strong style="color:${cursColor}">${cs.toFixed(3)}</strong></span>
+      </div>
+      ${sparkPath ? `<div class="frames-row"><span class="frames-glyph">↝</span>
+        <span class="frames-label">Cost curve</span>
+        <span class="frames-content">
+          <svg width="220" height="32" style="vertical-align:middle">
+            <path d="${sparkPath}" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+          </svg>
+        </span>
+      </div>` : ''}
+    </div>
+  </section>`;
+}
+
 function llmRelevanceBlock(node) {
   if (node.llm_relevance_score == null) return '';
   const llm = node.llm_relevance_score;
@@ -456,6 +515,7 @@ export function renderDetail(node, graph, onPick) {
     ${ex  ? `<section><h4>Exemples</h4><ul class="examples">${ex}</ul></section>` : ''}
     ${superiorBlock(node)}
     ${llmRelevanceBlock(node)}
+    ${experimentalBlock(node)}
     ${propagatedBlock(node)}
     ${boundaryBlock(node)}
     ${distributedBlock(node)}

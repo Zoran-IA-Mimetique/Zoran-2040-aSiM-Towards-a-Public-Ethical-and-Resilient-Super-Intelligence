@@ -175,7 +175,7 @@ function makeBilliardMesh(node) {
   mesh.userData.zoranBaseRadius = radius;
   mesh.userData.zoranHoverScale = 1.0;
 
-  // Halo torus around the sphere (face camera, hidden by default)
+  // Halo torus around the sphere (face camera, hidden by default — selection)
   const ringGeo = new THREE.TorusGeometry(radius * 1.18, Math.max(0.08, radius * 0.04), 8, 48);
   const ringMat = new THREE.MeshBasicMaterial({
     color: 0xffcc4d, transparent: true, opacity: 0.85, depthWrite: false
@@ -184,6 +184,23 @@ function makeBilliardMesh(node) {
   ring.visible = false;
   mesh.add(ring);
   state.halos.set(node.id, ring);
+
+  // PERSISTENT GOLD HALO on superior_law_candidate (visible in graph)
+  // Mission ZORAN_DYNAMIC_VELOCITY_HIERARCHY_GRAPH : les ★ doivent
+  // être visibles DANS LE GRAPHE (pas seulement sidebar/panel).
+  if (node.superior_law_candidate) {
+    const supRing1 = new THREE.Mesh(
+      new THREE.TorusGeometry(radius * 1.35, Math.max(0.06, radius * 0.03), 8, 64),
+      new THREE.MeshBasicMaterial({ color: 0xffcc4d, transparent: true, opacity: 0.55, depthWrite: false })
+    );
+    const supRing2 = new THREE.Mesh(
+      new THREE.TorusGeometry(radius * 1.55, Math.max(0.04, radius * 0.02), 8, 64),
+      new THREE.MeshBasicMaterial({ color: 0xff9c2e, transparent: true, opacity: 0.30, depthWrite: false })
+    );
+    mesh.add(supRing1);
+    mesh.add(supRing2);
+    mesh.userData.zoranSuperiorRings = [supRing1, supRing2];
+  }
 
   state.meshes.set(node.id, mesh);
   state.targetOpacity.set(node.id, 1.0);
@@ -203,13 +220,19 @@ function recomputeOpacityTargets() {
 function updateHalos() {
   if (!state.fg) return;
   const cam = state.fg.camera();
+  if (!cam) return;
+  // Selection halos
   for (const [id, halo] of state.halos.entries()) {
     const visible = !!(state.selected && state.selected.id === id);
     halo.visible = visible;
-    if (visible && cam && halo.parent) {
-      // Object3D.lookAt accepts a world-space target ; works for children.
+    if (visible && halo.parent) {
       halo.lookAt(cam.position);
     }
+  }
+  // Persistent superior_law rings — orient toward camera
+  for (const mesh of state.meshes.values()) {
+    const rings = mesh.userData.zoranSuperiorRings;
+    if (rings) for (const r of rings) r.lookAt(cam.position);
   }
 }
 
@@ -412,12 +435,27 @@ function updateHistoryButtons() {
   $('#btn-forward').disabled = !state.history.canForward();
 }
 
+// Full Hand Navigation — re-center camera on any node
+function focusCamOn(node) {
+  if (!node || !state.fg) return;
+  const dx = node.x || 0, dy = node.y || 0, dz = node.z || 1;
+  const r = Math.sqrt(dx*dx + dy*dy + dz*dz) || 1;
+  const dist = 160;
+  state.fg.cameraPosition(
+    { x: dx * (dist + r)/r, y: dy * (dist + r)/r, z: dz * (dist + r)/r },
+    node, 700
+  );
+}
+
 // ─────────────────────────── graph init ────────────────────────
 function initGraph() {
   state.graphView = state.graph;
   const el = document.getElementById('graph');
 
-  state.fg = ForceGraph3D()(el)
+  // Expose for smoke tests / dev-tools (Full Hand Navigation mission)
+  window.__zoranFG = null;
+  // Use orbit controls for predictable pan (right-click drag) + zoom + rotate
+  state.fg = ForceGraph3D({ controlType: 'orbit' })(el)
     .backgroundColor('rgba(0,0,0,0)')
     .graphData(state.graphView)
     .nodeId('id')
@@ -497,6 +535,39 @@ function initGraph() {
 
   setupLighting();
   recomputeOpacityTargets();
+  window.__zoranFG = state.fg;
+
+  // Full Hand Navigation — explicit pan + zoom controls (mission FULL_HAND_NAVIGATION)
+  try {
+    const ctrl = state.fg.controls();
+    if (ctrl) {
+      // TrackballControls (default 3d-force-graph) :
+      ctrl.noPan = false;          // right-click drag = translation
+      ctrl.panSpeed = 0.8;
+      ctrl.rotateSpeed = 1.2;
+      ctrl.zoomSpeed  = 1.1;
+      ctrl.staticMoving = true;
+      ctrl.dynamicDampingFactor = 0.18;
+      // OrbitControls compat (no-op on TrackballControls but safe) :
+      if ('enablePan' in ctrl) ctrl.enablePan = true;
+      if ('screenSpacePanning' in ctrl) ctrl.screenSpacePanning = true;
+      // Save initial camera state for reset (Space)
+      try { ctrl.target0 && ctrl.target0.copy(ctrl.target); } catch (_) {}
+      try { ctrl.position0 && ctrl.position0.copy(state.fg.camera().position); } catch (_) {}
+    }
+  } catch (e) { console.warn('controls() not ready', e); }
+
+  // Prevent native context menu so right-click pan works
+  el.addEventListener('contextmenu', e => e.preventDefault());
+
+  // Double-click on canvas = re-center + zoom on selected (or zoomToFit)
+  el.addEventListener('dblclick', e => {
+    if (state.selected) {
+      focusCamOn(state.selected);
+    } else {
+      state.fg.zoomToFit(700, 60);
+    }
+  });
 
   // FPS
   const fpsEl = $('#status-fps');
@@ -608,6 +679,31 @@ function wireControls() {
   $('#btn-reset').addEventListener('click', () => {
     state.fg.zoomToFit(800, 60);
   });
+  // Sidebar toggle (mode immersif)
+  const sidebarBtn = $('#btn-sidebar');
+  const applySidebarState = () => {
+    document.body.classList.toggle('sidebar-hidden', state.sidebarHidden);
+    sidebarBtn.classList.toggle('active', state.sidebarHidden);
+    sidebarBtn.textContent = state.sidebarHidden ? '⇥' : '⇤';
+    sidebarBtn.title = state.sidebarHidden ? 'Afficher sidebar (S)' : 'Masquer sidebar (S) — mode immersif';
+    // resize 3D graph after CSS transition
+    setTimeout(() => {
+      const el = document.getElementById('graph');
+      if (state.fg && el) {
+        state.fg.width(el.clientWidth);
+        state.fg.height(el.clientHeight);
+      }
+    }, 220);
+  };
+  try {
+    state.sidebarHidden = localStorage.getItem('zoran.sidebar.hidden') === '1';
+  } catch (_) { state.sidebarHidden = false; }
+  applySidebarState();
+  sidebarBtn.addEventListener('click', () => {
+    state.sidebarHidden = !state.sidebarHidden;
+    try { localStorage.setItem('zoran.sidebar.hidden', state.sidebarHidden ? '1' : '0'); } catch (_) {}
+    applySidebarState();
+  });
   $('#btn-focus').addEventListener('click', () => {
     state.focusBranch = !state.focusBranch;
     $('#btn-focus').classList.toggle('active', state.focusBranch);
@@ -683,6 +779,12 @@ function wireControls() {
     }
     if (e.altKey && e.key === 'ArrowLeft')  $('#btn-back').click();
     if (e.altKey && e.key === 'ArrowRight') $('#btn-forward').click();
+    // Full Hand Navigation : 'S' = toggle sidebar, Space = reset camera
+    if (e.key === 's' || e.key === 'S') $('#btn-sidebar').click();
+    if (e.key === ' ' || e.code === 'Space') {
+      e.preventDefault();
+      state.fg.zoomToFit(800, 80);
+    }
   });
 }
 

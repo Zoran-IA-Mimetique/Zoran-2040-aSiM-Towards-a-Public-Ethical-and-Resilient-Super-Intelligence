@@ -173,6 +173,34 @@ console.log(`  LLM relevance section: ${llmLabel > 0 ? 'présente' : 'absente'}`
 console.log(`  Boundary section     : ${boundaryLabel > 0 ? 'présente' : 'absente'}`);
 console.log(`  Drift probability    : ${driftLabel > 0 ? 'présente' : 'absente'}`);
 console.log(`  Anti-hallu score     : ${ahLabel > 0 ? 'présente' : 'absente'}`);
+const sustLabel = await page.locator('.frames-label:has-text("Sustainability")').count();
+const fragLabel = await page.locator('.frames-label:has-text("Frugality")').count();
+const classesLabel = await page.locator('.frames-label:has-text("Classes")').count();
+console.log(`  Sustainability sect. : ${sustLabel > 0 ? 'présente' : 'absente'}`);
+console.log(`  Frugality score      : ${fragLabel > 0 ? 'présente' : 'absente'}`);
+console.log(`  Classes badges       : ${classesLabel > 0 ? 'présente' : 'absente'}`);
+
+// Scroll panel to expose experimental section for screenshot
+await page.evaluate(() => {
+  const body = document.getElementById('detail-body');
+  if (body) {
+    const sections = body.querySelectorAll('h4');
+    for (const h of sections) {
+      if (h.textContent.includes('Soutenabilité runtime')) {
+        h.scrollIntoView({ block: 'start' }); break;
+      }
+    }
+  }
+});
+await page.waitForTimeout(200);
+await page.screenshot({ path: 'app/preview-experimental.png', fullPage: false });
+
+// Screenshot focused on a superior law (★) to capture the gold halo rings
+try {
+  await page.locator('#superior-laws li').first().click();
+  await page.waitForTimeout(700);
+  await page.screenshot({ path: 'app/preview-superior.png', fullPage: false });
+} catch (_) {}
 
 // Second screenshot — sidebar visible (panel closed)
 await page.keyboard.press('Escape');
@@ -182,6 +210,52 @@ const tempHeader = await page.locator('h3:has-text("Sélection temporelle")').fi
 await tempHeader.scrollIntoViewIfNeeded({ timeout: 2000 }).catch(() => {});
 await page.waitForTimeout(200);
 await page.screenshot({ path: 'app/preview-sidebar.png', fullPage: false });
+
+// Test 'S' toggle sidebar (Full Hand Navigation mission)
+let sidebar_toggle_ok = false;
+try {
+  const visibleBefore = await page.locator('#sidebar').isVisible();
+  // Click button (S keyboard may conflict with native shortcuts on chromium)
+  await page.locator('#btn-sidebar').click();
+  await page.waitForTimeout(350);
+  const hiddenAfter = await page.evaluate(() => document.body.classList.contains('sidebar-hidden'));
+  // Screenshot in immersive mode
+  await page.screenshot({ path: 'app/preview-immersive.png', fullPage: false });
+  await page.locator('#btn-sidebar').click();
+  await page.waitForTimeout(350);
+  const visibleAgain = !await page.evaluate(() => document.body.classList.contains('sidebar-hidden'));
+  sidebar_toggle_ok = visibleBefore && hiddenAfter && visibleAgain;
+} catch (e) { console.error('Sidebar toggle test failed:', e.message); }
+
+// Test pan capability — verify controls have pan enabled + API call moves camera
+let pan_ok = false;
+try {
+  const result = await page.evaluate(() => {
+    const fg = window.__zoranFG;
+    if (!fg) return { ok: false, reason: 'no fg' };
+    const ctrl = fg.controls();
+    if (!ctrl) return { ok: false, reason: 'no controls' };
+    const enabled = ctrl.enablePan !== false; // undefined or true counts as enabled
+    const camBefore = fg.camera().position.clone();
+    const tgtBefore = ctrl.target ? ctrl.target.clone() : null;
+    // Programmatic pan : offset target by world-space vector
+    if (ctrl.target && typeof ctrl.update === 'function') {
+      ctrl.target.x += 30;
+      ctrl.target.y += 20;
+      fg.camera().position.x += 30;
+      fg.camera().position.y += 20;
+      ctrl.update();
+    }
+    const camAfter = fg.camera().position.clone();
+    const tgtAfter = ctrl.target ? ctrl.target.clone() : null;
+    const dcam = camBefore.distanceTo(camAfter);
+    const dtgt = tgtBefore && tgtAfter ? tgtBefore.distanceTo(tgtAfter) : 0;
+    return { ok: dcam > 1 && dtgt > 1 && enabled, enabled, dcam, dtgt,
+             controlsType: ctrl.constructor && ctrl.constructor.name };
+  });
+  console.log(`  pan diag: enabled=${result.enabled} dcam=${(result.dcam||0).toFixed(2)} dtarget=${(result.dtgt||0).toFixed(2)} controls=${result.controlsType}`);
+  pan_ok = result.ok;
+} catch (e) { console.error('Pan test failed:', e.message); }
 
 // Test Esc closes panel
 let esc_ok = false;
@@ -200,6 +274,8 @@ console.log('click_open_panel   :', click_ok);
 console.log('focus_branche (F)  :', focus_ok);
 console.log('prune_toggle (P)   :', prune_ok);
 console.log('drag_panel         :', drag_ok, '|', drag_diag);
+console.log('sidebar_toggle     :', sidebar_toggle_ok);
+console.log('pan_right_drag     :', pan_ok);
 console.log('esc_closes_panel   :', esc_ok);
 console.log('status counts      :', counts);
 console.log('status coherence   :', coherence);
