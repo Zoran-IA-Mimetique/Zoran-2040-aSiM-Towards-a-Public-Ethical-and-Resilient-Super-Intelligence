@@ -1,77 +1,77 @@
-# COGNITIVE_ROUTE_EVOLUTION — Spec
+# COGNITIVE_ROUTE_EVOLUTION
 
-**Mission**: `ZORAN_RUNTIME_COGNITIVE_PATH_COMPETITION_ENGINE_20260516`
-**Statut**: design prospectif (non implémenté)
-**Cross-refs**: `RUNTIME_COGNITIVE_PATH_COMPETITION_ENGINE.md`,
-`MULTI_ROUTE_RUNTIME_SYSTEM.md`, `PATH_SURVIVAL_ANALYSIS.md`
+- Mission ID : `ZORAN_RUNTIME_COGNITIVE_PATH_COMPETITION_ENGINE_20260516`
+- Date       : 2026-05-16
+- Cross-refs : `RUNTIME_COGNITIVE_PATH_COMPETITION_ENGINE.md`,
+  `PATH_SELECTION_AND_ELIMINATION.md`, `PATH_SURVIVAL_ANALYSIS.md`,
+  `AUTO_REFERENCE_PREVENTION.md`
+- Source     : `tools/runtime_cognitive_path_competition_engine.py::ROUTE_STRATEGIES`,
+  `app/src/chat.js::STRATEGIES`
 
-## Hypothèse
+## 1. The starting set is not a closed taxonomy
 
-Les 6 stratégies actuelles (`frugale`, `anti_hallucination`,
-`propagation_forte`, `temporal_survival`, `structurelle`, `runtime_rapide`)
-sont une **base de départ**, pas une taxonomie fixe.
+The current 6 strategies (`frugale`, `anti_hallucination`, `propagation_forte`,
+`temporal_survival`, `structurelle`, `runtime_rapide`) cover the score axes
+ZORAN already exposes on its law graph. They are intentionally simple : each
+one is a one-axis rank function with a topic-relevance kicker. This is the
+**v0** of an evolving population; we do not claim the set is complete or
+final.
 
-Le constat runtime : 2 routes (`frugale`, `propagation_forte`) échouent
-systématiquement l'Oracle, 4 survivent. Cela suggère que le pool de
-stratégies devrait évoluer plutôt que rester figé.
+## 2. Three evolution paths
 
-## Mécanismes d'évolution envisagés
+### 2.1 Combination of survivors
 
-### 1. Recombinaison de survivants
+The Oracle output already tells us which strategies survive on every demo
+query (`temporal_survival`, `structurelle`, `anti_hallucination`,
+`runtime_rapide`). A next iteration can build a **composite strategy** with
+a weighted sum of two surviving rank functions, e.g.
 
-Quand 2 stratégies survivent avec scores complémentaires, créer une
-stratégie hybride :
 ```
-rank_hybrid(n, q) = α · rank_temporal(n, q) + (1−α) · rank_structurelle(n, q)
+rank_composite(n, q) = 0.5·rank_temporal_survival(n, q)
+                     + 0.5·rank_runtime_rapide(n, q)
 ```
-Initial `α = 0.5`. À ajuster par grille sur les 5 démos. Exemple plausible :
-hybride `temporal_survival × structurelle` (les deux survivent et leurs
-ranks utilisent des dimensions différentes).
 
-### 2. Re-pondération des stratégies perdantes
+It would compete in the same arena, under the same Oracle, against the
+originals.
 
-`frugale` est éliminée pour `instabilité_temporelle`. Ajouter un terme
-correctif :
-```
-rank_frugale_v2(n, q) = rank_frugale(n, q) + β · temporal_resilience(n)
-```
-avec `β` croissant jusqu'à ce que `temp_stability ≥ 0.40` ou que la stratégie
-perde sa spécificité (collision avec `temporal_survival`).
+### 2.2 Weight tuning
 
-### 3. Spawn de stratégies nouvelles
+Each rank function holds 2–4 hand-picked weights. A simple sweep that
+re-runs `compete()` over a held-out query set and keeps the weight vector
+that maximises mean `selection_score` (or, better, mean
+`real_world_alignment` once it is grounded) is feasible without changing
+the architecture.
 
-Patterns observables qui suggèrent de nouvelles stratégies :
-- `cadre_diversifie` : maximiser le nombre de `frames.local` distincts.
-- `frontiere_sujet` : maximiser `topic_score` strict (pas de bonus latéral).
-- `composition_dirigee` : pondérer `child_laws` × `S_global`.
+### 2.3 New strategies
 
-### 4. Mort de stratégies
+Strategies driven by signals we do not yet exploit :
 
-Si une stratégie est éliminée sur **N démos consécutives** (seuil à fixer,
-ex. 10) par la même raison, la retirer du pool ou la fusionner avec
-sa correction (cas 2).
+- `coverage_max`     — maximise frame diversity in the 10-law slice.
+- `dependency_safe`  — penalise laws with high `dependency_load` *and* high
+  `drift_risk` together.
+- `chronology`       — prefer laws with most recent `update_timestamp`.
+- `user_history`     — bias toward laws clicked in previous sessions
+  (requires persistence, currently out of scope).
 
-## Méta-règles d'évolution
+## 3. What would stop the engine from evolving
 
-- Le nombre de stratégies actives reste borné (proposition : 4 ≤ N ≤ 12)
-  pour garder un UI lisible (cards alignées).
-- Toute nouvelle stratégie doit être **déterministe** (pas de RNG hors
-  baseline-random).
-- Toute évolution doit être **traçable** : chaque stratégie porte une
-  version (`frugale_v2`) et un parent (`frugale_v1`).
+- The Oracle thresholds are static. If a new strategy is dominant on every
+  query, it gets stamped as winner, and the diversity of routes (the point
+  of the system) collapses. See `AUTO_REFERENCE_PREVENTION.md`.
+- The arena rewards a single `selection_score` ordering. Multi-objective
+  selection (Pareto front instead of scalar maximum) is a natural next step
+  but not implemented.
+- The current data does not track strategy provenance over time — there is
+  no history file, so a learning loop has no memory.
 
-## Statut actuel
+## 4. Honest assessment
 
-**Aucun de ces mécanismes n'est implémenté**. Le code dans
-`runtime_cognitive_path_competition_engine.py` contient un dict statique
-`ROUTE_STRATEGIES` et aucune persistence de scores cross-runs. L'évolution
-décrite ici est une feuille de route, pas un système actif. Pour être honnête :
-sur 5 démos, on ne dispose pas encore d'assez de données pour calibrer
-même une simple grille `α ∈ {0.2, 0.4, 0.6, 0.8}`.
+What works today : the 6-strategy slate produces visibly different law
+selections per query (e.g. `frugale` always returns the same `GHUC-002-*`
+cluster, `temporal_survival` returns the `WP11-001 / GHUC-001 / WP12-001`
+core), which proves the strategies are doing distinct things.
 
-## Garde-fou
-
-Si le mécanisme d'évolution était implémenté, l'Oracle devrait élargir ses
-critères pour éviter le **collapse vers un attracteur** : sinon toutes les
-stratégies finiraient par converger vers un clone de `runtime_rapide`
-(qui gagne déjà toutes les démos). Voir `AUTO_REFERENCE_PREVENTION.md`.
+What does not work today : there is no automated mechanism that
+adds/removes/retunes strategies between runs. Every change is a code edit.
+Calling this an "evolving" system is therefore an architectural intent, not
+a runtime property — yet.

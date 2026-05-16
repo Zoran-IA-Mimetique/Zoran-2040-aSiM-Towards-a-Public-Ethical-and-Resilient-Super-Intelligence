@@ -1,77 +1,75 @@
-# MULTI_ROUTE_RUNTIME_SYSTEM — Spec
+# MULTI_ROUTE_RUNTIME_SYSTEM
 
-**Mission**: `ZORAN_RUNTIME_COGNITIVE_PATH_COMPETITION_ENGINE_20260516`
-**Implémentation**: `tools/runtime_cognitive_path_competition_engine.py`,
-`app/src/chat.js`
-**Cross-refs**: `RUNTIME_COGNITIVE_PATH_COMPETITION_ENGINE.md`,
-`PATH_SELECTION_AND_ELIMINATION.md`, `COGNITIVE_SELECTION_ENGINE.md`
+- Mission ID : `ZORAN_RUNTIME_COGNITIVE_PATH_COMPETITION_ENGINE_20260516`
+- Date       : 2026-05-16
+- Cross-refs : `RUNTIME_COGNITIVE_PATH_COMPETITION_ENGINE.md`,
+  `PATH_SELECTION_AND_ELIMINATION.md`, `BASELINE_ENGINE.md`
+- Source     : `tools/runtime_cognitive_path_competition_engine.py`,
+  `app/src/chat.js`, `app/data/routes.json`
 
-## Architecture
+## 1. Architecture
 
-6 stratégies tournent **simultanément** sur le même graphe de lois pour la
-même question. Aucune communication entre elles — chaque stratégie est une
-fonction pure de la forme :
+The engine has two faces with the same algorithm:
+
+- **Python `compete(question, nodes)`** (offline / CI) writes
+  `audit/PATH_COMPETITION_REPORT.json` and `app/data/routes.json`.
+- **Browser `compete(question, nodes)`** in `app/src/chat.js` runs on every
+  submit from the chat bar, with no network call.
+
+For each call, 6 strategies execute **simultaneously** over the same input
+node list. Each strategy holds an independent `rank(node, qTokens)`
+function; the engine sorts the law set by that function and slices the top
+`K=10`. The strategies do not share state, do not see each other's choices,
+and do not re-rank after seeing competitors. This isolation is what makes
+the comparison meaningful.
+
+In parallel, 2 baselines (`naive_selection_priority`, `random`) run through
+the **same** `score_route()` pipeline so their numbers sit on the same
+scale.
+
+## 2. UI layout
+
+The chat bar is bottom-centered, persistent across all panels:
 
 ```
-strategy: (nodes, q_tokens) → list[Law]   # tri descendant + slice [:K]
+┌──────────────────────────────────────────────────────────────┐
+│                       graph / panels                         │
+│                                                              │
+│        ┌──── chat-results (hidden until first submit) ───┐   │
+│        │ Q: <question>                                   │   │
+│        │ [card frugale] [card anti_hallu] [card prop_forte] │
+│        │ [card temporal] [card structurelle] [card runtime] │
+│        │ Baselines (référence) : naive · random          │   │
+│        └─────────────────────────────────────────────────┘   │
+│                                                              │
+│         ┌────────────── chat-bar ──────────────┐             │
+│         │ mic │ file │ <input>      │ send ▶ │              │
+│         └──────────────────────────────────────┘             │
+└──────────────────────────────────────────────────────────────┘
 ```
 
-C'est une **compétition close** : pas d'apprentissage, pas de coopération,
-pas de variance entre runs (déterministe sauf pour `BASELINE-random`).
+Each card shows : strategy label, status tag (`✗ éliminée : <reason>`,
+`✓ survit`, or `★ WINNER`), `selection_score`, precision / hallu / noise /
+cost / temp / rwa / survival bars, and the 10 chosen law IDs as clickable
+links that focus the node in the main graph view (`onPickLaw`).
 
-```
-                                  ┌─ ROUTE-frugale            ──┐
-                                  ├─ ROUTE-anti_hallucination ──┤
-       Question (chat bar) ─────►─┼─ ROUTE-propagation_forte  ──┼─►─ Oracle ─► Winner
-                                  ├─ ROUTE-temporal_survival  ──┤
-                                  ├─ ROUTE-structurelle       ──┤
-                                  └─ ROUTE-runtime_rapide     ──┘
-                                  + BASELINE-naive · BASELINE-random
-```
+## 3. Input modalities
 
-## Paramètres globaux
+- Text submit (Enter or send button).
+- Web Speech API mic input (fr-FR, Chrome/Edge only).
+- File upload up to 2 Mo : first 600 chars become the question context.
 
-| Paramètre | Valeur | Source |
-|-----------|--------|--------|
-| `K_LAWS_PER_ROUTE` | 10 | `runtime_cognitive_path_competition_engine.py:35` |
-| Stratégies actives | 6 | `ROUTE_STRATEGIES` dict |
-| Baselines | 2 | `baseline_naive`, `baseline_random` |
-| Pool de lois | 241 | `app/data/laws.json` |
+Every submit prints a structured object to the browser console
+(`ZORAN PATH COMPETITION`) so the run is auditable from devtools without
+leaving the page.
 
-## Ranking — clés utilisées par loi
+## 4. Limits
 
-Chaque rank function lit des champs déjà calculés par les engines
-précédents (`cognitive_selection_engine.py`,
-`temporal_resilience_engine.py`, `frugality_engine.py`, etc.) :
-
-- `frugality_score`, `propagation_cost`, `anti_hallucination_score`
-- `drift_risk`, `dependency_load`, `temporal_resilience_score`
-- `collapse_probability`, `child_laws`, `parent_laws`, `S_local`
-- `velocity_score`
-
-Le `topic_score(node, q_tokens)` est calculé à la volée :
-intersection lexicale entre tokens(Q) et bag(title + description + tags + domains).
-
-## UI — chat bar + panneau résultats
-
-Voir `app/src/chat.js` + intégration dans `index.html`/`panel.js` :
-
-- **Chat bar bottom-centered** : `#chat-bar` ancré bas de viewport, contient
-  `#chat-input` (textarea), bouton mic (Web Speech API `fr-FR`),
-  bouton upload fichier (≤ 2 Mo, 600 chars utilisés comme contexte),
-  bouton envoyer (`Enter` également).
-- **Panneau résultats** : `#chat-results` overlay rétractable, contenant
-  jusqu'à 6 cartes route + bloc baselines.
-- Chaque carte route affiche : label, status (★ WINNER / ✓ survit / ✗ éliminée
-  + raisons), `sel`, et barres mini pour prec / hallu / bruit / coût / temp / rwa / survie.
-- Les `laws_used` sont rendues cliquables : `data-pick="<id>"` déclenche
-  `onPickLaw(id)` pour focaliser la loi dans le graphe principal.
-
-## Limites architecturales
-
-- Toutes les routes lisent le MÊME pool de lois → aucune diversité de sources.
-- `K=10` est figé : pas d'allocation budget adaptative par stratégie.
-- Pas de propagation runtime réelle entre routes — chaque score est
-  une moyenne agrégée, pas un vrai parcours de graphe.
-- Le résultat est entièrement déterminé par les scores pré-calculés sur les
-  lois ; le moteur ne « raisonne » pas sur Q au-delà du `topic_score` lexical.
+- Strategies are hand-weighted. Nothing learns from past runs.
+- The 6 strategies are a starting set, not a fixed taxonomy — see
+  `COGNITIVE_ROUTE_EVOLUTION.md`.
+- "Parallel" is sequential in the JS event loop; the parallelism is
+  logical, not physical. With `K=10` over ~500 nodes, runtime is dominated
+  by `sort` and stays under 10 ms on a desktop browser.
+- Every route sees the same node pool — no source diversity, no per-route
+  retrieval. The arena tests ranking choices, not knowledge breadth.
