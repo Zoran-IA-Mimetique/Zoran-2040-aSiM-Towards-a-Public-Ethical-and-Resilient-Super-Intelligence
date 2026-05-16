@@ -50,15 +50,12 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
     console.warn('[ZORAN sup] toutes routes ZORAN hors-domaine — Claude brut seul');
   }
 
-  // 1. REFORMULATION en parallèle : chaque stratégie reformule la question
-  //    selon sa lentille cognitive. Cap latence + révèle la divergence.
-  const reformTasks = zoranSpecs.map(s => (async () => ({
-    label: `ZORAN ${s.route.label || s.stratName}`,
-    strategy: s.stratName,
-    ...(await reformulateQuestion({
-      question, strategyLabel: s.route.label || s.stratName, laws: s.laws,
-    })),
-  }))());
+  // Mission SINGLE_WINNER_RUNTIME (2026-05-16 08:39) :
+  // Les routes individuelles deviennent INTERNES — pas d'appels LLM
+  // séparés pour Frugale/Anti-hallu/Structurelle. ZORAN Orchestré
+  // intègre déjà la fusion silencieuse des angles utiles.
+  // Économie API : 8 calls (anciennes routes) → 3 calls (baseline + orchestré + juge)
+  const reformTasks = []; // route reformulations désactivées
   // Baseline en parallèle : Claude SANS aucune loi ZORAN (référence brute)
   const baselineTask = (async () => ({
     label: 'CLAUDE brut · 0 loi',
@@ -99,20 +96,10 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
     }
   });
 
-  // 2. RÉPONSES en parallèle : chaque stratégie répond DEPUIS SA REFORMULATION
-  //    (la question vue par cette stratégie), enrichie de ses 10 lois.
-  const respTasks = zoranSpecs.map(s => (async () => {
-    const reform = reformByLabel.get(s.stratName) || question;
-    return {
-      label: `ZORAN ${s.route.label || s.stratName}`,
-      strategy: s.stratName,
-      laws_used: s.route.laws_used,
-      reformulation: reform,
-      ...(await synthesizeRoute({
-        question: reform, laws: s.laws, strategyLabel: s.route.label || s.stratName,
-      })),
-    };
-  })());
+  // Mission SINGLE_WINNER : pas d'appels par route — seuls baseline +
+  // orchestrated sont appelés. Les routes (laws_used) restent calculées
+  // pour info interne et passées à synthesizeOrchestrated.
+  const respTasks = []; // routes individuelles désactivées
   console.log('[ZORAN sup] phase 2 — réponses × 3 + baseline en parallèle');
   const respResults = await Promise.allSettled(respTasks);
   const baselineResult = await baselineTask;
@@ -545,6 +532,21 @@ export function renderComparison(result) {
       </div>
     </details>`;
 
+  // ─── SINGLE_WINNER RUNTIME FORMAT ─────────────────────────────────
+  // Mission DOMAIN_LAW_SELECTION_AND_SINGLE_WINNER_RUNTIME_20260516
+  // Affichage simplifié : SEULEMENT 2 candidats (ZORAN orchestré + Claude brut)
+  // au lieu de 6+. Les routes individuelles sont calculées en interne.
+  const isSingleWinnerMode = sortedByGrade.length <= 2; // exactement baseline + orchestrated
+  if (isSingleWinnerMode) {
+    return `<div class="superiority-container">
+      ${verdictBanner}
+      ${rankingBlock}
+      ${argumentedDetails}
+      ${concreteTable}
+      ${responsesBlock}
+    </div>`;
+  }
+  // Fallback : mode legacy avec multi-cards (utilisé si benchmark CSV/offline)
   return `<div class="superiority-container">
     ${verdictBanner}
     ${rankingBlock}

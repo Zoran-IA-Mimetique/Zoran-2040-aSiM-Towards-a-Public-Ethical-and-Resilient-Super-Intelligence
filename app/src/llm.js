@@ -200,10 +200,12 @@ export async function synthesizeOrchestrated({
 
   const domLabel = domain?.label || 'généraliste';
   const domVocab = domain?.vocab_hint || 'vocabulaire courant';
+  const domStyle = domain?.cognitive_style || 'réponse claire et structurée';
 
   const system = [
     `Tu es un EXPERT du domaine "${domLabel}". Tu réponds dans le LANGAGE NATIF de ce domaine.`,
     `Vocabulaire attendu : ${domVocab}.`,
+    `Style cognitif attendu : ${domStyle}.`,
     '',
     'Cadres cognitifs activés MENTALEMENT (à ne JAMAIS citer dans la réponse) :',
     lawsCtx,
@@ -359,7 +361,9 @@ export async function judgeResponses({ question, responses, reformulations = nul
     ' },...]}',
   ].join('\n');
   const user = `QUESTION ORIGINALE : ${question}\n\nCANDIDATS (${labels}) :\n\n${numbered}`;
-  const r = await callLLM({ system, user, maxTokens: 2500 });
+  // SINGLE_WINNER : si 2 candidats seulement, max_tokens réduit (économie)
+  const judgeMaxTokens = responses.length <= 2 ? 1500 : 2500;
+  const r = await callLLM({ system, user, maxTokens: judgeMaxTokens });
   if (!r.ok) return r;
   let json = null;
   try {
