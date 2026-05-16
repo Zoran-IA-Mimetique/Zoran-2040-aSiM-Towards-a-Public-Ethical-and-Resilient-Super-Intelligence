@@ -179,6 +179,38 @@ const classesLabel = await page.locator('.frames-label:has-text("Classes")').cou
 console.log(`  Sustainability sect. : ${sustLabel > 0 ? 'présente' : 'absente'}`);
 console.log(`  Frugality score      : ${fragLabel > 0 ? 'présente' : 'absente'}`);
 console.log(`  Classes badges       : ${classesLabel > 0 ? 'présente' : 'absente'}`);
+// NEW (mission RUNTIME_COGNITIVE_PATH_COMPETITION) : chat bar + routes
+const chatBar = await page.locator('#chat-bar').isVisible();
+const chatInput = await page.locator('#chat-input').isVisible();
+const chatMic = await page.locator('#chat-mic').isVisible();
+const chatFile = await page.locator('#chat-file').isVisible();
+console.log(`  Chat bar visible     : ${chatBar}`);
+console.log(`  Chat input field     : ${chatInput}`);
+console.log(`  Mic button           : ${chatMic}`);
+console.log(`  File button          : ${chatFile}`);
+
+// Submit a question and verify routes display
+let routes_ok = false;
+try {
+  await page.locator('#chat-input').fill('comment réduire la propagation runtime ?');
+  await page.locator('#chat-send').click();
+  await page.waitForTimeout(700);
+  const resultsVisible = await page.locator('#chat-results').isVisible();
+  const routeCards = await page.locator('.route-card').count();
+  const winnerCard = await page.locator('.route-card.winner').count();
+  const baselineRows = await page.locator('.baseline-row').count();
+  console.log(`  Results panel        : ${resultsVisible}`);
+  console.log(`  Route cards          : ${routeCards}`);
+  console.log(`  Winner card          : ${winnerCard}`);
+  console.log(`  Baseline rows        : ${baselineRows}`);
+  routes_ok = resultsVisible && routeCards === 6 && winnerCard === 1 && baselineRows === 2;
+  // Screenshot the chat results
+  await page.screenshot({ path: 'app/preview-chat.png', fullPage: false });
+  // Close
+  await page.locator('#chat-results-close').click();
+  await page.waitForTimeout(200);
+} catch (e) { console.log('Chat test failed:', e.message); }
+
 // NEW (mission ZORAN_NOISE_MINIMIZATION) : noise + signal-to-noise UI
 const noiseDec = await page.locator('.frames-label:has-text("Décision")').count();
 const snrLabel = await page.locator('.frames-label:has-text("S/N ratio")').count();
@@ -436,6 +468,7 @@ console.log('drag_panel         :', drag_ok, '|', drag_diag);
 console.log('sidebar_toggle     :', sidebar_toggle_ok);
 console.log('manual_pan         :', manual_pan_ok);
 console.log('layer_toggle       :', layer_toggle_ok);
+console.log('chat_routes_compete:', routes_ok);
 console.log('pan_right_drag     :', pan_ok, '|', pan_diag);
 console.log('esc_closes_panel   :', esc_ok);
 console.log('status counts      :', counts);
@@ -446,6 +479,6 @@ console.log('page errors        :', pageErrors.length);
 for (const e of pageErrors) console.log('  ✗ ', e);
 
 const fail = !boot_ok || !click_ok || !focus_ok || !prune_ok || !drag_ok || !esc_ok
-           || !sidebar_toggle_ok || !manual_pan_ok
+           || !sidebar_toggle_ok || !manual_pan_ok || !routes_ok
            || pageErrors.length > 0 || consoleErrors.length > 0;
 process.exit(fail ? 1 : 0);

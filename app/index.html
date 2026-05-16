@@ -73,6 +73,23 @@
     <div id="detail-body"></div>
   </section>
 
+  <!-- Chat bar bottom-centered (mission RUNTIME_COGNITIVE_PATH_COMPETITION) -->
+  <section id="chat-bar" aria-label="Question au graphe">
+    <button id="chat-mic" title="Dictée vocale" aria-label="Activer micro">🎙</button>
+    <button id="chat-file" title="Charger fichier" aria-label="Charger fichier">📎</button>
+    <input id="chat-file-input" type="file" accept=".txt,.md,.json,.csv,.pdf" hidden>
+    <input id="chat-input" type="text" placeholder="Pose une question au graphe — Entrée pour faire concourir 6 routes…" autocomplete="off">
+    <button id="chat-send" title="Soumettre (Entrée)" aria-label="Envoyer">↑</button>
+  </section>
+
+  <section id="chat-results" class="hidden" aria-hidden="true">
+    <header id="chat-results-header">
+      <span id="chat-results-q"></span>
+      <button id="chat-results-close" title="Fermer">×</button>
+    </header>
+    <div id="chat-results-body"></div>
+  </section>
+
   <footer id="statusbar">
     <span id="status-mission"></span>
     <span id="status-counts"></span>

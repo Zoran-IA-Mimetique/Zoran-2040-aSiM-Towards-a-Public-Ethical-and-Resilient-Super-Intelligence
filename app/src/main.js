@@ -1,4 +1,5 @@
 import { loadLaws, buildGraph, neighborsOf, prune, branchFrom } from './graph.js';
+import { wireChatBar } from './chat.js';
 import { renderDetail } from './panel.js';
 import { buildIndex, search } from './search.js';
 import { makeHistory } from './history.js';
@@ -1036,6 +1037,8 @@ async function boot() {
     initGraph();
     setupDraggablePanel();
     wireControls();
+    // Mission RUNTIME_COGNITIVE_PATH_COMPETITION : chat bar + 6 routes
+    wireChatBar(state.graph.nodes, id => selectNode(id, true));
     setStatus();
     updateHistoryButtons();
     console.log('%cZORAN — Arbre Relationnel des Lois (P0.5 INT v2)',
