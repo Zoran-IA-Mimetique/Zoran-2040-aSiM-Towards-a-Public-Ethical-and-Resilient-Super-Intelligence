@@ -118,6 +118,32 @@ async function callLLM({ system, user, maxTokens = 600, model = null }) {
   }
 }
 
+// Mission MULTI_WINNER_REFORMULATION : reformule la question selon la
+// LENTILLE COGNITIVE de la stratégie (pas une paraphrase lexicale).
+export async function reformulateQuestion({ question, strategyLabel, laws }) {
+  const lawsCtx = (laws || []).slice(0, 6).map(l =>
+    `• ${l.id} — ${l.title}`).join('\n');
+  const system = [
+    `Tu es ZORAN-${strategyLabel}. Tu vas REFORMULER la question utilisateur selon ta lentille cognitive propre.`,
+    'Cadre cognitif activé :',
+    lawsCtx || '(aucun cadre)',
+    '',
+    'Règles STRICTES :',
+    '1. La reformulation doit révéler COMMENT ta stratégie pense le problème.',
+    '2. PAS de paraphrase superficielle. Reformulation = changement de cadrage cognitif.',
+    '3. UNE seule phrase, 12-25 mots maximum.',
+    '4. Français, dense, pas de markdown.',
+    '5. Termine sans point d\'interrogation final (formuler en assertion problématique).',
+    '',
+    'Exemple générique :',
+    '  Question : "comment réduire l\'hallucination ?"',
+    '  Frugale : "minimiser la surface d\'erreur en compressant les sources actives au strict nécessaire"',
+    '  Anti-hallu : "garantir que chaque assertion runtime soit traçable à une loi vérifiable"',
+    '  Structurelle : "articuler les cadres local-intermédiaire-global pour borner l\'espace d\'inférence"',
+  ].join('\n');
+  return await callLLM({ system, user: question, maxTokens: 120 });
+}
+
 // Mission RUNTIME_SUPERIORITY : LLM brut sans contexte ZORAN
 export async function synthesizeBaseline(question) {
   return await callLLM({
@@ -145,26 +171,36 @@ export async function synthesizeRoute({ question, laws, strategyLabel }) {
   return await callLLM({ system, user: question, maxTokens: 600 });
 }
 
-// LLM-as-judge : compare N réponses et score sur 4 axes [0..1]
-export async function judgeResponses({ question, responses }) {
+// LLM-as-judge : compare N réponses + reformulations, score 4 axes + divergence
+export async function judgeResponses({ question, responses, reformulations = null }) {
   const labels = responses.map((r, i) => `${i+1}. [${r.label}]`).join(', ');
-  const numbered = responses.map((r, i) =>
-    `[RÉPONSE ${i+1} — ${r.label}]\n${r.text || '(vide)'}\n`).join('\n');
+  const numbered = responses.map((r, i) => {
+    const ref = reformulations ? `REFORMULATION : ${reformulations[i] || '(absente)'}\n` : '';
+    return `[CANDIDAT ${i+1} — ${r.label}]\n${ref}RÉPONSE : ${r.text || '(vide)'}\n`;
+  }).join('\n');
   const system = [
-    'Tu es un juge cognitif neutre. On te donne une question et plusieurs réponses étiquetées.',
-    'Pour CHAQUE réponse, attribue un score [0..1] sur 4 axes :',
-    '  - precision      : justesse factuelle apparente',
-    '  - hallucination  : risque que la réponse invente (0 = aucun, 1 = max)',
-    '  - noise          : verbosité inutile / digression (0 = dense, 1 = bruyant)',
-    '  - coherence      : cohérence interne et structure logique',
-    'Réponds STRICTEMENT en JSON, aucune autre prose, format :',
-    '{"verdict":"<label gagnant>","scores":[{"label":"<l1>","precision":0.0,"hallucination":0.0,"noise":0.0,"coherence":0.0,"comment":"<1 phrase>"},...]}',
-    'Aucune autre prose. Aucun markdown. JSON pur uniquement.',
+    'Tu es un juge cognitif neutre. On te donne une question, et plusieurs CANDIDATS (chacun avec une REFORMULATION cognitive de la question + sa RÉPONSE).',
+    'Pour CHAQUE candidat, score [0..1] :',
+    '  - precision     : justesse factuelle apparente de la RÉPONSE',
+    '  - hallucination : risque d\'invention (0 = aucun, 1 = max)',
+    '  - noise         : verbosité inutile (0 = dense, 1 = bruyant)',
+    '  - coherence     : cohérence interne et structure logique',
+    '',
+    'Score GLOBAL [0..1] :',
+    '  - reformulation_divergence : à quel point les REFORMULATIONS diffèrent cognitivement (pas lexicalement). 0 = identiques, 1 = très divergentes',
+    '  - response_divergence      : à quel point les RÉPONSES diffèrent sémantiquement. 0 = identiques, 1 = très divergentes',
+    '',
+    'Pour chaque candidat, calcule aussi semantic_delta [0..1] : à quel point CE candidat s\'écarte des autres en moyenne.',
+    '',
+    'Réponds STRICTEMENT en JSON pur, aucune autre prose, aucun markdown :',
+    '{"verdict":"<label gagnant>",',
+    ' "reformulation_divergence":0.0,',
+    ' "response_divergence":0.0,',
+    ' "scores":[{"label":"<l1>","precision":0.0,"hallucination":0.0,"noise":0.0,"coherence":0.0,"semantic_delta":0.0,"comment":"<1 phrase>"},...]}',
   ].join('\n');
-  const user = `QUESTION : ${question}\n\nRÉPONSES À JUGER (${labels}) :\n\n${numbered}`;
-  const r = await callLLM({ system, user, maxTokens: 1200 });
+  const user = `QUESTION ORIGINALE : ${question}\n\nCANDIDATS (${labels}) :\n\n${numbered}`;
+  const r = await callLLM({ system, user, maxTokens: 1600 });
   if (!r.ok) return r;
-  // Parse JSON (tolérant)
   let json = null;
   try {
     const match = r.text.match(/\{[\s\S]*\}/);

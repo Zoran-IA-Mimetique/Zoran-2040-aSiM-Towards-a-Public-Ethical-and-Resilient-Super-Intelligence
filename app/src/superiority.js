@@ -8,7 +8,7 @@
 //
 // Retourne un tableau comparatif avec deltas ZORAN vs baseline.
 
-import { synthesizeBaseline, synthesizeRoute, judgeResponses } from './llm.js';
+import { synthesizeBaseline, synthesizeRoute, judgeResponses, reformulateQuestion } from './llm.js';
 
 // Top 3 routes utilisées pour la compétition (sous-ensemble — coût API maîtrisé)
 const SUPERIORITY_ROUTES = ['frugale', 'anti_hallucination', 'structurelle'];
@@ -17,31 +17,71 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
   // routeResults : output de compete() — contient toutes les routes avec laws_used
   const t0 = performance.now();
 
-  // 1. Lance baseline + N routes ZORAN EN PARALLÈLE
-  const tasks = [];
-  tasks.push((async () => ({ label: 'BASELINE LLM brut', ...(await synthesizeBaseline(question)) }))());
+  // Construit le set [{stratName, route, laws}] pour les 3 stratégies
+  const zoranSpecs = [];
   for (const stratName of SUPERIORITY_ROUTES) {
     const route = routeResults.routes.find(r => r.strategy === stratName);
     if (!route) continue;
     const laws = (route.laws_used || []).map(id => allNodes.find(n => n.id === id)).filter(Boolean);
-    tasks.push((async () => ({
-      label: `ZORAN ${route.label || stratName}`,
-      strategy: stratName,
-      laws_used: route.laws_used,
-      ...(await synthesizeRoute({ question, laws, strategyLabel: route.label || stratName }))
-    }))());
+    zoranSpecs.push({ stratName, route, laws });
   }
-  const settled = await Promise.allSettled(tasks);
-  const responses = settled
-    .map(s => (s.status === 'fulfilled' ? s.value : { label: '?', ok: false, reason: 'rejected' }))
-    .filter(r => r.ok && r.text);
+
+  // 1. REFORMULATION en parallèle : chaque stratégie reformule la question
+  //    selon sa lentille cognitive. Cap latence + révèle la divergence.
+  const reformTasks = zoranSpecs.map(s => (async () => ({
+    label: `ZORAN ${s.route.label || s.stratName}`,
+    strategy: s.stratName,
+    ...(await reformulateQuestion({
+      question, strategyLabel: s.route.label || s.stratName, laws: s.laws,
+    })),
+  }))());
+  // Baseline en parallèle aussi
+  const baselineTask = (async () => ({
+    label: 'BASELINE LLM brut',
+    strategy: 'baseline',
+    ...(await synthesizeBaseline(question)),
+  }))();
+  const reformResults = await Promise.allSettled(reformTasks);
+  const reformByLabel = new Map();
+  reformResults.forEach((s, i) => {
+    if (s.status === 'fulfilled' && s.value.ok) {
+      reformByLabel.set(zoranSpecs[i].stratName, s.value.text);
+    }
+  });
+
+  // 2. RÉPONSES en parallèle : chaque stratégie répond DEPUIS SA REFORMULATION
+  //    (la question vue par cette stratégie), enrichie de ses 10 lois.
+  const respTasks = zoranSpecs.map(s => (async () => {
+    const reform = reformByLabel.get(s.stratName) || question;
+    return {
+      label: `ZORAN ${s.route.label || s.stratName}`,
+      strategy: s.stratName,
+      laws_used: s.route.laws_used,
+      reformulation: reform,
+      ...(await synthesizeRoute({
+        question: reform, laws: s.laws, strategyLabel: s.route.label || s.stratName,
+      })),
+    };
+  })());
+  const respResults = await Promise.allSettled(respTasks);
+  const baselineResult = await baselineTask;
+
+  // Aggreg responses
+  const responses = [];
+  if (baselineResult.ok) responses.push(baselineResult);
+  for (const r of respResults) {
+    if (r.status === 'fulfilled' && r.value.ok) responses.push(r.value);
+  }
 
   if (responses.length < 2) {
     return { ok: false, reason: 'too_few_responses', responses };
   }
 
-  // 2. Juge — score chaque réponse sur precision/hallucination/noise/coherence
-  const judgeResult = await judgeResponses({ question, responses });
+  // 3. JUGE — score chaque réponse + reformulations + divergence
+  const reformulationsList = responses.map(r => r.reformulation || null);
+  const judgeResult = await judgeResponses({
+    question, responses, reformulations: reformulationsList,
+  });
   const judge = judgeResult.ok ? judgeResult.judge : null;
 
   // 3. Compute deltas vs baseline (responses[0])
@@ -58,6 +98,7 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
         hallucination: s.hallucination,
         noise: s.noise,
         coherence: s.coherence,
+        semantic_delta: s.semantic_delta ?? 0,
         // Deltas vs baseline (positif = ZORAN mieux sauf hallu/noise où négatif = mieux)
         precision_delta: +(s.precision - baselineScore.precision).toFixed(3),
         hallucination_delta: +(s.hallucination - baselineScore.hallucination).toFixed(3),
@@ -70,8 +111,15 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
           + 0.20 * (baselineScore.noise - s.noise)
           + 0.20 * (s.coherence - baselineScore.coherence)
         ).toFixed(3),
+        // winner_delta : écart vs meilleur score sur l'axe précision
         comment: s.comment || '',
       });
+    }
+    // Calcul winner_delta = écart de chaque candidat vs le 1er (au sens runtime_superiority)
+    const sortedBySup = [...deltas].sort((a, b) => b.runtime_superiority - a.runtime_superiority);
+    if (sortedBySup.length) {
+      const top = sortedBySup[0].runtime_superiority;
+      for (const d of deltas) d.winner_delta = +(top - d.runtime_superiority).toFixed(3);
     }
   }
 
@@ -83,6 +131,8 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
     judge,
     deltas,
     verdict: judge?.verdict || null,
+    reformulation_divergence: judge?.reformulation_divergence ?? null,
+    response_divergence: judge?.response_divergence ?? null,
     latency_ms: dt,
   };
 }
@@ -96,50 +146,109 @@ export function renderComparison(result) {
   const judge = result.judge;
   const deltas = result.deltas || [];
   const verdict = result.verdict;
+  const refDiv = result.reformulation_divergence;
+  const respDiv = result.response_divergence;
 
-  const cards = result.responses.map((r, idx) => {
-    const d = deltas.find(x => x.label === r.label);
-    const isBaseline = idx === 0;
-    const isWinner = verdict && r.label.includes(verdict);
-    const cls = `sup-card ${isBaseline ? 'baseline' : 'zoran'} ${isWinner ? 'winner' : ''}`;
-    const scoresHtml = d ? `
-      <div class="sup-scores">
-        <span title="Précision">prec ${d.precision?.toFixed(2) ?? '—'}</span>
-        <span title="Hallucination" class="${d.hallucination > 0.4 ? 'bad' : ''}">hallu ${d.hallucination?.toFixed(2) ?? '—'}</span>
-        <span title="Bruit"           class="${d.noise > 0.5 ? 'bad' : ''}">noise ${d.noise?.toFixed(2) ?? '—'}</span>
-        <span title="Cohérence">coh ${d.coherence?.toFixed(2) ?? '—'}</span>
+  // ─── 1) BANDEAU verdict + divergence (priorité haute, mission anti-inflation) ───
+  const divergenceBadge = (v, label) => {
+    if (v == null) return '';
+    const cls = v >= 0.30 ? 'good' : (v >= 0.15 ? '' : 'bad');
+    return `<span class="${cls}">${label} ${v.toFixed(2)}</span>`;
+  };
+  const verdictBanner = `
+    <div class="sup-verdict">
+      <div style="margin-bottom:6px">
+        <strong>★ Verdict juge :</strong> ${escHtml(verdict || 'aucun')} ·
+        ${result.responses.length} candidats · ${result.latency_ms}ms
       </div>
-      ${!isBaseline ? `<div class="sup-deltas">
-        Δ vs baseline :
-        <span class="${d.precision_delta > 0 ? 'good' : d.precision_delta < 0 ? 'bad' : ''}">prec ${d.precision_delta > 0 ? '+' : ''}${d.precision_delta}</span>
-        <span class="${d.hallucination_delta < 0 ? 'good' : d.hallucination_delta > 0 ? 'bad' : ''}">hallu ${d.hallucination_delta > 0 ? '+' : ''}${d.hallucination_delta}</span>
-        <span class="${d.noise_delta < 0 ? 'good' : d.noise_delta > 0 ? 'bad' : ''}">noise ${d.noise_delta > 0 ? '+' : ''}${d.noise_delta}</span>
-        <span class="${d.coherence_delta > 0 ? 'good' : d.coherence_delta < 0 ? 'bad' : ''}">coh ${d.coherence_delta > 0 ? '+' : ''}${d.coherence_delta}</span>
-        <strong class="${d.runtime_superiority > 0 ? 'good' : 'bad'}" title="Score composite supériorité runtime">
-          superiority ${d.runtime_superiority > 0 ? '+' : ''}${d.runtime_superiority}
-        </strong>
-      </div>` : ''}
-    ` : '';
-    return `<div class="${cls}">
-      <div class="sup-head">
-        <span class="sup-label">${escHtml(r.label)}</span>
-        ${isWinner ? '<span class="sup-winner-tag">★ WINNER</span>' : ''}
+      <div class="sup-divergence">
+        ${divergenceBadge(refDiv, 'reformulation_divergence')}
+        ${divergenceBadge(respDiv, 'response_divergence')}
+        ${(refDiv != null && refDiv < 0.30) ? '<span class="sup-warn">⚠ reformulations trop proches</span>' : ''}
       </div>
-      <div class="sup-text">${escHtml(r.text)}</div>
-      ${scoresHtml}
-      ${d?.comment ? `<div class="sup-comment">${escHtml(d.comment)}</div>` : ''}
     </div>`;
-  }).join('');
 
-  const verdictBanner = verdict
-    ? `<div class="sup-verdict">
-        <strong>Verdict juge :</strong> ${escHtml(verdict)} · ${result.responses.length} candidats jugés · ${result.latency_ms}ms
-      </div>`
-    : '';
+  // ─── 2) TABLE DELTAS (priorité haute selon mission) ───
+  const sortedByRank = [...deltas].sort((a, b) => b.runtime_superiority - a.runtime_superiority);
+  const deltaTable = `
+    <div class="sup-deltas-table">
+      <div class="sup-deltas-row sup-deltas-header">
+        <span class="sup-col-rank">#</span>
+        <span class="sup-col-label">Candidat</span>
+        <span class="sup-col-num" title="precision">prec</span>
+        <span class="sup-col-num" title="hallucination">hallu</span>
+        <span class="sup-col-num" title="noise">noise</span>
+        <span class="sup-col-num" title="coherence">coh</span>
+        <span class="sup-col-num" title="semantic_delta">sem.Δ</span>
+        <span class="sup-col-sup" title="runtime_superiority composite">superiority</span>
+        <span class="sup-col-wd" title="winner_delta (écart au #1)">winner_Δ</span>
+      </div>
+      ${sortedByRank.map((d, i) => `
+        <div class="sup-deltas-row ${i === 0 ? 'is-rank-1' : ''}">
+          <span class="sup-col-rank">${i+1}</span>
+          <span class="sup-col-label">${escHtml(d.label)}</span>
+          <span class="sup-col-num ${d.precision_delta > 0 ? 'good' : d.precision_delta < 0 ? 'bad' : ''}">${(d.precision ?? 0).toFixed(2)}<small>${signed(d.precision_delta)}</small></span>
+          <span class="sup-col-num ${d.hallucination_delta < 0 ? 'good' : d.hallucination_delta > 0 ? 'bad' : ''}">${(d.hallucination ?? 0).toFixed(2)}<small>${signed(d.hallucination_delta)}</small></span>
+          <span class="sup-col-num ${d.noise_delta < 0 ? 'good' : d.noise_delta > 0 ? 'bad' : ''}">${(d.noise ?? 0).toFixed(2)}<small>${signed(d.noise_delta)}</small></span>
+          <span class="sup-col-num ${d.coherence_delta > 0 ? 'good' : d.coherence_delta < 0 ? 'bad' : ''}">${(d.coherence ?? 0).toFixed(2)}<small>${signed(d.coherence_delta)}</small></span>
+          <span class="sup-col-num">${(d.semantic_delta ?? 0).toFixed(2)}</span>
+          <span class="sup-col-sup ${d.runtime_superiority > 0 ? 'good' : d.runtime_superiority < 0 ? 'bad' : ''}">${signed(d.runtime_superiority)}</span>
+          <span class="sup-col-wd">${(d.winner_delta ?? 0).toFixed(2)}</span>
+        </div>
+      `).join('')}
+    </div>`;
+
+  // ─── 3) REFORMULATIONS condensées (1-2 lignes par candidat) ───
+  const reforms = result.responses.map((r, idx) => {
+    if (!r.reformulation) return '';
+    const isWin = verdict && r.label.includes(verdict);
+    const colorClass = idx === 0 ? 'baseline' : `rank-${idx}`;
+    return `<div class="sup-reform-row ${colorClass} ${isWin ? 'winner' : ''}">
+      <span class="sup-reform-label">${escHtml(r.label)}</span>
+      <span class="sup-reform-text">"${escHtml(r.reformulation)}"</span>
+    </div>`;
+  }).filter(Boolean).join('');
+  const reformsBlock = reforms ? `
+    <details class="sup-section" open>
+      <summary>Reformulations cognitives (lentille de chaque route)</summary>
+      <div class="sup-reform-list">${reforms}</div>
+    </details>` : '';
+
+  // ─── 4) RÉPONSES collapsées (priorité basse selon mission anti-inflation) ───
+  const responsesBlock = `
+    <details class="sup-section">
+      <summary>Réponses complètes (texte ▶ dépliable)</summary>
+      <div class="sup-resp-list">
+        ${result.responses.map((r, idx) => {
+          const d = deltas.find(x => x.label === r.label);
+          const isWin = verdict && r.label.includes(verdict);
+          const colorClass = idx === 0 ? 'baseline' : `rank-${idx}`;
+          return `<div class="sup-resp-card ${colorClass} ${isWin ? 'winner' : ''}">
+            <div class="sup-resp-head">
+              <strong>${escHtml(r.label)}</strong>
+              ${isWin ? '<span class="sup-winner-tag">★ WINNER</span>' : ''}
+            </div>
+            <div class="sup-resp-text">${escHtml(r.text)}</div>
+            ${d?.comment ? `<div class="sup-comment">${escHtml(d.comment)}</div>` : ''}
+            ${r.laws_used ? `<div class="sup-laws">Lois : ${r.laws_used.slice(0, 6).map(id => `<code>${escHtml(id)}</code>`).join(' ')}</div>` : ''}
+          </div>`;
+        }).join('')}
+      </div>
+    </details>`;
+
   return `<div class="superiority-container">
     ${verdictBanner}
-    ${cards}
+    ${deltaTable}
+    ${reformsBlock}
+    ${responsesBlock}
   </div>`;
+}
+
+function signed(n) {
+  if (n == null) return '';
+  const s = +n;
+  if (Math.abs(s) < 0.005) return '';
+  return ' ' + (s > 0 ? '+' : '') + s.toFixed(2);
 }
 
 function escHtml(s) {
