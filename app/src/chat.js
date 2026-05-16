@@ -410,36 +410,46 @@ async function runSynthesis(result) {
 function setupSettingsModal() {
   const modal = document.getElementById('settings-modal');
   const btn = document.getElementById('chat-settings');
-  const close = document.getElementById('settings-close');
+  if (!modal || !btn) {
+    console.warn('[ZORAN] settings modal not found in DOM — bouton ⚙ inactif');
+    return;
+  }
+  const close    = document.getElementById('settings-close');
   const backdrop = modal.querySelector('.settings-backdrop');
   const keyInput = document.getElementById('settings-key');
   const modelSel = document.getElementById('settings-model');
-  const save = document.getElementById('settings-save');
-  const clear = document.getElementById('settings-clear');
-  if (!modal || !btn) return;
+  const save     = document.getElementById('settings-save');
+  const clear    = document.getElementById('settings-clear');
 
   function open() {
-    keyInput.value = getApiKey();
-    modelSel.value = getModel();
+    try {
+      keyInput.value = getApiKey();
+      modelSel.value = getModel() || 'claude-sonnet-4-6';
+    } catch (e) { console.warn('[ZORAN] settings open error', e); }
     modal.classList.remove('hidden');
+    setTimeout(() => keyInput && keyInput.focus(), 50);
+    console.log('[ZORAN] settings modal opened');
   }
   function shut() { modal.classList.add('hidden'); }
 
-  btn.addEventListener('click', open);
-  close.addEventListener('click', shut);
-  backdrop.addEventListener('click', shut);
-  save.addEventListener('click', () => {
+  btn.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); open(); });
+  if (close) close.addEventListener('click', shut);
+  if (backdrop) backdrop.addEventListener('click', shut);
+  if (save) save.addEventListener('click', () => {
     setApiKey(keyInput.value.trim());
     setModel(modelSel.value);
     shut();
+    console.log('[ZORAN] API key saved (length =', keyInput.value.trim().length, ')');
   });
-  clear.addEventListener('click', () => {
+  if (clear) clear.addEventListener('click', () => {
     setApiKey('');
     keyInput.value = '';
+    console.log('[ZORAN] API key cleared');
   });
   window.addEventListener('keydown', e => {
     if (e.key === 'Escape' && !modal.classList.contains('hidden')) shut();
   });
+  console.log('[ZORAN] settings modal wired (⚙ ready)');
 }
 
 export function wireChatBar(nodes, onPickLaw, onCompete, onClearRoutes, parentsMap) {

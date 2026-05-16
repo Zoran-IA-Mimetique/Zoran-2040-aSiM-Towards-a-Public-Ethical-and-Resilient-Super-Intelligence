@@ -105,8 +105,8 @@
           Avec une clé Anthropic, ZORAN appelle Claude pour composer une réponse cohérente multi-cadres.
         </p>
         <label for="settings-key" style="display:block;font-size:11px;color:var(--fg-2);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px">Clé API Anthropic</label>
-        <input id="settings-key" type="password" placeholder="sk-ant-..." autocomplete="off"
-               style="width:100%;height:34px;padding:0 10px;background:var(--bg-2);color:var(--fg-0);border:1px solid var(--line);border-radius:5px;font-family:ui-monospace,monospace;font-size:12px;outline:none">
+        <input id="settings-key" type="text" placeholder="sk-ant-api03-..." autocomplete="off" spellcheck="false"
+               style="width:100%;height:38px;padding:0 12px;background:var(--bg-2);color:var(--fg-0);border:1px solid var(--line);border-radius:5px;font-family:ui-monospace,monospace;font-size:12px;outline:none">
         <label for="settings-model" style="display:block;font-size:11px;color:var(--fg-2);margin:14px 0 4px 0;text-transform:uppercase;letter-spacing:1px">Modèle</label>
         <select id="settings-model" style="width:100%;height:34px;padding:0 10px;background:var(--bg-2);color:var(--fg-0);border:1px solid var(--line);border-radius:5px;font-size:13px;outline:none">
           <option value="claude-haiku-4-5-20251001">Haiku 4.5 — rapide, peu cher</option>
@@ -143,6 +143,59 @@
   <!-- 3D force graph (vanilla) -->
   <script src="https://unpkg.com/three@0.155.0/build/three.min.js"></script>
   <script src="https://unpkg.com/3d-force-graph@1.73.4/dist/3d-force-graph.min.js"></script>
+
+  <!-- Wire ⚙ button INDEPENDAMMENT du module ESM (fallback robuste) -->
+  <!-- Si chat.js plante (réseau, cache partiel), le bouton reste fonctionnel -->
+  <script>
+  (function() {
+    const KEY = 'zoran.anthropic.key';
+    const MOD = 'zoran.anthropic.model';
+    function setVal(s, v) { try { v ? localStorage.setItem(s, v) : localStorage.removeItem(s); } catch (_) {} }
+    function getVal(s)    { try { return localStorage.getItem(s) || ''; } catch (_) { return ''; } }
+    function wire() {
+      const btn = document.getElementById('chat-settings');
+      const modal = document.getElementById('settings-modal');
+      if (!btn || !modal) { console.warn('[ZORAN] ⚙ fallback : DOM not ready'); return false; }
+      if (btn.dataset.zoranWired) return true;
+      btn.dataset.zoranWired = '1';
+      const keyInput = document.getElementById('settings-key');
+      const modelSel = document.getElementById('settings-model');
+      const close    = document.getElementById('settings-close');
+      const backdrop = modal.querySelector('.settings-backdrop');
+      const save     = document.getElementById('settings-save');
+      const clear    = document.getElementById('settings-clear');
+      function open() {
+        keyInput.value = getVal(KEY);
+        modelSel.value = getVal(MOD) || 'claude-sonnet-4-6';
+        modal.classList.remove('hidden');
+        setTimeout(() => keyInput.focus(), 50);
+        console.log('[ZORAN] ⚙ modal opened (fallback wire)');
+      }
+      function shut() { modal.classList.add('hidden'); }
+      btn.addEventListener('click', e => { e.preventDefault(); open(); });
+      close.addEventListener('click', shut);
+      backdrop.addEventListener('click', shut);
+      save.addEventListener('click', () => {
+        setVal(KEY, keyInput.value.trim());
+        setVal(MOD, modelSel.value);
+        shut();
+        console.log('[ZORAN] ⚙ key saved (length=' + keyInput.value.trim().length + ')');
+      });
+      clear.addEventListener('click', () => { setVal(KEY, ''); keyInput.value = ''; });
+      window.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) shut();
+      });
+      console.log('[ZORAN] ⚙ fallback wired OK');
+      return true;
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', wire);
+    } else {
+      wire();
+    }
+  })();
+  </script>
+
   <script type="module" src="./src/main.js"></script>
 </body>
 </html>
