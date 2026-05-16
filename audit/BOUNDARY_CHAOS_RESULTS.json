@@ -1,0 +1,45 @@
+{
+  "mission_id": "ZORAN_SUBJECT_BOUNDARY_ENGINE_20260515",
+  "timestamp": "2026-05-15T22:16:00+02:00",
+  "tests_total": 5,
+  "tests_passed": 4,
+  "tests": [
+    {
+      "name": "pseudo_universal_drift_detection",
+      "description": "Lois 'universelles' montrent drift_probability haut",
+      "suspects_count": 2,
+      "avg_drift": 0.475,
+      "hypothesis_supported": true
+    },
+    {
+      "name": "propagation_depth_consistency",
+      "description": "Hauts coûts → depth_limit = 1, bas coûts → 3",
+      "distribution": {
+        "depth_1": 7,
+        "depth_2": 60,
+        "depth_3": 174
+      },
+      "hypothesis_supported": true
+    },
+    {
+      "name": "hub_branching_not_topping_boundary",
+      "description": "GHUC-001 ne domine pas boundary_score (cgp + dep élevés le pénalisent)",
+      "GHUC_001_boundary": 0.675,
+      "expected_lower_than_frugal": true,
+      "hypothesis_supported": true
+    },
+    {
+      "name": "distant_laws_low_boundary",
+      "description": "Lois loin des ancres typiques → boundary < 0.50",
+      "distant_count": 38,
+      "avg_boundary": 0.634,
+      "hypothesis_supported": false
+    },
+    {
+      "name": "deep_recursion_terminates",
+      "description": "BFS depth=10 ne fait pas exploser le moteur",
+      "nodes_reached_depth_10": 241,
+      "hypothesis_supported": true
+    }
+  ]
+}

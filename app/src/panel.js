@@ -203,6 +203,168 @@ function distributedBlock(node) {
   </section>`;
 }
 
+function propagatedBlock(node) {
+  if (node.S_propagated == null) return '';
+  const sRaw = node.S_local_raw ?? node.S_local ?? 0;
+  const sProp = node.S_propagated;
+  const gap = sRaw - sProp;
+  const gapColor = gap > 0.20 ? 'var(--unstable)' : gap > 0.10 ? 'var(--accent)' : '#3ad17a';
+  const depLoad = node.dependency_load ?? 0;
+  const implCount = node.implicit_constraint_count ?? 0;
+  const rtCost = node.runtime_cost ?? 0;
+  const tCost = node.temporal_cost ?? 0;
+  const stabAfter = node.stability_after_propagation ?? 0;
+  const cgp = node.cross_graph_pressure ?? 0;
+  return `<section>
+    <h4>S propagé (coût réel contextuel)</h4>
+    <div class="frames">
+      <div class="frames-row"><span class="frames-glyph">S₀</span>
+        <span class="frames-label">S_local raw</span>
+        <span class="frames-content"><strong>${sRaw.toFixed(3)}</strong> · cohérence naïve</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">S↻</span>
+        <span class="frames-label">S propagé</span>
+        <span class="frames-content"><strong>${sProp.toFixed(3)}</strong>
+          <span style="color:${gapColor};margin-left:8px">gap ${gap >= 0 ? '−' : '+'}${Math.abs(gap).toFixed(3)}</span></span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⊥</span>
+        <span class="frames-label">Dep. load</span>
+        <span class="frames-content"><strong>${depLoad.toFixed(3)}</strong> · BFS-2 pondéré</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">#</span>
+        <span class="frames-label">Contraintes impl.</span>
+        <span class="frames-content"><strong>${implCount}</strong> · iso+comp+invariants</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">€r</span>
+        <span class="frames-label">Coût runtime</span>
+        <span class="frames-content"><strong>${rtCost.toFixed(3)}</strong></span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">€t</span>
+        <span class="frames-label">Coût temporel</span>
+        <span class="frames-content"><strong>${tCost.toFixed(3)}</strong></span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⇉</span>
+        <span class="frames-label">Stab. post-prop.</span>
+        <span class="frames-content"><strong>${stabAfter.toFixed(3)}</strong></span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⇊</span>
+        <span class="frames-label">Pression cross-G</span>
+        <span class="frames-content"><strong>${cgp.toFixed(3)}</strong></span>
+      </div>
+    </div>
+  </section>`;
+}
+
+function llmRelevanceBlock(node) {
+  if (node.llm_relevance_score == null) return '';
+  const llm = node.llm_relevance_score;
+  const ri = node.runtime_impact_score ?? 0;
+  const ah = node.anti_hallucination_score ?? 0;
+  const cg = node.contextualization_gain ?? 0;
+  const cdr = node.cross_domain_reuse ?? 0;
+  const rss = node.runtime_survival_score ?? 0;
+  const cp = node.canonical_priority ?? 0;
+  const tier = llm >= 0.65 ? 'fondamentale'
+             : llm >= 0.55 ? 'majeure'
+             : llm >= 0.45 ? 'utile'
+             : llm >= 0.30 ? 'marginale'
+             : 'non pertinente';
+  const tierColor = llm >= 0.55 ? 'var(--accent)'
+                  : llm >= 0.45 ? '#3ad17a'
+                  : llm >= 0.30 ? 'var(--fg-1)'
+                  : 'var(--unstable)';
+  return `<section>
+    <h4>Pertinence LLM (utilité ZORANs)</h4>
+    <div class="frames">
+      <div class="frames-row"><span class="frames-glyph">Λ</span>
+        <span class="frames-label">LLM score</span>
+        <span class="frames-content"><strong style="color:${tierColor}">${llm.toFixed(3)}</strong>
+          <span style="color:${tierColor};margin-left:8px">${tier}</span></span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⊳</span>
+        <span class="frames-label">Runtime impact</span>
+        <span class="frames-content"><strong>${ri.toFixed(3)}</strong></span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">✕</span>
+        <span class="frames-label">Anti-hallu</span>
+        <span class="frames-content"><strong>${ah.toFixed(3)}</strong></span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⊞</span>
+        <span class="frames-label">Context gain</span>
+        <span class="frames-content"><strong>${cg.toFixed(3)}</strong></span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">↻</span>
+        <span class="frames-label">Cross-domain reuse</span>
+        <span class="frames-content"><strong>${cdr.toFixed(3)}</strong></span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⌛</span>
+        <span class="frames-label">Runtime survival</span>
+        <span class="frames-content"><strong>${rss.toFixed(3)}</strong></span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">‖</span>
+        <span class="frames-label">Canonical priority</span>
+        <span class="frames-content"><strong>${cp.toFixed(3)}</strong></span>
+      </div>
+    </div>
+  </section>`;
+}
+
+function boundaryBlock(node) {
+  if (node.boundary_score == null) return '';
+  const bs = node.boundary_score;
+  const td = node.topic_distance;
+  const rr = node.runtime_relevance ?? 0;
+  const pc = node.propagation_cost ?? 0;
+  const dp = node.drift_probability ?? 0;
+  const ig = node.information_gain ?? 0;
+  const cd = node.contextual_density ?? 0;
+  const pdl = node.propagation_depth_limit ?? 2;
+  const rfs = node.runtime_focus_score ?? 0;
+  const driftColor = dp > 0.50 ? 'var(--unstable)' : dp > 0.30 ? 'var(--accent)' : '#3ad17a';
+  const bsColor = bs > 0.65 ? '#3ad17a' : bs > 0.45 ? 'var(--accent)' : 'var(--fg-2)';
+  return `<section>
+    <h4>Bornage contextuel (sujet actif)</h4>
+    <div class="frames">
+      <div class="frames-row"><span class="frames-glyph">⊕</span>
+        <span class="frames-label">Boundary</span>
+        <span class="frames-content"><strong style="color:${bsColor}">${bs.toFixed(3)}</strong> · prioritaire runtime si > 0.65</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">↦</span>
+        <span class="frames-label">Topic distance</span>
+        <span class="frames-content"><strong>${td}</strong> · BFS depuis ancres</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⊙</span>
+        <span class="frames-label">Runtime relev.</span>
+        <span class="frames-content"><strong>${rr.toFixed(3)}</strong></span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">€p</span>
+        <span class="frames-label">Coût propag.</span>
+        <span class="frames-content"><strong>${pc.toFixed(3)}</strong></span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⚠</span>
+        <span class="frames-label">Drift proba.</span>
+        <span class="frames-content"><strong style="color:${driftColor}">${dp.toFixed(3)}</strong></span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">Δ</span>
+        <span class="frames-label">Info gain</span>
+        <span class="frames-content"><strong>${ig.toFixed(3)}</strong></span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⊞</span>
+        <span class="frames-label">Context density</span>
+        <span class="frames-content"><strong>${cd.toFixed(3)}</strong></span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">⇣</span>
+        <span class="frames-label">Depth limit</span>
+        <span class="frames-content"><strong>${pdl}</strong> · BFS max recommandé</span>
+      </div>
+      <div class="frames-row"><span class="frames-glyph">◎</span>
+        <span class="frames-label">Focus runtime</span>
+        <span class="frames-content"><strong>${rfs.toFixed(3)}</strong></span>
+      </div>
+    </div>
+  </section>`;
+}
+
 function temporalBlock(node) {
   if (node.temporal_stability == null) return '';
   const ts = node.temporal_stability;
@@ -293,6 +455,9 @@ export function renderDetail(node, graph, onPick) {
     ${eqs ? `<section class="equations"><h4>Équations</h4>${eqs}</section>` : ''}
     ${ex  ? `<section><h4>Exemples</h4><ul class="examples">${ex}</ul></section>` : ''}
     ${superiorBlock(node)}
+    ${llmRelevanceBlock(node)}
+    ${propagatedBlock(node)}
+    ${boundaryBlock(node)}
     ${distributedBlock(node)}
     ${temporalBlock(node)}
     ${familyInvariant}

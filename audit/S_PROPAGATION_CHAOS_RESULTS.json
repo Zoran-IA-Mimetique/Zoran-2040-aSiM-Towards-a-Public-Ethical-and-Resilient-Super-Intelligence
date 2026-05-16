@@ -1,0 +1,50 @@
+{
+  "mission_id": "ZORAN_S_PROPAGATION_ENGINE_20260515",
+  "timestamp": "2026-05-15T22:01:00+02:00",
+  "tests_total": 5,
+  "tests_passed": 5,
+  "tests": [
+    {
+      "name": "loi_generale_costliness",
+      "description": "Une loi générale a-t-elle un S_propagated < S_local_raw ?",
+      "sample_id": "DVE-001",
+      "S_local_raw": 0.96,
+      "S_propagated": 0.735,
+      "gap_observed": 0.225,
+      "hypothesis_supported": true
+    },
+    {
+      "name": "circular_dependencies",
+      "description": "Existe-t-il des cycles dans iso edges ?",
+      "iso_triangles_detected": 0,
+      "hypothesis_supported": true
+    },
+    {
+      "name": "implicit_constraint_overload",
+      "description": "Combien de lois ont > 15 contraintes implicites ?",
+      "overloaded_count": 0,
+      "overloaded_sample": [],
+      "hypothesis_supported": true
+    },
+    {
+      "name": "recursive_propagation_stability",
+      "description": "BFS depth=3 termine sans explosion combinatoire",
+      "nodes_reached_depth_3": 34,
+      "iterations": 106,
+      "hypothesis_supported": true
+    },
+    {
+      "name": "false_high_S",
+      "description": "Lois suspectes : S_local ≥ 0.95 mais S_propagated < 0.75",
+      "false_high_S_count": 5,
+      "false_high_S_sample": [
+        "DVE-001",
+        "UDE-001",
+        "GHUC-001",
+        "WP11-001",
+        "WP12-001"
+      ],
+      "hypothesis_supported": true
+    }
+  ]
+}

@@ -131,12 +131,21 @@ try {
 // Take a screenshot WITH panel open (selected GHUC-001) BEFORE Esc test
 await page.locator('#index li[data-id="GHUC-001"]').first().click();
 await page.waitForTimeout(600);
-// Scroll the detail panel down to expose distributed + temporal sections
+// Scroll the detail panel to S_propagated section
 await page.evaluate(() => {
   const body = document.getElementById('detail-body');
-  if (body) body.scrollTop = body.scrollHeight / 2;
+  if (body) {
+    // Find S propagé section
+    const sections = body.querySelectorAll('h4');
+    for (const h of sections) {
+      if (h.textContent.includes('S propagé')) {
+        h.scrollIntoView({ block: 'start', behavior: 'instant' });
+        break;
+      }
+    }
+  }
 });
-await page.waitForTimeout(200);
+await page.waitForTimeout(300);
 await page.screenshot({ path: 'app/preview-live.png', fullPage: false });
 
 // Verify the Superior Laws section is populated AND the badge appears
@@ -146,12 +155,24 @@ const supSectionLabel = await page.locator('.frames-label:has-text("Probability"
 const tempSectionCount = await page.locator('#temporal-laws li').count();
 const tempPanelLabel = await page.locator('.frames-label:has-text("Pression cohér")').count();
 const distPanelLabel = await page.locator('.frames-label:has-text("Validation")').count();
+const propSectionLabel = await page.locator('.frames-label:has-text("S propagé")').count();
+const propGapLabel = await page.locator('.frames-label:has-text("Contraintes impl")').count();
 console.log(`\n  Superior Laws sidebar : ${supSectionCount} items`);
 console.log(`  ★ SUPÉRIEURE badge   : ${supBadgeVisible > 0 ? 'visible' : 'absent'}`);
 console.log(`  Probability section  : ${supSectionLabel > 0 ? 'présente' : 'absente'}`);
 console.log(`  Temporal sidebar     : ${tempSectionCount} items`);
 console.log(`  Pression cohérence   : ${tempPanelLabel > 0 ? 'présente' : 'absente'}`);
 console.log(`  Validation distrib.  : ${distPanelLabel > 0 ? 'présente' : 'absente'}`);
+console.log(`  S propagé section    : ${propSectionLabel > 0 ? 'présente' : 'absente'}`);
+console.log(`  Contraintes impl.    : ${propGapLabel > 0 ? 'présente' : 'absente'}`);
+const llmLabel = await page.locator('.frames-label:has-text("LLM score")').count();
+const boundaryLabel = await page.locator('.frames-label:has-text("Boundary")').count();
+const driftLabel = await page.locator('.frames-label:has-text("Drift proba")').count();
+const ahLabel = await page.locator('.frames-label:has-text("Anti-hallu")').count();
+console.log(`  LLM relevance section: ${llmLabel > 0 ? 'présente' : 'absente'}`);
+console.log(`  Boundary section     : ${boundaryLabel > 0 ? 'présente' : 'absente'}`);
+console.log(`  Drift probability    : ${driftLabel > 0 ? 'présente' : 'absente'}`);
+console.log(`  Anti-hallu score     : ${ahLabel > 0 ? 'présente' : 'absente'}`);
 
 // Second screenshot — sidebar visible (panel closed)
 await page.keyboard.press('Escape');
