@@ -21,6 +21,7 @@ import { detectDomainLeak } from './domain_leak.js';
 import { seductiveComplexity } from './seductive_complexity.js';
 import { estimateComplexity } from './complexity_estimator.js';
 import { detectOverthink } from './overthink_detector.js';
+import { identityGate, identityHalluRisk } from './identity_gate.js';
 
 // Top 3 routes utilisées pour la compétition (sous-ensemble — coût API maîtrisé)
 const SUPERIORITY_ROUTES = ['frugale', 'anti_hallucination', 'structurelle'];
@@ -28,6 +29,35 @@ const SUPERIORITY_ROUTES = ['frugale', 'anti_hallucination', 'structurelle'];
 export async function runSuperiorityComparison({ question, allNodes, routeResults }) {
   const t0 = performance.now();
   console.log('[ZORAN sup] START — question=', question.slice(0, 60));
+
+  // ═══ MISSION V7 : IDENTITY DISAMBIGUATION GATE (priorité absolue) ═══
+  // BLOQUE toute génération si nom propre ambigu sans contexte suffisant.
+  // Lois prioritaires : WP12-028, WP12-009, WP11-009, DVE-020, WP12-031, SDE-019.
+  const idGate = identityGate(question);
+  console.log(`[ZORAN sup] identity gate : passes=${idGate.passes_gate} reason=${idGate.reason}`);
+  if (!idGate.passes_gate) {
+    console.log('[ZORAN sup] BLOCKED by identity gate — disambiguation requise (anti-hallu biographique)');
+    return {
+      ok: true,
+      partial: true,
+      fast_path: 'identity_disambiguation',
+      identity_gate: idGate,
+      question,
+      responses: [{
+        label: 'CLARIFICATION REQUISE · identity gate',
+        strategy: 'disambiguation',
+        text: idGate.response_if_blocked,
+        laws_used: idGate.lois_applied,
+        reformulation: '(gate identitaire — pas de génération biographique sans contexte)',
+        ok: true,
+      }],
+      judge: null,
+      deltas: [],
+      verdict: 'CLARIFICATION REQUISE · identity gate',
+      blocked_reason: 'ambiguous_identity_low_confidence',
+      latency_ms: Math.round(performance.now() - t0),
+    };
+  }
 
   // ═══ MISSION V6 : COMPLEXITY GATING (anti sur-orchestration) ═══
   // Avant toute orchestration ZORAN, estime la complexité de la question.
@@ -233,6 +263,8 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
       complexity_score: complexity.complexity_score,
       depth_required: complexity.depth_required,
     });
+    // Mission V7 : identity_hallu_risk post-hoc
+    r.identity_hallu_risk = identityHalluRisk(question, r.text);
     // domain_fitness déjà calculé pour les ZORAN (skippées exclues)
     if (r.strategy !== 'baseline') {
       const spec = zoranSpecs.find(s => s.stratName === r.strategy);
@@ -326,6 +358,8 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
         seductive_complexity: respObj.seductive_complexity || null,
         // Mission V6 — overthink détection
         overthink: respObj.overthink || null,
+        // Mission V7 — identity hallu risk
+        identity_hallu_risk: respObj.identity_hallu_risk || null,
         // Score composite : intègre concret + anti-jargon - pénalité troncature
         runtime_superiority: +(
           0.22 * (s.precision - baselineScore.precision)

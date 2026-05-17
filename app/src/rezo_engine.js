@@ -35,6 +35,7 @@ import { systemicCoherenceScore } from './systemic_coherence.js';
 import { runFragilityDetector } from './fragility_detector.js';
 import { detectDomainLeak } from './domain_leak.js';
 import { seductiveComplexity } from './seductive_complexity.js';
+import { identityHalluRisk } from './identity_gate.js';
 
 // ───────────────────── DIAGNOSTIC FAIBLESSES ─────────────────────
 
@@ -133,6 +134,12 @@ const WEAKNESS_CHECKS = {
     test: (text, _) => seductiveComplexity(text).score >= 0.50,
     injection: 'frugale',
     fix_hint: 'Simplifier le vocabulaire, supprimer fillers intellectuels, ajouter actions et chiffres.',
+  },
+  // Mission V7 : hallucination biographique sur identité ambiguë
+  identity_hallu_risk: {
+    test: (text, ctx) => identityHalluRisk(ctx.question || '', text).fires,
+    injection: 'anti_hallucination',
+    fix_hint: 'Remplacer affirmations biographiques par "À vérifier auprès d\'une source web" ou demande de désambiguïsation.',
   },
 };
 
