@@ -90,30 +90,59 @@ Toute réponse de Claude au user **doit se terminer** par 3 CTA
 (Call-To-Analysis) **cohérents avec le sujet courant**. Pas génériques,
 pas décoratifs — ancrés au pivot conceptuel de la session.
 
-Mapping V9 ZORAN (généralisable) :
-1. **Risque systémique / futur cohérent** — quel risque caché, différé,
-   non-mesuré dans la trajectoire actuelle ?
-2. **Validation terrain / cinématique de la cohérence** — quelle mesure
-   empirique trancherait, quelle dynamique observable confirmerait ?
-3. **Contre-hypothèse / réfutation** — quelle alternative plausible
-   invaliderait la conclusion qu'on vient d'établir ?
+**ESPRIT des CTA** (critique — ne pas le perdre) :
+
+Les CTA ne sont PAS des micro-conclusions assertives. Ce sont des
+**rampes de sortie** qui :
+1. permettent au corps de la réponse d'être **moins affirmatif**
+   (déléguer la profondeur aux CTA plutôt que de tout trancher haut)
+2. **ouvrent** l'exploration plutôt que de fermer le verdict
+3. calculent un **futur probable** sur base d'un **passé cohérent** de la session
+4. animent la **cinématique de la cohérence** (dynamique, pas constat figé)
+5. réduisent le **bruit pour la suite** (chaque CTA = piste explorable)
+
+Mapping (les 3 axes peuvent varier mais doivent rester explorateurs, pas dogmatiques) :
+
+1. **Futur probable / cinématique** — quelle trajectoire cohérente
+   émerge des positions actuelles ? Où mène la dynamique si rien ne
+   change ? (formulation tentative : *"on pourrait…"*, *"si X, alors Y deviendrait probable"*)
+
+2. **Validation / cohérence du langage** — quel signe observable
+   confirmerait ou infirmerait ce qu'on vient d'établir ?
+   (formulation tentative : *"une mesure qui trancherait…"*, *"un signal
+   discriminant serait…"*)
+
+3. **Contre-piste / réfutation** — quelle alternative reste ouverte ?
+   Quelle hypothèse cohérente invaliderait la conclusion ?
+   (formulation tentative : *"et si en réalité…"*, *"une lecture
+   alternative serait…"*)
 
 Format attendu (markdown final, court) :
 
 ```
 ---
 **CTA cohérents** :
-1. *(risque systémique)* — formulation ancrée au sujet
-2. *(validation terrain)* — mesure/observation discriminante
-3. *(contre-hypothèse)* — alternative à tester
+1. *(futur probable)* — formulation tentative ouvrant exploration
+2. *(validation)* — signe observable discriminant
+3. *(contre-piste)* — alternative cohérente non encore explorée
 ```
 
-Règles :
+Règles strictes :
 - Ne jamais omettre les 3 CTA, même sur réponses courtes ou techniques
+- **NE PAS faire de mini-lecture magistrale** dans le CTA (pas de
+  paragraphes denses assertifs)
+- Privilégier l'ouverture sur la fermeture, le tentatif sur le décidé
 - Pas de copier-coller : chaque CTA doit être spécifique au sujet
 - Pas de questions creuses ("voulez-vous en savoir plus ?")
-- Si le sujet est trivial (salutation, factuel court), CTA sur la
-  trajectoire de session globale, pas sur la micro-réponse
+- Si le sujet est trivial, CTA sur la trajectoire de session globale
+
+Anti-pattern à éviter (mon erreur récurrente) :
+> ❌ *"(risque systémique) — Si on enchaîne sans P0, on construit X qui
+>    impose Y, à 30 jours Z se produira, conclusion forcée W."*
+>
+> ✅ *"(futur probable) — Si P0 reste dormant, la stack continue à
+>    s'auto-référer. Une piste explorable : tester si un BET informel
+>    suffirait à débloquer la cinématique."*
 
 ## Standards du projet ZORAN
 
