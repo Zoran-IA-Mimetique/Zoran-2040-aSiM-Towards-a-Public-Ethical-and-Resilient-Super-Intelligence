@@ -22,6 +22,8 @@ import { seductiveComplexity } from './seductive_complexity.js';
 import { estimateComplexity } from './complexity_estimator.js';
 import { detectOverthink } from './overthink_detector.js';
 import { identityGate, identityHalluRisk } from './identity_gate.js';
+import { generateAllCTAs, detectCTAPresence } from './zoran_cta_engine.js';
+import { btpAnalysis, isBTPQuestion } from './btp_supremacy_engine.js';
 
 // Top 3 routes utilisées pour la compétition (sous-ensemble — coût API maîtrisé)
 const SUPERIORITY_ROUTES = ['frugale', 'anti_hallucination', 'structurelle'];
@@ -265,6 +267,10 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
     });
     // Mission V7 : identity_hallu_risk post-hoc
     r.identity_hallu_risk = identityHalluRisk(question, r.text);
+    // Mission V9 : CTA présence + BTP supremacy analysis
+    r.cta_presence = detectCTAPresence(r.text);
+    r.btp_analysis = btpAnalysis(question, r.text);
+    r.ctas_suggested = generateAllCTAs({ question, responseText: r.text });
     // domain_fitness déjà calculé pour les ZORAN (skippées exclues)
     if (r.strategy !== 'baseline') {
       const spec = zoranSpecs.find(s => s.stratName === r.strategy);
@@ -360,6 +366,10 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
         overthink: respObj.overthink || null,
         // Mission V7 — identity hallu risk
         identity_hallu_risk: respObj.identity_hallu_risk || null,
+        // Mission V9 — CTA + BTP analysis
+        cta_presence: respObj.cta_presence || null,
+        btp_analysis: respObj.btp_analysis || null,
+        ctas_suggested: respObj.ctas_suggested || null,
         // Score composite : intègre concret + anti-jargon - pénalité troncature
         runtime_superiority: +(
           0.22 * (s.precision - baselineScore.precision)

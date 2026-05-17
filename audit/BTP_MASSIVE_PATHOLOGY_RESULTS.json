@@ -1,0 +1,294 @@
+{
+  "mission_id": "BTP_MASSIVE_PATHOLOGY_SUITE_V1_20260517",
+  "corpus_size": 300,
+  "duration_ms": 20,
+  "metrics": {
+    "pathology_recall": 77.3,
+    "pathology_precision": 97.1,
+    "pathology_f1": 86.1,
+    "btp_classification_agreement": 88.3
+  },
+  "by_category": {
+    "SIMPLE_PATHO": {
+      "total": 50,
+      "tp": 55,
+      "fp": 10,
+      "fn": 10,
+      "btp_ok": 50
+    },
+    "COUPLED_PATHO": {
+      "total": 50,
+      "tp": 115,
+      "fp": 0,
+      "fn": 15,
+      "btp_ok": 50
+    },
+    "TRAPS": {
+      "total": 40,
+      "tp": 45,
+      "fp": 0,
+      "fn": 0,
+      "btp_ok": 40
+    },
+    "LEGAL": {
+      "total": 40,
+      "tp": 40,
+      "fp": 0,
+      "fn": 15,
+      "btp_ok": 30
+    },
+    "ENERGETIQUE": {
+      "total": 40,
+      "tp": 30,
+      "fp": 0,
+      "fn": 25,
+      "btp_ok": 35
+    },
+    "GEOTECHNIQUE": {
+      "total": 40,
+      "tp": 35,
+      "fp": 0,
+      "fn": 20,
+      "btp_ok": 30
+    },
+    "AUDIT": {
+      "total": 40,
+      "tp": 20,
+      "fp": 0,
+      "fn": 15,
+      "btp_ok": 30
+    }
+  },
+  "sample_cases": [
+    {
+      "q": "Mon mur extérieur présente des fissures verticales de 2mm. Que faire ?",
+      "patho": [
+        "fissuration"
+      ],
+      "category": "SIMPLE_PATHO",
+      "eval": {
+        "detected_pathologies": [
+          "fissuration"
+        ],
+        "expected_pathologies": [
+          "fissuration"
+        ],
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "pathology_recall": 1,
+        "pathology_precision": 1,
+        "is_btp_detected": true,
+        "is_btp_expected": true,
+        "cta_generated": 3
+      }
+    },
+    {
+      "q": "Question expertise : Mon mur extérieur présente des fissures verticales de 2mm. Que faire ?",
+      "patho": [
+        "fissuration"
+      ],
+      "category": "SIMPLE_PATHO",
+      "eval": {
+        "detected_pathologies": [
+          "fissuration"
+        ],
+        "expected_pathologies": [
+          "fissuration"
+        ],
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "pathology_recall": 1,
+        "pathology_precision": 1,
+        "is_btp_detected": true,
+        "is_btp_expected": true,
+        "cta_generated": 3
+      }
+    },
+    {
+      "q": "Bonjour, Mon mur extérieur présente des fissures verticales de 2mm. Que faire ?",
+      "patho": [
+        "fissuration"
+      ],
+      "category": "SIMPLE_PATHO",
+      "eval": {
+        "detected_pathologies": [
+          "fissuration"
+        ],
+        "expected_pathologies": [
+          "fissuration"
+        ],
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "pathology_recall": 1,
+        "pathology_precision": 1,
+        "is_btp_detected": true,
+        "is_btp_expected": true,
+        "cta_generated": 3
+      }
+    },
+    {
+      "q": "Pouvez-vous m'éclairer : Mon mur extérieur présente des fissures verticales de 2mm. Que faire ?",
+      "patho": [
+        "fissuration"
+      ],
+      "category": "SIMPLE_PATHO",
+      "eval": {
+        "detected_pathologies": [
+          "fissuration"
+        ],
+        "expected_pathologies": [
+          "fissuration"
+        ],
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "pathology_recall": 1,
+        "pathology_precision": 1,
+        "is_btp_detected": true,
+        "is_btp_expected": true,
+        "cta_generated": 3
+      }
+    },
+    {
+      "q": "Diagnostic en cours : Mon mur extérieur présente des fissures verticales de 2mm. Que faire ?",
+      "patho": [
+        "fissuration"
+      ],
+      "category": "SIMPLE_PATHO",
+      "eval": {
+        "detected_pathologies": [
+          "fissuration"
+        ],
+        "expected_pathologies": [
+          "fissuration"
+        ],
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "pathology_recall": 1,
+        "pathology_precision": 1,
+        "is_btp_detected": true,
+        "is_btp_expected": true,
+        "cta_generated": 3
+      }
+    },
+    {
+      "q": "J'ai des taches d'humidité au pied du mur Nord, quelle cause ?",
+      "patho": [
+        "humidite"
+      ],
+      "category": "SIMPLE_PATHO",
+      "eval": {
+        "detected_pathologies": [
+          "humidite"
+        ],
+        "expected_pathologies": [
+          "humidite"
+        ],
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "pathology_recall": 1,
+        "pathology_precision": 1,
+        "is_btp_detected": true,
+        "is_btp_expected": true,
+        "cta_generated": 3
+      }
+    },
+    {
+      "q": "Question expertise : J'ai des taches d'humidité au pied du mur Nord, quelle cause ?",
+      "patho": [
+        "humidite"
+      ],
+      "category": "SIMPLE_PATHO",
+      "eval": {
+        "detected_pathologies": [
+          "humidite"
+        ],
+        "expected_pathologies": [
+          "humidite"
+        ],
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "pathology_recall": 1,
+        "pathology_precision": 1,
+        "is_btp_detected": true,
+        "is_btp_expected": true,
+        "cta_generated": 3
+      }
+    },
+    {
+      "q": "Bonjour, J'ai des taches d'humidité au pied du mur Nord, quelle cause ?",
+      "patho": [
+        "humidite"
+      ],
+      "category": "SIMPLE_PATHO",
+      "eval": {
+        "detected_pathologies": [
+          "humidite"
+        ],
+        "expected_pathologies": [
+          "humidite"
+        ],
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "pathology_recall": 1,
+        "pathology_precision": 1,
+        "is_btp_detected": true,
+        "is_btp_expected": true,
+        "cta_generated": 3
+      }
+    },
+    {
+      "q": "Pouvez-vous m'éclairer : J'ai des taches d'humidité au pied du mur Nord, quelle cause ?",
+      "patho": [
+        "humidite"
+      ],
+      "category": "SIMPLE_PATHO",
+      "eval": {
+        "detected_pathologies": [
+          "humidite"
+        ],
+        "expected_pathologies": [
+          "humidite"
+        ],
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "pathology_recall": 1,
+        "pathology_precision": 1,
+        "is_btp_detected": true,
+        "is_btp_expected": true,
+        "cta_generated": 3
+      }
+    },
+    {
+      "q": "Diagnostic en cours : J'ai des taches d'humidité au pied du mur Nord, quelle cause ?",
+      "patho": [
+        "humidite"
+      ],
+      "category": "SIMPLE_PATHO",
+      "eval": {
+        "detected_pathologies": [
+          "humidite"
+        ],
+        "expected_pathologies": [
+          "humidite"
+        ],
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "pathology_recall": 1,
+        "pathology_precision": 1,
+        "is_btp_detected": true,
+        "is_btp_expected": true,
+        "cta_generated": 3
+      }
+    }
+  ]
+}

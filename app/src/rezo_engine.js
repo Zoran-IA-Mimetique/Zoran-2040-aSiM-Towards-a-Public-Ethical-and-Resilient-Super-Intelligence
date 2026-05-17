@@ -36,6 +36,8 @@ import { runFragilityDetector } from './fragility_detector.js';
 import { detectDomainLeak } from './domain_leak.js';
 import { seductiveComplexity } from './seductive_complexity.js';
 import { identityHalluRisk } from './identity_gate.js';
+import { detectCTAPresence } from './zoran_cta_engine.js';
+import { btpOperationalScore, isBTPQuestion } from './btp_supremacy_engine.js';
 
 // ───────────────────── DIAGNOSTIC FAIBLESSES ─────────────────────
 
@@ -140,6 +142,22 @@ const WEAKNESS_CHECKS = {
     test: (text, ctx) => identityHalluRisk(ctx.question || '', text).fires,
     injection: 'anti_hallucination',
     fix_hint: 'Remplacer affirmations biographiques par "À vérifier auprès d\'une source web" ou demande de désambiguïsation.',
+  },
+  // Mission V9 : CTA manquants (risque systémique, validation terrain, contre-hypothèse)
+  missing_ctas: {
+    test: (text, _) => text.length > 200 && detectCTAPresence(text).coverage < 0.34,
+    injection: 'structurelle',
+    fix_hint: 'Ajouter les 3 CTA : risque systémique caché / mesures terrain discriminantes / contre-hypothèse plausible.',
+  },
+  // Mission V9 : réponse BTP shallow (sans expertise opérationnelle)
+  shallow_btp_response: {
+    test: (text, ctx) => {
+      if (!isBTPQuestion(ctx.question || '')) return false;
+      const op = btpOperationalScore(text);
+      return op.score < 0.30 && text.length > 150;
+    },
+    injection: 'orchestrated',
+    fix_hint: 'BTP : niveau expert BET/judiciaire requis. Ajouter CAUSE_MAP (dominante/cofacteurs/amplificateurs), mesures terrain (sondage/caméra/humidimètre), décennale awareness.',
   },
 };
 
