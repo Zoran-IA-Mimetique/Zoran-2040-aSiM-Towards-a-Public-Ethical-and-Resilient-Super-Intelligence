@@ -73,6 +73,56 @@ export function noiseProfile(text) {
 }
 
 /**
+ * COGNITIVE_LOAD [0..1] — coût de lecture (mission SUPERIORITY_V2 AXE 4).
+ * Mesure : longueur, complexité phrastique, surcharge conceptuelle.
+ * Plus bas = plus facile à lire.
+ */
+export function cognitiveLoad(text) {
+  if (!text || text.length < 30) return 0;
+  const words = wordCount(text);
+  const sentences = (text.match(/[.!?]+/g) || []).length || 1;
+  const avgSentenceLength = words / sentences;
+  // Mots longs (> 12 lettres) = signal de complexité
+  const longWords = (text.match(/\b\w{12,}\b/g) || []).length;
+  // Charge = longueur + phrases longues + densité mots longs
+  const loadFromLength = Math.min(0.4, words / 600);          // ≤ 0.4
+  const loadFromSentences = Math.min(0.3, avgSentenceLength / 35); // ≤ 0.3
+  const loadFromComplexity = Math.min(0.3, longWords / Math.max(20, words) * 6); // ≤ 0.3
+  return +(loadFromLength + loadFromSentences + loadFromComplexity).toFixed(3);
+}
+
+/**
+ * ROBUSTNESS_OOD [0..1] — V2 heuristique : indique si la réponse gère
+ * l'incertitude (mots de prudence calibrée) ET reste actionnable.
+ * Plus haut = mieux face à OOD/ambiguïté.
+ */
+const CALIBRATED_HEDGES_RX = /\b(probable|vraisemblable|en général|dans la plupart des cas|à vérifier|selon le contexte|si confirmé|à condition que|nécessite expertise)\b/gi;
+const OVERCLAIM_RX = /\b(toujours|jamais|impossible|absolument|certainement|sans aucun doute|prouvé que|évidemment)\b/gi;
+
+export function robustnessOOD(text) {
+  if (!text || text.length < 50) return 0.5;
+  const words = wordCount(text);
+  const hedges = (text.match(CALIBRATED_HEDGES_RX) || []).length;
+  const overclaims = (text.match(OVERCLAIM_RX) || []).length;
+  // Bonus pour prudence calibrée, malus pour overclaims
+  const hedgeDensity = Math.min(0.4, hedges / Math.max(10, words / 50));
+  const overclaimPenalty = Math.min(0.5, overclaims * 0.15);
+  return Math.max(0, Math.min(1, 0.5 + hedgeDensity - overclaimPenalty));
+}
+
+/**
+ * USEFUL_INFORMATION_DENSITY V2 — enrichi avec stabilité logique.
+ * Détecte contradictions internes (ex: "X est vrai" puis "X est faux").
+ */
+export function usefulInformationDensityV2(text) {
+  const v1 = usefulInformationDensity(text);
+  // Bonus pour structures différentielles (vs, contrairement, à l'inverse)
+  const diff = (text.match(/\b(contrairement|à l'inverse|en revanche|mais aussi|différ|distingue)/gi) || []).length;
+  const diffBonus = Math.min(0.15, diff * 0.05);
+  return Math.max(0, Math.min(1, v1 + diffBonus));
+}
+
+/**
  * GLOBAL_USEFULNESS composite [0..1] — score winner explicite.
  * Mission SUPERIORITY_CONVERGENCE :
  *   0.25 pertinence_domaine + 0.20 actionnabilité + 0.15 cohérence
