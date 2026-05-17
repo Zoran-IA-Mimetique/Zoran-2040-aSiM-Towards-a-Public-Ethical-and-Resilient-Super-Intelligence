@@ -14,6 +14,8 @@ import { computeDomainFitness, shouldSkipRoute, getStrategyProfile } from './rou
 import { detectTruncation, completionIntegrity, truncationPenalty, terrainAlignment, fieldActionability } from './completion.js';
 import { detectDomain } from './domain_detection.js';
 import { diagnoseWeaknesses, generateClaudePlusRezo, activationMatrix } from './rezo_engine.js';
+import { systemicCoherenceReport } from './systemic_coherence.js';
+import { runAntiGoodhart } from './anti_goodhart.js';
 
 // Top 3 routes utilisées pour la compétition (sous-ensemble — coût API maîtrisé)
 const SUPERIORITY_ROUTES = ['frugale', 'anti_hallucination', 'structurelle'];
@@ -175,6 +177,9 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
     r.truncation_penalty = truncationPenalty(r.text, r.usage);
     // Mission métriques recalibrées : terrain alignment
     r.terrain_alignment = +terrainAlignment(r.text).toFixed(3);
+    // Mission SYSTEMIC_SELECTION V3 : cohérence systémique + anti-Goodhart
+    r.systemic_coherence = systemicCoherenceReport(r.text);
+    r.goodhart = runAntiGoodhart(r.text);
     // domain_fitness déjà calculé pour les ZORAN (skippées exclues)
     if (r.strategy !== 'baseline') {
       const spec = zoranSpecs.find(s => s.stratName === r.strategy);
@@ -258,6 +263,9 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
         weaknesses: s.weaknesses || [],
         noise_detected: s.noise_detected || '',
         hallucination_risk: s.hallucination_risk || '',
+        // Mission SYSTEMIC_SELECTION V3
+        systemic_coherence: respObj.systemic_coherence || null,
+        goodhart: respObj.goodhart || null,
         // Score composite : intègre concret + anti-jargon - pénalité troncature
         runtime_superiority: +(
           0.22 * (s.precision - baselineScore.precision)
@@ -517,6 +525,56 @@ export function renderComparison(result) {
       </div>
     </details>`;
 
+  // ─── 2ter) COHÉRENCE SYSTÉMIQUE + ANTI-GOODHART (mission V3) ───
+  // Mesure la VIABILITÉ SYSTÉMIQUE d'une réponse, séparément de sa précision.
+  // 5 sous-scores systemic_coherence + 4 détecteurs anti-Goodhart.
+  const systemicTable = `
+    <details class="sup-section" open>
+      <summary>Cohérence systémique + anti-Goodhart (mission V3 — viabilité long terme)</summary>
+      <div class="sup-deltas-table" style="margin-top:8px">
+        <div class="sup-deltas-row sup-deltas-header" style="grid-template-columns:24px 1fr 56px 56px 56px 56px 56px 72px 72px">
+          <span class="sup-col-rank">#</span>
+          <span class="sup-col-label">Candidat</span>
+          <span class="sup-col-num" title="resilience — marges préservées">résil</span>
+          <span class="sup-col-num" title="multiscale — local+global+temporel+causal">échel</span>
+          <span class="sup-col-num" title="false_benefit_detec — nomme proxies/Goodhart">f.bén</span>
+          <span class="sup-col-num" title="causal_robustness — multi-causes">causal</span>
+          <span class="sup-col-num" title="long_term_viability">LT</span>
+          <span class="sup-col-sup" title="systemic_coherence composite">cohér.sys</span>
+          <span class="sup-col-sup" title="goodhart_risk (plus bas = mieux)">Goodhart</span>
+        </div>
+        ${sortedByRank.map((d, i) => {
+          const sc = d.systemic_coherence || {};
+          const gh = d.goodhart || {};
+          const gRisk = gh.goodhart_risk ?? 0;
+          const ghClass = gRisk >= 0.4 ? 'bad' : gRisk <= 0.15 ? 'good' : '';
+          const cohClass = (sc.composite ?? 0) >= 0.5 ? 'good' : (sc.composite ?? 0) <= 0.30 ? 'bad' : '';
+          return `<div class="sup-deltas-row ${i === 0 ? 'is-rank-1' : ''}" style="grid-template-columns:24px 1fr 56px 56px 56px 56px 56px 72px 72px">
+            <span class="sup-col-rank">${i+1}</span>
+            <span class="sup-col-label">${escHtml(d.label)}</span>
+            <span class="sup-col-num">${(sc.resilience ?? 0).toFixed(2)}</span>
+            <span class="sup-col-num">${(sc.multiscale ?? 0).toFixed(2)}</span>
+            <span class="sup-col-num">${(sc.false_benefit_detec ?? 0).toFixed(2)}</span>
+            <span class="sup-col-num">${(sc.causal_robustness ?? 0).toFixed(2)}</span>
+            <span class="sup-col-num">${(sc.long_term_viability ?? 0).toFixed(2)}</span>
+            <span class="sup-col-sup ${cohClass}">${(sc.composite ?? 0).toFixed(2)}</span>
+            <span class="sup-col-sup ${ghClass}">${gRisk.toFixed(2)}${gh.fired_count ? ` <small>(${gh.fired_count}/4)</small>` : ''}</span>
+          </div>`;
+        }).join('')}
+      </div>
+      ${sortedByRank.some(d => (d.goodhart?.fired_count ?? 0) > 0) ? `
+        <div class="sup-goodhart-hints" style="margin-top:8px;padding:8px;border:1px solid var(--border);border-radius:6px;background:var(--bg-1);font-size:12px">
+          <strong>⚠ Alertes Goodhart par candidat :</strong>
+          ${sortedByRank.map(d => {
+            const hints = d.goodhart?.hints || [];
+            if (hints.length === 0) return '';
+            return `<div style="margin-top:4px"><strong>${escHtml(d.label)}</strong> :
+              ${hints.map(h => `<span style="display:inline-block;padding:2px 6px;margin:2px;background:var(--bg-2);border-radius:4px">${escHtml(h.code)} — ${escHtml(h.hint.slice(0, 90))}</span>`).join(' ')}
+            </div>`;
+          }).join('')}
+        </div>` : ''}
+    </details>`;
+
   // ─── 3) REFORMULATIONS condensées — triées par grade /20 (UX cohérente) ───
   const reforms = sortedResponses.map((r, idx) => {
     if (!r.reformulation) return '';
@@ -583,6 +641,7 @@ export function renderComparison(result) {
       ${rankingBlock}
       ${argumentedDetails}
       ${concreteTable}
+      ${systemicTable}
       ${responsesBlock}
     </div>`;
   }
@@ -592,6 +651,7 @@ export function renderComparison(result) {
     ${rankingBlock}
     ${deltaTable}
     ${concreteTable}
+    ${systemicTable}
     ${reformsBlock}
     ${responsesBlock}
   </div>`;

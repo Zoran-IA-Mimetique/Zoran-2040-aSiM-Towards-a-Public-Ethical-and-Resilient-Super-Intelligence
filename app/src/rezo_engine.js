@@ -30,6 +30,8 @@ import { terrainAlignment } from './completion.js';
 import { detectDomain } from './domain_detection.js';
 import { mapStructural } from './structural_mapping.js';
 import { callLLM } from './llm.js';
+import { runAntiGoodhart } from './anti_goodhart.js';
+import { systemicCoherenceScore } from './systemic_coherence.js';
 
 // ───────────────────── DIAGNOSTIC FAIBLESSES ─────────────────────
 
@@ -86,6 +88,18 @@ const WEAKNESS_CHECKS = {
     },
     injection: 'anti_hallucination',
     fix_hint: 'Si fait incertain : "à vérifier auprès de [expert]" plutôt qu\'inventer.',
+  },
+  // Mission SYSTEMIC_SELECTION V3 : détecte signaux Goodhart dans Claude brut
+  goodhart_risk: {
+    test: (text, _) => runAntiGoodhart(text).goodhart_risk >= 0.40,
+    injection: 'structurelle',
+    fix_hint: 'Nommer ce qui est sacrifié, distinguer proxy/cible réelle, ajouter dimension long terme.',
+  },
+  // Mission SYSTEMIC_SELECTION V3 : cohérence systémique trop basse
+  weak_systemic_coherence: {
+    test: (text, _) => text.length > 200 && systemicCoherenceScore(text) < 0.35,
+    injection: 'structurelle',
+    fix_hint: 'Ajouter marges/résilience, échelles multiples (local+global+long terme), cofacteurs causaux.',
   },
 };
 
