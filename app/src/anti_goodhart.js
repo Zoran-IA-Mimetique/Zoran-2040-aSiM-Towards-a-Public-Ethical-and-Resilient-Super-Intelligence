@@ -102,8 +102,8 @@ export function detectMetricTunnel(text) {
 
 // ───────────────────── DÉTECTEUR 4 : LOCAL VS GLOBAL CONFLICT ─────────────────────
 // Gain local mentionné SANS considération de l'effet global / systémique.
-const LOCAL_GAIN_RX = /\b(amélior(er|ation) (locale|ponctuelle|immédiate)|gain (ici|sur ce poste|local|à ce niveau|spécifique)|optimis(er|ation) (cette |ce )(point|élément|composant|module|étape)|résout (le )?(problème immédiat|le symptôme))\b/gi;
-const GLOBAL_AWARENESS_RX = /\b(effet (sur le |sur l['']|global|systémique|d['']ensemble)|impact (global|d['']ensemble|systémique|sur le système)|conséquence sur (le système|l['']ensemble|le reste|les autres)|équilibre global|cohérence d['']ensemble|propagation|cascade|rebond ailleurs|déplacer le problème)\b/gi;
+const LOCAL_GAIN_RX = /\b(amélior(er|ation) (locale|ponctuelle|immédiate)|gain (ici|sur ce poste|local|à ce niveau|spécifique|immédiat\w*|ponctuel\w*)|optimis(er|ation) (cette |ce )?(point|élément|composant|module|étape|spécifique|locale|ponctuel\w*)|résout (le )?(problème immédiat|le symptôme))\b/gi;
+const GLOBAL_AWARENESS_RX = /\b(effet (sur le |sur l['']|global|systémique|d['']ensemble)\w*|impact (global|d['']ensemble|systémique|sur le système)\w*|conséquence\w* sur (le système|l['']ensemble|le reste|les autres)|équilibre global|cohérence d['']ensemble|propagation\w*|cascade\w*|rebond ailleurs|déplacer le problème)/gi;
 
 export function detectLocalVsGlobalConflict(text) {
   if (!text || text.length < 30) {

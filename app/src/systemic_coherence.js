@@ -24,7 +24,7 @@
 // ───────────────────── A. RESILIENCE ─────────────────────
 // Mots/concepts qui signalent PRÉSERVATION de marges, absorbeurs,
 // redondance, diversité, capacité d'adaptation.
-const MARGIN_PRESERVATION_RX = /\b(marge|réserve|redondan|tampon|absorbeur|diversit|variance utile|capacit[ée] d['']adaptation|degré de liberté|robustess|résili|tolérance|flexibil|backup|fallback|plan B|alternative|secours)\b/gi;
+const MARGIN_PRESERVATION_RX = /\b(marge\w*|réserve\w*|redondan\w*|tampon\w*|absorbeur\w*|diversit\w*|variance utile|capacit[ée] d['']adaptation|degré de liberté|robustess\w*|résili\w*|tolérance\w*|flexibil\w*|backup|fallback|plan B|alternative\w*|secours)\b/gi;
 
 // Mots/concepts qui signalent DESTRUCTION de marges — optimisation
 // agressive, suppression de redondance, rigidification.
@@ -77,7 +77,7 @@ export function falseBenefitDetection(text) {
 // ───────────────────── D. CAUSAL ROBUSTNESS ─────────────────────
 // Évite la mono-causalité naïve. Récompense multi-causes assumées,
 // pénalise affirmations causales simplistes.
-const MULTICAUSAL_RX = /\b(multi.?factoriel|plusieurs causes|cofacteur|interaction|conjonction|combinaison de facteurs|cascade|cha[iî]ne|effets cumulatif|synergie)\b/gi;
+const MULTICAUSAL_RX = /\b(multi.?factoriel\w*|plusieurs causes|cofacteur\w*|interaction\w*|conjonction\w*|combinaison de facteurs|cascade\w*|cha[iî]ne\w*|effets? cumulatif\w*|synergie\w*)\b/gi;
 const NAIVE_CAUSAL_RX = /\b((seule|unique) cause|c['']est (uniquement|seulement) (à cause|dû) à|la (seule |vraie )?cause est|monocausal|raison principale unique)\b/gi;
 const CORRELATION_DISCLAIMER_RX = /\b(corrélation n['']est pas causalité|covarier|coïncider sans causer|corrélation ne signifie pas|spurious|faux lien|confondant)\b/gi;
 
