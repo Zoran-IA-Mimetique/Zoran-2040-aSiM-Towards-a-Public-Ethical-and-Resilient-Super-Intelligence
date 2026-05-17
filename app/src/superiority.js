@@ -19,6 +19,8 @@ import { runAntiGoodhart } from './anti_goodhart.js';
 import { runFragilityDetector } from './fragility_detector.js';
 import { detectDomainLeak } from './domain_leak.js';
 import { seductiveComplexity } from './seductive_complexity.js';
+import { estimateComplexity } from './complexity_estimator.js';
+import { detectOverthink } from './overthink_detector.js';
 
 // Top 3 routes utilisées pour la compétition (sous-ensemble — coût API maîtrisé)
 const SUPERIORITY_ROUTES = ['frugale', 'anti_hallucination', 'structurelle'];
@@ -26,6 +28,39 @@ const SUPERIORITY_ROUTES = ['frugale', 'anti_hallucination', 'structurelle'];
 export async function runSuperiorityComparison({ question, allNodes, routeResults }) {
   const t0 = performance.now();
   console.log('[ZORAN sup] START — question=', question.slice(0, 60));
+
+  // ═══ MISSION V6 : COMPLEXITY GATING (anti sur-orchestration) ═══
+  // Avant toute orchestration ZORAN, estime la complexité de la question.
+  // Si SIMPLE → fast-path baseline only, pas de ReZo ni de routes ZORAN.
+  const complexity = estimateComplexity(question);
+  console.log(`[ZORAN sup] complexity gating : depth=${complexity.depth_required} cplx=${complexity.complexity_score} pipeline=${complexity.recommended_pipeline}`);
+  console.log(`[ZORAN sup] reasoning : ${complexity.reasoning.join(' | ')}`);
+
+  if (complexity.depth_required === 'simple') {
+    // Fast-path : 1 call Claude brut, pas de ZORAN, pas de juge
+    console.log('[ZORAN sup] FAST_PATH simple — skip ZORAN/ReZo/juge (anti-overthink)');
+    const baselineOnly = await synthesizeBaseline(question);
+    const respWords = (baselineOnly.text || '').split(/\s+/).filter(w => w.length > 0).length;
+    return {
+      ok: true,
+      partial: true,
+      fast_path: 'simple',
+      complexity_estimate: complexity,
+      question,
+      responses: baselineOnly.ok ? [{
+        label: 'CLAUDE brut · fast-path',
+        strategy: 'baseline',
+        laws_used: [],
+        reformulation: '(fast-path simple — pas de ZORAN orchestré)',
+        ...baselineOnly,
+      }] : [],
+      judge: null,
+      deltas: [],
+      verdict: 'CLAUDE brut · fast-path',
+      overthink_skipped: true,
+      latency_ms: Math.round(performance.now() - t0),
+    };
+  }
 
   // Construit le set [{stratName, route, laws}] pour les 3 stratégies
   // Mission ROUTE_SPECIALIZATION : skip routes hors-domaine fitness < 0.30
@@ -188,6 +223,16 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
     r.domain_leak = detectDomainLeak(r.text, { question });
     // Mission V5 : seductive_complexity (densité technique artificielle)
     r.seductive_complexity = seductiveComplexity(r.text);
+    // Mission V6 : overthink détection post-hoc
+    r.overthink = detectOverthink({
+      question,
+      responseText: r.text,
+      n_structures_detected: detectedStructures.length,
+      n_routes_activated: zoranSpecs.length,
+      n_laws_activated: (r.laws_used || []).length,
+      complexity_score: complexity.complexity_score,
+      depth_required: complexity.depth_required,
+    });
     // domain_fitness déjà calculé pour les ZORAN (skippées exclues)
     if (r.strategy !== 'baseline') {
       const spec = zoranSpecs.find(s => s.stratName === r.strategy);
@@ -279,6 +324,8 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
         domain_leak: respObj.domain_leak || null,
         // Mission V5 — seductive complexity
         seductive_complexity: respObj.seductive_complexity || null,
+        // Mission V6 — overthink détection
+        overthink: respObj.overthink || null,
         // Score composite : intègre concret + anti-jargon - pénalité troncature
         runtime_superiority: +(
           0.22 * (s.precision - baselineScore.precision)
@@ -305,6 +352,7 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
   return {
     ok: true,
     question,
+    complexity_estimate: complexity,    // mission V6
     responses,
     judge,
     deltas,
@@ -339,12 +387,24 @@ export function renderComparison(result) {
     ? `<div class="sup-warn" style="margin-bottom:6px">⚠ Mode partiel — seule réponse Claude brut a abouti (3 ZORAN ont échoué : crédit/limite ?). Aucun jugement comparatif possible.</div>`
     : '';
   const verdictReason = judge?.verdict_reason ? `<div style="font-size:11px;color:var(--fg-2);font-style:italic;margin-top:4px">${escHtml(judge.verdict_reason)}</div>` : '';
+  // Mission V6 : badge de profondeur cognitive
+  const cplxBadge = result.complexity_estimate ? (() => {
+    const c = result.complexity_estimate;
+    const colorClass = c.depth_required === 'simple' ? 'good'
+                     : c.depth_required === 'fractal' ? 'bad'
+                     : '';
+    const fastPathTag = result.fast_path === 'simple' ? ' <strong>FAST-PATH</strong>' : '';
+    return `<span class="${colorClass}" title="${escHtml(c.reasoning.join(' | '))}">
+      profondeur: ${escHtml(c.depth_required)} (cplx ${c.complexity_score})${fastPathTag}
+    </span>`;
+  })() : '';
   const verdictBanner = `
     <div class="sup-verdict">
       ${partialNotice}
       <div style="margin-bottom:6px">
         <strong>★ Verdict :</strong> ${escHtml(verdict || 'aucun')} ·
         ${result.responses.length} candidat${result.responses.length>1?'s':''} · ${result.latency_ms}ms
+        ${cplxBadge ? '· ' + cplxBadge : ''}
       </div>
       ${verdictReason}
       <div class="sup-divergence">
