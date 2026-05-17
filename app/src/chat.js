@@ -2,6 +2,7 @@
 // Mission ZORAN_RUNTIME_COGNITIVE_PATH_COMPETITION_ENGINE_20260516
 import { synthesizeAnswer, hasApiKey, getApiKey, setApiKey, getModel, setModel,
          getBenchmarkEnabled, setBenchmarkEnabled } from './llm.js';
+import { renderProfileSelector, setProfile, getProfile } from './user_profile.js';
 import { runSuperiorityComparison, renderComparison } from './superiority.js';
 import { mapStructural, structuralTopicBoost } from './structural_mapping.js';
 //
@@ -560,6 +561,18 @@ function setupSettingsModal() {
 
 export function wireChatBar(nodes, onPickLaw, onCompete, onClearRoutes, parentsMap) {
   setupSettingsModal();
+  // Mission ADAPTIVE_TRANSPARENCY : injecte sélecteur de profil utilisateur
+  const profileSlot = document.getElementById('zoran-profile-slot');
+  if (profileSlot) {
+    profileSlot.innerHTML = renderProfileSelector();
+    const select = document.getElementById('zoran-profile-select');
+    if (select) {
+      select.addEventListener('change', e => {
+        setProfile(e.target.value);
+        console.log('[ZORAN profile] changé →', e.target.value);
+      });
+    }
+  }
   const bar = document.getElementById('chat-bar');
   const input = document.getElementById('chat-input');
   const sendBtn = document.getElementById('chat-send');

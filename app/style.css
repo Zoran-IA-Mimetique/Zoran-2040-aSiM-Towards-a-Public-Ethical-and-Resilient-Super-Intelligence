@@ -728,6 +728,26 @@ body.sidebar-hidden #graph {
 .llm-answer-box.loading .llm-label { color: var(--accent); }
 .llm-answer-box.error   .llm-label { color: var(--unstable); }
 
+/* Mission ADAPTIVE_TRANSPARENCY : sélecteur de profil utilisateur */
+.zoran-profile-select {
+  background: var(--bg-1, #1a1a1a);
+  color: var(--fg-0, #e0e0e0);
+  border: 1px solid rgba(255, 140, 26, 0.40);
+  border-radius: 5px;
+  padding: 3px 6px;
+  font-size: 11px;
+  cursor: pointer;
+  margin-right: 4px;
+  max-width: 180px;
+}
+.zoran-profile-select:hover {
+  border-color: rgba(255, 140, 26, 0.75);
+}
+.zoran-profile-select:focus {
+  outline: none;
+  border-color: var(--accent, #ffcc4d);
+}
+
 /* Mission RANKING_BIAS_CORRECTION : CTAs inline cliquables dans réponses ZORAN */
 .zoran-inline-cta {
   display: inline;

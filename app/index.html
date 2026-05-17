@@ -85,6 +85,7 @@
   <!-- Chat bar bottom-centered (mission RUNTIME_COGNITIVE_PATH_COMPETITION) -->
   <section id="chat-bar" aria-label="Question au graphe">
     <button id="chat-settings" title="Réglages clé API Claude" aria-label="Réglages LLM">⚙</button>
+    <span id="zoran-profile-slot" title="Profil utilisateur — adapte transparence et détail"></span>
     <button id="chat-mic" title="Dictée vocale" aria-label="Activer micro">🎙</button>
     <button id="chat-file" title="Charger fichier" aria-label="Charger fichier">📎</button>
     <input id="chat-file-input" type="file" accept=".txt,.md,.json,.csv,.pdf" hidden>
@@ -226,6 +227,6 @@
   </script>
 
   <!-- Cache-bust mobile-friendly : ?v=YYYYMMDDHHMM bump à chaque release majeur -->
-  <script type="module" src="./src/main.js?v=20260517-inline-cta-v24"></script>
+  <script type="module" src="./src/main.js?v=20260517-adaptive-profile-v25"></script>
 </body>
 </html>

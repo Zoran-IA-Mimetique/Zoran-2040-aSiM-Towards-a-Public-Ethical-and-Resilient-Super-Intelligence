@@ -224,6 +224,8 @@ export async function winnerSynthesis({ question, claudeAnswer, zoranAnswer, dom
 // Mission RANKING_BIAS_CORRECTION : import parsimony detector pour
 // adapter le prompt selon la profondeur intrinsèque de la question
 import { detectLowIntrinsicDepth } from './parsimony_detector.js';
+// Mission ADAPTIVE_TRANSPARENCY : profil utilisateur
+import { getProfileConfig } from './user_profile.js';
 
 export async function synthesizeOrchestrated({
   question, domain, structures, lawsByStrategy = {}, parents = []
@@ -262,30 +264,45 @@ export async function synthesizeOrchestrated({
   const domVocab = domain?.vocab_hint || 'vocabulaire courant';
   const domStyle = domain?.cognitive_style || 'réponse claire et structurée';
 
-  // Mission RANKING_BIAS_CORRECTION : MINIMAL_RESPONSE_MODE pour
-  // questions à faible profondeur intrinsèque (calcul direct, fait fermé)
+  // Mission ADAPTIVE_TRANSPARENCY + RANKING_BIAS_CORRECTION :
+  // 2 axes orthogonaux :
+  //   - profondeur intrinsèque question (low_intrinsic / standard)
+  //   - profil utilisateur (expert_ai → minimal forcé / expert_novice_ai → transparent / etc.)
   const lid = detectLowIntrinsicDepth(question);
-  if (lid.low_intrinsic) {
+  const profileCfg = getProfileConfig();
+
+  // Si profil expert_ai → toujours minimal, peu importe la question
+  // Si profil expert_novice_ai sur question simple → minimal mais auto-doute visible
+  const forceMinimal = profileCfg.response_mode === 'minimal' || lid.low_intrinsic;
+
+  if (forceMinimal) {
+    const isNoviceProfile = profileCfg.show_self_doubt;
     const minimalSystem = [
       `Tu es un EXPERT du domaine "${domLabel}".`,
-      `Cette question est à faible profondeur intrinsèque (${lid.reasons.join(' / ')}).`,
+      lid.low_intrinsic ? `Question à faible profondeur intrinsèque (${lid.reasons.join(' / ')}).` : '',
+      `Profil utilisateur : ${isNoviceProfile ? 'expert métier, novice IA (besoin de voir tes hésitations)' : 'expert IA (vitesse + densité)'}`,
       '',
-      '═══ MODE RÉPONSE MINIMALE (SDE-029 + RANKING_BIAS_CORRECTION) ═══',
-      '1. RÉPONSE COURTE : 2-5 phrases maximum (calcul + résultat + 1 phrase contexte).',
+      '═══ MODE RÉPONSE MINIMALE ═══',
+      '1. RÉPONSE COURTE : 2-5 phrases maximum (calcul + résultat).',
       '2. AUCUNE digression : pas de CO₂, pollution, comparaisons gratuites, lacs, fleuves',
       '   sauf si la question les demande EXPLICITEMENT.',
-      '3. AUCUN CTA. Pas de "**CTA cohérents**". Pas de "futur cohérent". Pas de "validation".',
-      '4. AUCUN markdown gras/italique. Texte pur.',
-      '5. Limite optionnelle : 1 phrase si pertinent (ex: "résultat varie selon la définition").',
-      '6. Vocabulaire : ${domVocab}.',
+      '3. AUCUN CTA. Pas de "**CTA cohérents**". Pas de "futur cohérent".',
+      '4. Vocabulaire : ' + domVocab,
       '',
-      'EXEMPLE BON (question "combien de piscines olympiques dans X ?") :',
-      '  "Surface 361×10⁶ km² × 10⁻⁶ m = 3,61×10⁸ m³ ÷ 2500 m³/piscine ≈ 144400 piscines."',
+      isNoviceProfile
+        ? '═══ EXIGENCE PROFIL NOVICE IA — AUTO-DOUTE VISIBLE ═══\n' +
+          'Ajoute UNE phrase courte exprimant ton niveau de confiance :\n' +
+          '- "Calcul vérifiable, résultat fiable."\n' +
+          '- "Approximation : ±X% selon définition retenue."\n' +
+          '- "À vérifier si profondeur piscine ≠ 2m (norme FINA)."\n' +
+          'Le user n\'est PAS expert IA. Il a besoin de savoir QUAND il peut te croire.'
+        : 'Pas d\'auto-doute affiché. User expert IA sait évaluer lui-même.',
       '',
-      'INTERDIT : "À court terme... À plus long terme... Limite : on suppose... ---',
-      '**CTA cohérents** 1. *(futur)* 2. *(validation)*..." — INTERDIT.',
-    ].join('\n');
-    return await callLLM({ system: minimalSystem, user: question, maxTokens: 400 });
+      'EXEMPLE (expert_novice_ai, question piscines) :',
+      '  "Surface 361×10⁶ km² × 10⁻⁶ m = 3,61×10⁸ m³ ÷ 2500 m³/piscine ≈ 144 400 piscines.',
+      '   Calcul direct vérifiable. Approximation ±30% selon profondeur piscine retenue (2 ou 3 m)."',
+    ].filter(Boolean).join('\n');
+    return await callLLM({ system: minimalSystem, user: question, maxTokens: 500 });
   }
 
 
