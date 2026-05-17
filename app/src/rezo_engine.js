@@ -239,8 +239,19 @@ export async function generateClaudePlusRezo({ question, claudeAnswer, diagnosis
     '6. TERMINE complètement la réponse.',
     '7. Pas de méta-discours ("voici la version améliorée…").',
     '',
+    '═══ LOI SDE-029 — 3 CTA OBLIGATOIRES EN FIN ═══',
+    'TERMINE finalAnswer OBLIGATOIREMENT par 3 CTA dans CE FORMAT exact :',
+    '',
+    '---',
+    '**CTA cohérents** :',
+    `1. *(futur cohérent — adapté à ${domLabel})* — formulation tentative`,
+    '2. *(validation — signe observable)* — mesure/observation discriminante',
+    '3. *(contre-piste — alternative)* — hypothèse cohérente restant ouverte',
+    '',
+    'CTAs : 1-2 phrases max, tentatifs ("on pourrait…"), spécifiques au sujet.',
+    '',
     'Réponds STRICTEMENT en JSON :',
-    '{"finalAnswer":"<réponse augmentée>","rationale":"<1 phrase sur ce qui a été ajouté>"}',
+    '{"finalAnswer":"<réponse augmentée AVEC les 3 CTA en fin>","rationale":"<1 phrase>"}',
     'Pas d\'autre prose autour du JSON, pas de markdown.',
   ].join('\n');
 
@@ -253,7 +264,7 @@ export async function generateClaudePlusRezo({ question, claudeAnswer, diagnosis
     `Applique les corrections listées dans le system prompt. Produis le JSON.`,
   ].join('\n');
 
-  const r = await callLLM({ system, user, maxTokens: 1200 });
+  const r = await callLLM({ system, user, maxTokens: 1500 });
   if (!r.ok) return r;
   try {
     const match = r.text.match(/\{[\s\S]*\}/);

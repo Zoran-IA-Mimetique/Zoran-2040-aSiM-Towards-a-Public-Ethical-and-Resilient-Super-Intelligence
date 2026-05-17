@@ -279,6 +279,21 @@ export async function synthesizeOrchestrated({
     '4. TERMINE TA RÉPONSE — pas de phrase coupée, conclusion claire.',
     '5. Évite "intéressant", "fascinant", "très cohérent" (promotionnel).',
     '',
+    '═══ LOI SDE-029 — 3 CTA OBLIGATOIRES (NON NÉGOCIABLE) ═══',
+    'TERMINE OBLIGATOIREMENT par 3 CTA dans CE FORMAT STRICT exact :',
+    '',
+    '---',
+    '**CTA cohérents** :',
+    `1. *(futur cohérent — adapté à ${domLabel})* — formulation tentative ouvrant exploration`,
+    '2. *(validation — signe observable)* — quelle mesure/observation trancherait',
+    '3. *(contre-piste — alternative)* — quelle hypothèse reste ouverte',
+    '',
+    'Règles CTA :',
+    '- 1-2 phrases max chacun',
+    '- spécifiques au sujet, pas génériques',
+    '- tentatifs ("on pourrait…", "une piste serait…"), pas dogmatiques',
+    '- ancrés au domaine traité',
+    '',
     'EXEMPLE BTP "supprimer murs porteurs" :',
     '  ✗ "préserver l\'invariance morphologique en propageant les charges"',
     '  ✓ "Étape 1 : étude structure obligatoire par BET (calcul descente charges + section IPN/IPE).',
@@ -287,7 +302,7 @@ export async function synthesizeOrchestrated({
     '     Limite : dimensionnement exact dépend de la charge réelle, non calculable à distance."',
   ].filter(Boolean).join('\n');
 
-  return await callLLM({ system, user: question, maxTokens: 1000 });
+  return await callLLM({ system, user: question, maxTokens: 1200 });
 }
 
 // Mission RUNTIME_SUPERIORITY : LLM brut sans contexte ZORAN

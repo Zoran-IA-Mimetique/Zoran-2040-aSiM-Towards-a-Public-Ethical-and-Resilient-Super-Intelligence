@@ -785,7 +785,7 @@ export function renderComparison(result) {
                 u.dist ${(r.user_distance ?? 0).toFixed(2)}
               </span>
             </div>
-            <div class="sup-resp-text">${escHtml(r.text)}</div>
+            <div class="sup-resp-text">${renderResponseWithCTAs(r.text)}</div>
             ${jargonChips}
             ${d?.comment ? `<div class="sup-comment">${escHtml(d.comment)}</div>` : ''}
             ${r.strategy === 'baseline'
@@ -832,6 +832,27 @@ function signed(n) {
   const s = +n;
   if (Math.abs(s) < 0.005) return '';
   return ' ' + (s > 0 ? '+' : '') + s.toFixed(2);
+}
+
+// Mission SDE-029 : sépare le corps de la réponse des 3 CTAs cohérents
+// et applique une classe CSS différenciée pour affichage orange.
+function renderResponseWithCTAs(text) {
+  if (!text) return '';
+  // Détection du bloc CTA : "**CTA cohérents**" ou "CTA cohérents :"
+  // précédé optionnellement de "---"
+  const ctaRx = /\n?\s*(?:---\s*\n)?\s*\*\*CTA coh[ée]rents?\*\*\s*:?\s*/i;
+  const match = text.match(ctaRx);
+  if (!match) {
+    // pas de CTA → affichage normal complet
+    return `<div class="sup-resp-body">${escHtml(text)}</div>`;
+  }
+  const bodyPart = text.slice(0, match.index).trimEnd();
+  const ctaPart = text.slice(match.index + match[0].length).trim();
+  return `<div class="sup-resp-body">${escHtml(bodyPart)}</div>
+    <div class="sup-cta-block">
+      <div class="sup-cta-header">🔶 CTA cohérents (SDE-029)</div>
+      <div class="sup-cta-content">${escHtml(ctaPart)}</div>
+    </div>`;
 }
 
 function escHtml(s) {
