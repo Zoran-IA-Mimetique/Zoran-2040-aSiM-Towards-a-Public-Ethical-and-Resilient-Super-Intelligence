@@ -328,12 +328,13 @@
         "SDE-021",
         "SDE-023",
         "SDE-024",
-        "SDE-028"
+        "SDE-028",
+        "SDE-029"
       ],
-      "size": 28,
+      "size": 29,
       "dominant_family": "SDE",
       "family_distribution": {
-        "SDE": 28
+        "SDE": 29
       },
       "dominant_patterns": {
         "parent_chains": 0,

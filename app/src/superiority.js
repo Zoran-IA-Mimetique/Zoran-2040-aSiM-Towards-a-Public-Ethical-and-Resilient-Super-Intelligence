@@ -308,10 +308,22 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
   // 3. Compute deltas vs baseline (responses[0])
   const baseline = responses[0];
   const deltas = [];
+  // Fix V11.x : le juge LLM retourne parfois "CANDIDAT N — label" au lieu de "label"
+  // → normaliser les labels avant matching.
+  function normalizeLabel(lbl) {
+    if (!lbl) return '';
+    return String(lbl).replace(/^CANDIDAT\s*\d+\s*[—\-:]\s*/i, '').trim();
+  }
+  function findScore(scores, target) {
+    const tn = normalizeLabel(target);
+    return scores.find(s => normalizeLabel(s.label) === tn)
+        || scores.find(s => normalizeLabel(s.label).includes(tn))
+        || scores.find(s => tn.includes(normalizeLabel(s.label)));
+  }
   if (judge && judge.scores) {
-    const baselineScore = judge.scores.find(s => s.label === baseline.label) || judge.scores[0];
+    const baselineScore = findScore(judge.scores, baseline.label) || judge.scores[0];
     for (const r of responses) {
-      const s = judge.scores.find(x => x.label === r.label);
+      const s = findScore(judge.scores, r.label);
       if (!s) continue;
       // Mission SILENT_LAW_GUIDANCE : enrichit deltas avec scores méta-bruit
       const respObj = responses.find(rr => rr.label === r.label) || {};
@@ -462,7 +474,15 @@ export function renderComparison(result) {
   // Tri par grade_20 décroissant (fallback runtime_superiority si grade manquant)
   // Ce sortedByGrade est utilisé partout (deltas, concrete, reforms, responses)
   // pour garantir une UX cohérente du #1 au #4.
+  // Fix V11.x : si judge.verdict explicite et matche un delta, le ramener en tête
+  // → priorité au verdict du juge sur le grade brut (peuvent diverger).
+  const verdictTarget = verdict ? String(verdict).replace(/^CANDIDAT\s*\d+\s*[—\-:]\s*/i, '').trim() : null;
   const sortedByGrade = [...deltas].sort((a, b) => {
+    // Verdict winner toujours #1
+    const aWin = verdictTarget && (a.label === verdictTarget || a.label.includes(verdictTarget) || verdictTarget.includes(a.label));
+    const bWin = verdictTarget && (b.label === verdictTarget || b.label.includes(verdictTarget) || verdictTarget.includes(b.label));
+    if (aWin && !bWin) return -1;
+    if (bWin && !aWin) return 1;
     const ga = a.argumented_grade_20 ?? (10 + a.runtime_superiority * 10);
     const gb = b.argumented_grade_20 ?? (10 + b.runtime_superiority * 10);
     return gb - ga;
@@ -804,10 +824,10 @@ export function renderComparison(result) {
   // au lieu de 6+. Les routes individuelles sont calculées en interne.
   const isSingleWinnerMode = sortedByGrade.length <= 3; // baseline + orchestrated + Claude+ReZo
   if (isSingleWinnerMode) {
+    // Fix V11.x : argumentedDetails déjà inclus dans rankingBlock — pas de double rendu
     return `<div class="superiority-container">
       ${verdictBanner}
       ${rankingBlock}
-      ${argumentedDetails}
       ${concreteTable}
       ${systemicTable}
       ${fragilityTable}

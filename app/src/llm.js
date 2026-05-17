@@ -302,7 +302,7 @@ export async function synthesizeOrchestrated({
     '     Limite : dimensionnement exact dépend de la charge réelle, non calculable à distance."',
   ].filter(Boolean).join('\n');
 
-  return await callLLM({ system, user: question, maxTokens: 1200 });
+  return await callLLM({ system, user: question, maxTokens: 1800 });
 }
 
 // Mission RUNTIME_SUPERIORITY : LLM brut sans contexte ZORAN
