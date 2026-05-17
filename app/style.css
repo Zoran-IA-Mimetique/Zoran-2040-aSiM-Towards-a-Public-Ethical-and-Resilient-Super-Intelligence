@@ -728,6 +728,33 @@ body.sidebar-hidden #graph {
 .llm-answer-box.loading .llm-label { color: var(--accent); }
 .llm-answer-box.error   .llm-label { color: var(--unstable); }
 
+/* Mission RANKING_BIAS_CORRECTION : CTAs inline cliquables dans réponses ZORAN */
+.zoran-inline-cta {
+  display: inline;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  background: rgba(255, 140, 26, 0.10);
+  border: 1px solid rgba(255, 140, 26, 0.35);
+  border-radius: 6px;
+  padding: 1px 6px;
+  margin: 0 1px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  text-align: left;
+  white-space: normal;
+  word-break: keep-all;
+  vertical-align: baseline;
+}
+.zoran-inline-cta:hover {
+  background: rgba(255, 140, 26, 0.22);
+  border-color: rgba(255, 140, 26, 0.65);
+}
+.zoran-inline-cta:active {
+  background: rgba(255, 140, 26, 0.35);
+}
+
 /* Sablier animé pour indiquer l'attente d'une réponse (mission V11 UX) */
 @keyframes hourglass-flip {
   0%   { transform: rotate(0deg); }

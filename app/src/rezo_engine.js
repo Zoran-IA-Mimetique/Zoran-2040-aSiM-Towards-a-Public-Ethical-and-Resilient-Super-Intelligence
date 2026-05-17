@@ -250,7 +250,13 @@ export async function generateClaudePlusRezo({ question, claudeAnswer, diagnosis
         '',
       ]
       : [
-        '═══ LOI SDE-029 — 3 CTA OBLIGATOIRES EN FIN ═══',
+        '═══ CTA INLINE CLIQUABLES (optionnel) ═══',
+        'Tu peux marquer 2-3 phrases du corps comme cliquables avec {cta:texte}.',
+        'Exemple : "{cta:Vérifier note de calcul Eurocode 3 sur cette IPN}"',
+        'Le user pourra cliquer pour reposer la question.',
+        'Max 3 inline CTAs. Pas dans le bloc terminal.',
+        '',
+        '═══ LOI SDE-029 — 3 CTA TERMINAUX OBLIGATOIRES ═══',
         'TERMINE finalAnswer OBLIGATOIREMENT par 3 CTA dans CE FORMAT exact :',
         '',
         '---',

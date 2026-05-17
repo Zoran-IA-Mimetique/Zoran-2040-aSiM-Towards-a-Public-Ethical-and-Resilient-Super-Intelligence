@@ -604,6 +604,24 @@ export function wireChatBar(nodes, onPickLaw, onCompete, onClearRoutes, parentsM
   }
 
   sendBtn.addEventListener('click', submit);
+
+  // Mission RANKING_BIAS_CORRECTION : CTAs inline cliquables dans réponses ZORAN
+  // Click sur .zoran-inline-cta → remplit l'input avec le texte du CTA
+  // (l'utilisateur peut éditer puis cliquer Send pour relancer)
+  document.addEventListener('click', e => {
+    const ctaBtn = e.target.closest('.zoran-inline-cta');
+    if (!ctaBtn) return;
+    e.preventDefault();
+    const txt = ctaBtn.dataset.ctaText || ctaBtn.textContent || '';
+    if (!txt.trim()) return;
+    input.value = txt.trim();
+    input.focus();
+    // Scroll input en vue pour mobile
+    try { input.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (_) {}
+    // Visual feedback rapide
+    ctaBtn.style.background = 'rgba(255, 140, 26, 0.55)';
+    setTimeout(() => { ctaBtn.style.background = ''; }, 200);
+  });
   input.addEventListener('keydown', e => {
     if (e.key === 'Enter') { e.preventDefault(); submit(); }
   });

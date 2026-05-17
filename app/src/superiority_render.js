@@ -47,22 +47,44 @@ function humanSummary(d) {
 }
 
 // ──────────────────── CTA PARSER (SDE-029) ────────────────────
-// Sépare le corps de la réponse du bloc CTA pour affichage orange.
+// 2 niveaux de CTA :
+//   - INLINE : {cta:texte} dans le corps → rectangles cliquables (ZORAN only)
+//   - BLOC TERMINAL : 3 CTAs orange en fin → identique à avant
 
-function renderResponseWithCTAs(text) {
+// Parse les CTAs inline {cta:texte} → spans cliquables
+// IMPORTANT : à appliquer APRÈS escHtml (les délimiteurs survivent l'échappement)
+function parseInlineCTAs(escapedHtml) {
+  // Marker LLM : {cta:texte cliquable}
+  // Transformé en span avec data-cta-text (texte original pour click handler)
+  return escapedHtml.replace(/\{cta:\s*([^}]+?)\s*\}/gi, (match, txt) => {
+    // textContent du span servira de prompt suivant
+    const cleanTxt = txt.trim();
+    return `<button type="button" class="zoran-inline-cta" data-cta-text="${cleanTxt.replace(/"/g, '&quot;')}" title="Cliquer pour reposer cette question">${cleanTxt}</button>`;
+  });
+}
+
+function renderResponseWithCTAs(text, isBaseline = false) {
   if (!text) return '';
   // Parser tolérant : "**CTA cohérents**", "CTA cohérents:", "### CTA", etc.
   const ctaRx = /\n\s*(?:---+\s*\n+|##+\s*|\*\*\*+\s*\n+)?\s*\*{0,3}\s*(?:3\s+)?CTA(?:\s+coh[ée]rents?)?(?:\s+\(SDE.?029\))?\s*\*{0,3}\s*[:\-—]?\s*\n/i;
   const match = text.match(ctaRx);
+
+  // Helper : escape puis parser inline CTAs (ZORAN seulement)
+  const renderBody = (body) => {
+    const escaped = escHtml(body);
+    // Inline CTAs activés UNIQUEMENT pour candidats ZORAN (pas baseline)
+    return isBaseline ? escaped : parseInlineCTAs(escaped);
+  };
+
   if (!match) {
-    return `<div class="sup-resp-body">${escHtml(text)}</div>`;
+    return `<div class="sup-resp-body">${renderBody(text)}</div>`;
   }
   const bodyPart = text.slice(0, match.index).trimEnd();
   const ctaPart = text.slice(match.index + match[0].length).trim();
-  return `<div class="sup-resp-body">${escHtml(bodyPart)}</div>
+  return `<div class="sup-resp-body">${renderBody(bodyPart)}</div>
     <div class="sup-cta-block">
       <div class="sup-cta-header">🔶 CTA cohérents (SDE-029)</div>
-      <div class="sup-cta-content">${escHtml(ctaPart)}</div>
+      <div class="sup-cta-content">${renderBody(ctaPart)}</div>
     </div>`;
 }
 
@@ -501,7 +523,7 @@ function renderResponsesBlock(ctx) {
                 u.dist ${(r.user_distance ?? 0).toFixed(2)}
               </span>
             </div>
-            <div class="sup-resp-text">${renderResponseWithCTAs(r.text)}</div>
+            <div class="sup-resp-text">${renderResponseWithCTAs(r.text, r.strategy === 'baseline')}</div>
             ${jargonChips}
             ${d?.comment ? `<div class="sup-comment">${escHtml(d.comment)}</div>` : ''}
             ${r.strategy === 'baseline'
