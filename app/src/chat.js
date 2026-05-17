@@ -86,6 +86,20 @@ function pickTopK(nodes, rankFn, qTokens, k = K, structMap = null) {
   return [...nodes].sort((a, b) => rankFn(a, qTokens, structMap) - rankFn(b, qTokens, structMap)).slice(0, k);
 }
 
+// Fix V11.x bug #6/#12 : filtre les lois méta-conversationnelles (SDE-029 et
+// similaires) quand la question n'est PAS elle-même méta-conversationnelle.
+// Une loi sur "comment Claude doit communiquer" n'a rien à faire dans le routing
+// d'une question BTP / médecine / etc.
+const META_CONVERSATIONAL_LAW_IDS = new Set(['SDE-029']);
+function isMetaConversationalQuestion(text) {
+  if (!text) return false;
+  return /\b(CTA|Call.To.Analysis|ZORAN|prompt|réponse|claude|assistant|conversation|dialogue|méta.?cognitif|méta.?réponse)\b/i.test(text);
+}
+function filterMetaLaws(nodes, question) {
+  if (isMetaConversationalQuestion(question)) return nodes;
+  return nodes.filter(n => !META_CONVERSATIONAL_LAW_IDS.has(n.id));
+}
+
 function scoreRoute(laws) {
   if (!laws.length) return {
     runtime_cost: 0, precision_score: 0, hallucination_risk: 0,
@@ -191,8 +205,10 @@ export function compete(question, nodes, parentsMap) {
   const offTopic = maxTopic < 0.10 && qTokens.size > 0 && structMap.structures.length === 0;
 
   const routes = [];
+  // Fix bug #6/#12 : exclure méta-lois conversationnelles si question hors-domaine méta
+  const filteredNodes = filterMetaLaws(nodes, question);
   for (const [name, strat] of Object.entries(STRATEGIES)) {
-    const laws = pickTopK(nodes, strat.rank, qTokens, K, structMap);
+    const laws = pickTopK(filteredNodes, strat.rank, qTokens, K, structMap);
     const s = scoreRoute(laws);
     const fails = oracleEliminate(s);
     routes.push({
@@ -206,8 +222,8 @@ export function compete(question, nodes, parentsMap) {
       elimination_reasons: fails,
     });
   }
-  // Baselines
-  const bl_n = pickTopK(nodes,
+  // Baselines (idem filtre meta-lois)
+  const bl_n = pickTopK(filteredNodes,
     (n, q, sm) => -((n.selection_priority ?? 0) + 0.30 * topicScore(n, q, sm)),
     qTokens, K, structMap);
   const baselines = [
@@ -384,7 +400,7 @@ export function renderResults(result, onPickLaw) {
   // Routes details en accordéon — repliés par défaut pour ne pas surcharger
   body.innerHTML = `${structuresBanner}${offTopicBanner}${winnerCardBanner}${llmInitial}
   <details style="margin-top:8px"><summary style="cursor:pointer;font-size:11px;color:var(--fg-2);text-transform:uppercase;letter-spacing:1px;padding:4px 0">
-    Détails compétition routes (${result.routes.length} générées · ${result.routes.filter(r => !r.eliminated).length} survivantes)
+    Détails routes cognitives internes (${result.routes.length} stratégies évaluées · ${result.routes.filter(r => !r.eliminated).length} survivent oracle)
   </summary>
   <div style="margin-top:10px">
   ${routeHtml}

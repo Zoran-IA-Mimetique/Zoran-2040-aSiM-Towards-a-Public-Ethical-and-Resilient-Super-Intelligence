@@ -451,14 +451,14 @@ export function renderComparison(result) {
                      : '';
     const fastPathTag = result.fast_path === 'simple' ? ' <strong>FAST-PATH</strong>' : '';
     return `<span class="${colorClass}" title="${escHtml(c.reasoning.join(' | '))}">
-      profondeur: ${escHtml(c.depth_required)} (cplx ${c.complexity_score})${fastPathTag}
+      profondeur: ${escHtml(c.depth_required)}${fastPathTag}
     </span>`;
   })() : '';
   const verdictBanner = `
     <div class="sup-verdict">
       ${partialNotice}
       <div style="margin-bottom:6px">
-        <strong>★ Verdict :</strong> ${escHtml(verdict || 'aucun')} ·
+        <strong>★ Verdict :</strong> ${escHtml((verdict || 'aucun').replace(/^CANDIDAT\s*\d+\s*[—\-:]\s*/i, '').trim())} ·
         ${result.responses.length} candidat${result.responses.length>1?'s':''} · ${result.latency_ms}ms
         ${cplxBadge ? '· ' + cplxBadge : ''}
       </div>
@@ -811,7 +811,7 @@ export function renderComparison(result) {
             ${r.strategy === 'baseline'
               ? '<div class="sup-laws sup-laws-none">Lois ZORAN utilisées : <strong>AUCUNE</strong> · réponse Claude brute, pour comparaison</div>'
               : (r.laws_used && r.laws_used.length
-                  ? `<div class="sup-laws">Lois utilisées (${r.laws_used.length}) : ${r.laws_used.slice(0, 6).map(id => `<code>${escHtml(id)}</code>`).join(' ')}</div>`
+                  ? `<div class="sup-laws">Lois utilisées (${r.laws_used.length}) : ${r.laws_used.map(id => `<code>${escHtml(id)}</code>`).join(' ')}</div>`
                   : '')}
           </div>`;
         }).join('')}
@@ -856,11 +856,13 @@ function signed(n) {
 
 // Mission SDE-029 : sépare le corps de la réponse des 3 CTAs cohérents
 // et applique une classe CSS différenciée pour affichage orange.
+// Fix bug #14 : parser tolérant aux variations format LLM
 function renderResponseWithCTAs(text) {
   if (!text) return '';
-  // Détection du bloc CTA : "**CTA cohérents**" ou "CTA cohérents :"
-  // précédé optionnellement de "---"
-  const ctaRx = /\n?\s*(?:---\s*\n)?\s*\*\*CTA coh[ée]rents?\*\*\s*:?\s*/i;
+  // Détection bloc CTA : multiples formats tolérés
+  //   "**CTA cohérents**", "CTA cohérents:", "### CTA", "**3 CTA**", etc.
+  //   Précédé optionnellement de "---", "###", ou "**" seul
+  const ctaRx = /\n\s*(?:---+\s*\n+|##+\s*|\*\*\*+\s*\n+)?\s*\*{0,3}\s*(?:3\s+)?CTA(?:\s+coh[ée]rents?)?(?:\s+\(SDE.?029\))?\s*\*{0,3}\s*[:\-—]?\s*\n/i;
   const match = text.match(ctaRx);
   if (!match) {
     // pas de CTA → affichage normal complet

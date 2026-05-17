@@ -14,7 +14,7 @@
 // Regex tolérantes : pluriels (s?), accents optionnels, racines partielles
 const STRUCTURE_PATTERNS = {
   risque: {
-    rx: /(risque|danger|s[eé]curit|catastroph|effondr|chute|incident|accident|fragil|critique|grave|menac|p[eé]ril)/i,
+    rx: /(risque|danger|s[eé]curit|catastroph|effondr|chute|incident|accident|fragil|critique|grave|menac|p[eé]ril|corrosion|microfissur|surchauff|explos\w*\s+(des|du)\s+co[uû]ts?|d[ée]rive|d[eé]struct\w*\s+des\s+marges?|destruction\s+des\s+(marges|redondances?|r[eé]silience))/i,
     families: ['WP12'],
     laws: ['WP12-002', 'WP12-004', 'WP12-009', 'WP12-021'],
     label: 'risque / sécurité',
@@ -74,7 +74,7 @@ const STRUCTURE_PATTERNS = {
     label: 'comparaison',
   },
   causalite: {
-    rx: /(parce que|pourquoi|cause|raison|origine|cons[eé]quence|effet|d[oô]u|provoqu|entra[iî]n|m[eè]ne)/i,
+    rx: /(parce que|pourquoi|caus\w*|raison|origin\w*|cons[eé]quenc\w*|effet|d[oô]u|provoqu\w*|entra[iî]n\w*|m[eè]ne|mécanism\w*|étiologi\w*)/i,
     families: ['SDE'],
     laws: ['SDE-009'],
     label: 'causalité / explication',
