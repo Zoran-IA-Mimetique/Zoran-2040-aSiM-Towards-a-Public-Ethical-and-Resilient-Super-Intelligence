@@ -1,0 +1,360 @@
+{
+  "mission_id": "V11_CAUSAL_COMPRESSION_20260517",
+  "benchmark": [
+    {
+      "case_id": "EXPERT_RGA_budget_50",
+      "before": {
+        "words": 249,
+        "terminal_integrity": 0.25,
+        "density": 0.703,
+        "truncated": false
+      },
+      "after": {
+        "words": 45,
+        "terminal_integrity": 0,
+        "density": 1,
+        "truncated": false,
+        "damage": 0.2,
+        "verdict": "MINOR_DAMAGE"
+      }
+    },
+    {
+      "case_id": "EXPERT_RGA_budget_100",
+      "before": {
+        "words": 249,
+        "terminal_integrity": 0.25,
+        "density": 0.703,
+        "truncated": false
+      },
+      "after": {
+        "words": 96,
+        "terminal_integrity": 0.25,
+        "density": 1,
+        "truncated": false,
+        "damage": 0.1,
+        "verdict": "MINOR_DAMAGE"
+      }
+    },
+    {
+      "case_id": "EXPERT_RGA_budget_150",
+      "before": {
+        "words": 249,
+        "terminal_integrity": 0.25,
+        "density": 0.703,
+        "truncated": false
+      },
+      "after": {
+        "words": 145,
+        "terminal_integrity": 0.25,
+        "density": 1,
+        "truncated": false,
+        "damage": 0,
+        "verdict": "ACCEPTABLE"
+      }
+    },
+    {
+      "case_id": "EXPERT_RGA_budget_250",
+      "before": {
+        "words": 249,
+        "terminal_integrity": 0.25,
+        "density": 0.703,
+        "truncated": false
+      },
+      "after": {
+        "words": 249,
+        "terminal_integrity": 0.25,
+        "density": 0.703,
+        "truncated": false,
+        "damage": 0,
+        "verdict": "ACCEPTABLE"
+      }
+    },
+    {
+      "case_id": "EXPERT_HUMIDITE_budget_50",
+      "before": {
+        "words": 219,
+        "terminal_integrity": 0.5,
+        "density": 0.685,
+        "truncated": false
+      },
+      "after": {
+        "words": 43,
+        "terminal_integrity": 0,
+        "density": 1,
+        "truncated": false,
+        "damage": 0.4,
+        "verdict": "MODERATE_DAMAGE"
+      }
+    },
+    {
+      "case_id": "EXPERT_HUMIDITE_budget_100",
+      "before": {
+        "words": 219,
+        "terminal_integrity": 0.5,
+        "density": 0.685,
+        "truncated": false
+      },
+      "after": {
+        "words": 100,
+        "terminal_integrity": 0.25,
+        "density": 1,
+        "truncated": false,
+        "damage": 0.125,
+        "verdict": "MINOR_DAMAGE"
+      }
+    },
+    {
+      "case_id": "EXPERT_HUMIDITE_budget_150",
+      "before": {
+        "words": 219,
+        "terminal_integrity": 0.5,
+        "density": 0.685,
+        "truncated": false
+      },
+      "after": {
+        "words": 143,
+        "terminal_integrity": 0.5,
+        "density": 1,
+        "truncated": false,
+        "damage": 0,
+        "verdict": "ACCEPTABLE"
+      }
+    },
+    {
+      "case_id": "EXPERT_HUMIDITE_budget_250",
+      "before": {
+        "words": 219,
+        "terminal_integrity": 0.5,
+        "density": 0.685,
+        "truncated": false
+      },
+      "after": {
+        "words": 219,
+        "terminal_integrity": 0.5,
+        "density": 0.685,
+        "truncated": false,
+        "damage": 0,
+        "verdict": "ACCEPTABLE"
+      }
+    },
+    {
+      "case_id": "EXPERT_LEGAL_budget_50",
+      "before": {
+        "words": 222,
+        "terminal_integrity": 0.8,
+        "density": 0.45,
+        "truncated": false
+      },
+      "after": {
+        "words": 48,
+        "terminal_integrity": 0.3,
+        "density": 1,
+        "truncated": false,
+        "damage": 0.35,
+        "verdict": "MODERATE_DAMAGE"
+      }
+    },
+    {
+      "case_id": "EXPERT_LEGAL_budget_100",
+      "before": {
+        "words": 222,
+        "terminal_integrity": 0.8,
+        "density": 0.45,
+        "truncated": false
+      },
+      "after": {
+        "words": 96,
+        "terminal_integrity": 0.3,
+        "density": 1,
+        "truncated": false,
+        "damage": 0.25,
+        "verdict": "MODERATE_DAMAGE"
+      }
+    },
+    {
+      "case_id": "EXPERT_LEGAL_budget_150",
+      "before": {
+        "words": 222,
+        "terminal_integrity": 0.8,
+        "density": 0.45,
+        "truncated": false
+      },
+      "after": {
+        "words": 146,
+        "terminal_integrity": 0.5,
+        "density": 0.685,
+        "truncated": false,
+        "damage": 0.17,
+        "verdict": "MINOR_DAMAGE"
+      }
+    },
+    {
+      "case_id": "EXPERT_LEGAL_budget_250",
+      "before": {
+        "words": 222,
+        "terminal_integrity": 0.8,
+        "density": 0.45,
+        "truncated": false
+      },
+      "after": {
+        "words": 222,
+        "terminal_integrity": 0.8,
+        "density": 0.45,
+        "truncated": false,
+        "damage": 0,
+        "verdict": "ACCEPTABLE"
+      }
+    },
+    {
+      "case_id": "EXPERT_GEOTECH_budget_50",
+      "before": {
+        "words": 216,
+        "terminal_integrity": 0.5,
+        "density": 0.694,
+        "truncated": false
+      },
+      "after": {
+        "words": 49,
+        "terminal_integrity": 0,
+        "density": 1,
+        "truncated": false,
+        "damage": 0.4,
+        "verdict": "MODERATE_DAMAGE"
+      }
+    },
+    {
+      "case_id": "EXPERT_GEOTECH_budget_100",
+      "before": {
+        "words": 216,
+        "terminal_integrity": 0.5,
+        "density": 0.694,
+        "truncated": false
+      },
+      "after": {
+        "words": 100,
+        "terminal_integrity": 0.25,
+        "density": 1,
+        "truncated": false,
+        "damage": 0.2,
+        "verdict": "MINOR_DAMAGE"
+      }
+    },
+    {
+      "case_id": "EXPERT_GEOTECH_budget_150",
+      "before": {
+        "words": 216,
+        "terminal_integrity": 0.5,
+        "density": 0.694,
+        "truncated": false
+      },
+      "after": {
+        "words": 148,
+        "terminal_integrity": 0.5,
+        "density": 1,
+        "truncated": false,
+        "damage": 0,
+        "verdict": "ACCEPTABLE"
+      }
+    },
+    {
+      "case_id": "EXPERT_GEOTECH_budget_250",
+      "before": {
+        "words": 216,
+        "terminal_integrity": 0.5,
+        "density": 0.694,
+        "truncated": false
+      },
+      "after": {
+        "words": 216,
+        "terminal_integrity": 0.5,
+        "density": 0.694,
+        "truncated": false,
+        "damage": 0,
+        "verdict": "ACCEPTABLE"
+      }
+    },
+    {
+      "case_id": "EXPERT_THERMIQUE_budget_50",
+      "before": {
+        "words": 213,
+        "terminal_integrity": 0.25,
+        "density": 0.352,
+        "truncated": false
+      },
+      "after": {
+        "words": 47,
+        "terminal_integrity": 0,
+        "density": 1,
+        "truncated": false,
+        "damage": 0.225,
+        "verdict": "MINOR_DAMAGE"
+      }
+    },
+    {
+      "case_id": "EXPERT_THERMIQUE_budget_100",
+      "before": {
+        "words": 213,
+        "terminal_integrity": 0.25,
+        "density": 0.352,
+        "truncated": false
+      },
+      "after": {
+        "words": 99,
+        "terminal_integrity": 0,
+        "density": 0.758,
+        "truncated": false,
+        "damage": 0.125,
+        "verdict": "MINOR_DAMAGE"
+      }
+    },
+    {
+      "case_id": "EXPERT_THERMIQUE_budget_150",
+      "before": {
+        "words": 213,
+        "terminal_integrity": 0.25,
+        "density": 0.352,
+        "truncated": false
+      },
+      "after": {
+        "words": 147,
+        "terminal_integrity": 0.25,
+        "density": 0.51,
+        "truncated": false,
+        "damage": 0.025,
+        "verdict": "ACCEPTABLE"
+      }
+    },
+    {
+      "case_id": "EXPERT_THERMIQUE_budget_250",
+      "before": {
+        "words": 213,
+        "terminal_integrity": 0.25,
+        "density": 0.352,
+        "truncated": false
+      },
+      "after": {
+        "words": 213,
+        "terminal_integrity": 0.25,
+        "density": 0.352,
+        "truncated": false,
+        "damage": 0,
+        "verdict": "ACCEPTABLE"
+      }
+    }
+  ],
+  "summary": {
+    "avg_integrity_by_budget": {
+      "50": 0.06,
+      "100": 0.21000000000000002,
+      "150": 0.4,
+      "250": 0.45999999999999996
+    },
+    "avg_damage_by_budget": {
+      "50": 0.31500000000000006,
+      "100": 0.16,
+      "150": 0.039,
+      "250": 0
+    },
+    "critical_cases_high_budget": 9
+  }
+}
