@@ -1,15 +1,17 @@
 {
-  "mission_id": "MASSIVE_EVALUATION_V3_20260517",
-  "corpus_size": 100,
+  "mission_id": "MASSIVE_EVALUATION_V4_20260517",
+  "corpus_size": 140,
   "archetypes": [
     "ARCH_GOODHART_PUR",
     "ARCH_SYSTEMIC_RICHE",
     "ARCH_JARGON_ZORAN",
     "ARCH_TERRAIN_PRO",
-    "ARCH_VERBEUX_VIDE"
+    "ARCH_VERBEUX_VIDE",
+    "ARCH_SEDUCTIVE_FRAGILE",
+    "ARCH_DOMAIN_LEAK"
   ],
-  "metrics_count": 24,
-  "duration_ms": 43,
+  "metrics_count": 32,
+  "duration_ms": 65,
   "stats_by_archetype": {
     "ARCH_GOODHART_PUR": {
       "jargon_density": {
@@ -107,6 +109,38 @@
       "goodhart_local_global_conflict": {
         "mean": 0.35,
         "std": 0.229
+      },
+      "fragility_seductive": {
+        "mean": 0,
+        "std": 0
+      },
+      "fragility_future_cost": {
+        "mean": 0.283,
+        "std": 0.398
+      },
+      "fragility_perturbation_rob": {
+        "mean": 0.5,
+        "std": 0
+      },
+      "fragility_anti_monocause": {
+        "mean": 0.5,
+        "std": 0
+      },
+      "fragility_risk": {
+        "mean": 0.285,
+        "std": 0.119
+      },
+      "structural_strength": {
+        "mean": 0.715,
+        "std": 0.119
+      },
+      "domain_leak_score": {
+        "mean": 0,
+        "std": 0
+      },
+      "domain_leak_detected": {
+        "mean": 0,
+        "std": 0
       }
     },
     "ARCH_SYSTEMIC_RICHE": {
@@ -203,6 +237,38 @@
         "std": 0
       },
       "goodhart_local_global_conflict": {
+        "mean": 0,
+        "std": 0
+      },
+      "fragility_seductive": {
+        "mean": 0,
+        "std": 0
+      },
+      "fragility_future_cost": {
+        "mean": 0,
+        "std": 0
+      },
+      "fragility_perturbation_rob": {
+        "mean": 0.5,
+        "std": 0
+      },
+      "fragility_anti_monocause": {
+        "mean": 0.553,
+        "std": 0.072
+      },
+      "fragility_risk": {
+        "mean": 0.19,
+        "std": 0.014
+      },
+      "structural_strength": {
+        "mean": 0.81,
+        "std": 0.014
+      },
+      "domain_leak_score": {
+        "mean": 0,
+        "std": 0
+      },
+      "domain_leak_detected": {
         "mean": 0,
         "std": 0
       }
@@ -303,6 +369,38 @@
       "goodhart_local_global_conflict": {
         "mean": 0,
         "std": 0
+      },
+      "fragility_seductive": {
+        "mean": 0,
+        "std": 0
+      },
+      "fragility_future_cost": {
+        "mean": 0,
+        "std": 0
+      },
+      "fragility_perturbation_rob": {
+        "mean": 0.5,
+        "std": 0
+      },
+      "fragility_anti_monocause": {
+        "mean": 0.5,
+        "std": 0
+      },
+      "fragility_risk": {
+        "mean": 0.2,
+        "std": 0
+      },
+      "structural_strength": {
+        "mean": 0.8,
+        "std": 0
+      },
+      "domain_leak_score": {
+        "mean": 0,
+        "std": 0
+      },
+      "domain_leak_detected": {
+        "mean": 0,
+        "std": 0
       }
     },
     "ARCH_TERRAIN_PRO": {
@@ -399,6 +497,38 @@
         "std": 0
       },
       "goodhart_local_global_conflict": {
+        "mean": 0,
+        "std": 0
+      },
+      "fragility_seductive": {
+        "mean": 0,
+        "std": 0
+      },
+      "fragility_future_cost": {
+        "mean": 0,
+        "std": 0
+      },
+      "fragility_perturbation_rob": {
+        "mean": 0.5,
+        "std": 0
+      },
+      "fragility_anti_monocause": {
+        "mean": 0.5,
+        "std": 0
+      },
+      "fragility_risk": {
+        "mean": 0.2,
+        "std": 0
+      },
+      "structural_strength": {
+        "mean": 0.8,
+        "std": 0
+      },
+      "domain_leak_score": {
+        "mean": 0,
+        "std": 0
+      },
+      "domain_leak_detected": {
         "mean": 0,
         "std": 0
       }
@@ -499,6 +629,298 @@
       "goodhart_local_global_conflict": {
         "mean": 0,
         "std": 0
+      },
+      "fragility_seductive": {
+        "mean": 0,
+        "std": 0
+      },
+      "fragility_future_cost": {
+        "mean": 0,
+        "std": 0
+      },
+      "fragility_perturbation_rob": {
+        "mean": 0.5,
+        "std": 0
+      },
+      "fragility_anti_monocause": {
+        "mean": 0.5,
+        "std": 0
+      },
+      "fragility_risk": {
+        "mean": 0.2,
+        "std": 0
+      },
+      "structural_strength": {
+        "mean": 0.8,
+        "std": 0
+      },
+      "domain_leak_score": {
+        "mean": 0,
+        "std": 0
+      },
+      "domain_leak_detected": {
+        "mean": 0,
+        "std": 0
+      }
+    },
+    "ARCH_SEDUCTIVE_FRAGILE": {
+      "jargon_density": {
+        "mean": 0,
+        "std": 0
+      },
+      "user_distance": {
+        "mean": 0.8,
+        "std": 0.245
+      },
+      "practical_usefulness": {
+        "mean": 0.795,
+        "std": 0.241
+      },
+      "meta_noise": {
+        "mean": 0.361,
+        "std": 0.136
+      },
+      "concrete_runtime_alignment": {
+        "mean": 0.686,
+        "std": 0.162
+      },
+      "terrain_alignment": {
+        "mean": 0,
+        "std": 0
+      },
+      "useful_information_density": {
+        "mean": 0.855,
+        "std": 0.196
+      },
+      "useful_information_density_v2": {
+        "mean": 0.855,
+        "std": 0.196
+      },
+      "cognitive_load": {
+        "mean": 0.218,
+        "std": 0.128
+      },
+      "robustness_OOD": {
+        "mean": 0.22,
+        "std": 0.132
+      },
+      "global_usefulness": {
+        "mean": 0.524,
+        "std": 0.07
+      },
+      "sys_resilience": {
+        "mean": 0.44,
+        "std": 0.092
+      },
+      "sys_multiscale": {
+        "mean": 0.113,
+        "std": 0.124
+      },
+      "sys_false_benefit_detec": {
+        "mean": 0,
+        "std": 0
+      },
+      "sys_causal_robustness": {
+        "mean": 0.5,
+        "std": 0
+      },
+      "sys_long_term_viability": {
+        "mean": 0.5,
+        "std": 0
+      },
+      "sys_composite": {
+        "mean": 0.307,
+        "std": 0.043
+      },
+      "goodhart_risk": {
+        "mean": 0.09,
+        "std": 0.073
+      },
+      "goodhart_systemic_health": {
+        "mean": 0.91,
+        "std": 0.073
+      },
+      "goodhart_fired_count": {
+        "mean": 0.6,
+        "std": 0.49
+      },
+      "goodhart_false_optimization": {
+        "mean": 0.36,
+        "std": 0.294
+      },
+      "goodhart_proxy_collapse": {
+        "mean": 0,
+        "std": 0
+      },
+      "goodhart_metric_tunnel": {
+        "mean": 0,
+        "std": 0
+      },
+      "goodhart_local_global_conflict": {
+        "mean": 0,
+        "std": 0
+      },
+      "fragility_seductive": {
+        "mean": 0.833,
+        "std": 0.357
+      },
+      "fragility_future_cost": {
+        "mean": 0.5,
+        "std": 0.465
+      },
+      "fragility_perturbation_rob": {
+        "mean": 0.5,
+        "std": 0
+      },
+      "fragility_anti_monocause": {
+        "mean": 0.5,
+        "std": 0
+      },
+      "fragility_risk": {
+        "mean": 0.6,
+        "std": 0.158
+      },
+      "structural_strength": {
+        "mean": 0.4,
+        "std": 0.158
+      },
+      "domain_leak_score": {
+        "mean": 0,
+        "std": 0
+      },
+      "domain_leak_detected": {
+        "mean": 0,
+        "std": 0
+      }
+    },
+    "ARCH_DOMAIN_LEAK": {
+      "jargon_density": {
+        "mean": 0,
+        "std": 0
+      },
+      "user_distance": {
+        "mean": 1,
+        "std": 0
+      },
+      "practical_usefulness": {
+        "mean": 0.651,
+        "std": 0.192
+      },
+      "meta_noise": {
+        "mean": 0.47,
+        "std": 0.038
+      },
+      "concrete_runtime_alignment": {
+        "mean": 0.567,
+        "std": 0.084
+      },
+      "terrain_alignment": {
+        "mean": 0.081,
+        "std": 0.072
+      },
+      "useful_information_density": {
+        "mean": 0.36,
+        "std": 0.441
+      },
+      "useful_information_density_v2": {
+        "mean": 0.36,
+        "std": 0.441
+      },
+      "cognitive_load": {
+        "mean": 0.332,
+        "std": 0.132
+      },
+      "robustness_OOD": {
+        "mean": 0.5,
+        "std": 0
+      },
+      "global_usefulness": {
+        "mean": 0.516,
+        "std": 0.082
+      },
+      "sys_resilience": {
+        "mean": 0.5,
+        "std": 0
+      },
+      "sys_multiscale": {
+        "mean": 0,
+        "std": 0
+      },
+      "sys_false_benefit_detec": {
+        "mean": 0,
+        "std": 0
+      },
+      "sys_causal_robustness": {
+        "mean": 0.5,
+        "std": 0
+      },
+      "sys_long_term_viability": {
+        "mean": 0.5,
+        "std": 0
+      },
+      "sys_composite": {
+        "mean": 0.3,
+        "std": 0
+      },
+      "goodhart_risk": {
+        "mean": 0,
+        "std": 0
+      },
+      "goodhart_systemic_health": {
+        "mean": 1,
+        "std": 0
+      },
+      "goodhart_fired_count": {
+        "mean": 0,
+        "std": 0
+      },
+      "goodhart_false_optimization": {
+        "mean": 0,
+        "std": 0
+      },
+      "goodhart_proxy_collapse": {
+        "mean": 0,
+        "std": 0
+      },
+      "goodhart_metric_tunnel": {
+        "mean": 0,
+        "std": 0
+      },
+      "goodhart_local_global_conflict": {
+        "mean": 0,
+        "std": 0
+      },
+      "fragility_seductive": {
+        "mean": 0,
+        "std": 0
+      },
+      "fragility_future_cost": {
+        "mean": 0,
+        "std": 0
+      },
+      "fragility_perturbation_rob": {
+        "mean": 0.5,
+        "std": 0
+      },
+      "fragility_anti_monocause": {
+        "mean": 0.5,
+        "std": 0
+      },
+      "fragility_risk": {
+        "mean": 0.2,
+        "std": 0
+      },
+      "structural_strength": {
+        "mean": 0.8,
+        "std": 0
+      },
+      "domain_leak_score": {
+        "mean": 0.84,
+        "std": 0.185
+      },
+      "domain_leak_detected": {
+        "mean": 1,
+        "std": 0
       }
     }
   },
@@ -506,7 +928,7 @@
     "jargon_density": {
       "max_arch": "ARCH_JARGON_ZORAN",
       "max_mean": 0.249,
-      "min_arch": "ARCH_VERBEUX_VIDE",
+      "min_arch": "ARCH_DOMAIN_LEAK",
       "min_mean": 0,
       "range": 0.249,
       "max_std": 0.126,
@@ -516,11 +938,11 @@
     "user_distance": {
       "max_arch": "ARCH_GOODHART_PUR",
       "max_mean": 1,
-      "min_arch": "ARCH_SYSTEMIC_RICHE",
-      "min_mean": 0.825,
-      "range": 0.175,
-      "max_std": 0.238,
-      "discrimination_ratio": 0.74,
+      "min_arch": "ARCH_SEDUCTIVE_FRAGILE",
+      "min_mean": 0.8,
+      "range": 0.2,
+      "max_std": 0.245,
+      "discrimination_ratio": 0.82,
       "verdict": "WEAK"
     },
     "practical_usefulness": {
@@ -536,27 +958,27 @@
     "meta_noise": {
       "max_arch": "ARCH_JARGON_ZORAN",
       "max_mean": 0.621,
-      "min_arch": "ARCH_TERRAIN_PRO",
-      "min_mean": 0.425,
-      "range": 0.196,
-      "max_std": 0.098,
-      "discrimination_ratio": 2,
-      "verdict": "STRONG"
+      "min_arch": "ARCH_SEDUCTIVE_FRAGILE",
+      "min_mean": 0.361,
+      "range": 0.26,
+      "max_std": 0.136,
+      "discrimination_ratio": 1.91,
+      "verdict": "MODERATE"
     },
     "concrete_runtime_alignment": {
-      "max_arch": "ARCH_TERRAIN_PRO",
-      "max_mean": 0.665,
+      "max_arch": "ARCH_SEDUCTIVE_FRAGILE",
+      "max_mean": 0.686,
       "min_arch": "ARCH_JARGON_ZORAN",
       "min_mean": 0.384,
-      "range": 0.281,
-      "max_std": 0.132,
-      "discrimination_ratio": 2.13,
-      "verdict": "STRONG"
+      "range": 0.302,
+      "max_std": 0.162,
+      "discrimination_ratio": 1.86,
+      "verdict": "MODERATE"
     },
     "terrain_alignment": {
       "max_arch": "ARCH_TERRAIN_PRO",
       "max_mean": 0.144,
-      "min_arch": "ARCH_JARGON_ZORAN",
+      "min_arch": "ARCH_SEDUCTIVE_FRAGILE",
       "min_mean": 0,
       "range": 0.144,
       "max_std": 0.072,
@@ -564,44 +986,44 @@
       "verdict": "STRONG"
     },
     "useful_information_density": {
-      "max_arch": "ARCH_TERRAIN_PRO",
-      "max_mean": 0.81,
+      "max_arch": "ARCH_SEDUCTIVE_FRAGILE",
+      "max_mean": 0.855,
       "min_arch": "ARCH_JARGON_ZORAN",
       "min_mean": 0,
-      "range": 0.81,
+      "range": 0.855,
       "max_std": 0.448,
-      "discrimination_ratio": 1.81,
+      "discrimination_ratio": 1.91,
       "verdict": "MODERATE"
     },
     "useful_information_density_v2": {
-      "max_arch": "ARCH_TERRAIN_PRO",
-      "max_mean": 0.81,
+      "max_arch": "ARCH_SEDUCTIVE_FRAGILE",
+      "max_mean": 0.855,
       "min_arch": "ARCH_JARGON_ZORAN",
       "min_mean": 0,
-      "range": 0.81,
+      "range": 0.855,
       "max_std": 0.448,
-      "discrimination_ratio": 1.81,
+      "discrimination_ratio": 1.91,
       "verdict": "MODERATE"
     },
     "cognitive_load": {
-      "max_arch": "ARCH_JARGON_ZORAN",
-      "max_mean": 0.183,
+      "max_arch": "ARCH_DOMAIN_LEAK",
+      "max_mean": 0.332,
       "min_arch": "ARCH_VERBEUX_VIDE",
       "min_mean": 0.102,
-      "range": 0.081,
+      "range": 0.23,
       "max_std": 0.143,
-      "discrimination_ratio": 0.57,
-      "verdict": "WEAK"
+      "discrimination_ratio": 1.61,
+      "verdict": "MODERATE"
     },
     "robustness_OOD": {
       "max_arch": "ARCH_VERBEUX_VIDE",
       "max_mean": 0.525,
-      "min_arch": "ARCH_TERRAIN_PRO",
-      "min_mean": 0.5,
-      "range": 0.025,
-      "max_std": 0.043,
-      "discrimination_ratio": 0.58,
-      "verdict": "WEAK"
+      "min_arch": "ARCH_SEDUCTIVE_FRAGILE",
+      "min_mean": 0.22,
+      "range": 0.305,
+      "max_std": 0.132,
+      "discrimination_ratio": 2.31,
+      "verdict": "STRONG"
     },
     "global_usefulness": {
       "max_arch": "ARCH_TERRAIN_PRO",
@@ -609,8 +1031,8 @@
       "min_arch": "ARCH_JARGON_ZORAN",
       "min_mean": 0.429,
       "range": 0.177,
-      "max_std": 0.063,
-      "discrimination_ratio": 2.81,
+      "max_std": 0.082,
+      "discrimination_ratio": 2.16,
       "verdict": "STRONG"
     },
     "sys_resilience": {
@@ -626,7 +1048,7 @@
     "sys_multiscale": {
       "max_arch": "ARCH_SYSTEMIC_RICHE",
       "max_mean": 0.412,
-      "min_arch": "ARCH_VERBEUX_VIDE",
+      "min_arch": "ARCH_DOMAIN_LEAK",
       "min_mean": 0,
       "range": 0.412,
       "max_std": 0.163,
@@ -636,7 +1058,7 @@
     "sys_false_benefit_detec": {
       "max_arch": "ARCH_SYSTEMIC_RICHE",
       "max_mean": 0.09,
-      "min_arch": "ARCH_VERBEUX_VIDE",
+      "min_arch": "ARCH_DOMAIN_LEAK",
       "min_mean": 0,
       "range": 0.09,
       "max_std": 0.118,
@@ -676,7 +1098,7 @@
     "goodhart_risk": {
       "max_arch": "ARCH_GOODHART_PUR",
       "max_mean": 0.587,
-      "min_arch": "ARCH_VERBEUX_VIDE",
+      "min_arch": "ARCH_DOMAIN_LEAK",
       "min_mean": 0,
       "range": 0.587,
       "max_std": 0.137,
@@ -696,7 +1118,7 @@
     "goodhart_fired_count": {
       "max_arch": "ARCH_GOODHART_PUR",
       "max_mean": 3.45,
-      "min_arch": "ARCH_VERBEUX_VIDE",
+      "min_arch": "ARCH_DOMAIN_LEAK",
       "min_mean": 0,
       "range": 3.45,
       "max_std": 0.74,
@@ -706,7 +1128,7 @@
     "goodhart_false_optimization": {
       "max_arch": "ARCH_GOODHART_PUR",
       "max_mean": 0.53,
-      "min_arch": "ARCH_VERBEUX_VIDE",
+      "min_arch": "ARCH_DOMAIN_LEAK",
       "min_mean": 0,
       "range": 0.53,
       "max_std": 0.342,
@@ -716,7 +1138,7 @@
     "goodhart_proxy_collapse": {
       "max_arch": "ARCH_GOODHART_PUR",
       "max_mean": 0.767,
-      "min_arch": "ARCH_VERBEUX_VIDE",
+      "min_arch": "ARCH_DOMAIN_LEAK",
       "min_mean": 0,
       "range": 0.767,
       "max_std": 0.153,
@@ -726,7 +1148,7 @@
     "goodhart_metric_tunnel": {
       "max_arch": "ARCH_GOODHART_PUR",
       "max_mean": 0.7,
-      "min_arch": "ARCH_VERBEUX_VIDE",
+      "min_arch": "ARCH_DOMAIN_LEAK",
       "min_mean": 0,
       "range": 0.7,
       "max_std": 0.001,
@@ -736,12 +1158,92 @@
     "goodhart_local_global_conflict": {
       "max_arch": "ARCH_GOODHART_PUR",
       "max_mean": 0.35,
-      "min_arch": "ARCH_VERBEUX_VIDE",
+      "min_arch": "ARCH_DOMAIN_LEAK",
       "min_mean": 0,
       "range": 0.35,
       "max_std": 0.229,
       "discrimination_ratio": 1.53,
       "verdict": "MODERATE"
+    },
+    "fragility_seductive": {
+      "max_arch": "ARCH_SEDUCTIVE_FRAGILE",
+      "max_mean": 0.833,
+      "min_arch": "ARCH_DOMAIN_LEAK",
+      "min_mean": 0,
+      "range": 0.833,
+      "max_std": 0.357,
+      "discrimination_ratio": 2.33,
+      "verdict": "STRONG"
+    },
+    "fragility_future_cost": {
+      "max_arch": "ARCH_SEDUCTIVE_FRAGILE",
+      "max_mean": 0.5,
+      "min_arch": "ARCH_DOMAIN_LEAK",
+      "min_mean": 0,
+      "range": 0.5,
+      "max_std": 0.465,
+      "discrimination_ratio": 1.08,
+      "verdict": "MODERATE"
+    },
+    "fragility_perturbation_rob": {
+      "max_arch": "ARCH_GOODHART_PUR",
+      "max_mean": 0.5,
+      "min_arch": "ARCH_DOMAIN_LEAK",
+      "min_mean": 0.5,
+      "range": 0,
+      "max_std": 0.001,
+      "discrimination_ratio": 0,
+      "verdict": "NO_SIGNAL"
+    },
+    "fragility_anti_monocause": {
+      "max_arch": "ARCH_SYSTEMIC_RICHE",
+      "max_mean": 0.553,
+      "min_arch": "ARCH_DOMAIN_LEAK",
+      "min_mean": 0.5,
+      "range": 0.053,
+      "max_std": 0.072,
+      "discrimination_ratio": 0.74,
+      "verdict": "WEAK"
+    },
+    "fragility_risk": {
+      "max_arch": "ARCH_SEDUCTIVE_FRAGILE",
+      "max_mean": 0.6,
+      "min_arch": "ARCH_SYSTEMIC_RICHE",
+      "min_mean": 0.19,
+      "range": 0.41,
+      "max_std": 0.158,
+      "discrimination_ratio": 2.59,
+      "verdict": "STRONG"
+    },
+    "structural_strength": {
+      "max_arch": "ARCH_SYSTEMIC_RICHE",
+      "max_mean": 0.81,
+      "min_arch": "ARCH_SEDUCTIVE_FRAGILE",
+      "min_mean": 0.4,
+      "range": 0.41,
+      "max_std": 0.158,
+      "discrimination_ratio": 2.59,
+      "verdict": "STRONG"
+    },
+    "domain_leak_score": {
+      "max_arch": "ARCH_DOMAIN_LEAK",
+      "max_mean": 0.84,
+      "min_arch": "ARCH_SEDUCTIVE_FRAGILE",
+      "min_mean": 0,
+      "range": 0.84,
+      "max_std": 0.185,
+      "discrimination_ratio": 4.54,
+      "verdict": "STRONG"
+    },
+    "domain_leak_detected": {
+      "max_arch": "ARCH_DOMAIN_LEAK",
+      "max_mean": 1,
+      "min_arch": "ARCH_SEDUCTIVE_FRAGILE",
+      "min_mean": 0,
+      "range": 1,
+      "max_std": 0.001,
+      "discrimination_ratio": 1000,
+      "verdict": "STRONG"
     }
   },
   "sample_evaluations": [
@@ -773,7 +1275,15 @@
         "goodhart_false_optimization": 1,
         "goodhart_proxy_collapse": 0.667,
         "goodhart_metric_tunnel": 0.7,
-        "goodhart_local_global_conflict": 0.5
+        "goodhart_local_global_conflict": 0.5,
+        "fragility_seductive": 0,
+        "fragility_future_cost": 0.667,
+        "fragility_perturbation_rob": 0.5,
+        "fragility_anti_monocause": 0.5,
+        "fragility_risk": 0.4,
+        "structural_strength": 0.6,
+        "domain_leak_score": 0,
+        "domain_leak_detected": 0
       }
     },
     {
@@ -804,7 +1314,15 @@
         "goodhart_false_optimization": 0,
         "goodhart_proxy_collapse": 0.667,
         "goodhart_metric_tunnel": 0.7,
-        "goodhart_local_global_conflict": 0
+        "goodhart_local_global_conflict": 0,
+        "fragility_seductive": 0,
+        "fragility_future_cost": 0,
+        "fragility_perturbation_rob": 0.5,
+        "fragility_anti_monocause": 0.5,
+        "fragility_risk": 0.2,
+        "structural_strength": 0.8,
+        "domain_leak_score": 0,
+        "domain_leak_detected": 0
       }
     },
     {
@@ -835,69 +1353,15 @@
         "goodhart_false_optimization": 0.6,
         "goodhart_proxy_collapse": 1,
         "goodhart_metric_tunnel": 0.7,
-        "goodhart_local_global_conflict": 0
-      }
-    },
-    {
-      "id": "ARCH_GOODHART_PUR_03",
-      "archetype": "ARCH_GOODHART_PUR",
-      "text": "maximiser le KPI. gain immédiat. piloter par l'indicateur unique. unique raison principale.",
-      "eval": {
-        "jargon_density": 0,
-        "user_distance": 1,
-        "practical_usefulness": 0.5,
-        "meta_noise": 0.5,
-        "concrete_runtime_alignment": 0.5,
-        "terrain_alignment": 0,
-        "useful_information_density": 0,
-        "useful_information_density_v2": 0,
-        "cognitive_load": 0.106,
-        "robustness_OOD": 0.5,
-        "global_usefulness": 0.45,
-        "sys_resilience": 0.3,
-        "sys_multiscale": 0.25,
-        "sys_false_benefit_detec": 0,
-        "sys_causal_robustness": 0.5,
-        "sys_long_term_viability": 0.25,
-        "sys_composite": 0.263,
-        "goodhart_risk": 0.617,
-        "goodhart_systemic_health": 0.383,
-        "goodhart_fired_count": 4,
-        "goodhart_false_optimization": 0.6,
-        "goodhart_proxy_collapse": 0.667,
-        "goodhart_metric_tunnel": 0.7,
-        "goodhart_local_global_conflict": 0.5
-      }
-    },
-    {
-      "id": "ARCH_GOODHART_PUR_04",
-      "archetype": "ARCH_GOODHART_PUR",
-      "text": "augmenter le ranking. résoudre le symptôme. piloter par l'indicateur unique. la seule cause est. quick win.",
-      "eval": {
-        "jargon_density": 0,
-        "user_distance": 1,
-        "practical_usefulness": 1,
-        "meta_noise": 0.4,
-        "concrete_runtime_alignment": 0.72,
-        "terrain_alignment": 0,
-        "useful_information_density": 0.9,
-        "useful_information_density_v2": 0.9,
-        "cognitive_load": 0.118,
-        "robustness_OOD": 0.5,
-        "global_usefulness": 0.64,
-        "sys_resilience": 0.5,
-        "sys_multiscale": 0,
-        "sys_false_benefit_detec": 0,
-        "sys_causal_robustness": 0.3,
-        "sys_long_term_viability": 0.25,
-        "sys_composite": 0.223,
-        "goodhart_risk": 0.342,
-        "goodhart_systemic_health": 0.658,
-        "goodhart_fired_count": 2,
-        "goodhart_false_optimization": 0,
-        "goodhart_proxy_collapse": 0.667,
-        "goodhart_metric_tunnel": 0.7,
-        "goodhart_local_global_conflict": 0
+        "goodhart_local_global_conflict": 0,
+        "fragility_seductive": 0,
+        "fragility_future_cost": 0,
+        "fragility_perturbation_rob": 0.5,
+        "fragility_anti_monocause": 0.5,
+        "fragility_risk": 0.2,
+        "structural_strength": 0.8,
+        "domain_leak_score": 0,
+        "domain_leak_detected": 0
       }
     },
     {
@@ -928,7 +1392,15 @@
         "goodhart_false_optimization": 0,
         "goodhart_proxy_collapse": 0,
         "goodhart_metric_tunnel": 0,
-        "goodhart_local_global_conflict": 0
+        "goodhart_local_global_conflict": 0,
+        "fragility_seductive": 0,
+        "fragility_future_cost": 0,
+        "fragility_perturbation_rob": 0.5,
+        "fragility_anti_monocause": 0.65,
+        "fragility_risk": 0.17,
+        "structural_strength": 0.83,
+        "domain_leak_score": 0,
+        "domain_leak_detected": 0
       }
     },
     {
@@ -959,7 +1431,15 @@
         "goodhart_false_optimization": 0,
         "goodhart_proxy_collapse": 0,
         "goodhart_metric_tunnel": 0,
-        "goodhart_local_global_conflict": 0
+        "goodhart_local_global_conflict": 0,
+        "fragility_seductive": 0,
+        "fragility_future_cost": 0,
+        "fragility_perturbation_rob": 0.5,
+        "fragility_anti_monocause": 0.5,
+        "fragility_risk": 0.2,
+        "structural_strength": 0.8,
+        "domain_leak_score": 0,
+        "domain_leak_detected": 0
       }
     },
     {
@@ -990,69 +1470,15 @@
         "goodhart_false_optimization": 0,
         "goodhart_proxy_collapse": 0,
         "goodhart_metric_tunnel": 0,
-        "goodhart_local_global_conflict": 0
-      }
-    },
-    {
-      "id": "ARCH_SYSTEMIC_RICHE_03",
-      "archetype": "ARCH_SYSTEMIC_RICHE",
-      "text": "redondance critique. propagation à considérer. corrélation n'est pas causalité. dette invisible cachée.",
-      "eval": {
-        "jargon_density": 0,
-        "user_distance": 1,
-        "practical_usefulness": 0.5,
-        "meta_noise": 0.5,
-        "concrete_runtime_alignment": 0.5,
-        "terrain_alignment": 0,
-        "useful_information_density": 0,
-        "useful_information_density_v2": 0,
-        "cognitive_load": 0.106,
-        "robustness_OOD": 0.5,
-        "global_usefulness": 0.45,
-        "sys_resilience": 0.58,
-        "sys_multiscale": 0.25,
-        "sys_false_benefit_detec": 0.2,
-        "sys_causal_robustness": 0.5,
-        "sys_long_term_viability": 0.5,
-        "sys_composite": 0.41,
-        "goodhart_risk": 0,
-        "goodhart_systemic_health": 1,
-        "goodhart_fired_count": 0,
-        "goodhart_false_optimization": 0,
-        "goodhart_proxy_collapse": 0,
-        "goodhart_metric_tunnel": 0,
-        "goodhart_local_global_conflict": 0
-      }
-    },
-    {
-      "id": "ARCH_SYSTEMIC_RICHE_04",
-      "archetype": "ARCH_SYSTEMIC_RICHE",
-      "text": "résilience préservée. impact d'ensemble. cause racine vs cause directe. effet différé. au prix d'une perte.",
-      "eval": {
-        "jargon_density": 0,
-        "user_distance": 1,
-        "practical_usefulness": 0.5,
-        "meta_noise": 0.5,
-        "concrete_runtime_alignment": 0.5,
-        "terrain_alignment": 0,
-        "useful_information_density": 0.9,
-        "useful_information_density_v2": 0.95,
-        "cognitive_load": 0.111,
-        "robustness_OOD": 0.5,
-        "global_usefulness": 0.54,
-        "sys_resilience": 0.58,
-        "sys_multiscale": 0.5,
-        "sys_false_benefit_detec": 0,
-        "sys_causal_robustness": 0.5,
-        "sys_long_term_viability": 0.5,
-        "sys_composite": 0.42,
-        "goodhart_risk": 0,
-        "goodhart_systemic_health": 1,
-        "goodhart_fired_count": 0,
-        "goodhart_false_optimization": 0,
-        "goodhart_proxy_collapse": 0,
-        "goodhart_metric_tunnel": 0,
-        "goodhart_local_global_conflict": 0
+        "goodhart_local_global_conflict": 0,
+        "fragility_seductive": 0,
+        "fragility_future_cost": 0,
+        "fragility_perturbation_rob": 0.5,
+        "fragility_anti_monocause": 0.5,
+        "fragility_risk": 0.2,
+        "structural_strength": 0.8,
+        "domain_leak_score": 0,
+        "domain_leak_detected": 0
       }
     },
     {
@@ -1083,7 +1509,15 @@
         "goodhart_false_optimization": 0,
         "goodhart_proxy_collapse": 0,
         "goodhart_metric_tunnel": 0,
-        "goodhart_local_global_conflict": 0
+        "goodhart_local_global_conflict": 0,
+        "fragility_seductive": 0,
+        "fragility_future_cost": 0,
+        "fragility_perturbation_rob": 0.5,
+        "fragility_anti_monocause": 0.5,
+        "fragility_risk": 0.2,
+        "structural_strength": 0.8,
+        "domain_leak_score": 0,
+        "domain_leak_detected": 0
       }
     },
     {
@@ -1114,7 +1548,15 @@
         "goodhart_false_optimization": 0,
         "goodhart_proxy_collapse": 0,
         "goodhart_metric_tunnel": 0,
-        "goodhart_local_global_conflict": 0
+        "goodhart_local_global_conflict": 0,
+        "fragility_seductive": 0,
+        "fragility_future_cost": 0,
+        "fragility_perturbation_rob": 0.5,
+        "fragility_anti_monocause": 0.5,
+        "fragility_risk": 0.2,
+        "structural_strength": 0.8,
+        "domain_leak_score": 0,
+        "domain_leak_detected": 0
       }
     },
     {
@@ -1145,69 +1587,15 @@
         "goodhart_false_optimization": 0,
         "goodhart_proxy_collapse": 0,
         "goodhart_metric_tunnel": 0,
-        "goodhart_local_global_conflict": 0
-      }
-    },
-    {
-      "id": "ARCH_JARGON_ZORAN_03",
-      "archetype": "ARCH_JARGON_ZORAN",
-      "text": "résonance silencieuse. ΔVE structurel. gap S_global. attracteur ULG.",
-      "eval": {
-        "jargon_density": 0.3,
-        "user_distance": 1,
-        "practical_usefulness": 0.2,
-        "meta_noise": 0.68,
-        "concrete_runtime_alignment": 0.284,
-        "terrain_alignment": 0,
-        "useful_information_density": 0,
-        "useful_information_density_v2": 0,
-        "cognitive_load": 0.07,
-        "robustness_OOD": 0.5,
-        "global_usefulness": 0.39,
-        "sys_resilience": 0.5,
-        "sys_multiscale": 0.25,
-        "sys_false_benefit_detec": 0,
-        "sys_causal_robustness": 0.5,
-        "sys_long_term_viability": 0.5,
-        "sys_composite": 0.35,
-        "goodhart_risk": 0,
-        "goodhart_systemic_health": 1,
-        "goodhart_fired_count": 0,
-        "goodhart_false_optimization": 0,
-        "goodhart_proxy_collapse": 0,
-        "goodhart_metric_tunnel": 0,
-        "goodhart_local_global_conflict": 0
-      }
-    },
-    {
-      "id": "ARCH_JARGON_ZORAN_04",
-      "archetype": "ARCH_JARGON_ZORAN",
-      "text": "palier WP-11. GHUC dominant. gap S_global. attracteur ULG. GHUC dominant.",
-      "eval": {
-        "jargon_density": 0.5,
-        "user_distance": 1,
-        "practical_usefulness": 0.5,
-        "meta_noise": 0.7,
-        "concrete_runtime_alignment": 0.36,
-        "terrain_alignment": 0,
-        "useful_information_density": 0,
-        "useful_information_density_v2": 0,
-        "cognitive_load": 0.074,
-        "robustness_OOD": 0.5,
-        "global_usefulness": 0.45,
-        "sys_resilience": 0.5,
-        "sys_multiscale": 0,
-        "sys_false_benefit_detec": 0,
-        "sys_causal_robustness": 0.5,
-        "sys_long_term_viability": 0.5,
-        "sys_composite": 0.3,
-        "goodhart_risk": 0,
-        "goodhart_systemic_health": 1,
-        "goodhart_fired_count": 0,
-        "goodhart_false_optimization": 0,
-        "goodhart_proxy_collapse": 0,
-        "goodhart_metric_tunnel": 0,
-        "goodhart_local_global_conflict": 0
+        "goodhart_local_global_conflict": 0,
+        "fragility_seductive": 0,
+        "fragility_future_cost": 0,
+        "fragility_perturbation_rob": 0.5,
+        "fragility_anti_monocause": 0.5,
+        "fragility_risk": 0.2,
+        "structural_strength": 0.8,
+        "domain_leak_score": 0,
+        "domain_leak_detected": 0
       }
     },
     {
@@ -1238,7 +1626,15 @@
         "goodhart_false_optimization": 0,
         "goodhart_proxy_collapse": 0,
         "goodhart_metric_tunnel": 0,
-        "goodhart_local_global_conflict": 0
+        "goodhart_local_global_conflict": 0,
+        "fragility_seductive": 0,
+        "fragility_future_cost": 0,
+        "fragility_perturbation_rob": 0.5,
+        "fragility_anti_monocause": 0.5,
+        "fragility_risk": 0.2,
+        "structural_strength": 0.8,
+        "domain_leak_score": 0,
+        "domain_leak_detected": 0
       }
     },
     {
@@ -1269,7 +1665,15 @@
         "goodhart_false_optimization": 0,
         "goodhart_proxy_collapse": 0,
         "goodhart_metric_tunnel": 0,
-        "goodhart_local_global_conflict": 0
+        "goodhart_local_global_conflict": 0,
+        "fragility_seductive": 0,
+        "fragility_future_cost": 0,
+        "fragility_perturbation_rob": 0.5,
+        "fragility_anti_monocause": 0.5,
+        "fragility_risk": 0.2,
+        "structural_strength": 0.8,
+        "domain_leak_score": 0,
+        "domain_leak_detected": 0
       }
     },
     {
@@ -1300,69 +1704,15 @@
         "goodhart_false_optimization": 0,
         "goodhart_proxy_collapse": 0,
         "goodhart_metric_tunnel": 0,
-        "goodhart_local_global_conflict": 0
-      }
-    },
-    {
-      "id": "ARCH_TERRAIN_PRO_03",
-      "archetype": "ARCH_TERRAIN_PRO",
-      "text": "DTU 25.41 applicable. anamnèse complète. article 1240 Code civil. tolérance ±0.5 mm.",
-      "eval": {
-        "jargon_density": 0,
-        "user_distance": 1,
-        "practical_usefulness": 0.5,
-        "meta_noise": 0.5,
-        "concrete_runtime_alignment": 0.5,
-        "terrain_alignment": 0.125,
-        "useful_information_density": 0.9,
-        "useful_information_density_v2": 0.9,
-        "cognitive_load": 0.077,
-        "robustness_OOD": 0.5,
-        "global_usefulness": 0.54,
-        "sys_resilience": 0.58,
-        "sys_multiscale": 0,
-        "sys_false_benefit_detec": 0,
-        "sys_causal_robustness": 0.5,
-        "sys_long_term_viability": 0.5,
-        "sys_composite": 0.32,
-        "goodhart_risk": 0,
-        "goodhart_systemic_health": 1,
-        "goodhart_fired_count": 0,
-        "goodhart_false_optimization": 0,
-        "goodhart_proxy_collapse": 0,
-        "goodhart_metric_tunnel": 0,
-        "goodhart_local_global_conflict": 0
-      }
-    },
-    {
-      "id": "ARCH_TERRAIN_PRO_04",
-      "archetype": "ARCH_TERRAIN_PRO",
-      "text": "BET structure à consulter. ECG 12 dérivations. opposabilité au tiers. classe étanchéité IP67. BET structure à consulter.",
-      "eval": {
-        "jargon_density": 0,
-        "user_distance": 1,
-        "practical_usefulness": 1,
-        "meta_noise": 0.4,
-        "concrete_runtime_alignment": 0.72,
-        "terrain_alignment": 0.125,
-        "useful_information_density": 0.9,
-        "useful_information_density_v2": 0.9,
-        "cognitive_load": 0.125,
-        "robustness_OOD": 0.5,
-        "global_usefulness": 0.64,
-        "sys_resilience": 0.5,
-        "sys_multiscale": 0,
-        "sys_false_benefit_detec": 0,
-        "sys_causal_robustness": 0.5,
-        "sys_long_term_viability": 0.5,
-        "sys_composite": 0.3,
-        "goodhart_risk": 0,
-        "goodhart_systemic_health": 1,
-        "goodhart_fired_count": 0,
-        "goodhart_false_optimization": 0,
-        "goodhart_proxy_collapse": 0,
-        "goodhart_metric_tunnel": 0,
-        "goodhart_local_global_conflict": 0
+        "goodhart_local_global_conflict": 0,
+        "fragility_seductive": 0,
+        "fragility_future_cost": 0,
+        "fragility_perturbation_rob": 0.5,
+        "fragility_anti_monocause": 0.5,
+        "fragility_risk": 0.2,
+        "structural_strength": 0.8,
+        "domain_leak_score": 0,
+        "domain_leak_detected": 0
       }
     },
     {
@@ -1393,7 +1743,15 @@
         "goodhart_false_optimization": 0,
         "goodhart_proxy_collapse": 0,
         "goodhart_metric_tunnel": 0,
-        "goodhart_local_global_conflict": 0
+        "goodhart_local_global_conflict": 0,
+        "fragility_seductive": 0,
+        "fragility_future_cost": 0,
+        "fragility_perturbation_rob": 0.5,
+        "fragility_anti_monocause": 0.5,
+        "fragility_risk": 0.2,
+        "structural_strength": 0.8,
+        "domain_leak_score": 0,
+        "domain_leak_detected": 0
       }
     },
     {
@@ -1424,7 +1782,15 @@
         "goodhart_false_optimization": 0,
         "goodhart_proxy_collapse": 0,
         "goodhart_metric_tunnel": 0,
-        "goodhart_local_global_conflict": 0
+        "goodhart_local_global_conflict": 0,
+        "fragility_seductive": 0,
+        "fragility_future_cost": 0,
+        "fragility_perturbation_rob": 0.5,
+        "fragility_anti_monocause": 0.5,
+        "fragility_risk": 0.2,
+        "structural_strength": 0.8,
+        "domain_leak_score": 0,
+        "domain_leak_detected": 0
       }
     },
     {
@@ -1455,44 +1821,60 @@
         "goodhart_false_optimization": 0,
         "goodhart_proxy_collapse": 0,
         "goodhart_metric_tunnel": 0,
-        "goodhart_local_global_conflict": 0
+        "goodhart_local_global_conflict": 0,
+        "fragility_seductive": 0,
+        "fragility_future_cost": 0,
+        "fragility_perturbation_rob": 0.5,
+        "fragility_anti_monocause": 0.5,
+        "fragility_risk": 0.2,
+        "structural_strength": 0.8,
+        "domain_leak_score": 0,
+        "domain_leak_detected": 0
       }
     },
     {
-      "id": "ARCH_VERBEUX_VIDE_03",
-      "archetype": "ARCH_VERBEUX_VIDE",
-      "text": "en conclusion. néanmoins. selon le contexte. au final.",
+      "id": "ARCH_SEDUCTIVE_FRAGILE_00",
+      "archetype": "ARCH_SEDUCTIVE_FRAGILE",
+      "text": "priorité absolue. évidemment la seule option. effet immédiat assuré. installer ce système maintenant.",
       "eval": {
         "jargon_density": 0,
-        "user_distance": 1,
-        "practical_usefulness": 0.2,
-        "meta_noise": 0.56,
-        "concrete_runtime_alignment": 0.368,
-        "terrain_alignment": 0.125,
-        "useful_information_density": 0,
-        "useful_information_density_v2": 0,
-        "cognitive_load": 0.07,
-        "robustness_OOD": 0.6,
-        "global_usefulness": 0.415,
+        "user_distance": 0.5,
+        "practical_usefulness": 1,
+        "meta_noise": 0.2,
+        "concrete_runtime_alignment": 0.86,
+        "terrain_alignment": 0,
+        "useful_information_density": 0.9,
+        "useful_information_density_v2": 0.9,
+        "cognitive_load": 0.115,
+        "robustness_OOD": 0.5,
+        "global_usefulness": 0.64,
         "sys_resilience": 0.5,
-        "sys_multiscale": 0,
+        "sys_multiscale": 0.25,
         "sys_false_benefit_detec": 0,
         "sys_causal_robustness": 0.5,
         "sys_long_term_viability": 0.5,
-        "sys_composite": 0.3,
+        "sys_composite": 0.35,
         "goodhart_risk": 0,
         "goodhart_systemic_health": 1,
         "goodhart_fired_count": 0,
         "goodhart_false_optimization": 0,
         "goodhart_proxy_collapse": 0,
         "goodhart_metric_tunnel": 0,
-        "goodhart_local_global_conflict": 0
+        "goodhart_local_global_conflict": 0,
+        "fragility_seductive": 0,
+        "fragility_future_cost": 1,
+        "fragility_perturbation_rob": 0.5,
+        "fragility_anti_monocause": 0.5,
+        "fragility_risk": 0.5,
+        "structural_strength": 0.5,
+        "domain_leak_score": 0,
+        "domain_leak_detected": 0
       }
     },
     {
-      "id": "ARCH_VERBEUX_VIDE_04",
-      "archetype": "ARCH_VERBEUX_VIDE",
-      "text": "il convient de souligner. de plus. le cas échéant. pour résumer. il convient de souligner.",
+      "id": "ARCH_SEDUCTIVE_FRAGILE_01",
+      "archetype": "ARCH_SEDUCTIVE_FRAGILE",
+      "text": "priorité absolue. évidemment la seule option. garantit certainement le résultat. maximiser le rendement. priorité absolue.",
       "eval": {
         "jargon_density": 0,
         "user_distance": 1,
@@ -1500,11 +1882,50 @@
         "meta_noise": 0.5,
         "concrete_runtime_alignment": 0.5,
         "terrain_alignment": 0,
-        "useful_information_density": 0,
-        "useful_information_density_v2": 0,
-        "cognitive_load": 0.111,
-        "robustness_OOD": 0.5,
-        "global_usefulness": 0.45,
+        "useful_information_density": 0.9,
+        "useful_information_density_v2": 0.9,
+        "cognitive_load": 0.411,
+        "robustness_OOD": 0.35,
+        "global_usefulness": 0.502,
+        "sys_resilience": 0.3,
+        "sys_multiscale": 0,
+        "sys_false_benefit_detec": 0,
+        "sys_causal_robustness": 0.5,
+        "sys_long_term_viability": 0.5,
+        "sys_composite": 0.25,
+        "goodhart_risk": 0.15,
+        "goodhart_systemic_health": 0.85,
+        "goodhart_fired_count": 1,
+        "goodhart_false_optimization": 0.6,
+        "goodhart_proxy_collapse": 0,
+        "goodhart_metric_tunnel": 0,
+        "goodhart_local_global_conflict": 0,
+        "fragility_seductive": 1,
+        "fragility_future_cost": 0,
+        "fragility_perturbation_rob": 0.5,
+        "fragility_anti_monocause": 0.5,
+        "fragility_risk": 0.5,
+        "structural_strength": 0.5,
+        "domain_leak_score": 0,
+        "domain_leak_detected": 0
+      }
+    },
+    {
+      "id": "ARCH_SEDUCTIVE_FRAGILE_02",
+      "archetype": "ARCH_SEDUCTIVE_FRAGILE",
+      "text": "vous devez impérativement le faire. évidemment la seule option. garantit certainement le résultat. installer ce système maintenant. il faut absolument adopter cette solution. c'est toujours la meilleure approche.",
+      "eval": {
+        "jargon_density": 0,
+        "user_distance": 0.5,
+        "practical_usefulness": 1,
+        "meta_noise": 0.2,
+        "concrete_runtime_alignment": 0.86,
+        "terrain_alignment": 0,
+        "useful_information_density": 0.9,
+        "useful_information_density_v2": 0.9,
+        "cognitive_load": 0.394,
+        "robustness_OOD": 0.05,
+        "global_usefulness": 0.528,
         "sys_resilience": 0.5,
         "sys_multiscale": 0,
         "sys_false_benefit_detec": 0,
@@ -1517,7 +1938,132 @@
         "goodhart_false_optimization": 0,
         "goodhart_proxy_collapse": 0,
         "goodhart_metric_tunnel": 0,
-        "goodhart_local_global_conflict": 0
+        "goodhart_local_global_conflict": 0,
+        "fragility_seductive": 1,
+        "fragility_future_cost": 0.667,
+        "fragility_perturbation_rob": 0.5,
+        "fragility_anti_monocause": 0.5,
+        "fragility_risk": 0.7,
+        "structural_strength": 0.3,
+        "domain_leak_score": 0,
+        "domain_leak_detected": 0
+      }
+    },
+    {
+      "id": "ARCH_DOMAIN_LEAK_00",
+      "archetype": "ARCH_DOMAIN_LEAK",
+      "text": "Cette question ne relève pas de ma spécialité. Veuillez consulter un expert qualifié. Sortir de mon champ. Toutes mes excuses.",
+      "eval": {
+        "jargon_density": 0,
+        "user_distance": 1,
+        "practical_usefulness": 1,
+        "meta_noise": 0.4,
+        "concrete_runtime_alignment": 0.72,
+        "terrain_alignment": 0.125,
+        "useful_information_density": 0.9,
+        "useful_information_density_v2": 0.9,
+        "cognitive_load": 0.176,
+        "robustness_OOD": 0.5,
+        "global_usefulness": 0.64,
+        "sys_resilience": 0.5,
+        "sys_multiscale": 0,
+        "sys_false_benefit_detec": 0,
+        "sys_causal_robustness": 0.5,
+        "sys_long_term_viability": 0.5,
+        "sys_composite": 0.3,
+        "goodhart_risk": 0,
+        "goodhart_systemic_health": 1,
+        "goodhart_fired_count": 0,
+        "goodhart_false_optimization": 0,
+        "goodhart_proxy_collapse": 0,
+        "goodhart_metric_tunnel": 0,
+        "goodhart_local_global_conflict": 0,
+        "fragility_seductive": 0,
+        "fragility_future_cost": 0,
+        "fragility_perturbation_rob": 0.5,
+        "fragility_anti_monocause": 0.5,
+        "fragility_risk": 0.2,
+        "structural_strength": 0.8,
+        "domain_leak_score": 0.3,
+        "domain_leak_detected": 1
+      }
+    },
+    {
+      "id": "ARCH_DOMAIN_LEAK_01",
+      "archetype": "ARCH_DOMAIN_LEAK",
+      "text": "Cette question ne relève pas de ma spécialité. Veuillez consulter un expert qualifié. Je ne peux pas répondre à cette question. Malheureusement hors expertise. Cette question ne relève pas de ma spécialité.",
+      "eval": {
+        "jargon_density": 0,
+        "user_distance": 1,
+        "practical_usefulness": 0.823,
+        "meta_noise": 0.435,
+        "concrete_runtime_alignment": 0.642,
+        "terrain_alignment": 0.125,
+        "useful_information_density": 0.9,
+        "useful_information_density_v2": 0.9,
+        "cognitive_load": 0.424,
+        "robustness_OOD": 0.5,
+        "global_usefulness": 0.605,
+        "sys_resilience": 0.5,
+        "sys_multiscale": 0,
+        "sys_false_benefit_detec": 0,
+        "sys_causal_robustness": 0.5,
+        "sys_long_term_viability": 0.5,
+        "sys_composite": 0.3,
+        "goodhart_risk": 0,
+        "goodhart_systemic_health": 1,
+        "goodhart_fired_count": 0,
+        "goodhart_false_optimization": 0,
+        "goodhart_proxy_collapse": 0,
+        "goodhart_metric_tunnel": 0,
+        "goodhart_local_global_conflict": 0,
+        "fragility_seductive": 0,
+        "fragility_future_cost": 0,
+        "fragility_perturbation_rob": 0.5,
+        "fragility_anti_monocause": 0.5,
+        "fragility_risk": 0.2,
+        "structural_strength": 0.8,
+        "domain_leak_score": 0.8,
+        "domain_leak_detected": 1
+      }
+    },
+    {
+      "id": "ARCH_DOMAIN_LEAK_02",
+      "archetype": "ARCH_DOMAIN_LEAK",
+      "text": "Hors de ma compétence. Veuillez consulter un expert qualifié. Je ne peux pas répondre à cette question. Toutes mes excuses. Désolé, ce n'est pas mon domaine. Je ne suis pas spécialiste.",
+      "eval": {
+        "jargon_density": 0,
+        "user_distance": 1,
+        "practical_usefulness": 0.833,
+        "meta_noise": 0.433,
+        "concrete_runtime_alignment": 0.647,
+        "terrain_alignment": 0.125,
+        "useful_information_density": 0.9,
+        "useful_information_density_v2": 0.9,
+        "cognitive_load": 0.199,
+        "robustness_OOD": 0.5,
+        "global_usefulness": 0.607,
+        "sys_resilience": 0.5,
+        "sys_multiscale": 0,
+        "sys_false_benefit_detec": 0,
+        "sys_causal_robustness": 0.5,
+        "sys_long_term_viability": 0.5,
+        "sys_composite": 0.3,
+        "goodhart_risk": 0,
+        "goodhart_systemic_health": 1,
+        "goodhart_fired_count": 0,
+        "goodhart_false_optimization": 0,
+        "goodhart_proxy_collapse": 0,
+        "goodhart_metric_tunnel": 0,
+        "goodhart_local_global_conflict": 0,
+        "fragility_seductive": 0,
+        "fragility_future_cost": 0,
+        "fragility_perturbation_rob": 0.5,
+        "fragility_anti_monocause": 0.5,
+        "fragility_risk": 0.2,
+        "structural_strength": 0.8,
+        "domain_leak_score": 0.9,
+        "domain_leak_detected": 1
       }
     }
   ]

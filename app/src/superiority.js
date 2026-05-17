@@ -16,6 +16,8 @@ import { detectDomain } from './domain_detection.js';
 import { diagnoseWeaknesses, generateClaudePlusRezo, activationMatrix } from './rezo_engine.js';
 import { systemicCoherenceReport } from './systemic_coherence.js';
 import { runAntiGoodhart } from './anti_goodhart.js';
+import { runFragilityDetector } from './fragility_detector.js';
+import { detectDomainLeak } from './domain_leak.js';
 
 // Top 3 routes utilisées pour la compétition (sous-ensemble — coût API maîtrisé)
 const SUPERIORITY_ROUTES = ['frugale', 'anti_hallucination', 'structurelle'];
@@ -180,6 +182,9 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
     // Mission SYSTEMIC_SELECTION V3 : cohérence systémique + anti-Goodhart
     r.systemic_coherence = systemicCoherenceReport(r.text);
     r.goodhart = runAntiGoodhart(r.text);
+    // Mission V4 : fragilité structurelle + domain_leak
+    r.fragility = runFragilityDetector(r.text);
+    r.domain_leak = detectDomainLeak(r.text, { question });
     // domain_fitness déjà calculé pour les ZORAN (skippées exclues)
     if (r.strategy !== 'baseline') {
       const spec = zoranSpecs.find(s => s.stratName === r.strategy);
@@ -266,6 +271,9 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
         // Mission SYSTEMIC_SELECTION V3
         systemic_coherence: respObj.systemic_coherence || null,
         goodhart: respObj.goodhart || null,
+        // Mission V4 — fragilité + domain_leak
+        fragility: respObj.fragility || null,
+        domain_leak: respObj.domain_leak || null,
         // Score composite : intègre concret + anti-jargon - pénalité troncature
         runtime_superiority: +(
           0.22 * (s.precision - baselineScore.precision)
@@ -575,6 +583,57 @@ export function renderComparison(result) {
         </div>` : ''}
     </details>`;
 
+  // ─── 2quater) FRAGILITÉ STRUCTURELLE + DOMAIN_LEAK (mission V4) ───
+  // Détecte réponses "séduisantes mais fragiles" + refus de domaine.
+  const fragilityTable = `
+    <details class="sup-section" open>
+      <summary>Fragilité structurelle + domain leak (mission V4 — réponses séduisantes piégeuses)</summary>
+      <div class="sup-deltas-table" style="margin-top:8px">
+        <div class="sup-deltas-row sup-deltas-header" style="grid-template-columns:24px 1fr 60px 60px 60px 60px 72px 72px">
+          <span class="sup-col-rank">#</span>
+          <span class="sup-col-label">Candidat</span>
+          <span class="sup-col-num" title="seductive_but_fragile — confiante sans humilité">séduis</span>
+          <span class="sup-col-num" title="future_hidden_cost — gain immédiat sans long terme">f.cost</span>
+          <span class="sup-col-num" title="perturbation_robustness — robuste si variables changent">pert.r</span>
+          <span class="sup-col-num" title="anti_monocause_early_lock — explore alternatives">m.alt</span>
+          <span class="sup-col-sup" title="fragility_risk composite — plus bas = mieux">fragilité</span>
+          <span class="sup-col-sup" title="domain_leak — refus destructeur d'immersion">dom.leak</span>
+        </div>
+        ${sortedByRank.map((d, i) => {
+          const f = d.fragility || {};
+          const det = f.detectors || {};
+          const dl = d.domain_leak || {};
+          const fRisk = f.fragility_risk ?? 0;
+          const fClass = fRisk >= 0.4 ? 'bad' : fRisk <= 0.20 ? 'good' : '';
+          const dlClass = dl.leak_detected ? 'bad' : dl.score === 0 ? 'good' : '';
+          return `<div class="sup-deltas-row ${i === 0 ? 'is-rank-1' : ''}" style="grid-template-columns:24px 1fr 60px 60px 60px 60px 72px 72px">
+            <span class="sup-col-rank">${i+1}</span>
+            <span class="sup-col-label">${escHtml(d.label)}</span>
+            <span class="sup-col-num">${(det.seductive_but_fragile?.score ?? 0).toFixed(2)}</span>
+            <span class="sup-col-num">${(det.future_hidden_cost?.score ?? 0).toFixed(2)}</span>
+            <span class="sup-col-num">${(det.perturbation_robustness?.score ?? 0).toFixed(2)}</span>
+            <span class="sup-col-num">${(det.anti_monocause_early_lock?.score ?? 0).toFixed(2)}</span>
+            <span class="sup-col-sup ${fClass}">${fRisk.toFixed(2)}</span>
+            <span class="sup-col-sup ${dlClass}">${(dl.score ?? 0).toFixed(2)}${dl.leak_detected ? ' ⚠' : ''}</span>
+          </div>`;
+        }).join('')}
+      </div>
+      ${sortedByRank.some(d => (d.fragility?.hints || []).length > 0 || d.domain_leak?.leak_detected) ? `
+        <div class="sup-fragility-hints" style="margin-top:8px;padding:8px;border:1px solid var(--border);border-radius:6px;background:var(--bg-1);font-size:12px">
+          <strong>⚠ Alertes fragilité par candidat :</strong>
+          ${sortedByRank.map(d => {
+            const hints = d.fragility?.hints || [];
+            const dl = d.domain_leak;
+            const dlAlert = dl?.leak_detected ? [{ code: 'domain_leak', hint: dl.hint }] : [];
+            const all = [...hints, ...dlAlert];
+            if (all.length === 0) return '';
+            return `<div style="margin-top:4px"><strong>${escHtml(d.label)}</strong> :
+              ${all.map(h => `<span style="display:inline-block;padding:2px 6px;margin:2px;background:var(--bg-2);border-radius:4px">${escHtml(h.code)} — ${escHtml((h.hint||'').slice(0, 90))}</span>`).join(' ')}
+            </div>`;
+          }).join('')}
+        </div>` : ''}
+    </details>`;
+
   // ─── 3) REFORMULATIONS condensées — triées par grade /20 (UX cohérente) ───
   const reforms = sortedResponses.map((r, idx) => {
     if (!r.reformulation) return '';
@@ -642,6 +701,7 @@ export function renderComparison(result) {
       ${argumentedDetails}
       ${concreteTable}
       ${systemicTable}
+      ${fragilityTable}
       ${responsesBlock}
     </div>`;
   }
@@ -652,6 +712,7 @@ export function renderComparison(result) {
     ${deltaTable}
     ${concreteTable}
     ${systemicTable}
+    ${fragilityTable}
     ${reformsBlock}
     ${responsesBlock}
   </div>`;

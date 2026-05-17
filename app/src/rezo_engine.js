@@ -32,6 +32,8 @@ import { mapStructural } from './structural_mapping.js';
 import { callLLM } from './llm.js';
 import { runAntiGoodhart } from './anti_goodhart.js';
 import { systemicCoherenceScore } from './systemic_coherence.js';
+import { runFragilityDetector } from './fragility_detector.js';
+import { detectDomainLeak } from './domain_leak.js';
 
 // ───────────────────── DIAGNOSTIC FAIBLESSES ─────────────────────
 
@@ -100,6 +102,30 @@ const WEAKNESS_CHECKS = {
     test: (text, _) => text.length > 200 && systemicCoherenceScore(text) < 0.35,
     injection: 'structurelle',
     fix_hint: 'Ajouter marges/résilience, échelles multiples (local+global+long terme), cofacteurs causaux.',
+  },
+  // Mission V4 : séduisant mais fragile (confiance excessive sans hedges)
+  seductive_but_fragile: {
+    test: (text, _) => runFragilityDetector(text).detectors.seductive_but_fragile.score >= 0.50,
+    injection: 'anti_hallucination',
+    fix_hint: 'Calibrer : ajouter "à vérifier", alternatives, hedges. Pas d\'affirmations péremptoires.',
+  },
+  // Mission V4 : coût futur ignoré (gain immédiat sans long terme)
+  future_hidden_cost: {
+    test: (text, _) => runFragilityDetector(text).detectors.future_hidden_cost.score >= 0.50,
+    injection: 'structurelle',
+    fix_hint: 'Nommer dette, amortissement, effet à 5 ans, opportunité perdue.',
+  },
+  // Mission V4 : verrouillage causal trop précoce
+  monocause_early_lock: {
+    test: (text, _) => runFragilityDetector(text).detectors.anti_monocause_early_lock.score < 0.35,
+    injection: 'structurelle',
+    fix_hint: 'Lister 2-3 hypothèses alternatives avant de conclure. Cofacteurs possibles.',
+  },
+  // Mission V4 : DOMAIN_LEAK — refus de domaine destructeur immersion
+  domain_leak: {
+    test: (text, ctx) => detectDomainLeak(text, ctx).leak_detected,
+    injection: 'orchestrated',
+    fix_hint: 'Pas de "désolé hors domaine". Répondre au fond avec le vocabulaire du domaine détecté.',
   },
 };
 

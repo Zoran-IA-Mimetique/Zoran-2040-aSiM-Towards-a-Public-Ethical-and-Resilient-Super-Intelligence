@@ -28,6 +28,9 @@ import { usefulInformationDensity, usefulInformationDensityV2, cognitiveLoad, ro
 // V3 metrics (systemic + Goodhart)
 import { systemicCoherenceReport } from '../app/src/systemic_coherence.js';
 import { runAntiGoodhart } from '../app/src/anti_goodhart.js';
+// V4 metrics (fragility + domain_leak)
+import { runFragilityDetector } from '../app/src/fragility_detector.js';
+import { detectDomainLeak } from '../app/src/domain_leak.js';
 
 // ───────────────────── CORPUS GÉNÉRATEUR ─────────────────────
 function permute(arr, seed) {
@@ -77,6 +80,21 @@ const VERBEUX_SEEDS = [
   ['comme mentionné précédemment', 'pour résumer', 'au final', 'finalement'],
 ];
 
+// V4 archétypes
+const SEDUCTIVE_FRAGILE_SEEDS = [
+  ['il faut absolument adopter cette solution', 'vous devez impérativement le faire', 'priorité absolue'],
+  ['c\'est toujours la meilleure approche', 'évidemment la seule option', 'sans aucun doute optimal'],
+  ['garantit certainement le résultat', 'effet immédiat assuré', 'impossible d\'échouer'],
+  ['installer ce système maintenant', 'optimiser tout sans hésiter', 'maximiser le rendement'],
+];
+
+const DOMAIN_LEAK_SEEDS = [
+  ['Désolé, ce n\'est pas mon domaine', 'Hors de ma compétence', 'Cette question ne relève pas de ma spécialité'],
+  ['Je ne suis pas spécialiste', 'Veuillez consulter un expert qualifié', 'Adressez-vous à un professionnel'],
+  ['Je ne peux pas répondre à cette question', 'Sortir de mon champ', 'En dehors de mes compétences'],
+  ['Toutes mes excuses', 'Je crains de ne pas pouvoir', 'Malheureusement hors expertise'],
+];
+
 function buildText(seedGroups, seed, length = 4) {
   const sentences = [];
   for (let i = 0; i < length; i++) {
@@ -94,6 +112,8 @@ function generateCorpus(n_per_arch = 20) {
     ARCH_JARGON_ZORAN: JARGON_SEEDS,
     ARCH_TERRAIN_PRO: TERRAIN_SEEDS,
     ARCH_VERBEUX_VIDE: VERBEUX_SEEDS,
+    ARCH_SEDUCTIVE_FRAGILE: SEDUCTIVE_FRAGILE_SEEDS,
+    ARCH_DOMAIN_LEAK: DOMAIN_LEAK_SEEDS,
   };
   const corpus = [];
   let id = 0;
@@ -111,6 +131,8 @@ function generateCorpus(n_per_arch = 20) {
 function evaluateText(text, question = 'analyse ce système') {
   const sysReport = systemicCoherenceReport(text);
   const goodReport = runAntiGoodhart(text);
+  const fragReport = runFragilityDetector(text);
+  const leakReport = detectDomainLeak(text, { question });
   return {
     // V1
     jargon_density: +jargonDensity(text).toFixed(3),
@@ -148,6 +170,15 @@ function evaluateText(text, question = 'analyse ce système') {
     goodhart_proxy_collapse: goodReport.checks.proxy_collapse.score,
     goodhart_metric_tunnel: goodReport.checks.metric_tunnel.score,
     goodhart_local_global_conflict: goodReport.checks.local_vs_global_conflict.score,
+    // V4 fragility + domain_leak
+    fragility_seductive: fragReport.detectors.seductive_but_fragile.score,
+    fragility_future_cost: fragReport.detectors.future_hidden_cost.score,
+    fragility_perturbation_rob: fragReport.detectors.perturbation_robustness.score,
+    fragility_anti_monocause: fragReport.detectors.anti_monocause_early_lock.score,
+    fragility_risk: fragReport.fragility_risk,
+    structural_strength: fragReport.structural_strength,
+    domain_leak_score: leakReport.score,
+    domain_leak_detected: leakReport.leak_detected ? 1 : 0,
   };
 }
 
@@ -244,7 +275,7 @@ for (const arch of Object.keys(stats)) {
 
 // ───────────────────── RAPPORTS JSON + MD ─────────────────────
 const outJson = {
-  mission_id: 'MASSIVE_EVALUATION_V3_20260517',
+  mission_id: 'MASSIVE_EVALUATION_V4_20260517',
   corpus_size: corpus.length,
   archetypes: Object.keys(stats),
   metrics_count: Object.keys(evaluations[0]).length,
@@ -252,16 +283,20 @@ const outJson = {
   stats_by_archetype: stats,
   discrimination_matrix: discriminationMx,
   // 3 exemples par archétype pour traçabilité
-  sample_evaluations: corpus.slice(0, 5).concat(
-    corpus.slice(20, 25), corpus.slice(40, 45), corpus.slice(60, 65), corpus.slice(80, 85)
-  ).map((c, i) => ({
-    id: c.id, archetype: c.archetype, text: c.text,
-    eval: evaluations[corpus.findIndex(x => x.id === c.id)],
-  })),
+  sample_evaluations: (() => {
+    const archs = [...new Set(corpus.map(c => c.archetype))];
+    return archs.flatMap(arch => {
+      const inArch = corpus.filter(c => c.archetype === arch).slice(0, 3);
+      return inArch.map(c => ({
+        id: c.id, archetype: c.archetype, text: c.text,
+        eval: evaluations[corpus.findIndex(x => x.id === c.id)],
+      }));
+    });
+  })(),
 };
 
-fs.writeFileSync('audit/MASSIVE_EVALUATION_V3_RESULTS.json', JSON.stringify(outJson, null, 2));
-console.log('\n✓ Rapport JSON : audit/MASSIVE_EVALUATION_V3_RESULTS.json');
+fs.writeFileSync('audit/MASSIVE_EVALUATION_V4_RESULTS.json', JSON.stringify(outJson, null, 2));
+console.log('\n✓ Rapport JSON : audit/MASSIVE_EVALUATION_V4_RESULTS.json');
 
 // Markdown synthétique
 const strong = sortedByDisc.filter(([_, d]) => d.verdict === 'STRONG').length;
@@ -270,9 +305,9 @@ const weak = sortedByDisc.filter(([_, d]) => d.verdict === 'WEAK').length;
 const noSignal = sortedByDisc.filter(([_, d]) => d.verdict === 'NO_SIGNAL').length;
 
 const mdLines = [
-  '# MASSIVE EVALUATION V3 — Rapport',
+  '# MASSIVE EVALUATION V4 — Rapport',
   '',
-  `**Mission** : \`MASSIVE_EVALUATION_V3_20260517\``,
+  `**Mission** : \`MASSIVE_EVALUATION_V4_20260517\``,
   `**Corpus** : ${corpus.length} textes (5 archétypes × ${N_PER_ARCH})`,
   `**Métriques** : ${Object.keys(evaluations[0]).length} mesures par texte`,
   `**Total** : ${corpus.length * Object.keys(evaluations[0]).length} évaluations en ${dt} ms`,
@@ -317,8 +352,8 @@ const mdLines = [
   '  dimension orthogonale aux archétypes choisis.',
   '- Validation live (sur réponses Claude/Sonnet réelles) reste à faire.',
 ];
-fs.writeFileSync('audit/MASSIVE_EVALUATION_V3_REPORT.md', mdLines.join('\n'));
-console.log('✓ Rapport MD   : audit/MASSIVE_EVALUATION_V3_REPORT.md');
+fs.writeFileSync('audit/MASSIVE_EVALUATION_V4_REPORT.md', mdLines.join('\n'));
+console.log('✓ Rapport MD   : audit/MASSIVE_EVALUATION_V4_REPORT.md');
 
 console.log('\n═══════════════════════════════════════════════════════════════');
 console.log(`  RÉSULTAT : ${strong} STRONG, ${moderate} MODERATE, ${weak} WEAK, ${noSignal} NO_SIGNAL`);
