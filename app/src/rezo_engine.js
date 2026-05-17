@@ -34,6 +34,7 @@ import { runAntiGoodhart } from './anti_goodhart.js';
 import { systemicCoherenceScore } from './systemic_coherence.js';
 import { runFragilityDetector } from './fragility_detector.js';
 import { detectDomainLeak } from './domain_leak.js';
+import { seductiveComplexity } from './seductive_complexity.js';
 
 // ───────────────────── DIAGNOSTIC FAIBLESSES ─────────────────────
 
@@ -126,6 +127,12 @@ const WEAKNESS_CHECKS = {
     test: (text, ctx) => detectDomainLeak(text, ctx).leak_detected,
     injection: 'orchestrated',
     fix_hint: 'Pas de "désolé hors domaine". Répondre au fond avec le vocabulaire du domaine détecté.',
+  },
+  // Mission V5 : complexité technique artificielle (vocabulaire savant vide)
+  seductive_complexity: {
+    test: (text, _) => seductiveComplexity(text).score >= 0.50,
+    injection: 'frugale',
+    fix_hint: 'Simplifier le vocabulaire, supprimer fillers intellectuels, ajouter actions et chiffres.',
   },
 };
 

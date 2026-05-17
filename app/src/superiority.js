@@ -18,6 +18,7 @@ import { systemicCoherenceReport } from './systemic_coherence.js';
 import { runAntiGoodhart } from './anti_goodhart.js';
 import { runFragilityDetector } from './fragility_detector.js';
 import { detectDomainLeak } from './domain_leak.js';
+import { seductiveComplexity } from './seductive_complexity.js';
 
 // Top 3 routes utilisées pour la compétition (sous-ensemble — coût API maîtrisé)
 const SUPERIORITY_ROUTES = ['frugale', 'anti_hallucination', 'structurelle'];
@@ -185,6 +186,8 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
     // Mission V4 : fragilité structurelle + domain_leak
     r.fragility = runFragilityDetector(r.text);
     r.domain_leak = detectDomainLeak(r.text, { question });
+    // Mission V5 : seductive_complexity (densité technique artificielle)
+    r.seductive_complexity = seductiveComplexity(r.text);
     // domain_fitness déjà calculé pour les ZORAN (skippées exclues)
     if (r.strategy !== 'baseline') {
       const spec = zoranSpecs.find(s => s.stratName === r.strategy);
@@ -274,6 +277,8 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
         // Mission V4 — fragilité + domain_leak
         fragility: respObj.fragility || null,
         domain_leak: respObj.domain_leak || null,
+        // Mission V5 — seductive complexity
+        seductive_complexity: respObj.seductive_complexity || null,
         // Score composite : intègre concret + anti-jargon - pénalité troncature
         runtime_superiority: +(
           0.22 * (s.precision - baselineScore.precision)
