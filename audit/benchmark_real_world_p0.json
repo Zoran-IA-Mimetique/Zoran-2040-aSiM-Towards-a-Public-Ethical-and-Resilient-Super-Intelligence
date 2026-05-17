@@ -1,0 +1,155 @@
+{
+  "mission_id": "ZORAN_P0_REAL_WORLD_CALIBRATION_20260517",
+  "version": "1.0",
+  "status": "AWAITING_HUMAN_EXECUTION",
+  "instructions_for_user": "Ce fichier contient les 5 cas adversariaux à transmettre AVEUGLEMENT à 1 BET senior réel. Voir audit/P0_MINI_BET_PROTOCOL.md pour les instructions complètes.",
+
+  "transmission_to_bet": {
+    "instructions_for_bet": "Vous allez recevoir 5 réponses à une même question d'expertise BTP. Annotez chacune en aveugle, sans information sur leur origine ni sur le but du test. Voir formulaire annotation joint.",
+
+    "question_commune": "Diagnostic d'un bâtiment présentant : fissures verticales 3mm sur mur porteur, humidité base, IPN visible corrodée. Quel diagnostic, quelles mesures, quelles actions ?",
+
+    "5_cases_to_annotate_blind": [
+      {
+        "case_id": "CASE_1",
+        "response_text": "Tableau classique : suspecter RGA argile gonflante + corrosion par humidité capillaire. Étaiement si fissure > 0.5mm/mois. Sondage CPT à 2/4m pour confirmer cause dominante. Note BET structure sous 1 mois. Si confirmé : décennale article 1792 (atteinte gros œuvre). Contre-hypothèse : surcharge IPN sous-dimensionnée — vérifier note calcul.",
+        "_zoran_internal_label_BLIND": "A1_EXPERT_COURT",
+        "_zoran_expected_score": 9.0,
+        "_zoran_v11_full_score": 6.6,
+        "_zoran_v12_score": 10.0
+      },
+      {
+        "case_id": "CASE_2",
+        "response_text": "J'ai vu ça 100 fois. C'est probablement l'argile qui a séché en 2022 et qui a fait travailler la maison. La rouille sur ton IPN, c'est l'humidité qui remonte par les murs. Avant de paniquer : pose un témoin papier sur la fissure pendant 3 mois, prends une photo chaque mois. Si ça bouge, appelle un bureau d'études. Si ça bouge pas, surveille juste. La rouille, gratte et passe de l'antirouille. Le vrai problème serait que l'IPN porte mal — fais venir quelqu'un pour vérifier qu'elle est bien dimensionnée pour ce qu'elle porte.",
+        "_zoran_internal_label_BLIND": "A2_VRAI_TERRAIN_VERNACULAIRE",
+        "_zoran_expected_score": 8.0,
+        "_zoran_v11_full_score": 5.3,
+        "_zoran_v12_score": 7.0
+      },
+      {
+        "case_id": "CASE_3",
+        "response_text": "Les fissures verticales causent l'humidité capillaire qui à son tour produit la corrosion. Cette corrosion explique l'argile gonflante du sol qui amplifie le tassement différentiel. Sondage CPT 4m. Humidimètre 5 points. Décennale article 1792 probablement engagée. Cofacteurs : la corrosion entraîne la fissuration originelle qui propage le RGA.",
+        "_zoran_internal_label_BLIND": "A4_CAUSALITE_INVERSEE",
+        "_zoran_expected_score": 2.5,
+        "_zoran_v11_full_score": 5.8,
+        "_zoran_v12_score": 4.7
+      },
+      {
+        "case_id": "CASE_4",
+        "response_text": "Dans le cadre d'une analyse pathologique multi-cadre, il convient de considérer que les manifestations fissuratives observées s'inscrivent dans une perspective systémique nécessitant une approche holistique. L'observation des phénomènes structurels couplés à la présence d'humidité requiert une démarche méthodologique rigoureuse. Les implications décennales doivent être considérées dans une approche globale tenant compte de l'ensemble des facteurs systémiques. Une expertise approfondie serait nécessaire pour évaluer les implications. La cause peut être multiple, multi-factorielle, avec divers cofacteurs qui interagissent dans un cadre complexe. Il faut analyser l'amplification cascade, les déclencheurs, les révélateurs, les propagateurs.",
+        "_zoran_internal_label_BLIND": "A5_FAUX_EXPERT_LONG",
+        "_zoran_expected_score": 2.0,
+        "_zoran_v11_full_score": 4.0,
+        "_zoran_v12_score": 7.0
+      },
+      {
+        "case_id": "CASE_5",
+        "response_text": "Diagnostic multi-cause : RGA argile gonflante post-sécheresse 2022 est probablement la cause dominante. Cofacteurs : humidité capillaire amplifie corrosion IPN, carbonatation béton propage la dégradation. Cinétique attendue : si étaiement non posé sous 1 mois, atteinte gros œuvre devient irréversible. Instrumentation discriminante : G2 PRO selon NF P 94-500, fissuromètre Avongard 6 mois, humidimètre Protimeter 5 points. Actions sous 1 semaine : étaiement provisoire, mandat BET structure, photos datées. Décennale article 1792 engageable si réception < 10 ans. Contre-hypothèses à écarter : nappe affleurante variable, surcharge IPN sous-dimensionnée, fissures pré-existantes (vice apparent).",
+        "_zoran_internal_label_BLIND": "B1_EXPERT_RGA_COMPLET_SYSTÉMIQUE",
+        "_zoran_expected_score": 9.5,
+        "_zoran_v11_full_score": 6.0,
+        "_zoran_v12_score": 10.0
+      }
+    ],
+
+    "annotation_form": {
+      "instructions": "Pour chaque CASE_X, fournir :",
+      "fields_per_case": [
+        {
+          "field": "ranking_quality",
+          "type": "integer",
+          "range": "1 (meilleure) à 5 (pire)",
+          "constraint": "Chaque rang utilisé une seule fois"
+        },
+        {
+          "field": "note_globale_expertise",
+          "type": "float",
+          "range": "0..10",
+          "description": "Niveau d'expertise BTP perçu"
+        },
+        {
+          "field": "justification_qualitative",
+          "type": "string",
+          "min_length": "50 caractères",
+          "description": "Pourquoi cette note ?"
+        },
+        {
+          "field": "erreurs_critiques_detectees",
+          "type": "array_of_strings",
+          "options": [
+            "causalité physiquement fausse",
+            "instrumentation non discriminante",
+            "manque référence légale",
+            "jargon sans contenu",
+            "pas de hiérarchie temporelle",
+            "pas de contre-hypothèse",
+            "actions non prioritisées",
+            "diagnostic dangereux"
+          ]
+        },
+        {
+          "field": "perception_terrain_credible",
+          "type": "enum",
+          "options": ["VERY_CREDIBLE", "PLAUSIBLE", "DOUTEUX", "NON_CREDIBLE"]
+        },
+        {
+          "field": "confiance_expert",
+          "type": "float",
+          "range": "0..1",
+          "description": "À quel point l'expert est-il sûr de son jugement ?"
+        },
+        {
+          "field": "note_opposabilite_judiciaire",
+          "type": "float",
+          "range": "0..10",
+          "description": "Cette analyse tiendrait-elle en expertise contradictoire tribunal ?"
+        },
+        {
+          "field": "note_actionnabilite_MOA_MOE",
+          "type": "float",
+          "range": "0..10",
+          "description": "Le MOA/MOE peut-il agir directement à partir de cette analyse ?"
+        }
+      ]
+    }
+  },
+
+  "results_template_to_fill_after_annotation": {
+    "annotation_received_at_iso": null,
+    "bet_name_anonymized": null,
+    "bet_seniority_years": null,
+    "bet_specialty": null,
+    "annotations": {
+      "CASE_1": {
+        "ranking_quality": null,
+        "note_globale_expertise": null,
+        "justification_qualitative": null,
+        "erreurs_critiques_detectees": [],
+        "perception_terrain_credible": null,
+        "confiance_expert": null,
+        "note_opposabilite_judiciaire": null,
+        "note_actionnabilite_MOA_MOE": null
+      },
+      "CASE_2": { "_same_structure": "..." },
+      "CASE_3": { "_same_structure": "..." },
+      "CASE_4": { "_same_structure": "..." },
+      "CASE_5": { "_same_structure": "..." }
+    },
+    "spearman_zoran_vs_bet_expected": null,
+    "spearman_zoran_vs_bet_v11_full": null,
+    "spearman_zoran_vs_bet_v12": null,
+    "kendall_tau_zoran_vs_bet": null,
+    "verdict": null
+  },
+
+  "decision_rule": {
+    "if_spearman_gte_0_60": "ARCHITECTURE_V11_VALIDATED_PROVISIONALLY",
+    "if_spearman_0_40_to_0_59": "PARTIALLY_VALID_STRONG_INTERNAL_BIAS",
+    "if_spearman_lt_0_40": "STOP_V13_REBUILD_METHODOLOGICAL"
+  },
+
+  "ground_truth_disclosure": {
+    "note_critique": "Mes _zoran_expected_score reflètent MES intuitions, pas une vérité BTP. Si le BET réel diffère significativement, cela ne signifie PAS que le BET a tort — cela signifie que mes ground truth synthétiques étaient mal calibrés.",
+    "engagement": "Publier intégralement les résultats BET même s'ils contredisent ZORAN."
+  }
+}
