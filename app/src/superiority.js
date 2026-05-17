@@ -26,6 +26,7 @@ import { detectOverthink } from './overthink_detector.js';
 import { identityGate, identityHalluRisk } from './identity_gate.js';
 import { generateAllCTAs, detectCTAPresence } from './zoran_cta_engine.js';
 import { btpAnalysis, isBTPQuestion } from './btp_supremacy_engine.js';
+import { computeParsimony, detectLowIntrinsicDepth } from './parsimony_detector.js';
 
 // Top 3 routes utilisées pour la compétition (sous-ensemble — coût API maîtrisé)
 const SUPERIORITY_ROUTES = ['frugale', 'anti_hallucination', 'structurelle'];
@@ -273,6 +274,8 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
     r.cta_presence = detectCTAPresence(r.text);
     r.btp_analysis = btpAnalysis(question, r.text);
     r.ctas_suggested = generateAllCTAs({ question, responseText: r.text });
+    // Mission RANKING_BIAS_CORRECTION : parsimonie pour anti sur-richesse
+    r.parsimony = computeParsimony(r.text, question);
     // domain_fitness déjà calculé pour les ZORAN (skippées exclues)
     if (r.strategy !== 'baseline') {
       const spec = zoranSpecs.find(s => s.stratName === r.strategy);
@@ -384,6 +387,8 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
         cta_presence: respObj.cta_presence || null,
         btp_analysis: respObj.btp_analysis || null,
         ctas_suggested: respObj.ctas_suggested || null,
+        // Mission RANKING_BIAS_CORRECTION : parsimonie propagée
+        parsimony: respObj.parsimony || null,
         // Score composite : intègre concret + anti-jargon - pénalité troncature
         runtime_superiority: +(
           0.22 * (s.precision - baselineScore.precision)

@@ -221,6 +221,10 @@ export async function winnerSynthesis({ question, claudeAnswer, zoranAnswer, dom
 // structures détectées + impose le vocabulaire NATIF du domaine.
 // Économie : 1 call au lieu de 3+1 judge. Qualité : pas de méta-fusion
 // bruyante. Le LLM sélectionne mentalement les angles pertinents.
+// Mission RANKING_BIAS_CORRECTION : import parsimony detector pour
+// adapter le prompt selon la profondeur intrinsèque de la question
+import { detectLowIntrinsicDepth } from './parsimony_detector.js';
+
 export async function synthesizeOrchestrated({
   question, domain, structures, lawsByStrategy = {}, parents = []
 }) {
@@ -257,6 +261,33 @@ export async function synthesizeOrchestrated({
   const domLabel = domain?.label || 'généraliste';
   const domVocab = domain?.vocab_hint || 'vocabulaire courant';
   const domStyle = domain?.cognitive_style || 'réponse claire et structurée';
+
+  // Mission RANKING_BIAS_CORRECTION : MINIMAL_RESPONSE_MODE pour
+  // questions à faible profondeur intrinsèque (calcul direct, fait fermé)
+  const lid = detectLowIntrinsicDepth(question);
+  if (lid.low_intrinsic) {
+    const minimalSystem = [
+      `Tu es un EXPERT du domaine "${domLabel}".`,
+      `Cette question est à faible profondeur intrinsèque (${lid.reasons.join(' / ')}).`,
+      '',
+      '═══ MODE RÉPONSE MINIMALE (SDE-029 + RANKING_BIAS_CORRECTION) ═══',
+      '1. RÉPONSE COURTE : 2-5 phrases maximum (calcul + résultat + 1 phrase contexte).',
+      '2. AUCUNE digression : pas de CO₂, pollution, comparaisons gratuites, lacs, fleuves',
+      '   sauf si la question les demande EXPLICITEMENT.',
+      '3. AUCUN CTA. Pas de "**CTA cohérents**". Pas de "futur cohérent". Pas de "validation".',
+      '4. AUCUN markdown gras/italique. Texte pur.',
+      '5. Limite optionnelle : 1 phrase si pertinent (ex: "résultat varie selon la définition").',
+      '6. Vocabulaire : ${domVocab}.',
+      '',
+      'EXEMPLE BON (question "combien de piscines olympiques dans X ?") :',
+      '  "Surface 361×10⁶ km² × 10⁻⁶ m = 3,61×10⁸ m³ ÷ 2500 m³/piscine ≈ 144400 piscines."',
+      '',
+      'INTERDIT : "À court terme... À plus long terme... Limite : on suppose... ---',
+      '**CTA cohérents** 1. *(futur)* 2. *(validation)*..." — INTERDIT.',
+    ].join('\n');
+    return await callLLM({ system: minimalSystem, user: question, maxTokens: 400 });
+  }
+
 
   const system = [
     `Tu es un EXPERT du domaine "${domLabel}". Tu réponds dans le LANGAGE NATIF de ce domaine.`,

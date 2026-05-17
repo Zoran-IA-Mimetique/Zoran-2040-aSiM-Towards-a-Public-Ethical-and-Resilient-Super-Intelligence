@@ -76,13 +76,26 @@ function buildRenderContext(result) {
   const verdict = result.verdict;
   const verdictTarget = normalizeVerdictLabel(verdict);
 
+  // Mission RANKING_BIAS_CORRECTION :
+  // Si question low_intrinsic_depth → parsimony domine sur grade brut
+  const lowIntrinsic = deltas.some(d => d.parsimony?.low_intrinsic_depth?.low_intrinsic);
+
   const sortedByGrade = [...deltas].sort((a, b) => {
     const aWin = verdictTarget && (a.label === verdictTarget || a.label.includes(verdictTarget) || verdictTarget.includes(a.label));
     const bWin = verdictTarget && (b.label === verdictTarget || b.label.includes(verdictTarget) || verdictTarget.includes(b.label));
     if (aWin && !bWin) return -1;
     if (bWin && !aWin) return 1;
+    // Composite : grade brut + parsimony si question simple
     const ga = a.argumented_grade_20 ?? (10 + a.runtime_superiority * 10);
     const gb = b.argumented_grade_20 ?? (10 + b.runtime_superiority * 10);
+    if (lowIntrinsic) {
+      // 60% parsimony + 40% grade pour question simple
+      const pa = (a.parsimony?.parsimony_score ?? 0.5) * 20; // [0..20]
+      const pb = (b.parsimony?.parsimony_score ?? 0.5) * 20;
+      const compositeA = 0.60 * pa + 0.40 * ga;
+      const compositeB = 0.60 * pb + 0.40 * gb;
+      return compositeB - compositeA;
+    }
     return gb - ga;
   });
 
@@ -403,6 +416,47 @@ function renderFragilityTable(ctx) {
     </details>`;
 }
 
+function renderParsimonyTable(ctx) {
+  const { sortedByRank } = ctx;
+  // Skip si aucun delta n'a parsimony calculé
+  if (!sortedByRank.some(d => d.parsimony)) return '';
+  const isLowIntrinsic = sortedByRank.some(d => d.parsimony?.low_intrinsic_depth?.low_intrinsic);
+  return `
+    <details class="sup-section" ${isLowIntrinsic ? 'open' : ''}>
+      <summary>Parcimonie cognitive (mission RANKING_BIAS_CORRECTION ${isLowIntrinsic ? '— question simple détectée' : ''})</summary>
+      <div class="sup-deltas-table" style="margin-top:8px">
+        <div class="sup-deltas-row sup-deltas-header" style="grid-template-columns:24px 1fr 60px 60px 60px 60px 72px">
+          <span class="sup-col-rank">#</span>
+          <span class="sup-col-label">Candidat</span>
+          <span class="sup-col-num" title="local_sufficiency — calcul+résultat sans surcharge">suffis</span>
+          <span class="sup-col-num" title="digression_penalty — concepts hors-scope">digress</span>
+          <span class="sup-col-num" title="cta_excess — nombre CTA vs profondeur">cta+</span>
+          <span class="sup-col-num" title="cognitive_efficiency — info/mots">eff.cog</span>
+          <span class="sup-col-sup" title="parsimony composite — plus haut = mieux adapté">parcim</span>
+        </div>
+        ${sortedByRank.map((d, i) => {
+          const p = d.parsimony || {};
+          const ls = p.local_sufficiency?.score ?? 0;
+          const dp = p.digression_penalty?.penalty ?? 0;
+          const cta = p.cta_excess?.penalty ?? 0;
+          const ce = p.cognitive_efficiency ?? 0;
+          const ps = p.parsimony_score ?? 0;
+          const psClass = ps >= 0.65 ? 'good' : ps <= 0.35 ? 'bad' : '';
+          return `<div class="sup-deltas-row ${i === 0 ? 'is-rank-1' : ''}" style="grid-template-columns:24px 1fr 60px 60px 60px 60px 72px">
+            <span class="sup-col-rank">${i+1}</span>
+            <span class="sup-col-label">${escHtml(d.label)}</span>
+            <span class="sup-col-num">${ls.toFixed(2)}</span>
+            <span class="sup-col-num ${dp >= 0.2 ? 'bad' : ''}">${dp.toFixed(2)}</span>
+            <span class="sup-col-num ${cta >= 0.2 ? 'bad' : ''}">${cta.toFixed(2)}</span>
+            <span class="sup-col-num">${ce.toFixed(2)}</span>
+            <span class="sup-col-sup ${psClass}">${ps.toFixed(2)} <small>${escHtml(p.verdict || '')}</small></span>
+          </div>`;
+        }).join('')}
+      </div>
+      ${isLowIntrinsic ? '<div style="margin-top:6px;font-size:11px;color:var(--fg-2);font-style:italic">⚠ Question à faible profondeur intrinsèque détectée — parsimonie pondérée à 60% du ranking final.</div>' : ''}
+    </details>`;
+}
+
 function renderReformsBlock(ctx) {
   const { sortedResponses, labelToRank } = ctx;
   const reforms = sortedResponses.map((r, idx) => {
@@ -477,6 +531,7 @@ export function renderComparison(result) {
     return `<div class="superiority-container">
       ${renderVerdictBanner(ctx)}
       ${renderRankingBlock(ctx)}
+      ${renderParsimonyTable(ctx)}
       ${renderConcreteTable(ctx)}
       ${renderSystemicTable(ctx)}
       ${renderFragilityTable(ctx)}
@@ -489,6 +544,7 @@ export function renderComparison(result) {
     ${renderVerdictBanner(ctx)}
     ${renderRankingBlock(ctx)}
     ${renderDeltaTable(ctx)}
+    ${renderParsimonyTable(ctx)}
     ${renderConcreteTable(ctx)}
     ${renderSystemicTable(ctx)}
     ${renderFragilityTable(ctx)}

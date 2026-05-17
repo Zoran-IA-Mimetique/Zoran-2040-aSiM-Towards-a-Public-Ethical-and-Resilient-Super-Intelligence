@@ -36,6 +36,7 @@ import { runFragilityDetector } from './fragility_detector.js';
 import { detectDomainLeak } from './domain_leak.js';
 import { seductiveComplexity } from './seductive_complexity.js';
 import { identityHalluRisk } from './identity_gate.js';
+import { detectLowIntrinsicDepth } from './parsimony_detector.js';
 import { detectCTAPresence } from './zoran_cta_engine.js';
 import { btpOperationalScore, isBTPQuestion } from './btp_supremacy_engine.js';
 
@@ -239,17 +240,28 @@ export async function generateClaudePlusRezo({ question, claudeAnswer, diagnosis
     '6. TERMINE complètement la réponse.',
     '7. Pas de méta-discours ("voici la version améliorée…").',
     '',
-    '═══ LOI SDE-029 — 3 CTA OBLIGATOIRES EN FIN ═══',
-    'TERMINE finalAnswer OBLIGATOIREMENT par 3 CTA dans CE FORMAT exact :',
-    '',
-    '---',
-    '**CTA cohérents** :',
-    `1. *(futur cohérent — adapté à ${domLabel})* — formulation tentative`,
-    '2. *(validation — signe observable)* — mesure/observation discriminante',
-    '3. *(contre-piste — alternative)* — hypothèse cohérente restant ouverte',
-    '',
-    'CTAs : 1-2 phrases max, tentatifs ("on pourrait…"), spécifiques au sujet.',
-    '',
+    // Mission RANKING_BIAS_CORRECTION : CTAs conditionnels
+    // Question simple → 0 CTA. Question complexe → 3 CTAs.
+    ...(detectLowIntrinsicDepth(question).low_intrinsic
+      ? [
+        '═══ MODE MINIMAL (question à faible profondeur intrinsèque) ═══',
+        'AUCUN CTA. AUCUNE digression hors-scope.',
+        'Réponse 2-5 phrases : correction ciblée des faiblesses + résultat.',
+        '',
+      ]
+      : [
+        '═══ LOI SDE-029 — 3 CTA OBLIGATOIRES EN FIN ═══',
+        'TERMINE finalAnswer OBLIGATOIREMENT par 3 CTA dans CE FORMAT exact :',
+        '',
+        '---',
+        '**CTA cohérents** :',
+        `1. *(futur cohérent — adapté à ${domLabel})* — formulation tentative`,
+        '2. *(validation — signe observable)* — mesure/observation discriminante',
+        '3. *(contre-piste — alternative)* — hypothèse cohérente restant ouverte',
+        '',
+        'CTAs : 1-2 phrases max, tentatifs ("on pourrait…"), spécifiques au sujet.',
+        '',
+      ]),
     'Réponds STRICTEMENT en JSON :',
     '{"finalAnswer":"<réponse augmentée AVEC les 3 CTA en fin>","rationale":"<1 phrase>"}',
     'Pas d\'autre prose autour du JSON, pas de markdown.',
