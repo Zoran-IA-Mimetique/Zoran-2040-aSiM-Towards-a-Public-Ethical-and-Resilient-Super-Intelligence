@@ -20,17 +20,20 @@ import { extractCausalCore, PRESERVATION_ORDER } from './causal_compression_engi
  *   - action finale claire
  *   - limites/incertitudes
  */
-const TERMINAL_CONCLUSION_RX = /\b(en conclusion|conclusion (provisoire|principale)|verdict|décision|bilan|au final|donc|ainsi|par conséquent)\b/i;
-const TERMINAL_FALSIFICATION_RX = /\b(contre.?hypothèse|hypothèse alternative|à infirmer|à écarter|sinon|si .{1,30} faux|à condition que|sous réserve)\b/i;
-const TERMINAL_ACTION_RX = /\b(action\w*|étape\s+\d|sous \d+\s*(j|h|jour|mois|semaine)|à faire|prochaine étape|recommand\w+)\b/i;
-const TERMINAL_LIMITS_RX = /\b(limit\w*|à vérifier|à valider|incertitude|reste à|hypothèse à valider|nécessite (expertise|confirmation))\b/i;
+const TERMINAL_CONCLUSION_RX = /(\b(en conclusion|conclusion (provisoire|principale|finale)?|verdict|décision|bilan|au final|donc|ainsi|par conséquent)\b|\*?\*?conclusion\*?\*?\s*:)/i;
+const TERMINAL_FALSIFICATION_RX = /(\b(contre.?hypothèse|hypothèse alternative|à infirmer|à écarter|sinon|si .{1,30} faux|à condition que|sous réserve)\b|\*?\*?contre.?hypothèse\*?\*?\s*:|\*?\*?réfutation\*?\*?\s*:)/i;
+const TERMINAL_ACTION_RX = /(\b(action\w*|étape\s+\d|sous \d+\s*(j|h|jour|mois|semaine)|à faire|prochaine étape|recommand\w+)\b|\*?\*?actions?\*?\*?\s*:|\*?\*?action immédiate\*?\*?\s*:)/i;
+const TERMINAL_LIMITS_RX = /(\b(limit\w*|à vérifier|à valider|incertitude|reste à|hypothèse à valider|nécessite (expertise|confirmation))\b|\*?\*?limites?\*?\*?\s*:)/i;
 
 export function terminalIntegrityScore(text) {
   if (!text || text.length < 100) {
     return { score: 0, components: {}, reason: 'text_too_short' };
   }
-  // Dernier tiers du texte
-  const sliceStart = Math.floor(text.length * 0.66);
+  // Fenêtre terminale : max(dernier tiers, 400 derniers chars)
+  // Pour les textes courts, garder une fenêtre fixe assez large
+  const tierStart = Math.floor(text.length * 0.66);
+  const fixedStart = Math.max(0, text.length - 400);
+  const sliceStart = Math.min(tierStart, fixedStart);
   const terminal = text.slice(sliceStart);
 
   const hasConclusion = TERMINAL_CONCLUSION_RX.test(terminal);

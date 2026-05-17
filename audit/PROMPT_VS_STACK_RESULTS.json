@@ -1,0 +1,7 @@
+{
+  "status": "DRY_RUN_NO_API_KEY",
+  "mission_id": "ZORAN_V11_PROMPT_VS_STACK_20260517",
+  "message": "Set ANTHROPIC_API_KEY and re-run",
+  "n_cases_prepared": 6,
+  "system_prompt_file": "audit/ZORAN_SYSTEM_PROMPT_V12.md"
+}
