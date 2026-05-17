@@ -290,12 +290,17 @@ export async function synthesizeOrchestrated({
       '4. Vocabulaire : ' + domVocab,
       '',
       isNoviceProfile
-        ? '═══ EXIGENCE PROFIL NOVICE IA — AUTO-DOUTE VISIBLE ═══\n' +
-          'Ajoute UNE phrase courte exprimant ton niveau de confiance :\n' +
-          '- "Calcul vérifiable, résultat fiable."\n' +
-          '- "Approximation : ±X% selon définition retenue."\n' +
-          '- "À vérifier si profondeur piscine ≠ 2m (norme FINA)."\n' +
-          'Le user n\'est PAS expert IA. Il a besoin de savoir QUAND il peut te croire.'
+        ? '═══ EXIGENCE PROFIL NOVICE IA — AUTO-DOUTE CALIBRÉ (PAS LITURGIQUE) ═══\n' +
+          'Si pertinent UNIQUEMENT, ajoute UNE phrase courte sur ton niveau de confiance.\n' +
+          'CALIBRER selon contexte :\n' +
+          '  - règle de trois simple → "Calcul vérifiable." (1 fois OK)\n' +
+          '  - estimation/ordre grandeur → "Ordre de grandeur ±20%."\n' +
+          '  - info temporelle → "À vérifier selon source/date."\n' +
+          '  - spéculation → "Hypothèse non confirmée."\n' +
+          '  - médecine/juridique → niveau de confiance détaillé\n' +
+          'INTERDIT : tic systématique "je peux me tromper" sur chaque réponse.\n' +
+          'INTERDIT : "à vérifier" décoratif sans nommer ce qu\'il faut vérifier.\n' +
+          'Si la réponse est certaine (fait établi, calcul direct), PAS d\'auto-doute.'
         : 'Pas d\'auto-doute affiché. User expert IA sait évaluer lui-même.',
       '',
       'EXEMPLE (expert_novice_ai, question piscines) :',

@@ -1,5 +1,8 @@
 // app/src/superiority_render.js
 // Mission V11.6 — Chirurgie structurelle de lisibilité runtime
+// Mission ADAPTIVE_TRANSPARENCY V2 — ranking + sections profile-aware
+
+import { getProfileConfig } from './user_profile.js';
 //
 // Extraction du rendu HTML hors de superiority.js (orchestration).
 // Aucun changement comportemental — réorganisation pure pour séparer :
@@ -98,27 +101,49 @@ function buildRenderContext(result) {
   const verdict = result.verdict;
   const verdictTarget = normalizeVerdictLabel(verdict);
 
-  // Mission RANKING_BIAS_CORRECTION :
-  // Si question low_intrinsic_depth → parsimony domine sur grade brut
+  // Mission ADAPTIVE_TRANSPARENCY V2 : ranking profile-aware
+  // Le profil utilisateur module les poids du composite final
+  const profileCfg = getProfileConfig();
   const lowIntrinsic = deltas.some(d => d.parsimony?.low_intrinsic_depth?.low_intrinsic);
 
+  // Helpers extraction scores normalisés [0..20]
+  const getScore = (d, kind) => {
+    if (kind === 'grade') return d.argumented_grade_20 ?? (10 + (d.runtime_superiority ?? 0) * 10);
+    if (kind === 'parsimony') return (d.parsimony?.parsimony_score ?? 0.5) * 20;
+    if (kind === 'transparency') {
+      // Heuristique : auto-doute visible + audit + lois utilisées
+      const audit = (d.contradictory_audit_strength ?? 0.3);
+      const lawsUsed = (d.laws_used?.length ?? 0) > 0 ? 1 : 0;
+      return (audit * 0.6 + lawsUsed * 0.4) * 20;
+    }
+    if (kind === 'audit') return (d.systemic_coherence?.composite ?? 0.5) * 20;
+    if (kind === 'divergence') return (d.semantic_delta ?? 0.5) * 20;
+    return 0;
+  };
+
   const sortedByGrade = [...deltas].sort((a, b) => {
+    // Verdict winner toujours #1 si le juge l'a déclaré
     const aWin = verdictTarget && (a.label === verdictTarget || a.label.includes(verdictTarget) || verdictTarget.includes(a.label));
     const bWin = verdictTarget && (b.label === verdictTarget || b.label.includes(verdictTarget) || verdictTarget.includes(b.label));
     if (aWin && !bWin) return -1;
     if (bWin && !aWin) return 1;
-    // Composite : grade brut + parsimony si question simple
-    const ga = a.argumented_grade_20 ?? (10 + a.runtime_superiority * 10);
-    const gb = b.argumented_grade_20 ?? (10 + b.runtime_superiority * 10);
-    if (lowIntrinsic) {
-      // 60% parsimony + 40% grade pour question simple
-      const pa = (a.parsimony?.parsimony_score ?? 0.5) * 20; // [0..20]
-      const pb = (b.parsimony?.parsimony_score ?? 0.5) * 20;
-      const compositeA = 0.60 * pa + 0.40 * ga;
-      const compositeB = 0.60 * pb + 0.40 * gb;
-      return compositeB - compositeA;
+
+    // Composite avec poids du profil (ADAPTIVE_TRANSPARENCY V2)
+    const weights = profileCfg.ranking_weights || { grade: 1.0 };
+    let scoreA = 0, scoreB = 0;
+    for (const [kind, w] of Object.entries(weights)) {
+      scoreA += w * getScore(a, kind);
+      scoreB += w * getScore(b, kind);
     }
-    return gb - ga;
+    // Si question simple, parsimonie reprend toujours un peu de poids
+    // (override léger profil pour éviter promotion artificielle de réponses surchargées)
+    if (lowIntrinsic) {
+      const pa = getScore(a, 'parsimony');
+      const pb = getScore(b, 'parsimony');
+      scoreA = 0.7 * scoreA + 0.3 * pa;
+      scoreB = 0.7 * scoreB + 0.3 * pb;
+    }
+    return scoreB - scoreA;
   });
 
   const labelToRank = new Map();
@@ -126,6 +151,10 @@ function buildRenderContext(result) {
 
   const sortedResponses = [...result.responses].sort((a, b) =>
     (labelToRank.get(a.label) || 99) - (labelToRank.get(b.label) || 99));
+
+  // Sections open/closed selon profil utilisateur
+  const openSections = new Set(profileCfg.open_sections || ['responses']);
+  const sectionOpen = (name) => openSections.has(name) ? 'open' : '';
 
   return {
     result,
@@ -140,6 +169,8 @@ function buildRenderContext(result) {
     sortedResponses,
     labelToRank,
     isSingleWinnerMode: sortedByGrade.length <= 3,
+    profileCfg,
+    sectionOpen,  // helper(name) → 'open' ou ''
   };
 }
 
@@ -307,9 +338,9 @@ function renderDeltaTable(ctx) {
 }
 
 function renderConcreteTable(ctx) {
-  const { sortedByRank } = ctx;
+  const { sortedByRank, sectionOpen } = ctx;
   return `
-    <details class="sup-section" open>
+    <details class="sup-section" ${sectionOpen('concrete')}>
       <summary>Qualité runtime concret (mesures objectives — anti-jargon ZORAN)</summary>
       <div class="sup-deltas-table" style="margin-top:8px">
         <div class="sup-deltas-row sup-deltas-header" style="grid-template-columns:24px 1fr 60px 60px 64px 60px 70px">
@@ -337,9 +368,9 @@ function renderConcreteTable(ctx) {
 }
 
 function renderSystemicTable(ctx) {
-  const { sortedByRank } = ctx;
+  const { sortedByRank, sectionOpen } = ctx;
   return `
-    <details class="sup-section" open>
+    <details class="sup-section" ${sectionOpen('systemic')}>
       <summary>Cohérence systémique + anti-Goodhart (mission V3 — viabilité long terme)</summary>
       <div class="sup-deltas-table" style="margin-top:8px">
         <div class="sup-deltas-row sup-deltas-header" style="grid-template-columns:24px 1fr 56px 56px 56px 56px 56px 72px 72px">
@@ -387,9 +418,9 @@ function renderSystemicTable(ctx) {
 }
 
 function renderFragilityTable(ctx) {
-  const { sortedByRank } = ctx;
+  const { sortedByRank, sectionOpen } = ctx;
   return `
-    <details class="sup-section" open>
+    <details class="sup-section" ${sectionOpen('fragility')}>
       <summary>Fragilité structurelle + domain leak (mission V4 — réponses séduisantes piégeuses)</summary>
       <div class="sup-deltas-table" style="margin-top:8px">
         <div class="sup-deltas-row sup-deltas-header" style="grid-template-columns:24px 1fr 60px 60px 60px 60px 72px 72px">
@@ -439,12 +470,14 @@ function renderFragilityTable(ctx) {
 }
 
 function renderParsimonyTable(ctx) {
-  const { sortedByRank } = ctx;
+  const { sortedByRank, sectionOpen } = ctx;
   // Skip si aucun delta n'a parsimony calculé
   if (!sortedByRank.some(d => d.parsimony)) return '';
   const isLowIntrinsic = sortedByRank.some(d => d.parsimony?.low_intrinsic_depth?.low_intrinsic);
+  // Force-open si question simple détectée (override profil)
+  const openAttr = isLowIntrinsic ? 'open' : sectionOpen('parsimony');
   return `
-    <details class="sup-section" ${isLowIntrinsic ? 'open' : ''}>
+    <details class="sup-section" ${openAttr}>
       <summary>Parcimonie cognitive (mission RANKING_BIAS_CORRECTION ${isLowIntrinsic ? '— question simple détectée' : ''})</summary>
       <div class="sup-deltas-table" style="margin-top:8px">
         <div class="sup-deltas-row sup-deltas-header" style="grid-template-columns:24px 1fr 60px 60px 60px 60px 72px">
@@ -480,7 +513,7 @@ function renderParsimonyTable(ctx) {
 }
 
 function renderReformsBlock(ctx) {
-  const { sortedResponses, labelToRank } = ctx;
+  const { sortedResponses, labelToRank, sectionOpen } = ctx;
   const reforms = sortedResponses.map((r, idx) => {
     if (!r.reformulation) return '';
     const rank = labelToRank.get(r.label) || (idx + 1);
@@ -492,16 +525,18 @@ function renderReformsBlock(ctx) {
     </div>`;
   }).filter(Boolean).join('');
   return reforms ? `
-    <details class="sup-section" open>
+    <details class="sup-section" ${sectionOpen('reforms')}>
       <summary>Reformulations cognitives (lentille de chaque route)</summary>
       <div class="sup-reform-list">${reforms}</div>
     </details>` : '';
 }
 
 function renderResponsesBlock(ctx) {
-  const { result, deltas, sortedResponses, labelToRank } = ctx;
+  const { result, deltas, sortedResponses, labelToRank, sectionOpen } = ctx;
+  // Partial mode force-open ; sinon profil pilote
+  const openAttr = result.partial ? 'open' : sectionOpen('responses');
   return `
-    <details class="sup-section" ${result.partial ? 'open' : ''}>
+    <details class="sup-section" ${openAttr}>
       <summary>Réponses complètes (texte ▶ dépliable)</summary>
       <div class="sup-resp-list">
         ${sortedResponses.map((r, idx) => {

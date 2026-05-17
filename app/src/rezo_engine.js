@@ -37,6 +37,7 @@ import { detectDomainLeak } from './domain_leak.js';
 import { seductiveComplexity } from './seductive_complexity.js';
 import { identityHalluRisk } from './identity_gate.js';
 import { detectLowIntrinsicDepth } from './parsimony_detector.js';
+import { getProfileConfig } from './user_profile.js';
 import { detectCTAPresence } from './zoran_cta_engine.js';
 import { btpOperationalScore, isBTPQuestion } from './btp_supremacy_engine.js';
 
@@ -240,24 +241,37 @@ export async function generateClaudePlusRezo({ question, claudeAnswer, diagnosis
     '6. TERMINE complètement la réponse.',
     '7. Pas de méta-discours ("voici la version améliorée…").',
     '',
-    // Mission RANKING_BIAS_CORRECTION : CTAs conditionnels
-    // Question simple → 0 CTA. Question complexe → 3 CTAs.
-    ...(detectLowIntrinsicDepth(question).low_intrinsic
-      ? [
-        '═══ MODE MINIMAL (question à faible profondeur intrinsèque) ═══',
-        'AUCUN CTA. AUCUNE digression hors-scope.',
-        'Réponse 2-5 phrases : correction ciblée des faiblesses + résultat.',
-        '',
-      ]
-      : [
-        '═══ CTA INLINE CLIQUABLES (optionnel) ═══',
-        'Tu peux marquer 2-3 phrases du corps comme cliquables avec {cta:texte}.',
+    // Mission ADAPTIVE_TRANSPARENCY + RANKING_BIAS_CORRECTION : CTAs conditionnels
+    // selon profil utilisateur ET profondeur intrinsèque de la question
+    ...(((profileCfg) => {
+      const lid = detectLowIntrinsicDepth(question);
+      const noCTAs = profileCfg.response_mode === 'minimal' || lid.low_intrinsic;
+      const showSelfDoubt = profileCfg.show_self_doubt;
+      if (noCTAs) {
+        return [
+          '═══ MODE MINIMAL (profil expert_ai ou question simple) ═══',
+          'AUCUN CTA. AUCUNE digression hors-scope.',
+          'Réponse 2-5 phrases : correction ciblée des faiblesses + résultat.',
+          showSelfDoubt
+            ? 'EXIGENCE auto-doute : ajoute 1 phrase courte sur ton niveau de confiance.'
+            : 'Pas d\'auto-doute affiché.',
+          '',
+        ];
+      }
+      // Mode standard avec CTAs adaptés au profil
+      const maxTerminal = profileCfg.max_terminal_ctas || 3;
+      const maxInline = profileCfg.max_inline_ctas || 3;
+      return [
+        `═══ CTA INLINE CLIQUABLES (max ${maxInline}, profil ${profileCfg.response_mode}) ═══`,
+        `Tu peux marquer ${maxInline} phrases du corps comme cliquables avec {cta:texte}.`,
         'Exemple : "{cta:Vérifier note de calcul Eurocode 3 sur cette IPN}"',
         'Le user pourra cliquer pour reposer la question.',
-        'Max 3 inline CTAs. Pas dans le bloc terminal.',
+        showSelfDoubt
+          ? 'EXIGENCE auto-doute : exprime clairement quand tu es certain vs quand tu approximes.'
+          : '',
         '',
-        '═══ LOI SDE-029 — 3 CTA TERMINAUX OBLIGATOIRES ═══',
-        'TERMINE finalAnswer OBLIGATOIREMENT par 3 CTA dans CE FORMAT exact :',
+        `═══ LOI SDE-029 — ${maxTerminal} CTA TERMINAUX ═══`,
+        `TERMINE finalAnswer par ${maxTerminal} CTA dans CE FORMAT exact :`,
         '',
         '---',
         '**CTA cohérents** :',
@@ -267,7 +281,8 @@ export async function generateClaudePlusRezo({ question, claudeAnswer, diagnosis
         '',
         'CTAs : 1-2 phrases max, tentatifs ("on pourrait…"), spécifiques au sujet.',
         '',
-      ]),
+      ];
+    })(getProfileConfig())),
     'Réponds STRICTEMENT en JSON :',
     '{"finalAnswer":"<réponse augmentée AVEC les 3 CTA en fin>","rationale":"<1 phrase>"}',
     'Pas d\'autre prose autour du JSON, pas de markdown.',
