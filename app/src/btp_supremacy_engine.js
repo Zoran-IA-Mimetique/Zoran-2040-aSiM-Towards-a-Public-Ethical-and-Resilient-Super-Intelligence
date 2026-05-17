@@ -9,32 +9,43 @@
 //   - métriques opérationnelles spécifiques BTP
 
 // ───────────────────── PATHOLOGIES BTP ─────────────────────
+// Lexique étendu V9.1 — vocabulaire expert BTP/géotechnique/énergétique
 const PATHOLOGIES = {
-  fissuration: /\b(fissur\w*|lézard\w*|craquel\w*|micro.?fissur\w*|faïenç\w*)\b/i,
-  rga: /\b(RGA|retrait.gonflement|argile gonflante|sécheresse|réhydratation|sol argileux)\b/i,
-  humidite: /\b(humidit\w*|infiltration\w*|condensation\w*|remontée capillaire|salpêtre|moisissure\w*|champignon\w*)\b/i,
-  corrosion: /\b(corrosion|rouille|oxyd\w*|armature\w* (corrodée|exposée)|éclat\w* béton)\b/i,
-  ventilation: /\b(ventilation|VMC|aération|renouvellement (de l['']?air|air)|infiltrométrie)\b/i,
-  thermique: /\b(pont thermique|déperdition\w*|isolation|R thermique|U thermique|condensation surfacique|moisi)\b/i,
-  decennale: /\b(décennale|garantie décennale|article 1792|impropre à (sa |la )?destination|atteinte au gros œuvre)\b/i,
-  ipn: /\b(IPN|HEA|HEB|UPN|poutre métallique|profilé acier)\b/i,
-  reprise_sous_oeuvre: /\b(reprise (en |de )?sous.?œuvre|micropieux|injection résine|consolidation)\b/i,
-  tassement: /\b(tassement|affaissement|effondrement (partiel|sol)|déformation différentielle)\b/i,
-  contreventement: /\b(contreventement|stabilité horizontale|effort sismique|moment fléchissant)\b/i,
-  voirie: /\b(voirie|chaussée|trottoir|réseau (enterré|eaux))\b/i,
-  hydrologie: /\b(hydrologie|nappe phréatique|écoulement|ruissellement|drainage|évacuation pluvial)\b/i,
-  charpente: /\b(charpente|chevron|panne|ferme|liteau|tuile)\b/i,
-  electricite: /\b(installation électrique|tableau électrique|disjoncteur|NF C 15.?100)\b/i,
-  amiante: /\b(amiante|fibrociment|tôle ondulée amiantée|repérage avant travaux)\b/i,
+  fissuration: /\b(fissur\w*|lézard\w*|craquel\w*|micro.?fissur\w*|faïenç\w*|tracking)\b/i,
+  rga: /\b(RGA|retrait.gonflement|argile\w* gonflante\w*|sécheresse|réhydratation|sol\w* argileux|aléa argile)\b/i,
+  humidite: /\b(humidit\w*|infiltration\w*|condensation\w*|remontée\w* capillaire\w*|salpêtre|moisissure\w*|champignon\w*|mérule|lignivore\w*)\b/i,
+  corrosion: /\b(corrosion|rouille|oxyd\w*|armature\w* (corrodée|exposée|apparente)|éclat\w* béton|carbonatation)\b/i,
+  ventilation: /\b(ventilation|VMC|aération|renouvellement (de l['']?air|air)|infiltrométrie|test étanchéité air|Q4Pa|n50)\b/i,
+  thermique: /\b(pont thermique|déperdition\w*|isolation|R thermique|U thermique|condensation surfacique|moisi|ITE|ITI|RE2020|RT2012|DPE|résistance thermique|inertie thermique|psi)\b/i,
+  decennale: /\b(décennale|garantie décennale|article 1792|impropre à (sa |la )?destination|atteinte au gros œuvre|gros œuvre|second œuvre|biennale|parfait achèvement)\b/i,
+  ipn: /\b(IPN|HEA|HEB|UPN|UAP|poutre métallique|profilé acier|poutrelle\w*|treillis|tirant)\b/i,
+  reprise_sous_oeuvre: /\b(reprise (en |de )?sous.?œuvre|micropieux|injection résine|injection (de )?résine expansive|consolidation|sous.?fondation|longrines?)\b/i,
+  tassement: /\b(tassement|affaissement|effondrement (partiel|sol)|déformation différentielle|tassements? différentiel\w*|décollement)\b/i,
+  contreventement: /\b(contreventement|stabilité horizontale|effort sismique|moment fléchissant|effort tranchant|cisaillement|flambement)\b/i,
+  voirie: /\b(voirie|chaussée|trottoir|réseau\w* (enterré\w*|eaux)|bordure|caniveau|enrobé\w*)\b/i,
+  hydrologie: /\b(hydrologie|nappe phréatique|écoulement|ruissellement|drainage|évacuation pluvial\w*|imperméabilisation|étanchéité enterré\w*|cuvelage)\b/i,
+  charpente: /\b(charpente|chevron|panne|ferme|liteau|tuile|couverture|zinguerie|noue|faîtage|solive)\b/i,
+  electricite: /\b(installation électrique|tableau électrique|disjoncteur|NF C 15.?100|prise de terre|différentiel|consuel)\b/i,
+  amiante: /\b(amiante|fibrociment|tôle ondulée amiantée|repérage (avant|amiante)|DAPP|DTA|flocage amianté)\b/i,
+  // Nouvelles pathologies V9.1
+  geotechnique: /\b(étude G[1-5]\w*|G2\s*(AVP|PRO|EXE|DCE)|G1\s*(ES|PGC)|géotechnique\w*|reconnaissance\w* de sol|essai\w* pressiométriques?|CPT|pénétromètre|carottage|NF P 94)\b/i,
+  acoustique: /\b(acoustique|isolement (acoustique|au bruit)|dB\(?A\)?|réverbération|absorption phonique|nuisance\w* sonore\w*)\b/i,
+  etancheite: /\b(étanchéité|EPDM|bicouche|membrane bitumineuse|relevé\w* d['']?étanchéité|terrasse étanche|toiture terrasse|complexe étanche)\b/i,
+  accessibilite: /\b(accessibilité|PMR|personne\w* à mobilité|loi handicap|2005-102|ascenseur PMR|rampe d['']?accès)\b/i,
+  plomb_radon: /\b(plomb (dans|d['']?eau)|saturnisme|CREP|peinture\w* plombée|radon|exhalation radon|kBq)\b/i,
+  termites: /\b(termite\w*|insecte\w* xylophage\w*|capricorne|lyctus|attaque biologique du bois)\b/i,
+  fondations: /\b(fondation\w* (superficielle\w*|profonde\w*|spéciales?)|semelle\w* filante\w*|radier|pieux?|puits)\b/i,
+  beton: /\b(béton (armé|précontraint|banché|projeté)|alcali.?réaction|RAG|RAS|carbonatation|gel.?dégel)\b/i,
+  facade: /\b(façade\w*|ravalement|crépi|enduit\w* (façade|extérieur)|bardage|ITE)\b/i,
 };
 
 // ───────────────────── DOMAINES D'EXPERTISE ─────────────────────
 const EXPERT_LEXICON = {
-  structural: /\b(IPN|HEA|HEB|moment fléchissant|effort tranchant|Eurocode|DTU 13|reprise sous.?œuvre|micropieux|contreventement|déformation|fluage|fatigue|fissuration structurelle)\b/i,
-  pathology: /\b(pathologie|diagnostic|symptôme|cause racine|cofacteur|amplificateur|déclencheur|propagateur|cascade|étiologie)\b/i,
-  field_action: /\b(sondage|carottage|prélèvement|caméra thermique|infrarouge|humidimètre|fissuromètre|inclinomètre|piézomètre|essai pénétrométrique|CPT|laboratoire géotechnique)\b/i,
-  decennale_legal: /\b(article 1792|2270|décennale|biennale|parfait achèvement|réception|tribunal|expertise judiciaire|jurisprudence)\b/i,
-  measurement: /\b(\d+(?:[,.]\d+)?\s*(mm|cm|m|kN|MPa|°C|%|kWh|kVA|m²|m³)|DTU \d+\.?\d*|Eurocode \d|NF\s+(P|EN|C))\b/i,
+  structural: /\b(IPN|HEA|HEB|UPN|moment fléchissant|effort tranchant|Eurocode|DTU 13|reprise sous.?œuvre|micropieux|contreventement|déformation|fluage|fatigue|fissuration structurelle|cisaillement|flambement|note de calcul)\b/i,
+  pathology: /\b(pathologie|diagnostic|symptôme|cause racine|cofacteur|amplificateur|déclencheur|propagateur|cascade|étiologie|étiopathogénie|tableau pathologique)\b/i,
+  field_action: /\b(sondage|carottage|prélèvement|caméra thermique|infrarouge|humidimètre|fissuromètre|inclinomètre|piézomètre|essai pénétrométrique|CPT|pressiométrique|laboratoire géotechnique|infiltrométrie|test (étanchéité|infiltration)|caméra endoscopique|G2 PRO|relevé topographique)\b/i,
+  decennale_legal: /\b(article 1792|2270|décennale|biennale|parfait achèvement|réception|tribunal|expertise judiciaire|jurisprudence|Cour de cassation|3e chambre civile|impropre à (sa |la )?destination)\b/i,
+  measurement: /\b(\d+(?:[,.]\d+)?\s*(mm|cm|m|kN|MPa|°C|%|kWh|kVA|m²|m³|dB|Pa|Hz)|DTU \d+\.?\d*|Eurocode \d|NF\s+(P|EN|C)\s*\d+)\b/i,
 };
 
 /**

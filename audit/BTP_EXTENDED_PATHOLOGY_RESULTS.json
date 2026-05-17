@@ -1,0 +1,139 @@
+{
+  "mission_id": "BTP_EXTENDED_PATHOLOGY_V9_1_20260517",
+  "corpus_size": 500,
+  "duration_ms": 16,
+  "pathology_detection": {
+    "precision": 92.5,
+    "recall": 76.6,
+    "f1": 83.8
+  },
+  "by_category": {
+    "SIMPLE_PATHO": {
+      "total": 50,
+      "recall": 69.2,
+      "precision": 75
+    },
+    "COUPLED_PATHO": {
+      "total": 50,
+      "recall": 92.3,
+      "precision": 92.3
+    },
+    "GEOTECHNIQUE": {
+      "total": 50,
+      "recall": 73.3,
+      "precision": 91.7
+    },
+    "ENERGETIQUE": {
+      "total": 50,
+      "recall": 85.7,
+      "precision": 100
+    },
+    "DECENNALE_LEGAL": {
+      "total": 50,
+      "recall": 71.4,
+      "precision": 100
+    },
+    "AUDIT": {
+      "total": 50,
+      "recall": 55.6,
+      "precision": 100
+    },
+    "ETANCHEITE_TOITURE": {
+      "total": 50,
+      "recall": 56.3,
+      "precision": 100
+    },
+    "RGA_SPECIFIC": {
+      "total": 50,
+      "recall": 81.3,
+      "precision": 92.9
+    },
+    "AMIANTE_PLOMB_RADON": {
+      "total": 50,
+      "recall": 75,
+      "precision": 100
+    },
+    "TRAPS_BTP": {
+      "total": 50,
+      "recall": 90,
+      "precision": 81.8
+    }
+  },
+  "discrimination_test": {
+    "test_question": "Fissures verticales 3mm sur mur porteur, humidité base, IPN visible corrodée. Diagnostic ?",
+    "profiles_scored": {
+      "SHALLOW": {
+        "operational_score": 0,
+        "verdict": "shallow",
+        "multi_cause": 0,
+        "multi_cause_layers": 0,
+        "hierarchy_score": 0,
+        "hierarchy_levels": 0,
+        "decennale": 0,
+        "field_actionability": 0,
+        "contradictory_audit": 0,
+        "cta_coverage": 0,
+        "word_count": 22
+      },
+      "COMPETENT": {
+        "operational_score": 0.384,
+        "verdict": "competent",
+        "multi_cause": 0.167,
+        "multi_cause_layers": 1,
+        "hierarchy_score": 0.1,
+        "hierarchy_levels": 1,
+        "decennale": 0,
+        "field_actionability": 0.85,
+        "contradictory_audit": 0,
+        "cta_coverage": 0,
+        "word_count": 40
+      },
+      "SENIOR": {
+        "operational_score": 0.591,
+        "verdict": "senior_level",
+        "multi_cause": 0.5,
+        "multi_cause_layers": 3,
+        "hierarchy_score": 0.5,
+        "hierarchy_levels": 5,
+        "decennale": 0.4,
+        "field_actionability": 0.85,
+        "contradictory_audit": 0,
+        "cta_coverage": 0.333,
+        "word_count": 98
+      },
+      "EXPERT": {
+        "operational_score": 0.779,
+        "verdict": "expert_level",
+        "multi_cause": 0.667,
+        "multi_cause_layers": 4,
+        "hierarchy_score": 0.8,
+        "hierarchy_levels": 8,
+        "decennale": 1,
+        "field_actionability": 0.85,
+        "contradictory_audit": 0.5,
+        "cta_coverage": 1,
+        "word_count": 375
+      }
+    },
+    "discrimination_ratio_expert_vs_shallow": 77.9
+  },
+  "cta_test": {
+    "question": "Fissures verticales 3mm sur mur porteur, humidité base, IPN visible corrodée. Diagnostic ?",
+    "systemic_risk_examples": [
+      "dégradation différée à 5-10 ans non visible aujourd'hui",
+      "cofacteur géotechnique masqué (nappe, RGA, tassement)",
+      "décennale engagée sans alerte préalable au maître d'ouvrage"
+    ],
+    "field_validation_examples": [
+      "sondage destructif à plusieurs profondeurs",
+      "caméra thermique infrarouge sur paroi suspecte",
+      "humidimètre à pointes (Protimeter) sur 5+ points",
+      "fissuromètre étalonné posé 6+ mois"
+    ],
+    "counter_hypothesis_examples": [
+      "la cause réelle est ailleurs (cofacteur masqué)",
+      "le signal observé est artefact de mesure",
+      "la corrélation est inversée temporellement"
+    ]
+  }
+}
