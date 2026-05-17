@@ -1,0 +1,131 @@
+{
+  "mission_id": "ADVERSARIAL_EXPERTISE_V10_BREAK_FIRST_20260517",
+  "question": "Fissures verticales 3mm sur mur porteur, humidité base, IPN visible corrodée. Diagnostic ?",
+  "scoring_actual": [
+    {
+      "profile": "EXPERT_COURT",
+      "score": 0.477,
+      "verdict": "senior_level",
+      "words": 49
+    },
+    {
+      "profile": "FAUX_EXPERT_LONG",
+      "score": 0.268,
+      "verdict": "shallow",
+      "words": 143
+    },
+    {
+      "profile": "JARGON_DECORATIF",
+      "score": 0.326,
+      "verdict": "competent",
+      "words": 54
+    },
+    {
+      "profile": "VRAI_TERRAIN_SANS_JARGON",
+      "score": 0.041,
+      "verdict": "shallow",
+      "words": 93
+    },
+    {
+      "profile": "CAUSALITE_INVERSEE",
+      "score": 0.428,
+      "verdict": "competent",
+      "words": 56
+    },
+    {
+      "profile": "MESURES_INUTILES",
+      "score": 0.327,
+      "verdict": "competent",
+      "words": 83
+    }
+  ],
+  "ranking_actual": [
+    {
+      "rank": 1,
+      "profile": "EXPERT_COURT",
+      "score": 0.477
+    },
+    {
+      "rank": 2,
+      "profile": "CAUSALITE_INVERSEE",
+      "score": 0.428
+    },
+    {
+      "rank": 3,
+      "profile": "MESURES_INUTILES",
+      "score": 0.327
+    },
+    {
+      "rank": 4,
+      "profile": "JARGON_DECORATIF",
+      "score": 0.326
+    },
+    {
+      "rank": 5,
+      "profile": "FAUX_EXPERT_LONG",
+      "score": 0.268
+    },
+    {
+      "rank": 6,
+      "profile": "VRAI_TERRAIN_SANS_JARGON",
+      "score": 0.041
+    }
+  ],
+  "ranking_expected": [
+    {
+      "rank": 1,
+      "profile": "EXPERT_COURT"
+    },
+    {
+      "rank": 2,
+      "profile": "VRAI_TERRAIN_SANS_JARGON"
+    },
+    {
+      "rank": 3,
+      "profile": "MESURES_INUTILES"
+    },
+    {
+      "rank": 4,
+      "profile": "CAUSALITE_INVERSEE"
+    },
+    {
+      "rank": 5,
+      "profile": "FAUX_EXPERT_LONG"
+    },
+    {
+      "rank": 6,
+      "profile": "JARGON_DECORATIF"
+    }
+  ],
+  "inversions_count": 3,
+  "inversions_detail": [
+    {
+      "profile": "VRAI_TERRAIN_SANS_JARGON",
+      "expected": 2,
+      "actual": 6,
+      "drift": 4
+    },
+    {
+      "profile": "CAUSALITE_INVERSEE",
+      "expected": 4,
+      "actual": 2,
+      "drift": -2
+    },
+    {
+      "profile": "JARGON_DECORATIF",
+      "expected": 6,
+      "actual": 4,
+      "drift": -2
+    }
+  ],
+  "critical_inversion": false,
+  "biases_detected": {
+    "verbosity": false,
+    "anti_terrain": true,
+    "weak_causal": true
+  },
+  "v10_priority": [
+    "discriminant_measure_density (vs liste exhaustive)",
+    "counterfactual_strength + hypothesis_reduction_score"
+  ]
+}

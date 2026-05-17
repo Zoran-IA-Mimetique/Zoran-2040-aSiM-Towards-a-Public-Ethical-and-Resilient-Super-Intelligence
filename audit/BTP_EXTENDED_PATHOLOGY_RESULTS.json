@@ -1,7 +1,7 @@
 {
   "mission_id": "BTP_EXTENDED_PATHOLOGY_V9_1_20260517",
   "corpus_size": 500,
-  "duration_ms": 16,
+  "duration_ms": 20,
   "pathology_detection": {
     "precision": 92.5,
     "recall": 76.6,
@@ -76,7 +76,7 @@
         "word_count": 22
       },
       "COMPETENT": {
-        "operational_score": 0.384,
+        "operational_score": 0.353,
         "verdict": "competent",
         "multi_cause": 0.167,
         "multi_cause_layers": 1,
@@ -89,7 +89,7 @@
         "word_count": 40
       },
       "SENIOR": {
-        "operational_score": 0.591,
+        "operational_score": 0.532,
         "verdict": "senior_level",
         "multi_cause": 0.5,
         "multi_cause_layers": 3,
@@ -102,8 +102,8 @@
         "word_count": 98
       },
       "EXPERT": {
-        "operational_score": 0.779,
-        "verdict": "expert_level",
+        "operational_score": 0.583,
+        "verdict": "senior_level",
         "multi_cause": 0.667,
         "multi_cause_layers": 4,
         "hierarchy_score": 0.8,
@@ -115,7 +115,7 @@
         "word_count": 375
       }
     },
-    "discrimination_ratio_expert_vs_shallow": 77.9
+    "discrimination_ratio_expert_vs_shallow": 58.3
   },
   "cta_test": {
     "question": "Fissures verticales 3mm sur mur porteur, humidité base, IPN visible corrodée. Diagnostic ?",

@@ -1,5 +1,8 @@
 // app/src/btp_supremacy_engine.js
-// Mission V9 — BTP SUPREMACY ENGINE
+// Mission V9 — BTP SUPREMACY ENGINE (+ V10 causal density integration)
+
+import { causalDensityScore } from './causal_density.js';
+
 //
 // Force le système à produire des réponses BTP de niveau expert
 // judiciaire / BET senior :
@@ -175,6 +178,7 @@ export function structuralRiskAwarenessScore(text) {
 
 /**
  * BTP_OPERATIONAL_SCORE composite — note opérationnelle BTP /1.
+ * V10 : intègre causal_density (anti-jargon décoratif, anti-verbosité).
  */
 export function btpOperationalScore(text) {
   if (!text || text.length < 100) {
@@ -187,16 +191,28 @@ export function btpOperationalScore(text) {
   const fieldAct = fieldActionabilityScore(text);
   const audit = contradictoryAuditStrengthScore(text);
   const structural = structuralRiskAwarenessScore(text);
+  // V10 : densité causale (anti-jargon, anti-verbosité)
+  const causal = causalDensityScore(text);
 
-  const composite = +(
-    0.20 * depth
-    + 0.20 * multiCause
-    + 0.15 * hierarchy
-    + 0.10 * decennale
-    + 0.15 * fieldAct
-    + 0.10 * audit
-    + 0.10 * structural
-  ).toFixed(3);
+  // Pondération V10.1 : réduire le poids du jargon (depth, structural),
+  // augmenter le poids des actions terrain + densité causale.
+  // Anti-verbosité : long texte avec faible compression causale est pénalisé.
+  const wordCount = text.split(/\s+/).filter(w => w.length > 0).length;
+  const verbosityPenalty = (wordCount > 120 && causal.components.causal_compression_ratio < 0.25)
+    ? Math.min(0.15, (wordCount - 120) / 500 + 0.05)
+    : 0;
+
+  const composite = +Math.max(0, (
+    0.10 * depth                  // réduit (était 0.20)
+    + 0.12 * multiCause            // réduit (était 0.20)
+    + 0.10 * hierarchy             // réduit (était 0.15)
+    + 0.05 * decennale             // réduit (était 0.10)
+    + 0.18 * fieldAct              // augmenté (était 0.15) — actions terrain
+    + 0.08 * audit                 // identique
+    + 0.07 * structural            // réduit (était 0.10) — anti-jargon
+    + 0.30 * causal.score          // augmenté (était 0.20) — densité causale primaire
+    - verbosityPenalty             // V10.1 : pénalité explicite verbosité vide
+  )).toFixed(3);
 
   return {
     score: composite,
@@ -208,6 +224,9 @@ export function btpOperationalScore(text) {
       field_actionability: fieldAct,
       contradictory_audit_strength: audit,
       structural_risk_awareness: structural,
+      causal_density: causal.score,
+      causal_density_components: causal.components,
+      verbosity_penalty: verbosityPenalty,
     },
     verdict: composite >= 0.65 ? 'expert_level'
            : composite >= 0.45 ? 'senior_level'
