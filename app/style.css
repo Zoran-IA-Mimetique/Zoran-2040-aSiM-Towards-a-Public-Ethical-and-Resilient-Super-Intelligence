@@ -727,6 +727,21 @@ body.sidebar-hidden #graph {
 }
 .llm-answer-box.loading .llm-label { color: var(--accent); }
 .llm-answer-box.error   .llm-label { color: var(--unstable); }
+
+/* Sablier animé pour indiquer l'attente d'une réponse (mission V11 UX) */
+@keyframes hourglass-flip {
+  0%   { transform: rotate(0deg); }
+  45%  { transform: rotate(0deg); }
+  50%  { transform: rotate(180deg); }
+  95%  { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
+}
+.hourglass-spin {
+  display: inline-block;
+  animation: hourglass-flip 2s ease-in-out infinite;
+  transform-origin: center center;
+  margin-right: 4px;
+}
 .llm-answer-box .llm-body {
   white-space: pre-wrap;
   overflow-wrap: anywhere;        /* casse mots/URLs longs */

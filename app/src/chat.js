@@ -358,7 +358,7 @@ export function renderResults(result, onPickLaw) {
   // Zone réponse LLM — toujours présente, état initial selon clé API
   const llmInitial = hasApiKey()
     ? `<div class="llm-answer-box loading" id="llm-answer-box">
-        <div class="llm-label">🧠 Réponse ZORAN — synthèse en cours…</div>
+        <div class="llm-label"><span class="hourglass-spin">⌛</span> Réponse ZORAN — synthèse en cours…</div>
         <div class="llm-body">Claude compose une réponse cohérente multi-cadres à partir de la loi retenue…</div>
       </div>`
     : `<div class="llm-answer-box error" id="llm-answer-box">

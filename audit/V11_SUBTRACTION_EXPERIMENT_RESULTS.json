@@ -1,0 +1,265 @@
+{
+  "mission_id": "V11_SUBTRACTION_EXPERIMENT_20260517",
+  "n_cases": 30,
+  "pipelines": {
+    "full": {
+      "components": 11,
+      "avg_latency_ms": 3.2
+    },
+    "minimal": {
+      "components": 2,
+      "avg_latency_ms": 0.13
+    }
+  },
+  "correlations": {
+    "spearman_full": 0.543,
+    "spearman_minimal": 0.543,
+    "spearman_delta": 0,
+    "kendall_full": 0.372,
+    "kendall_minimal": 0.368
+  },
+  "cost_ratio": 24.7,
+  "verdict": "COMPLEXITÉ REDONDANTE",
+  "cases_detail": [
+    {
+      "id": "A1_EXPERT_COURT",
+      "expected": 9,
+      "full_score": 6.62,
+      "min_score": 4.25,
+      "full_latency": 37.58,
+      "min_latency": 0.5
+    },
+    {
+      "id": "A2_VRAI_TERRAIN",
+      "expected": 8,
+      "full_score": 5.36,
+      "min_score": 0.13,
+      "full_latency": 8.59,
+      "min_latency": 0.13
+    },
+    {
+      "id": "A3_MESURES_INUTILES",
+      "expected": 4,
+      "full_score": 6.04,
+      "min_score": 1.25,
+      "full_latency": 26.14,
+      "min_latency": 0.09
+    },
+    {
+      "id": "A4_CAUSALITE_INVERSEE",
+      "expected": 2.5,
+      "full_score": 6.25,
+      "min_score": 2.9499999999999997,
+      "full_latency": 0.85,
+      "min_latency": 0.09
+    },
+    {
+      "id": "A5_FAUX_EXPERT_LONG",
+      "expected": 2,
+      "full_score": 4.6899999999999995,
+      "min_score": 0,
+      "full_latency": 1.27,
+      "min_latency": 0.14
+    },
+    {
+      "id": "A6_JARGON_DECORATIF",
+      "expected": 1.5,
+      "full_score": 5.949999999999999,
+      "min_score": 0,
+      "full_latency": 1.12,
+      "min_latency": 0.12
+    },
+    {
+      "id": "B1_EXPERT_RGA_COMPLET",
+      "expected": 9.5,
+      "full_score": 6.109999999999999,
+      "min_score": 2.4,
+      "full_latency": 1.52,
+      "min_latency": 0.13
+    },
+    {
+      "id": "B2_TERRAIN_PRAGMATIQUE",
+      "expected": 8.5,
+      "full_score": 4.95,
+      "min_score": 0,
+      "full_latency": 1.28,
+      "min_latency": 0.28
+    },
+    {
+      "id": "B3_COMPETENT_SANS_FOLIE",
+      "expected": 5.5,
+      "full_score": 5.949999999999999,
+      "min_score": 0,
+      "full_latency": 1.15,
+      "min_latency": 0.05
+    },
+    {
+      "id": "B4_GENERIQUE_VIDE",
+      "expected": 1.5,
+      "full_score": 4.51,
+      "min_score": 0,
+      "full_latency": 0.81,
+      "min_latency": 0.05
+    },
+    {
+      "id": "B5_EXPERT_INFILTRATION",
+      "expected": 9,
+      "full_score": 6.22,
+      "min_score": 1.47,
+      "full_latency": 1.34,
+      "min_latency": 0.12
+    },
+    {
+      "id": "B6_PRATICIEN_TOITURE",
+      "expected": 8.5,
+      "full_score": 4.82,
+      "min_score": 0,
+      "full_latency": 1.34,
+      "min_latency": 0.08
+    },
+    {
+      "id": "B7_FAUX_EXPERT_FUITE",
+      "expected": 2,
+      "full_score": 4.2,
+      "min_score": 0,
+      "full_latency": 1.21,
+      "min_latency": 0.05
+    },
+    {
+      "id": "B8_REPONSE_VAGUE",
+      "expected": 2.5,
+      "full_score": 5.32,
+      "min_score": 0,
+      "full_latency": 0.25,
+      "min_latency": 0.03
+    },
+    {
+      "id": "C1_TERRAIN_LACONIQUE",
+      "expected": 7.5,
+      "full_score": 4.35,
+      "min_score": 0,
+      "full_latency": 0.2,
+      "min_latency": 0.01
+    },
+    {
+      "id": "C2_CAUSAL_INVERSEE_SUBTLE",
+      "expected": 3,
+      "full_score": 4.54,
+      "min_score": 0,
+      "full_latency": 0.28,
+      "min_latency": 0.02
+    },
+    {
+      "id": "C3_NON_BTP",
+      "expected": 6,
+      "full_score": 4.12,
+      "min_score": 0,
+      "full_latency": 0.14,
+      "min_latency": 0.01
+    },
+    {
+      "id": "C4_IDENTITY_AMBIGU",
+      "expected": 1,
+      "full_score": 0,
+      "min_score": 0,
+      "full_latency": 1.4337540000000217,
+      "min_latency": 0.8929140000000189
+    },
+    {
+      "id": "C5_LONG_VRAI_COMPLET",
+      "expected": 9.5,
+      "full_score": 5.83,
+      "min_score": 0,
+      "full_latency": 1,
+      "min_latency": 0.09
+    },
+    {
+      "id": "C6_SHORT_EXPERT_DENSE",
+      "expected": 9,
+      "full_score": 4.76,
+      "min_score": 0,
+      "full_latency": 0.37,
+      "min_latency": 0.02
+    },
+    {
+      "id": "C7_TERRAIN_FOLKLORE",
+      "expected": 2,
+      "full_score": 4.1,
+      "min_score": 0,
+      "full_latency": 0.23,
+      "min_latency": 0.01
+    },
+    {
+      "id": "C8_EXPERT_GREENWASH",
+      "expected": 3,
+      "full_score": 4.8,
+      "min_score": 0,
+      "full_latency": 0.37,
+      "min_latency": 0.02
+    },
+    {
+      "id": "D1_RGA_DECENNALE",
+      "expected": 9.5,
+      "full_score": 6,
+      "min_score": 3.3600000000000003,
+      "full_latency": 0.61,
+      "min_latency": 0.07
+    },
+    {
+      "id": "D2_RGA_DOUTEUX",
+      "expected": 9,
+      "full_score": 6.54,
+      "min_score": 3.75,
+      "full_latency": 1.17,
+      "min_latency": 0.08
+    },
+    {
+      "id": "D3_HUMIDITE_COUPLEE",
+      "expected": 9,
+      "full_score": 5.5,
+      "min_score": 3.14,
+      "full_latency": 1.15,
+      "min_latency": 0.09
+    },
+    {
+      "id": "D4_GENERIQUE_COUPLAGE",
+      "expected": 2,
+      "full_score": 5.2700000000000005,
+      "min_score": 0,
+      "full_latency": 0.68,
+      "min_latency": 0.02
+    },
+    {
+      "id": "D5_LEGAL_COMPLET",
+      "expected": 9.5,
+      "full_score": 6.07,
+      "min_score": 2.5,
+      "full_latency": 1.3,
+      "min_latency": 0.13
+    },
+    {
+      "id": "D6_LEGAL_FLOU",
+      "expected": 2.5,
+      "full_score": 5.7299999999999995,
+      "min_score": 0,
+      "full_latency": 0.55,
+      "min_latency": 0.33
+    },
+    {
+      "id": "D7_GEOTECHNIQUE_FIN",
+      "expected": 9.5,
+      "full_score": 5.8999999999999995,
+      "min_score": 3.07,
+      "full_latency": 1.37,
+      "min_latency": 0.19
+    },
+    {
+      "id": "D8_AVIS_COMMERCIAL",
+      "expected": 2,
+      "full_score": 5.12,
+      "min_score": 0,
+      "full_latency": 0.72,
+      "min_latency": 0.04
+    }
+  ]
+}
