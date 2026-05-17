@@ -84,6 +84,37 @@ NB : un skill `iterate-fix` peut exister dans certains setups. S'il n'est
 pas listé dans les skills disponibles de la session, appliquer la méthode
 manuellement (cette section) — ne pas l'invoquer comme un skill.
 
+## Obligation systématique — 3 CTA en fin de réponse (non-négociable)
+
+Toute réponse de Claude au user **doit se terminer** par 3 CTA
+(Call-To-Analysis) **cohérents avec le sujet courant**. Pas génériques,
+pas décoratifs — ancrés au pivot conceptuel de la session.
+
+Mapping V9 ZORAN (généralisable) :
+1. **Risque systémique / futur cohérent** — quel risque caché, différé,
+   non-mesuré dans la trajectoire actuelle ?
+2. **Validation terrain / cinématique de la cohérence** — quelle mesure
+   empirique trancherait, quelle dynamique observable confirmerait ?
+3. **Contre-hypothèse / réfutation** — quelle alternative plausible
+   invaliderait la conclusion qu'on vient d'établir ?
+
+Format attendu (markdown final, court) :
+
+```
+---
+**CTA cohérents** :
+1. *(risque systémique)* — formulation ancrée au sujet
+2. *(validation terrain)* — mesure/observation discriminante
+3. *(contre-hypothèse)* — alternative à tester
+```
+
+Règles :
+- Ne jamais omettre les 3 CTA, même sur réponses courtes ou techniques
+- Pas de copier-coller : chaque CTA doit être spécifique au sujet
+- Pas de questions creuses ("voulez-vous en savoir plus ?")
+- Si le sujet est trivial (salutation, factuel court), CTA sur la
+  trajectoire de session globale, pas sur la micro-réponse
+
 ## Standards du projet ZORAN
 
 - Stack vanilla CDN (Three.js + 3d-force-graph), zero build
