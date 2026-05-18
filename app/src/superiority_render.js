@@ -59,14 +59,11 @@ function humanSummary(d) {
 // Syntaxes acceptées :
 //   {cta:label | détail riche}  → popup détaillé puis relance
 //   {cta:label}                 → popup minimal "Poser cette question"
-// Le séparateur `|` distingue label affiché et détail bulle d'info.
-// IMPORTANT : à appliquer APRÈS escHtml (les délimiteurs survivent l'échappement).
 function parseInlineCTAs(escapedHtml) {
   return escapedHtml.replace(/\{cta:\s*([^}]+?)\s*\}/gi, (match, raw) => {
-    // Le `|` peut avoir été escaped en `|` (HTML neutre) — détection robuste
     const parts = raw.split('|').map(s => s.trim()).filter(Boolean);
     const label = parts[0] || '';
-    const detail = parts.slice(1).join(' | ');  // tout après le 1er | reste détail
+    const detail = parts.slice(1).join(' | ');
     const labelAttr = label.replace(/"/g, '&quot;');
     const detailAttr = detail.replace(/"/g, '&quot;');
     const tip = detail
@@ -74,6 +71,38 @@ function parseInlineCTAs(escapedHtml) {
       : 'Cliquer pour poser cette question';
     return `<button type="button" class="zoran-inline-cta" data-cta-text="${labelAttr}" data-cta-detail="${detailAttr}" title="${tip}">${label}</button>`;
   });
+}
+
+// Fallback heuristique : si le LLM n'a pas produit de markers {cta:...} dans une
+// réponse ZORAN, on en synthétise depuis des patterns texte (normes, verbes
+// d'action, étapes numérotées). Garantit que l'utilisateur voit toujours des
+// CTAs cliquables, même quand le LLM ignore la consigne.
+const FALLBACK_PATTERNS = [
+  // Normes/références (NF P 94-500, EN 1993-1-1, ISO 9001, Eurocode 3...)
+  /\b(NF\s*[A-Z]?\s*\d+(?:[-\s]\d+)*|EN\s*\d+(?:[-\s]\d+)*|ISO\s*\d+(?:[-\s]\d+)*|Eurocode\s*\d+|DTU\s*\d+(?:[\.\-]\d+)*)\b/g,
+  // Phrase commençant par verbe d'action infinitif (3-8 mots utiles)
+  /\b(Vérifier|Demander|Consulter|Recalculer|Confirmer|Documenter|Étayer|Suspecter|Étudier|Mesurer|Diagnostiquer)\s+([a-zà-ÿ][^.;,()]{8,60}?)(?=[.;,]|\s+(?:obligatoire|impérative|requise|nécessaire))/gi,
+  // Étapes numérotées : "Étape 1 : ..."
+  /\b(Étape\s*\d+\s*:\s*[^.;]{8,80})/gi,
+];
+
+// Insère 2-3 markers fallback sur un texte BRUT non échappé.
+// Retourne le texte transformé avec syntaxe {cta:label} (détail vide → popup minimal).
+// Anti-imbrication : un match qui contient déjà un marker est ignoré.
+function injectFallbackCTAs(rawText, maxCount = 3) {
+  if (!rawText || rawText.includes('{cta:')) return rawText;
+  let result = rawText;
+  let count = 0;
+  for (const rx of FALLBACK_PATTERNS) {
+    if (count >= maxCount) break;
+    result = result.replace(rx, (match) => {
+      if (count >= maxCount) return match;
+      if (match.includes('{cta:')) return match;  // anti-imbrication
+      count++;
+      return `{cta:${match.trim()}}`;
+    });
+  }
+  return result;
 }
 
 // Badge troncature unifié — appelé depuis chat.js et superiority panel.
@@ -86,22 +115,22 @@ export function truncationBadge(hint = '') {
 // Exporté pour chat.js (réponses standalone hors panneau superiority).
 export function renderResponseWithCTAs(text, isBaseline = false) {
   if (!text) return '';
-  // Parser tolérant : "**CTA cohérents**", "CTA cohérents:", "### CTA", etc.
+  // Fallback : si réponse ZORAN sans marker LLM, injecter des candidats heuristiques.
+  // Garantit qu'on voit toujours des CTA cliquables côté user.
+  const sourceText = isBaseline ? text : injectFallbackCTAs(text);
   const ctaRx = /\n\s*(?:---+\s*\n+|##+\s*|\*\*\*+\s*\n+)?\s*\*{0,3}\s*(?:3\s+)?CTA(?:\s+coh[ée]rents?)?(?:\s+\(SDE.?029\))?\s*\*{0,3}\s*[:\-—]?\s*\n/i;
-  const match = text.match(ctaRx);
+  const match = sourceText.match(ctaRx);
 
-  // Helper : escape puis parser inline CTAs (ZORAN seulement)
   const renderBody = (body) => {
     const escaped = escHtml(body);
-    // Inline CTAs activés UNIQUEMENT pour candidats ZORAN (pas baseline)
     return isBaseline ? escaped : parseInlineCTAs(escaped);
   };
 
   if (!match) {
-    return `<div class="sup-resp-body">${renderBody(text)}</div>`;
+    return `<div class="sup-resp-body">${renderBody(sourceText)}</div>`;
   }
-  const bodyPart = text.slice(0, match.index).trimEnd();
-  const ctaPart = text.slice(match.index + match[0].length).trim();
+  const bodyPart = sourceText.slice(0, match.index).trimEnd();
+  const ctaPart = sourceText.slice(match.index + match[0].length).trim();
   return `<div class="sup-resp-body">${renderBody(bodyPart)}</div>
     <div class="sup-cta-block">
       <div class="sup-cta-header">🔶 CTA cohérents (SDE-029)</div>
