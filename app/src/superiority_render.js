@@ -66,7 +66,15 @@ function parseInlineCTAs(escapedHtml) {
   });
 }
 
-function renderResponseWithCTAs(text, isBaseline = false) {
+// Badge troncature unifié — appelé depuis chat.js et superiority panel.
+export function truncationBadge(hint = '') {
+  const tail = hint ? ` — ${hint}` : '';
+  return `<div class="sup-trunc-warn">⚠ Réponse tronquée (stop_reason=max_tokens)${tail}</div>`;
+}
+
+// Rend texte LLM (markers inline {cta:...} + bloc CTA terminal) en HTML.
+// Exporté pour chat.js (réponses standalone hors panneau superiority).
+export function renderResponseWithCTAs(text, isBaseline = false) {
   if (!text) return '';
   // Parser tolérant : "**CTA cohérents**", "CTA cohérents:", "### CTA", etc.
   const ctaRx = /\n\s*(?:---+\s*\n+|##+\s*|\*\*\*+\s*\n+)?\s*\*{0,3}\s*(?:3\s+)?CTA(?:\s+coh[ée]rents?)?(?:\s+\(SDE.?029\))?\s*\*{0,3}\s*[:\-—]?\s*\n/i;

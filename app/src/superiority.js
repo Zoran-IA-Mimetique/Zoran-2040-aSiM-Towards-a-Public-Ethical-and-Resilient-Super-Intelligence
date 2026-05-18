@@ -242,9 +242,9 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
     r.meta_noise     = +metaNoise({ answerText: r.text, questionText: question }).toFixed(3);
     r.concrete_runtime_alignment = +concreteRuntimeAlignment({ answerText: r.text, questionText: question }).toFixed(3);
     r.jargon_terms_found = detectJargonTerms(r.text);
-    // Mission RESPONSE_COMPLETION : détection troncature
-    const trunc = detectTruncation(r.text, r.usage);
-    r.truncated = trunc.truncated;
+    // Signal API stop_reason='max_tokens' prime sur l'heuristique (préserve r.truncated déjà set par callLLM)
+    const trunc = detectTruncation(r.text, r.usage, r.stop_reason);
+    r.truncated = r.truncated || trunc.truncated;
     r.truncation_reasons = trunc.reasons;
     r.completion_integrity = completionIntegrity(r.text, r.usage);
     r.truncation_penalty = truncationPenalty(r.text, r.usage);

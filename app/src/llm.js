@@ -127,7 +127,8 @@ export async function callLLM({ system, user, maxTokens = 600, model = null }) {
     }
     const data = await res.json();
     const text = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('\n').trim();
-    return { ok: true, text, model: data.model, usage: data.usage };
+    const truncated = data.stop_reason === 'max_tokens';
+    return { ok: true, text, model: data.model, usage: data.usage, stop_reason: data.stop_reason, truncated };
   } catch (err) {
     return { ok: false, reason: 'network', message: err.message };
   }
@@ -202,7 +203,7 @@ export async function winnerSynthesis({ question, claudeAnswer, zoranAnswer, dom
     'Produis la réponse finale optimale en JSON.',
   ].join('\n');
 
-  const r = await callLLM({ system, user, maxTokens: 1200 });
+  const r = await callLLM({ system, user, maxTokens: 2500 });
   if (!r.ok) return r;
   try {
     const match = r.text.match(/\{[\s\S]*\}/);
@@ -307,7 +308,7 @@ export async function synthesizeOrchestrated({
       '  "Surface 361×10⁶ km² × 10⁻⁶ m = 3,61×10⁸ m³ ÷ 2500 m³/piscine ≈ 144 400 piscines.',
       '   Calcul direct vérifiable. Approximation ±30% selon profondeur piscine retenue (2 ou 3 m)."',
     ].filter(Boolean).join('\n');
-    return await callLLM({ system: minimalSystem, user: question, maxTokens: 500 });
+    return await callLLM({ system: minimalSystem, user: question, maxTokens: 1200 });
   }
 
 
@@ -332,16 +333,26 @@ export async function synthesizeOrchestrated({
     '4. TERMINE TA RÉPONSE — pas de phrase coupée, conclusion claire.',
     '5. Évite "intéressant", "fascinant", "très cohérent" (promotionnel).',
     '',
-    '═══ CTA INLINE CLIQUABLES (optionnel mais recommandé) ═══',
-    'Tu peux marquer 2-4 phrases ou expressions DANS LE CORPS comme cliquables',
-    'en les enveloppant dans la syntaxe {cta:texte}. Le user pourra cliquer dessus',
-    'pour reposer la question correspondante. Exemple :',
-    '  "Suspecter RGA argile gonflante. {cta:Étude G2 PRO obligatoire selon NF P 94-500}',
-    '   sous 1 mois. {cta:Étaiement provisoire si fissure évolutive > 0.5mm/mois}."',
+    '═══ CTA INLINE CLIQUABLES — OBLIGATOIRE (NON NÉGOCIABLE) ═══',
+    'Tu DOIS marquer 2 à 4 expressions actionnables DU CORPS de la réponse avec',
+    'la syntaxe {cta:texte exact}. Ce sont des rectangles cliquables qui permettent',
+    'au user d\'approfondir un point précis. Sans ces markers, la réponse est INCOMPLÈTE.',
+    '',
+    'Exemple BTP :',
+    '  "Suspecter RGA argile gonflante. {cta:Demander étude G2 PRO selon NF P 94-500}',
+    '   sous 1 mois. {cta:Poser jauges fissuromètres si fissure > 0.5mm/mois}.',
+    '   Diagnostic structurel à confirmer. {cta:Consulter bureau de contrôle agréé}."',
+    '',
+    'Exemple générique (calcul) :',
+    '  "Volume estimé : 144 000 piscines olympiques. {cta:Recalculer avec profondeur 3m}',
+    '   Ordre de grandeur ±30%. {cta:Voir hypothèses de calcul détaillées}."',
+    '',
     'Règles inline CTA :',
-    '- Max 4 dans le corps total',
-    '- Chaque CTA = phrase actionnable réutilisable comme prompt',
+    '- MINIMUM 2 markers, MAXIMUM 4 dans le corps',
+    '- Chaque CTA = phrase courte (3-10 mots) réutilisable comme prompt',
+    '- Doit naturellement s\'intégrer à la phrase (pas posé comme une étiquette)',
     '- PAS dans le bloc terminal **CTA cohérents** (qui reste texte simple)',
+    '- Format STRICT : {cta:texte} — pas {CTA:...}, pas [cta:...], pas avec espaces autour',
     '',
     '═══ LOI SDE-029 — 3 CTA TERMINAUX OBLIGATOIRES ═══',
     'TERMINE OBLIGATOIREMENT par 3 CTA dans CE FORMAT STRICT exact :',
@@ -366,7 +377,7 @@ export async function synthesizeOrchestrated({
     '     Limite : dimensionnement exact dépend de la charge réelle, non calculable à distance."',
   ].filter(Boolean).join('\n');
 
-  return await callLLM({ system, user: question, maxTokens: 1800 });
+  return await callLLM({ system, user: question, maxTokens: 4000 });
 }
 
 // Mission RUNTIME_SUPERIORITY : LLM brut sans contexte ZORAN
@@ -374,7 +385,7 @@ export async function synthesizeBaseline(question) {
   return await callLLM({
     system: 'Tu es un assistant. Réponds à la question en 4-6 phrases denses en français, sans markdown. TERMINE TA RÉPONSE COMPLÈTEMENT — pas de phrase coupée.',
     user: question,
-    maxTokens: 900,    // Mission RESPONSE_COMPLETION : élargir pour éviter troncatures
+    maxTokens: 2500,
   });
 }
 
@@ -437,7 +448,7 @@ export async function synthesizeRoute({ question, laws, strategyLabel }) {
     '',
     '═══ TERMINE TA RÉPONSE — pas de phrase coupée, conclusion claire ═══',
   ].join('\n');
-  return await callLLM({ system, user: question, maxTokens: 900 });  // mission RESPONSE_COMPLETION
+  return await callLLM({ system, user: question, maxTokens: 3500 });
 }
 
 // LLM-as-judge : classement argumenté /20 avec points forts/faibles concrets
@@ -496,10 +507,9 @@ export async function judgeResponses({ question, responses, reformulations = nul
     ' },...]}',
   ].join('\n');
   const user = `QUESTION ORIGINALE : ${question}\n\nCANDIDATS (${labels}) :\n\n${numbered}`;
-  // Adaptation max_tokens selon nombre candidats (économie)
-  // 2 candidats : 1500 / 3 candidats : 2000 / 4+ : 2500
-  const judgeMaxTokens = responses.length <= 2 ? 1500
-                       : responses.length === 3 ? 2000 : 2500;
+  // Le JSON judge contient strengths/weaknesses détaillés par candidat (cap large pour éviter cut JSON).
+  const judgeMaxTokens = responses.length <= 2 ? 3000
+                       : responses.length === 3 ? 4000 : 5000;
   const r = await callLLM({ system, user, maxTokens: judgeMaxTokens });
   if (!r.ok) return r;
   let json = null;
@@ -535,7 +545,7 @@ export async function synthesizeAnswer({ question, node, multiFrame, parents }) 
       },
       body: JSON.stringify({
         model,
-        max_tokens: 600,
+        max_tokens: 3500,
         system,
         messages: [{ role: 'user', content: question }],
       }),
@@ -555,6 +565,8 @@ export async function synthesizeAnswer({ question, node, multiFrame, parents }) 
       answer,
       model: data.model,
       usage: data.usage,
+      stop_reason: data.stop_reason,
+      truncated: data.stop_reason === 'max_tokens',
     };
   } catch (err) {
     return { ok: false, reason: 'network', message: err.message };

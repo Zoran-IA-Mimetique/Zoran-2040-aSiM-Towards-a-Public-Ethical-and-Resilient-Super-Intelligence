@@ -14,9 +14,13 @@ const TRUNCATED_LIST_RX = /(\n\s*[-•*]\s+[^\n]{0,5})$/;
 /**
  * Détecte si une réponse semble tronquée.
  * Retourne { truncated, reasons[], confidence [0..1] }.
+ * stopReason : si === 'max_tokens', signal API autoritaire (court-circuite l'heuristique).
  */
-export function detectTruncation(text, usage = null) {
+export function detectTruncation(text, usage = null, stopReason = null) {
   if (!text || !text.trim()) return { truncated: true, reasons: ['empty'], confidence: 1.0 };
+  if (stopReason === 'max_tokens') {
+    return { truncated: true, reasons: ['api_stop_max_tokens'], confidence: 1.0 };
+  }
   const trimmed = text.trim();
   const reasons = [];
   let confidence = 0;
@@ -46,14 +50,8 @@ export function detectTruncation(text, usage = null) {
     confidence += 0.30;
   }
 
-  // 5. Usage indique max_tokens atteint (stop_reason = "max_tokens")
-  // L'API Claude renvoie stop_reason dans la réponse principale, pas usage
-  // mais on peut inférer si output_tokens est suspicieusement proche de max
-  if (usage && usage.output_tokens && usage.output_tokens >= 850) {
-    // Si on a demandé max 900 et reçu 850+, fort risque de cut
-    reasons.push('output_near_max');
-    confidence += 0.20;
-  }
+  // Note : la détection max_tokens prioritaire est faite en tête via stopReason API.
+  // Cette branche heuristique ne sert plus que de fallback quand stop_reason absent.
 
   // 6. Termine par "..." ou "etc" ou similaire (incertitude finale)
   if (/\b(etc\.?|\.\.\.|…)\s*$/.test(trimmed)) {

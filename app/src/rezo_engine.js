@@ -262,10 +262,18 @@ export async function generateClaudePlusRezo({ question, claudeAnswer, diagnosis
       const maxTerminal = profileCfg.max_terminal_ctas || 3;
       const maxInline = profileCfg.max_inline_ctas || 3;
       return [
-        `═══ CTA INLINE CLIQUABLES (max ${maxInline}, profil ${profileCfg.response_mode}) ═══`,
-        `Tu peux marquer ${maxInline} phrases du corps comme cliquables avec {cta:texte}.`,
-        'Exemple : "{cta:Vérifier note de calcul Eurocode 3 sur cette IPN}"',
-        'Le user pourra cliquer pour reposer la question.',
+        `═══ CTA INLINE CLIQUABLES — OBLIGATOIRE (max ${maxInline}, profil ${profileCfg.response_mode}) ═══`,
+        `Tu DOIS marquer 2 à ${maxInline} expressions DU CORPS de finalAnswer comme cliquables`,
+        'avec la syntaxe EXACTE {cta:texte}. Ce sont des rectangles cliquables que le user',
+        'utilisera pour approfondir. Sans 2+ markers, la réponse est INCOMPLÈTE.',
+        '',
+        'Exemples concrets :',
+        '  "{cta:Vérifier note de calcul Eurocode 3 sur cette IPN}"',
+        '  "Approximation ±15%. {cta:Recalculer avec hypothèse haute}"',
+        '  "Diagnostic à confirmer. {cta:Demander expertise contradictoire}"',
+        '',
+        'Format STRICT : {cta:texte} — pas d\'espace autour des `:`, pas de majuscules.',
+        '',
         showSelfDoubt
           ? 'EXIGENCE auto-doute : exprime clairement quand tu es certain vs quand tu approximes.'
           : '',
@@ -297,7 +305,7 @@ export async function generateClaudePlusRezo({ question, claudeAnswer, diagnosis
     `Applique les corrections listées dans le system prompt. Produis le JSON.`,
   ].join('\n');
 
-  const r = await callLLM({ system, user, maxTokens: 1500 });
+  const r = await callLLM({ system, user, maxTokens: 3500 });
   if (!r.ok) return r;
   try {
     const match = r.text.match(/\{[\s\S]*\}/);

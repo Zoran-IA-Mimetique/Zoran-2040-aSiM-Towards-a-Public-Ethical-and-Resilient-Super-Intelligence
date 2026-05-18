@@ -4,6 +4,7 @@ import { synthesizeAnswer, hasApiKey, getApiKey, setApiKey, getModel, setModel,
          getBenchmarkEnabled, setBenchmarkEnabled } from './llm.js';
 import { renderProfileSelector, setProfile, getProfile } from './user_profile.js';
 import { runSuperiorityComparison, renderComparison } from './superiority.js';
+import { renderResponseWithCTAs, truncationBadge } from './superiority_render.js';
 import { mapStructural, structuralTopicBoost } from './structural_mapping.js';
 //
 // Port browser de runtime_cognitive_path_competition_engine.py
@@ -429,14 +430,18 @@ export function renderResults(result, onPickLaw) {
 async function runBaselineOnly(result) {
   const box = document.getElementById('llm-answer-box');
   if (!box) return;
-  box.innerHTML = `<div class="llm-label">⚖ Claude brut uniquement (pas de loi ZORAN retenue)</div>
-    <div class="llm-body">Question hors-domaine total — appel direct Claude…</div>`;
+  box.classList.add('loading');
+  box.classList.remove('error', 'answered');
+  box.innerHTML = `<div class="llm-label"><span class="hourglass-spin">⌛</span> Claude brut uniquement (pas de loi ZORAN retenue)</div>
+    <div class="llm-body"><span class="hourglass-spin" style="font-size:18px">⌛</span> Question hors-domaine total — appel direct Claude…</div>`;
   const { synthesizeBaseline } = await import('./llm.js');
   const r = await synthesizeBaseline(result.question);
   box.classList.remove('loading');
   if (r.ok) {
+    // baseline = pas d'inline CTA (règle SDE-029 : ZORAN only)
     box.innerHTML = `<div class="llm-label">⚖ CLAUDE brut · 0 loi (off-topic ZORAN)</div>
-      <div class="llm-body">${esc(r.text)}</div>
+      <div class="llm-body">${renderResponseWithCTAs(r.text, true)}</div>
+      ${r.truncated ? truncationBadge('augmenter maxTokens si récurrent') : ''}
       <div class="llm-meta">modèle ${esc(r.model || '?')}</div>`;
   } else {
     box.classList.add('error');
@@ -461,9 +466,18 @@ async function runSynthesis(result) {
   console.log('[ZORAN] runSynthesis — economeMode=', economeMode,
               '· apiKey=', hasApiKey() ? 'present' : 'absent');
   if (!economeMode) {
+    // Sablier persistant : sans le réinjecter ici, innerHTML écrase le ⌛ du boot.
+    box.classList.add('loading');
+    box.classList.remove('error', 'answered');
     box.innerHTML = `
-      <div class="llm-label">⚖ Comparaison runtime — CLAUDE brut + 3 routes ZORAN (≈7 appels API en parallèle…)</div>
-      <div class="llm-body">Reformulations cognitives × 3 → réponses → juge…</div>
+      <div class="llm-label"><span class="hourglass-spin">⌛</span> Comparaison runtime — CLAUDE brut + ZORAN orchestré (4 appels : 2 parallèles + 2 séquentiels)</div>
+      <div class="llm-body">
+        <span class="hourglass-spin" style="font-size:18px">⌛</span>
+        Réponses parallèles → augmentation ReZo → juge LLM…
+        <div class="llm-progress-hint" style="margin-top:6px;font-size:11px;color:var(--fg-2);font-style:italic">
+          Phases : baseline + orchestré (≈10s parallèle) → augmentation ReZo (≈8s) → juge (≈10s)
+        </div>
+      </div>
     `;
     const allNodes = window.state?.graph?.nodes || [];
     const cmp = await runSuperiorityComparison({
@@ -498,7 +512,8 @@ async function runSynthesis(result) {
     box.classList.add('answered');
     box.innerHTML = `
       <div class="llm-label">🧠 Réponse ZORAN — synthèse multi-cadres</div>
-      <div class="llm-body">${esc(r.answer)}</div>
+      <div class="llm-body">${renderResponseWithCTAs(r.answer, false)}</div>
+      ${r.truncated ? truncationBadge('relancer pour réponse complète') : ''}
       <div class="llm-meta">modèle ${esc(r.model || '?')} · ${r.usage?.input_tokens || '?'} in / ${r.usage?.output_tokens || '?'} out · ${dt}ms · loi ${esc(ctx.law_id)}</div>
     `;
   } else {
