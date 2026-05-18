@@ -51,18 +51,28 @@ function humanSummary(d) {
 
 // ──────────────────── CTA PARSER (SDE-029) ────────────────────
 // 2 niveaux de CTA :
-//   - INLINE : {cta:texte} dans le corps → rectangles cliquables (ZORAN only)
+//   - INLINE : {cta:label | détail enrichi} dans le corps → rectangles cliquables (ZORAN only)
+//     → click ouvre popup avec détail puis bouton "Poser cette question"
 //   - BLOC TERMINAL : 3 CTAs orange en fin → identique à avant
 
-// Parse les CTAs inline {cta:texte} → spans cliquables
-// IMPORTANT : à appliquer APRÈS escHtml (les délimiteurs survivent l'échappement)
+// Parse les CTAs inline → spans cliquables avec détail popup.
+// Syntaxes acceptées :
+//   {cta:label | détail riche}  → popup détaillé puis relance
+//   {cta:label}                 → popup minimal "Poser cette question"
+// Le séparateur `|` distingue label affiché et détail bulle d'info.
+// IMPORTANT : à appliquer APRÈS escHtml (les délimiteurs survivent l'échappement).
 function parseInlineCTAs(escapedHtml) {
-  // Marker LLM : {cta:texte cliquable}
-  // Transformé en span avec data-cta-text (texte original pour click handler)
-  return escapedHtml.replace(/\{cta:\s*([^}]+?)\s*\}/gi, (match, txt) => {
-    // textContent du span servira de prompt suivant
-    const cleanTxt = txt.trim();
-    return `<button type="button" class="zoran-inline-cta" data-cta-text="${cleanTxt.replace(/"/g, '&quot;')}" title="Cliquer pour reposer cette question">${cleanTxt}</button>`;
+  return escapedHtml.replace(/\{cta:\s*([^}]+?)\s*\}/gi, (match, raw) => {
+    // Le `|` peut avoir été escaped en `|` (HTML neutre) — détection robuste
+    const parts = raw.split('|').map(s => s.trim()).filter(Boolean);
+    const label = parts[0] || '';
+    const detail = parts.slice(1).join(' | ');  // tout après le 1er | reste détail
+    const labelAttr = label.replace(/"/g, '&quot;');
+    const detailAttr = detail.replace(/"/g, '&quot;');
+    const tip = detail
+      ? 'Cliquer pour voir le détail et choisir de relancer'
+      : 'Cliquer pour poser cette question';
+    return `<button type="button" class="zoran-inline-cta" data-cta-text="${labelAttr}" data-cta-detail="${detailAttr}" title="${tip}">${label}</button>`;
   });
 }
 

@@ -261,18 +261,28 @@ export async function generateClaudePlusRezo({ question, claudeAnswer, diagnosis
       // Mode standard avec CTAs adaptés au profil
       const maxTerminal = profileCfg.max_terminal_ctas || 3;
       const maxInline = profileCfg.max_inline_ctas || 3;
+      const ctaMin = Math.min(3, maxInline);
+      const ctaMax = Math.min(5, maxInline);
       return [
-        `═══ CTA INLINE CLIQUABLES — OBLIGATOIRE (max ${maxInline}, profil ${profileCfg.response_mode}) ═══`,
-        `Tu DOIS marquer 2 à ${maxInline} expressions DU CORPS de finalAnswer comme cliquables`,
-        'avec la syntaxe EXACTE {cta:texte}. Ce sont des rectangles cliquables que le user',
-        'utilisera pour approfondir. Sans 2+ markers, la réponse est INCOMPLÈTE.',
+        `═══ CTA INLINE CLIQUABLES — OBLIGATOIRE (${ctaMin} à ${ctaMax} markers, profil ${profileCfg.response_mode}) ═══`,
+        `Tu DOIS insérer ${ctaMin} à ${ctaMax} markers dans finalAnswer, format strict :`,
+        '  {cta:label court | détail enrichi multi-phrases pour info-bulle}',
+        '',
+        'LABEL (avant `|`) : 2-6 mots qui s\'intègrent à la phrase, surlignés cliquables.',
+        'DÉTAIL (après `|`) : 2-4 phrases qui APPORTENT un complément non dit dans le corps.',
+        'C\'est de la valeur ajoutée — angle exploratoire, calcul alternatif, référence',
+        'normative — que tu glisses parce que tu ne peux pas tout traiter en réponse',
+        'principale. PAS une paraphrase du label.',
         '',
         'Exemples concrets :',
-        '  "{cta:Vérifier note de calcul Eurocode 3 sur cette IPN}"',
-        '  "Approximation ±15%. {cta:Recalculer avec hypothèse haute}"',
-        '  "Diagnostic à confirmer. {cta:Demander expertise contradictoire}"',
+        '  "Suspecter {cta:flambement local | EN 1993-1-1 §6.3 impose vérification pour',
+        '   élancement λ̄ > 0.2. Si IPN dépasse ce seuil, calcul par méthode α-courbes.',
+        '   Risque sous-estimé sur poteaux longs > 4 m.}"',
+        '  "Approximation ±15%. {cta:Recalculer hypothèse haute | Si charge ELU majorée',
+        '   de 1.5 au lieu de 1.35, sécurité passe de 1.6 à 1.4 — encore acceptable mais',
+        '   marge réduite. À documenter dans note de calcul.}"',
         '',
-        'Format STRICT : {cta:texte} — pas d\'espace autour des `:`, pas de majuscules.',
+        'Format STRICT : {cta:label | détail} avec UN SEUL `|`. Pas de markdown dans détail.',
         '',
         showSelfDoubt
           ? 'EXIGENCE auto-doute : exprime clairement quand tu es certain vs quand tu approximes.'

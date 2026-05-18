@@ -775,6 +775,104 @@ body.sidebar-hidden #graph {
   background: rgba(255, 140, 26, 0.35);
 }
 
+/* Popup info-bulle au clic sur CTA inline ZORAN
+   Affiche le détail enrichi préparé par le LLM, puis propose de relancer le chat. */
+.zoran-cta-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: zoran-popup-fade 0.15s ease-out;
+}
+@keyframes zoran-popup-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.zoran-cta-popup-card {
+  background: var(--bg-1, #1a1a1c);
+  border: 1px solid rgba(255, 140, 26, 0.45);
+  border-radius: 10px;
+  padding: 18px 20px 14px 20px;
+  max-width: 460px;
+  width: calc(100% - 32px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 140, 26, 0.15);
+  position: relative;
+  font-family: inherit;
+  color: var(--fg-1, #e8e8e8);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.zoran-cta-popup-close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  color: var(--fg-2, #999);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  line-height: 1;
+}
+.zoran-cta-popup-close:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--fg-1, #fff);
+}
+.zoran-cta-popup-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent, #ff8c1a);
+  margin-bottom: 10px;
+  padding-right: 30px;
+}
+.zoran-cta-popup-detail {
+  margin-bottom: 14px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.zoran-cta-popup-empty {
+  font-style: italic;
+  color: var(--fg-2, #999);
+}
+.zoran-cta-popup-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+.zoran-cta-popup-ask,
+.zoran-cta-popup-dismiss {
+  font-family: inherit;
+  font-size: 12px;
+  padding: 7px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.zoran-cta-popup-ask {
+  background: rgba(255, 140, 26, 0.20);
+  border-color: rgba(255, 140, 26, 0.55);
+  color: var(--accent, #ff8c1a);
+  font-weight: 600;
+}
+.zoran-cta-popup-ask:hover {
+  background: rgba(255, 140, 26, 0.35);
+  border-color: rgba(255, 140, 26, 0.85);
+}
+.zoran-cta-popup-dismiss {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.18);
+  color: var(--fg-2, #999);
+}
+.zoran-cta-popup-dismiss:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--fg-1, #fff);
+}
+
 /* Sablier animé pour indiquer l'attente d'une réponse (mission V11 UX) */
 @keyframes hourglass-flip {
   0%   { transform: rotate(0deg); }

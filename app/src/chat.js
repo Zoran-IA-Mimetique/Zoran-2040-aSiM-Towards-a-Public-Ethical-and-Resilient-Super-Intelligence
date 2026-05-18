@@ -526,6 +526,58 @@ async function runSynthesis(result) {
   }
 }
 
+// Popup info-bulle pour CTA inline ZORAN : affiche le détail enrichi préparé
+// par le LLM puis propose de relancer le chat sur le sujet.
+function openCtaPopup({ label, detail, anchor, onSubmit }) {
+  // Cleanup d'un éventuel popup déjà ouvert (évite empilement)
+  document.querySelectorAll('.zoran-cta-popup-overlay').forEach(p => p.remove());
+
+  const hasDetail = !!detail;
+  const overlay = document.createElement('div');
+  overlay.className = 'zoran-cta-popup-overlay';
+  overlay.innerHTML = `
+    <div class="zoran-cta-popup-card" role="dialog" aria-modal="true" aria-label="${esc(label)}">
+      <button type="button" class="zoran-cta-popup-close" aria-label="Fermer">✕</button>
+      <div class="zoran-cta-popup-label">${esc(label)}</div>
+      ${hasDetail
+        ? `<div class="zoran-cta-popup-detail">${esc(detail)}</div>`
+        : `<div class="zoran-cta-popup-detail zoran-cta-popup-empty">Pas de détail enrichi disponible pour ce CTA — relance directe possible.</div>`}
+      <div class="zoran-cta-popup-actions">
+        <button type="button" class="zoran-cta-popup-ask">Poser cette question</button>
+        <button type="button" class="zoran-cta-popup-dismiss">Fermer</button>
+      </div>
+    </div>`;
+  document.body.appendChild(overlay);
+
+  const card = overlay.querySelector('.zoran-cta-popup-card');
+  // Positionnement near-anchor sur desktop, centré sur mobile
+  if (anchor && window.innerWidth > 720) {
+    const rect = anchor.getBoundingClientRect();
+    const cardH = 220;  // estimation, ajusté après mount
+    const top = Math.max(12, Math.min(window.innerHeight - cardH - 12, rect.bottom + 8));
+    const left = Math.max(12, Math.min(window.innerWidth - 460, rect.left));
+    card.style.position = 'fixed';
+    card.style.top = `${top}px`;
+    card.style.left = `${left}px`;
+  }
+
+  const close = () => overlay.remove();
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) close();
+  });
+  overlay.querySelector('.zoran-cta-popup-close').addEventListener('click', close);
+  overlay.querySelector('.zoran-cta-popup-dismiss').addEventListener('click', close);
+  overlay.querySelector('.zoran-cta-popup-ask').addEventListener('click', () => {
+    close();
+    onSubmit(label);
+  });
+  // ESC ferme
+  const onKey = (e) => {
+    if (e.key === 'Escape') { close(); document.removeEventListener('keydown', onKey); }
+  };
+  document.addEventListener('keydown', onKey);
+}
+
 function setupSettingsModal() {
   const modal = document.getElementById('settings-modal');
   const btn = document.getElementById('chat-settings');
@@ -633,22 +685,21 @@ export function wireChatBar(nodes, onPickLaw, onCompete, onClearRoutes, parentsM
 
   sendBtn.addEventListener('click', submit);
 
-  // Mission RANKING_BIAS_CORRECTION : CTAs inline cliquables dans réponses ZORAN
-  // Click sur .zoran-inline-cta → remplit l'input avec le texte du CTA
-  // (l'utilisateur peut éditer puis cliquer Send pour relancer)
+  // CTAs inline cliquables (ZORAN only) : click ouvre popup avec détail enrichi
+  // préparé par le LLM (info-bulle = valeur ajoutée non développée dans la réponse).
+  // Le popup propose ensuite de relancer le chat sur le sujet.
   document.addEventListener('click', e => {
     const ctaBtn = e.target.closest('.zoran-inline-cta');
     if (!ctaBtn) return;
     e.preventDefault();
-    const txt = ctaBtn.dataset.ctaText || ctaBtn.textContent || '';
-    if (!txt.trim()) return;
-    input.value = txt.trim();
-    input.focus();
-    // Scroll input en vue pour mobile
-    try { input.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (_) {}
-    // Visual feedback rapide
-    ctaBtn.style.background = 'rgba(255, 140, 26, 0.55)';
-    setTimeout(() => { ctaBtn.style.background = ''; }, 200);
+    const label = (ctaBtn.dataset.ctaText || ctaBtn.textContent || '').trim();
+    const detail = (ctaBtn.dataset.ctaDetail || '').trim();
+    if (!label) return;
+    openCtaPopup({ label, detail, anchor: ctaBtn, onSubmit: (q) => {
+      input.value = q;
+      input.focus();
+      submit();
+    }});
   });
   input.addEventListener('keydown', e => {
     if (e.key === 'Enter') { e.preventDefault(); submit(); }
