@@ -5,6 +5,7 @@ import { synthesizeAnswer, hasApiKey, getApiKey, setApiKey, getModel, setModel,
 import { renderProfileSelector, setProfile, getProfile } from './user_profile.js';
 import { runSuperiorityComparison, renderComparison } from './superiority.js';
 import { renderResponseWithCTAs, truncationBadge } from './superiority_render.js';
+import { trackOpen } from './cta_metrics.js';
 import { mapStructural, structuralTopicBoost } from './structural_mapping.js';
 //
 // Port browser de runtime_cognitive_path_competition_engine.py
@@ -526,22 +527,87 @@ async function runSynthesis(result) {
   }
 }
 
-// Popup info-bulle pour CTA inline ZORAN : affiche le détail enrichi préparé
-// par le LLM puis propose de relancer le chat sur le sujet.
-function openCtaPopup({ label, detail, anchor, onSubmit }) {
-  // Cleanup d'un éventuel popup déjà ouvert (évite empilement)
+// ZORAN_CTA_CLICKABLE_RUNTIME_V13 — Popup typé multi-niveau.
+// Structure visuelle :
+//   LVL1 résumé : badge type + criticité + label
+//   LVL2 opérationnel : table compacte (coût, délai, preuve, risque)
+//   LVL3 détail technique : prose enrichie (replié par défaut)
+
+// Labels typés (dupliqués localement pour éviter import circulaire chat ↔ schema)
+const CTA_TYPE_LABELS = {
+  terrain: 'Action terrain',
+  falsif: 'Contre-hypothèse',
+  risque: 'Risque systémique',
+  juridique: 'Garde juridique',
+  monitor: 'Mesure discriminante',
+  action: 'Exploration',
+};
+const CTA_CRIT_LABELS = { high: 'Critique', medium: 'Standard', low: 'Optionnel' };
+
+function renderCtaPopupBody(cta) {
+  const typeLabel = CTA_TYPE_LABELS[cta.type] || 'Exploration';
+  const critLabel = CTA_CRIT_LABELS[cta.crit] || 'Standard';
+  const slotLabel = cta.slot
+    ? ({ principal: 'Principal', secondaire: 'Secondaire', falsification: 'Falsification' }[cta.slot] || '')
+    : '';
+  const rows = [
+    cta.cout    ? ['Coût',   cta.cout]    : null,
+    cta.delai   ? ['Délai',  cta.delai]   : null,
+    cta.preuve  ? ['Preuve', cta.preuve]  : null,
+    cta.risque  ? ['Risque si non exécuté', cta.risque] : null,
+  ].filter(Boolean);
+
+  const operational = rows.length
+    ? `<table class="zoran-cta-popup-table">${rows.map(([k, v]) =>
+        `<tr><th>${esc(k)}</th><td>${esc(v)}</td></tr>`).join('')}</table>`
+    : '';
+
+  const hasDetail = !!(cta.detail && cta.detail.trim());
+  const techBlock = hasDetail
+    ? `<details class="zoran-cta-popup-tech"><summary>Détails techniques</summary>
+         <div class="zoran-cta-popup-tech-body">${esc(cta.detail)}</div></details>`
+    : `<div class="zoran-cta-popup-empty">Pas de détail technique fourni — relance pour approfondir.</div>`;
+
+  const slotChip = slotLabel
+    ? `<span class="zoran-cta-popup-slot zoran-cta-popup-slot-${cta.slot}">${esc(slotLabel)}</span>`
+    : '';
+
+  return `
+    <div class="zoran-cta-popup-head">
+      <span class="zoran-cta-popup-type cta-type-${cta.type}">${esc(typeLabel)}</span>
+      <span class="zoran-cta-popup-crit cta-crit-${cta.crit}">${esc(critLabel)}</span>
+      ${slotChip}
+    </div>
+    <div class="zoran-cta-popup-label">${esc(cta.label)}</div>
+    ${operational}
+    ${techBlock}
+  `;
+}
+
+// Décode un attribut data-cta (base64 ou URI-encoded JSON) → objet CTA.
+function decodeCtaAttr(raw) {
+  if (!raw) return null;
+  try {
+    // Tente base64 d'abord (encodage par défaut côté render)
+    const bin = atob(raw);
+    const bytes = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    const json = new TextDecoder().decode(bytes);
+    return JSON.parse(json);
+  } catch (e) {
+    try { return JSON.parse(decodeURIComponent(raw)); } catch (e2) { return null; }
+  }
+}
+
+function openCtaPopup({ cta, anchor, onSubmit, onMetrics }) {
   document.querySelectorAll('.zoran-cta-popup-overlay').forEach(p => p.remove());
 
-  const hasDetail = !!detail;
   const overlay = document.createElement('div');
   overlay.className = 'zoran-cta-popup-overlay';
   overlay.innerHTML = `
-    <div class="zoran-cta-popup-card" role="dialog" aria-modal="true" aria-label="${esc(label)}">
+    <div class="zoran-cta-popup-card cta-type-${cta.type}" role="dialog" aria-modal="true" aria-label="${esc(cta.label)}">
       <button type="button" class="zoran-cta-popup-close" aria-label="Fermer">✕</button>
-      <div class="zoran-cta-popup-label">${esc(label)}</div>
-      ${hasDetail
-        ? `<div class="zoran-cta-popup-detail">${esc(detail)}</div>`
-        : `<div class="zoran-cta-popup-detail zoran-cta-popup-empty">Pas de détail enrichi disponible pour ce CTA — relance directe possible.</div>`}
+      ${renderCtaPopupBody(cta)}
       <div class="zoran-cta-popup-actions">
         <button type="button" class="zoran-cta-popup-ask">Poser cette question</button>
         <button type="button" class="zoran-cta-popup-dismiss">Fermer</button>
@@ -550,31 +616,34 @@ function openCtaPopup({ label, detail, anchor, onSubmit }) {
   document.body.appendChild(overlay);
 
   const card = overlay.querySelector('.zoran-cta-popup-card');
-  // Positionnement near-anchor sur desktop, centré sur mobile
   if (anchor && window.innerWidth > 720) {
     const rect = anchor.getBoundingClientRect();
-    const cardH = 220;  // estimation, ajusté après mount
+    const cardH = 280;
     const top = Math.max(12, Math.min(window.innerHeight - cardH - 12, rect.bottom + 8));
-    const left = Math.max(12, Math.min(window.innerWidth - 460, rect.left));
+    const left = Math.max(12, Math.min(window.innerWidth - 480, rect.left));
     card.style.position = 'fixed';
     card.style.top = `${top}px`;
     card.style.left = `${left}px`;
   }
 
-  const close = () => overlay.remove();
-  overlay.addEventListener('click', e => {
-    if (e.target === overlay) close();
-  });
+  let asked = false;
+  const close = () => {
+    overlay.remove();
+    document.removeEventListener('keydown', onKey);
+    if (onMetrics) onMetrics({ asked });
+  };
+  const onKey = (e) => {
+    if (e.key === 'Escape') close();
+  };
+
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
   overlay.querySelector('.zoran-cta-popup-close').addEventListener('click', close);
   overlay.querySelector('.zoran-cta-popup-dismiss').addEventListener('click', close);
   overlay.querySelector('.zoran-cta-popup-ask').addEventListener('click', () => {
+    asked = true;
     close();
-    onSubmit(label);
+    onSubmit(cta.label);
   });
-  // ESC ferme
-  const onKey = (e) => {
-    if (e.key === 'Escape') { close(); document.removeEventListener('keydown', onKey); }
-  };
   document.addEventListener('keydown', onKey);
 }
 
@@ -685,21 +754,21 @@ export function wireChatBar(nodes, onPickLaw, onCompete, onClearRoutes, parentsM
 
   sendBtn.addEventListener('click', submit);
 
-  // CTAs inline cliquables (ZORAN only) : click ouvre popup avec détail enrichi
-  // préparé par le LLM (info-bulle = valeur ajoutée non développée dans la réponse).
-  // Le popup propose ensuite de relancer le chat sur le sujet.
+  // CTAs inline V13 : click → décode data-cta (base64 JSON) → popup typé multi-niveau.
+  // Métriques open/dwell/asked trackées en sessionStorage (cta_metrics).
   document.addEventListener('click', e => {
     const ctaBtn = e.target.closest('.zoran-inline-cta');
     if (!ctaBtn) return;
     e.preventDefault();
-    const label = (ctaBtn.dataset.ctaText || ctaBtn.textContent || '').trim();
-    const detail = (ctaBtn.dataset.ctaDetail || '').trim();
-    if (!label) return;
-    openCtaPopup({ label, detail, anchor: ctaBtn, onSubmit: (q) => {
-      input.value = q;
-      input.focus();
-      submit();
-    }});
+    const cta = decodeCtaAttr(ctaBtn.dataset.cta);
+    if (!cta || !cta.label) return;
+    const handle = trackOpen(cta);
+    openCtaPopup({
+      cta,
+      anchor: ctaBtn,
+      onSubmit: (q) => { input.value = q; input.focus(); submit(); },
+      onMetrics: ({ asked }) => handle.close({ asked }),
+    });
   });
   input.addEventListener('keydown', e => {
     if (e.key === 'Enter') { e.preventDefault(); submit(); }

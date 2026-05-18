@@ -3,6 +3,8 @@
 // Mission ADAPTIVE_TRANSPARENCY V2 — ranking + sections profile-aware
 
 import { getProfileConfig } from './user_profile.js';
+import { extractAllCtas, serializeCta, TYPE_LABELS, CRIT_LABELS } from './cta_schema.js';
+import { prioritize } from './cta_priority_engine.js';
 //
 // Extraction du rendu HTML hors de superiority.js (orchestration).
 // Aucun changement comportemental — réorganisation pure pour séparer :
@@ -49,57 +51,121 @@ function humanSummary(d) {
   return bits.length ? bits.join(' — ') : '(pas de synthèse disponible)';
 }
 
-// ──────────────────── CTA PARSER (SDE-029) ────────────────────
-// 2 niveaux de CTA :
-//   - INLINE : {cta:label | détail enrichi} dans le corps → rectangles cliquables (ZORAN only)
-//     → click ouvre popup avec détail puis bouton "Poser cette question"
-//   - BLOC TERMINAL : 3 CTAs orange en fin → identique à avant
+// ──────────────────── CTA V13 (SDE-029) ────────────────────
+// Pipeline ZORAN_CTA_CLICKABLE_RUNTIME_V13 :
+//   1. Fallback heuristique sur texte brut si aucun marker (injectFallbackCTAs)
+//   2. Extraction de tous les markers (cta_schema.extractAllCtas)
+//   3. Priority engine : cap 1 principal + 1 secondaire + 1 falsif (cta_priority_engine)
+//   4. CTAs hors quota → démotés en texte simple (label seul, pas de bouton)
+//   5. CTAs gardés → boutons typés avec data-cta-* sérialisé en JSON
 
-// Parse les CTAs inline → spans cliquables avec détail popup.
-// Syntaxes acceptées :
-//   {cta:label | détail riche}  → popup détaillé puis relance
-//   {cta:label}                 → popup minimal "Poser cette question"
-function parseInlineCTAs(escapedHtml) {
-  return escapedHtml.replace(/\{cta:\s*([^}]+?)\s*\}/gi, (match, raw) => {
-    const parts = raw.split('|').map(s => s.trim()).filter(Boolean);
-    const label = parts[0] || '';
-    const detail = parts.slice(1).join(' | ');
-    const labelAttr = label.replace(/"/g, '&quot;');
-    const detailAttr = detail.replace(/"/g, '&quot;');
-    const tip = detail
-      ? 'Cliquer pour voir le détail et choisir de relancer'
-      : 'Cliquer pour poser cette question';
-    return `<button type="button" class="zoran-inline-cta" data-cta-text="${labelAttr}" data-cta-detail="${detailAttr}" title="${tip}">${label}</button>`;
+// Encode un objet CTA en data-attributes HTML safe (base64 du JSON pour échapper '|').
+function encodeCtaAttr(cta) {
+  const json = JSON.stringify({
+    type: cta.type, label: cta.label, crit: cta.crit,
+    cout: cta.cout, delai: cta.delai, preuve: cta.preuve,
+    risque: cta.risque, detail: cta.detail,
+    slot: cta._slot || null,
   });
+  // btoa requiert ASCII — utf-8 → base64 via TextEncoder + spread
+  if (typeof btoa === 'function' && typeof TextEncoder !== 'undefined') {
+    const bytes = new TextEncoder().encode(json);
+    let bin = '';
+    for (const b of bytes) bin += String.fromCharCode(b);
+    return btoa(bin);
+  }
+  return encodeURIComponent(json);
 }
 
-// Fallback heuristique : si le LLM n'a pas produit de markers {cta:...} dans une
-// réponse ZORAN, on en synthétise depuis des patterns texte (normes, verbes
-// d'action, étapes numérotées). Garantit que l'utilisateur voit toujours des
-// CTAs cliquables, même quand le LLM ignore la consigne.
+function ctaButtonHtml(cta) {
+  const label = cta.label || '';
+  const labelEsc = escHtml(label);
+  const typeLabel = TYPE_LABELS[cta.type] || TYPE_LABELS.action;
+  const slot = cta._slot || '';
+  const critClass = `cta-crit-${cta.crit || 'medium'}`;
+  const typeClass = `cta-type-${cta.type || 'action'}`;
+  const slotClass = slot ? `cta-slot-${slot}` : '';
+  const dataAttr = encodeCtaAttr(cta);
+  const tip = `${typeLabel}${cta.crit === 'high' ? ' (critique)' : ''} — cliquer pour le détail`;
+  return `<button type="button" class="zoran-inline-cta ${typeClass} ${critClass} ${slotClass}" data-cta="${dataAttr}" title="${escHtml(tip)}"><span class="zoran-cta-dot" aria-hidden="true"></span>${labelEsc}</button>`;
+}
+
+// Texte démoté : label sans button. Préserve l'info sans saturer.
+function ctaDemotedHtml(cta) {
+  return escHtml(cta.label || '');
+}
+
+// Transforme un texte HTML-échappé contenant des markers `{cta:...}` en buttons typés.
+// L'input est déjà passé dans escHtml AVANT cet appel (ordre : escape → parse).
+// Le priority engine est appliqué globalement sur tous les markers d'un texte.
+function parseInlineCTAs(escapedHtml) {
+  // Extraire d'abord tous les markers (sur la chaîne échappée — { et } survivent escHtml)
+  const candidates = extractAllCtas(escapedHtml)
+    .filter(m => m.parsed)
+    .map(m => ({ ...m, cta: m.parsed }));
+
+  if (candidates.length === 0) return escapedHtml;
+
+  const ctaList = candidates.map(c => c.cta);
+  const { keep } = prioritize(ctaList);
+  const keepSet = new Set(keep);
+
+  // Remplacer chaque marker en partant de la fin (préserve les index)
+  let result = escapedHtml;
+  for (let i = candidates.length - 1; i >= 0; i--) {
+    const m = candidates[i];
+    const replacement = keepSet.has(m.cta) ? ctaButtonHtml(m.cta) : ctaDemotedHtml(m.cta);
+    result = result.slice(0, m.index) + replacement + result.slice(m.index + m.length);
+  }
+  return result;
+}
+
+// Exposé pour debug (tests, console)
+export { TYPE_LABELS as _CTA_TYPE_LABELS, CRIT_LABELS as _CTA_CRIT_LABELS };
+
+// Fallback heuristique : si le LLM n'a produit AUCUN marker dans une réponse
+// ZORAN, on en synthétise des minimalistes. Limitation acceptée : sans détail
+// du LLM, on ne peut pas remplir cout/delai/preuve/risque. Le popup affichera
+// alors "détail à demander" + bouton de relance.
+// Mapping pattern → type :
+//   - normes (NF/EN/ISO/DTU/Eurocode) → type=monitor (vérification réglementaire)
+//   - verbes d'action injonctifs → type=terrain
+//   - étapes numérotées → type=action
 const FALLBACK_PATTERNS = [
-  // Normes/références (NF P 94-500, EN 1993-1-1, ISO 9001, Eurocode 3...)
-  /\b(NF\s*[A-Z]?\s*\d+(?:[-\s]\d+)*|EN\s*\d+(?:[-\s]\d+)*|ISO\s*\d+(?:[-\s]\d+)*|Eurocode\s*\d+|DTU\s*\d+(?:[\.\-]\d+)*)\b/g,
-  // Phrase commençant par verbe d'action infinitif (3-8 mots utiles)
-  /\b(Vérifier|Demander|Consulter|Recalculer|Confirmer|Documenter|Étayer|Suspecter|Étudier|Mesurer|Diagnostiquer)\s+([a-zà-ÿ][^.;,()]{8,60}?)(?=[.;,]|\s+(?:obligatoire|impérative|requise|nécessaire))/gi,
-  // Étapes numérotées : "Étape 1 : ..."
-  /\b(Étape\s*\d+\s*:\s*[^.;]{8,80})/gi,
+  {
+    rx: /\b(NF\s*[A-Z]?\s*\d+(?:[-\s]\d+)*|EN\s*\d+(?:[-\s]\d+)*|ISO\s*\d+(?:[-\s]\d+)*|Eurocode\s*\d+|DTU\s*\d+(?:[\.\-]\d+)*)\b/g,
+    type: 'monitor',
+    crit: 'medium',
+  },
+  {
+    rx: /\b(Vérifier|Demander|Consulter|Recalculer|Confirmer|Documenter|Étayer|Suspecter|Étudier|Mesurer|Diagnostiquer)\s+([a-zà-ÿ][^.;,()]{8,60}?)(?=[.;,]|\s+(?:obligatoire|impérative|requise|nécessaire))/gi,
+    type: 'terrain',
+    crit: 'medium',
+  },
+  {
+    rx: /\b(Étape\s*\d+\s*:\s*[^.;]{8,80})/gi,
+    type: 'action',
+    crit: 'low',
+  },
 ];
 
-// Insère 2-3 markers fallback sur un texte BRUT non échappé.
-// Retourne le texte transformé avec syntaxe {cta:label} (détail vide → popup minimal).
-// Anti-imbrication : un match qui contient déjà un marker est ignoré.
+// Construit un marker V13 minimal depuis un label fallback.
+function fallbackMarkerFor(label, type, crit) {
+  const lbl = label.trim().replace(/[|}]/g, ' ');
+  return `{cta:${type}|label=${lbl}|crit=${crit}}`;
+}
+
 function injectFallbackCTAs(rawText, maxCount = 3) {
   if (!rawText || rawText.includes('{cta:')) return rawText;
   let result = rawText;
   let count = 0;
-  for (const rx of FALLBACK_PATTERNS) {
+  for (const { rx, type, crit } of FALLBACK_PATTERNS) {
     if (count >= maxCount) break;
     result = result.replace(rx, (match) => {
       if (count >= maxCount) return match;
       if (match.includes('{cta:')) return match;  // anti-imbrication
       count++;
-      return `{cta:${match.trim()}}`;
+      return fallbackMarkerFor(match, type, crit);
     });
   }
   return result;

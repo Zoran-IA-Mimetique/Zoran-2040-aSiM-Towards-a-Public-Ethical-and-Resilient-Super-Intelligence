@@ -749,16 +749,20 @@ body.sidebar-hidden #graph {
 }
 
 /* Mission RANKING_BIAS_CORRECTION : CTAs inline cliquables dans réponses ZORAN */
+/* ZORAN_CTA_CLICKABLE_RUNTIME_V13 — Inline CTA typés
+   Rectangle discret, intégration organique, anti-bruit visuel.
+   5 variantes de type + 3 niveaux de criticité (modulent l'intensité).
+   Slot principal/secondaire/falsification → marqueur visuel léger. */
 .zoran-inline-cta {
   display: inline;
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
   color: inherit;
-  background: rgba(255, 140, 26, 0.10);
-  border: 1px solid rgba(255, 140, 26, 0.35);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 6px;
-  padding: 1px 6px;
+  padding: 1px 8px 1px 6px;
   margin: 0 1px;
   cursor: pointer;
   transition: background 0.15s ease, border-color 0.15s ease;
@@ -768,12 +772,41 @@ body.sidebar-hidden #graph {
   vertical-align: baseline;
 }
 .zoran-inline-cta:hover {
-  background: rgba(255, 140, 26, 0.22);
-  border-color: rgba(255, 140, 26, 0.65);
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.32);
 }
-.zoran-inline-cta:active {
-  background: rgba(255, 140, 26, 0.35);
+.zoran-inline-cta:active { transform: translateY(0.5px); }
+.zoran-cta-dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  margin-right: 6px;
+  background: rgba(255, 255, 255, 0.45);
+  vertical-align: middle;
+  transform: translateY(-1px);
 }
+
+/* Variantes par TYPE — couleur du dot uniquement, fond garde le ton sobre */
+.zoran-inline-cta.cta-type-terrain   .zoran-cta-dot { background: #ff8c1a; }
+.zoran-inline-cta.cta-type-falsif    .zoran-cta-dot { background: #b88dff; }
+.zoran-inline-cta.cta-type-risque    .zoran-cta-dot { background: #ff5c5c; }
+.zoran-inline-cta.cta-type-juridique .zoran-cta-dot { background: #5cc7ff; }
+.zoran-inline-cta.cta-type-monitor   .zoran-cta-dot { background: #5cd6a3; }
+.zoran-inline-cta.cta-type-action    .zoran-cta-dot { background: rgba(255, 255, 255, 0.55); }
+
+/* Criticité high → bordure intensifiée légèrement, accent left */
+.zoran-inline-cta.cta-crit-high {
+  border-left-width: 3px;
+  padding-left: 5px;
+}
+.zoran-inline-cta.cta-type-terrain.cta-crit-high   { border-left-color: #ff8c1a; }
+.zoran-inline-cta.cta-type-falsif.cta-crit-high    { border-left-color: #b88dff; }
+.zoran-inline-cta.cta-type-risque.cta-crit-high    { border-left-color: #ff5c5c; }
+.zoran-inline-cta.cta-type-juridique.cta-crit-high { border-left-color: #5cc7ff; }
+.zoran-inline-cta.cta-type-monitor.cta-crit-high   { border-left-color: #5cd6a3; }
+
+/* Criticité low → opacité légèrement réduite (signal d'optionnalité) */
+.zoran-inline-cta.cta-crit-low { opacity: 0.78; }
 
 /* Popup info-bulle au clic sur CTA inline ZORAN
    Affiche le détail enrichi préparé par le LLM, puis propose de relancer le chat. */
@@ -871,6 +904,82 @@ body.sidebar-hidden #graph {
 .zoran-cta-popup-dismiss:hover {
   background: rgba(255, 255, 255, 0.06);
   color: var(--fg-1, #fff);
+}
+
+/* ZORAN_CTA_CLICKABLE_RUNTIME_V13 — Popup typé multi-niveau */
+.zoran-cta-popup-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+  padding-right: 30px;
+}
+.zoran-cta-popup-type,
+.zoran-cta-popup-crit,
+.zoran-cta-popup-slot {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--fg-2, #aaa);
+  letter-spacing: 0.02em;
+}
+.zoran-cta-popup-type.cta-type-terrain   { color: #ff8c1a; border-color: rgba(255, 140, 26, 0.45); }
+.zoran-cta-popup-type.cta-type-falsif    { color: #b88dff; border-color: rgba(184, 141, 255, 0.45); }
+.zoran-cta-popup-type.cta-type-risque    { color: #ff5c5c; border-color: rgba(255, 92, 92, 0.45); }
+.zoran-cta-popup-type.cta-type-juridique { color: #5cc7ff; border-color: rgba(92, 199, 255, 0.45); }
+.zoran-cta-popup-type.cta-type-monitor   { color: #5cd6a3; border-color: rgba(92, 214, 163, 0.45); }
+.zoran-cta-popup-crit.cta-crit-high   { color: #ff7070; border-color: rgba(255, 112, 112, 0.45); }
+.zoran-cta-popup-crit.cta-crit-medium { color: var(--fg-2, #aaa); }
+.zoran-cta-popup-crit.cta-crit-low    { color: var(--fg-2, #888); opacity: 0.7; }
+
+.zoran-cta-popup-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0 14px 0;
+  font-size: 12px;
+}
+.zoran-cta-popup-table th,
+.zoran-cta-popup-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 4px 8px 4px 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+}
+.zoran-cta-popup-table th {
+  font-weight: 500;
+  color: var(--fg-2, #aaa);
+  width: 32%;
+  white-space: nowrap;
+}
+.zoran-cta-popup-table td {
+  color: var(--fg-1, #e8e8e8);
+  overflow-wrap: anywhere;
+}
+
+.zoran-cta-popup-tech {
+  margin-bottom: 14px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+}
+.zoran-cta-popup-tech > summary {
+  cursor: pointer;
+  padding: 6px 10px;
+  font-size: 12px;
+  color: var(--fg-2, #aaa);
+  user-select: none;
+  border-radius: 6px;
+}
+.zoran-cta-popup-tech > summary:hover { color: var(--fg-1, #e8e8e8); }
+.zoran-cta-popup-tech-body {
+  padding: 4px 10px 10px 10px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 /* Sablier animé pour indiquer l'attente d'une réponse (mission V11 UX) */
