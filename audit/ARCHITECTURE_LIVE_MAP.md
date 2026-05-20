@@ -4,7 +4,7 @@
 > Re-run le script pour rafraîchir. Toute divergence = signal de dérive.
 
 - **mission_id** : ZORAN_V13_MAX_SECURITY_LAB_PROTOCOL_20260520
-- **généré le** : 2026-05-20T20:04:29.841Z
+- **généré le** : 2026-05-20T20:23:46.240Z
 - **entry point** : `main.js` (chargé par `index.html`)
 - **hub scoring** : `superiority.js`
 
