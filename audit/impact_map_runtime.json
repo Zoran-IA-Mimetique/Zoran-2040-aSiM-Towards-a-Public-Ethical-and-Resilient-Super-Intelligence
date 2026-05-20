@@ -1,15 +1,15 @@
 {
   "mission_id": "ZORAN_V13_MAX_SECURITY_LAB_PROTOCOL_20260520",
-  "generated_at": "2026-05-20T19:17:22.817Z",
+  "generated_at": "2026-05-20T20:04:29.841Z",
   "generator": "tools/architecture_live_map.mjs",
   "entry_point": "main.js",
   "scoring_hub": "superiority.js",
   "totals": {
-    "modules": 52,
-    "total_loc": 11240,
+    "modules": 45,
+    "total_loc": 10213,
     "live": 39,
-    "dormant": 13,
-    "dormant_loc": 1957
+    "dormant": 6,
+    "dormant_loc": 930
   },
   "modules": [
     {
@@ -103,7 +103,7 @@
       "dormant": false,
       "scoring": true,
       "ui": true,
-      "inbound": 4,
+      "inbound": 3,
       "exports_count": 15,
       "exports": [
         "getBenchmarkEnabled",
@@ -274,28 +274,6 @@
       "status": "live-scoring"
     },
     {
-      "module": "adversarial_survivability_engine.js",
-      "loc": 212,
-      "reachable": false,
-      "dormant": true,
-      "scoring": false,
-      "ui": false,
-      "inbound": 0,
-      "exports_count": 6,
-      "exports": [
-        "extractClaims",
-        "generateRefutations",
-        "physicalSurvivability",
-        "tribunalAttack",
-        "irreversibilityFilter",
-        "adversarialSurvivability"
-      ],
-      "imports": [
-        "physical_causality_validator.js"
-      ],
-      "status": "dormant"
-    },
-    {
       "module": "zoran_cta_engine.js",
       "loc": 202,
       "reachable": true,
@@ -339,21 +317,6 @@
       "status": "dormant"
     },
     {
-      "module": "physical_causality_validator.js",
-      "loc": 175,
-      "reachable": false,
-      "dormant": true,
-      "scoring": false,
-      "ui": false,
-      "inbound": 1,
-      "exports_count": 1,
-      "exports": [
-        "validatePhysicalCausality"
-      ],
-      "imports": [],
-      "status": "dormant"
-    },
-    {
       "module": "fragility_detector.js",
       "loc": 172,
       "reachable": true,
@@ -388,37 +351,13 @@
       "status": "live-scoring"
     },
     {
-      "module": "failures_memory.js",
-      "loc": 164,
-      "reachable": false,
-      "dormant": true,
-      "scoring": false,
-      "ui": false,
-      "inbound": 0,
-      "exports_count": 10,
-      "exports": [
-        "FAILURE_TYPES",
-        "loadMemory",
-        "saveMemory",
-        "recordOutcome",
-        "getDowngradePenalty",
-        "revalidateIfStale",
-        "getFailureTypeBreakdown",
-        "getDowngradedRoutes",
-        "globalStats",
-        "resetMemory"
-      ],
-      "imports": [],
-      "status": "dormant"
-    },
-    {
       "module": "meta_metric_auditor.js",
       "loc": 163,
       "reachable": true,
       "dormant": false,
       "scoring": true,
       "ui": false,
-      "inbound": 3,
+      "inbound": 1,
       "exports_count": 1,
       "exports": [
         "auditMetrics"
@@ -452,7 +391,7 @@
       "dormant": false,
       "scoring": true,
       "ui": false,
-      "inbound": 3,
+      "inbound": 2,
       "exports_count": 5,
       "exports": [
         "detectFalseOptimization",
@@ -463,24 +402,6 @@
       ],
       "imports": [],
       "status": "live-scoring"
-    },
-    {
-      "module": "frame_refutation_engine.js",
-      "loc": 154,
-      "reachable": false,
-      "dormant": true,
-      "scoring": false,
-      "ui": false,
-      "inbound": 1,
-      "exports_count": 2,
-      "exports": [
-        "generateCounterHypotheses",
-        "frameRefutationScore"
-      ],
-      "imports": [
-        "meta_metric_auditor.js"
-      ],
-      "status": "dormant"
     },
     {
       "module": "noise_killer.js",
@@ -501,25 +422,6 @@
       ],
       "imports": [],
       "status": "live-scoring"
-    },
-    {
-      "module": "failure_extraction.js",
-      "loc": 149,
-      "reachable": false,
-      "dormant": true,
-      "scoring": false,
-      "ui": false,
-      "inbound": 1,
-      "exports_count": 2,
-      "exports": [
-        "extractFailureCauses",
-        "aggregateFailurePatterns"
-      ],
-      "imports": [
-        "jargon.js",
-        "completion.js"
-      ],
-      "status": "dormant"
     },
     {
       "module": "identity_gate.js",
@@ -568,7 +470,7 @@
       "dormant": false,
       "scoring": true,
       "ui": false,
-      "inbound": 3,
+      "inbound": 2,
       "exports_count": 6,
       "exports": [
         "jargonDensity",
@@ -588,7 +490,7 @@
       "dormant": false,
       "scoring": true,
       "ui": false,
-      "inbound": 3,
+      "inbound": 2,
       "exports_count": 7,
       "exports": [
         "resilienceScore",
@@ -731,7 +633,7 @@
       "dormant": false,
       "scoring": true,
       "ui": false,
-      "inbound": 4,
+      "inbound": 3,
       "exports_count": 5,
       "exports": [
         "detectTruncation",
@@ -742,26 +644,6 @@
       ],
       "imports": [],
       "status": "live-scoring"
-    },
-    {
-      "module": "validation_status.js",
-      "loc": 108,
-      "reachable": false,
-      "dormant": true,
-      "scoring": false,
-      "ui": false,
-      "inbound": 0,
-      "exports_count": 1,
-      "exports": [
-        "determineValidationStatus"
-      ],
-      "imports": [
-        "meta_metric_auditor.js",
-        "frame_refutation_engine.js",
-        "systemic_coherence.js",
-        "anti_goodhart.js"
-      ],
-      "status": "dormant"
     },
     {
       "module": "route_specialization.js",
@@ -942,24 +824,6 @@
       ],
       "imports": [],
       "status": "live-scoring"
-    },
-    {
-      "module": "response_surgery.js",
-      "loc": 65,
-      "reachable": false,
-      "dormant": true,
-      "scoring": false,
-      "ui": false,
-      "inbound": 0,
-      "exports_count": 1,
-      "exports": [
-        "repairResponse"
-      ],
-      "imports": [
-        "llm.js",
-        "failure_extraction.js"
-      ],
-      "status": "dormant"
     },
     {
       "module": "superiority_gating.js",

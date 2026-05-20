@@ -82,9 +82,40 @@ conclure « pas de valeur démontrée », insuffisant pour conclure l'inverse.
 
 La validation métier réelle reste, elle, gated sur P0-MINI BET humain.
 
-## Décision
+## Test de second ordre — texte creux ultra-formaté
 
-`adversarial_discriminant` → **verdict moteur : ENGINE_NO_ADDED_VALUE en
-pratique** (INCONCLUSIVE statistique + échec qualitatif sur le cas central).
-Recommandation : passer les 9 modules CONDITIONAL → **DORMANT_REMOVE**, sous
-réserve de validation Oracle. Données : `audit/adversarial_discriminant_results.json`.
+Falsification additionnelle (validée par Oracle comme « extrêmement bonne ») :
+un texte **volontairement creux** mais cochant toutes les cases de forme —
+outils cités (sondage pressiométrique, fissuromètre, piézomètre, carottage),
+chiffres+unités (12 mm, 0.5 MPa, 240 kN, 18 °C), articles de loi (1792,
+décennale), « contre-hypothèse » annoncée, vocabulaire technique dense — mais
+**zéro contenu causal réel**.
+
+Résultat : `v12_score = 1.00` (**maximum absolu**), verdict
+`SURVIVES_CONTRADICTORY`, 17 claims extraits, 5 causaux, **0 détruit, 0 fragile**.
+
+Le moteur attribue au vide formaté un score **supérieur** à celui du vrai expert
+complet CASE_5 (0.70). La condamnation est définitive : le moteur ne mesure que
+la densité de marqueurs de surface.
+
+## Décision exécutée
+
+`adversarial_discriminant` → **ENGINE_NO_ADDED_VALUE** (INCONCLUSIVE statistique
++ échec qualitatif Test 2 + falsification de second ordre v12_score=1.0 sur
+texte creux).
+
+**REMOVE exécuté le 2026-05-20** — 7 modules du paradigme adversarial/
+falsification V8-V12, dormants, supprimés (1027 LOC) :
+`adversarial_survivability_engine`, `physical_causality_validator`,
+`frame_refutation_engine`, `validation_status`, `failure_extraction`,
+`response_surgery`, `failures_memory`. Un commit par module (ordre topologique).
+
+**Scope corrigé 9 → 7** (honnêteté empirique) : Test 2 a falsifié le paradigme
+*adversarial*. `causal_compression_engine` + `truncation_detector_v11` relèvent
+du paradigme *compression* (V11), **non couvert par ce test** — conservés en
+CONDITIONAL, décision séparée requise.
+
+Vérification post-REMOVE : dormants 13→6, Core 11240→10213 LOC, smoke 13/14
+inchangé, `superiority_units_check` 35/35, 0 erreur console.
+
+Données : `audit/adversarial_discriminant_results.json`.

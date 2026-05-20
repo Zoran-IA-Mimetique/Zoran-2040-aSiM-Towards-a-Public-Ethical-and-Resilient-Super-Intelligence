@@ -4,7 +4,7 @@
 > Re-run le script pour rafraîchir. Toute divergence = signal de dérive.
 
 - **mission_id** : ZORAN_V13_MAX_SECURITY_LAB_PROTOCOL_20260520
-- **généré le** : 2026-05-20T19:17:22.817Z
+- **généré le** : 2026-05-20T20:04:29.841Z
 - **entry point** : `main.js` (chargé par `index.html`)
 - **hub scoring** : `superiority.js`
 
@@ -12,11 +12,11 @@
 
 | Métrique | Valeur |
 |---|---|
-| Modules totaux | 52 |
-| LOC totales | 11240 |
+| Modules totaux | 45 |
+| LOC totales | 10213 |
 | Modules branchés (atteignables depuis main.js) | 39 |
-| Modules **dormants** (hors graphe) | **13** |
-| **LOC mortes** (dormantes) | **1957** (17.4%) |
+| Modules **dormants** (hors graphe) | **6** |
+| **LOC mortes** (dormantes) | **930** (9.1%) |
 
 ## Méthode
 
@@ -39,30 +39,25 @@ est atteignable par BFS depuis `main.js`. Il est **dormant** sinon
 | `chat.js` | 832 | oui | — | — | oui | 1 | non-vérifié | non | actif·UI |
 | `panel.js` | 811 | oui | — | — | oui | 1 | non-vérifié | non | actif·UI |
 | `superiority_render.js` | 725 | oui | — | — | oui | 1 | non-vérifié | non | actif·UI |
-| `llm.js` | 609 | oui | — | oui | oui | 4 | non-vérifié | non | actif·scoring |
+| `llm.js` | 609 | oui | — | oui | oui | 3 | non-vérifié | non | actif·scoring |
 | `rezo_engine.js` | 378 | oui | — | oui | — | 1 | non-vérifié | non | actif·scoring |
 | `btp_supremacy_engine.js` | 275 | oui | — | oui | — | 2 | non-vérifié | non | actif·scoring |
 | `parsimony_detector.js` | 264 | oui | — | oui | — | 3 | non-vérifié | non | actif·scoring |
 | `superiority.js` | 256 | oui | — | — | oui | 1 | non-vérifié | non | actif·UI |
 | `causal_compression_engine.js` | 254 | — | oui | — | — | 1 | non (mort) | non | DORMANT |
 | `ambiguity_detector.js` | 232 | oui | — | oui | — | 1 | non-vérifié | non | actif·scoring |
-| `adversarial_survivability_engine.js` | 212 | — | oui | — | — | 0 | non (mort) | non | DORMANT |
 | `zoran_cta_engine.js` | 202 | oui | — | oui | — | 2 | non-vérifié | non | actif·scoring |
 | `truncation_detector_v11.js` | 201 | — | oui | — | — | 0 | non (mort) | non | DORMANT |
-| `physical_causality_validator.js` | 175 | — | oui | — | — | 1 | non (mort) | non | DORMANT |
 | `fragility_detector.js` | 172 | oui | — | oui | — | 2 | non-vérifié | non | actif·scoring |
 | `complexity_estimator.js` | 167 | oui | — | oui | — | 2 | non-vérifié | non | actif·scoring |
-| `failures_memory.js` | 164 | — | oui | — | — | 0 | non (mort) | non | DORMANT |
-| `meta_metric_auditor.js` | 163 | oui | — | oui | — | 3 | non-vérifié | non | actif·scoring |
+| `meta_metric_auditor.js` | 163 | oui | — | oui | — | 1 | non-vérifié | non | actif·scoring |
 | `causal_density.js` | 159 | oui | — | oui | — | 1 | non-vérifié | non | actif·scoring |
-| `anti_goodhart.js` | 158 | oui | — | oui | — | 3 | non-vérifié | non | actif·scoring |
-| `frame_refutation_engine.js` | 154 | — | oui | — | — | 1 | non (mort) | non | DORMANT |
+| `anti_goodhart.js` | 158 | oui | — | oui | — | 2 | non-vérifié | non | actif·scoring |
 | `noise_killer.js` | 152 | oui | — | oui | — | 1 | non-vérifié | non | actif·scoring |
-| `failure_extraction.js` | 149 | — | oui | — | — | 1 | non (mort) | non | DORMANT |
 | `identity_gate.js` | 149 | oui | — | oui | — | 3 | non-vérifié | non | actif·scoring |
 | `cta_schema.js` | 146 | oui | — | — | — | 1 | non-vérifié | non | actif |
-| `jargon.js` | 145 | oui | — | oui | — | 3 | non-vérifié | non | actif·scoring |
-| `systemic_coherence.js` | 141 | oui | — | oui | — | 3 | non-vérifié | non | actif·scoring |
+| `jargon.js` | 145 | oui | — | oui | — | 2 | non-vérifié | non | actif·scoring |
+| `systemic_coherence.js` | 141 | oui | — | oui | — | 2 | non-vérifié | non | actif·scoring |
 | `conclusion_wrapper.js` | 129 | — | oui | — | — | 0 | non (mort) | non | DORMANT |
 | `cognitive_routing.js` | 128 | — | oui | — | — | 0 | non (mort) | non | DORMANT |
 | `oracle.js` | 128 | oui | — | — | oui | 1 | non-vérifié | non | actif·UI |
@@ -70,8 +65,7 @@ est atteignable par BFS depuis `main.js`. Il est **dormant** sinon
 | `vernacular_wisdom_engine.js` | 125 | — | oui | — | — | 0 | non (mort) | non | DORMANT |
 | `user_profile.js` | 123 | oui | — | oui | oui | 4 | non-vérifié | non | actif·scoring |
 | `superiority_deltas.js` | 120 | oui | — | oui | — | 1 | non-vérifié | non | actif·scoring |
-| `completion.js` | 112 | oui | — | oui | — | 4 | non-vérifié | non | actif·scoring |
-| `validation_status.js` | 108 | — | oui | — | — | 0 | non (mort) | non | DORMANT |
+| `completion.js` | 112 | oui | — | oui | — | 3 | non-vérifié | non | actif·scoring |
 | `route_specialization.js` | 101 | oui | — | oui | — | 1 | non-vérifié | non | actif·scoring |
 | `cta_metrics.js` | 100 | oui | — | — | oui | 1 | non-vérifié | non | actif·UI |
 | `overthink_detector.js` | 99 | oui | — | oui | — | 1 | non-vérifié | non | actif·scoring |
@@ -82,7 +76,6 @@ est atteignable par BFS depuis `main.js`. Il est **dormant** sinon
 | `superiority_metrics.js` | 81 | oui | — | oui | — | 1 | non-vérifié | non | actif·scoring |
 | `seductive_complexity.js` | 72 | oui | — | oui | — | 2 | non-vérifié | non | actif·scoring |
 | `domain_leak.js` | 70 | oui | — | oui | — | 2 | non-vérifié | non | actif·scoring |
-| `response_surgery.js` | 65 | — | oui | — | — | 0 | non (mort) | non | DORMANT |
 | `superiority_gating.js` | 44 | oui | — | oui | — | 1 | non-vérifié | non | actif·scoring |
 | `colors.js` | 37 | oui | — | — | — | 1 | non-vérifié | non | actif |
 | `search.js` | 35 | oui | — | — | oui | 1 | non-vérifié | non | actif·UI |
@@ -91,20 +84,13 @@ est atteignable par BFS depuis `main.js`. Il est **dormant** sinon
 ## Modules DORMANTS — dette runtime à trancher
 
 - `causal_compression_engine.js` — 254 LOC, inbound=1 — **6 exports morts**
-- `adversarial_survivability_engine.js` — 212 LOC, inbound=0 — **6 exports morts**
 - `truncation_detector_v11.js` — 201 LOC, inbound=0 — **5 exports morts**
-- `physical_causality_validator.js` — 175 LOC, inbound=1 — **1 exports morts**
-- `failures_memory.js` — 164 LOC, inbound=0 — **10 exports morts**
-- `frame_refutation_engine.js` — 154 LOC, inbound=1 — **2 exports morts**
-- `failure_extraction.js` — 149 LOC, inbound=1 — **2 exports morts**
 - `conclusion_wrapper.js` — 129 LOC, inbound=0 — **3 exports morts**
 - `cognitive_routing.js` — 128 LOC, inbound=0 — **4 exports morts**
 - `vernacular_wisdom_engine.js` — 125 LOC, inbound=0 — **2 exports morts**
-- `validation_status.js` — 108 LOC, inbound=0 — **1 exports morts**
 - `mutation_stability.js` — 93 LOC, inbound=0 — **1 exports morts**
-- `response_surgery.js` — 65 LOC, inbound=0 — **1 exports morts**
 
-**Total : 1957 LOC de code mort.** Chaque module dormant exige
+**Total : 930 LOC de code mort.** Chaque module dormant exige
 une décision explicite **KEEP / REMOVE / REBUILD** (voir `V13_ADVERSARIAL_EXISTING_INVENTORY.md`
 pour le cluster adversarial). Un Core livré à Codex en septembre ne doit contenir
 **aucun module zombie non décidé**.

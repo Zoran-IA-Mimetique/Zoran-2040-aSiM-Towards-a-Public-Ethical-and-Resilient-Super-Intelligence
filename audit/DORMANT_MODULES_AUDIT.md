@@ -110,3 +110,38 @@ Aucune suppression dans cet audit. La règle fondatrice exige une **décision
 explicite** par module avant tout REMOVE. Ce document est l'instruction de
 décision, pas la décision. `vernacular_wisdom_engine` est d'ores et déjà
 protégé (DORMANT_KEEP) — ne pas le supprimer dans un futur nettoyage de masse.
+
+---
+
+## RÉSOLUTION — 2026-05-20T20:00:00Z
+
+Le test discriminant adversarial (`ADVERSARIAL_DISCRIMINANT_RESULTS.md`) +
+sa falsification de second ordre ont tranché : le moteur adversarial mesure
+la forme, pas le fond (texte creux → v12_score 1.0). Paradigme falsifié.
+
+**Scope corrigé 9 → 7.** Test 2 a falsifié le paradigme *adversarial* ; il
+ne couvre PAS le paradigme *compression*. Correction par honnêteté empirique :
+
+| Module | Statut final | Action |
+|---|---|---|
+| `adversarial_survivability_engine` | DORMANT_REMOVE | **supprimé** (212 LOC) |
+| `physical_causality_validator` | DORMANT_REMOVE | **supprimé** (175 LOC) |
+| `frame_refutation_engine` | DORMANT_REMOVE | **supprimé** (154 LOC) |
+| `validation_status` | DORMANT_REMOVE | **supprimé** (108 LOC) |
+| `failure_extraction` | DORMANT_REMOVE | **supprimé** (149 LOC) |
+| `response_surgery` | DORMANT_REMOVE | **supprimé** (65 LOC) |
+| `failures_memory` | DORMANT_REMOVE | **supprimé** (164 LOC) |
+| `causal_compression_engine` | **CONDITIONAL** (compression) | conservé — Test 2 ne couvre pas ce paradigme |
+| `truncation_detector_v11` | **CONDITIONAL** (compression) | conservé — idem |
+| `vernacular_wisdom_engine` | DORMANT_KEEP | conservé — réserve Phase 5 |
+| `conclusion_wrapper` | DORMANT_REMOVE proposé | non exécuté — confirmation Oracle requise |
+| `cognitive_routing` | DORMANT_REMOVE proposé | non exécuté — confirmation Oracle requise |
+| `mutation_stability` | À TRANCHER | décision Oracle |
+
+**Bilan** : 7 modules supprimés (1027 LOC), 7 commits topologiques.
+Dormants 13 → 6. Core 11240 → 10213 LOC. Smoke 13/14 inchangé,
+`superiority_units_check` 35/35, 0 erreur.
+
+**Dette restante (6 dormants, 930 LOC)** : 2 CONDITIONAL compression
+(test propre requis), 2 REMOVE-proposés (confirmation Oracle), 1 KEEP
+(vernacular, Phase 5), 1 à trancher (mutation_stability).
