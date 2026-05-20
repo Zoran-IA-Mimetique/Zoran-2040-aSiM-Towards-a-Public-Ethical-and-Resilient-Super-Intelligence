@@ -5,3 +5,8 @@ __pycache__/
 node_modules/
 .env
 .env.local
+
+# Artefacts générés (ZORAN_CORE_OS — gouvernance des side-effects, ticket S6)
+# Captures régénérées à chaque run de tools/smoke_test.mjs — non versionnées.
+# preview.png / preview.svg (sans tiret) restent suivis : aperçu statique du repo.
+app/preview-*.png
