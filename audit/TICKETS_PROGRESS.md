@@ -6,7 +6,7 @@
 
 ## Synthèse
 
-**Progression globale ≈ 42 % · 14 tickets restants (9 majeurs · 5 secondaires)**
+**Progression globale ≈ 44 % · 13 tickets restants (8 majeurs · 5 secondaires)**
 
 ## Terminé / stabilisé (phase falsification & nettoyage)
 
@@ -15,6 +15,7 @@
 ✅ Smoke pipeline stable · ✅ Tests de caractérisation (35 assertions)
 ✅ Architecture live map · ✅ Réduction dette dormante (−1027 LOC)
 ✅ Core plus testable / falsifiable · ✅ Gouvernance artefacts générés (S6)
+✅ Validation clone propre (T9 — Core livrable confirmé sur clone froid)
 
 ## Tickets majeurs restants (9)
 
@@ -28,7 +29,7 @@
 | T6 | P0 humain BET | gated humain | ⛔ BLOQUANT — kit prêt |
 | T7 | Provider abstraction live | backend Fred | ⏳ hors-repo aSiM |
 | T8 | Event bus runtime | backend Fred | ⏳ hors-repo aSiM |
-| T9 | Validation clone propre | repo aSiM | 🔲 ACTIONNABLE ici |
+| T9 | Validation clone propre | repo aSiM | ✅ FAIT — clone froid : units 35/35, smoke 13/14, 0 erreur, 0 module fantôme |
 
 ## Tickets secondaires restants (5)
 
@@ -48,7 +49,9 @@
 
 ## Note de périmètre
 
-Sur les 14 restants, **8 sont actionnables/décidables côté repo aSiM**
-(T9 + S1-S5) — dont 3 demandent une décision Oracle et 1 est bloqué (S4).
-Les 8 autres majeurs (T1-T5, T7, T8 + T6 gated) relèvent du backend de Fred
-ou d'une action humaine. Le centre de gravité quitte le repo aSiM.
+Sur les 13 restants, **5 sont actionnables/décidables côté repo aSiM**
+(S1-S5) — dont 3 demandent une décision Oracle (S1-S3) et 1 est bloqué (S4,
+pas de benchmark de paires). Seul S5 (`pan_right_drag`) est un correctif
+exécutable sans décision externe. Les 8 majeurs restants (T1-T5, T7, T8 +
+T6 gated humain) relèvent du backend de Fred — non exécutables depuis cette
+session. Le centre de gravité a quitté le repo aSiM.
