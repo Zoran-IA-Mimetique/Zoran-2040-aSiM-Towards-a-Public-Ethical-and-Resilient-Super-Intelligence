@@ -1,10 +1,15 @@
 # RUNTIME_TRANSITION_HANDOFF — Passation labo aSiM → backend vivant ZORAN
 
 - **mission_id** : ZORAN_RUNTIME_HANDOFF_20260520
-- **date** : 2026-05-20T23:30:00Z
+- **date** : 2026-05-20T23:30:00Z (gel : 2026-05-21T00:10:00Z)
 - **agent** : CLAUDE (exec, session repo aSiM)
 - **objet** : point de passation unique pour reprendre la transition runtime
   dans le backend vivant `zoran/` — sans perte de contexte.
+
+> **STATUT : FROZEN_CORE_REFERENCE** (gel 2026-05-21, décision Oracle).
+> Le repo aSiM est gelé comme référence de Core stable. Aucune nouvelle
+> fonctionnalité ne doit y être ajoutée. Tag git : `frozen-core-reference`.
+> Dormants finaux : 4 modules, 673 LOC — tous décidés, zéro ambiguïté.
 
 > Le repo aSiM (front-only, vanilla CDN) a atteint sa fin de phase utile.
 > La suite (provider survival, API-first, mobile, offline) s'exécute dans

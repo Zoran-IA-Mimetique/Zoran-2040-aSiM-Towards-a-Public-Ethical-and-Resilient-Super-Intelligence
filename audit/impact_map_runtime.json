@@ -1,15 +1,15 @@
 {
   "mission_id": "ZORAN_V13_MAX_SECURITY_LAB_PROTOCOL_20260520",
-  "generated_at": "2026-05-20T20:23:46.240Z",
+  "generated_at": "2026-05-20T21:52:39.855Z",
   "generator": "tools/architecture_live_map.mjs",
   "entry_point": "main.js",
   "scoring_hub": "superiority.js",
   "totals": {
-    "modules": 45,
-    "total_loc": 10213,
+    "modules": 43,
+    "total_loc": 9956,
     "live": 39,
-    "dormant": 6,
-    "dormant_loc": 930
+    "dormant": 4,
+    "dormant_loc": 673
   },
   "modules": [
     {
@@ -505,44 +505,6 @@
       "status": "live-scoring"
     },
     {
-      "module": "conclusion_wrapper.js",
-      "loc": 129,
-      "reachable": false,
-      "dormant": true,
-      "scoring": false,
-      "ui": false,
-      "inbound": 0,
-      "exports_count": 3,
-      "exports": [
-        "hasExplicitConclusionBlock",
-        "wrapConclusion",
-        "conclusionWrapStats"
-      ],
-      "imports": [],
-      "status": "dormant"
-    },
-    {
-      "module": "cognitive_routing.js",
-      "loc": 128,
-      "reachable": false,
-      "dormant": true,
-      "scoring": false,
-      "ui": false,
-      "inbound": 0,
-      "exports_count": 4,
-      "exports": [
-        "detectCognitiveNature",
-        "detectRiskLevel",
-        "detectDepthRequired",
-        "semanticRouting"
-      ],
-      "imports": [
-        "domain_detection.js",
-        "structural_mapping.js"
-      ],
-      "status": "dormant"
-    },
-    {
       "module": "oracle.js",
       "loc": 128,
       "reachable": true,
@@ -565,7 +527,7 @@
       "dormant": false,
       "scoring": true,
       "ui": true,
-      "inbound": 3,
+      "inbound": 2,
       "exports_count": 2,
       "exports": [
         "mapStructural",
@@ -704,7 +666,7 @@
       "dormant": false,
       "scoring": true,
       "ui": false,
-      "inbound": 4,
+      "inbound": 3,
       "exports_count": 2,
       "exports": [
         "detectDomain",

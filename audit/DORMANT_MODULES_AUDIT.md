@@ -134,9 +134,9 @@ ne couvre PAS le paradigme *compression*. Correction par honnêteté empirique :
 | `causal_compression_engine` | **CONDITIONAL** (compression) | conservé — Test 2 ne couvre pas ce paradigme |
 | `truncation_detector_v11` | **CONDITIONAL** (compression) | conservé — idem |
 | `vernacular_wisdom_engine` | DORMANT_KEEP | conservé — réserve Phase 5 |
-| `conclusion_wrapper` | DORMANT_REMOVE proposé | non exécuté — confirmation Oracle requise |
-| `cognitive_routing` | DORMANT_REMOVE proposé | non exécuté — confirmation Oracle requise |
-| `mutation_stability` | À TRANCHER | décision Oracle |
+| `conclusion_wrapper` | DORMANT_REMOVE | **supprimé** (S1 — décision Oracle 2026-05-20) |
+| `cognitive_routing` | DORMANT_REMOVE | **supprimé** (S2 — décision Oracle 2026-05-20) |
+| `mutation_stability` | **KEEP_DORMANT** | conservé (S3 — décision Oracle : touche stabilité runtime / dérive temporelle / survivabilité long terme) |
 
 **Bilan** : 7 modules supprimés (1027 LOC), 7 commits topologiques.
 Dormants 13 → 6. Core 11240 → 10213 LOC. Smoke 13/14 inchangé,
@@ -145,3 +145,16 @@ Dormants 13 → 6. Core 11240 → 10213 LOC. Smoke 13/14 inchangé,
 **Dette restante (6 dormants, 930 LOC)** : 2 CONDITIONAL compression
 (test propre requis), 2 REMOVE-proposés (confirmation Oracle), 1 KEEP
 (vernacular, Phase 5), 1 à trancher (mutation_stability).
+
+## RÉSOLUTION FINALE — 2026-05-21T00:00:00Z (décisions Oracle S1-S3)
+
+- `conclusion_wrapper` → **REMOVE exécuté** (S1)
+- `cognitive_routing` → **REMOVE exécuté** (S2)
+- `mutation_stability` → **KEEP_DORMANT** (S3) — touche stabilité runtime,
+  dérive temporelle, survivabilité long terme ; suppression prématurée.
+
+**État dormant final : 4 modules, 673 LOC — ZÉRO ambiguïté.**
+Tous décidés : 2 CONDITIONAL compression (`causal_compression_engine`,
+`truncation_detector_v11` — test propre requis), 2 KEEP
+(`vernacular_wisdom_engine` réserve Phase 5, `mutation_stability` KEEP_DORMANT).
+Aucun module zombie non décidé ne subsiste. Core : 9956 LOC.

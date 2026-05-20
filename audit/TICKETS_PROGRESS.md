@@ -6,10 +6,14 @@
 
 ## Synthèse — deux jauges séparées (règle CLAUDE_CORE_DISCIPLINE_V2)
 
-**Progression INGÉNIERIE ≈ 46 %**
+**Progression INGÉNIERIE ≈ 48 %**
 **Progression VALIDATION RÉELLE ≈ 0 %** (P0-MINI BET non exécuté)
 
-**12 tickets restants — 8 majeurs · 4 secondaires**
+**9 tickets restants — 8 majeurs · 1 secondaire (S4, bloqué)**
+
+> **Repo aSiM : FROZEN_CORE_REFERENCE depuis 2026-05-21.** Tous les
+> tickets restants sont hors-repo (backend `zoran/`) ou bloqués (S4).
+> Plus aucune action n'est exécutable ni légitime dans aSiM.
 
 > Interdiction de fusionner les deux jauges. Tant que T6 (P0 humain) est à 0 %,
 > la validation réelle reste à 0 % — ZORAN reste un prototype interne.
@@ -37,16 +41,21 @@
 | T8 | Event bus runtime | backend Fred | ⏳ hors-repo aSiM |
 | T9 | Validation clone propre | repo aSiM | ✅ FAIT — clone froid : units 35/35, smoke 13/14, 0 erreur, 0 module fantôme |
 
-## Tickets secondaires (S1-S6 — 4 restants, S5/S6 faits)
+## Tickets secondaires (S1-S6 — 1 restant, S1/S2/S3/S5/S6 résolus)
 
 | ID | Ticket | Scope | État |
 |---|---|---|---|
-| S1 | `conclusion_wrapper` — décision REMOVE | repo aSiM | 🔲 décision Oracle |
-| S2 | `cognitive_routing` — décision REMOVE | repo aSiM | 🔲 décision Oracle |
-| S3 | `mutation_stability` — à trancher | repo aSiM | 🔲 décision Oracle |
+| ~~S1~~ | ~~`conclusion_wrapper` — décision REMOVE~~ | repo aSiM | ✅ FAIT — REMOVE exécuté (décision Oracle) |
+| ~~S2~~ | ~~`cognitive_routing` — décision REMOVE~~ | repo aSiM | ✅ FAIT — REMOVE exécuté (décision Oracle) |
+| ~~S3~~ | ~~`mutation_stability` — à trancher~~ | repo aSiM | ✅ RÉSOLU — KEEP_DORMANT (décision Oracle) |
 | S4 | Test discriminant compression | repo aSiM | 🔲 bloqué — pas de benchmark de paires |
 | ~~S5~~ | ~~Smoke FAIL `pan_right_drag`~~ | repo aSiM | ✅ FAIT — bug du test corrigé, smoke 14/14 |
 | ~~S6~~ | ~~Gouvernance artefacts générés~~ | repo aSiM | ✅ FAIT — `.gitignore` app/preview-*.png |
+
+Restant secondaire : **S4 uniquement** — test discriminant compression,
+bloqué faute de benchmark de paires (original/compressé). Couvre les 2
+derniers dormants CONDITIONAL (`causal_compression_engine`,
+`truncation_detector_v11`).
 
 ## Légende
 
