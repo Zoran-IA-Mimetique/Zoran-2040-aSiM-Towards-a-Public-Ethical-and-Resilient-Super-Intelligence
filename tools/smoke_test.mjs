@@ -444,65 +444,48 @@ try {
     };
   });
 
-  // Real Playwright mouse drags (LEFT then RIGHT) — these prime the
-  // OrbitControls internal pointer-tracking state. Synthetic events
-  // dispatched afterwards then drive the pan computation.
+  // Right-drag = pan natif OrbitControls. UN drag propre suffit.
+  // PAS de LEFT-drag de "priming" : il laisse OrbitControls dans un état
+  // qui empêche le PAN du RIGHT-drag suivant (le second drag rotate au
+  // lieu de pan — confirmé par tools/_pan_probe.mjs : dcam≈418/dtgt≈418
+  // sans priming, vs dtgt=0 avec priming). PAS d'events synthétiques :
+  // OrbitControls moderne écoute pointermove/up sur le canvas (capture),
+  // pas sur window/document.
+  let moved = { ok: false };
   {
     const cb = await page.locator('#graph canvas').boundingBox();
     if (cb) {
-      const cx = cb.x + cb.width / 2;
-      const cy = cb.y + cb.height / 2;
-      // LEFT drag (rotation, may be no-op in headless but primes state)
-      await page.mouse.move(cx, cy);
-      await page.mouse.down({ button: 'left' });
-      for (let i = 1; i <= 12; i++) await page.mouse.move(cx + i * 16, cy + i * 9, { steps: 2 });
-      await page.mouse.up({ button: 'left' });
-      await page.waitForTimeout(300);
-      // RIGHT drag (pan)
-      await page.mouse.move(cx, cy);
-      await page.mouse.down({ button: 'right' });
-      for (let i = 1; i <= 12; i++) await page.mouse.move(cx + i * 16, cy + i * 9, { steps: 2 });
-      await page.mouse.up({ button: 'right' });
-      await page.waitForTimeout(300);
+      // Le pointerdown DOIT partir du canvas : un panneau ouvert (déplacé
+      // par le test drag_panel) peut couvrir le centre. On cherche un point
+      // réellement sur le canvas via elementFromPoint, sinon OrbitControls
+      // ne reçoit jamais l'événement et le pan est nul.
+      const pick = await page.evaluate((box) => {
+        const cands = [
+          [0.20, 0.50], [0.15, 0.72], [0.22, 0.28], [0.50, 0.85],
+          [0.50, 0.15], [0.82, 0.72], [0.82, 0.28], [0.50, 0.50],
+        ];
+        for (const [fx, fy] of cands) {
+          const x = box.x + box.width * fx;
+          const y = box.y + box.height * fy;
+          const el = document.elementFromPoint(x, y);
+          if (el && el.tagName === 'CANVAS') return { x, y, ok: true };
+        }
+        return { ok: false };
+      }, cb);
+      if (pick.ok) {
+        const cx = pick.x, cy = pick.y;
+        console.log(`  pan drag from canvas point (${cx.toFixed(0)},${cy.toFixed(0)})`);
+        await page.mouse.move(cx, cy);
+        await page.mouse.down({ button: 'right' });
+        for (let i = 1; i <= 14; i++) await page.mouse.move(cx + i * 14, cy + i * 9, { steps: 3 });
+        await page.mouse.up({ button: 'right' });
+        await page.waitForTimeout(400);
+        moved = { ok: true };
+      } else {
+        console.log('  pan: aucun point canvas libre trouvé');
+      }
     }
   }
-  // If that didn't move, also dispatch synthetic events as fallback
-  const moved = await page.evaluate(() => {
-    const canvas = document.querySelector('#graph canvas');
-    if (!canvas) return { ok: false, reason: 'no canvas' };
-    const rect = canvas.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top  + rect.height / 2;
-    function pe(type, x, y, button = 2, buttons = 2) {
-      return new PointerEvent(type, {
-        bubbles: true, cancelable: true,
-        clientX: x, clientY: y, screenX: x, screenY: y,
-        button, buttons, pointerId: 1, pointerType: 'mouse', isPrimary: true
-      });
-    }
-    function me(type, x, y, button = 2, buttons = 2) {
-      return new MouseEvent(type, {
-        bubbles: true, cancelable: true, view: window,
-        clientX: x, clientY: y, screenX: x, screenY: y,
-        button, buttons
-      });
-    }
-    // DOWN
-    canvas.dispatchEvent(pe('pointerdown', cx, cy));
-    canvas.dispatchEvent(me('mousedown', cx, cy));
-    // MOVES (dispatched on window/document — controls listen there after down)
-    for (let i = 1; i <= 10; i++) {
-      const x = cx + i * 18, y = cy + i * 10;
-      window.dispatchEvent(pe('pointermove', x, y, 2, 2));
-      window.dispatchEvent(me('mousemove', x, y, 2, 2));
-      document.dispatchEvent(pe('pointermove', x, y, 2, 2));
-      document.dispatchEvent(me('mousemove', x, y, 2, 2));
-    }
-    // UP
-    window.dispatchEvent(pe('pointerup', cx + 180, cy + 100, 2, 0));
-    window.dispatchEvent(me('mouseup', cx + 180, cy + 100, 2, 0));
-    return { ok: true };
-  });
 
   await page.waitForTimeout(350);
   const after = await page.evaluate(() => {

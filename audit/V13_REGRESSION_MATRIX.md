@@ -23,7 +23,7 @@ zone fonctionnelle, les surfaces à re-vérifier après tout changement.
 
 ## État de référence (baseline 2026-05-20)
 
-- smoke_test : **13/14** (FAIL connu : `pan_right_drag`)
+- smoke_test : **14/14** (`pan_right_drag` corrigé le 2026-05-20, ticket S5)
 - console errors : 0 · page errors : 0
 - nodes 242 · links 286 · S_local 0.86 · S_global proxy 0.90 · HS 1.00
 - cta_v13_runtime_check : 7/7 PASS
@@ -39,11 +39,16 @@ Toute régression sous cette baseline = blocage commit.
 4. Une amélioration d'un compteur (ex : `pan_right_drag` PASS) doit être
    documentée et devient la nouvelle baseline.
 
-## FAIL connu — pan_right_drag
+## pan_right_drag — résolu (ticket S5, 2026-05-20)
 
-`pan_right_drag : false` est une régression tolérée non résolue. Statut :
-**dette ouverte**. Autorisé en mode chirurgical (correction de bug). À traiter
-avant le freeze septembre — un Core stable ne livre pas un smoke rouge.
+Le FAIL `pan_right_drag` était un **bug du test**, pas de l'app. Diagnostic
+runtime (`tools/_pan_probe.mjs`, supprimé après usage) : un right-drag propre
+pan correctement (dcam≈418/dtgt≈418). Le smoke échouait pour 3 raisons :
+LEFT-drag de « priming » qui cassait le RIGHT-drag suivant · drag lancé au
+centre du canvas couvert par un panneau ouvert · events synthétiques dispatchés
+sur window/document alors qu'OrbitControls moderne écoute sur le canvas.
+Corrigé : right-drag propre depuis un point canvas vérifié via `elementFromPoint`.
+Smoke désormais **14/14**.
 
 ## Lien
 

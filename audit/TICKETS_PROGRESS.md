@@ -1,12 +1,18 @@
 # TICKETS_PROGRESS — Suivi de progression ZORAN Core OS
 
-- **mis à jour** : 2026-05-20T20:55:00Z
-- **cadrage** : estimation Oracle (2026-05-20T22:04Z) — source autoritaire
+- **mis à jour** : 2026-05-20T21:20:00Z
+- **cadrage** : estimation Oracle + mission CLAUDE_CORE_DISCIPLINE_V2
 - **source de vérité** pour l'affichage de progression
 
-## Synthèse
+## Synthèse — deux jauges séparées (règle CLAUDE_CORE_DISCIPLINE_V2)
 
-**Progression globale ≈ 44 % · 13 tickets restants (8 majeurs · 5 secondaires)**
+**Progression INGÉNIERIE ≈ 46 %**
+**Progression VALIDATION RÉELLE ≈ 0 %** (P0-MINI BET non exécuté)
+
+**12 tickets restants — 8 majeurs · 4 secondaires**
+
+> Interdiction de fusionner les deux jauges. Tant que T6 (P0 humain) est à 0 %,
+> la validation réelle reste à 0 % — ZORAN reste un prototype interne.
 
 ## Terminé / stabilisé (phase falsification & nettoyage)
 
@@ -15,9 +21,9 @@
 ✅ Smoke pipeline stable · ✅ Tests de caractérisation (35 assertions)
 ✅ Architecture live map · ✅ Réduction dette dormante (−1027 LOC)
 ✅ Core plus testable / falsifiable · ✅ Gouvernance artefacts générés (S6)
-✅ Validation clone propre (T9 — Core livrable confirmé sur clone froid)
+✅ Validation clone propre (T9) · ✅ Smoke 14/14 — `pan_right_drag` corrigé (S5)
 
-## Tickets majeurs restants (9)
+## Tickets majeurs (T1-T9 — 8 restants, T9 fait)
 
 | ID | Ticket | Scope | État |
 |---|---|---|---|
@@ -31,7 +37,7 @@
 | T8 | Event bus runtime | backend Fred | ⏳ hors-repo aSiM |
 | T9 | Validation clone propre | repo aSiM | ✅ FAIT — clone froid : units 35/35, smoke 13/14, 0 erreur, 0 module fantôme |
 
-## Tickets secondaires restants (5)
+## Tickets secondaires (S1-S6 — 4 restants, S5/S6 faits)
 
 | ID | Ticket | Scope | État |
 |---|---|---|---|
@@ -39,7 +45,7 @@
 | S2 | `cognitive_routing` — décision REMOVE | repo aSiM | 🔲 décision Oracle |
 | S3 | `mutation_stability` — à trancher | repo aSiM | 🔲 décision Oracle |
 | S4 | Test discriminant compression | repo aSiM | 🔲 bloqué — pas de benchmark de paires |
-| S5 | Smoke FAIL `pan_right_drag` | repo aSiM | 🔲 bug runtime à corriger |
+| ~~S5~~ | ~~Smoke FAIL `pan_right_drag`~~ | repo aSiM | ✅ FAIT — bug du test corrigé, smoke 14/14 |
 | ~~S6~~ | ~~Gouvernance artefacts générés~~ | repo aSiM | ✅ FAIT — `.gitignore` app/preview-*.png |
 
 ## Légende
@@ -49,9 +55,9 @@
 
 ## Note de périmètre
 
-Sur les 13 restants, **5 sont actionnables/décidables côté repo aSiM**
-(S1-S5) — dont 3 demandent une décision Oracle (S1-S3) et 1 est bloqué (S4,
-pas de benchmark de paires). Seul S5 (`pan_right_drag`) est un correctif
-exécutable sans décision externe. Les 8 majeurs restants (T1-T5, T7, T8 +
-T6 gated humain) relèvent du backend de Fred — non exécutables depuis cette
-session. Le centre de gravité a quitté le repo aSiM.
+Sur les 12 restants, **4 sont décidables côté repo aSiM** (S1-S4) — dont 3
+demandent une décision Oracle (S1-S3) et 1 est bloqué (S4, pas de benchmark
+de paires). **Plus aucun ticket n'est exécutable par Claude seul sans décision
+externe** : le périmètre repo aSiM est épuisé. Les 8 majeurs restants
+(T1-T5, T7, T8 + T6 gated humain) relèvent du backend de Fred. Le centre de
+gravité a quitté le repo aSiM — la suite est runtime backend + P0 humain.

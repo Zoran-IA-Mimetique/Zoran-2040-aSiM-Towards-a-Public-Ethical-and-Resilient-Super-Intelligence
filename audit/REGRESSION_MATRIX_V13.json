@@ -5,7 +5,7 @@
   "baseline": {
     "smoke_test": {
       "tool": "tools/smoke_test.mjs",
-      "score": "13/14",
+      "score": "14/14",
       "console_errors": 0,
       "page_errors": 0,
       "checks": {
@@ -21,10 +21,11 @@
         "route_viz_in_graph": true,
         "popup_draggable": true,
         "popup_minimize": true,
-        "pan_right_drag": false,
+        "pan_right_drag": true,
         "esc_closes_panel": true
       },
-      "known_fail": "pan_right_drag — dette ouverte, a corriger avant freeze septembre"
+      "known_fail": null,
+      "note_pan_right_drag": "Corrige 2026-05-20 (ticket S5) : bug etait dans le test (LEFT-priming + drag sur panneau ouvert + events synthetiques obsoletes), pas dans l'app."
     },
     "cta_v13_runtime_check": {
       "tool": "tools/cta_v13_runtime_check.mjs",
