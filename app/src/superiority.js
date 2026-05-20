@@ -8,25 +8,17 @@
 //
 // Retourne un tableau comparatif avec deltas ZORAN vs baseline.
 
-import { synthesizeBaseline, synthesizeRoute, judgeResponses, reformulateQuestion, synthesizeOrchestrated } from './llm.js';
-import { jargonDensity, userDistance, practicalUsefulness, metaNoise, concreteRuntimeAlignment, detectJargonTerms } from './jargon.js';
+import { synthesizeBaseline, judgeResponses, synthesizeOrchestrated } from './llm.js';
 import { computeDomainFitness, shouldSkipRoute, getStrategyProfile } from './route_specialization.js';
-import { detectTruncation, completionIntegrity, truncationPenalty, terrainAlignment, fieldActionability } from './completion.js';
 import { detectDomain } from './domain_detection.js';
-import { diagnoseWeaknesses, generateClaudePlusRezo, activationMatrix } from './rezo_engine.js';
+import { diagnoseWeaknesses, generateClaudePlusRezo } from './rezo_engine.js';
 // Mission V11.6 : rendu HTML extrait dans son propre module
 export { renderComparison } from './superiority_render.js';
-import { systemicCoherenceReport } from './systemic_coherence.js';
-import { runAntiGoodhart } from './anti_goodhart.js';
-import { runFragilityDetector } from './fragility_detector.js';
-import { detectDomainLeak } from './domain_leak.js';
-import { seductiveComplexity } from './seductive_complexity.js';
 import { estimateComplexity } from './complexity_estimator.js';
-import { detectOverthink } from './overthink_detector.js';
-import { identityGate, identityHalluRisk } from './identity_gate.js';
-import { generateAllCTAs, detectCTAPresence } from './zoran_cta_engine.js';
-import { btpAnalysis, isBTPQuestion } from './btp_supremacy_engine.js';
-import { computeParsimony, detectLowIntrinsicDepth } from './parsimony_detector.js';
+import { identityGate } from './identity_gate.js';
+// ZORAN_CORE_OS_FOUNDATION — blocs purs extraits de la god-function runSuperiorityComparison
+import { annotateResponses } from './superiority_metrics.js';
+import { computeDeltas } from './superiority_deltas.js';
 
 // Top 3 routes utilisées pour la compétition (sous-ensemble — coût API maîtrisé)
 const SUPERIORITY_ROUTES = ['frugale', 'anti_hallucination', 'structurelle'];
@@ -235,55 +227,8 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
     return { ok: false, reason: 'no_responses', responses };
   }
   // Mission SILENT_LAW_GUIDANCE + RUNTIME_SPECIALIZATION : mesures locales
-  for (const r of responses) {
-    r.jargon_density = +jargonDensity(r.text).toFixed(3);
-    r.user_distance  = +userDistance(r.text, question).toFixed(3);
-    r.practical_usefulness = +practicalUsefulness(r.text).toFixed(3);
-    r.meta_noise     = +metaNoise({ answerText: r.text, questionText: question }).toFixed(3);
-    r.concrete_runtime_alignment = +concreteRuntimeAlignment({ answerText: r.text, questionText: question }).toFixed(3);
-    r.jargon_terms_found = detectJargonTerms(r.text);
-    // Signal API stop_reason='max_tokens' prime sur l'heuristique (préserve r.truncated déjà set par callLLM)
-    const trunc = detectTruncation(r.text, r.usage, r.stop_reason);
-    r.truncated = r.truncated || trunc.truncated;
-    r.truncation_reasons = trunc.reasons;
-    r.completion_integrity = completionIntegrity(r.text, r.usage);
-    r.truncation_penalty = truncationPenalty(r.text, r.usage);
-    // Mission métriques recalibrées : terrain alignment
-    r.terrain_alignment = +terrainAlignment(r.text).toFixed(3);
-    // Mission SYSTEMIC_SELECTION V3 : cohérence systémique + anti-Goodhart
-    r.systemic_coherence = systemicCoherenceReport(r.text);
-    r.goodhart = runAntiGoodhart(r.text);
-    // Mission V4 : fragilité structurelle + domain_leak
-    r.fragility = runFragilityDetector(r.text);
-    r.domain_leak = detectDomainLeak(r.text, { question });
-    // Mission V5 : seductive_complexity (densité technique artificielle)
-    r.seductive_complexity = seductiveComplexity(r.text);
-    // Mission V6 : overthink détection post-hoc
-    r.overthink = detectOverthink({
-      question,
-      responseText: r.text,
-      n_structures_detected: detectedStructures.length,
-      n_routes_activated: zoranSpecs.length,
-      n_laws_activated: (r.laws_used || []).length,
-      complexity_score: complexity.complexity_score,
-      depth_required: complexity.depth_required,
-    });
-    // Mission V7 : identity_hallu_risk post-hoc
-    r.identity_hallu_risk = identityHalluRisk(question, r.text);
-    // Mission V9 : CTA présence + BTP supremacy analysis
-    r.cta_presence = detectCTAPresence(r.text);
-    r.btp_analysis = btpAnalysis(question, r.text);
-    r.ctas_suggested = generateAllCTAs({ question, responseText: r.text });
-    // Mission RANKING_BIAS_CORRECTION : parsimonie pour anti sur-richesse
-    r.parsimony = computeParsimony(r.text, question);
-    // domain_fitness déjà calculé pour les ZORAN (skippées exclues)
-    if (r.strategy !== 'baseline') {
-      const spec = zoranSpecs.find(s => s.stratName === r.strategy);
-      r.domain_fitness = spec ? spec.domain_fitness : null;
-    } else {
-      r.domain_fitness = 1.0; // baseline universel
-    }
-  }
+  // Bloc pur extrait → superiority_metrics.js (testable hors-ligne, sans API)
+  annotateResponses(responses, { question, detectedStructures, zoranSpecs, complexity });
   console.log('[ZORAN sup] meta-bruit par réponse :',
     responses.map(r => `${r.label}: jargon=${r.jargon_density} concret=${r.concrete_runtime_alignment}`).join(' | '));
   if (responses.length < 2) {
@@ -310,106 +255,9 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
   const judge = judgeResult.ok ? judgeResult.judge : null;
   console.log('[ZORAN sup] phase 3', judge ? 'OK — verdict=' + judge.verdict : 'FAIL — judge non parsable');
 
-  // 3. Compute deltas vs baseline (responses[0])
-  const baseline = responses[0];
-  const deltas = [];
-  // Fix V11.x : le juge LLM retourne parfois "CANDIDAT N — label" au lieu de "label"
-  // → normaliser les labels avant matching.
-  function normalizeLabel(lbl) {
-    if (!lbl) return '';
-    return String(lbl).replace(/^CANDIDAT\s*\d+\s*[—\-:]\s*/i, '').trim();
-  }
-  function findScore(scores, target) {
-    const tn = normalizeLabel(target);
-    return scores.find(s => normalizeLabel(s.label) === tn)
-        || scores.find(s => normalizeLabel(s.label).includes(tn))
-        || scores.find(s => tn.includes(normalizeLabel(s.label)));
-  }
-  if (judge && judge.scores) {
-    const baselineScore = findScore(judge.scores, baseline.label) || judge.scores[0];
-    for (const r of responses) {
-      const s = findScore(judge.scores, r.label);
-      if (!s) continue;
-      // Mission SILENT_LAW_GUIDANCE : enrichit deltas avec scores méta-bruit
-      const respObj = responses.find(rr => rr.label === r.label) || {};
-      deltas.push({
-        label: r.label,
-        precision: s.precision,
-        hallucination: s.hallucination,
-        noise: s.noise,
-        coherence: s.coherence,
-        semantic_delta: s.semantic_delta ?? 0,
-        // Métriques objectives méta-bruit (mesurées localement, pas par juge)
-        jargon_density: respObj.jargon_density ?? 0,
-        user_distance: respObj.user_distance ?? 0,
-        practical_usefulness: respObj.practical_usefulness ?? 0,
-        meta_noise: respObj.meta_noise ?? 0,
-        concrete_runtime_alignment: respObj.concrete_runtime_alignment ?? 0,
-        jargon_terms_found: respObj.jargon_terms_found || [],
-        // Deltas vs baseline (positif = ZORAN mieux sauf hallu/noise où négatif = mieux)
-        precision_delta: +(s.precision - baselineScore.precision).toFixed(3),
-        hallucination_delta: +(s.hallucination - baselineScore.hallucination).toFixed(3),
-        noise_delta: +(s.noise - baselineScore.noise).toFixed(3),
-        coherence_delta: +(s.coherence - baselineScore.coherence).toFixed(3),
-        // Nouveaux scores juge (mission ARGUMENTED_RUNTIME_RANKING)
-        actionability_score: s.actionability_score ?? 0,
-        practical_relevance: s.practical_relevance ?? 0,
-        compression_quality: s.compression_quality ?? 0,
-        // Mission RUNTIME_SPECIALIZATION + RESPONSE_COMPLETION
-        domain_fitness: respObj.domain_fitness ?? null,
-        terrain_alignment: respObj.terrain_alignment ?? 0,
-        completion_integrity: respObj.completion_integrity ?? 1,
-        truncated: respObj.truncated || false,
-        truncation_penalty: respObj.truncation_penalty || 0,
-        truncation_reasons: respObj.truncation_reasons || [],
-        field_actionability: +fieldActionability({
-          text: respObj.text,
-          judgeActionability: s.actionability_score ?? 0.5,
-        }).toFixed(3),
-        argumented_grade_20: s.argumented_grade_20 ?? null,
-        strengths: s.strengths || [],
-        weaknesses: s.weaknesses || [],
-        noise_detected: s.noise_detected || '',
-        hallucination_risk: s.hallucination_risk || '',
-        // Mission SYSTEMIC_SELECTION V3
-        systemic_coherence: respObj.systemic_coherence || null,
-        goodhart: respObj.goodhart || null,
-        // Mission V4 — fragilité + domain_leak
-        fragility: respObj.fragility || null,
-        domain_leak: respObj.domain_leak || null,
-        // Mission V5 — seductive complexity
-        seductive_complexity: respObj.seductive_complexity || null,
-        // Mission V6 — overthink détection
-        overthink: respObj.overthink || null,
-        // Mission V7 — identity hallu risk
-        identity_hallu_risk: respObj.identity_hallu_risk || null,
-        // Mission V9 — CTA + BTP analysis
-        cta_presence: respObj.cta_presence || null,
-        btp_analysis: respObj.btp_analysis || null,
-        ctas_suggested: respObj.ctas_suggested || null,
-        // Mission RANKING_BIAS_CORRECTION : parsimonie propagée
-        parsimony: respObj.parsimony || null,
-        // Score composite : intègre concret + anti-jargon - pénalité troncature
-        runtime_superiority: +(
-          0.22 * (s.precision - baselineScore.precision)
-          + 0.22 * (baselineScore.hallucination - s.hallucination)
-          + 0.13 * (baselineScore.noise - s.noise)
-          + 0.13 * (s.coherence - baselineScore.coherence)
-          + 0.10 * ((respObj.concrete_runtime_alignment ?? 0.5) - (responses[0].concrete_runtime_alignment ?? 0.5))
-          + 0.10 * ((responses[0].meta_noise ?? 0.5) - (respObj.meta_noise ?? 0.5))
-          + 0.10 * ((respObj.terrain_alignment ?? 0) - (responses[0].terrain_alignment ?? 0))
-          - (respObj.truncation_penalty ?? 0)
-        ).toFixed(3),
-        comment: s.comment || '',
-      });
-    }
-    // Calcul winner_delta = écart de chaque candidat vs le 1er (au sens runtime_superiority)
-    const sortedBySup = [...deltas].sort((a, b) => b.runtime_superiority - a.runtime_superiority);
-    if (sortedBySup.length) {
-      const top = sortedBySup[0].runtime_superiority;
-      for (const d of deltas) d.winner_delta = +(top - d.runtime_superiority).toFixed(3);
-    }
-  }
+  // Compute deltas vs baseline (responses[0])
+  // Bloc pur extrait → superiority_deltas.js (testable hors-ligne, sans API)
+  const deltas = computeDeltas({ judge, responses });
 
   const dt = Math.round(performance.now() - t0);
   return {

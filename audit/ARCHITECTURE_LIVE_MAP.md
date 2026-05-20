@@ -4,7 +4,7 @@
 > Re-run le script pour rafraîchir. Toute divergence = signal de dérive.
 
 - **mission_id** : ZORAN_V13_MAX_SECURITY_LAB_PROTOCOL_20260520
-- **généré le** : 2026-05-20T17:33:54.050Z
+- **généré le** : 2026-05-20T18:44:42.021Z
 - **entry point** : `main.js` (chargé par `index.html`)
 - **hub scoring** : `superiority.js`
 
@@ -12,11 +12,11 @@
 
 | Métrique | Valeur |
 |---|---|
-| Modules totaux | 49 |
-| LOC totales | 11170 |
-| Modules branchés (atteignables depuis main.js) | 36 |
+| Modules totaux | 51 |
+| LOC totales | 11219 |
+| Modules branchés (atteignables depuis main.js) | 38 |
 | Modules **dormants** (hors graphe) | **13** |
-| **LOC mortes** (dormantes) | **1957** (17.5%) |
+| **LOC mortes** (dormantes) | **1957** (17.4%) |
 
 ## Méthode
 
@@ -40,8 +40,8 @@ est atteignable par BFS depuis `main.js`. Il est **dormant** sinon
 | `panel.js` | 811 | oui | — | — | oui | 1 | non-vérifié | non | actif·UI |
 | `superiority_render.js` | 725 | oui | — | — | oui | 1 | non-vérifié | non | actif·UI |
 | `llm.js` | 609 | oui | — | oui | oui | 4 | non-vérifié | non | actif·scoring |
-| `superiority.js` | 431 | oui | — | — | oui | 1 | non-vérifié | non | actif·UI |
 | `rezo_engine.js` | 378 | oui | — | oui | — | 1 | non-vérifié | non | actif·scoring |
+| `superiority.js` | 279 | oui | — | — | oui | 1 | non-vérifié | non | actif·UI |
 | `btp_supremacy_engine.js` | 275 | oui | — | oui | — | 2 | non-vérifié | non | actif·scoring |
 | `parsimony_detector.js` | 264 | oui | — | oui | — | 3 | non-vérifié | non | actif·scoring |
 | `causal_compression_engine.js` | 254 | — | oui | — | — | 1 | non (mort) | non | DORMANT |
@@ -59,7 +59,7 @@ est atteignable par BFS depuis `main.js`. Il est **dormant** sinon
 | `frame_refutation_engine.js` | 154 | — | oui | — | — | 1 | non (mort) | non | DORMANT |
 | `noise_killer.js` | 152 | oui | — | oui | — | 1 | non-vérifié | non | actif·scoring |
 | `failure_extraction.js` | 149 | — | oui | — | — | 1 | non (mort) | non | DORMANT |
-| `identity_gate.js` | 149 | oui | — | oui | — | 2 | non-vérifié | non | actif·scoring |
+| `identity_gate.js` | 149 | oui | — | oui | — | 3 | non-vérifié | non | actif·scoring |
 | `cta_schema.js` | 146 | oui | — | — | — | 1 | non-vérifié | non | actif |
 | `jargon.js` | 145 | oui | — | oui | — | 3 | non-vérifié | non | actif·scoring |
 | `systemic_coherence.js` | 141 | oui | — | oui | — | 3 | non-vérifié | non | actif·scoring |
@@ -69,7 +69,8 @@ est atteignable par BFS depuis `main.js`. Il est **dormant** sinon
 | `structural_mapping.js` | 128 | oui | — | oui | oui | 3 | non-vérifié | non | actif·scoring |
 | `vernacular_wisdom_engine.js` | 125 | — | oui | — | — | 0 | non (mort) | non | DORMANT |
 | `user_profile.js` | 123 | oui | — | oui | oui | 4 | non-vérifié | non | actif·scoring |
-| `completion.js` | 112 | oui | — | oui | — | 3 | non-vérifié | non | actif·scoring |
+| `superiority_deltas.js` | 120 | oui | — | oui | — | 1 | non-vérifié | non | actif·scoring |
+| `completion.js` | 112 | oui | — | oui | — | 4 | non-vérifié | non | actif·scoring |
 | `validation_status.js` | 108 | — | oui | — | — | 0 | non (mort) | non | DORMANT |
 | `route_specialization.js` | 101 | oui | — | oui | — | 1 | non-vérifié | non | actif·scoring |
 | `cta_metrics.js` | 100 | oui | — | — | oui | 1 | non-vérifié | non | actif·UI |
@@ -78,6 +79,7 @@ est atteignable par BFS depuis `main.js`. Il est **dormant** sinon
 | `graph.js` | 96 | oui | — | — | oui | 1 | non-vérifié | non | actif·UI |
 | `mutation_stability.js` | 93 | — | oui | — | — | 0 | non (mort) | non | DORMANT |
 | `cta_priority_engine.js` | 83 | oui | — | — | — | 1 | non-vérifié | non | actif |
+| `superiority_metrics.js` | 81 | oui | — | oui | — | 1 | non-vérifié | non | actif·scoring |
 | `seductive_complexity.js` | 72 | oui | — | oui | — | 2 | non-vérifié | non | actif·scoring |
 | `domain_leak.js` | 70 | oui | — | oui | — | 2 | non-vérifié | non | actif·scoring |
 | `response_surgery.js` | 65 | — | oui | — | — | 0 | non (mort) | non | DORMANT |

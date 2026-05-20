@@ -1,13 +1,13 @@
 {
   "mission_id": "ZORAN_V13_MAX_SECURITY_LAB_PROTOCOL_20260520",
-  "generated_at": "2026-05-20T17:33:54.050Z",
+  "generated_at": "2026-05-20T18:44:42.021Z",
   "generator": "tools/architecture_live_map.mjs",
   "entry_point": "main.js",
   "scoring_hub": "superiority.js",
   "totals": {
-    "modules": 49,
-    "total_loc": 11170,
-    "live": 36,
+    "modules": 51,
+    "total_loc": 11219,
+    "live": 38,
     "dormant": 13,
     "dormant_loc": 1957
   },
@@ -129,39 +129,6 @@
       "status": "live-scoring"
     },
     {
-      "module": "superiority.js",
-      "loc": 431,
-      "reachable": true,
-      "dormant": false,
-      "scoring": false,
-      "ui": true,
-      "inbound": 1,
-      "exports_count": 1,
-      "exports": [
-        "runSuperiorityComparison"
-      ],
-      "imports": [
-        "llm.js",
-        "jargon.js",
-        "route_specialization.js",
-        "completion.js",
-        "domain_detection.js",
-        "rezo_engine.js",
-        "systemic_coherence.js",
-        "anti_goodhart.js",
-        "fragility_detector.js",
-        "domain_leak.js",
-        "seductive_complexity.js",
-        "complexity_estimator.js",
-        "overthink_detector.js",
-        "identity_gate.js",
-        "zoran_cta_engine.js",
-        "btp_supremacy_engine.js",
-        "parsimony_detector.js"
-      ],
-      "status": "live-ui"
-    },
-    {
       "module": "rezo_engine.js",
       "loc": 378,
       "reachable": true,
@@ -194,6 +161,30 @@
         "btp_supremacy_engine.js"
       ],
       "status": "live-scoring"
+    },
+    {
+      "module": "superiority.js",
+      "loc": 279,
+      "reachable": true,
+      "dormant": false,
+      "scoring": false,
+      "ui": true,
+      "inbound": 1,
+      "exports_count": 1,
+      "exports": [
+        "runSuperiorityComparison"
+      ],
+      "imports": [
+        "llm.js",
+        "route_specialization.js",
+        "domain_detection.js",
+        "rezo_engine.js",
+        "complexity_estimator.js",
+        "identity_gate.js",
+        "superiority_metrics.js",
+        "superiority_deltas.js"
+      ],
+      "status": "live-ui"
     },
     {
       "module": "btp_supremacy_engine.js",
@@ -537,7 +528,7 @@
       "dormant": false,
       "scoring": true,
       "ui": false,
-      "inbound": 2,
+      "inbound": 3,
       "exports_count": 3,
       "exports": [
         "identityGate",
@@ -717,13 +708,30 @@
       "status": "live-scoring"
     },
     {
+      "module": "superiority_deltas.js",
+      "loc": 120,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": false,
+      "inbound": 1,
+      "exports_count": 1,
+      "exports": [
+        "computeDeltas"
+      ],
+      "imports": [
+        "completion.js"
+      ],
+      "status": "live-scoring"
+    },
+    {
       "module": "completion.js",
       "loc": 112,
       "reachable": true,
       "dormant": false,
       "scoring": true,
       "ui": false,
-      "inbound": 3,
+      "inbound": 4,
       "exports_count": 5,
       "exports": [
         "detectTruncation",
@@ -876,6 +884,34 @@
       ],
       "imports": [],
       "status": "live"
+    },
+    {
+      "module": "superiority_metrics.js",
+      "loc": 81,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": false,
+      "inbound": 1,
+      "exports_count": 1,
+      "exports": [
+        "annotateResponses"
+      ],
+      "imports": [
+        "jargon.js",
+        "completion.js",
+        "systemic_coherence.js",
+        "anti_goodhart.js",
+        "fragility_detector.js",
+        "domain_leak.js",
+        "seductive_complexity.js",
+        "overthink_detector.js",
+        "identity_gate.js",
+        "zoran_cta_engine.js",
+        "btp_supremacy_engine.js",
+        "parsimony_detector.js"
+      ],
+      "status": "live-scoring"
     },
     {
       "module": "seductive_complexity.js",
