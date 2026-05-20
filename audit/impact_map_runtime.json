@@ -1,0 +1,977 @@
+{
+  "mission_id": "ZORAN_V13_MAX_SECURITY_LAB_PROTOCOL_20260520",
+  "generated_at": "2026-05-20T17:33:54.050Z",
+  "generator": "tools/architecture_live_map.mjs",
+  "entry_point": "main.js",
+  "scoring_hub": "superiority.js",
+  "totals": {
+    "modules": 49,
+    "total_loc": 11170,
+    "live": 36,
+    "dormant": 13,
+    "dormant_loc": 1957
+  },
+  "modules": [
+    {
+      "module": "main.js",
+      "loc": 1591,
+      "reachable": true,
+      "dormant": false,
+      "scoring": false,
+      "ui": false,
+      "inbound": 0,
+      "exports_count": 2,
+      "exports": [
+        "activateRoutes",
+        "deactivateRoutes"
+      ],
+      "imports": [
+        "graph.js",
+        "chat.js",
+        "panel.js",
+        "search.js",
+        "history.js",
+        "oracle.js"
+      ],
+      "status": "entry"
+    },
+    {
+      "module": "chat.js",
+      "loc": 832,
+      "reachable": true,
+      "dormant": false,
+      "scoring": false,
+      "ui": true,
+      "inbound": 1,
+      "exports_count": 3,
+      "exports": [
+        "compete",
+        "renderResults",
+        "wireChatBar"
+      ],
+      "imports": [
+        "llm.js",
+        "user_profile.js",
+        "superiority.js",
+        "superiority_render.js",
+        "cta_metrics.js",
+        "structural_mapping.js"
+      ],
+      "status": "live-ui"
+    },
+    {
+      "module": "panel.js",
+      "loc": 811,
+      "reachable": true,
+      "dormant": false,
+      "scoring": false,
+      "ui": true,
+      "inbound": 1,
+      "exports_count": 1,
+      "exports": [
+        "renderDetail"
+      ],
+      "imports": [],
+      "status": "live-ui"
+    },
+    {
+      "module": "superiority_render.js",
+      "loc": 725,
+      "reachable": true,
+      "dormant": false,
+      "scoring": false,
+      "ui": true,
+      "inbound": 1,
+      "exports_count": 4,
+      "exports": [
+        "escHtml",
+        "truncationBadge",
+        "renderResponseWithCTAs",
+        "renderComparison"
+      ],
+      "imports": [
+        "user_profile.js",
+        "cta_schema.js",
+        "cta_priority_engine.js"
+      ],
+      "status": "live-ui"
+    },
+    {
+      "module": "llm.js",
+      "loc": 609,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": true,
+      "inbound": 4,
+      "exports_count": 15,
+      "exports": [
+        "getBenchmarkEnabled",
+        "setBenchmarkEnabled",
+        "getApiKey",
+        "setApiKey",
+        "getModel",
+        "setModel",
+        "hasApiKey",
+        "callLLM",
+        "reformulateQuestion",
+        "winnerSynthesis",
+        "synthesizeOrchestrated",
+        "synthesizeBaseline",
+        "synthesizeRoute",
+        "judgeResponses",
+        "synthesizeAnswer"
+      ],
+      "imports": [
+        "parsimony_detector.js",
+        "user_profile.js"
+      ],
+      "status": "live-scoring"
+    },
+    {
+      "module": "superiority.js",
+      "loc": 431,
+      "reachable": true,
+      "dormant": false,
+      "scoring": false,
+      "ui": true,
+      "inbound": 1,
+      "exports_count": 1,
+      "exports": [
+        "runSuperiorityComparison"
+      ],
+      "imports": [
+        "llm.js",
+        "jargon.js",
+        "route_specialization.js",
+        "completion.js",
+        "domain_detection.js",
+        "rezo_engine.js",
+        "systemic_coherence.js",
+        "anti_goodhart.js",
+        "fragility_detector.js",
+        "domain_leak.js",
+        "seductive_complexity.js",
+        "complexity_estimator.js",
+        "overthink_detector.js",
+        "identity_gate.js",
+        "zoran_cta_engine.js",
+        "btp_supremacy_engine.js",
+        "parsimony_detector.js"
+      ],
+      "status": "live-ui"
+    },
+    {
+      "module": "rezo_engine.js",
+      "loc": 378,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": false,
+      "inbound": 1,
+      "exports_count": 3,
+      "exports": [
+        "diagnoseWeaknesses",
+        "generateClaudePlusRezo",
+        "activationMatrix"
+      ],
+      "imports": [
+        "jargon.js",
+        "noise_killer.js",
+        "completion.js",
+        "domain_detection.js",
+        "structural_mapping.js",
+        "llm.js",
+        "anti_goodhart.js",
+        "systemic_coherence.js",
+        "fragility_detector.js",
+        "domain_leak.js",
+        "seductive_complexity.js",
+        "identity_gate.js",
+        "parsimony_detector.js",
+        "user_profile.js",
+        "zoran_cta_engine.js",
+        "btp_supremacy_engine.js"
+      ],
+      "status": "live-scoring"
+    },
+    {
+      "module": "btp_supremacy_engine.js",
+      "loc": 275,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": false,
+      "inbound": 2,
+      "exports_count": 11,
+      "exports": [
+        "detectPathologies",
+        "pathologyDepthScore",
+        "multiCauseResolutionScore",
+        "hierarchyComplianceScore",
+        "decennaleAwarenessScore",
+        "fieldActionabilityScore",
+        "contradictoryAuditStrengthScore",
+        "structuralRiskAwarenessScore",
+        "btpOperationalScore",
+        "isBTPQuestion",
+        "btpAnalysis"
+      ],
+      "imports": [
+        "causal_density.js"
+      ],
+      "status": "live-scoring"
+    },
+    {
+      "module": "parsimony_detector.js",
+      "loc": 264,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": false,
+      "inbound": 3,
+      "exports_count": 6,
+      "exports": [
+        "detectLowIntrinsicDepth",
+        "localSufficiency",
+        "digressionPenalty",
+        "cognitiveEfficiency",
+        "ctaExcessPenalty",
+        "computeParsimony"
+      ],
+      "imports": [],
+      "status": "live-scoring"
+    },
+    {
+      "module": "causal_compression_engine.js",
+      "loc": 254,
+      "reachable": false,
+      "dormant": true,
+      "scoring": false,
+      "ui": false,
+      "inbound": 1,
+      "exports_count": 6,
+      "exports": [
+        "extractCausalCore",
+        "detectRedundancyNoise",
+        "PRESERVATION_ORDER",
+        "priorityPreservationOrder",
+        "reserveTerminalBudget",
+        "compressCausal"
+      ],
+      "imports": [],
+      "status": "dormant"
+    },
+    {
+      "module": "ambiguity_detector.js",
+      "loc": 232,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": false,
+      "inbound": 1,
+      "exports_count": 6,
+      "exports": [
+        "isPersonIdentityQuestion",
+        "extractPersonNames",
+        "isFamousFigure",
+        "estimateNameCommonness",
+        "hasContextualAnchor",
+        "detectIdentityAmbiguity"
+      ],
+      "imports": [],
+      "status": "live-scoring"
+    },
+    {
+      "module": "adversarial_survivability_engine.js",
+      "loc": 212,
+      "reachable": false,
+      "dormant": true,
+      "scoring": false,
+      "ui": false,
+      "inbound": 0,
+      "exports_count": 6,
+      "exports": [
+        "extractClaims",
+        "generateRefutations",
+        "physicalSurvivability",
+        "tribunalAttack",
+        "irreversibilityFilter",
+        "adversarialSurvivability"
+      ],
+      "imports": [
+        "physical_causality_validator.js"
+      ],
+      "status": "dormant"
+    },
+    {
+      "module": "zoran_cta_engine.js",
+      "loc": 202,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": false,
+      "inbound": 2,
+      "exports_count": 5,
+      "exports": [
+        "generateSystemicRiskCTA",
+        "generateFieldValidationCTA",
+        "generateCounterHypothesisCTA",
+        "generateAllCTAs",
+        "detectCTAPresence"
+      ],
+      "imports": [
+        "domain_detection.js",
+        "meta_metric_auditor.js"
+      ],
+      "status": "live-scoring"
+    },
+    {
+      "module": "truncation_detector_v11.js",
+      "loc": 201,
+      "reachable": false,
+      "dormant": true,
+      "scoring": false,
+      "ui": false,
+      "inbound": 0,
+      "exports_count": 5,
+      "exports": [
+        "terminalIntegrityScore",
+        "causalRetentionRatio",
+        "usefulDensityAfterCompression",
+        "compressionDamageIndex",
+        "fullTruncationReport"
+      ],
+      "imports": [
+        "causal_compression_engine.js"
+      ],
+      "status": "dormant"
+    },
+    {
+      "module": "physical_causality_validator.js",
+      "loc": 175,
+      "reachable": false,
+      "dormant": true,
+      "scoring": false,
+      "ui": false,
+      "inbound": 1,
+      "exports_count": 1,
+      "exports": [
+        "validatePhysicalCausality"
+      ],
+      "imports": [],
+      "status": "dormant"
+    },
+    {
+      "module": "fragility_detector.js",
+      "loc": 172,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": false,
+      "inbound": 2,
+      "exports_count": 5,
+      "exports": [
+        "detectSeductiveButFragile",
+        "futureHiddenCost",
+        "perturbationRobustness",
+        "antiMonocauseEarlyLock",
+        "runFragilityDetector"
+      ],
+      "imports": [],
+      "status": "live-scoring"
+    },
+    {
+      "module": "complexity_estimator.js",
+      "loc": 167,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": false,
+      "inbound": 2,
+      "exports_count": 1,
+      "exports": [
+        "estimateComplexity"
+      ],
+      "imports": [],
+      "status": "live-scoring"
+    },
+    {
+      "module": "failures_memory.js",
+      "loc": 164,
+      "reachable": false,
+      "dormant": true,
+      "scoring": false,
+      "ui": false,
+      "inbound": 0,
+      "exports_count": 10,
+      "exports": [
+        "FAILURE_TYPES",
+        "loadMemory",
+        "saveMemory",
+        "recordOutcome",
+        "getDowngradePenalty",
+        "revalidateIfStale",
+        "getFailureTypeBreakdown",
+        "getDowngradedRoutes",
+        "globalStats",
+        "resetMemory"
+      ],
+      "imports": [],
+      "status": "dormant"
+    },
+    {
+      "module": "meta_metric_auditor.js",
+      "loc": 163,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": false,
+      "inbound": 3,
+      "exports_count": 1,
+      "exports": [
+        "auditMetrics"
+      ],
+      "imports": [],
+      "status": "live-scoring"
+    },
+    {
+      "module": "causal_density.js",
+      "loc": 159,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": false,
+      "inbound": 1,
+      "exports_count": 5,
+      "exports": [
+        "causalCompressionRatio",
+        "discriminantMeasureDensity",
+        "uselessJargonPenalty",
+        "hypothesisReductionScore",
+        "causalDensityScore"
+      ],
+      "imports": [],
+      "status": "live-scoring"
+    },
+    {
+      "module": "anti_goodhart.js",
+      "loc": 158,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": false,
+      "inbound": 3,
+      "exports_count": 5,
+      "exports": [
+        "detectFalseOptimization",
+        "detectProxyCollapse",
+        "detectMetricTunnel",
+        "detectLocalVsGlobalConflict",
+        "runAntiGoodhart"
+      ],
+      "imports": [],
+      "status": "live-scoring"
+    },
+    {
+      "module": "frame_refutation_engine.js",
+      "loc": 154,
+      "reachable": false,
+      "dormant": true,
+      "scoring": false,
+      "ui": false,
+      "inbound": 1,
+      "exports_count": 2,
+      "exports": [
+        "generateCounterHypotheses",
+        "frameRefutationScore"
+      ],
+      "imports": [
+        "meta_metric_auditor.js"
+      ],
+      "status": "dormant"
+    },
+    {
+      "module": "noise_killer.js",
+      "loc": 152,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": false,
+      "inbound": 1,
+      "exports_count": 6,
+      "exports": [
+        "usefulInformationDensity",
+        "noiseProfile",
+        "cognitiveLoad",
+        "robustnessOOD",
+        "usefulInformationDensityV2",
+        "globalUsefulness"
+      ],
+      "imports": [],
+      "status": "live-scoring"
+    },
+    {
+      "module": "failure_extraction.js",
+      "loc": 149,
+      "reachable": false,
+      "dormant": true,
+      "scoring": false,
+      "ui": false,
+      "inbound": 1,
+      "exports_count": 2,
+      "exports": [
+        "extractFailureCauses",
+        "aggregateFailurePatterns"
+      ],
+      "imports": [
+        "jargon.js",
+        "completion.js"
+      ],
+      "status": "dormant"
+    },
+    {
+      "module": "identity_gate.js",
+      "loc": 149,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": false,
+      "inbound": 2,
+      "exports_count": 3,
+      "exports": [
+        "identityGate",
+        "countUnsupportedBioClaims",
+        "identityHalluRisk"
+      ],
+      "imports": [
+        "ambiguity_detector.js"
+      ],
+      "status": "live-scoring"
+    },
+    {
+      "module": "cta_schema.js",
+      "loc": 146,
+      "reachable": true,
+      "dormant": false,
+      "scoring": false,
+      "ui": false,
+      "inbound": 1,
+      "exports_count": 7,
+      "exports": [
+        "CTA_TYPES",
+        "CTA_CRITS",
+        "parseCtaContent",
+        "extractAllCtas",
+        "serializeCta",
+        "TYPE_LABELS",
+        "CRIT_LABELS"
+      ],
+      "imports": [],
+      "status": "live"
+    },
+    {
+      "module": "jargon.js",
+      "loc": 145,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": false,
+      "inbound": 3,
+      "exports_count": 6,
+      "exports": [
+        "jargonDensity",
+        "userDistance",
+        "practicalUsefulness",
+        "metaNoise",
+        "concreteRuntimeAlignment",
+        "detectJargonTerms"
+      ],
+      "imports": [],
+      "status": "live-scoring"
+    },
+    {
+      "module": "systemic_coherence.js",
+      "loc": 141,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": false,
+      "inbound": 3,
+      "exports_count": 7,
+      "exports": [
+        "resilienceScore",
+        "multiscaleCoherence",
+        "falseBenefitDetection",
+        "causalRobustness",
+        "longTermViability",
+        "systemicCoherenceScore",
+        "systemicCoherenceReport"
+      ],
+      "imports": [],
+      "status": "live-scoring"
+    },
+    {
+      "module": "conclusion_wrapper.js",
+      "loc": 129,
+      "reachable": false,
+      "dormant": true,
+      "scoring": false,
+      "ui": false,
+      "inbound": 0,
+      "exports_count": 3,
+      "exports": [
+        "hasExplicitConclusionBlock",
+        "wrapConclusion",
+        "conclusionWrapStats"
+      ],
+      "imports": [],
+      "status": "dormant"
+    },
+    {
+      "module": "cognitive_routing.js",
+      "loc": 128,
+      "reachable": false,
+      "dormant": true,
+      "scoring": false,
+      "ui": false,
+      "inbound": 0,
+      "exports_count": 4,
+      "exports": [
+        "detectCognitiveNature",
+        "detectRiskLevel",
+        "detectDepthRequired",
+        "semanticRouting"
+      ],
+      "imports": [
+        "domain_detection.js",
+        "structural_mapping.js"
+      ],
+      "status": "dormant"
+    },
+    {
+      "module": "oracle.js",
+      "loc": 128,
+      "reachable": true,
+      "dormant": false,
+      "scoring": false,
+      "ui": true,
+      "inbound": 1,
+      "exports_count": 2,
+      "exports": [
+        "auditGraph",
+        "formatReport"
+      ],
+      "imports": [],
+      "status": "live-ui"
+    },
+    {
+      "module": "structural_mapping.js",
+      "loc": 128,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": true,
+      "inbound": 3,
+      "exports_count": 2,
+      "exports": [
+        "mapStructural",
+        "structuralTopicBoost"
+      ],
+      "imports": [],
+      "status": "live-scoring"
+    },
+    {
+      "module": "vernacular_wisdom_engine.js",
+      "loc": 125,
+      "reachable": false,
+      "dormant": true,
+      "scoring": false,
+      "ui": false,
+      "inbound": 0,
+      "exports_count": 2,
+      "exports": [
+        "vernacularWisdomScore",
+        "isLikelyVernacularExpertise"
+      ],
+      "imports": [],
+      "status": "dormant"
+    },
+    {
+      "module": "user_profile.js",
+      "loc": 123,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": true,
+      "inbound": 4,
+      "exports_count": 5,
+      "exports": [
+        "PROFILES",
+        "getProfile",
+        "setProfile",
+        "getProfileConfig",
+        "renderProfileSelector"
+      ],
+      "imports": [],
+      "status": "live-scoring"
+    },
+    {
+      "module": "completion.js",
+      "loc": 112,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": false,
+      "inbound": 3,
+      "exports_count": 5,
+      "exports": [
+        "detectTruncation",
+        "completionIntegrity",
+        "truncationPenalty",
+        "terrainAlignment",
+        "fieldActionability"
+      ],
+      "imports": [],
+      "status": "live-scoring"
+    },
+    {
+      "module": "validation_status.js",
+      "loc": 108,
+      "reachable": false,
+      "dormant": true,
+      "scoring": false,
+      "ui": false,
+      "inbound": 0,
+      "exports_count": 1,
+      "exports": [
+        "determineValidationStatus"
+      ],
+      "imports": [
+        "meta_metric_auditor.js",
+        "frame_refutation_engine.js",
+        "systemic_coherence.js",
+        "anti_goodhart.js"
+      ],
+      "status": "dormant"
+    },
+    {
+      "module": "route_specialization.js",
+      "loc": 101,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": false,
+      "inbound": 1,
+      "exports_count": 4,
+      "exports": [
+        "computeDomainFitness",
+        "shouldSkipRoute",
+        "getStrategyProfile",
+        "rankRoutesByFitness"
+      ],
+      "imports": [],
+      "status": "live-scoring"
+    },
+    {
+      "module": "cta_metrics.js",
+      "loc": 100,
+      "reachable": true,
+      "dormant": false,
+      "scoring": false,
+      "ui": true,
+      "inbound": 1,
+      "exports_count": 3,
+      "exports": [
+        "trackOpen",
+        "getMetrics",
+        "resetMetrics"
+      ],
+      "imports": [],
+      "status": "live-ui"
+    },
+    {
+      "module": "overthink_detector.js",
+      "loc": 99,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": false,
+      "inbound": 1,
+      "exports_count": 1,
+      "exports": [
+        "detectOverthink"
+      ],
+      "imports": [
+        "complexity_estimator.js"
+      ],
+      "status": "live-scoring"
+    },
+    {
+      "module": "domain_detection.js",
+      "loc": 98,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": false,
+      "inbound": 4,
+      "exports_count": 2,
+      "exports": [
+        "detectDomain",
+        "detectAllDomains"
+      ],
+      "imports": [],
+      "status": "live-scoring"
+    },
+    {
+      "module": "graph.js",
+      "loc": 96,
+      "reachable": true,
+      "dormant": false,
+      "scoring": false,
+      "ui": true,
+      "inbound": 1,
+      "exports_count": 7,
+      "exports": [
+        "loadLaws",
+        "buildGraph",
+        "neighborsOf",
+        "branchFrom",
+        "prune",
+        "familyInvariant",
+        "attractorMu0"
+      ],
+      "imports": [
+        "colors.js"
+      ],
+      "status": "live-ui"
+    },
+    {
+      "module": "mutation_stability.js",
+      "loc": 93,
+      "reachable": false,
+      "dormant": true,
+      "scoring": false,
+      "ui": false,
+      "inbound": 0,
+      "exports_count": 1,
+      "exports": [
+        "mutationStability"
+      ],
+      "imports": [],
+      "status": "dormant"
+    },
+    {
+      "module": "cta_priority_engine.js",
+      "loc": 83,
+      "reachable": true,
+      "dormant": false,
+      "scoring": false,
+      "ui": false,
+      "inbound": 1,
+      "exports_count": 2,
+      "exports": [
+        "scoreCta",
+        "prioritize"
+      ],
+      "imports": [],
+      "status": "live"
+    },
+    {
+      "module": "seductive_complexity.js",
+      "loc": 72,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": false,
+      "inbound": 2,
+      "exports_count": 1,
+      "exports": [
+        "seductiveComplexity"
+      ],
+      "imports": [],
+      "status": "live-scoring"
+    },
+    {
+      "module": "domain_leak.js",
+      "loc": 70,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": false,
+      "inbound": 2,
+      "exports_count": 1,
+      "exports": [
+        "detectDomainLeak"
+      ],
+      "imports": [],
+      "status": "live-scoring"
+    },
+    {
+      "module": "response_surgery.js",
+      "loc": 65,
+      "reachable": false,
+      "dormant": true,
+      "scoring": false,
+      "ui": false,
+      "inbound": 0,
+      "exports_count": 1,
+      "exports": [
+        "repairResponse"
+      ],
+      "imports": [
+        "llm.js",
+        "failure_extraction.js"
+      ],
+      "status": "dormant"
+    },
+    {
+      "module": "colors.js",
+      "loc": 37,
+      "reachable": true,
+      "dormant": false,
+      "scoring": false,
+      "ui": false,
+      "inbound": 1,
+      "exports_count": 3,
+      "exports": [
+        "PALETTE",
+        "colorOfNode",
+        "colorOfLink"
+      ],
+      "imports": [],
+      "status": "live"
+    },
+    {
+      "module": "search.js",
+      "loc": 35,
+      "reachable": true,
+      "dormant": false,
+      "scoring": false,
+      "ui": true,
+      "inbound": 1,
+      "exports_count": 2,
+      "exports": [
+        "buildIndex",
+        "search"
+      ],
+      "imports": [],
+      "status": "live-ui"
+    },
+    {
+      "module": "history.js",
+      "loc": 29,
+      "reachable": true,
+      "dormant": false,
+      "scoring": false,
+      "ui": true,
+      "inbound": 1,
+      "exports_count": 1,
+      "exports": [
+        "makeHistory"
+      ],
+      "imports": [],
+      "status": "live-ui"
+    }
+  ]
+}
