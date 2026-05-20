@@ -111,7 +111,35 @@ Réf. : `audit/TICKETS_PROGRESS.md`. 12 restants :
 - Le ground truth du benchmark P0 est synthétique (intuitions ZORAN, non-BET).
 - Les tests runtime sont headless — un vrai navigateur peut différer.
 
-## 10. Progression (deux jauges, non fusionnables)
+## 10. Tests restants — critères d'acceptation du backend `zoran/`
+
+Le backend vivant devra prouver « runtime > moteur » par ces tests
+(aucun n'est exécutable depuis aSiM — ils nécessitent le backend Node) :
+
+**Provider survival**
+- T1.1 — Claude → GPT sans patch (mémoire/API/orchestration intactes)
+- T1.2 — GPT → LLM local sans patch
+- T1.3 — rollback provider live
+- T1.4 — mémoire conservée après switch de provider
+- T1.5 — même contrat API malgré changement de moteur
+
+**API-first** — T2 : backend fonctionnel sans frontend (curl-only, API-only,
+SSE stable, events stables, mémoire stable, orchestration stable).
+
+**Mobile / edge** — T3 : runtime sur Android/ARM (RAM limitée, cache mémoire,
+offline partiel, faible latence, API locale).
+
+**Offline** — T4 : runtime survit sans internet (mode dégradé + cache).
+
+**Validation humaine** — T5 : P0-MINI BET réel (⛔ bloquant — kit prêt dans
+`audit/P0_MINI_BET_PROTOCOL.md`). Tant que T5 n'est pas exécuté, aucun claim
+« expert validé / OS cognitif validé / runtime métier fiable ».
+
+Critère de succès septembre : runtime survivant **minimal** capable de
+changer de moteur, tourner sans front, survivre mobile + offline partiel,
+conserver mémoire/runtime, rollback proprement. Pas un « OS cognitif complet ».
+
+## 11. Progression (deux jauges, non fusionnables)
 
 ```
 INGÉNIERIE        ≈ 46 %
