@@ -9,6 +9,7 @@
 
 import { annotateResponses } from '../app/src/superiority_metrics.js';
 import { computeDeltas } from '../app/src/superiority_deltas.js';
+import { buildZoranSpecs, SUPERIORITY_ROUTES } from '../app/src/superiority_gating.js';
 
 let pass = 0, fail = 0;
 const check = (name, cond) => {
@@ -112,6 +113,44 @@ const judgePrefixed = {
 };
 const deltasPrefixed = computeDeltas({ judge: judgePrefixed, responses: annotated });
 check('matching malgré préfixe CANDIDAT N', deltasPrefixed.length === 2);
+
+// ─── TEST 5 : buildZoranSpecs (bloc gating pur) ───
+console.log('\nTest 5 — buildZoranSpecs (bloc gating pur) :');
+const allNodes = [
+  { id: 'WP11-004', title: 'Loi A' },
+  { id: 'GHUC-001', title: 'Loi B' },
+  { id: 'SDE-029', title: 'Loi C' },
+];
+const routeResults = {
+  structures: ['causal_chain'],
+  routes: [
+    { strategy: 'frugale', label: 'Route Frugale', laws_used: ['WP11-004', 'GHUC-001'] },
+    { strategy: 'anti_hallucination', label: 'Route Anti-Hallu', laws_used: ['SDE-029'] },
+    { strategy: 'structurelle', label: 'Route Structurelle', laws_used: ['WP11-004'] },
+  ],
+};
+let gating;
+try {
+  gating = buildZoranSpecs({ routeResults, allNodes, detectedStructures: routeResults.structures });
+} catch (e) {
+  console.log(`  FAIL buildZoranSpecs a levé : ${e.message}`);
+  console.log('\n━━━ VERDICT : FAIL ✗ (exception runtime — extraction cassée) ━━━');
+  process.exit(1);
+}
+check('retourne { zoranSpecs, skippedRoutes }', gating && Array.isArray(gating.zoranSpecs) && Array.isArray(gating.skippedRoutes));
+check('zoranSpecs + skippedRoutes couvrent les 3 routes', gating.zoranSpecs.length + gating.skippedRoutes.length === 3);
+check('chaque zoranSpec a stratName/route/laws/domain_fitness', gating.zoranSpecs.every(s =>
+  s.stratName && s.route && Array.isArray(s.laws) && typeof s.domain_fitness === 'number'));
+check('laws résolues contre allNodes (objets, pas IDs)', gating.zoranSpecs.every(s =>
+  s.laws.every(l => l && typeof l === 'object' && l.id)));
+check('SUPERIORITY_ROUTES exporté (3 routes)', Array.isArray(SUPERIORITY_ROUTES) && SUPERIORITY_ROUTES.length === 3);
+// Route absente → ignorée proprement
+const partial = buildZoranSpecs({
+  routeResults: { structures: [], routes: [{ strategy: 'frugale', label: 'F', laws_used: [] }] },
+  allNodes, detectedStructures: [],
+});
+check('route unique → total ≤ 1', partial.zoranSpecs.length + partial.skippedRoutes.length <= 1);
+check('laws_used vide → laws = []', partial.zoranSpecs.every(s => s.laws.length === 0) || partial.zoranSpecs.length === 0);
 
 // ─── VERDICT ───
 console.log(`\n──── ${pass} ok / ${fail} fail ────`);

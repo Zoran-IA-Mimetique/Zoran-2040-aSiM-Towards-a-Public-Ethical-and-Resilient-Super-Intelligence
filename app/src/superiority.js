@@ -9,7 +9,6 @@
 // Retourne un tableau comparatif avec deltas ZORAN vs baseline.
 
 import { synthesizeBaseline, judgeResponses, synthesizeOrchestrated } from './llm.js';
-import { computeDomainFitness, shouldSkipRoute, getStrategyProfile } from './route_specialization.js';
 import { detectDomain } from './domain_detection.js';
 import { diagnoseWeaknesses, generateClaudePlusRezo } from './rezo_engine.js';
 // Mission V11.6 : rendu HTML extrait dans son propre module
@@ -17,11 +16,9 @@ export { renderComparison } from './superiority_render.js';
 import { estimateComplexity } from './complexity_estimator.js';
 import { identityGate } from './identity_gate.js';
 // ZORAN_CORE_OS_FOUNDATION — blocs purs extraits de la god-function runSuperiorityComparison
+import { buildZoranSpecs } from './superiority_gating.js';
 import { annotateResponses } from './superiority_metrics.js';
 import { computeDeltas } from './superiority_deltas.js';
-
-// Top 3 routes utilisées pour la compétition (sous-ensemble — coût API maîtrisé)
-const SUPERIORITY_ROUTES = ['frugale', 'anti_hallucination', 'structurelle'];
 
 export async function runSuperiorityComparison({ question, allNodes, routeResults }) {
   const t0 = performance.now();
@@ -89,30 +86,10 @@ export async function runSuperiorityComparison({ question, allNodes, routeResult
     };
   }
 
-  // Construit le set [{stratName, route, laws}] pour les 3 stratégies
-  // Mission ROUTE_SPECIALIZATION : skip routes hors-domaine fitness < 0.30
+  // Construit le set [{stratName, route, laws}] pour les 3 stratégies.
+  // Bloc pur extrait → superiority_gating.js (testable hors-ligne, sans API)
   const detectedStructures = routeResults.structures || [];
-  const zoranSpecs = [];
-  const skippedRoutes = [];
-  for (const stratName of SUPERIORITY_ROUTES) {
-    const route = routeResults.routes.find(r => r.strategy === stratName);
-    if (!route) continue;
-    const fitness = computeDomainFitness(stratName, detectedStructures);
-    if (shouldSkipRoute(stratName, detectedStructures)) {
-      // Route skippée pour économie API + propreté benchmark
-      skippedRoutes.push({
-        strategy: stratName,
-        label: route.label || stratName,
-        domain_fitness: +fitness.toFixed(3),
-        profile: getStrategyProfile(stratName),
-        reason: `domain_fitness=${fitness.toFixed(2)} < 0.30 — hors domaine de spécialisation`,
-      });
-      console.log(`[ZORAN sup] SKIP ${stratName} : fitness=${fitness.toFixed(2)}`);
-      continue;
-    }
-    const laws = (route.laws_used || []).map(id => allNodes.find(n => n.id === id)).filter(Boolean);
-    zoranSpecs.push({ stratName, route, laws, domain_fitness: +fitness.toFixed(3) });
-  }
+  const { zoranSpecs, skippedRoutes } = buildZoranSpecs({ routeResults, allNodes, detectedStructures });
   if (zoranSpecs.length === 0) {
     // Toutes les routes ZORAN hors-domaine → on garde Claude brut seul
     console.warn('[ZORAN sup] toutes routes ZORAN hors-domaine — Claude brut seul');

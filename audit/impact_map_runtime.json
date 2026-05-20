@@ -1,13 +1,13 @@
 {
   "mission_id": "ZORAN_V13_MAX_SECURITY_LAB_PROTOCOL_20260520",
-  "generated_at": "2026-05-20T18:44:42.021Z",
+  "generated_at": "2026-05-20T19:17:22.817Z",
   "generator": "tools/architecture_live_map.mjs",
   "entry_point": "main.js",
   "scoring_hub": "superiority.js",
   "totals": {
-    "modules": 51,
-    "total_loc": 11219,
-    "live": 38,
+    "modules": 52,
+    "total_loc": 11240,
+    "live": 39,
     "dormant": 13,
     "dormant_loc": 1957
   },
@@ -163,30 +163,6 @@
       "status": "live-scoring"
     },
     {
-      "module": "superiority.js",
-      "loc": 279,
-      "reachable": true,
-      "dormant": false,
-      "scoring": false,
-      "ui": true,
-      "inbound": 1,
-      "exports_count": 1,
-      "exports": [
-        "runSuperiorityComparison"
-      ],
-      "imports": [
-        "llm.js",
-        "route_specialization.js",
-        "domain_detection.js",
-        "rezo_engine.js",
-        "complexity_estimator.js",
-        "identity_gate.js",
-        "superiority_metrics.js",
-        "superiority_deltas.js"
-      ],
-      "status": "live-ui"
-    },
-    {
       "module": "btp_supremacy_engine.js",
       "loc": 275,
       "reachable": true,
@@ -232,6 +208,30 @@
       ],
       "imports": [],
       "status": "live-scoring"
+    },
+    {
+      "module": "superiority.js",
+      "loc": 256,
+      "reachable": true,
+      "dormant": false,
+      "scoring": false,
+      "ui": true,
+      "inbound": 1,
+      "exports_count": 1,
+      "exports": [
+        "runSuperiorityComparison"
+      ],
+      "imports": [
+        "llm.js",
+        "domain_detection.js",
+        "rezo_engine.js",
+        "complexity_estimator.js",
+        "identity_gate.js",
+        "superiority_gating.js",
+        "superiority_metrics.js",
+        "superiority_deltas.js"
+      ],
+      "status": "live-ui"
     },
     {
       "module": "causal_compression_engine.js",
@@ -960,6 +960,24 @@
         "failure_extraction.js"
       ],
       "status": "dormant"
+    },
+    {
+      "module": "superiority_gating.js",
+      "loc": 44,
+      "reachable": true,
+      "dormant": false,
+      "scoring": true,
+      "ui": false,
+      "inbound": 1,
+      "exports_count": 2,
+      "exports": [
+        "SUPERIORITY_ROUTES",
+        "buildZoranSpecs"
+      ],
+      "imports": [
+        "route_specialization.js"
+      ],
+      "status": "live-scoring"
     },
     {
       "module": "colors.js",

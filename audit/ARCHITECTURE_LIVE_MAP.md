@@ -4,7 +4,7 @@
 > Re-run le script pour rafraîchir. Toute divergence = signal de dérive.
 
 - **mission_id** : ZORAN_V13_MAX_SECURITY_LAB_PROTOCOL_20260520
-- **généré le** : 2026-05-20T18:44:42.021Z
+- **généré le** : 2026-05-20T19:17:22.817Z
 - **entry point** : `main.js` (chargé par `index.html`)
 - **hub scoring** : `superiority.js`
 
@@ -12,9 +12,9 @@
 
 | Métrique | Valeur |
 |---|---|
-| Modules totaux | 51 |
-| LOC totales | 11219 |
-| Modules branchés (atteignables depuis main.js) | 38 |
+| Modules totaux | 52 |
+| LOC totales | 11240 |
+| Modules branchés (atteignables depuis main.js) | 39 |
 | Modules **dormants** (hors graphe) | **13** |
 | **LOC mortes** (dormantes) | **1957** (17.4%) |
 
@@ -41,9 +41,9 @@ est atteignable par BFS depuis `main.js`. Il est **dormant** sinon
 | `superiority_render.js` | 725 | oui | — | — | oui | 1 | non-vérifié | non | actif·UI |
 | `llm.js` | 609 | oui | — | oui | oui | 4 | non-vérifié | non | actif·scoring |
 | `rezo_engine.js` | 378 | oui | — | oui | — | 1 | non-vérifié | non | actif·scoring |
-| `superiority.js` | 279 | oui | — | — | oui | 1 | non-vérifié | non | actif·UI |
 | `btp_supremacy_engine.js` | 275 | oui | — | oui | — | 2 | non-vérifié | non | actif·scoring |
 | `parsimony_detector.js` | 264 | oui | — | oui | — | 3 | non-vérifié | non | actif·scoring |
+| `superiority.js` | 256 | oui | — | — | oui | 1 | non-vérifié | non | actif·UI |
 | `causal_compression_engine.js` | 254 | — | oui | — | — | 1 | non (mort) | non | DORMANT |
 | `ambiguity_detector.js` | 232 | oui | — | oui | — | 1 | non-vérifié | non | actif·scoring |
 | `adversarial_survivability_engine.js` | 212 | — | oui | — | — | 0 | non (mort) | non | DORMANT |
@@ -83,6 +83,7 @@ est atteignable par BFS depuis `main.js`. Il est **dormant** sinon
 | `seductive_complexity.js` | 72 | oui | — | oui | — | 2 | non-vérifié | non | actif·scoring |
 | `domain_leak.js` | 70 | oui | — | oui | — | 2 | non-vérifié | non | actif·scoring |
 | `response_surgery.js` | 65 | — | oui | — | — | 0 | non (mort) | non | DORMANT |
+| `superiority_gating.js` | 44 | oui | — | oui | — | 1 | non-vérifié | non | actif·scoring |
 | `colors.js` | 37 | oui | — | — | — | 1 | non-vérifié | non | actif |
 | `search.js` | 35 | oui | — | — | oui | 1 | non-vérifié | non | actif·UI |
 | `history.js` | 29 | oui | — | — | oui | 1 | non-vérifié | non | actif·UI |
