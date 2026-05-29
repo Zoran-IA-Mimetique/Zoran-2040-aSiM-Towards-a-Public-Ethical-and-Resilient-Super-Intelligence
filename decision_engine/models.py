@@ -132,10 +132,18 @@ class Dependency:
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> "Dependency":
+        # Le coefficient s'appelle "effect" dans le coeur et "weight" dans les
+        # modèles BTP : on accepte les deux pour rester plug-and-play.
+        if "effect" in data:
+            coeff = data["effect"]
+        elif "weight" in data:
+            coeff = data["weight"]
+        else:
+            raise KeyError("dépendance sans 'effect' ni 'weight'")
         return cls(
             source=data.get("from", data.get("source")),
             target=data.get("to", data.get("target")),
-            effect=float(data["effect"]),
+            effect=float(coeff),
         )
 
 
