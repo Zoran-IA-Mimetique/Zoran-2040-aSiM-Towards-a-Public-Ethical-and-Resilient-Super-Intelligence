@@ -62,6 +62,32 @@
             border-radius:999px; padding:5px 11px; font-size:12px; cursor:pointer;
             transition:border-color .2s ease, background .2s ease; }
     .chip:hover { border-color:var(--accent); background:#171a20; }
+
+    /* projets & comparaison */
+    .mini { background:var(--bg2); color:var(--fg); border:1px solid var(--line);
+            border-radius:8px; padding:5px 10px; font-size:12px; cursor:pointer;
+            transition:border-color .2s ease; }
+    .mini:hover { border-color:var(--accent); }
+    .proj { display:flex; align-items:center; gap:8px; padding:7px 0;
+            border-top:1px solid var(--line); }
+    .proj:first-child { border-top:none; }
+    .proj-name { flex:1; font-size:13px; font-weight:600; min-width:0;
+                 overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .cmp-table { width:100%; border-collapse:collapse; font-size:13px; }
+    .cmp-table th, .cmp-table td { text-align:left; padding:7px 9px;
+                 border-bottom:1px solid var(--line); }
+    .cmp-table th { color:var(--muted); font-size:11px; text-transform:uppercase;
+                 letter-spacing:.04em; }
+    .cmp-table td.ok { color:var(--ok); }
+    .cmp-table td.bad { color:var(--bad); }
+    .cmp-table td.mid { color:var(--warn); }
+    @media print {
+      .topbar, .col-input, footer, #exportbar { display:none !important; }
+      .layout { display:block; max-width:100%; }
+      .col-output { position:static; }
+      .card { border:none; box-shadow:none; padding:0; }
+      body { background:#fff; }
+    }
     .card-title { display:flex; align-items:center; gap:8px; font-weight:700; font-size:14px;
                   margin:0 0 12px; }
     .card-title .dot { width:8px; height:8px; border-radius:50%; background:var(--accent); }
@@ -165,11 +191,29 @@
       <h2 class="card-title"><span class="dot"></span>Cadres &amp; curseurs</h2>
       <div id="controls"></div>
     </div>
+
+    <div class="card">
+      <h2 class="card-title"><span class="dot"></span>Projets &amp; comparaison</h2>
+      <p class="hint" style="margin-top:-4px;margin-bottom:10px">Enregistre l'état courant (idée, curseurs, horizon, actualisation) — tout reste dans ton navigateur.</p>
+      <div class="row" style="margin-top:0">
+        <input type="text" id="projname" placeholder="nom du projet (ex: Variante biosourcée)" style="flex:1;min-width:140px">
+        <button class="primary" onclick="saveProject()">💾 Enregistrer</button>
+      </div>
+      <div id="projlist" style="margin-top:10px"></div>
+      <div class="row">
+        <button class="mini" onclick="compareSelected()">⚖️ Comparer la sélection</button>
+        <span class="hint">Coche 2–3 projets puis compare.</span>
+      </div>
+    </div>
    </section>
 
    <section class="col col-output">
     <div class="card">
       <h2 class="card-title"><span class="dot" style="background:var(--accent2)"></span>Décision du moteur</h2>
+      <div class="row" id="exportbar" style="margin-top:0;margin-bottom:4px">
+        <button class="mini" onclick="exportReport()">⬇️ Exporter (HTML)</button>
+        <button class="mini" onclick="window.print()">🖨️ Imprimer / PDF</button>
+      </div>
       <div id="report"><div class="empty">Lance une simulation pour voir la décision, les bilans et les suggestions.</div></div>
     </div>
    </section>
@@ -756,6 +800,146 @@ function setDiscount(v) {
   MODEL.discount_rate = +v;   // l'engine relit model.discount_rate
   render();
 }
+
+/* ===================== PROJETS · COMPARAISON · EXPORT ===================== */
+// Tout est stocké localement (localStorage) : aucun serveur, aucune fuite de données.
+const LS_KEY = "zoran_btp_projects_v1";
+function escapeHtml(s){ return String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function loadProjects(){ try { return JSON.parse(localStorage.getItem(LS_KEY)) || []; } catch(e){ return []; } }
+function saveProjects(list){ try { localStorage.setItem(LS_KEY, JSON.stringify(list)); } catch(e){ alert("Stockage local indisponible (mode privé ?)."); } }
+
+function snapshot(){
+  return {
+    name: (document.getElementById("projname").value || "").trim()
+          || ("Projet " + new Date().toLocaleString("fr-FR")),
+    idea: document.getElementById("idea").value || "",
+    horizon: HORIZON,
+    discount: MODEL.discount_rate || 0,
+    state: JSON.parse(JSON.stringify(state)),
+    ts: Date.now()
+  };
+}
+function saveProject(){
+  const list = loadProjects(), snap = snapshot();
+  const i = list.findIndex(p => p.name === snap.name);   // même nom -> remplace
+  if (i >= 0) list[i] = snap; else list.push(snap);
+  saveProjects(list);
+  document.getElementById("projname").value = "";
+  renderProjects();
+}
+function applySnapshot(snap){
+  document.getElementById("idea").value = snap.idea || "";
+  for (const k in state) if (snap.state && snap.state[k])
+    state[k] = { value: snap.state[k].value, active: snap.state[k].active };
+  for (const k in state) {  // resynchronise curseurs + bascules
+    const sl = controls.querySelector(`input[data-k="${k}"]`);
+    const tg = controls.querySelector(`.toggle[data-k="${k}"]`);
+    if (sl) { sl.value = state[k].value; document.getElementById("v-"+k).textContent = state[k].value.toFixed(2); }
+    if (tg) tg.classList.toggle("active", state[k].active);
+  }
+  HORIZON = snap.horizon;
+  document.getElementById("horizon").value = snap.horizon;
+  document.getElementById("hval").textContent = snap.horizon;
+  MODEL.discount_rate = snap.discount || 0;
+  document.getElementById("discount").value = String(snap.discount || 0);
+  render();
+}
+function renderProjects(){
+  const list = loadProjects(), box = document.getElementById("projlist");
+  if (!list.length) { box.innerHTML = `<div class="hint">Aucun projet enregistré pour l'instant.</div>`; return; }
+  box.innerHTML = list.map((p,i) => `
+    <div class="proj">
+      <input type="checkbox" class="cmp" data-i="${i}" style="width:auto" title="comparer">
+      <span class="proj-name" title="${escapeHtml(p.idea||"")}">${escapeHtml(p.name)}</span>
+      <button class="mini" data-act="load" data-i="${i}">Charger</button>
+      <button class="mini" data-act="del"  data-i="${i}" title="supprimer">✕</button>
+    </div>`).join("");
+}
+document.getElementById("projlist").addEventListener("click", e => {
+  const b = e.target.closest("button[data-act]"); if (!b) return;
+  const list = loadProjects(), i = +b.dataset.i, p = list[i]; if (!p) return;
+  if (b.dataset.act === "load") applySnapshot(p);
+  else if (b.dataset.act === "del") { list.splice(i,1); saveProjects(list); renderProjects(); }
+});
+
+function engineFromSnap(snap){
+  const eng = makeEngine(MODEL);
+  for (const k in snap.state) if (eng.frames[k]) {
+    eng.frames[k].value = clamp(snap.state[k].value);
+    eng.frames[k].active = snap.state[k].active;
+  }
+  return eng;
+}
+function verdicts(snap){
+  const prev = MODEL.discount_rate;
+  MODEL.discount_rate = snap.discount || 0;          // lifecycleCost lit model.discount_rate
+  const eng = engineFromSnap(snap), d = eng.explain();
+  const out = {
+    conforme: d.violations.length === 0,
+    lc: eng.lifecycleCarbon(snap.horizon),
+    cc: eng.lifecycleCost(snap.horizon),
+    rb: eng.robustness(snap.horizon),
+    score: d.score.active_score
+  };
+  MODEL.discount_rate = prev;
+  return out;
+}
+function compareSelected(){
+  const idx = [...document.querySelectorAll("#projlist .cmp:checked")].map(c => +c.dataset.i);
+  if (idx.length < 2) { alert("Coche au moins 2 projets à comparer."); return; }
+  const list = loadProjects(), snaps = idx.slice(0,3).map(i => list[i]);
+  const cols = snaps.map(s => ({ s, v: verdicts(s) }));
+  const cell = (ok,t,f) => `<td class="${ok?"ok":"bad"}">${ok?t:f}</td>`;
+  const fav = o => o ? `<td class="${o.favorable?"ok":"bad"}">${o.favorable?"Favorable":"Défavorable"}</td>` : `<td>—</td>`;
+  let h = `<div class="section">Comparaison de ${cols.length} projets</div>`;
+  h += `<table class="cmp-table"><thead><tr><th>Critère</th>`
+     + cols.map(c => `<th>${escapeHtml(c.s.name)}</th>`).join("") + `</tr></thead><tbody>`;
+  h += `<tr><td>Horizon</td>` + cols.map(c => `<td>${c.s.horizon} ans</td>`).join("") + `</tr>`;
+  h += `<tr><td>Conformité RE2020</td>` + cols.map(c => cell(c.v.conforme,"Conforme","Non conforme")).join("") + `</tr>`;
+  h += `<tr><td>Carbone — cycle de vie</td>` + cols.map(c => fav(c.v.lc)).join("") + `</tr>`;
+  h += `<tr><td>Coût — cycle de vie</td>` + cols.map(c => fav(c.v.cc)).join("") + `</tr>`;
+  h += `<tr><td>Robustesse</td>` + cols.map(c => c.v.rb ? `<td class="${c.v.rb.robuste?"ok":"mid"}">${c.v.rb.robuste?"Robuste":"Sensible"}</td>` : `<td>—</td>`).join("") + `</tr>`;
+  h += `<tr><td>Score actif</td>` + cols.map(c => `<td>${c.v.score}</td>`).join("") + `</tr>`;
+  h += `</tbody></table><div class="hint" style="margin-top:8px">« Charger » un projet pour revoir son détail complet.</div>`;
+  document.getElementById("report").innerHTML = h;
+}
+
+function exportReport(){
+  const repEl = document.getElementById("report");
+  if (!repEl || repEl.querySelector(".empty")) { alert("Lance d'abord une simulation."); return; }
+  const idea = (document.getElementById("idea").value || "").trim() || "(curseurs manuels)";
+  const body = repEl.innerHTML.replace(/<button[\s\S]*?<\/button>/g, "");  // retire les boutons interactifs
+  const css = `:root{--ok:#1a7f37;--warn:#9a6700;--bad:#cf222e;--muted:#6b7785;--line:#e2e6ea}
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;max-width:800px;margin:24px auto;padding:0 18px;color:#11161f;line-height:1.5}
+h1{font-size:21px;margin:0 0 4px}.meta{color:var(--muted);font-size:13px;margin-bottom:8px}
+.section{margin-top:18px;margin-bottom:4px;font-weight:700;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;border-top:1px solid var(--line);padding-top:12px}
+.line{font-size:14px;padding:3px 0}.line.ok::before{content:"\\2714 ";color:var(--ok)}.line.warn::before{content:"\\26A0 ";color:var(--warn)}.line.bad::before{content:"\\274C ";color:var(--bad)}.line.bad{color:var(--bad)}.line.sug::before{content:"\\1F449 "}
+.pill{font-size:11px;padding:2px 8px;border-radius:999px;background:#eef1f4;color:var(--muted)}.pill.ok{background:#e4f5e8;color:var(--ok)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-bottom:6px}
+.stat{border:1px solid var(--line);border-radius:10px;padding:9px 11px}.stat-k{display:block;font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}.stat-v{font-size:15px;font-weight:700}
+.stat.good .stat-v{color:var(--ok)}.stat.bad .stat-v{color:var(--bad)}.stat.mid .stat-v{color:var(--warn)}
+.cmp-table{width:100%;border-collapse:collapse;font-size:13px}.cmp-table th,.cmp-table td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)}.cmp-table th{color:var(--muted);font-size:11px;text-transform:uppercase}.cmp-table td.ok{color:var(--ok)}.cmp-table td.bad{color:var(--bad)}.cmp-table td.mid{color:var(--warn)}
+.foot{margin-top:24px;color:var(--muted);font-size:11px;border-top:1px solid var(--line);padding-top:10px}`;
+  const html = `<!doctype html><html lang="fr"><head><meta charset="utf-8">`
+    + `<meta name="viewport" content="width=device-width,initial-scale=1">`
+    + `<title>Rapport — Moteur BTP</title><style>${css}</style></head><body>`
+    + `<h1>Rapport de décision — Moteur BTP</h1>`
+    + `<div class="meta"><b>Idée :</b> ${escapeHtml(idea)}<br>`
+    + `<b>Horizon :</b> ${HORIZON} ans · <b>Actualisation :</b> ${Math.round((MODEL.discount_rate||0)*100)} %/an · `
+    + `<b>Généré le</b> ${escapeHtml(new Date().toLocaleString("fr-FR"))}</div>`
+    + body
+    + `<div class="foot">Moteur autonome de décision sous contraintes — verdicts calculés localement, aucune boîte noire.</div>`
+    + `</body></html>`;
+  const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `rapport-btp-${new Date().toISOString().slice(0,10)}.html`;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+renderProjects();
 render();
 </script>
 </body>
