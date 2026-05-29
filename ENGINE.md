@@ -54,6 +54,19 @@ Un système lourd à construire mais passif à l'usage est *défavorable en cour
 terme, favorable en long terme* : **changer l'horizon change la décision** — la
 philosophie des cadres appliquée au temps. Curseur « Horizon » dans l'UI.
 
+### Dimension ÉCONOMIQUE — coût total & ROI
+
+Miroir économique du carbone. `Engine.lifecycle_cost(horizon, discount_rate)` :
+
+* `global.cout_initial` = investissement (CAPEX), `global.cout_annuel` = exploitation/an (OPEX, suit l'énergie).
+* `total = CAPEX + OPEX × facteur d'annuité`, **actualisé** si `discount_rate`>0
+  (valeur temps de l'argent ; 0 = coût total brut).
+* `payback_years` (retour sur investissement) + `roi` (économies / investissement).
+* `favorable` = moins cher que le bâtiment de référence, à cet horizon.
+
+Comme le carbone : *non rentable en court terme, rentable en long terme*.
+Sélecteur de **taux d'actualisation** dans l'UI.
+
 ## Architecture (ZORAN full merge)
 
 ```

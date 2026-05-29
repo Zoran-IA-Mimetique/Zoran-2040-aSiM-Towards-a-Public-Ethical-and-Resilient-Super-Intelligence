@@ -73,6 +73,12 @@ class Engine:
         #   (conventionnel) servant à calculer le temps de retour carbone.
         self.horizon = float(horizon)
         self.carbone_baseline_annuel = float(baseline_annual)
+        # --- dimension ÉCONOMIQUE (coût sur cycle de vie) -----------------
+        # cout_baseline_annuel = exploitation annuelle d'un bâtiment de référence.
+        # discount_rate = taux d'actualisation (valeur temps de l'argent) ;
+        #   0.0 = coût total brut, >0 = coûts futurs actualisés (analyse réelle).
+        self.cout_baseline_annuel = float(baseline_annual)
+        self.discount_rate = 0.0
         self.history: List[Dict[str, Any]] = []
         self.sessions: List[Dict[str, Any]] = []
         self.experiences: List[Dict[str, Any]] = []
@@ -201,6 +207,64 @@ class Engine:
                           else "défavorable sur cet horizon")
         return out
 
+    @staticmethod
+    def _annuity_factor(years: float, rate: float) -> float:
+        """Facteur d'annuité : somme des coûts annuels (actualisés si ``rate``>0).
+
+        rate = 0 -> ``years`` (somme brute). rate > 0 -> Σ_{t=1..years} 1/(1+rate)^t.
+        """
+        if rate <= _EPS:
+            return years
+        n = int(round(years))
+        return sum(1.0 / (1.0 + rate) ** t for t in range(1, n + 1))
+
+    def lifecycle_cost(self, horizon: Optional[float] = None,
+                       baseline_annual: Optional[float] = None,
+                       discount_rate: Optional[float] = None) -> Optional[Dict[str, Any]]:
+        """Coût total sur la durée de vie + retour sur investissement (ROI).
+
+        Miroir économique de :meth:`lifecycle_carbon`. Un système sobre coûte
+        cher à l'investissement (CAPEX = ``global.cout_initial``) mais peu à
+        l'exploitation (OPEX = ``global.cout_annuel``). Sur la durée, il peut
+        devenir moins cher qu'un bâtiment conventionnel plus gourmand.
+
+        * ``total`` = CAPEX + OPEX × facteur d'annuité (actualisé si ``discount_rate``>0)
+        * ``payback_years`` = temps de retour de l'investissement
+        * ``roi`` = (économies sur l'horizon) / investissement
+        * ``favorable`` = total < total du bâtiment de référence, à cet horizon
+
+        Renvoie ``None`` si le modèle n'a pas la dimension coût cycle de vie.
+        """
+        if "global.cout_initial" not in self.frames or "global.cout_annuel" not in self.frames:
+            return None
+        h = self.horizon if horizon is None else float(horizon)
+        base = self.cout_baseline_annuel if baseline_annual is None else float(baseline_annual)
+        rate = self.discount_rate if discount_rate is None else float(discount_rate)
+        factor = self._annuity_factor(h, rate)
+        initial = self.frames["global.cout_initial"].value
+        annual = self.frames["global.cout_annuel"].value
+        total = initial + annual * factor
+        baseline_total = base * factor  # référence : CAPEX négligeable, OPEX élevé
+        out: Dict[str, Any] = {
+            "capex": round(initial, 3),
+            "opex_annuel": round(annual, 3),
+            "horizon": h,
+            "discount_rate": rate,
+            "baseline_annual": round(base, 3),
+            "total": round(total, 3),
+            "baseline_total": round(baseline_total, 3),
+        }
+        if base - annual > _EPS:
+            out["payback_years"] = round(initial / (base - annual), 1)
+            out["roi"] = round((baseline_total - total) / initial, 2) if initial > _EPS else None
+        else:
+            out["payback_years"] = None
+            out["roi"] = None
+        out["favorable"] = total < baseline_total - _EPS
+        out["verdict"] = ("rentable sur cet horizon" if out["favorable"]
+                          else "non rentable sur cet horizon")
+        return out
+
     # -- scoring (pondéré, normalisé) -----------------------------------
     def compute_score(self) -> Dict[str, float]:
         """Scores pondérés normalisés. ``gap`` = total - actif (comparables)."""
@@ -243,6 +307,9 @@ class Engine:
         lifecycle = self.lifecycle_carbon()
         if lifecycle is not None:
             result["lifecycle"] = lifecycle
+        lifecycle_cost = self.lifecycle_cost()
+        if lifecycle_cost is not None:
+            result["lifecycle_cost"] = lifecycle_cost
         return result
 
     # -- scénarios ------------------------------------------------------
@@ -475,6 +542,9 @@ def run_from_json(engine: "Engine", payload: Dict[str, Any], *,
     horizon = payload.get("horizon", context.get("horizon"))
     if horizon is not None:
         engine.horizon = float(horizon)
+    discount = payload.get("discount_rate", context.get("discount_rate"))
+    if discount is not None:
+        engine.discount_rate = float(discount)
 
     for name, delta in (payload.get("deltas") or {}).items():
         engine.apply_delta(name, float(delta))
@@ -487,6 +557,7 @@ def run_from_json(engine: "Engine", payload: Dict[str, Any], *,
         "score": state["score"],
         "violations": [m for *_, m in state["violations"]],
         "lifecycle": state.get("lifecycle"),
+        "lifecycle_cost": state.get("lifecycle_cost"),
         "suggestions": [s["message"] for s in engine.suggest_actions()],
         "auto_adjust": adjust,
         "context": context,
@@ -509,6 +580,8 @@ def create_btp_engine() -> Engine:
         "global.surface": Frame(0.7, False, 1.0),
         "global.carbone": Frame(0.6, False, 1.8),      # carbone de CONSTRUCTION (embodied)
         "global.carbone_annuel": Frame(0.3, False, 1.0),  # carbone d'USAGE / an
+        "global.cout_initial": Frame(0.6, False, 1.2),    # investissement (CAPEX)
+        "global.cout_annuel": Frame(0.3, False, 1.0),     # exploitation / an (OPEX)
     }
     deps = [
         Dependency("mur.isolation", "systeme.energie", -0.5),
@@ -523,6 +596,9 @@ def create_btp_engine() -> Engine:
         Dependency("systeme.energie", "global.carbone", 0.25),
         # le carbone d'USAGE suit la consommation d'énergie (réalité métier)
         Dependency("systeme.energie", "global.carbone_annuel", 0.5),
+        # l'exploitation (OPEX) suit aussi l'énergie ; l'isolation alourdit le CAPEX
+        Dependency("systeme.energie", "global.cout_annuel", 0.4),
+        Dependency("mur.isolation", "global.cout_initial", 0.3),
     ]
     constraints = {
         "global.carbone": {"max": 0.65},

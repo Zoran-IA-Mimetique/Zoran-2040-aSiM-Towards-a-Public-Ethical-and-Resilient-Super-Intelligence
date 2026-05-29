@@ -150,3 +150,51 @@ def test_translator_detects_time_and_passive_heavy():
     assert p["context"]["horizon"] == 25.0
     assert p["frames"]["global.carbone"]["value"] == 0.85     # construction lourde
     assert p["frames"]["global.carbone_annuel"]["value"] == 0.2  # usage passif
+    assert p["frames"]["global.cout_initial"]["value"] == 0.8    # investissement lourd
+    assert p["frames"]["global.cout_annuel"]["value"] == 0.2     # exploitation sobre
+
+
+# -- coût sur cycle de vie / ROI --------------------------------------------
+def test_lifecycle_cost_returns_none_without_cost_frames():
+    from btp_engine import Engine, Frame
+    eng = Engine({"x": Frame(0.5)}, [])
+    assert eng.lifecycle_cost() is None
+
+
+def test_lifecycle_cost_total_and_roi():
+    engine = create_btp_engine()
+    engine.frames["global.cout_initial"].value = 0.85
+    engine.frames["global.cout_annuel"].value = 0.15
+    c = engine.lifecycle_cost(horizon=30, baseline_annual=0.5, discount_rate=0.0)
+    assert c["total"] == pytest.approx(0.85 + 0.15 * 30)        # 5.35
+    assert c["baseline_total"] == pytest.approx(0.5 * 30)        # 15.0
+    assert c["payback_years"] == pytest.approx(0.85 / (0.5 - 0.15), abs=0.1)
+    assert c["roi"] > 0 and c["favorable"] is True
+
+
+def test_lifecycle_cost_verdict_flips_with_horizon():
+    engine = create_btp_engine()
+    engine.frames["global.cout_initial"].value = 0.85
+    engine.frames["global.cout_annuel"].value = 0.15
+    assert engine.lifecycle_cost(horizon=1)["favorable"] is False   # non rentable court terme
+    assert engine.lifecycle_cost(horizon=30)["favorable"] is True   # rentable long terme
+
+
+def test_discount_rate_lowers_total():
+    engine = create_btp_engine()
+    engine.frames["global.cout_initial"].value = 0.85
+    engine.frames["global.cout_annuel"].value = 0.15
+    brut = engine.lifecycle_cost(horizon=30, discount_rate=0.0)["total"]
+    actualise = engine.lifecycle_cost(horizon=30, discount_rate=0.04)["total"]
+    assert actualise < brut   # les coûts futurs actualisés pèsent moins
+
+
+def test_run_from_json_returns_lifecycle_cost_and_discount():
+    engine = create_btp_engine()
+    payload = {"frames": {"global.cout_initial": {"value": 0.8, "active": True},
+                          "global.cout_annuel": {"value": 0.2, "active": True}},
+               "deltas": {}, "context": {"horizon": 30, "discount_rate": 0.04}}
+    out = run_from_json(engine, payload, auto_adjust=False)
+    assert engine.discount_rate == 0.04
+    assert out["lifecycle_cost"] is not None
+    assert out["lifecycle_cost"]["discount_rate"] == 0.04

@@ -140,12 +140,14 @@ def translate_idea(idea: str) -> Dict[str, Any]:
             deltas[frame] = round(delta, 3)
 
     # --- dimension cycle de vie (temps) -------------------------------
-    # Système passif (forte inertie, solaire…) -> carbone d'USAGE faible.
+    # Système passif (forte inertie, solaire…) -> usage sobre : carbone ET coût d'usage faibles.
     if re.search(_PASSIVE, text):
         frames["global.carbone_annuel"] = {"value": 0.2, "active": True, "weight": 1.0}
-    # Construction lourde (béton, excavation, poche d'eau…) -> carbone INITIAL élevé.
+        frames["global.cout_annuel"] = {"value": 0.2, "active": True, "weight": 1.0}
+    # Construction lourde (béton, excavation, poche d'eau…) -> carbone ET investissement élevés.
     if re.search(_HEAVY, text):
         frames["global.carbone"] = {"value": 0.85, "active": True, "weight": 1.8}
+        frames["global.cout_initial"] = {"value": 0.8, "active": True, "weight": 1.2}
 
     # Repli : si rien n'est reconnu, on cible l'énergie (cadre par défaut).
     if not frames:
@@ -210,6 +212,7 @@ if __name__ == "__main__":
     r = out["result"]
     print("  actifs     :", {k: v["value"] for k, v in r["active"].items()})
     print("  violations :", r["violations"] or "aucune")
-    print("  cycle de vie:", r["lifecycle"])
+    print("  carbone cycle:", r["lifecycle"])
+    print("  coût cycle  :", r["lifecycle_cost"])
     print("  auto_adjust:", r["auto_adjust"])
     print("  suggestions:", r["suggestions"] or "aucune")

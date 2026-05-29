@@ -61,6 +61,16 @@
       <div style="font-size:12px;color:var(--muted)">
         Le carbone de construction est lourd, l'usage est sobre : le verdict dépend de la durée.
       </div>
+      <div style="margin-top:8px;font-size:13px">
+        💶 Taux d'actualisation (coût)
+        <select id="discount" onchange="setDiscount(this.value)"
+          style="background:#0d1117;color:var(--fg);border:1px solid #30363d;border-radius:6px;padding:3px 6px">
+          <option value="0">0 % (coût total brut)</option>
+          <option value="0.02">2 %/an</option>
+          <option value="0.04">4 %/an</option>
+          <option value="0.06">6 %/an</option>
+        </select>
+      </div>
     </div>
     <pre id="jsonout" style="display:none;margin-top:10px"></pre>
   </div>
@@ -84,6 +94,8 @@ const MODEL = {
     "global.surface":    { value:0.7, active:false, weight:1.0 },
     "global.carbone":    { value:0.6, active:false, weight:1.8 },  // construction (embodied)
     "global.carbone_annuel":{value:0.3, active:false, weight:1.0 }, // usage / an
+    "global.cout_initial":{ value:0.6, active:false, weight:1.2 }, // investissement (CAPEX)
+    "global.cout_annuel": { value:0.3, active:false, weight:1.0 }, // exploitation/an (OPEX)
   },
   deps: [
     ["mur.isolation","systeme.energie",-0.5],
@@ -97,14 +109,17 @@ const MODEL = {
     ["systeme.cout","global.surface",-0.1],
     ["systeme.energie","global.carbone",0.25],
     ["systeme.energie","global.carbone_annuel",0.5],   // carbone d'usage suit l'energie
+    ["systeme.energie","global.cout_annuel",0.4],      // exploitation suit l'energie
+    ["mur.isolation","global.cout_initial",0.3],       // isolation alourdit l'investissement
   ],
   constraints: {
     "global.carbone": { max:0.65 },
     "systeme.energie": { max:0.4 },
     "toiture.cout": { max:0.8 },
   },
-  horizon: 30,            // cadre temporel par defaut (annees)
-  baseline_annual: 0.5,   // batiment de reference pour le retour carbone
+  horizon: 30,             // cadre temporel par defaut (annees)
+  baseline_annual: 0.5,    // batiment de reference (carbone ET cout d'usage)
+  discount_rate: 0.0,      // taux d'actualisation (valeur temps de l'argent)
 };
 const EPS = 1e-9;
 const clamp = v => Math.max(0, Math.min(1, v));
@@ -234,7 +249,33 @@ function makeEngine(model, gamma=1.0) {
       favorable, verdict: favorable ? "favorable sur cet horizon" : "défavorable sur cet horizon",
     };
   }
-  return { frames, applyDelta, explain, suggestActions, autoAdjust, totalViolation, inject, lifecycleCarbon };
+  function annuityFactor(years, rate) {
+    if (rate <= EPS) return years;
+    let f = 0; const n = Math.round(years);
+    for (let t = 1; t <= n; t++) f += 1 / Math.pow(1 + rate, t);
+    return f;
+  }
+  function lifecycleCost(horizon, baseline, rate) {
+    if (!("global.cout_initial" in frames) || !("global.cout_annuel" in frames)) return null;
+    const h = horizon == null ? (model.horizon || 30) : +horizon;
+    const base = baseline == null ? (model.baseline_annual || 0.5) : +baseline;
+    const r = rate == null ? (model.discount_rate || 0) : +rate;
+    const factor = annuityFactor(h, r);
+    const capex = frames["global.cout_initial"].value;
+    const opex = frames["global.cout_annuel"].value;
+    const total = capex + opex * factor;
+    const baseline_total = base * factor;
+    const favorable = total < baseline_total - EPS;
+    const sober = base - opex > EPS;
+    return {
+      capex:+capex.toFixed(3), opex_annuel:+opex.toFixed(3), horizon:h, discount_rate:r,
+      total:+total.toFixed(3), baseline_total:+baseline_total.toFixed(3),
+      payback_years: sober ? +(capex/(base-opex)).toFixed(1) : null,
+      roi: (sober && capex > EPS) ? +((baseline_total-total)/capex).toFixed(2) : null,
+      favorable, verdict: favorable ? "rentable sur cet horizon" : "non rentable sur cet horizon",
+    };
+  }
+  return { frames, applyDelta, explain, suggestActions, autoAdjust, totalViolation, inject, lifecycleCarbon, lifecycleCost };
 }
 
 /* ===================== TRADUCTEUR (porté de translator.py) ===================== */
@@ -368,6 +409,8 @@ const UI_FRAMES = [
   ["global.surface","Surface"],
   ["global.carbone","Carbone construction"],
   ["global.carbone_annuel","Carbone usage/an"],
+  ["global.cout_initial","Investissement (CAPEX)"],
+  ["global.cout_annuel","Exploitation/an (OPEX)"],
 ];
 const state = {};
 for (const k in MODEL.frames) state[k] = { value: MODEL.frames[k].value, active: MODEL.frames[k].active };
@@ -433,6 +476,18 @@ function renderEngine(eng) {
           + (lc.payback_years != null ? ` · retour carbone ≈ ${lc.payback_years} ans` : ``) + `</div>`;
     html += `<div class="line ${cls}">${mark} ${lc.verdict}</div>`;
   }
+  const cc = eng.lifecycleCost(HORIZON);
+  if (cc) {
+    const cls = cc.favorable ? "ok" : "bad";
+    const mark = cc.favorable ? "✔" : "❌";
+    const act = cc.discount_rate > 0 ? ` · actualisé ${(cc.discount_rate*100).toFixed(0)}%/an` : ``;
+    html += `<div class="section">Coût total — cycle de vie (${cc.horizon} ans${act})</div>`;
+    html += `<div class="line">investissement : ${cc.capex} · exploitation/an : ${cc.opex_annuel}</div>`;
+    html += `<div class="line">total ${cc.total} vs référence ${cc.baseline_total}`
+          + (cc.payback_years != null ? ` · retour invest. ≈ ${cc.payback_years} ans` : ``)
+          + (cc.roi != null ? ` · ROI ${cc.roi}` : ``) + `</div>`;
+    html += `<div class="line ${cls}">${mark} ${cc.verdict}</div>`;
+  }
   html += `<div class="section">Score</div>`;
   html += `<div class="line">actif ${d.score.active_score} · total ${d.score.total_score} · écart ignorés ${d.score.gap}</div>`;
   document.getElementById("report").innerHTML = html;
@@ -442,6 +497,10 @@ let HORIZON = MODEL.horizon;
 function setHorizon(v) {
   HORIZON = +v;
   document.getElementById("hval").textContent = v;
+  render();
+}
+function setDiscount(v) {
+  MODEL.discount_rate = +v;   // l'engine relit model.discount_rate
   render();
 }
 render();
