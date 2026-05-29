@@ -55,7 +55,8 @@ class Scenario:
 class Engine:
     def __init__(self, frames: Dict[str, Frame], deps: List[Dependency],
                  constraints: Optional[Dict[str, Dict[str, float]]] = None,
-                 gamma: float = 1.0):
+                 gamma: float = 1.0, horizon: float = 30.0,
+                 baseline_annual: float = 0.5):
         self.frames = frames
         self.deps = deps
         self.constraints = constraints or {}
@@ -65,6 +66,13 @@ class Engine:
         #     les petits ajustements pèsent moins (0.3**2 = 0.09), les grands
         #     dominent. C'est volontairement *atténuant*, pas explosif.
         self.gamma = gamma
+        # --- dimension TEMPS (cycle de vie) -------------------------------
+        # horizon = durée d'évaluation en ANNÉES (pas un cadre [0,1] : c'est un
+        #   paramètre du cadre temporel, pas une variable physique normalisée).
+        # baseline_annual = intensité carbone annuelle d'un bâtiment de référence
+        #   (conventionnel) servant à calculer le temps de retour carbone.
+        self.horizon = float(horizon)
+        self.carbone_baseline_annuel = float(baseline_annual)
         self.history: List[Dict[str, Any]] = []
         self.sessions: List[Dict[str, Any]] = []
         self.experiences: List[Dict[str, Any]] = []
@@ -143,6 +151,56 @@ class Engine:
                                    f"⚠️ {key} = {value:.2f} (min: {rule['min']})"))
         return violations
 
+    # -- cycle de vie (dimension temps) ---------------------------------
+    def lifecycle_carbon(self, horizon: Optional[float] = None,
+                         baseline_annual: Optional[float] = None) -> Optional[Dict[str, Any]]:
+        """Bilan carbone sur la durée de vie (corrige le biais « instantané ».
+
+        Le moteur, par défaut, ne voit que le carbone de **construction**
+        (``global.carbone``, alimenté par l'épaisseur/les matériaux). Un système
+        à forte inertie est *lourd à construire mais quasi passif à l'usage* :
+        évalué à t=0 il est rejeté à tort. On ajoute donc le temps.
+
+        Indicateurs (tous dans l'échelle normalisée des cadres) :
+
+        * ``cumulative``  = carbone_initial + carbone_annuel × horizon
+        * ``per_year``    = (initial + annuel × H) / (H + 1)  — intensité amortie,
+          bornée dans [0,1] : vaut l'initial à H=0, tend vers l'annuel quand H↑
+          (exactement l'amortissement RE2020 du carbone construction).
+        * ``payback_years`` = horizon à partir duquel le surcoût carbone de
+          construction est remboursé par les économies d'usage face à un
+          bâtiment de référence (``baseline_annual``).
+        * ``favorable``   = verdict AU cadre temporel courant (cumulé < référence).
+
+        Renvoie ``None`` si le modèle n'a pas la dimension carbone annuelle.
+        """
+        if "global.carbone" not in self.frames or "global.carbone_annuel" not in self.frames:
+            return None
+        h = self.horizon if horizon is None else float(horizon)
+        base = self.carbone_baseline_annuel if baseline_annual is None else float(baseline_annual)
+        initial = self.frames["global.carbone"].value
+        annual = self.frames["global.carbone_annuel"].value
+        cumulative = initial + annual * h
+        per_year = cumulative / (h + 1.0)
+        out: Dict[str, Any] = {
+            "initial": round(initial, 3),
+            "annual": round(annual, 3),
+            "horizon": h,
+            "baseline_annual": round(base, 3),
+            "cumulative": round(cumulative, 3),
+            "cumulative_baseline": round(base * h, 3),
+            "per_year": round(per_year, 3),
+        }
+        # Temps de retour : ne se calcule que si l'usage est plus sobre que la réf.
+        if base - annual > _EPS:
+            out["payback_years"] = round(initial / (base - annual), 1)
+        else:
+            out["payback_years"] = None  # pas d'économie d'usage -> jamais remboursé
+        out["favorable"] = cumulative < base * h - _EPS
+        out["verdict"] = ("favorable sur cet horizon" if out["favorable"]
+                          else "défavorable sur cet horizon")
+        return out
+
     # -- scoring (pondéré, normalisé) -----------------------------------
     def compute_score(self) -> Dict[str, float]:
         """Scores pondérés normalisés. ``gap`` = total - actif (comparables)."""
@@ -178,10 +236,14 @@ class Engine:
                 if self.frames[src].active:
                     pressure += self.frames[src].value * weight
             impacts[name] = round(pressure, 3)
-        return {
+        result = {
             "active": active, "ignored": ignored, "impacts": impacts,
             "score": self.compute_score(), "violations": self.check_constraints(),
         }
+        lifecycle = self.lifecycle_carbon()
+        if lifecycle is not None:
+            result["lifecycle"] = lifecycle
+        return result
 
     # -- scénarios ------------------------------------------------------
     def _snapshot_full(self) -> Dict[str, Tuple[float, bool]]:
@@ -408,6 +470,12 @@ def run_from_json(engine: "Engine", payload: Dict[str, Any], *,
             )
     engine._build_graph()
 
+    # cadre temporel : horizon en années (payload ou context), pour le cycle de vie
+    context = payload.get("context") or {}
+    horizon = payload.get("horizon", context.get("horizon"))
+    if horizon is not None:
+        engine.horizon = float(horizon)
+
     for name, delta in (payload.get("deltas") or {}).items():
         engine.apply_delta(name, float(delta))
 
@@ -418,9 +486,10 @@ def run_from_json(engine: "Engine", payload: Dict[str, Any], *,
         "ignored": state["ignored"],
         "score": state["score"],
         "violations": [m for *_, m in state["violations"]],
+        "lifecycle": state.get("lifecycle"),
         "suggestions": [s["message"] for s in engine.suggest_actions()],
         "auto_adjust": adjust,
-        "context": payload.get("context", {}),
+        "context": context,
     }
 
 
@@ -438,7 +507,8 @@ def create_btp_engine() -> Engine:
         "systeme.cout": Frame(0.5, True, 1.2),
         "systeme.maintenance": Frame(0.5, False, 0.9),
         "global.surface": Frame(0.7, False, 1.0),
-        "global.carbone": Frame(0.6, False, 1.8),
+        "global.carbone": Frame(0.6, False, 1.8),      # carbone de CONSTRUCTION (embodied)
+        "global.carbone_annuel": Frame(0.3, False, 1.0),  # carbone d'USAGE / an
     }
     deps = [
         Dependency("mur.isolation", "systeme.energie", -0.5),
@@ -451,6 +521,8 @@ def create_btp_engine() -> Engine:
         Dependency("toiture.isolation", "toiture.cout", 0.3),
         Dependency("systeme.cout", "global.surface", -0.1),
         Dependency("systeme.energie", "global.carbone", 0.25),
+        # le carbone d'USAGE suit la consommation d'énergie (réalité métier)
+        Dependency("systeme.energie", "global.carbone_annuel", 0.5),
     ]
     constraints = {
         "global.carbone": {"max": 0.65},

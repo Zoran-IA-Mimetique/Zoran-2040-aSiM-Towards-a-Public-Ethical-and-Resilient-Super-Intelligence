@@ -38,6 +38,22 @@ idée libre ──translator──▶ JSON {frames, deltas, context} ──run_f
 ajuste les *leviers d'entrée* (racines du graphe) pour ramener la solution dans
 les contraintes (faisabilité RE2020), et dit si elle y parvient.
 
+### Dimension TEMPS — carbone sur cycle de vie
+
+Le carbone de construction (`global.carbone`, instantané) reste une contrainte
+RE2020 dure. Par-dessus, `Engine.lifecycle_carbon(horizon)` ajoute le temps :
+
+* `global.carbone_annuel` = carbone d'**usage** par an (suit l'énergie).
+* `horizon` = cadre temporel en **années** (paramètre du moteur, pas un cadre `[0,1]`).
+* `per_year = (initial + annuel × H) / (H + 1)` — intensité amortie, bornée [0,1]
+  (amortissement RE2020 du carbone construction).
+* `payback_years` = temps de retour carbone face à un bâtiment de référence.
+* `favorable` = verdict **au cadre temporel courant**.
+
+Un système lourd à construire mais passif à l'usage est *défavorable en court
+terme, favorable en long terme* : **changer l'horizon change la décision** — la
+philosophie des cadres appliquée au temps. Curseur « Horizon » dans l'UI.
+
 ## Architecture (ZORAN full merge)
 
 ```

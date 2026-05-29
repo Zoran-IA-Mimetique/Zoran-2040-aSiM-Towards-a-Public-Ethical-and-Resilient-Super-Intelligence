@@ -74,8 +74,23 @@ _KEYWORDS: List[Tuple[str, str]] = [
 _REDUCE = r"rédui|redui|baiss|diminu|minimis|moins|limit|économis|economis|abaiss"
 _INCREASE = r"augment|maximis|amélior|amelior|renforc|booster|accro[iî]tre|plus de|davantage"
 _INNOVATION = r"innov|nouveau|nouvelle|concept|prototype|inédit|inedit|breveté|brevete|idée|idee"
+# systèmes passifs (carbone d'usage faible) et constructions lourdes (carbone initial élevé)
+_PASSIVE = r"passif|inertie|autonome|stockage thermique|géothermie|geothermie|solaire|renouvelable|gravitaire"
+_HEAVY = r"béton|beton|excavation|infrastructure|lourd|terrassement|fondation|massif|poche d'eau|réseau|reseau"
 
 _DELTA = 0.2
+
+
+def _detect_horizon(text: str):
+    """Détecte un cadre temporel (années) dans l'idée. None si absent."""
+    m = re.search(r"(\d+)\s*(?:ans|ann[ée]e)", text)
+    if m:
+        return float(m.group(1))
+    if re.search(r"long terme|cycle de vie|durée de vie|duree de vie|amorti", text):
+        return 30.0
+    if re.search(r"court terme|immédiat|immediat", text):
+        return 2.0
+    return None
 
 
 def _detect_frames(text: str) -> List[str]:
@@ -124,6 +139,14 @@ def translate_idea(idea: str) -> Dict[str, Any]:
         if delta:
             deltas[frame] = round(delta, 3)
 
+    # --- dimension cycle de vie (temps) -------------------------------
+    # Système passif (forte inertie, solaire…) -> carbone d'USAGE faible.
+    if re.search(_PASSIVE, text):
+        frames["global.carbone_annuel"] = {"value": 0.2, "active": True, "weight": 1.0}
+    # Construction lourde (béton, excavation, poche d'eau…) -> carbone INITIAL élevé.
+    if re.search(_HEAVY, text):
+        frames["global.carbone"] = {"value": 0.85, "active": True, "weight": 1.8}
+
     # Repli : si rien n'est reconnu, on cible l'énergie (cadre par défaut).
     if not frames:
         value, weight, _ = _FRAME_DEFAULTS["systeme.energie"]
@@ -133,15 +156,16 @@ def translate_idea(idea: str) -> Dict[str, Any]:
     # confiance : croît avec le nombre de cadres reconnus, plafonnée.
     confidence = round(min(0.9, 0.4 + 0.15 * len(frames_found)), 2)
 
-    return {
-        "frames": frames,
-        "deltas": deltas,
-        "context": {
-            "idea": idea.strip()[:160],
-            "type": idea_type,
-            "confidence": confidence,
-        },
+    context: Dict[str, Any] = {
+        "idea": idea.strip()[:160],
+        "type": idea_type,
+        "confidence": confidence,
     }
+    horizon = _detect_horizon(text)
+    if horizon is not None:
+        context["horizon"] = horizon
+
+    return {"frames": frames, "deltas": deltas, "context": context}
 
 
 def translate_idea_llm(idea: str, call_llm: Callable[[str, str], str]) -> Dict[str, Any]:
@@ -186,5 +210,6 @@ if __name__ == "__main__":
     r = out["result"]
     print("  actifs     :", {k: v["value"] for k, v in r["active"].items()})
     print("  violations :", r["violations"] or "aucune")
+    print("  cycle de vie:", r["lifecycle"])
     print("  auto_adjust:", r["auto_adjust"])
     print("  suggestions:", r["suggestions"] or "aucune")

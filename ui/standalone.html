@@ -51,6 +51,17 @@
       </label>
       <span id="micstatus" style="font-size:12px;color:var(--muted)"></span>
     </div>
+    <div style="margin-top:12px">
+      <div style="display:flex;justify-content:space-between;font-size:13px">
+        <span>⏳ Horizon d'évaluation (cadre temporel)</span>
+        <span><b id="hval">30</b> ans</span>
+      </div>
+      <input type="range" id="horizon" min="1" max="50" step="1" value="30"
+        style="width:100%" oninput="setHorizon(this.value)">
+      <div style="font-size:12px;color:var(--muted)">
+        Le carbone de construction est lourd, l'usage est sobre : le verdict dépend de la durée.
+      </div>
+    </div>
     <pre id="jsonout" style="display:none;margin-top:10px"></pre>
   </div>
 
@@ -71,7 +82,8 @@ const MODEL = {
     "systeme.cout":      { value:0.5, active:true,  weight:1.2 },
     "systeme.maintenance":{value:0.5, active:false, weight:0.9 },
     "global.surface":    { value:0.7, active:false, weight:1.0 },
-    "global.carbone":    { value:0.6, active:false, weight:1.8 },
+    "global.carbone":    { value:0.6, active:false, weight:1.8 },  // construction (embodied)
+    "global.carbone_annuel":{value:0.3, active:false, weight:1.0 }, // usage / an
   },
   deps: [
     ["mur.isolation","systeme.energie",-0.5],
@@ -84,12 +96,15 @@ const MODEL = {
     ["toiture.isolation","toiture.cout",0.3],
     ["systeme.cout","global.surface",-0.1],
     ["systeme.energie","global.carbone",0.25],
+    ["systeme.energie","global.carbone_annuel",0.5],   // carbone d'usage suit l'energie
   ],
   constraints: {
     "global.carbone": { max:0.65 },
     "systeme.energie": { max:0.4 },
     "toiture.cout": { max:0.8 },
   },
+  horizon: 30,            // cadre temporel par defaut (annees)
+  baseline_annual: 0.5,   // batiment de reference pour le retour carbone
 };
 const EPS = 1e-9;
 const clamp = v => Math.max(0, Math.min(1, v));
@@ -202,7 +217,24 @@ function makeEngine(model, gamma=1.0) {
     if ("active" in spec) frames[name].active = !!spec.active;
     if ("weight" in spec) frames[name].weight = spec.weight;
   }
-  return { frames, applyDelta, explain, suggestActions, autoAdjust, totalViolation, inject };
+  function lifecycleCarbon(horizon, baseline) {
+    if (!("global.carbone" in frames) || !("global.carbone_annuel" in frames)) return null;
+    const h = horizon == null ? (model.horizon || 30) : +horizon;
+    const base = baseline == null ? (model.baseline_annual || 0.5) : +baseline;
+    const initial = frames["global.carbone"].value;
+    const annual = frames["global.carbone_annuel"].value;
+    const cumulative = initial + annual * h;
+    const per_year = cumulative / (h + 1);
+    const favorable = cumulative < base * h - EPS;
+    return {
+      initial:+initial.toFixed(3), annual:+annual.toFixed(3), horizon:h,
+      baseline_annual:+base.toFixed(3), cumulative:+cumulative.toFixed(3),
+      cumulative_baseline:+(base*h).toFixed(3), per_year:+per_year.toFixed(3),
+      payback_years: (base - annual > EPS) ? +(initial/(base-annual)).toFixed(1) : null,
+      favorable, verdict: favorable ? "favorable sur cet horizon" : "défavorable sur cet horizon",
+    };
+  }
+  return { frames, applyDelta, explain, suggestActions, autoAdjust, totalViolation, inject, lifecycleCarbon };
 }
 
 /* ===================== TRADUCTEUR (porté de translator.py) ===================== */
@@ -255,6 +287,11 @@ function translateIdea(idea) {
 function runIdea() {
   const idea = document.getElementById("idea").value || "";
   const payload = translateIdea(idea);
+  // cadre temporel détecté dans l'idée -> curseur horizon
+  if (payload.context && payload.context.horizon != null) {
+    setHorizon(payload.context.horizon);
+    document.getElementById("horizon").value = payload.context.horizon;
+  }
   const eng = makeEngine(MODEL);
   for (const k in payload.frames) eng.inject(k, payload.frames[k]);
   for (const k in (payload.deltas||{})) eng.applyDelta(k, payload.deltas[k]);
@@ -329,7 +366,8 @@ const UI_FRAMES = [
   ["systeme.energie","Énergie"],
   ["systeme.cout","Coût"],
   ["global.surface","Surface"],
-  ["global.carbone","Carbone"],
+  ["global.carbone","Carbone construction"],
+  ["global.carbone_annuel","Carbone usage/an"],
 ];
 const state = {};
 for (const k in MODEL.frames) state[k] = { value: MODEL.frames[k].value, active: MODEL.frames[k].active };
@@ -385,9 +423,26 @@ function renderEngine(eng) {
     html += `<div class="section">Suggestions</div>`;
     sugg.forEach(s => html += `<div class="line sug">${s.message}</div>`);
   }
+  const lc = eng.lifecycleCarbon(HORIZON);
+  if (lc) {
+    const cls = lc.favorable ? "ok" : "bad";
+    const mark = lc.favorable ? "✔" : "❌";
+    html += `<div class="section">Bilan carbone — cycle de vie (${lc.horizon} ans)</div>`;
+    html += `<div class="line">construction : ${lc.initial} · usage/an : ${lc.annual} · amorti/an : ${lc.per_year}</div>`;
+    html += `<div class="line">cumulé ${lc.cumulative} vs référence ${lc.cumulative_baseline}`
+          + (lc.payback_years != null ? ` · retour carbone ≈ ${lc.payback_years} ans` : ``) + `</div>`;
+    html += `<div class="line ${cls}">${mark} ${lc.verdict}</div>`;
+  }
   html += `<div class="section">Score</div>`;
   html += `<div class="line">actif ${d.score.active_score} · total ${d.score.total_score} · écart ignorés ${d.score.gap}</div>`;
   document.getElementById("report").innerHTML = html;
+}
+
+let HORIZON = MODEL.horizon;
+function setHorizon(v) {
+  HORIZON = +v;
+  document.getElementById("hval").textContent = v;
+  render();
 }
 render();
 </script>

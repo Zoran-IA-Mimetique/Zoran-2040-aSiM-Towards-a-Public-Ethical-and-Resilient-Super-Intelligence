@@ -92,3 +92,61 @@ def test_idea_payload_shape():
     assert set(out) == {"payload", "result"}
     assert "violations" in out["result"]
     assert "auto_adjust" in out["result"]
+
+
+# -- cycle de vie (dimension temps) -----------------------------------------
+def test_lifecycle_returns_none_without_carbon_frames():
+    from btp_engine import Engine, Frame
+    eng = Engine({"x": Frame(0.5)}, [])
+    assert eng.lifecycle_carbon() is None
+
+
+def test_lifecycle_formula():
+    engine = create_btp_engine()
+    engine.frames["global.carbone"].value = 0.9       # construction lourde
+    engine.frames["global.carbone_annuel"].value = 0.1  # usage sobre
+    lc = engine.lifecycle_carbon(horizon=10, baseline_annual=0.5)
+    assert lc["cumulative"] == pytest.approx(0.9 + 0.1 * 10)        # 1.9
+    assert lc["per_year"] == pytest.approx((0.9 + 0.1 * 10) / 11, abs=1e-3)
+    assert lc["payback_years"] == pytest.approx(0.9 / (0.5 - 0.1), abs=0.1)
+
+
+def test_lifecycle_verdict_flips_with_horizon():
+    # même système : mauvais en court terme, bon en long terme.
+    engine = create_btp_engine()
+    engine.frames["global.carbone"].value = 0.9
+    engine.frames["global.carbone_annuel"].value = 0.15
+    short = engine.lifecycle_carbon(horizon=1)
+    long = engine.lifecycle_carbon(horizon=30)
+    assert short["favorable"] is False
+    assert long["favorable"] is True
+
+
+def test_no_payback_when_usage_not_sober():
+    engine = create_btp_engine()
+    engine.frames["global.carbone_annuel"].value = 0.9  # usage pire que la réf
+    lc = engine.lifecycle_carbon(baseline_annual=0.5)
+    assert lc["payback_years"] is None
+
+
+def test_existing_carbone_constraint_unchanged():
+    # garde-fou : la contrainte RE2020 instantanée n'a pas bougé.
+    assert create_btp_engine().constraints["global.carbone"] == {"max": 0.65}
+
+
+def test_run_from_json_sets_horizon_and_returns_lifecycle():
+    engine = create_btp_engine()
+    payload = {"frames": {"global.carbone": {"value": 0.8, "active": True},
+                          "global.carbone_annuel": {"value": 0.2, "active": True}},
+               "deltas": {}, "context": {"horizon": 40}}
+    out = run_from_json(engine, payload, auto_adjust=False)
+    assert engine.horizon == 40
+    assert out["lifecycle"] is not None
+    assert out["lifecycle"]["horizon"] == 40
+
+
+def test_translator_detects_time_and_passive_heavy():
+    p = tr.translate_idea("poche d'eau en béton, stockage thermique passif, sur 25 ans")
+    assert p["context"]["horizon"] == 25.0
+    assert p["frames"]["global.carbone"]["value"] == 0.85     # construction lourde
+    assert p["frames"]["global.carbone_annuel"]["value"] == 0.2  # usage passif
