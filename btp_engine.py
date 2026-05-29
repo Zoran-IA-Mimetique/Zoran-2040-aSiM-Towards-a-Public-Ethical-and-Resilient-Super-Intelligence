@@ -54,12 +54,20 @@ class Scenario:
 # --------------------------------------------------------------------------
 class Engine:
     def __init__(self, frames: Dict[str, Frame], deps: List[Dependency],
-                 constraints: Optional[Dict[str, Dict[str, float]]] = None):
+                 constraints: Optional[Dict[str, Dict[str, float]]] = None,
+                 gamma: float = 1.0):
         self.frames = frames
         self.deps = deps
         self.constraints = constraints or {}
+        # gamma = exposant de la réponse de propagation.
+        #   gamma = 1.0 -> linéaire (effet = poids * delta), comportement par défaut.
+        #   gamma > 1.0 -> réponse progressive : comme les deltas sont dans [0, 1],
+        #     les petits ajustements pèsent moins (0.3**2 = 0.09), les grands
+        #     dominent. C'est volontairement *atténuant*, pas explosif.
+        self.gamma = gamma
         self.history: List[Dict[str, Any]] = []
         self.sessions: List[Dict[str, Any]] = []
+        self.experiences: List[Dict[str, Any]] = []
         self._build_graph()
 
     def _build_graph(self) -> None:
@@ -74,11 +82,20 @@ class Engine:
     def _clamp(self, name: str) -> None:
         self.frames[name].value = max(0.0, min(1.0, self.frames[name].value))
 
+    def _response(self, d: float) -> float:
+        """Réponse (non-)linéaire d'une arête à un delta entrant ``d``.
+
+        gamma = 1.0 -> identité (linéaire). gamma != 1.0 -> ``signe(d)·|d|**gamma``.
+        """
+        if self.gamma == 1.0:
+            return d
+        return (1.0 if d >= 0 else -1.0) * (abs(d) ** self.gamma)
+
     def _propagate(self, source: str, delta: float) -> Dict[str, float]:
         """Cumul des impacts sur tous les chemins acycliques depuis ``source``.
 
-        ``delta_cible = poids * delta_source``, composé le long des chemins.
-        Anti-cycle : un cadre déjà sur le chemin courant n'est pas réétendu.
+        ``delta_cible = poids * réponse(delta_source)``, composé le long des
+        chemins. Anti-cycle : un cadre déjà sur le chemin courant n'est pas réétendu.
         """
         impacts: Dict[str, float] = {}
 
@@ -86,7 +103,7 @@ class Engine:
             for target, weight in self.graph.get(node, []):
                 if target in path:
                     continue  # anti-cycle
-                contribution = weight * d
+                contribution = weight * self._response(d)
                 if abs(contribution) < _EPS:
                     continue
                 impacts[target] = impacts.get(target, 0.0) + contribution
@@ -246,6 +263,51 @@ class Engine:
             if abs(change) > _EPS:
                 diff[name] = round(change, 3)
         return diff
+
+    # -- apprentissage des dépendances ----------------------------------
+    def record_experience(self, label: str = "") -> None:
+        """Mémorise un état observé (projet réel) pour l'apprentissage."""
+        self.experiences.append({
+            "label": label,
+            "frames": {k: v.value for k, v in self.frames.items()},
+        })
+
+    def suggest_dependency_updates(self, *, threshold: float = 0.02,
+                                   rate: float = 0.3) -> List[Dict[str, Any]]:
+        """Propose des ajustements de poids à partir des expériences observées.
+
+        Pour chaque dépendance, on mesure la **covariance** source/cible sur les
+        états enregistrés. Si le signe observé contredit le poids actuel, ou si
+        la corrélation est forte, on suggère un poids corrigé (déplacé de
+        ``rate`` vers la direction observée). Heuristique v1, transparente :
+        aucune mise à jour automatique, ce sont des *suggestions*.
+        """
+        if len(self.experiences) < 2:
+            return []
+        suggestions: List[Dict[str, Any]] = []
+        for dep in self.deps:
+            xs = [e["frames"][dep.source] for e in self.experiences
+                  if dep.source in e["frames"]]
+            ys = [e["frames"][dep.target] for e in self.experiences
+                  if dep.target in e["frames"]]
+            if len(xs) != len(ys) or len(xs) < 2:
+                continue
+            mx, my = sum(xs) / len(xs), sum(ys) / len(ys)
+            cov = sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / len(xs)
+            if abs(cov) < threshold:
+                continue
+            observed_sign = 1.0 if cov > 0 else -1.0
+            # Si le signe observé contredit le poids, on tire vers l'observé.
+            if observed_sign != (1.0 if dep.weight >= 0 else -1.0):
+                suggested = round(dep.weight + rate * (observed_sign - dep.weight), 3)
+                suggestions.append({
+                    "dependency": f"{dep.source}→{dep.target}",
+                    "current_weight": dep.weight,
+                    "observed_covariance": round(cov, 4),
+                    "suggested_weight": suggested,
+                    "reason": "signe observé opposé au poids actuel",
+                })
+        return suggestions
 
     # -- export ---------------------------------------------------------
     def to_json(self) -> str:

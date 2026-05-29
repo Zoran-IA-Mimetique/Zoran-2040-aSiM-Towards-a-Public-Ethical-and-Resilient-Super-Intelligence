@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moteur BTP — curseurs</title>
+  <style>
+    :root { --bg:#0f1419; --card:#1a2129; --fg:#e6edf3; --muted:#8b949e;
+            --ok:#3fb950; --warn:#d29922; --bad:#f85149; --accent:#58a6ff; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui, sans-serif; background:var(--bg);
+           color:var(--fg); padding:24px; }
+    h1 { font-size:20px; margin:0 0 4px; }
+    p.sub { color:var(--muted); margin:0 0 20px; font-size:13px; }
+    .grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .card { background:var(--card); border-radius:10px; padding:18px; }
+    .frame { margin-bottom:14px; }
+    .frame label { display:flex; justify-content:space-between; font-size:14px;
+                   margin-bottom:6px; }
+    .frame .val { color:var(--accent); font-variant-numeric:tabular-nums; }
+    input[type=range] { width:100%; accent-color:var(--accent); }
+    .toggle { font-size:12px; color:var(--muted); cursor:pointer; user-select:none; }
+    .toggle.active { color:var(--ok); }
+    button { background:var(--accent); color:#0d1117; border:0; border-radius:8px;
+             padding:10px 18px; font-size:14px; font-weight:600; cursor:pointer; }
+    pre { background:#0d1117; padding:14px; border-radius:8px; overflow:auto;
+          font-size:12px; line-height:1.5; max-height:60vh; }
+    .line.ok::before  { content:"✔ "; color:var(--ok); }
+    .line.warn::before{ content:"⚠ "; color:var(--warn); }
+    .line.bad::before { content:"❌ "; color:var(--bad); }
+    .section { margin-top:14px; font-weight:600; font-size:13px; color:var(--muted); }
+  </style>
+</head>
+<body>
+  <h1>Moteur BTP — cadres & curseurs</h1>
+  <p class="sub">Glisse un curseur, (dés)active un cadre, observe les conséquences et les contraintes RE2020.</p>
+
+  <div class="grid">
+    <div class="card" id="controls"></div>
+    <div class="card">
+      <div id="report"><em style="color:var(--muted)">Clique « Simuler » pour voir les impacts.</em></div>
+    </div>
+  </div>
+  <p style="margin-top:18px"><button onclick="simulate()">Simuler</button></p>
+
+  <script>
+    // Cadres pilotables exposés à l'UI (sous-ensemble lisible).
+    const FRAMES = [
+      { key:"mur.isolation",     label:"Isolation murs",   value:0.6, active:true  },
+      { key:"toiture.isolation", label:"Isolation toiture",value:0.7, active:true  },
+      { key:"systeme.energie",   label:"Énergie",          value:0.5, active:true  },
+      { key:"systeme.cout",      label:"Coût",             value:0.5, active:true  },
+      { key:"global.surface",    label:"Surface",          value:0.7, active:false },
+      { key:"global.carbone",    label:"Carbone",          value:0.6, active:false },
+    ];
+
+    const controls = document.getElementById("controls");
+    FRAMES.forEach(f => {
+      const div = document.createElement("div");
+      div.className = "frame";
+      div.innerHTML = `
+        <label>
+          <span><span class="toggle ${f.active?'active':''}" data-key="${f.key}">●</span> ${f.label}</span>
+          <span class="val" id="val-${f.key}">${f.value.toFixed(2)}</span>
+        </label>
+        <input type="range" min="0" max="1" step="0.01" value="${f.value}" data-key="${f.key}">`;
+      controls.appendChild(div);
+    });
+
+    controls.addEventListener("input", e => {
+      const k = e.target.dataset.key;
+      document.getElementById("val-"+k).textContent = parseFloat(e.target.value).toFixed(2);
+    });
+    controls.addEventListener("click", e => {
+      if (!e.target.classList.contains("toggle")) return;
+      e.target.classList.toggle("active");
+    });
+
+    function buildPayload() {
+      const frames = {};
+      FRAMES.forEach(f => {
+        const slider = controls.querySelector(`input[data-key="${f.key}"]`);
+        const toggle = controls.querySelector(`.toggle[data-key="${f.key}"]`);
+        frames[f.key] = { value: parseFloat(slider.value), active: toggle.classList.contains("active") };
+      });
+      return { frames, deltas: {} };
+    }
+
+    async function simulate() {
+      const res = await fetch("/simulate", {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body: JSON.stringify(buildPayload())
+      });
+      render(await res.json());
+    }
+
+    function render(data) {
+      const el = document.getElementById("report");
+      let html = `<div class="section">Décision (cadres actifs)</div>`;
+      for (const [k,v] of Object.entries(data.active))
+        html += `<div class="line ok">${k} : ${v.value}</div>`;
+      html += `<div class="section">Impacts ignorés (surveillés)</div>`;
+      for (const [k,v] of Object.entries(data.ignored))
+        html += `<div class="line warn">${k} : ${v.value}</div>`;
+      if (data.violations.length) {
+        html += `<div class="section">Contraintes RE2020</div>`;
+        data.violations.forEach(m => html += `<div class="line bad">${m}</div>`);
+      }
+      if (data.suggestions.length) {
+        html += `<div class="section">Suggestions</div>`;
+        data.suggestions.forEach(m => html += `<div class="line">👉 ${m}</div>`);
+      }
+      html += `<div class="section">Score</div><pre>${JSON.stringify(data.score,null,2)}</pre>`;
+      el.innerHTML = html;
+    }
+  </script>
+</body>
+</html>
