@@ -3,16 +3,59 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>Moteur BTP — démo (autonome)</title>
+  <title>Moteur BTP — assistant d'ingénierie (autonome)</title>
   <style>
-    :root { --bg:#0f1419; --card:#1a2129; --fg:#e6edf3; --muted:#8b949e;
-            --ok:#3fb950; --warn:#d29922; --bad:#f85149; --accent:#58a6ff; }
+    :root { --bg:#0d1117; --bg2:#0f1620; --card:#161c24; --card2:#1b232d;
+            --line:#222c38; --fg:#e6edf3; --muted:#8b949e;
+            --ok:#3fb950; --warn:#d29922; --bad:#f85149; --accent:#58a6ff;
+            --accent2:#7c5cff; }
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    body { margin:0; font-family: system-ui, -apple-system, sans-serif;
-           background:var(--bg); color:var(--fg); padding:16px; }
-    h1 { font-size:19px; margin:0 0 2px; }
-    p.sub { color:var(--muted); margin:0 0 16px; font-size:13px; }
-    .card { background:var(--card); border-radius:12px; padding:16px; margin-bottom:14px; }
+    body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+           background: radial-gradient(1200px 600px at 80% -10%, #14243a 0%, var(--bg) 55%);
+           color:var(--fg); min-height:100vh; }
+
+    /* topbar */
+    .topbar { position:sticky; top:0; z-index:10;
+              display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+              padding:12px 20px; background:rgba(13,17,23,.82);
+              backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:700; font-size:17px; }
+    .logo { width:30px; height:30px; border-radius:8px; display:grid; place-items:center;
+            background:linear-gradient(135deg, var(--accent), var(--accent2));
+            color:#fff; font-size:15px; font-weight:800; }
+    .brand small { display:block; font-weight:500; font-size:11px; color:var(--muted); }
+    .topbar .spacer { flex:1; }
+    .badge { font-size:11px; color:var(--muted); border:1px solid var(--line);
+             padding:4px 10px; border-radius:999px; background:var(--card); }
+    .badge b { color:var(--ok); }
+
+    /* layout */
+    .layout { max-width:1180px; margin:0 auto; padding:18px 16px 28px;
+              display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.15fr); gap:16px; }
+    @media (max-width:860px){ .layout{ grid-template-columns:1fr; } }
+    .col { display:flex; flex-direction:column; gap:16px; min-width:0; }
+    .col-output { position:sticky; top:64px; align-self:start; }
+    @media (max-width:860px){ .col-output{ position:static; } }
+
+    .card { background:var(--card); border:1px solid var(--line); border-radius:14px;
+            padding:16px; box-shadow:0 1px 0 rgba(255,255,255,.02) inset; }
+    .card-title { display:flex; align-items:center; gap:8px; font-weight:700; font-size:14px;
+                  margin:0 0 12px; }
+    .card-title .dot { width:8px; height:8px; border-radius:50%; background:var(--accent); }
+
+    /* form controls */
+    textarea, select, input[type=text]{
+      width:100%; background:var(--bg2); color:var(--fg); border:1px solid var(--line);
+      border-radius:9px; padding:11px; font-size:14px; font-family:inherit; }
+    textarea:focus, select:focus { outline:none; border-color:var(--accent); }
+    button { background:var(--card2); color:var(--fg); border:1px solid var(--line);
+             border-radius:9px; padding:9px 14px; font-size:13px; font-weight:600;
+             cursor:pointer; transition:filter .15s, border-color .15s; }
+    button:hover { filter:brightness(1.18); border-color:#33404f; }
+    button.primary { background:linear-gradient(135deg, var(--accent), var(--accent2));
+                     border:none; color:#fff; }
+    .row { display:flex; gap:8px; margin-top:10px; align-items:center; flex-wrap:wrap; }
+
     .frame { margin-bottom:16px; }
     .frame:last-child { margin-bottom:0; }
     .frame label { display:flex; justify-content:space-between; align-items:center;
@@ -22,61 +65,85 @@
     .toggle { display:inline-block; width:22px; text-align:center; cursor:pointer;
               user-select:none; color:var(--muted); font-size:13px; }
     .toggle.active { color:var(--ok); }
-    .section { margin-top:14px; margin-bottom:6px; font-weight:600; font-size:12px;
-               color:var(--muted); text-transform:uppercase; letter-spacing:.04em; }
-    .line { font-size:14px; padding:3px 0; font-variant-numeric:tabular-nums; }
-    .line.ok::before  { content:"✔ "; }
-    .line.warn::before{ content:"⚠ "; }
+    .section { margin-top:16px; margin-bottom:6px; font-weight:700; font-size:11px;
+               color:var(--muted); text-transform:uppercase; letter-spacing:.05em;
+               border-top:1px solid var(--line); padding-top:12px; }
+    .section:first-child { border-top:none; padding-top:0; margin-top:0; }
+    .line { font-size:14px; padding:4px 0; font-variant-numeric:tabular-nums; line-height:1.45; }
+    .line.ok::before  { content:"✔ "; color:var(--ok); }
+    .line.warn::before{ content:"⚠ "; color:var(--warn); }
     .line.bad::before { content:"❌ "; color:var(--bad); }
     .line.bad { color:var(--bad); }
     .line.sug::before { content:"👉 "; }
     .pill { display:inline-block; font-size:11px; padding:2px 8px; border-radius:999px;
             background:#21262d; color:var(--muted); margin-left:6px; }
-    footer { color:var(--muted); font-size:11px; text-align:center; margin-top:10px; }
+    .pill.ok { background:rgba(63,185,80,.16); color:var(--ok); }
+    .hint { font-size:12px; color:var(--muted); margin-top:4px; }
+    .empty { color:var(--muted); font-size:13px; text-align:center; padding:30px 10px; }
+    footer { color:var(--muted); font-size:11px; text-align:center; padding:6px 0 24px; }
+    code { background:var(--bg2); padding:1px 5px; border-radius:5px; }
   </style>
 </head>
 <body>
-  <h1>Moteur BTP — cadres &amp; curseurs</h1>
-  <p class="sub">100 % dans ton navigateur, aucun serveur. Décris une idée OU glisse les curseurs. Le LLM/traducteur propose une structure, le <b>moteur décide</b>.</p>
-
-  <div class="card">
-    <div class="section" style="margin-top:0">Idée libre → structure → simulation</div>
-    <textarea id="idea" rows="2" placeholder="ex: poche d'eau autour du bâtiment, stockage thermique pour réduire l'énergie"
-      style="width:100%;background:#0d1117;color:var(--fg);border:1px solid #30363d;border-radius:8px;padding:10px;font-size:14px;font-family:inherit"></textarea>
-    <div style="display:flex;gap:8px;margin-top:8px;align-items:center;flex-wrap:wrap">
-      <button onclick="runIdea()">Traduire &amp; simuler</button>
-      <button id="micbtn" onclick="toggleMic()" title="Parler au lieu de taper">🎤 Parler</button>
-      <label class="toggle-adj" style="font-size:12px;color:var(--muted)">
-        <input type="checkbox" id="autoadj" checked> auto-optimiser (faisabilité)
-      </label>
-      <span id="micstatus" style="font-size:12px;color:var(--muted)"></span>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">Z</span>
+      <span>Moteur BTP
+        <small>cadres &amp; curseurs · assistant d'ingénierie</small></span>
     </div>
-    <div style="margin-top:12px">
-      <div style="display:flex;justify-content:space-between;font-size:13px">
-        <span>⏳ Horizon d'évaluation (cadre temporel)</span>
-        <span><b id="hval">30</b> ans</span>
-      </div>
-      <input type="range" id="horizon" min="1" max="50" step="1" value="30"
-        style="width:100%" oninput="setHorizon(this.value)">
-      <div style="font-size:12px;color:var(--muted)">
-        Le carbone de construction est lourd, l'usage est sobre : le verdict dépend de la durée.
-      </div>
-      <div style="margin-top:8px;font-size:13px">
-        💶 Taux d'actualisation (coût)
-        <select id="discount" onchange="setDiscount(this.value)"
-          style="background:#0d1117;color:var(--fg);border:1px solid #30363d;border-radius:6px;padding:3px 6px">
-          <option value="0">0 % (coût total brut)</option>
-          <option value="0.02">2 %/an</option>
-          <option value="0.04">4 %/an</option>
-          <option value="0.06">6 %/an</option>
-        </select>
-      </div>
-    </div>
-    <pre id="jsonout" style="display:none;margin-top:10px"></pre>
-  </div>
+    <span class="spacer"></span>
+    <span class="badge"><b>100 %</b> navigateur · offline</span>
+    <span class="badge">moteur réel — aucune boîte noire</span>
+  </header>
 
-  <div class="card" id="controls"></div>
-  <div class="card" id="report"></div>
+  <main class="layout">
+   <section class="col col-input">
+    <div class="card">
+      <h2 class="card-title"><span class="dot"></span>Idée libre → structure → simulation</h2>
+      <p class="hint" style="margin-top:-4px;margin-bottom:10px">Décris une idée OU glisse les curseurs. Le traducteur propose une structure, le <b>moteur décide</b>.</p>
+      <textarea id="idea" rows="2" placeholder="ex: poche d'eau autour du bâtiment, stockage thermique pour réduire l'énergie"></textarea>
+      <div class="row">
+        <button class="primary" onclick="runIdea()">Traduire &amp; simuler</button>
+        <button id="micbtn" onclick="toggleMic()" title="Parler au lieu de taper">🎤 Parler</button>
+        <label style="font-size:12px;color:var(--muted)">
+          <input type="checkbox" id="autoadj" checked style="width:auto"> auto-optimiser (faisabilité)
+        </label>
+        <span id="micstatus" style="font-size:12px;color:var(--muted)"></span>
+      </div>
+      <div style="margin-top:14px">
+        <div style="display:flex;justify-content:space-between;font-size:13px">
+          <span>⏳ Horizon d'évaluation (cadre temporel)</span>
+          <span><b id="hval">30</b> ans</span>
+        </div>
+        <input type="range" id="horizon" min="1" max="50" step="1" value="30"
+          oninput="setHorizon(this.value)">
+        <div class="hint">Le carbone de construction est lourd, l'usage est sobre : le verdict dépend de la durée.</div>
+        <div class="row" style="margin-top:10px">
+          <span style="font-size:13px">💶 Taux d'actualisation (coût)</span>
+          <select id="discount" onchange="setDiscount(this.value)" style="width:auto">
+            <option value="0">0 % (coût total brut)</option>
+            <option value="0.02">2 %/an</option>
+            <option value="0.04">4 %/an</option>
+            <option value="0.06">6 %/an</option>
+          </select>
+        </div>
+      </div>
+      <pre id="jsonout" style="display:none;margin-top:12px;overflow:auto;font-size:12px"></pre>
+    </div>
+
+    <div class="card">
+      <h2 class="card-title"><span class="dot"></span>Cadres &amp; curseurs</h2>
+      <div id="controls"></div>
+    </div>
+   </section>
+
+   <section class="col col-output">
+    <div class="card">
+      <h2 class="card-title"><span class="dot" style="background:var(--accent2)"></span>Décision du moteur</h2>
+      <div id="report"><div class="empty">Lance une simulation pour voir la décision, les bilans et les suggestions.</div></div>
+    </div>
+   </section>
+  </main>
   <footer>Démo autonome — moteur identique à <code>btp_engine.py</code> (porté en JS).</footer>
 
 <script>
