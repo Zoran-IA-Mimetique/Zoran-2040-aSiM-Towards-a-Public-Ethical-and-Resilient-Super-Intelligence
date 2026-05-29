@@ -54,6 +54,14 @@
     .stat.good .stat-v { color:var(--ok); }   .stat.good { border-color:rgba(63,185,80,.28); }
     .stat.bad  .stat-v { color:var(--bad); }  .stat.bad  { border-color:rgba(248,81,73,.28); }
     .stat.mid  .stat-v { color:var(--warn); } .stat.mid  { border-color:rgba(210,153,34,.28); }
+
+    /* exemples cliquables */
+    .chips { display:flex; flex-wrap:wrap; gap:7px; align-items:center; margin:9px 0 4px; }
+    .chip-lbl { font-size:11.5px; color:var(--muted); margin-right:2px; }
+    .chip { background:var(--bg2); color:var(--fg); border:1px solid var(--line);
+            border-radius:999px; padding:5px 11px; font-size:12px; cursor:pointer;
+            transition:border-color .2s ease, background .2s ease; }
+    .chip:hover { border-color:var(--accent); background:#171a20; }
     .card-title { display:flex; align-items:center; gap:8px; font-weight:700; font-size:14px;
                   margin:0 0 12px; }
     .card-title .dot { width:8px; height:8px; border-radius:50%; background:var(--accent); }
@@ -117,6 +125,13 @@
       <h2 class="card-title"><span class="dot"></span>Idée libre → structure → simulation</h2>
       <p class="hint" style="margin-top:-4px;margin-bottom:10px">Décris une idée OU glisse les curseurs. Le traducteur propose une structure, le <b>moteur décide</b>.</p>
       <textarea id="idea" rows="2" placeholder="ex: poche d'eau autour du bâtiment, stockage thermique pour réduire l'énergie"></textarea>
+      <div class="chips" id="examples">
+        <span class="chip-lbl">Exemples :</span>
+        <button class="chip" onclick="useExample(this)">Poche d'eau + stockage thermique, investissement lourd</button>
+        <button class="chip" onclick="useExample(this)">Isolation biosourcée, faible carbone, surcoût modéré</button>
+        <button class="chip" onclick="useExample(this)">Pompes à chaleur multiples, système complexe, peu fiable</button>
+        <button class="chip" onclick="useExample(this)">Rénovation sobre en énergie, budget serré</button>
+      </div>
       <div class="row">
         <button class="primary" onclick="runIdea()">Traduire &amp; simuler</button>
         <button id="micbtn" onclick="toggleMic()" title="Parler au lieu de taper">🎤 Parler</button>
@@ -503,6 +518,11 @@ function translateIdea(idea) {
                type: RE_INNOV.test(text) ? "innovation" : "optimisation",
                confidence: +Math.min(0.9, 0.4 + 0.15*found.length).toFixed(2) }
   };
+}
+
+function useExample(btn) {
+  document.getElementById("idea").value = btn.textContent;
+  runIdea();
 }
 
 function runIdea() {
