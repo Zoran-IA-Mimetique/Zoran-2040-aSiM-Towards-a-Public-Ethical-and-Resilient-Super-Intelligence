@@ -43,11 +43,13 @@
     <div class="section" style="margin-top:0">Idée libre → structure → simulation</div>
     <textarea id="idea" rows="2" placeholder="ex: poche d'eau autour du bâtiment, stockage thermique pour réduire l'énergie"
       style="width:100%;background:#0d1117;color:var(--fg);border:1px solid #30363d;border-radius:8px;padding:10px;font-size:14px;font-family:inherit"></textarea>
-    <div style="display:flex;gap:8px;margin-top:8px;align-items:center">
+    <div style="display:flex;gap:8px;margin-top:8px;align-items:center;flex-wrap:wrap">
       <button onclick="runIdea()">Traduire &amp; simuler</button>
+      <button id="micbtn" onclick="toggleMic()" title="Parler au lieu de taper">🎤 Parler</button>
       <label class="toggle-adj" style="font-size:12px;color:var(--muted)">
         <input type="checkbox" id="autoadj" checked> auto-optimiser (faisabilité)
       </label>
+      <span id="micstatus" style="font-size:12px;color:var(--muted)"></span>
     </div>
     <pre id="jsonout" style="display:none;margin-top:10px"></pre>
   </div>
@@ -270,6 +272,54 @@ function runIdea() {
   jo.textContent = "JSON traducteur :\n" + JSON.stringify(payload, null, 2)
     + (adj ? `\n\nauto-optimisation : ${adj.feasible ? "✅ faisable" : "⚠️ infaisable"} en ${adj.iterations} pas (violation ${adj.violation})` : "");
   renderEngine(eng);
+}
+
+/* ===================== MICRO (reconnaissance vocale native) ===================== */
+// Web Speech API : 100% navigateur, aucune dépendance, aucun serveur.
+let recognition = null, listening = false;
+function micSupported() {
+  return "webkitSpeechRecognition" in window || "SpeechRecognition" in window;
+}
+function setMic(status, on) {
+  document.getElementById("micstatus").textContent = status;
+  const b = document.getElementById("micbtn");
+  b.textContent = on ? "⏹ Stop" : "🎤 Parler";
+  b.classList.toggle("active", !!on);
+}
+function toggleMic() {
+  if (!micSupported()) {
+    setMic("micro non supporté par ce navigateur — tape ton idée", false);
+    return;
+  }
+  if (listening) { recognition.stop(); return; }
+  const Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new Rec();
+  recognition.lang = "fr-FR";
+  recognition.interimResults = true;   // affichage en direct
+  recognition.continuous = false;
+  const ideaEl = document.getElementById("idea");
+  const base = ideaEl.value ? ideaEl.value.trim() + " " : "";
+  recognition.onstart = () => { listening = true; setMic("🔴 écoute… parle maintenant", true); };
+  recognition.onerror = (e) => {
+    const msg = e.error === "not-allowed" ? "micro refusé (autorise l'accès)" : "erreur micro : " + e.error;
+    setMic(msg, false); listening = false;
+  };
+  recognition.onresult = (e) => {
+    let txt = "";
+    for (let i = 0; i < e.results.length; i++) txt += e.results[i][0].transcript;
+    ideaEl.value = base + txt;
+  };
+  recognition.onend = () => {
+    listening = false;
+    setMic(ideaEl.value.trim() ? "✅ transcrit — simulation…" : "rien entendu", false);
+    if (ideaEl.value.trim()) runIdea();   // enchaîne automatiquement
+  };
+  recognition.start();
+}
+// masquer le bouton si non supporté (ex. certains navigateurs iOS)
+if (!micSupported()) {
+  const b = document.getElementById("micbtn");
+  if (b) { b.disabled = true; b.title = "Reconnaissance vocale non disponible ici"; b.style.opacity = .5; }
 }
 
 /* ===================== UI ===================== */
