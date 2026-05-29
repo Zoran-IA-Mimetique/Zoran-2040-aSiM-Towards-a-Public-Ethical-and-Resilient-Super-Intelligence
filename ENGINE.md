@@ -88,6 +88,23 @@ maintenance — il peut devenir *pire* qu'un bâtiment simple. `robustness()` do
 Verdict honnête : *« bonne idée d'ingénierie tant que la fiabilité reste > seuil »*
 — pas une boîte noire qui dit juste « c'est bon ». Curseur « Fiabilité » dans l'UI.
 
+### Assistant d'ingénierie — analyse / détection / correction
+
+Le moteur ne se contente plus de calculer : il **comprend, critique et corrige**.
+
+* `analyze_project()` — incohérences (énergie/carbone), risques (CAPEX lourd peu
+  fiable), inertie sans pilotage, complexité, contraintes dépassées.
+* `detect_missing_frames()` — cadres de décision **non pris en compte** (ex.
+  carbone d'usage, coût d'exploitation, fiabilité d'un investissement lourd).
+* `suggest_fixes()` — corrections concrètes (activer / ajouter / ajuster un cadre).
+* `auto_correct()` — applique les corrections **puis reteste** (le moteur reste
+  l'arbitre, rien n'est affirmé sans recalcul).
+
+`run_from_json(..., auto_correct=True)` renvoie le diagnostic et la correction.
+Toutes les règles sont déterministes et ne lisent que l'état réel — aucune
+physique inventée. Panneau « Problèmes & suggestions » + bouton « Auto-corriger »
+dans l'UI.
+
 ## Architecture (ZORAN full merge)
 
 ```

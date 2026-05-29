@@ -310,7 +310,70 @@ function makeEngine(model, gamma=1.0) {
                               : "avantage sensible à l'exécution : dépend de la fiabilité et de la maintenance";
     return out;
   }
-  return { frames, applyDelta, explain, suggestActions, autoAdjust, totalViolation, inject, lifecycleCarbon, lifecycleCost, robustness };
+  /* --- assistant d'ingenierie : analyse / detection / correction --- */
+  const act = n => { const f = frames[n]; return (f && f.active) ? f : null; };
+  const inactive = n => { const f = frames[n]; return !f || !f.active; };
+  function analyzeProject() {
+    const issues = [];
+    const e = act("systeme.energie"), ca = act("global.carbone_annuel");
+    if (e && ca && e.value < 0.4 && ca.value > 0.5)
+      issues.push({ type:"incoherence", message:"Énergie faible mais carbone d'usage élevé",
+        suggestion:"Source d'énergie trop carbonée : viser une énergie décarbonée ou du stockage thermique" });
+    const fi = act("systeme.fiabilite"), ci = act("global.cout_initial");
+    if (fi && ci && fi.value < 0.5 && ci.value > 0.7)
+      issues.push({ type:"risk", message:"Investissement lourd peu fiable",
+        suggestion:"Fiabiliser (redondance, maintenance) ou alléger le CAPEX" });
+    const inertie = act("systeme.inertie"), react = act("systeme.reactivite");
+    if (inertie && inertie.value > 0.7 && !react)
+      issues.push({ type:"inertia", message:"Inertie forte sans pilotage rapide",
+        suggestion:"Ajouter un bypass / appoint actif pour gérer les pointes (été)" });
+    const comp = act("systeme.complexite");
+    if (comp && comp.value > 0.8)
+      issues.push({ type:"complexity", message:"Système trop complexe",
+        suggestion:"Centraliser (échangeur) ou simplifier le circuit" });
+    for (const [key, msg] of checkConstraints())
+      issues.push({ type:"constraint", message:msg, suggestion:`Ramener ${key} dans les bornes` });
+    return issues;
+  }
+  function detectMissingFrames() {
+    const missing = [], seen = new Set();
+    const push = (frame, reason) => { if (!seen.has(frame)) { seen.add(frame); missing.push({frame, reason}); } };
+    if (!inactive("global.carbone") && inactive("global.carbone_annuel"))
+      push("global.carbone_annuel", "Carbone d'usage non évalué (seulement la construction)");
+    if (!inactive("systeme.energie") && inactive("global.carbone_annuel"))
+      push("global.carbone_annuel", "Impact carbone de la consommation non suivi");
+    if (!inactive("global.cout_initial") && inactive("global.cout_annuel"))
+      push("global.cout_annuel", "Coût d'exploitation non évalué");
+    const ci = frames["global.cout_initial"];
+    if (ci && ci.active && ci.value > 0.7 && inactive("systeme.fiabilite"))
+      push("systeme.fiabilite", "Investissement lourd : fiabilité non évaluée");
+    return missing;
+  }
+  function suggestFixes() {
+    const fixes = [];
+    for (const m of detectMissingFrames()) fixes.push({ action:"activate", frame:m.frame, reason:m.reason });
+    for (const issue of analyzeProject()) {
+      if (issue.type === "inertia") fixes.push({ action:"add", frame:"systeme.reactivite", value:0.6, reason:"Pilotage rapide pour compenser l'inertie" });
+      else if (issue.type === "risk") fixes.push({ action:"adjust", frame:"systeme.fiabilite", delta:0.2, reason:"Fiabiliser le système (redondance / maintenance)" });
+      else if (issue.type === "complexity") fixes.push({ action:"add", frame:"systeme.echangeur_central", value:0.7, reason:"Réduit la complexité globale" });
+    }
+    return fixes;
+  }
+  function autoCorrect() {
+    const applied = [];
+    for (const fix of suggestFixes()) {
+      const n = fix.frame;
+      if (!(n in frames)) frames[n] = { value: fix.value != null ? fix.value : 0.6, active:true, weight:1.2 };
+      else if (fix.action === "activate" || fix.action === "add") { frames[n].active = true; if (fix.value != null) frames[n].value = clamp(fix.value); }
+      else if (fix.action === "adjust") applyDelta(n, fix.delta != null ? fix.delta : 0.1);
+      applied.push(fix);
+    }
+    autoAdjust();
+    return applied;
+  }
+  return { frames, applyDelta, explain, suggestActions, autoAdjust, totalViolation, inject,
+           lifecycleCarbon, lifecycleCost, robustness,
+           analyzeProject, detectMissingFrames, suggestFixes, autoCorrect };
 }
 
 /* ===================== TRADUCTEUR (porté de translator.py) ===================== */
@@ -535,9 +598,39 @@ function renderEngine(eng) {
     if (rb.cout)    html += `<div class="line">coût&nbsp;&nbsp;&nbsp;: ${fmt(rb.cout)}</div>`;
     html += `<div class="line ${cls}">${mark} ${rb.message}</div>`;
   }
+  const issues = eng.analyzeProject(), missing = eng.detectMissingFrames(), fixes = eng.suggestFixes();
+  html += `<div class="section">⚠️ Problèmes &amp; cadres manquants</div>`;
+  if (!issues.length && !missing.length) {
+    html += `<div class="line ok">✔ aucun problème détecté</div>`;
+  } else {
+    issues.forEach(i => html += `<div class="line bad">⚠️ ${i.message} <span style="color:var(--muted)">→ ${i.suggestion}</span></div>`);
+    missing.forEach(m => html += `<div class="line warn">＋ cadre manquant : ${m.frame} <span style="color:var(--muted)">(${m.reason})</span></div>`);
+  }
+  if (fixes.length) {
+    html += `<div class="section">💡 Corrections proposées</div>`;
+    fixes.forEach(f => html += `<div class="line sug">💡 ${f.action} ${f.frame} — ${f.reason}</div>`);
+    html += `<div class="line"><button onclick="autoCorrect()">⚙️ Appliquer &amp; retester</button></div>`;
+  }
   html += `<div class="section">Score</div>`;
   html += `<div class="line">actif ${d.score.active_score} · total ${d.score.total_score} · écart ignorés ${d.score.gap}</div>`;
   document.getElementById("report").innerHTML = html;
+}
+
+// Auto-correction : applique les suggestions sur l'etat courant puis re-rend.
+function autoCorrect() {
+  const eng = makeEngine(MODEL);
+  for (const k in state) if (k in eng.frames) { eng.frames[k].value = clamp(state[k].value); eng.frames[k].active = state[k].active; }
+  eng.autoCorrect();
+  // re-synchronise l'etat UI avec le resultat corrige
+  for (const k in eng.frames) {
+    if (!(k in state)) state[k] = { value: eng.frames[k].value, active: eng.frames[k].active };
+    else state[k] = { value: eng.frames[k].value, active: eng.frames[k].active };
+    const sl = controls.querySelector(`input[data-k="${k}"]`);
+    const tg = controls.querySelector(`.toggle[data-k="${k}"]`);
+    if (sl) { sl.value = state[k].value; const lab = document.getElementById("v-"+k); if (lab) lab.textContent = state[k].value.toFixed(2); }
+    if (tg) tg.classList.toggle("active", state[k].active);
+  }
+  renderEngine(eng);
 }
 
 let HORIZON = MODEL.horizon;

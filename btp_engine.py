@@ -348,6 +348,124 @@ class Engine:
                               "fiabilité et de la maintenance")
         return out
 
+    # -- assistant d'ingénierie : analyse / détection / correction ------
+    def analyze_project(self) -> List[Dict[str, str]]:
+        """Détecte les incohérences et points faibles du projet (cadres RÉELS).
+
+        Règles déterministes, sans ML : chaque problème pointe une cause et une
+        piste. N'invente aucune physique — ne lit que l'état du moteur.
+        """
+        issues: List[Dict[str, str]] = []
+
+        def act(name: str) -> Optional[Frame]:
+            f = self.frames.get(name)
+            return f if (f and f.active) else None
+
+        energie, carb_an = act("systeme.energie"), act("global.carbone_annuel")
+        if energie and carb_an and energie.value < 0.4 and carb_an.value > 0.5:
+            issues.append({"type": "incoherence",
+                           "message": "Énergie faible mais carbone d'usage élevé",
+                           "suggestion": "Source d'énergie trop carbonée : viser une énergie décarbonée ou du stockage thermique"})
+
+        fiab, capex = act("systeme.fiabilite"), act("global.cout_initial")
+        if fiab and capex and fiab.value < 0.5 and capex.value > 0.7:
+            issues.append({"type": "risk",
+                           "message": "Investissement lourd peu fiable",
+                           "suggestion": "Fiabiliser (redondance, maintenance) ou alléger le CAPEX"})
+
+        inertie, react = act("systeme.inertie"), act("systeme.reactivite")
+        if inertie and inertie.value > 0.7 and react is None:
+            issues.append({"type": "inertia",
+                           "message": "Inertie forte sans pilotage rapide",
+                           "suggestion": "Ajouter un bypass / appoint actif pour gérer les pointes (été)"})
+
+        comp = act("systeme.complexite")
+        if comp and comp.value > 0.8:
+            issues.append({"type": "complexity",
+                           "message": "Système trop complexe",
+                           "suggestion": "Centraliser (échangeur) ou simplifier le circuit"})
+
+        for key, _val, lim, msg in self.check_constraints():
+            issues.append({"type": "constraint", "message": msg,
+                           "suggestion": f"Ramener {key} sous {lim}"})
+        return issues
+
+    def detect_missing_frames(self) -> List[Dict[str, str]]:
+        """Cadres de décision non pris en compte (inactifs) mais nécessaires ici."""
+        missing: List[Dict[str, str]] = []
+
+        def inactive(name: str) -> bool:
+            f = self.frames.get(name)
+            return f is None or not f.active
+
+        def active(name: str) -> bool:
+            return not inactive(name)
+
+        if active("global.carbone") and inactive("global.carbone_annuel"):
+            missing.append({"frame": "global.carbone_annuel",
+                            "reason": "Carbone d'usage non évalué (seulement la construction)"})
+        if active("systeme.energie") and inactive("global.carbone_annuel"):
+            missing.append({"frame": "global.carbone_annuel",
+                            "reason": "Impact carbone de la consommation non suivi"})
+        if active("global.cout_initial") and inactive("global.cout_annuel"):
+            missing.append({"frame": "global.cout_annuel",
+                            "reason": "Coût d'exploitation non évalué"})
+        capex = self.frames.get("global.cout_initial")
+        if capex and capex.active and capex.value > 0.7 and inactive("systeme.fiabilite"):
+            missing.append({"frame": "systeme.fiabilite",
+                            "reason": "Investissement lourd : fiabilité non évaluée"})
+
+        seen, out = set(), []
+        for m in missing:
+            if m["frame"] not in seen:
+                seen.add(m["frame"])
+                out.append(m)
+        return out
+
+    def suggest_fixes(self) -> List[Dict[str, Any]]:
+        """Corrections concrètes (activer/ajuster un cadre) pour les problèmes détectés."""
+        fixes: List[Dict[str, Any]] = []
+        for m in self.detect_missing_frames():
+            fixes.append({"action": "activate", "frame": m["frame"], "reason": m["reason"]})
+        for issue in self.analyze_project():
+            if issue["type"] == "inertia":
+                fixes.append({"action": "add", "frame": "systeme.reactivite", "value": 0.6,
+                              "reason": "Pilotage rapide pour compenser l'inertie"})
+            elif issue["type"] == "risk":
+                fixes.append({"action": "adjust", "frame": "systeme.fiabilite", "delta": 0.2,
+                              "reason": "Fiabiliser le système (redondance / maintenance)"})
+            elif issue["type"] == "complexity":
+                fixes.append({"action": "add", "frame": "systeme.echangeur_central", "value": 0.7,
+                              "reason": "Réduit la complexité globale"})
+        return fixes
+
+    def auto_correct(self) -> Dict[str, Any]:
+        """Applique les corrections suggérées PUIS reteste (le moteur reste l'arbitre)."""
+        applied: List[Dict[str, Any]] = []
+        rebuild = False
+        for fix in self.suggest_fixes():
+            name = fix["frame"]
+            if name not in self.frames:
+                self.frames[name] = Frame(value=fix.get("value", 0.6), active=True, weight=1.2)
+                rebuild = True
+            elif fix["action"] in ("activate", "add"):
+                self.frames[name].active = True
+                if "value" in fix:
+                    self.frames[name].value = max(0.0, min(1.0, fix["value"]))
+            elif fix["action"] == "adjust":
+                self.apply_delta(name, fix.get("delta", 0.1))
+            applied.append(fix)
+        if rebuild:
+            self._build_graph()
+        self.auto_adjust()
+        return {"applied": applied, "state": self.explain()}
+
+    def analysis(self) -> Dict[str, Any]:
+        """Rapport d'analyse (lecture seule) : problèmes, cadres manquants, suggestions."""
+        return {"issues": self.analyze_project(),
+                "missing": self.detect_missing_frames(),
+                "suggestions": self.suggest_fixes()}
+
     # -- scoring (pondéré, normalisé) -----------------------------------
     def compute_score(self) -> Dict[str, float]:
         """Scores pondérés normalisés. ``gap`` = total - actif (comparables)."""
@@ -594,7 +712,8 @@ class Engine:
 
 
 def run_from_json(engine: "Engine", payload: Dict[str, Any], *,
-                  auto_adjust: bool = True, step: float = 0.05) -> Dict[str, Any]:
+                  auto_adjust: bool = True, step: float = 0.05,
+                  auto_correct: bool = False) -> Dict[str, Any]:
     """Pipeline JSON -> simulation : injecte, applique les deltas, optimise, diagnostique.
 
     ``payload`` = sortie du traducteur ::
@@ -636,6 +755,8 @@ def run_from_json(engine: "Engine", payload: Dict[str, Any], *,
         engine.apply_delta(name, float(delta))
 
     adjust = engine.auto_adjust(step=step) if auto_adjust else None
+    analysis = engine.analysis()           # diagnostic AVANT correction
+    correction = engine.auto_correct() if auto_correct else None
     state = engine.explain()
     return {
         "active": state["active"],
@@ -645,6 +766,8 @@ def run_from_json(engine: "Engine", payload: Dict[str, Any], *,
         "lifecycle": state.get("lifecycle"),
         "lifecycle_cost": state.get("lifecycle_cost"),
         "robustness": state.get("robustness"),
+        "analysis": analysis,
+        "correction": correction,
         "suggestions": [s["message"] for s in engine.suggest_actions()],
         "auto_adjust": adjust,
         "context": context,

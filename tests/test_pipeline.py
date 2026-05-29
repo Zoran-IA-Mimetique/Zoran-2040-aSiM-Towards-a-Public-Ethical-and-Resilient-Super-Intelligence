@@ -262,3 +262,60 @@ def test_run_from_json_returns_robustness():
     out = run_from_json(engine, payload, auto_adjust=False)
     assert out["robustness"] is not None
     assert out["robustness"]["robuste"] is False
+
+
+# -- assistant d'ingénierie : analyse / détection / correction --------------
+def _project_with_problems():
+    from btp_engine import Frame
+    engine = create_btp_engine()
+    engine.frames["global.cout_initial"].active = True
+    engine.frames["global.cout_initial"].value = 0.85
+    engine.frames["global.carbone"].active = True
+    engine.frames["systeme.inertie"] = Frame(0.8, True, 1.5)
+    return engine
+
+
+def test_analyze_project_detects_inertia_and_constraint():
+    types = [i["type"] for i in _project_with_problems().analyze_project()]
+    assert "inertia" in types
+    assert "constraint" in types   # energie active à 0.5 > max 0.4
+
+
+def test_detect_missing_frames():
+    frames = [m["frame"] for m in _project_with_problems().detect_missing_frames()]
+    assert "global.carbone_annuel" in frames
+    assert "global.cout_annuel" in frames
+    assert "systeme.fiabilite" in frames
+
+
+def test_detect_missing_is_deduplicated():
+    # carbone_annuel est manquant pour 2 raisons -> ne doit apparaître qu'une fois.
+    frames = [m["frame"] for m in _project_with_problems().detect_missing_frames()]
+    assert frames.count("global.carbone_annuel") == 1
+
+
+def test_auto_correct_activates_and_retests():
+    engine = _project_with_problems()
+    res = engine.auto_correct()
+    assert any(f["frame"] == "systeme.fiabilite" for f in res["applied"])
+    assert engine.frames["systeme.fiabilite"].active is True   # activé
+    assert engine.frames["systeme.reactivite"].active is True  # créé
+    assert "state" in res
+
+
+def test_run_from_json_includes_analysis():
+    out = run_from_json(_project_with_problems(), {"frames": {}, "deltas": {}}, auto_adjust=False)
+    assert "analysis" in out and out["analysis"]["issues"]
+    assert out["correction"] is None   # pas de correction sans demande
+
+
+def test_run_from_json_auto_correct_flag():
+    out = run_from_json(_project_with_problems(), {"frames": {}, "deltas": {}},
+                        auto_adjust=False, auto_correct=True)
+    assert out["correction"] is not None
+    assert out["correction"]["applied"]
+
+
+def test_translator_detects_complexity():
+    p = tr.translate_idea("système complexe avec multiples pompes")
+    assert p["frames"]["systeme.complexite"]["value"] == 0.85

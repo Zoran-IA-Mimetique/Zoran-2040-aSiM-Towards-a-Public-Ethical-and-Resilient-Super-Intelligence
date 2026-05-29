@@ -157,6 +157,9 @@ def translate_idea(idea: str) -> Dict[str, Any]:
         frames["systeme.fiabilite"] = {"value": 0.8, "active": True, "weight": 1.7}
     elif re.search(_RISK, text):
         frames["systeme.fiabilite"] = {"value": 0.45, "active": True, "weight": 1.7}
+    # Complexité (usine à gaz, multiples organes) -> cadre de complexité élevé.
+    if re.search(r"complexe|usine à gaz|usine a gaz|sophistiqué|sophistique|multiples", text):
+        frames["systeme.complexite"] = {"value": 0.85, "active": True, "weight": 1.0}
 
     # Repli : si rien n'est reconnu, on cible l'énergie (cadre par défaut).
     if not frames:
