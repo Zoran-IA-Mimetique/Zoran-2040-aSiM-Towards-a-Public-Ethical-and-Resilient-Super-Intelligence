@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Moteur BTP — démo (autonome)</title>
+  <style>
+    :root { --bg:#0f1419; --card:#1a2129; --fg:#e6edf3; --muted:#8b949e;
+            --ok:#3fb950; --warn:#d29922; --bad:#f85149; --accent:#58a6ff; }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body { margin:0; font-family: system-ui, -apple-system, sans-serif;
+           background:var(--bg); color:var(--fg); padding:16px; }
+    h1 { font-size:19px; margin:0 0 2px; }
+    p.sub { color:var(--muted); margin:0 0 16px; font-size:13px; }
+    .card { background:var(--card); border-radius:12px; padding:16px; margin-bottom:14px; }
+    .frame { margin-bottom:16px; }
+    .frame:last-child { margin-bottom:0; }
+    .frame label { display:flex; justify-content:space-between; align-items:center;
+                   font-size:15px; margin-bottom:8px; }
+    .frame .val { color:var(--accent); font-variant-numeric:tabular-nums; font-weight:600; }
+    input[type=range] { width:100%; height:30px; accent-color:var(--accent); }
+    .toggle { display:inline-block; width:22px; text-align:center; cursor:pointer;
+              user-select:none; color:var(--muted); font-size:13px; }
+    .toggle.active { color:var(--ok); }
+    .section { margin-top:14px; margin-bottom:6px; font-weight:600; font-size:12px;
+               color:var(--muted); text-transform:uppercase; letter-spacing:.04em; }
+    .line { font-size:14px; padding:3px 0; font-variant-numeric:tabular-nums; }
+    .line.ok::before  { content:"✔ "; }
+    .line.warn::before{ content:"⚠ "; }
+    .line.bad::before { content:"❌ "; color:var(--bad); }
+    .line.bad { color:var(--bad); }
+    .line.sug::before { content:"👉 "; }
+    .pill { display:inline-block; font-size:11px; padding:2px 8px; border-radius:999px;
+            background:#21262d; color:var(--muted); margin-left:6px; }
+    footer { color:var(--muted); font-size:11px; text-align:center; margin-top:10px; }
+  </style>
+</head>
+<body>
+  <h1>Moteur BTP — cadres &amp; curseurs</h1>
+  <p class="sub">100 % dans ton navigateur, aucun serveur. Glisse un curseur, (dés)active un cadre (●), observe les conséquences et la conformité RE2020.</p>
+
+  <div class="card" id="controls"></div>
+  <div class="card" id="report"></div>
+  <footer>Démo autonome — moteur identique à <code>btp_engine.py</code> (porté en JS).</footer>
+
+<script>
+/* ===================== MODÈLE BTP (identique à btp_engine.create_btp_engine) ===================== */
+const MODEL = {
+  frames: {
+    "mur.isolation":     { value:0.6, active:true,  weight:1.5 },
+    "mur.epaisseur":     { value:0.5, active:false, weight:0.8 },
+    "mur.reparabilite":  { value:0.6, active:false, weight:0.7 },
+    "toiture.isolation": { value:0.7, active:true,  weight:1.4 },
+    "toiture.cout":      { value:0.6, active:true,  weight:1.0 },
+    "systeme.energie":   { value:0.5, active:true,  weight:2.0 },
+    "systeme.cout":      { value:0.5, active:true,  weight:1.2 },
+    "systeme.maintenance":{value:0.5, active:false, weight:0.9 },
+    "global.surface":    { value:0.7, active:false, weight:1.0 },
+    "global.carbone":    { value:0.6, active:false, weight:1.8 },
+  },
+  deps: [
+    ["mur.isolation","systeme.energie",-0.5],
+    ["toiture.isolation","systeme.energie",-0.4],
+    ["mur.isolation","mur.epaisseur",0.4],
+    ["mur.epaisseur","global.surface",-0.3],
+    ["systeme.energie","systeme.cout",0.3],
+    ["mur.reparabilite","systeme.maintenance",-0.5],
+    ["mur.epaisseur","global.carbone",0.2],
+    ["toiture.isolation","toiture.cout",0.3],
+    ["systeme.cout","global.surface",-0.1],
+    ["systeme.energie","global.carbone",0.25],
+  ],
+  constraints: {
+    "global.carbone": { max:0.65 },
+    "systeme.energie": { max:0.4 },
+    "toiture.cout": { max:0.8 },
+  },
+};
+const EPS = 1e-9;
+const clamp = v => Math.max(0, Math.min(1, v));
+
+/* ===================== MOTEUR (porté de btp_engine.Engine) ===================== */
+function makeEngine(model, gamma=1.0) {
+  // copie profonde des frames
+  const frames = {};
+  for (const k in model.frames) frames[k] = Object.assign({}, model.frames[k]);
+  const graph = {}, rgraph = {};
+  for (const [s,t,w] of model.deps) {
+    (graph[s] = graph[s] || []).push([t,w]);
+    (rgraph[t] = rgraph[t] || []).push([s,w]);
+  }
+  const response = d => gamma === 1.0 ? d : Math.sign(d) * Math.pow(Math.abs(d), gamma);
+
+  function propagate(source, delta) {
+    const impacts = {};
+    (function walk(node, d, path) {
+      for (const [target, weight] of (graph[node] || [])) {
+        if (path.has(target)) continue;               // anti-cycle
+        const c = weight * response(d);
+        if (Math.abs(c) < EPS) continue;
+        impacts[target] = (impacts[target] || 0) + c;  // chemins multiples additionnés
+        walk(target, c, new Set(path).add(target));
+      }
+    })(source, delta, new Set([source]));
+    return impacts;
+  }
+  function applyDelta(name, delta) {
+    if (!(name in frames)) return;
+    const impacts = propagate(name, delta);
+    frames[name].value = clamp(frames[name].value + delta);
+    for (const t in impacts) frames[t].value = clamp(frames[t].value + impacts[t]);
+  }
+  function checkConstraints() {
+    const v = [];
+    for (const key in model.constraints) {
+      if (!(key in frames)) continue;
+      const val = frames[key].value, rule = model.constraints[key];
+      if ("max" in rule && val > rule.max + EPS)
+        v.push([key, `⚠️ ${key} = ${val.toFixed(2)} (max: ${rule.max})`]);
+      if ("min" in rule && val < rule.min - EPS)
+        v.push([key, `⚠️ ${key} = ${val.toFixed(2)} (min: ${rule.min})`]);
+    }
+    return v;
+  }
+  function score() {
+    let as=0, aw=0, ts=0, tw=0;
+    for (const k in frames) {
+      const f = frames[k], wv = f.value * f.weight;
+      ts += wv; tw += f.weight;
+      if (f.active) { as += wv; aw += f.weight; }
+    }
+    const a = aw ? as/aw : 0, t = tw ? ts/tw : 0;
+    return { active_score:+a.toFixed(4), total_score:+t.toFixed(4), gap:+(t-a).toFixed(4) };
+  }
+  function explain() {
+    const active={}, ignored={}, impacts={};
+    for (const k in frames) {
+      const f = frames[k];
+      (f.active ? active : ignored)[k] = +f.value.toFixed(3);
+      let pressure = 0;
+      for (const [src,w] of (rgraph[k] || [])) if (frames[src].active) pressure += frames[src].value * w;
+      impacts[k] = +pressure.toFixed(3);
+    }
+    return { active, ignored, impacts, score:score(), violations:checkConstraints() };
+  }
+  function suggestActions() {
+    const out = [], st = explain();
+    for (const [key,msg] of checkConstraints())
+      out.push({priority:1, message:`Corriger ${key} (limite dépassée)`});
+    for (const name in st.impacts)
+      if (name in st.ignored && Math.abs(st.impacts[name]) > 0.25)
+        out.push({priority:2, message:`Activer ${name} (impact fort ignoré : ${st.impacts[name]>0?'+':''}${st.impacts[name]})`});
+    if (st.score.active_score < 0.6)
+      out.push({priority:3, message:"Améliorer le score global (énergie/coût)"});
+    return out.sort((a,b)=>a.priority-b.priority);
+  }
+  return { frames, applyDelta, explain, suggestActions };
+}
+
+/* ===================== UI ===================== */
+const UI_FRAMES = [
+  ["mur.isolation","Isolation murs"],
+  ["toiture.isolation","Isolation toiture"],
+  ["systeme.energie","Énergie"],
+  ["systeme.cout","Coût"],
+  ["global.surface","Surface"],
+  ["global.carbone","Carbone"],
+];
+const state = {};
+for (const k in MODEL.frames) state[k] = { value: MODEL.frames[k].value, active: MODEL.frames[k].active };
+
+const controls = document.getElementById("controls");
+UI_FRAMES.forEach(([key,label]) => {
+  const div = document.createElement("div");
+  div.className = "frame";
+  div.innerHTML = `
+    <label>
+      <span><span class="toggle ${state[key].active?'active':''}" data-k="${key}">●</span> ${label}</span>
+      <span class="val" id="v-${key}">${state[key].value.toFixed(2)}</span>
+    </label>
+    <input type="range" min="0" max="1" step="0.01" value="${state[key].value}" data-k="${key}">`;
+  controls.appendChild(div);
+});
+
+controls.addEventListener("input", e => {
+  const k = e.target.dataset.k;
+  state[k].value = parseFloat(e.target.value);
+  document.getElementById("v-"+k).textContent = state[k].value.toFixed(2);
+  render();
+});
+controls.addEventListener("click", e => {
+  if (!e.target.classList.contains("toggle")) return;
+  const k = e.target.dataset.k;
+  state[k].active = !state[k].active;
+  e.target.classList.toggle("active", state[k].active);
+  render();
+});
+
+function render() {
+  // moteur frais à chaque rendu, valeurs/activations issues de l'UI
+  const eng = makeEngine(MODEL);
+  for (const k in state) { eng.frames[k].value = clamp(state[k].value); eng.frames[k].active = state[k].active; }
+  const d = eng.explain();
+  let html = `<div class="section">Décision (cadres actifs)</div>`;
+  for (const k in d.active) html += `<div class="line ok">${k} : ${d.active[k]}</div>`;
+  html += `<div class="section">Impacts ignorés (surveillés)</div>`;
+  for (const k in d.ignored) html += `<div class="line warn">${k} : ${d.ignored[k]}</div>`;
+  if (d.violations.length) {
+    html += `<div class="section">Contraintes RE2020</div>`;
+    for (const [,m] of d.violations) html += `<div class="line bad">${m}</div>`;
+  } else {
+    html += `<div class="section">Contraintes RE2020 <span class="pill">conforme</span></div>`;
+  }
+  const sugg = eng.suggestActions();
+  if (sugg.length) {
+    html += `<div class="section">Suggestions</div>`;
+    sugg.forEach(s => html += `<div class="line sug">${s.message}</div>`);
+  }
+  html += `<div class="section">Score</div>`;
+  html += `<div class="line">actif ${d.score.active_score} · total ${d.score.total_score} · écart ignorés ${d.score.gap}</div>`;
+  document.getElementById("report").innerHTML = html;
+}
+render();
+</script>
+</body>
+</html>
