@@ -5,11 +5,11 @@ name: Déploiement de la démo (GitHub Pages)
 
 on:
   push:
-    branches: [ main, claude/frames-cursors-engine-eSEZG ]
+    branches: [ main ]
     paths:
       - 'ui/**'
       - '.github/workflows/pages.yml'
-  workflow_dispatch: {}
+  workflow_dispatch: {}   # declenchement manuel possible depuis l'onglet Actions
 
 permissions:
   contents: read
@@ -25,10 +25,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Configurer Pages (active Pages si besoin)
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
       - name: Assembler le site
         run: |
           mkdir -p _site
