@@ -198,3 +198,67 @@ def test_run_from_json_returns_lifecycle_cost_and_discount():
     assert engine.discount_rate == 0.04
     assert out["lifecycle_cost"] is not None
     assert out["lifecycle_cost"]["discount_rate"] == 0.04
+
+
+# -- robustesse / fiabilité -------------------------------------------------
+def _heavy_passive_engine():
+    engine = create_btp_engine()
+    engine.frames["global.carbone"].value = 0.85
+    engine.frames["global.carbone_annuel"].value = 0.2
+    engine.frames["global.cout_initial"].value = 0.85
+    engine.frames["global.cout_annuel"].value = 0.2
+    return engine
+
+
+def test_reliability_one_equals_optimistic():
+    # fiabilité parfaite -> identique au calcul nominal (rétro-compatibilité).
+    engine = _heavy_passive_engine()
+    nominal = engine.lifecycle_carbon(horizon=30)
+    perfect = engine.lifecycle_carbon(horizon=30, reliability=1.0, maintenance=0.15)
+    assert perfect["annual"] == pytest.approx(nominal["annual"])
+
+
+def test_low_reliability_degrades_annual():
+    engine = _heavy_passive_engine()
+    good = engine.lifecycle_carbon(horizon=30, reliability=0.9, maintenance=0.15)
+    bad = engine.lifecycle_carbon(horizon=30, reliability=0.2, maintenance=0.15)
+    assert bad["annual"] > good["annual"]   # moins fiable -> usage réel plus lourd
+
+
+def test_robustness_verdict_flips_with_reliability():
+    engine = _heavy_passive_engine()
+    engine.frames["systeme.fiabilite"].value = 0.9
+    assert engine.robustness(horizon=30)["robuste"] is True
+    engine.frames["systeme.fiabilite"].value = 0.3
+    rob = engine.robustness(horizon=30)
+    assert rob["robuste"] is False
+    # l'optimiste reste favorable, mais le réaliste non -> sensible à l'exécution.
+    assert rob["carbone"]["optimiste_favorable"] is True
+    assert rob["carbone"]["realiste_favorable"] is False
+
+
+def test_break_even_reliability_is_a_fraction():
+    engine = _heavy_passive_engine()
+    be = engine._break_even_reliability("carbon", 30, engine.maintenance_penalty)
+    assert be is None or 0.0 <= be <= 1.0
+
+
+def test_robustness_none_without_reliability_frame():
+    from btp_engine import Engine, Frame
+    assert Engine({"x": Frame(0.5)}, []).robustness() is None
+
+
+def test_translator_detects_reliability_risk():
+    p = tr.translate_idea("système avec pompes et risque de panne")
+    assert p["frames"]["systeme.fiabilite"]["value"] == 0.45
+    p2 = tr.translate_idea("solution simple et robuste sans entretien")
+    assert p2["frames"]["systeme.fiabilite"]["value"] == 0.8
+
+
+def test_run_from_json_returns_robustness():
+    engine = _heavy_passive_engine()
+    payload = {"frames": {"systeme.fiabilite": {"value": 0.3, "active": True}},
+               "deltas": {}, "context": {"horizon": 30}}
+    out = run_from_json(engine, payload, auto_adjust=False)
+    assert out["robustness"] is not None
+    assert out["robustness"]["robuste"] is False

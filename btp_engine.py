@@ -79,6 +79,12 @@ class Engine:
         #   0.0 = coût total brut, >0 = coûts futurs actualisés (analyse réelle).
         self.cout_baseline_annuel = float(baseline_annual)
         self.discount_rate = 0.0
+        # --- dimension FIABILITÉ (sensibilité à l'exécution) -------------
+        # Quand la fiabilité baisse, le système retombe au niveau conventionnel
+        # PLUS une pénalité de maintenance/réparation : un système sophistiqué
+        # en panne coûte plus cher qu'un bâtiment simple. C'est ce qui rend une
+        # « bonne idée » sensible à la réalisation terrain.
+        self.maintenance_penalty = 0.15
         self.history: List[Dict[str, Any]] = []
         self.sessions: List[Dict[str, Any]] = []
         self.experiences: List[Dict[str, Any]] = []
@@ -158,8 +164,22 @@ class Engine:
         return violations
 
     # -- cycle de vie (dimension temps) ---------------------------------
+    def _effective_annual(self, ideal: float, baseline: float,
+                          reliability: float, maintenance: float) -> float:
+        """Intensité annuelle *réellement* obtenue compte tenu de la fiabilité.
+
+        reliability = 1 -> performance idéale (scénario optimiste).
+        reliability < 1 -> part dégradée : retour au niveau conventionnel
+        ``baseline`` + pénalité de ``maintenance`` (un système en panne coûte
+        plus qu'un bâtiment simple).
+        """
+        reliability = max(0.0, min(1.0, reliability))
+        return reliability * ideal + (1.0 - reliability) * (baseline + maintenance)
+
     def lifecycle_carbon(self, horizon: Optional[float] = None,
-                         baseline_annual: Optional[float] = None) -> Optional[Dict[str, Any]]:
+                         baseline_annual: Optional[float] = None,
+                         reliability: float = 1.0,
+                         maintenance: float = 0.0) -> Optional[Dict[str, Any]]:
         """Bilan carbone sur la durée de vie (corrige le biais « instantané ».
 
         Le moteur, par défaut, ne voit que le carbone de **construction**
@@ -185,12 +205,16 @@ class Engine:
         h = self.horizon if horizon is None else float(horizon)
         base = self.carbone_baseline_annuel if baseline_annual is None else float(baseline_annual)
         initial = self.frames["global.carbone"].value
-        annual = self.frames["global.carbone_annuel"].value
+        annual_ideal = self.frames["global.carbone_annuel"].value
+        # carbone d'usage réellement obtenu compte tenu de la fiabilité
+        annual = self._effective_annual(annual_ideal, base, reliability, maintenance)
         cumulative = initial + annual * h
         per_year = cumulative / (h + 1.0)
         out: Dict[str, Any] = {
             "initial": round(initial, 3),
             "annual": round(annual, 3),
+            "annual_ideal": round(annual_ideal, 3),
+            "reliability": round(reliability, 3),
             "horizon": h,
             "baseline_annual": round(base, 3),
             "cumulative": round(cumulative, 3),
@@ -220,7 +244,9 @@ class Engine:
 
     def lifecycle_cost(self, horizon: Optional[float] = None,
                        baseline_annual: Optional[float] = None,
-                       discount_rate: Optional[float] = None) -> Optional[Dict[str, Any]]:
+                       discount_rate: Optional[float] = None,
+                       reliability: float = 1.0,
+                       maintenance: float = 0.0) -> Optional[Dict[str, Any]]:
         """Coût total sur la durée de vie + retour sur investissement (ROI).
 
         Miroir économique de :meth:`lifecycle_carbon`. Un système sobre coûte
@@ -242,12 +268,16 @@ class Engine:
         rate = self.discount_rate if discount_rate is None else float(discount_rate)
         factor = self._annuity_factor(h, rate)
         initial = self.frames["global.cout_initial"].value
-        annual = self.frames["global.cout_annuel"].value
+        annual_ideal = self.frames["global.cout_annuel"].value
+        # OPEX réellement subi compte tenu de la fiabilité (maintenance si panne)
+        annual = self._effective_annual(annual_ideal, base, reliability, maintenance)
         total = initial + annual * factor
         baseline_total = base * factor  # référence : CAPEX négligeable, OPEX élevé
         out: Dict[str, Any] = {
             "capex": round(initial, 3),
             "opex_annuel": round(annual, 3),
+            "opex_ideal": round(annual_ideal, 3),
+            "reliability": round(reliability, 3),
             "horizon": h,
             "discount_rate": rate,
             "baseline_annual": round(base, 3),
@@ -263,6 +293,59 @@ class Engine:
         out["favorable"] = total < baseline_total - _EPS
         out["verdict"] = ("rentable sur cet horizon" if out["favorable"]
                           else "non rentable sur cet horizon")
+        return out
+
+    # -- robustesse (sensibilité à l'exécution) -------------------------
+    def _break_even_reliability(self, kind: str, horizon: Optional[float],
+                                maintenance: float, step: float = 0.01) -> Optional[float]:
+        """Fiabilité minimale pour rester favorable à l'horizon donné.
+
+        Balaie la fiabilité de 0 à 1 et renvoie le plus petit niveau qui rend le
+        système favorable. ``0.0`` = robuste même en cas de défaillance totale ;
+        ``None`` = jamais favorable, même parfaitement fiable.
+        """
+        compute = self.lifecycle_carbon if kind == "carbon" else self.lifecycle_cost
+        r = 0.0
+        while r <= 1.0 + _EPS:
+            res = compute(horizon=horizon, reliability=r, maintenance=maintenance)
+            if res and res["favorable"]:
+                return round(r, 2)
+            r += step
+        return None
+
+    def robustness(self, horizon: Optional[float] = None) -> Optional[Dict[str, Any]]:
+        """Confronte le scénario OPTIMISTE (fiabilité parfaite) au scénario RÉALISTE
+        (fiabilité ``systeme.fiabilite``) et calcule la fiabilité de seuil.
+
+        Répond à la vraie question d'ingénieur : « mon idée tient — mais à partir
+        de quel niveau de fiabilité/maintenance cesse-t-elle d'être avantageuse ? »
+        """
+        if "systeme.fiabilite" not in self.frames:
+            return None
+        r = self.frames["systeme.fiabilite"].value
+        m = self.maintenance_penalty
+        h = self.horizon if horizon is None else float(horizon)
+        out: Dict[str, Any] = {"fiabilite": round(r, 3),
+                               "maintenance_penalty": m, "horizon": h}
+        robust_flags: List[bool] = []
+        for kind, key in (("carbon", "carbone"), ("cost", "cout")):
+            compute = self.lifecycle_carbon if kind == "carbon" else self.lifecycle_cost
+            opt = compute(horizon=h)                                   # fiabilité = 1
+            real = compute(horizon=h, reliability=r, maintenance=m)    # fiabilité réelle
+            if opt is None:
+                continue
+            out[key] = {
+                "optimiste_favorable": opt["favorable"],
+                "realiste_favorable": real["favorable"],
+                "break_even_reliability": self._break_even_reliability(kind, h, m),
+            }
+            robust_flags.append(real["favorable"])
+        out["robuste"] = bool(robust_flags) and all(robust_flags)
+        if out["robuste"]:
+            out["message"] = "favorable même au niveau de fiabilité réel — solution robuste"
+        else:
+            out["message"] = ("avantage sensible à l'exécution : dépend de la "
+                              "fiabilité et de la maintenance")
         return out
 
     # -- scoring (pondéré, normalisé) -----------------------------------
@@ -310,6 +393,9 @@ class Engine:
         lifecycle_cost = self.lifecycle_cost()
         if lifecycle_cost is not None:
             result["lifecycle_cost"] = lifecycle_cost
+        robustness = self.robustness()
+        if robustness is not None:
+            result["robustness"] = robustness
         return result
 
     # -- scénarios ------------------------------------------------------
@@ -558,6 +644,7 @@ def run_from_json(engine: "Engine", payload: Dict[str, Any], *,
         "violations": [m for *_, m in state["violations"]],
         "lifecycle": state.get("lifecycle"),
         "lifecycle_cost": state.get("lifecycle_cost"),
+        "robustness": state.get("robustness"),
         "suggestions": [s["message"] for s in engine.suggest_actions()],
         "auto_adjust": adjust,
         "context": context,
@@ -577,6 +664,7 @@ def create_btp_engine() -> Engine:
         "systeme.energie": Frame(0.5, True, 2.0),
         "systeme.cout": Frame(0.5, True, 1.2),
         "systeme.maintenance": Frame(0.5, False, 0.9),
+        "systeme.fiabilite": Frame(0.6, False, 1.7),   # fiabilité (sensibilité exécution)
         "global.surface": Frame(0.7, False, 1.0),
         "global.carbone": Frame(0.6, False, 1.8),      # carbone de CONSTRUCTION (embodied)
         "global.carbone_annuel": Frame(0.3, False, 1.0),  # carbone d'USAGE / an

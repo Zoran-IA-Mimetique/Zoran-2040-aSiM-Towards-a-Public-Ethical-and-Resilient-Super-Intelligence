@@ -67,6 +67,27 @@ Miroir économique du carbone. `Engine.lifecycle_cost(horizon, discount_rate)` :
 Comme le carbone : *non rentable en court terme, rentable en long terme*.
 Sélecteur de **taux d'actualisation** dans l'UI.
 
+### Dimension FIABILITÉ — sensibilité à l'exécution
+
+Les calculs cycle de vie ci-dessus sont le scénario **optimiste** (le système
+délivre 100 % de sa performance 30 ans). `Engine.robustness()` confronte cet
+optimisme à la réalité via `systeme.fiabilite` :
+
+```
+usage_réel/an = fiabilité × idéal + (1 − fiabilité) × (conventionnel + maintenance)
+```
+
+Un système en panne retombe au niveau conventionnel **plus** une pénalité de
+maintenance — il peut devenir *pire* qu'un bâtiment simple. `robustness()` donne :
+
+* `optimiste_favorable` vs `realiste_favorable` (carbone **et** coût) ;
+* `break_even_reliability` = **fiabilité de seuil** sous laquelle l'avantage
+  disparaît ;
+* `robuste` = l'avantage tient-il au niveau de fiabilité réel ?
+
+Verdict honnête : *« bonne idée d'ingénierie tant que la fiabilité reste > seuil »*
+— pas une boîte noire qui dit juste « c'est bon ». Curseur « Fiabilité » dans l'UI.
+
 ## Architecture (ZORAN full merge)
 
 ```

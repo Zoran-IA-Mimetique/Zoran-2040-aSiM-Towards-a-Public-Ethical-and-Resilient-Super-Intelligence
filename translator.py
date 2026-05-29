@@ -77,6 +77,9 @@ _INNOVATION = r"innov|nouveau|nouvelle|concept|prototype|inédit|inedit|breveté
 # systèmes passifs (carbone d'usage faible) et constructions lourdes (carbone initial élevé)
 _PASSIVE = r"passif|inertie|autonome|stockage thermique|géothermie|geothermie|solaire|renouvelable|gravitaire"
 _HEAVY = r"béton|beton|excavation|infrastructure|lourd|terrassement|fondation|massif|poche d'eau|réseau|reseau"
+# fiabilité : mots qui rassurent (fiable, durable) vs mots de risque (panne, fuite…)
+_RELIABLE = r"fiable|robuste|durable|éprouvé|eprouve|simple|sans entretien"
+_RISK = r"panne|fuite|usure|défaillance|defaillance|fragile|complexe|pompe|maintenance"
 
 _DELTA = 0.2
 
@@ -148,6 +151,12 @@ def translate_idea(idea: str) -> Dict[str, Any]:
     if re.search(_HEAVY, text):
         frames["global.carbone"] = {"value": 0.85, "active": True, "weight": 1.8}
         frames["global.cout_initial"] = {"value": 0.8, "active": True, "weight": 1.2}
+    # Fiabilité : rassurante (haute) ou risquée (basse). La présence de pompes /
+    # mécanismes mobiles abaisse la fiabilité par défaut.
+    if re.search(_RELIABLE, text) and not re.search(_RISK, text):
+        frames["systeme.fiabilite"] = {"value": 0.8, "active": True, "weight": 1.7}
+    elif re.search(_RISK, text):
+        frames["systeme.fiabilite"] = {"value": 0.45, "active": True, "weight": 1.7}
 
     # Repli : si rien n'est reconnu, on cible l'énergie (cadre par défaut).
     if not frames:
@@ -214,5 +223,6 @@ if __name__ == "__main__":
     print("  violations :", r["violations"] or "aucune")
     print("  carbone cycle:", r["lifecycle"])
     print("  coût cycle  :", r["lifecycle_cost"])
+    print("  robustesse  :", r["robustness"])
     print("  auto_adjust:", r["auto_adjust"])
     print("  suggestions:", r["suggestions"] or "aucune")
