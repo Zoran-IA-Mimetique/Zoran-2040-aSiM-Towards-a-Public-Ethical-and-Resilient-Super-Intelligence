@@ -37,7 +37,20 @@
 </head>
 <body>
   <h1>Moteur BTP — cadres &amp; curseurs</h1>
-  <p class="sub">100 % dans ton navigateur, aucun serveur. Glisse un curseur, (dés)active un cadre (●), observe les conséquences et la conformité RE2020.</p>
+  <p class="sub">100 % dans ton navigateur, aucun serveur. Décris une idée OU glisse les curseurs. Le LLM/traducteur propose une structure, le <b>moteur décide</b>.</p>
+
+  <div class="card">
+    <div class="section" style="margin-top:0">Idée libre → structure → simulation</div>
+    <textarea id="idea" rows="2" placeholder="ex: poche d'eau autour du bâtiment, stockage thermique pour réduire l'énergie"
+      style="width:100%;background:#0d1117;color:var(--fg);border:1px solid #30363d;border-radius:8px;padding:10px;font-size:14px;font-family:inherit"></textarea>
+    <div style="display:flex;gap:8px;margin-top:8px;align-items:center">
+      <button onclick="runIdea()">Traduire &amp; simuler</button>
+      <label class="toggle-adj" style="font-size:12px;color:var(--muted)">
+        <input type="checkbox" id="autoadj" checked> auto-optimiser (faisabilité)
+      </label>
+    </div>
+    <pre id="jsonout" style="display:none;margin-top:10px"></pre>
+  </div>
 
   <div class="card" id="controls"></div>
   <div class="card" id="report"></div>
@@ -154,7 +167,109 @@ function makeEngine(model, gamma=1.0) {
       out.push({priority:3, message:"Améliorer le score global (énergie/coût)"});
     return out.sort((a,b)=>a.priority-b.priority);
   }
-  return { frames, applyDelta, explain, suggestActions };
+  function totalViolation() {
+    let tv = 0;
+    for (const key in model.constraints) {
+      if (!(key in frames)) continue;
+      const v = frames[key].value, r = model.constraints[key];
+      if ("max" in r) tv += Math.max(0, v - r.max);
+      if ("min" in r) tv += Math.max(0, r.min - v);
+    }
+    return tv;
+  }
+  function snap() { const s={}; for (const k in frames) s[k]=[frames[k].value,frames[k].active]; return s; }
+  function restore(s) { for (const k in s) { frames[k].value=s[k][0]; frames[k].active=s[k][1]; } }
+  function autoAdjust(step=0.05, maxIter=200) {
+    // levier = cadre actif, racine du graphe (sortant mais pas entrant)
+    const cand = Object.keys(frames).filter(n => frames[n].active && graph[n] && !rgraph[n]);
+    let cur = totalViolation(), iters = 0;
+    while (cur > EPS && iters < maxIter) {
+      let best = null;
+      for (const name of cand) for (const d of [step,-step]) {
+        const s = snap(); applyDelta(name, d); const nv = totalViolation(); restore(s);
+        if (best === null || nv < best[0]) best = [nv, name, d];
+      }
+      if (best === null || best[0] >= cur - EPS) break;
+      applyDelta(best[1], best[2]); cur = best[0]; iters++;
+    }
+    return { iterations:iters, violation:+cur.toFixed(4), feasible: cur <= EPS };
+  }
+  function inject(name, spec) {
+    if (!(name in frames)) frames[name] = { value:0.5, active:true, weight:1.0 };
+    if ("value" in spec) frames[name].value = clamp(spec.value);
+    if ("active" in spec) frames[name].active = !!spec.active;
+    if ("weight" in spec) frames[name].weight = spec.weight;
+  }
+  return { frames, applyDelta, explain, suggestActions, autoAdjust, totalViolation, inject };
+}
+
+/* ===================== TRADUCTEUR (porté de translator.py) ===================== */
+const FRAME_DEFAULTS = {
+  "systeme.energie":[0.5,2.0,"min"], "systeme.cout":[0.5,1.2,"min"],
+  "systeme.maintenance":[0.5,0.9,"min"], "systeme.inertie":[0.6,1.5,"max"],
+  "global.carbone":[0.6,1.8,"min"], "global.surface":[0.7,1.0,"max"],
+  "mur.isolation":[0.6,1.5,"max"], "toiture.isolation":[0.7,1.4,"max"],
+  "mur.reparabilite":[0.6,0.7,"max"],
+};
+const KW = [
+  [/énergie|energie|consommation|conso|chauffage|électr|electr/, "systeme.energie"],
+  [/co[uû]t|budget|prix|dépense|depense|euro/, "systeme.cout"],
+  [/maintenance|entretien|exploitation/, "systeme.maintenance"],
+  [/inertie|stockage thermique|thermique|tampon|eau|hydraulique|masse/, "systeme.inertie"],
+  [/carbone|co2|empreinte|émission|emission/, "global.carbone"],
+  [/surface|espace|m2|mètres carrés|metres carres/, "global.surface"],
+  [/isolation|isoler|isolant/, "mur.isolation"],
+  [/toiture|toit|couverture/, "toiture.isolation"],
+  [/réparab|reparab|démontable|demontable|recycl/, "mur.reparabilite"],
+];
+const RE_REDUCE = /rédui|redui|baiss|diminu|minimis|moins|limit|économis|economis|abaiss/;
+const RE_INCREASE = /augment|maximis|amélior|amelior|renforc|booster|accro[iî]tre|plus de|davantage/;
+const RE_INNOV = /innov|nouveau|nouvelle|concept|prototype|inédit|inedit|idée|idee/;
+const DELTA = 0.2;
+
+function translateIdea(idea) {
+  const text = idea.toLowerCase();
+  const found = [];
+  for (const [re, frame] of KW) if (re.test(text) && !found.includes(frame)) found.push(frame);
+  const frames = {}, deltas = {};
+  const reduce_ = RE_REDUCE.test(text), increase = RE_INCREASE.test(text);
+  for (const frame of found) {
+    const [value, weight, kind] = FRAME_DEFAULTS[frame];
+    frames[frame] = { value, active:true, weight };
+    let d = 0;
+    if (kind === "min") d = reduce_ ? -DELTA : (increase ? DELTA : 0);
+    else d = increase ? DELTA : 0;
+    if (d) deltas[frame] = +d.toFixed(3);
+  }
+  if (!found.length) { const [v,w] = FRAME_DEFAULTS["systeme.energie"]; frames["systeme.energie"]={value:v,active:true,weight:w}; }
+  return {
+    frames, deltas,
+    context: { idea: idea.trim().slice(0,160),
+               type: RE_INNOV.test(text) ? "innovation" : "optimisation",
+               confidence: +Math.min(0.9, 0.4 + 0.15*found.length).toFixed(2) }
+  };
+}
+
+function runIdea() {
+  const idea = document.getElementById("idea").value || "";
+  const payload = translateIdea(idea);
+  const eng = makeEngine(MODEL);
+  for (const k in payload.frames) eng.inject(k, payload.frames[k]);
+  for (const k in (payload.deltas||{})) eng.applyDelta(k, payload.deltas[k]);
+  const adj = document.getElementById("autoadj").checked ? eng.autoAdjust() : null;
+  // synchronise les curseurs visibles avec l'état résultant
+  for (const k in state) if (k in eng.frames) {
+    state[k] = { value: eng.frames[k].value, active: eng.frames[k].active };
+    const sl = controls.querySelector(`input[data-k="${k}"]`);
+    const tg = controls.querySelector(`.toggle[data-k="${k}"]`);
+    if (sl) { sl.value = state[k].value; document.getElementById("v-"+k).textContent = state[k].value.toFixed(2); }
+    if (tg) tg.classList.toggle("active", state[k].active);
+  }
+  const jo = document.getElementById("jsonout");
+  jo.style.display = "block";
+  jo.textContent = "JSON traducteur :\n" + JSON.stringify(payload, null, 2)
+    + (adj ? `\n\nauto-optimisation : ${adj.feasible ? "✅ faisable" : "⚠️ infaisable"} en ${adj.iterations} pas (violation ${adj.violation})` : "");
+  renderEngine(eng);
 }
 
 /* ===================== UI ===================== */
@@ -200,6 +315,10 @@ function render() {
   // moteur frais à chaque rendu, valeurs/activations issues de l'UI
   const eng = makeEngine(MODEL);
   for (const k in state) { eng.frames[k].value = clamp(state[k].value); eng.frames[k].active = state[k].active; }
+  renderEngine(eng);
+}
+
+function renderEngine(eng) {
   const d = eng.explain();
   let html = `<div class="section">Décision (cadres actifs)</div>`;
   for (const k in d.active) html += `<div class="line ok">${k} : ${d.active[k]}</div>`;

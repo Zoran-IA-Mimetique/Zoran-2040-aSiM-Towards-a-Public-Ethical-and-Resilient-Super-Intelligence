@@ -22,7 +22,7 @@ import json
 import os
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
-from webapp import INDEX_HTML, simulate_payload
+from webapp import INDEX_HTML, idea_payload, simulate_payload
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -59,13 +59,13 @@ class Handler(BaseHTTPRequestHandler):
             self._send(404, json.dumps({"error": "not found"}))
 
     def do_POST(self):
-        if self.path != "/simulate":
+        if self.path not in ("/simulate", "/idea"):
             self._send(404, json.dumps({"error": "not found"}))
             return
         try:
             length = int(self.headers.get("Content-Length", 0))
-            payload = json.loads(self.rfile.read(length) or b"{}")
-            result = simulate_payload(payload)
+            body = json.loads(self.rfile.read(length) or b"{}")
+            result = idea_payload(body) if self.path == "/idea" else simulate_payload(body)
             self._send(200, json.dumps(result, ensure_ascii=False))
         except Exception as exc:  # renvoyer l'erreur plutôt que planter
             self._send(400, json.dumps({"error": str(exc)}))

@@ -16,7 +16,7 @@ from __future__ import annotations
 import os
 from typing import Any, Dict
 
-from btp_engine import create_btp_engine
+from btp_engine import create_btp_engine, run_from_json
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 INDEX_HTML = os.path.join(HERE, "ui", "index.html")
@@ -57,6 +57,22 @@ def simulate_payload(payload: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
+def idea_payload(body: Dict[str, Any]) -> Dict[str, Any]:
+    """Pipeline « idée libre -> JSON -> simulation » (LLM = structure, moteur = vérité).
+
+    Body ::
+        {"idea": "texte libre", "auto_adjust": true}
+    """
+    from translator import translate_idea
+
+    idea = str(body.get("idea", "")).strip()
+    payload = translate_idea(idea)
+    engine = create_btp_engine()
+    result = run_from_json(engine, payload,
+                           auto_adjust=bool(body.get("auto_adjust", True)))
+    return {"payload": payload, "result": result}
+
+
 # --------------------------------------------------------------------------
 # Wrapper FastAPI (optionnel)
 # --------------------------------------------------------------------------
@@ -74,6 +90,10 @@ try:
     @app.post("/simulate")
     def simulate(payload: Dict[str, Any]) -> Any:
         return JSONResponse(simulate_payload(payload))
+
+    @app.post("/idea")
+    def idea(body: Dict[str, Any]) -> Any:
+        return JSONResponse(idea_payload(body))
 
 except ImportError:  # pragma: no cover - FastAPI non installé
     app = None

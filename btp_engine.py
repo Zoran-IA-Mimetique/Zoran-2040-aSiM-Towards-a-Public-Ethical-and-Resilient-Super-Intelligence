@@ -309,6 +309,63 @@ class Engine:
                 })
         return suggestions
 
+    # -- auto-optimisation (réparation de faisabilité) ------------------
+    def total_violation(self) -> float:
+        """Somme des dépassements de contraintes (0 = solution faisable)."""
+        tv = 0.0
+        for key, rule in self.constraints.items():
+            if key not in self.frames:
+                continue
+            v = self.frames[key].value
+            if "max" in rule:
+                tv += max(0.0, v - rule["max"])
+            if "min" in rule:
+                tv += max(0.0, rule["min"] - v)
+        return tv
+
+    def auto_adjust(self, *, step: float = 0.05, max_iter: int = 200) -> Dict[str, Any]:
+        """Ajuste les leviers pilotables pour ramener la solution dans les bornes.
+
+        Recherche gloutonne (hill-climbing) : à chaque itération on teste un petit
+        pas ± sur chaque cadre actif disposant de dépendances sortantes (un
+        *levier*), et on garde le mouvement qui réduit le plus la violation
+        totale. On s'arrête dès que la solution est faisable, qu'aucun mouvement
+        n'améliore plus (optimum local), ou après ``max_iter`` itérations.
+
+        ⚠️ Honnêteté : ce n'est PAS une maximisation d'un score global (volontaire
+        — on n'écrase pas les compromis). C'est uniquement de la **faisabilité** :
+        respecter les contraintes. Les arbitrages restants restent visibles.
+        """
+        # Un *levier* = cadre actif qui a des dépendances sortantes mais AUCUNE
+        # entrante (une racine du graphe). On évite ainsi d'ajuster directement
+        # un résultat (ex. l'énergie, qui dépend de l'isolation) : seuls les
+        # vrais leviers d'entrée sont déplacés.
+        candidates = [n for n, f in self.frames.items()
+                      if f.active and n in self.graph and n not in self.reverse_graph]
+        moves: List[Dict[str, Any]] = []
+        cur = self.total_violation()
+        iters = 0
+        while cur > _EPS and iters < max_iter:
+            best = None  # (violation, name, delta)
+            for name in candidates:
+                for d in (step, -step):
+                    saved = self._snapshot_full()
+                    hlen = len(self.history)
+                    self.apply_delta(name, d)
+                    nv = self.total_violation()
+                    self._restore_full(saved)
+                    del self.history[hlen:]
+                    if best is None or nv < best[0]:
+                        best = (nv, name, d)
+            if best is None or best[0] >= cur - _EPS:
+                break  # plus d'amélioration possible
+            self.apply_delta(best[1], best[2])
+            moves.append({"frame": best[1], "delta": best[2]})
+            cur = best[0]
+            iters += 1
+        return {"iterations": iters, "violation": round(cur, 4),
+                "feasible": cur <= _EPS, "moves": moves}
+
     # -- export ---------------------------------------------------------
     def to_json(self) -> str:
         return json.dumps({
@@ -319,6 +376,52 @@ class Engine:
             "constraints": self.constraints,
             "explain": self.explain(),
         }, indent=2, ensure_ascii=False)
+
+
+def run_from_json(engine: "Engine", payload: Dict[str, Any], *,
+                  auto_adjust: bool = True, step: float = 0.05) -> Dict[str, Any]:
+    """Pipeline JSON -> simulation : injecte, applique les deltas, optimise, diagnostique.
+
+    ``payload`` = sortie du traducteur ::
+
+        {"frames": {name: {value, active, weight}}, "deltas": {name: delta},
+         "context": {...}}
+
+    Comportement : (1) injection des cadres (création si absent), (2) application
+    des deltas avec propagation, (3) auto-optimisation de faisabilité (optionnelle),
+    (4) diagnostic ``active/ignored/score/violations`` + suggestions.
+    """
+    for name, spec in (payload.get("frames") or {}).items():
+        if name in engine.frames:
+            frame = engine.frames[name]
+            if "value" in spec:
+                frame.value = max(0.0, min(1.0, float(spec["value"])))
+            if "active" in spec:
+                frame.active = bool(spec["active"])
+            if "weight" in spec:
+                frame.weight = float(spec["weight"])
+        else:
+            engine.frames[name] = Frame(
+                value=max(0.0, min(1.0, float(spec.get("value", 0.5)))),
+                active=bool(spec.get("active", True)),
+                weight=float(spec.get("weight", 1.0)),
+            )
+    engine._build_graph()
+
+    for name, delta in (payload.get("deltas") or {}).items():
+        engine.apply_delta(name, float(delta))
+
+    adjust = engine.auto_adjust(step=step) if auto_adjust else None
+    state = engine.explain()
+    return {
+        "active": state["active"],
+        "ignored": state["ignored"],
+        "score": state["score"],
+        "violations": [m for *_, m in state["violations"]],
+        "suggestions": [s["message"] for s in engine.suggest_actions()],
+        "auto_adjust": adjust,
+        "context": payload.get("context", {}),
+    }
 
 
 # --------------------------------------------------------------------------

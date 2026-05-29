@@ -19,8 +19,24 @@ Le moteur existe en trois niveaux complémentaires — du plus simple au plus co
 | **Cas métier RE2020** | `re2020.py` | démo concrète à 4 curseurs (énergie/coût/surface/carbone) + contrainte bloquante |
 | **Moteur BTP v2** | `btp_engine.py` | moteur complet : cascade, scoring, scénarios, suggestions, mémoire, non-linéaire, apprentissage |
 | **Noyau réutilisable** | `decision_engine/` (package) | API stable : propagation chaînée, scoring par cadre, alternatives, FastAPI |
+| **Traducteur idée→JSON** | `translator.py` | idée libre → structure JSON (déterministe ; prompt LLM optionnel) |
+| **Pipeline JSON→sim** | `btp_engine.run_from_json` | injecte, applique, **auto-optimise (faisabilité)**, diagnostique |
+| **Dataset + apprentissage** | `data/projects.jsonl` + `dataset.py` | 10 projets BTP → ajustement des dépendances |
 | **Bridge ZORAN** | `zoran_bridge.py` | fusion mémoire ↔ moteur (couplage faible) |
-| **UI à curseurs** | `webapp.py` + `ui/index.html` | piloter le moteur visuellement |
+| **UI à curseurs + idée** | `webapp.py`, `serve.py`, `ui/` | piloter par curseurs OU par idée libre |
+
+### Pipeline « idée → décision » (LLM = structure, moteur = vérité)
+
+```
+idée libre ──translator──▶ JSON {frames, deltas, context} ──run_from_json──▶ diagnostic
+                (structure)                                   (arbitre : propage,
+                                                               auto-optimise, valide)
+```
+
+`python translator.py` exécute l'exemple complet. L'**auto-optimisation**
+(`Engine.auto_adjust`) ne maximise PAS un score global (volontaire) : elle
+ajuste les *leviers d'entrée* (racines du graphe) pour ramener la solution dans
+les contraintes (faisabilité RE2020), et dit si elle y parvient.
 
 ## Architecture (ZORAN full merge)
 
