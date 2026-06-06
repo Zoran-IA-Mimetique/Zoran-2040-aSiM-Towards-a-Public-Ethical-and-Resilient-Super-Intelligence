@@ -37,12 +37,11 @@ jobs:
       - name: Build
         run: npm run build
 
+      # NOTE : GitHub Pages doit être activé UNE fois dans les réglages du dépôt
+      # (Settings → Pages → Source = "GitHub Actions"). Le jeton du robot n'a pas
+      # le droit de l'activer seul. Une fois activé, ce déploiement est automatique.
       - name: Setup Pages
         uses: actions/configure-pages@v5
-        with:
-          # Active automatiquement GitHub Pages (source = GitHub Actions)
-          # si ce n'est pas déjà fait — évite toute manipulation manuelle.
-          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
