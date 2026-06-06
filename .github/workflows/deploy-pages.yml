@@ -6,7 +6,6 @@ on:
   push:
     branches:
       - main
-      - claude/routine-cognitive-mvp-BQ9nA
   workflow_dispatch: {}
 
 permissions:
