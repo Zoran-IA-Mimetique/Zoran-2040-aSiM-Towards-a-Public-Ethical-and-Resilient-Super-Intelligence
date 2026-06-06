@@ -23,3 +23,6 @@ coverage/
 
 # TS build info
 *.tsbuildinfo
+
+# packaged app artifact
+routine-cognitive-app.zip
