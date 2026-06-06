@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0" />
+<meta name="theme-color" content="#6366f1" />
+<title>Routine Cognitive</title>
+<style>
+:root{
+  --bg:#f4f5fb;--surface:#fff;--surface-2:#f0f1f8;--text:#1a1c2e;--text-muted:#6b7090;
+  --border:#e3e5f0;--primary:#6366f1;--success:#10b981;--warning:#f59e0b;--danger:#ef4444;
+  --radius:18px;--radius-sm:12px;--shadow:0 6px 20px rgba(20,22,60,.08);--nav-h:64px;
+  --safe-bottom:env(safe-area-inset-bottom,0px);--safe-top:env(safe-area-inset-top,0px);
+}
+:root[data-theme="dark"]{
+  --bg:#0b1020;--surface:#161b2e;--surface-2:#1e2440;--text:#eef0fa;--text-muted:#9aa0c4;
+  --border:#2a3050;--shadow:0 6px 24px rgba(0,0,0,.4);
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;overscroll-behavior-y:none}
+button{font-family:inherit;cursor:pointer}
+.app{max-width:720px;margin:0 auto;min-height:100%;display:flex;flex-direction:column}
+.hdr{position:sticky;top:0;z-index:10;padding:calc(var(--safe-top) + 14px) 18px 12px;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(12px)}
+.hdr h1{font-size:1.35rem;font-weight:700;margin:0;letter-spacing:-.02em}
+.hdr p{color:var(--text-muted);font-size:.82rem;margin:2px 0 0}
+.main{flex:1;padding:8px 16px calc(var(--nav-h) + var(--safe-bottom) + 24px)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px;margin-bottom:12px}
+.card.muted{opacity:.7}
+.rc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.rc-title{font-weight:650;font-size:1.02rem;margin:0;line-height:1.3}
+.rc-desc{color:var(--text-muted);font-size:.85rem;margin:6px 0 0;line-height:1.4}
+.rc-meta{display:flex;align-items:center;gap:8px;margin-top:10px;flex-wrap:wrap}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:.74rem;font-weight:600;padding:4px 10px;border-radius:999px;color:#fff;white-space:nowrap}
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:.74rem;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--surface-2);color:var(--text-muted);border:none}
+.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.btn{border:none;border-radius:var(--radius-sm);padding:11px 8px;font-weight:650;font-size:.82rem;color:#fff;transition:transform .05s}
+.btn:active{transform:scale(.97)}
+.btn.done{background:var(--success)}.btn.later{background:var(--warning)}.btn.pause{background:var(--text-muted)}
+.btn.primary{background:var(--primary)}.btn.danger{background:var(--danger)}
+.btn.ghost{background:var(--surface-2);color:var(--text);border:1px solid var(--border)}
+.btn.block{width:100%}
+.section{margin:18px 0 6px}
+.section h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);font-weight:700;margin:0 0 8px 2px;display:flex;align-items:center;gap:6px}
+.count{background:var(--surface-2);border-radius:999px;padding:0 8px;font-size:.72rem}
+.empty{text-align:center;color:var(--text-muted);padding:28px 16px;font-size:.9rem}
+.field{margin-bottom:14px}
+.field label,.field .lbl{display:block;font-size:.82rem;font-weight:600;margin-bottom:6px;color:var(--text-muted)}
+.input,.textarea,.select{width:100%;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:var(--radius-sm);padding:12px 14px;font-size:.95rem}
+.textarea{min-height:90px;resize:vertical;font-family:inherit}
+.input:focus,.textarea:focus,.select:focus{outline:2px solid var(--primary);outline-offset:1px}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
+.cat-opt{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:var(--radius-sm);padding:10px 6px;font-size:.78rem;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:4px}
+.cat-opt[aria-pressed="true"]{border-color:var(--primary);box-shadow:0 0 0 2px color-mix(in srgb,var(--primary) 40%,transparent)}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:720px;height:calc(var(--nav-h) + var(--safe-bottom));padding-bottom:var(--safe-bottom);display:flex;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(14px);border-top:1px solid var(--border);z-index:20}
+.nav button{flex:1;border:none;background:transparent;color:var(--text-muted);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:.66rem;font-weight:600;padding:6px 2px}
+.nav button .ic{font-size:1.25rem;line-height:1}
+.nav button.active{color:var(--primary)}
+.row{display:flex;align-items:center;gap:10px}
+.tabs{display:flex;gap:6px;background:var(--surface-2);border-radius:999px;padding:4px;margin-bottom:14px}
+.tabs button{flex:1;border:none;background:transparent;color:var(--text-muted);padding:8px;border-radius:999px;font-weight:650;font-size:.82rem}
+.tabs button.active{background:var(--surface);color:var(--text);box-shadow:var(--shadow)}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 10px;text-align:center}
+.stat .v{font-size:1.6rem;font-weight:750;line-height:1}
+.stat .l{font-size:.72rem;color:var(--text-muted);margin-top:6px}
+.hint{font-size:.78rem;color:var(--text-muted);margin-top:6px}
+.banner{background:color-mix(in srgb,var(--primary) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--primary) 30%,var(--border));border-radius:var(--radius-sm);padding:12px 14px;font-size:.85rem;margin-bottom:14px;display:flex;gap:10px;align-items:center;justify-content:space-between}
+.switch{position:relative;width:46px;height:26px;border-radius:999px;border:none;background:var(--border);flex-shrink:0}
+.switch[aria-checked="true"]{background:var(--success)}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .15s}
+.switch[aria-checked="true"]::after{transform:translateX(20px)}
+.toast{position:fixed;left:50%;bottom:calc(var(--nav-h) + var(--safe-bottom) + 16px);transform:translateX(-50%);background:var(--text);color:var(--bg);padding:10px 18px;border-radius:999px;font-size:.85rem;font-weight:600;z-index:50;box-shadow:var(--shadow)}
+@media (min-width:600px){.list-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.list-grid .card{margin-bottom:0}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="hdr"><h1 id="h-title">🧠 Aujourd'hui</h1><p id="h-sub">Vos micro-actions du jour</p></header>
+  <main class="main" id="main"></main>
+  <nav class="nav" id="nav"></nav>
+</div>
+<script>
+"use strict";
+/* Routine Cognitive — version autonome (un seul fichier, sans backend).
+   Stockage local : localStorage, avec repli mémoire si indisponible. */
+
+// ---------- Stockage robuste ----------
+var MEM = null; // repli mémoire
+var KEY = "routine-cognitive-v1";
+function canStore(){ try{ localStorage.setItem("__t","1"); localStorage.removeItem("__t"); return true; }catch(e){ return false; } }
+var HAS_LS = canStore();
+function readState(){
+  if(!HAS_LS){ return MEM; }
+  try{ var raw = localStorage.getItem(KEY); return raw ? JSON.parse(raw) : null; }catch(e){ return null; }
+}
+function writeState(s){
+  if(!HAS_LS){ MEM = s; return; }
+  try{ localStorage.setItem(KEY, JSON.stringify(s)); }catch(e){ MEM = s; }
+}
+
+// ---------- Données de référence ----------
+var CATEGORIES = ["Focus","Énergie","Calme","Créativité","Sommeil","Apprentissage"];
+var CAT_META = {
+  "Focus":{c:"#6366f1",e:"🎯"},"Énergie":{c:"#f59e0b",e:"⚡"},"Calme":{c:"#10b981",e:"🧘"},
+  "Créativité":{c:"#ec4899",e:"🎨"},"Sommeil":{c:"#8b5cf6",e:"🌙"},"Apprentissage":{c:"#0ea5e9",e:"📚"}
+};
+var PRELOAD = [
+  ["Eau froide visage","S'asperger le visage d'eau froide pour activer la vigilance.","Énergie","07:00"],
+  ["Mâcher un chewing-gum","Mâcher pour stimuler la concentration avant une tâche.","Focus","09:00"],
+  ["Mot du jour","Apprendre un nouveau mot et le réutiliser dans la journée.","Apprentissage","08:30"],
+  ["3 minutes de silence","Trois minutes sans stimulation pour calmer le mental.","Calme","12:30"],
+  ["Gratitude","Noter mentalement trois choses positives.","Calme","21:00"],
+  ["Dessiner 2 minutes","Un croquis libre de deux minutes pour activer la créativité.","Créativité","17:00"],
+  ["Debout 2 minutes","Se lever et bouger deux minutes pour relancer l'énergie.","Énergie","15:00"],
+  ["Affirmation miroir","Se regarder et formuler une affirmation positive.","Focus","07:30"],
+  ["Main non dominante","Utiliser la main non dominante pour une action banale.","Apprentissage","13:00"],
+  ["Douche chaud/froid","Alterner chaud et froid en fin de douche.","Énergie","07:15"],
+  ["Célébrer une victoire","Reconnaître et célébrer une petite victoire du jour.","Focus","18:00"],
+  ["Voix saboteuse","Identifier une pensée auto-saboteuse et la reformuler.","Calme","14:00"],
+  ["Parfum de travail","Associer une odeur spécifique aux phases de concentration.","Focus","09:30"],
+  ["Rire 2 minutes","Provoquer deux minutes de rire pour libérer la tension.","Énergie","16:00"],
+  ["Suivre des personnes inspirantes","Consacrer un instant à du contenu inspirant et choisi.","Apprentissage","20:00"]
+];
+var DEFAULT_SETTINGS = {maxActiveNotifications:3, allowedStart:"08:00", allowedEnd:"22:00", theme:"system"};
+
+// ---------- Utilitaires ----------
+function uid(){ return (crypto && crypto.randomUUID) ? crypto.randomUUID() : "id-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,10); }
+function pad(n){ return (n<10?"0":"")+n; }
+function dayKey(d){ d=d||new Date(); return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate()); }
+function validTime(t){ return /^([01]\d|2[0-3]):[0-5]\d$/.test(t); }
+function toMin(t){ if(!validTime(t)) return NaN; var p=t.split(":"); return (+p[0])*60+(+p[1]); }
+function withinHours(t,s,e){ var T=toMin(t),S=toMin(s),E=toMin(e); if(isNaN(T)||isNaN(S)||isNaN(E))return false; return S<=E ? (T>=S&&T<=E) : (T>=S||T<=E); }
+function effTime(r){ if(r.customTime&&validTime(r.customTime))return r.customTime; if(r.suggestedTime&&validTime(r.suggestedTime))return r.suggestedTime; return null; }
+function dispTime(t){ return (t&&validTime(t))?t:"—"; }
+function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];}); }
+function periodStart(p,ref){ ref=ref||new Date(); var d=new Date(ref.getFullYear(),ref.getMonth(),ref.getDate()); if(p==="day")return dayKey(d); if(p==="week"){d.setDate(d.getDate()-6);return dayKey(d);} d.setDate(d.getDate()-29); return dayKey(d); }
+
+// ---------- État ----------
+var S = readState();
+if(!S || !S.seeded){
+  var now=Date.now(), routines=[];
+  for(var i=0;i<PRELOAD.length;i++){ var p=PRELOAD[i];
+    routines.push({id:uid(),title:p[0],description:p[1],category:p[2],suggestedTime:p[3],customTime:null,active:true,createdAt:now+i,updatedAt:now+i});
+  }
+  S = {seeded:true, routines:routines, logs:[], settings:Object.assign({},DEFAULT_SETTINGS)};
+  writeState(S);
+}
+if(!S.settings) S.settings=Object.assign({},DEFAULT_SETTINGS);
+function persist(){ writeState(S); }
+
+// ---------- Logique ----------
+function todayLogs(){ var dk=dayKey(); return S.logs.filter(function(l){return l.date===dk;}); }
+function statusMap(logs){ var m={}; logs.forEach(function(l){m[l.routineId]=l.status;}); return m; }
+function setStatus(routineId,status){
+  var dk=dayKey(), found=null;
+  for(var i=0;i<S.logs.length;i++){ if(S.logs[i].routineId===routineId && S.logs[i].date===dk){ found=S.logs[i]; break; } }
+  if(found){ found.status=status; found.updatedAt=Date.now(); }
+  else { S.logs.push({id:uid(),routineId:routineId,date:dk,status:status,updatedAt:Date.now()}); }
+  persist();
+}
+function byTime(a,b){ var ta=toMin(effTime(a)||"99:99")||9999, tb=toMin(effTime(b)||"99:99")||9999; return ta-tb; }
+function partition(){
+  var logs=todayLogs(), m=statusMap(logs), byId={}; S.routines.forEach(function(r){byId[r.id]=r;});
+  var done=[],ignored=[];
+  for(var rid in m){ var r=byId[rid]; if(!r)continue; if(m[rid]==="done")done.push(r); else if(m[rid]==="ignored")ignored.push(r); }
+  var planned=S.routines.filter(function(r){ return r.active && m[r.id]!=="done" && m[r.id]!=="ignored"; }).sort(byTime);
+  return {planned:planned,done:done,ignored:ignored};
+}
+
+// ---------- UI ----------
+var TABS=[["today","Aujourd'hui","🗓️"],["routines","Routines","📋"],["add","Ajouter","➕"],["history","Historique","📊"],["settings","Réglages","⚙️"]];
+var TITLES={today:["🧠 Aujourd'hui","Vos micro-actions du jour"],routines:["📋 Mes routines","Activez, modifiez, mettez en pause"],add:["➕ Ajouter","Une routine ou un import par lot"],history:["📊 Historique","Prévues · réalisées · ignorées"],settings:["⚙️ Réglages","Notifications, thème, données"]};
+var tab="today", addMode="single", histPeriod="week", toastTimer=null;
+var main=document.getElementById("main"), nav=document.getElementById("nav");
+
+function toast(msg){
+  var old=document.querySelector(".toast"); if(old)old.remove();
+  var t=document.createElement("div"); t.className="toast"; t.textContent=msg; document.body.appendChild(t);
+  clearTimeout(toastTimer); toastTimer=setTimeout(function(){t.remove();},2400);
+}
+function applyTheme(){
+  var th=S.settings.theme, resolved=th;
+  if(th==="system"){ resolved = (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark":"light"; }
+  document.documentElement.setAttribute("data-theme",resolved);
+  var mc=document.querySelector('meta[name="theme-color"]'); if(mc)mc.setAttribute("content",resolved==="dark"?"#0b1020":"#6366f1");
+}
+function badge(cat){ var m=CAT_META[cat]||{c:"#888",e:"•"}; return '<span class="badge" style="background:'+m.c+'"><span>'+m.e+'</span>'+esc(cat)+'</span>'; }
+
+function routineCard(r,opts){
+  opts=opts||{};
+  var h='<article class="card'+(opts.muted?' muted':'')+'">';
+  h+='<div class="rc-top"><h3 class="rc-title">'+esc(r.title)+'</h3>';
+  if(opts.statusLabel) h+='<span class="chip">'+opts.statusLabel+'</span>';
+  if(opts.toggle) h+='<button class="switch" role="switch" aria-checked="'+(r.active?'true':'false')+'" data-act="toggle" data-id="'+r.id+'" aria-label="actif/pause"></button>';
+  h+='</div>';
+  if(r.description) h+='<p class="rc-desc">'+esc(r.description)+'</p>';
+  h+='<div class="rc-meta">'+badge(r.category)+'<span class="chip">🕑 '+dispTime(effTime(r))+'</span>';
+  if(r.customTime) h+='<span class="chip">perso.</span>';
+  if(!r.active) h+='<span class="chip">⏸️ En pause</span>';
+  if(opts.edit) h+='<button class="chip" data-act="editopen" data-id="'+r.id+'">✏️ Modifier</button>';
+  h+='</div>';
+  if(opts.actions){
+    h+='<div class="actions">'
+      +'<button class="btn done" data-act="done" data-id="'+r.id+'">FAIT</button>'
+      +'<button class="btn later" data-act="later" data-id="'+r.id+'">PLUS TARD</button>'
+      +'<button class="btn pause" data-act="pauseR" data-id="'+r.id+'">PAUSE</button></div>';
+  }
+  h+='</article>';
+  return h;
+}
+
+function viewToday(){
+  var p=partition(), h="";
+  var perm = ("Notification" in window) ? Notification.permission : "unsupported";
+  if(perm==="default"){
+    h+='<div class="banner"><span>Activer les rappels de routines ?</span><button class="btn primary" data-act="askperm">Activer</button></div>';
+  }
+  h+='<section class="section"><h2>À faire aujourd\'hui <span class="count">'+p.planned.length+'</span></h2>';
+  if(p.planned.length===0) h+='<p class="empty">Rien de prévu. Profitez du moment 🌿</p>';
+  else p.planned.forEach(function(r){ h+=routineCard(r,{actions:true}); });
+  h+='</section>';
+  if(p.done.length){ h+='<section class="section"><h2>Réalisées <span class="count">'+p.done.length+'</span></h2>'; p.done.forEach(function(r){h+=routineCard(r,{statusLabel:"✅ Faite",muted:true});}); h+='</section>'; }
+  if(p.ignored.length){ h+='<section class="section"><h2>Ignorées <span class="count">'+p.ignored.length+'</span></h2>'; p.ignored.forEach(function(r){h+=routineCard(r,{statusLabel:"⛔ Ignorée",muted:true});}); h+='</section>'; }
+  return h;
+}
+
+var editId=null;
+function viewRoutines(){
+  var active=S.routines.filter(function(r){return r.active;}), paused=S.routines.filter(function(r){return !r.active;});
+  function block(title,list){
+    var h='<section class="section"><h2>'+title+' <span class="count">'+list.length+'</span></h2>';
+    if(list.length===0){ h+='<p class="empty">Aucune routine.</p>'; }
+    else { h+='<div class="list-grid">'; list.forEach(function(r){ h+= (editId===r.id)?editor(r):routineCard(r,{toggle:true,edit:true}); }); h+='</div>'; }
+    return h+'</section>';
+  }
+  return block("Actives",active)+(paused.length?block("En pause",paused):"");
+}
+function editor(r){
+  var opts=CATEGORIES.map(function(c){return '<option '+(c===r.category?'selected':'')+'>'+c+'</option>';}).join("");
+  return '<article class="card">'
+   +'<div class="field"><label>Titre</label><input class="input" id="e-title" value="'+esc(r.title)+'"></div>'
+   +'<div class="field"><label>Description</label><textarea class="textarea" id="e-desc">'+esc(r.description)+'</textarea></div>'
+   +'<div class="field"><label>Catégorie</label><select class="select" id="e-cat">'+opts+'</select></div>'
+   +'<div class="row" style="gap:12px">'
+     +'<div class="field" style="flex:1"><label>Heure suggérée</label><input type="time" class="input" id="e-sug" value="'+(r.suggestedTime||"")+'"></div>'
+     +'<div class="field" style="flex:1"><label>Heure perso.</label><input type="time" class="input" id="e-cus" value="'+(r.customTime||"")+'"></div>'
+   +'</div>'
+   +'<div class="actions" style="grid-template-columns:2fr 1fr">'
+     +'<button class="btn primary" data-act="editsave" data-id="'+r.id+'">Enregistrer</button>'
+     +'<button class="btn danger" data-act="del" data-id="'+r.id+'">Supprimer</button></div>'
+   +'</article>';
+}
+
+function catPicker(sel){
+  return '<div class="cat-grid">'+CATEGORIES.map(function(c){
+    return '<button type="button" class="cat-opt" aria-pressed="'+(c===sel?'true':'false')+'" data-act="pickcat" data-cat="'+c+'"><span style="font-size:1.3rem">'+CAT_META[c].e+'</span>'+c+'</button>';
+  }).join("")+'</div>';
+}
+var addCat="Focus", bulkCat="Focus";
+function viewAdd(){
+  var h='<div class="tabs"><button class="'+(addMode==="single"?"active":"")+'" data-act="addmode" data-mode="single">Une routine</button>'
+       +'<button class="'+(addMode==="bulk"?"active":"")+'" data-act="addmode" data-mode="bulk">Import par lot</button></div>';
+  if(addMode==="single"){
+    h+='<div class="field"><label>Titre *</label><input class="input" id="a-title" placeholder="Ex. Boire un verre d\'eau"></div>'
+     +'<div class="field"><label>Description</label><textarea class="textarea" id="a-desc" placeholder="Pourquoi cette micro-action ?"></textarea></div>'
+     +'<div class="field"><span class="lbl">Catégorie</span>'+catPicker(addCat)+'</div>'
+     +'<div class="field"><label>Heure suggérée</label><input type="time" class="input" id="a-time"></div>'
+     +'<button class="btn primary block" data-act="addone">Ajouter la routine</button>';
+  } else {
+    h+='<p class="hint">Une ligne = une routine. Les doublons et lignes vides sont ignorés.</p>'
+     +'<div class="field"><label>Coller les routines</label><textarea class="textarea" id="a-bulk" style="min-height:160px" placeholder="Eau froide visage&#10;Mot du jour&#10;3 minutes de silence"></textarea></div>'
+     +'<div class="field"><span class="lbl">Catégorie appliquée</span>'+catPicker(bulkCat)+'</div>'
+     +'<button class="btn primary block" data-act="addbulk">Importer</button>';
+  }
+  return h;
+}
+
+function viewHistory(){
+  var start=periodStart(histPeriod), inRange=S.logs.filter(function(l){return l.date>=start;});
+  var done=inRange.filter(function(l){return l.status==="done";}).length;
+  var ignored=inRange.filter(function(l){return l.status==="ignored";}).length;
+  var days=histPeriod==="day"?1:histPeriod==="week"?7:30;
+  var perDay=S.routines.filter(function(r){return r.active&&effTime(r);}).length;
+  var planned=perDay*days;
+  var titleById={}; S.routines.forEach(function(r){titleById[r.id]=r.title;});
+  var sorted=inRange.slice().sort(function(a,b){return a.date===b.date?b.updatedAt-a.updatedAt:(a.date<b.date?1:-1);});
+  var h='<div class="tabs">'
+    +['day','week','month'].map(function(p){var lbl={day:"Jour",week:"Semaine",month:"Mois"}[p];return '<button class="'+(histPeriod===p?"active":"")+'" data-act="hist" data-p="'+p+'">'+lbl+'</button>';}).join("")
+    +'</div>';
+  h+='<div class="stat-grid"><div class="stat"><div class="v">'+planned+'</div><div class="l">Prévues</div></div>'
+    +'<div class="stat"><div class="v" style="color:var(--success)">'+done+'</div><div class="l">Réalisées</div></div>'
+    +'<div class="stat"><div class="v" style="color:var(--danger)">'+ignored+'</div><div class="l">Ignorées</div></div></div>';
+  h+='<section class="section"><h2>Journal</h2>';
+  if(sorted.length===0) h+='<p class="empty">Aucune activité sur cette période.</p>';
+  else sorted.forEach(function(l){
+    var lab=l.status==="done"?"✅ Faite":l.status==="ignored"?"⛔ Ignorée":l.status==="snoozed"?"⏰ Reportée":"⏳ En attente";
+    h+='<div class="card"><div class="row" style="justify-content:space-between"><strong style="font-size:.95rem">'+esc(titleById[l.routineId]||"Routine supprimée")+'</strong><span class="chip">'+lab+'</span></div><p class="hint">'+l.date+'</p></div>';
+  });
+  return h+'</section>';
+}
+
+function viewSettings(){
+  var st=S.settings;
+  var themeBtns=[["light","☀️ Clair"],["dark","🌙 Sombre"],["system","🖥️ Auto"]].map(function(t){
+    return '<button class="'+(st.theme===t[0]?"active":"")+'" data-act="theme" data-t="'+t[0]+'">'+t[1]+'</button>';
+  }).join("");
+  var store = HAS_LS ? "Vos données restent sur cet appareil (stockage du navigateur)." : "⚠️ Stockage persistant indisponible ici : les données ne seront pas conservées après fermeture. Pour conserver, exportez en JSON.";
+  return '<section class="section"><h2>Notifications</h2><div class="card">'
+    +'<div class="field"><label>Nombre maximal de notifications actives : <strong id="mx">'+st.maxActiveNotifications+'</strong></label>'
+    +'<input type="range" min="0" max="10" step="1" value="'+st.maxActiveNotifications+'" data-act="max" style="width:100%"></div>'
+    +'<div class="row" style="gap:12px"><div class="field" style="flex:1"><label>Début autorisé</label><input type="time" class="input" data-act="start" value="'+st.allowedStart+'"></div>'
+    +'<div class="field" style="flex:1"><label>Fin autorisée</label><input type="time" class="input" data-act="end" value="'+st.allowedEnd+'"></div></div>'
+    +'</div></section>'
+    +'<section class="section"><h2>Apparence</h2><div class="card"><div class="tabs" style="margin-bottom:0">'+themeBtns+'</div></div></section>'
+    +'<section class="section"><h2>Données (local uniquement)</h2><div class="card">'
+    +'<p class="hint" style="margin-top:0">'+store+'</p>'
+    +'<div class="actions" style="grid-template-columns:1fr 1fr"><button class="btn ghost" data-act="export">⬇️ Export JSON</button><button class="btn ghost" data-act="importbtn">⬆️ Import JSON</button></div>'
+    +'<input type="file" id="importfile" accept="application/json,.json" style="display:none">'
+    +'</div></section>'
+    +'<p class="hint" style="text-align:center">Routine Cognitive · '+S.routines.length+' routines · sans backend</p>';
+}
+
+function render(){
+  applyTheme();
+  document.getElementById("h-title").textContent=TITLES[tab][0];
+  document.getElementById("h-sub").textContent=TITLES[tab][1];
+  main.innerHTML = tab==="today"?viewToday():tab==="routines"?viewRoutines():tab==="add"?viewAdd():tab==="history"?viewHistory():viewSettings();
+  nav.innerHTML = TABS.map(function(t){return '<button class="'+(tab===t[0]?"active":"")+'" data-act="tab" data-tab="'+t[0]+'"><span class="ic">'+t[2]+'</span>'+t[1]+'</button>';}).join("");
+}
+
+// ---------- Actions (délégation d'événements) ----------
+function addOne(){
+  var title=(document.getElementById("a-title").value||"").trim(); if(!title){toast("Titre requis");return;}
+  var desc=(document.getElementById("a-desc").value||"").trim();
+  var time=document.getElementById("a-time").value;
+  var now=Date.now();
+  S.routines.push({id:uid(),title:title,description:desc,category:addCat,suggestedTime:(time&&validTime(time))?time:null,customTime:null,active:true,createdAt:now,updatedAt:now});
+  persist(); addCat="Focus"; tab="today"; render(); toast("Routine ajoutée ✅");
+}
+function addBulk(){
+  var raw=document.getElementById("a-bulk").value||""; var seen={},n=0,now=Date.now();
+  raw.split(/\r?\n/).forEach(function(line){ var t=line.trim(); if(!t)return; var k=t.toLowerCase(); if(seen[k])return; seen[k]=1;
+    S.routines.push({id:uid(),title:t,description:"",category:bulkCat,suggestedTime:null,customTime:null,active:true,createdAt:now,updatedAt:now}); n++; });
+  if(n===0){toast("Rien à importer");return;}
+  persist(); bulkCat="Focus"; tab="today"; render(); toast(n+" routine(s) importée(s) ✅");
+}
+function doExport(){
+  var data={version:1,exportedAt:new Date().toISOString(),routines:S.routines,logs:S.logs,settings:S.settings};
+  var blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+  var url=URL.createObjectURL(blob),a=document.createElement("a");
+  a.href=url; a.download="routine-cognitive-"+dayKey()+".json"; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+  toast("Export JSON téléchargé ✅");
+}
+function doImport(file){
+  var rd=new FileReader();
+  rd.onload=function(){
+    try{
+      var d=JSON.parse(rd.result);
+      if(!d||typeof d!=="object"){toast("Fichier invalide");return;}
+      if(!confirm("Importer remplacera vos données actuelles. Continuer ?"))return;
+      S.routines=Array.isArray(d.routines)?d.routines.filter(function(r){return r&&r.id&&r.title;}):[];
+      var ids={}; S.routines.forEach(function(r){ids[r.id]=1;});
+      S.logs=Array.isArray(d.logs)?d.logs.filter(function(l){return l&&l.routineId&&ids[l.routineId]&&/^\d{4}-\d{2}-\d{2}$/.test(l.date);}):[];
+      if(d.settings&&typeof d.settings==="object") S.settings=Object.assign({},DEFAULT_SETTINGS,d.settings);
+      S.seeded=true; persist(); render(); toast("Import OK ✅ ("+S.routines.length+" routines)");
+    }catch(e){ toast("JSON invalide"); }
+  };
+  rd.readAsText(file);
+}
+
+document.addEventListener("click",function(ev){
+  var el=ev.target.closest("[data-act]"); if(!el)return;
+  var act=el.getAttribute("data-act"), id=el.getAttribute("data-id");
+  if(act==="tab"){ tab=el.getAttribute("data-tab"); editId=null; render(); return; }
+  if(act==="done"){ setStatus(id,"done"); render(); toast("Bravo 🎉"); return; }
+  if(act==="later"){ setStatus(id,"snoozed"); render(); toast("Reporté ⏰"); return; }
+  if(act==="pauseR"){ var r=find(id); if(r){r.active=false;r.updatedAt=Date.now();persist();} render(); toast("Mis en pause ⏸️"); return; }
+  if(act==="toggle"){ var r2=find(id); if(r2){r2.active=!r2.active;r2.updatedAt=Date.now();persist();} render(); return; }
+  if(act==="editopen"){ editId=id; render(); return; }
+  if(act==="editsave"){
+    var r3=find(id); if(r3){
+      r3.title=(document.getElementById("e-title").value||"").trim()||r3.title;
+      r3.description=(document.getElementById("e-desc").value||"").trim();
+      r3.category=document.getElementById("e-cat").value;
+      var sug=document.getElementById("e-sug").value, cus=document.getElementById("e-cus").value;
+      r3.suggestedTime=(sug&&validTime(sug))?sug:null; r3.customTime=(cus&&validTime(cus))?cus:null; r3.updatedAt=Date.now(); persist();
+    }
+    editId=null; render(); toast("Enregistré ✅"); return;
+  }
+  if(act==="del"){ if(confirm("Supprimer cette routine ?")){ S.routines=S.routines.filter(function(x){return x.id!==id;}); S.logs=S.logs.filter(function(l){return l.routineId!==id;}); persist(); editId=null; render(); toast("Supprimée"); } return; }
+  if(act==="addmode"){ addMode=el.getAttribute("data-mode"); render(); return; }
+  if(act==="pickcat"){ var c=el.getAttribute("data-cat"); if(addMode==="single")addCat=c; else bulkCat=c; render(); return; }
+  if(act==="addone"){ addOne(); return; }
+  if(act==="addbulk"){ addBulk(); return; }
+  if(act==="hist"){ histPeriod=el.getAttribute("data-p"); render(); return; }
+  if(act==="theme"){ S.settings.theme=el.getAttribute("data-t"); persist(); render(); return; }
+  if(act==="export"){ doExport(); return; }
+  if(act==="importbtn"){ document.getElementById("importfile").click(); return; }
+  if(act==="askperm"){ if("Notification" in window){ Notification.requestPermission().then(function(){render();}); } return; }
+});
+document.addEventListener("input",function(ev){
+  var el=ev.target.closest("[data-act]"); if(!el)return;
+  var act=el.getAttribute("data-act");
+  if(act==="max"){ S.settings.maxActiveNotifications=+el.value; var mx=document.getElementById("mx"); if(mx)mx.textContent=el.value; persist(); }
+  else if(act==="start"){ if(validTime(el.value)){S.settings.allowedStart=el.value;persist();} }
+  else if(act==="end"){ if(validTime(el.value)){S.settings.allowedEnd=el.value;persist();} }
+});
+document.addEventListener("change",function(ev){
+  if(ev.target.id==="importfile" && ev.target.files && ev.target.files[0]){ doImport(ev.target.files[0]); ev.target.value=""; }
+});
+function find(id){ for(var i=0;i<S.routines.length;i++) if(S.routines[i].id===id) return S.routines[i]; return null; }
+
+// ---------- Rappels (si la page est ouverte et notifications autorisées) ----------
+var notifiedToday={}, lastDay=dayKey();
+setInterval(function(){
+  try{
+    if(!("Notification" in window) || Notification.permission!=="granted") return;
+    var dk=dayKey(); if(dk!==lastDay){lastDay=dk;notifiedToday={};}
+    var nowD=new Date(), nowMin=nowD.getHours()*60+nowD.getMinutes();
+    var m=statusMap(todayLogs()), st=S.settings, sent=0, max=Math.max(0,st.maxActiveNotifications);
+    var due=S.routines.filter(function(r){
+      if(!r.active)return false; var t=effTime(r); if(!t)return false;
+      if(m[r.id]==="done"||m[r.id]==="ignored")return false;
+      if(toMin(t)>nowMin)return false; if(!withinHours(t,st.allowedStart,st.allowedEnd))return false; return true;
+    }).sort(byTime);
+    for(var i=0;i<due.length && sent<max;i++){ var r=due[i]; if(notifiedToday[r.id])continue;
+      try{ new Notification("🧠 Routine Cognitive",{body:r.title}); notifiedToday[r.id]=1; sent++; }catch(e){}
+    }
+  }catch(e){}
+}, 30000);
+
+render();
+</script>
+</body>
+</html>
