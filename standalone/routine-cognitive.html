@@ -4,6 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0" />
 <meta name="theme-color" content="#6366f1" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="icon-192.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Routine" />
+<meta name="mobile-web-app-capable" content="yes" />
 <title>Routine Cognitive</title>
 <style>
 :root{
@@ -72,6 +78,22 @@ button{font-family:inherit;cursor:pointer}
 .switch[aria-checked="true"]::after{transform:translateX(20px)}
 .toast{position:fixed;left:50%;bottom:calc(var(--nav-h) + var(--safe-bottom) + 16px);transform:translateX(-50%);background:var(--text);color:var(--bg);padding:10px 18px;border-radius:999px;font-size:.85rem;font-weight:600;z-index:50;box-shadow:var(--shadow)}
 @media (min-width:600px){.list-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.list-grid .card{margin-bottom:0}}
+/* --- Optimisations Galaxy Z Flip 7 (écran pliable + cover display) --- */
+@supports (height:100dvh){ .app{min-height:100dvh} }
+/* Écran de couverture / très étroit : on resserre pour que les 5 onglets tiennent */
+@media (max-width:380px){
+  .main{padding-left:12px;padding-right:12px}
+  .nav button{font-size:.6rem}
+  .nav button .ic{font-size:1.15rem}
+  .actions .btn{font-size:.76rem;padding:10px 4px}
+  .hdr h1{font-size:1.2rem}
+}
+@media (max-width:300px){
+  .nav button{font-size:0;gap:0}        /* libellés masqués, icônes seules */
+  .nav button .ic{font-size:1.4rem}
+}
+/* Écran principal déplié (haut et étroit) : confort de lecture */
+@media (min-height:850px){ .main{padding-top:14px} }
 </style>
 </head>
 <body>
