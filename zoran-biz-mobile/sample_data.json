@@ -1,0 +1,73 @@
+{
+  "meta": { "version": 3, "updatedAt": "2026-06-12T09:00:00.000Z" },
+  "client": {
+    "entreprise": "Bâtir Atlantique SAS",
+    "siteWeb": "https://batir-atlantique.fr",
+    "pays": "France",
+    "interlocuteur": "Claire Mercier",
+    "fonction": "Directrice Générale",
+    "objectif": "réduire le temps passé sur les devis et centraliser la connaissance technique des chantiers"
+  },
+  "sources": [
+    {
+      "name": "brief-rdv.eml",
+      "type": "message/rfc822",
+      "size": "4 Ko",
+      "excerpt": "De: Claire Mercier <c.mercier@batir-atlantique.fr>\nObjet: Préparation rendez-vous IA\nNous gérons 6 agences, beaucoup de documents techniques dispersés, et nos chargés d'affaires perdent un temps fou à retrouver les bonnes informations pour chiffrer.",
+      "addedAt": "2026-06-12T08:30:00.000Z"
+    }
+  ],
+  "analyse": {
+    "resume": "Bâtir Atlantique SAS évolue en France et cherche à réduire le temps passé sur les devis et centraliser la connaissance technique. L'enjeu central est de transformer la connaissance dispersée en avantage opérationnel mesurable.",
+    "comprehension": "Interlocuteur : Claire Mercier, Directrice Générale, pilote la décision. L'entreprise compte 180 employés répartis sur 6 services.",
+    "enjeux": "• Réduire le temps perdu à rechercher l'information.\n• Sécuriser et tracer les décisions.\n• Capitaliser sur l'expertise des experts et managers.",
+    "risques": "• Adoption insuffisante sans accompagnement.\n• Données sensibles : gouvernance indispensable.\n• Conduite du changement à piloter.",
+    "opportunites": "• Gain de productivité sur les utilisateurs.\n• Différenciation par une IA souveraine et éthique.\n• Extension progressive après le socle initial.",
+    "generatedAt": "2026-06-12T08:45:00.000Z"
+  },
+  "modules": {
+    "memoire": true,
+    "audit": true,
+    "pdf": true,
+    "agents": false,
+    "skills": true,
+    "coherence": false,
+    "cinematique": false,
+    "futur": false
+  },
+  "dimension": {
+    "employes": 180,
+    "services": 6,
+    "utilisateurs": 110,
+    "managers": 14,
+    "experts": 9,
+    "documents": 12000
+  },
+  "roiHyp": {
+    "heures": 2.5,
+    "coutHoraire": 48,
+    "adoption": 75,
+    "semaines": 46
+  },
+  "licence": {
+    "choisie": "business",
+    "recommandee": "business"
+  },
+  "version": "BTP",
+  "auditLog": [
+    {
+      "ts": "2026-06-12T08:45:00.000Z",
+      "qui": "Xavier",
+      "quoi": "Analyse générée",
+      "avant": "",
+      "apres": "Bâtir Atlantique SAS"
+    },
+    {
+      "ts": "2026-06-12T08:50:00.000Z",
+      "qui": "Xavier",
+      "quoi": "Licence choisie",
+      "avant": "starter",
+      "apres": "business"
+    }
+  ]
+}
