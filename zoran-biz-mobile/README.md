@@ -77,6 +77,26 @@ message d'erreur. Les contrôles s'affichent en temps réel sous les champs.
 Chaque action (qui / quoi / quand / avant / après) est journalisée et horodatée,
 consultable sur l'écran Audit avec le JSON source complet.
 
+## Traçabilité (IDs systématiques)
+
+Tous les entrants et sortants portent un identifiant unique, pour retrouver
+n'importe quel élément en cas d'erreur :
+
+| Préfixe | Objet |
+|---------|-------|
+| `SES-`  | Session de travail |
+| `CAS-`  | Dossier client |
+| `SRC-`  | Entrant : fichier, URL ou texte importé |
+| `ANA-`  | Analyse générée |
+| `EXP-`  | Sortant : export PDF / Word / Email / JSON |
+| `LOG-`  | Entrée du journal d'audit |
+
+Chaque entrée d'audit est rattachée à sa session et à son dossier, et porte des
+tags (`entrant`, `sortant`, `pdf`, `email`…). Les références `EXP / CAS / SES`
+sont imprimées en pied de page des devis PDF/Word et dans les emails générés.
+Le harnais `tests/run-cases.js` vérifie l'unicité et le format des IDs ainsi que
+la cohérence complète des calculs sur 10 dossiers réels.
+
 ## Design
 
 Interface contemporaine et sobre aux couleurs de l'institut IA / ZORAN :

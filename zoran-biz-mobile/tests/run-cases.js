@@ -76,9 +76,31 @@ const results = [];
 const APP_CONFIG = vm.runInContext('CONFIG', ctx);
 const baseState = vm.runInContext('defaultState()', ctx);
 
+/* --- Vérification du système de traçabilité (IDs, session, tags) --- */
+const ID_RE = /^(SES|CAS|SRC|EXP|LOG|ANA)-[0-9A-Z]+-[0-9A-Z]{6}$/;
+{
+  const ids = new Set(Array.from({ length: 5000 }, () => vm.runInContext("genId('LOG')", ctx)));
+  if (ids.size !== 5000) { console.error('✗ genId: collisions détectées'); process.exit(1); }
+  if (![...ids].every(i => ID_RE.test(i))) { console.error('✗ genId: format invalide'); process.exit(1); }
+  if (!ID_RE.test(baseState.meta.sessionId) || !ID_RE.test(baseState.meta.dossierId)) {
+    console.error('✗ defaultState: sessionId/dossierId manquant ou mal formé'); process.exit(1);
+  }
+  const entry = vm.runInContext(
+    `STATE = defaultState(); logAudit('test traçabilité', 'a', 'b', ['entrant','test']); STATE.auditLog[0]`, ctx);
+  if (!ID_RE.test(entry.id) || entry.session !== vm.runInContext('STATE.meta.sessionId', ctx)
+      || !Array.isArray(entry.tags) || entry.tags[0] !== 'entrant') {
+    console.error('✗ logAudit: id/session/tags absents de l\'entrée d\'audit'); process.exit(1);
+  }
+  console.log('✓ Traçabilité : genId unique (5000/5000), session+dossier présents, audit tagué');
+}
+
+const testSessionId = vm.runInContext("genId('SES')", ctx);
+
 for (const c of CASES) {
   // Injection du cas dans l'état réel de l'application (STATE est un `let` du script)
   const state = JSON.parse(JSON.stringify(baseState));
+  state.meta.sessionId = testSessionId;
+  state.meta.dossierId = vm.runInContext("genId('CAS')", ctx);
   state.client = { entreprise: c.entreprise, siteWeb: 'https://exemple.ca', pays: 'Canada',
     interlocuteur: c.dirigeant.split('—')[0].trim(), fonction: c.dirigeant.split('—')[1].trim(), objectif: c.interet };
   state.dimension = c.dimension;
@@ -110,7 +132,7 @@ for (const c of CASES) {
   if (errs.length) { failures++; console.error(`✗ ${c.entreprise}\n   - ` + errs.join('\n   - ')); }
   else console.log(`✓ ${c.entreprise} [${r.palier.nom}] total an 1 ${Math.round(r.totalAn1).toLocaleString('fr-FR')} € · récurrent ${Math.round(r.recurrentAn).toLocaleString('fr-FR')} €/an · ROI ${Math.round(r.roiPct)} % · payback ${r.retourMois.toFixed(1)} mois`);
 
-  results.push({ cas: c, calc: {
+  results.push({ session: testSessionId, dossierId: state.meta.dossierId, cas: c, calc: {
     palier: r.palier.nom, installation: r.installation, parametrage: r.parametrage, formation: r.formation,
     licences: r.coutLicencesAn, modules: r.coutModulesAn, support: Math.round(r.support), maintenance: Math.round(r.maintenance),
     totalAn1: Math.round(r.totalAn1), recurrentAn: Math.round(r.recurrentAn),

@@ -90,11 +90,19 @@ const SCHEMA = {
 --------------------------------------------------------------- */
 const STORAGE_KEY = 'zoran-biz-mobile-state-v1';
 
+/* Identifiants uniques de traçabilité.
+   Préfixes : SES session · SRC entrant · EXP sortant · LOG journal · ANA analyse · CAS dossier */
+function genId(prefix) {
+  const t = Date.now().toString(36).toUpperCase();
+  const r = Math.random().toString(36).slice(2, 8).toUpperCase();
+  return `${prefix}-${t}-${r}`;
+}
+
 function defaultState() {
   const modules = {};
   CONFIG.modules.forEach(m => { modules[m.id] = ['memoire', 'audit', 'pdf'].includes(m.id); });
   return {
-    meta: { version: 1, updatedAt: new Date().toISOString() },
+    meta: { version: 1, updatedAt: new Date().toISOString(), sessionId: genId('SES'), dossierId: genId('CAS') },
     client: { entreprise: '', siteWeb: '', pays: 'France', interlocuteur: '', fonction: '', objectif: '' },
     sources: [],
     analyse: { resume: '', comprehension: '', enjeux: '', risques: '', opportunites: '', generatedAt: null },
@@ -275,8 +283,12 @@ function escapeHtml(s) {
 /* ---------------------------------------------------------------
    7. AUDIT
 --------------------------------------------------------------- */
-function logAudit(quoi, avant, apres) {
+function logAudit(quoi, avant, apres, tags) {
   STATE.auditLog.unshift({
+    id: genId('LOG'),
+    session: STATE.meta.sessionId,
+    dossier: STATE.meta.dossierId,
+    tags: tags || [],
     ts: new Date().toISOString(),
     qui: CONFIG.operateur,
     quoi,
@@ -413,7 +425,7 @@ function renderSources() {
   box.innerHTML = STATE.sources.map((s, i) => `
     <div class="kv">
       <span>${iconForType(s.type)} ${escapeHtml(s.name)}
-        <small style="color:var(--ink-soft)"> · ${escapeHtml(s.size)}</small></span>
+        <small style="color:var(--ink-soft)"> · ${escapeHtml(s.size)}${s.id ? ' · ' + escapeHtml(s.id) : ''}</small></span>
       <button class="btn btn-mini" data-src-del="${i}">✕</button>
     </div>`).join('');
   box.querySelectorAll('[data-src-del]').forEach(btn => {
@@ -445,7 +457,7 @@ function renderAnalyse() {
   const a = STATE.analyse;
   const meta = document.getElementById('an-meta');
   if (a.generatedAt) {
-    meta.textContent = `Analyse pour ${STATE.client.entreprise || '—'} · générée le ${new Date(a.generatedAt).toLocaleString('fr-FR')}`;
+    meta.textContent = `Analyse pour ${STATE.client.entreprise || '—'} · générée le ${new Date(a.generatedAt).toLocaleString('fr-FR')}${a.id ? ' · ' + a.id : ''}`;
   } else {
     meta.textContent = "Aucune analyse générée. Lancez « Analyser » depuis l'accueil.";
   }
@@ -472,9 +484,10 @@ function generateAnalyse(deepen) {
     enjeux: `• Réduire le temps perdu à rechercher l'information.\n• Sécuriser et tracer les décisions.\n• Capitaliser sur l'expertise des ${fmtNum(STATE.dimension.experts)} experts et ${fmtNum(STATE.dimension.managers)} managers.\n• Aligner les ${STATE.dimension.services} services sur une base de connaissance commune.`,
     risques: `• Adoption insuffisante sans accompagnement (formation prévue au devis).\n• Données sensibles : gouvernance et traçabilité indispensables (module Audit).\n• Conduite du changement à piloter sur les premiers mois.`,
     opportunites: `• Gain de productivité estimé sur ${fmtNum(STATE.dimension.utilisateurs)} utilisateurs.\n• Différenciation par l'usage d'une IA souveraine et éthique.\n• Extension progressive (agents, skills, futur probable) après le socle initial.`,
-    generatedAt: new Date().toISOString()
+    generatedAt: new Date().toISOString(),
+    id: genId('ANA')
   };
-  logAudit(deepen ? 'Analyse approfondie' : 'Analyse générée', '', ent);
+  logAudit((deepen ? 'Analyse approfondie ' : 'Analyse générée ') + STATE.analyse.id, '', ent, ['analyse']);
   STATE.meta.version++;
   saveState();
 }
@@ -694,7 +707,10 @@ function pitchAngle(id, r) {
 /* --- Audit --- */
 function renderAudit() {
   const r = computeAll();
-  document.getElementById('audit-trace').innerHTML = r.trace.map(t => `
+  document.getElementById('audit-trace').innerHTML = `
+    <div class="kv"><span>Session</span><b><code>${escapeHtml(STATE.meta.sessionId || '—')}</code></b></div>
+    <div class="kv"><span>Dossier</span><b><code>${escapeHtml(STATE.meta.dossierId || '—')}</code></b></div>` +
+    r.trace.map(t => `
     <div class="step">
       <span class="s-ico">${t.ok ? '✅' : '⚠️'}</span>
       <span><b>${escapeHtml(t.step)}</b><br><span class="s-detail">${escapeHtml(t.detail)}</span></span>
@@ -704,8 +720,8 @@ function renderAudit() {
   log.innerHTML = STATE.auditLog.length
     ? STATE.auditLog.map(e => `
       <div class="log-entry">
-        <div><b>${escapeHtml(e.quoi)}</b></div>
-        <div class="log-meta">${escapeHtml(e.qui)} · ${new Date(e.ts).toLocaleString('fr-FR')}</div>
+        <div><b>${escapeHtml(e.quoi)}</b>${(e.tags || []).map(t => ` <span class="badge">${escapeHtml(t)}</span>`).join('')}</div>
+        <div class="log-meta">${escapeHtml(e.qui)} · ${new Date(e.ts).toLocaleString('fr-FR')}${e.id ? ' · ' + escapeHtml(e.id) : ''}</div>
         ${(e.avant || e.apres) ? `<div>avant <code>${escapeHtml(e.avant || '∅')}</code> → après <code>${escapeHtml(e.apres || '∅')}</code></div>` : ''}
       </div>`).join('')
     : '<p class="screen-intro">Aucune modification enregistrée.</p>';
@@ -716,7 +732,7 @@ function renderAudit() {
 /* ---------------------------------------------------------------
    11. EXPORTS (PDF / Word / Email / JSON)
 --------------------------------------------------------------- */
-function buildDevisHtml() {
+function buildDevisHtml(expId) {
   const r = computeAll();
   const c = STATE.client;
   const date = new Date().toLocaleDateString('fr-FR');
@@ -739,18 +755,21 @@ function buildDevisHtml() {
     </table>
     <p><b>Synthèse ROI :</b> gain brut ${fmt(r.gainBrutAn)}/an · ROI année 1 ${Math.round(r.roiPct)} % ·
        retour en ${r.retourMois === Infinity ? '—' : fmtNum(r.retourMois) + ' mois'}.</p>
-    <div class="print-foot">Document généré par ZORAN Biz Mobile — ${new Date().toLocaleString('fr-FR')}</div>`;
+    <div class="print-foot">Document généré par ZORAN Biz Mobile — ${new Date().toLocaleString('fr-FR')}<br>
+      Référence : ${escapeHtml(expId || '—')} · Dossier : ${escapeHtml(STATE.meta.dossierId)} · Session : ${escapeHtml(STATE.meta.sessionId)}</div>`;
 }
 
 function exportPDF() {
-  document.getElementById('print-area').innerHTML = buildDevisHtml();
-  logAudit('Export PDF', '', STATE.client.entreprise || '');
+  const expId = genId('EXP');
+  document.getElementById('print-area').innerHTML = buildDevisHtml(expId);
+  logAudit('Export PDF ' + expId, '', STATE.client.entreprise || '', ['sortant', 'pdf']);
   saveState();
   setTimeout(() => window.print(), 60);
 }
 
 function exportWord() {
-  const inner = buildDevisHtml();
+  const expId = genId('EXP');
+  const inner = buildDevisHtml(expId);
   const html = `<!DOCTYPE html><html xmlns:o="urn:schemas-microsoft-com:office:office"
     xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
     <head><meta charset="utf-8"><title>Devis ZORAN</title>
@@ -765,15 +784,16 @@ function exportWord() {
       .print-foot{margin-top:16pt;color:#888;font-size:8pt}
     </style></head><body>${inner}</body></html>`;
   downloadBlob(html, filename('docx-as-doc'), 'application/msword');
-  logAudit('Export Word', '', STATE.client.entreprise || '');
+  logAudit('Export Word ' + expId, '', STATE.client.entreprise || '', ['sortant', 'word']);
   saveState();
   toast('Document Word généré');
 }
 
 function exportEmail() {
+  const expId = genId('EXP');
   const r = computeAll();
   const c = STATE.client;
-  const objet = `Proposition ZORAN — ${c.entreprise || 'votre projet'}`;
+  const objet = `Proposition ZORAN — ${c.entreprise || 'votre projet'} [${expId}]`;
   const corps =
 `Bonjour ${c.interlocuteur || ''},
 
@@ -789,7 +809,9 @@ Suite à notre échange, voici la synthèse de la proposition ZORAN pour ${c.ent
 Le détail complet du devis est joint.
 
 Bien cordialement,
-${CONFIG.operateur}`;
+${CONFIG.operateur}
+
+Référence : ${expId} · Dossier : ${STATE.meta.dossierId} · Session : ${STATE.meta.sessionId}`;
 
   // Fichier .eml téléchargeable
   const to = (c.siteWeb ? '' : '');
@@ -806,14 +828,15 @@ ${corps}`;
   const mailto = `mailto:?subject=${encodeURIComponent(objet)}&body=${encodeURIComponent(corps)}`;
   window.location.href = mailto;
 
-  logAudit('Export Email', '', c.entreprise || '');
+  logAudit('Export Email ' + expId, '', c.entreprise || '', ['sortant', 'email']);
   saveState();
   toast('Email préparé (.eml téléchargé + client mail ouvert)');
 }
 
 function exportJSON() {
+  const expId = genId('EXP');
   downloadBlob(JSON.stringify(STATE, null, 2), filename('json'), 'application/json');
-  logAudit('Export JSON', '', '');
+  logAudit('Export JSON ' + expId, '', '', ['sortant', 'json']);
   saveState();
   toast('JSON exporté');
 }
@@ -929,14 +952,16 @@ function wireEvents() {
     const files = Array.from(e.target.files || []);
     for (const f of files) {
       const excerpt = await readFileText(f);
+      const srcId = genId('SRC');
       STATE.sources.push({
+        id: srcId,
         name: f.name,
         type: f.type || guessType(f.name),
         size: humanSize(f.size),
         excerpt: excerpt.slice(0, 4000),
         addedAt: new Date().toISOString()
       });
-      logAudit('Import fichier', '', f.name);
+      logAudit('Import fichier ' + srcId, '', f.name, ['entrant', 'fichier']);
     }
     saveState(); renderSources();
     toast(files.length + ' fichier(s) importé(s)');
@@ -958,9 +983,10 @@ function wireEvents() {
     } catch (err) {
       excerpt = '[Contenu distant non récupérable depuis le navigateur — URL tracée comme source.]';
     }
-    STATE.sources.push({ name: url, type: 'url', size: '—', excerpt: excerpt.slice(0, 4000), addedAt: new Date().toISOString() });
+    const srcId = genId('SRC');
+    STATE.sources.push({ id: srcId, name: url, type: 'url', size: '—', excerpt: excerpt.slice(0, 4000), addedAt: new Date().toISOString() });
     if (!STATE.client.siteWeb) { STATE.client.siteWeb = url; const si = document.getElementById('in-site'); if (si) si.value = url; }
-    logAudit('Import URL', '', url);
+    logAudit('Import URL ' + srcId, '', url, ['entrant', 'url']);
     input.value = '';
     saveState(); renderSources();
     toast('URL ajoutée comme source');
@@ -971,8 +997,9 @@ function wireEvents() {
     const ta = document.getElementById('in-paste');
     const txt = ta.value.trim();
     if (txt.length < 3) { toast('Texte trop court'); return; }
-    STATE.sources.push({ name: 'Texte collé', type: 'note', size: humanSize(txt.length), excerpt: txt.slice(0, 4000), addedAt: new Date().toISOString() });
-    logAudit('Import texte collé', '', txt.slice(0, 40));
+    const srcId = genId('SRC');
+    STATE.sources.push({ id: srcId, name: 'Texte collé', type: 'note', size: humanSize(txt.length), excerpt: txt.slice(0, 4000), addedAt: new Date().toISOString() });
+    logAudit('Import texte collé ' + srcId, '', txt.slice(0, 40), ['entrant', 'texte']);
     ta.value = '';
     saveState(); renderSources();
     toast('Texte ajouté comme source');

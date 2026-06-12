@@ -1,5 +1,7 @@
 [
   {
+    "session": "SES-MQAYB15F-5Y93QS",
+    "dossierId": "CAS-MQAYB15F-RC287I",
     "cas": {
       "entreprise": "Pomerleau",
       "secteur": "BTP",
@@ -49,11 +51,13 @@
         "Calcul licences: 81 650 € /an (4 modules)",
         "Calcul ROI: Gain brut 1 992 375 €/an · ROI an 1 1337 %",
         "Génération devis: Total an 1 138 645 €",
-        "Pipeline terminé: 21.0 ms"
+        "Pipeline terminé: 24.0 ms"
       ]
     }
   },
   {
+    "session": "SES-MQAYB15F-5Y93QS",
+    "dossierId": "CAS-MQAYB165-X7BLN1",
     "cas": {
       "entreprise": "AtkinsRéalis",
       "secteur": "Ingénierie",
@@ -108,6 +112,8 @@
     }
   },
   {
+    "session": "SES-MQAYB15F-5Y93QS",
+    "dossierId": "CAS-MQAYB166-FCKHK3",
     "cas": {
       "entreprise": "CAE",
       "secteur": "Industrie aéronautique",
@@ -162,6 +168,8 @@
     }
   },
   {
+    "session": "SES-MQAYB15F-5Y93QS",
+    "dossierId": "CAS-MQAYB166-OYW2RT",
     "cas": {
       "entreprise": "Bombardier",
       "secteur": "Industrie aéronautique",
@@ -217,6 +225,8 @@
     }
   },
   {
+    "session": "SES-MQAYB15F-5Y93QS",
+    "dossierId": "CAS-MQAYB166-VUM232",
     "cas": {
       "entreprise": "Banque Nationale du Canada",
       "secteur": "Banque",
@@ -272,6 +282,8 @@
     }
   },
   {
+    "session": "SES-MQAYB15F-5Y93QS",
+    "dossierId": "CAS-MQAYB166-LP8U4J",
     "cas": {
       "entreprise": "BFL Canada",
       "secteur": "Assurance (courtage)",
@@ -325,6 +337,8 @@
     }
   },
   {
+    "session": "SES-MQAYB15F-5Y93QS",
+    "dossierId": "CAS-MQAYB167-39OLB2",
     "cas": {
       "entreprise": "Société de transport de Montréal (STM)",
       "secteur": "Collectivité / transport public",
@@ -379,6 +393,8 @@
     }
   },
   {
+    "session": "SES-MQAYB15F-5Y93QS",
+    "dossierId": "CAS-MQAYB167-Z1727T",
     "cas": {
       "entreprise": "Dialogue Technologies de la Santé",
       "secteur": "Santé numérique",
@@ -432,6 +448,8 @@
     }
   },
   {
+    "session": "SES-MQAYB15F-5Y93QS",
+    "dossierId": "CAS-MQAYB168-8U3HJ8",
     "cas": {
       "entreprise": "CGI",
       "secteur": "Services-conseils TI",
@@ -487,6 +505,8 @@
     }
   },
   {
+    "session": "SES-MQAYB15F-5Y93QS",
+    "dossierId": "CAS-MQAYB168-479WHR",
     "cas": {
       "entreprise": "Metro Inc.",
       "secteur": "Distribution alimentaire",
