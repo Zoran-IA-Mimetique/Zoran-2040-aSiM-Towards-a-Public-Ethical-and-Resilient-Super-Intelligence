@@ -1,0 +1,543 @@
+[
+  {
+    "cas": {
+      "entreprise": "Pomerleau",
+      "secteur": "BTP",
+      "version": "BTP",
+      "dirigeant": "Pierre Pomerleau — Président et chef de la direction",
+      "interet": "Mémoires techniques, CCTP et devis de chantiers accélérés ; capitalisation du savoir-faire entre les grands projets (REM, hôpitaux).",
+      "dimension": {
+        "employes": 5000,
+        "services": 12,
+        "utilisateurs": 450,
+        "managers": 60,
+        "experts": 40,
+        "documents": 250000
+      },
+      "roiHyp": {
+        "heures": 2.5,
+        "coutHoraire": 55,
+        "adoption": 70,
+        "semaines": 46
+      },
+      "modules": [
+        "memoire",
+        "audit",
+        "pdf",
+        "agents"
+      ],
+      "attendu": "enterprise"
+    },
+    "calc": {
+      "palier": "Enterprise",
+      "installation": 3500,
+      "parametrage": 7800,
+      "formation": 21200,
+      "licences": 74250,
+      "modules": 7400,
+      "support": 14697,
+      "maintenance": 9798,
+      "totalAn1": 138645,
+      "recurrentAn": 106145,
+      "gainBrutAn": 1992375,
+      "gainNetAn1": 1853730,
+      "roiPct": 1337,
+      "retourMois": 0.8,
+      "trace": [
+        "Validation: Toutes les contraintes respectées",
+        "Calcul dimensionnement: Charge pondérée 620 · palier Enterprise",
+        "Calcul licences: 81 650 € /an (4 modules)",
+        "Calcul ROI: Gain brut 1 992 375 €/an · ROI an 1 1337 %",
+        "Génération devis: Total an 1 138 645 €",
+        "Pipeline terminé: 21.0 ms"
+      ]
+    }
+  },
+  {
+    "cas": {
+      "entreprise": "AtkinsRéalis",
+      "secteur": "Ingénierie",
+      "version": "Technique",
+      "dirigeant": "Ian Edwards — Président et chef de la direction",
+      "interet": "Réutilisation des livrables d'ingénierie multi-projets (nucléaire, transport) ; cohérence documentaire et traçabilité réglementaire.",
+      "dimension": {
+        "employes": 8000,
+        "services": 15,
+        "utilisateurs": 950,
+        "managers": 120,
+        "experts": 90,
+        "documents": 800000
+      },
+      "roiHyp": {
+        "heures": 2,
+        "coutHoraire": 65,
+        "adoption": 65,
+        "semaines": 46
+      },
+      "modules": [
+        "memoire",
+        "audit",
+        "pdf",
+        "coherence"
+      ],
+      "attendu": "enterprise"
+    },
+    "calc": {
+      "palier": "Enterprise",
+      "installation": 3500,
+      "parametrage": 9750,
+      "formation": 45000,
+      "licences": 156750,
+      "modules": 6800,
+      "support": 29439,
+      "maintenance": 19626,
+      "totalAn1": 270865,
+      "recurrentAn": 212615,
+      "gainBrutAn": 3695640,
+      "gainNetAn1": 3424775,
+      "roiPct": 1264,
+      "retourMois": 0.9,
+      "trace": [
+        "Validation: Toutes les contraintes respectées",
+        "Calcul dimensionnement: Charge pondérée 1310 · palier Enterprise",
+        "Calcul licences: 163 550 € /an (4 modules)",
+        "Calcul ROI: Gain brut 3 695 640 €/an · ROI an 1 1264 %",
+        "Génération devis: Total an 1 270 865 €",
+        "Pipeline terminé: 0.0 ms"
+      ]
+    }
+  },
+  {
+    "cas": {
+      "entreprise": "CAE",
+      "secteur": "Industrie aéronautique",
+      "version": "Industrie",
+      "dirigeant": "Matthew Bromberg — Président et chef de la direction",
+      "interet": "Documentation de simulation/formation, qualité et certification ; transfert de connaissance entre programmes civils et défense.",
+      "dimension": {
+        "employes": 13000,
+        "services": 10,
+        "utilisateurs": 600,
+        "managers": 80,
+        "experts": 70,
+        "documents": 400000
+      },
+      "roiHyp": {
+        "heures": 2,
+        "coutHoraire": 60,
+        "adoption": 70,
+        "semaines": 46
+      },
+      "modules": [
+        "memoire",
+        "audit",
+        "pdf",
+        "skills"
+      ],
+      "attendu": "enterprise"
+    },
+    "calc": {
+      "palier": "Enterprise",
+      "installation": 3500,
+      "parametrage": 6500,
+      "formation": 32600,
+      "licences": 99000,
+      "modules": 6300,
+      "support": 18954,
+      "maintenance": 12636,
+      "totalAn1": 179490,
+      "recurrentAn": 136890,
+      "gainBrutAn": 2318400,
+      "gainNetAn1": 2138910,
+      "roiPct": 1192,
+      "retourMois": 0.9,
+      "trace": [
+        "Validation: Toutes les contraintes respectées",
+        "Calcul dimensionnement: Charge pondérée 860 · palier Enterprise",
+        "Calcul licences: 105 300 € /an (4 modules)",
+        "Calcul ROI: Gain brut 2 318 400 €/an · ROI an 1 1192 %",
+        "Génération devis: Total an 1 179 490 €",
+        "Pipeline terminé: 0.0 ms"
+      ]
+    }
+  },
+  {
+    "cas": {
+      "entreprise": "Bombardier",
+      "secteur": "Industrie aéronautique",
+      "version": "Industrie",
+      "dirigeant": "Éric Martel — Président et chef de la direction",
+      "interet": "Capitalisation de l'expertise d'ingénierie des jets d'affaires ; réduction du temps de recherche documentaire en production et SAV.",
+      "dimension": {
+        "employes": 18000,
+        "services": 14,
+        "utilisateurs": 1200,
+        "managers": 150,
+        "experts": 110,
+        "documents": 900000
+      },
+      "roiHyp": {
+        "heures": 1.8,
+        "coutHoraire": 62,
+        "adoption": 65,
+        "semaines": 46
+      },
+      "modules": [
+        "memoire",
+        "audit",
+        "pdf",
+        "agents",
+        "coherence"
+      ],
+      "attendu": "corporate"
+    },
+    "calc": {
+      "palier": "Corporate",
+      "installation": 3500,
+      "parametrage": 9100,
+      "formation": 55600,
+      "licences": 156000,
+      "modules": 10000,
+      "support": 29880,
+      "maintenance": 19920,
+      "totalAn1": 284000,
+      "recurrentAn": 215800,
+      "gainBrutAn": 4004208,
+      "gainNetAn1": 3720208,
+      "roiPct": 1310,
+      "retourMois": 0.9,
+      "trace": [
+        "Validation: Toutes les contraintes respectées",
+        "Calcul dimensionnement: Charge pondérée 1645 · palier Corporate",
+        "Calcul licences: 166 000 € /an (5 modules)",
+        "Calcul ROI: Gain brut 4 004 208 €/an · ROI an 1 1310 %",
+        "Génération devis: Total an 1 284 000 €",
+        "Pipeline terminé: 0.0 ms"
+      ]
+    }
+  },
+  {
+    "cas": {
+      "entreprise": "Banque Nationale du Canada",
+      "secteur": "Banque",
+      "version": "Banque",
+      "dirigeant": "Laurent Ferreira — Président et chef de la direction",
+      "interet": "Conformité réglementaire, traçabilité des décisions de crédit, productivité des analystes ; IA souveraine alignée avec les exigences OSFI/AMF.",
+      "dimension": {
+        "employes": 30000,
+        "services": 20,
+        "utilisateurs": 2500,
+        "managers": 300,
+        "experts": 180,
+        "documents": 2000000
+      },
+      "roiHyp": {
+        "heures": 1.5,
+        "coutHoraire": 70,
+        "adoption": 60,
+        "semaines": 46
+      },
+      "modules": [
+        "memoire",
+        "audit",
+        "pdf",
+        "coherence",
+        "futur"
+      ],
+      "attendu": "corporate"
+    },
+    "calc": {
+      "palier": "Corporate",
+      "installation": 3500,
+      "parametrage": 13000,
+      "formation": 100800,
+      "licences": 325000,
+      "modules": 9700,
+      "support": 60246,
+      "maintenance": 40164,
+      "totalAn1": 552410,
+      "recurrentAn": 435110,
+      "gainBrutAn": 7245000,
+      "gainNetAn1": 6692590,
+      "roiPct": 1212,
+      "retourMois": 0.9,
+      "trace": [
+        "Validation: Toutes les contraintes respectées",
+        "Calcul dimensionnement: Charge pondérée 3310 · palier Corporate",
+        "Calcul licences: 334 700 € /an (5 modules)",
+        "Calcul ROI: Gain brut 7 245 000 €/an · ROI an 1 1212 %",
+        "Génération devis: Total an 1 552 410 €",
+        "Pipeline terminé: 0.0 ms"
+      ]
+    }
+  },
+  {
+    "cas": {
+      "entreprise": "BFL Canada",
+      "secteur": "Assurance (courtage)",
+      "version": "Assurance",
+      "dirigeant": "Barry F. Lorenzetti — Président fondateur et chef de la direction",
+      "interet": "Traitement des dossiers sinistres et placements accéléré ; mémoire client unifiée entre les bureaux canadiens.",
+      "dimension": {
+        "employes": 1400,
+        "services": 8,
+        "utilisateurs": 95,
+        "managers": 14,
+        "experts": 10,
+        "documents": 60000
+      },
+      "roiHyp": {
+        "heures": 3,
+        "coutHoraire": 50,
+        "adoption": 75,
+        "semaines": 46
+      },
+      "modules": [
+        "memoire",
+        "audit",
+        "pdf"
+      ],
+      "attendu": "business"
+    },
+    "calc": {
+      "palier": "Business",
+      "installation": 3500,
+      "parametrage": 5200,
+      "formation": 5120,
+      "licences": 19000,
+      "modules": 4200,
+      "support": 4176,
+      "maintenance": 2784,
+      "totalAn1": 43980,
+      "recurrentAn": 30160,
+      "gainBrutAn": 489900,
+      "gainNetAn1": 445920,
+      "roiPct": 1014,
+      "retourMois": 1.1,
+      "trace": [
+        "Validation: Toutes les contraintes respectées",
+        "Calcul dimensionnement: Charge pondérée 136 · palier Business",
+        "Calcul licences: 23 200 € /an (3 modules)",
+        "Calcul ROI: Gain brut 489 900 €/an · ROI an 1 1014 %",
+        "Génération devis: Total an 1 43 980 €",
+        "Pipeline terminé: 0.0 ms"
+      ]
+    }
+  },
+  {
+    "cas": {
+      "entreprise": "Société de transport de Montréal (STM)",
+      "secteur": "Collectivité / transport public",
+      "version": "Collectivite",
+      "dirigeant": "Marie-Claude Léonard — Directrice générale",
+      "interet": "Service public augmenté : maintenance métro/bus, procédures internes, conformité et transparence des décisions (Loi 25).",
+      "dimension": {
+        "employes": 11000,
+        "services": 16,
+        "utilisateurs": 800,
+        "managers": 100,
+        "experts": 60,
+        "documents": 500000
+      },
+      "roiHyp": {
+        "heures": 1.5,
+        "coutHoraire": 48,
+        "adoption": 60,
+        "semaines": 46
+      },
+      "modules": [
+        "memoire",
+        "audit",
+        "pdf",
+        "cinematique"
+      ],
+      "attendu": "enterprise"
+    },
+    "calc": {
+      "palier": "Enterprise",
+      "installation": 3500,
+      "parametrage": 10400,
+      "formation": 33600,
+      "licences": 132000,
+      "modules": 5900,
+      "support": 24822,
+      "maintenance": 16548,
+      "totalAn1": 226770,
+      "recurrentAn": 179270,
+      "gainBrutAn": 1589760,
+      "gainNetAn1": 1362990,
+      "roiPct": 601,
+      "retourMois": 1.7,
+      "trace": [
+        "Validation: Toutes les contraintes respectées",
+        "Calcul dimensionnement: Charge pondérée 1070 · palier Enterprise",
+        "Calcul licences: 137 900 € /an (4 modules)",
+        "Calcul ROI: Gain brut 1 589 760 €/an · ROI an 1 601 %",
+        "Génération devis: Total an 1 226 770 €",
+        "Pipeline terminé: 0.0 ms"
+      ]
+    }
+  },
+  {
+    "cas": {
+      "entreprise": "Dialogue Technologies de la Santé",
+      "secteur": "Santé numérique",
+      "version": "Sante",
+      "dirigeant": "Cherif Habib — Cofondateur et chef de la direction",
+      "interet": "Pilote direction médicale : confidentialité patient, protocoles de soins virtuels et appui à la décision clinique, auditables de bout en bout.",
+      "dimension": {
+        "employes": 1000,
+        "services": 5,
+        "utilisateurs": 22,
+        "managers": 5,
+        "experts": 6,
+        "documents": 15000
+      },
+      "roiHyp": {
+        "heures": 3,
+        "coutHoraire": 75,
+        "adoption": 85,
+        "semaines": 46
+      },
+      "modules": [
+        "memoire",
+        "audit",
+        "pdf"
+      ],
+      "attendu": "starter"
+    },
+    "calc": {
+      "palier": "Starter",
+      "installation": 3500,
+      "parametrage": 3250,
+      "formation": 2460,
+      "licences": 5280,
+      "modules": 4200,
+      "support": 1706,
+      "maintenance": 1138,
+      "totalAn1": 21534,
+      "recurrentAn": 12324,
+      "gainBrutAn": 196650,
+      "gainNetAn1": 175116,
+      "roiPct": 813,
+      "retourMois": 1.3,
+      "trace": [
+        "Validation: Toutes les contraintes respectées",
+        "Calcul dimensionnement: Charge pondérée 42 · palier Starter",
+        "Calcul licences: 9 480 € /an (3 modules)",
+        "Calcul ROI: Gain brut 196 650 €/an · ROI an 1 813 %",
+        "Génération devis: Total an 1 21 534 €",
+        "Pipeline terminé: 0.0 ms"
+      ]
+    }
+  },
+  {
+    "cas": {
+      "entreprise": "CGI",
+      "secteur": "Services-conseils TI",
+      "version": "DSI",
+      "dirigeant": "Tim Hurlebaus — Président et chef de la direction (depuis mai 2026)",
+      "interet": "Industrialisation des propositions commerciales et réutilisation des livrables de mission ; vitrine IA face à la pression du marché sur le conseil TI.",
+      "dimension": {
+        "employes": 40000,
+        "services": 18,
+        "utilisateurs": 3000,
+        "managers": 350,
+        "experts": 250,
+        "documents": 1500000
+      },
+      "roiHyp": {
+        "heures": 2,
+        "coutHoraire": 68,
+        "adoption": 65,
+        "semaines": 46
+      },
+      "modules": [
+        "memoire",
+        "audit",
+        "pdf",
+        "agents",
+        "skills"
+      ],
+      "attendu": "corporate"
+    },
+    "calc": {
+      "palier": "Corporate",
+      "installation": 3500,
+      "parametrage": 11700,
+      "formation": 128000,
+      "licences": 390000,
+      "modules": 9500,
+      "support": 71910,
+      "maintenance": 47940,
+      "totalAn1": 662550,
+      "recurrentAn": 519350,
+      "gainBrutAn": 12199200,
+      "gainNetAn1": 11536650,
+      "roiPct": 1741,
+      "retourMois": 0.7,
+      "trace": [
+        "Validation: Toutes les contraintes respectées",
+        "Calcul dimensionnement: Charge pondérée 4025 · palier Corporate",
+        "Calcul licences: 399 500 € /an (5 modules)",
+        "Calcul ROI: Gain brut 12 199 200 €/an · ROI an 1 1741 %",
+        "Génération devis: Total an 1 662 550 €",
+        "Pipeline terminé: 0.0 ms"
+      ]
+    }
+  },
+  {
+    "cas": {
+      "entreprise": "Metro Inc.",
+      "secteur": "Distribution alimentaire",
+      "version": "DG",
+      "dirigeant": "Eric La Flèche — Président et chef de la direction",
+      "interet": "Sièges sociaux et logistique : procédures, négociations fournisseurs et conformité alimentaire centralisées et interrogeables.",
+      "dimension": {
+        "employes": 9000,
+        "services": 9,
+        "utilisateurs": 140,
+        "managers": 20,
+        "experts": 12,
+        "documents": 120000
+      },
+      "roiHyp": {
+        "heures": 2,
+        "coutHoraire": 52,
+        "adoption": 70,
+        "semaines": 46
+      },
+      "modules": [
+        "memoire",
+        "audit",
+        "pdf",
+        "futur"
+      ],
+      "attendu": "business"
+    },
+    "calc": {
+      "palier": "Business",
+      "installation": 3500,
+      "parametrage": 5850,
+      "formation": 6720,
+      "licences": 28000,
+      "modules": 7100,
+      "support": 6318,
+      "maintenance": 4212,
+      "totalAn1": 61700,
+      "recurrentAn": 45630,
+      "gainBrutAn": 468832,
+      "gainNetAn1": 407132,
+      "roiPct": 660,
+      "retourMois": 1.6,
+      "trace": [
+        "Validation: Toutes les contraintes respectées",
+        "Calcul dimensionnement: Charge pondérée 194 · palier Business",
+        "Calcul licences: 35 100 € /an (4 modules)",
+        "Calcul ROI: Gain brut 468 832 €/an · ROI an 1 660 %",
+        "Génération devis: Total an 1 61 700 €",
+        "Pipeline terminé: 0.0 ms"
+      ]
+    }
+  }
+]
