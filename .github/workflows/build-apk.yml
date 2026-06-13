@@ -61,13 +61,21 @@ jobs:
       - name: Build release APK (debug-signed)
         run: flutter build apk --release
 
+      - name: Build per-ABI release APKs (smaller, more reliable install)
+        run: flutter build apk --release --split-per-abi
+
       - name: Rename artifacts
         run: |
           mkdir -p dist
           cp build/app/outputs/flutter-apk/app-debug.apk \
              dist/zoran-plate-scan-debug.apk
           cp build/app/outputs/flutter-apk/app-release.apk \
-             dist/zoran-plate-scan-release.apk
+             dist/zoran-plate-scan-release-universal.apk
+          # Per-ABI builds: arm64 covers virtually all modern phones.
+          cp build/app/outputs/flutter-apk/app-arm64-v8a-release.apk \
+             dist/zoran-plate-scan-arm64.apk
+          cp build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk \
+             dist/zoran-plate-scan-arm32.apk || true
           ls -lh dist
 
       - name: Upload APK artifacts
@@ -83,9 +91,16 @@ jobs:
           tag_name: plate-scan-v1.0-${{ github.run_number }}
           name: ZORAN Plate Scan Pro v1.0 (build ${{ github.run_number }})
           body: |
-            Application Android ANPR pour agents de stationnement.
-            APK installables (debug + release, signés clé debug).
-            Mode 100% hors-ligne. Installez l'APK release sur un appareil Android.
+            Application Android ANPR pour agents de stationnement (100% hors-ligne).
+
+            ## Quel fichier installer ?
+            - **zoran-plate-scan-arm64.apk** — RECOMMANDE (telephones modernes, ~35 Mo).
+            - zoran-plate-scan-arm32.apk — vieux appareils 32 bits.
+            - zoran-plate-scan-release-universal.apk — toutes architectures (~91 Mo).
+            - zoran-plate-scan-debug.apk — version debug (diagnostic).
+
+            Signes cle debug -> installation directe (Sources inconnues a autoriser).
+            En cas de "Play Protect" : Installer quand meme.
           files: plate_scan_pro/dist/*.apk
           fail_on_unmatched_files: true
         env:
