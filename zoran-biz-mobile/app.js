@@ -82,7 +82,9 @@ const SCHEMA = {
   'roiHyp.heures':         { type: 'float', required: true, min: 0, max: 20, msg: "0 à 20 h/semaine." },
   'roiHyp.coutHoraire':    { type: 'float', required: true, min: 10, max: 500, msg: "Coût horaire entre 10 et 500." },
   'roiHyp.adoption':       { type: 'int', required: true, min: 10, max: 100, msg: "Adoption entre 10 et 100 %." },
-  'roiHyp.semaines':       { type: 'int', required: true, min: 20, max: 52, msg: "20 à 52 semaines." }
+  'roiHyp.semaines':       { type: 'int', required: true, min: 20, max: 52, msg: "20 à 52 semaines." },
+
+  'profil.maturiteIA':     { type: 'int', required: true, min: 0, max: 6, msg: "Maturité de 0 à 6." }
 };
 
 /* ---------------------------------------------------------------
@@ -109,6 +111,8 @@ function defaultState() {
     modules,
     dimension: { employes: 120, services: 6, utilisateurs: 90, managers: 12, experts: 8, documents: 5000 },
     roiHyp: { heures: 2, coutHoraire: 45, adoption: 70, semaines: 46 },
+    profil: { taille: 'PME', secteur: '', maturiteIA: 2, budget: '', niveauTechnique: 'moyen', urgence: 'moyenne', objectifs: '', freins: [], objections: ['chatgpt'] },
+    generation: { audience: 'DG', complexite: 'Commercial', format: '1 page', objectif: 'Convaincre', dernier: null },
     licence: { choisie: null, recommandee: null },
     version: 'DG',
     auditLog: []
@@ -402,6 +406,7 @@ function renderScreen(id) {
   switch (id) {
     case 'screen-accueil': renderSources(); break;
     case 'screen-analyse': renderAnalyse(); break;
+    case 'screen-moteur': renderMoteur(); break;
     case 'screen-zoran': renderModules(); break;
     case 'screen-dimension': renderDimension(); break;
     case 'screen-licences': renderLicences(); break;
@@ -727,6 +732,182 @@ function renderAudit() {
     : '<p class="screen-intro">Aucune modification enregistrée.</p>';
 
   document.getElementById('audit-json').textContent = JSON.stringify(STATE, null, 2);
+}
+
+/* ---------------------------------------------------------------
+   10b. MOTEUR DE CONNAISSANCE (V3)
+--------------------------------------------------------------- */
+let lastDeliverable = null;
+let moteurWired = false;
+
+function renderMoteur() {
+  // Options des sélecteurs (peuplées une seule fois, puis valeurs synchronisées)
+  const audSel = document.getElementById('gen-audience');
+  if (audSel && !audSel.options.length) {
+    fillOptions(audSel, Object.keys(ENGINE.AUDIENCES));
+    fillOptions(document.getElementById('gen-complexite'), ENGINE.COMPLEXITES);
+    fillOptions(document.getElementById('gen-format'), Object.keys(ENGINE.FORMATS));
+    fillOptions(document.getElementById('gen-objectif'), Object.keys(ENGINE.OBJECTIFS));
+  }
+  ['audience', 'complexite', 'format', 'objectif'].forEach(k => {
+    const el = document.getElementById('gen-' + k);
+    if (el) el.value = STATE.generation[k];
+  });
+
+  // Objections (chips)
+  const objBox = document.getElementById('profil-objections');
+  if (objBox) {
+    objBox.innerHTML = ENGINE.objectionsList.map(o => {
+      const on = (STATE.profil.objections || []).indexOf(o.id) >= 0;
+      return `<button type="button" class="chip ${on ? 'on' : ''}" data-obj="${o.id}">${escapeHtml(o.label)}</button>`;
+    }).join('');
+    objBox.querySelectorAll('[data-obj]').forEach(b => b.addEventListener('click', () => {
+      const id = b.dataset.obj;
+      const arr = STATE.profil.objections || (STATE.profil.objections = []);
+      const i = arr.indexOf(id);
+      if (i >= 0) arr.splice(i, 1); else arr.push(id);
+      logAudit('Objection prospect', '', id, ['profil']);
+      saveState(); renderMoteur();
+    }));
+  }
+
+  // Recommandation automatique
+  const reco = ENGINE.recommander(STATE);
+  const rb = document.getElementById('reco-body');
+  if (rb) rb.innerHTML = `
+    <div class="kv"><span>Maturité IA détectée</span><b><span class="badge">${reco.maturite.n} · ${escapeHtml(reco.maturite.label)}</span></b></div>
+    <div class="kv"><span>Meilleur angle</span><b>${escapeHtml(reco.angle)}</b></div>
+    <div class="kv"><span>Argument prioritaire</span><b>${escapeHtml(reco.argument)}</b></div>
+    <div class="kv"><span>Format conseillé</span><b>${escapeHtml(reco.format)}</b></div>
+    <div class="kv"><span>Objectif conseillé</span><b>${escapeHtml(reco.objectif)}</b></div>
+    <div class="kv"><span>POC recommandé</span><b>${escapeHtml(reco.poc)}</b></div>
+    <div class="kv"><span>Stratégie d'adoption</span><b>${escapeHtml(reco.adoption)}</b></div>
+    <div class="kv"><span>Objection à préparer</span><b>${escapeHtml(reco.objectionPrioritaire)}</b></div>
+    <div class="kv"><span>Urgence</span><b>${escapeHtml(reco.urgenceNote)}</b></div>`;
+
+  // Moteurs rapides
+  const rapide = document.getElementById('moteur-rapide');
+  if (rapide) {
+    const boutons = [
+      { id: 'pourquoi', label: "🚀 Pourquoi l'IA maintenant" },
+      { id: 'risque', label: "⚠️ Risque de ne rien faire" },
+      { id: 'poc', label: "🧪 Plan de POC" },
+      { id: 'roadmap', label: "🗺️ Feuille de route" },
+      { id: 'casusage', label: "🧰 Cas d'usage" },
+      { id: 'faq', label: "❓ FAQ" },
+      { id: 'financement', label: "💶 Dossier de financement" }
+    ];
+    rapide.innerHTML =
+      boutons.map(b => `<button class="btn btn-mini" data-rapide="${b.id}">${b.label}</button>`).join('') +
+      ENGINE.competitors.map(c => `<button class="btn btn-mini" data-vs="${escapeHtml(c)}">⚔️ vs ${escapeHtml(c)}</button>`).join('') +
+      ENGINE.dureesPitch.map(d => `<button class="btn btn-mini" data-pitch="${escapeHtml(d)}">🎤 Pitch ${escapeHtml(d)}</button>`).join('') +
+      ENGINE.objectionsList.map(o => `<button class="btn btn-mini" data-objrep="${o.id}">💬 ${escapeHtml(o.label)}</button>`).join('');
+
+    rapide.querySelectorAll('[data-rapide]').forEach(b => b.addEventListener('click', () => {
+      const id = b.dataset.rapide;
+      const map = { pourquoi: () => ENGINE.pourquoiMaintenant(STATE, STATE.generation.audience),
+        risque: () => ENGINE.risqueInaction(STATE), poc: () => ENGINE.poc(STATE),
+        roadmap: () => ENGINE.roadmap(STATE), casusage: () => ENGINE.casUsage(STATE),
+        faq: () => ENGINE.faq(STATE), financement: () => ENGINE.financement(STATE) };
+      showDeliverable(map[id](), id);
+    }));
+    rapide.querySelectorAll('[data-vs]').forEach(b => b.addEventListener('click', () =>
+      showDeliverable(ENGINE.differenciation(STATE, b.dataset.vs), 'vs-' + b.dataset.vs)));
+    rapide.querySelectorAll('[data-pitch]').forEach(b => b.addEventListener('click', () =>
+      showDeliverable(ENGINE.pitch(STATE, b.dataset.pitch, STATE.generation.audience), 'pitch')));
+    rapide.querySelectorAll('[data-objrep]').forEach(b => b.addEventListener('click', () =>
+      showDeliverable(ENGINE.objection(STATE, b.dataset.objrep), 'objection')));
+  }
+
+  // Câblage unique des boutons fixes
+  if (!moteurWired) {
+    moteurWired = true;
+    document.getElementById('btn-generer').addEventListener('click', () => {
+      showDeliverable(ENGINE.generate(STATE), 'generate');
+    });
+    document.getElementById('btn-reco-apply').addEventListener('click', () => {
+      const r = ENGINE.recommander(STATE);
+      STATE.generation.format = r.format;
+      STATE.generation.objectif = r.objectif;
+      logAudit('Recommandation appliquée', '', r.format + ' / ' + r.objectif, ['moteur']);
+      saveState(); renderMoteur();
+      toast('Recommandation appliquée');
+    });
+    document.getElementById('btn-gen-edit').addEventListener('click', () => {
+      const body = document.getElementById('gen-output-body');
+      if (body.isContentEditable) {
+        body.contentEditable = 'false'; body.classList.remove('editing');
+        if (lastDeliverable) lastDeliverable.sections = [{ h: '', t: body.innerText }];
+        toast('Modifications conservées pour l\'export');
+      } else { body.contentEditable = 'true'; body.classList.add('editing'); body.focus(); }
+    });
+    document.getElementById('btn-gen-copy').addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(ENGINE.toText(lastDeliverable)); toast('Livrable copié'); }
+      catch (e) { toast('Copie impossible'); }
+    });
+    document.getElementById('btn-gen-pdf').addEventListener('click', () => exportDeliverable('pdf'));
+    document.getElementById('btn-gen-word').addEventListener('click', () => exportDeliverable('word'));
+    document.getElementById('btn-gen-email').addEventListener('click', () => exportDeliverable('email'));
+  }
+}
+
+function fillOptions(sel, arr) {
+  if (!sel) return;
+  sel.innerHTML = arr.map(v => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join('');
+}
+
+function showDeliverable(deliv, kind) {
+  lastDeliverable = deliv;
+  document.getElementById('gen-output-card').style.display = 'block';
+  document.getElementById('gen-output-titre').textContent = deliv.titre;
+  const meta = deliv.meta || {};
+  document.getElementById('gen-output-meta').innerHTML = Object.keys(meta)
+    .map(k => `<span class="badge">${escapeHtml(k)}: ${escapeHtml(String(meta[k]))}</span>`).join(' ');
+  const body = document.getElementById('gen-output-body');
+  body.contentEditable = 'false'; body.classList.remove('editing');
+  body.innerHTML = deliv.sections.map(s =>
+    (s.h ? '<b>' + escapeHtml(s.h) + '</b>\n' : '') + escapeHtml(s.t)).join('\n\n').replace(/\n/g, '<br>');
+  logAudit('Livrable généré [' + (kind || '') + ']', '', deliv.titre, ['sortant', 'genere']);
+  saveState();
+  document.getElementById('gen-output-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function exportDeliverable(kind) {
+  if (!lastDeliverable) { toast('Générez d\'abord un livrable'); return; }
+  const expId = genId('EXP');
+  const titre = lastDeliverable.titre;
+  if (kind === 'pdf') {
+    printDocument(ENGINE.toHtml(lastDeliverable) + traceFooter(expId));
+    logAudit('Export livrable PDF ' + expId, '', titre, ['sortant', 'pdf', 'livrable']);
+  } else if (kind === 'word') {
+    const html = wordWrap(ENGINE.toHtml(lastDeliverable) + traceFooter(expId), titre);
+    downloadBlob(html, filename('docx-as-doc'), 'application/msword');
+    logAudit('Export livrable Word ' + expId, '', titre, ['sortant', 'word', 'livrable']);
+  } else if (kind === 'email') {
+    const corps = ENGINE.toText(lastDeliverable) + '\n\nRéférence : ' + expId + ' · Dossier : ' + STATE.meta.dossierId;
+    const mailto = `mailto:?subject=${encodeURIComponent(titre)}&body=${encodeURIComponent(corps)}`;
+    downloadBlob('Subject: ' + titre + '\nX-Unsent: 1\nContent-Type: text/plain; charset=utf-8\n\n' + corps, filename('eml'), 'message/rfc822');
+    window.location.href = mailto;
+    logAudit('Export livrable Email ' + expId, '', titre, ['sortant', 'email', 'livrable']);
+  }
+  saveState();
+  toast('Livrable exporté (' + kind + ')');
+}
+
+function traceFooter(expId) {
+  return '<div class="print-foot">Document généré par ZORAN Biz Mobile — ' + new Date().toLocaleString('fr-FR') +
+    '<br>Référence : ' + escapeHtml(expId) + ' · Dossier : ' + escapeHtml(STATE.meta.dossierId) +
+    ' · Session : ' + escapeHtml(STATE.meta.sessionId) + '</div>';
+}
+function wordWrap(inner, titre) {
+  return '<!DOCTYPE html><html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">' +
+    '<head><meta charset="utf-8"><title>' + escapeHtml(titre) + '</title>' +
+    '<style>body{font-family:Calibri,Arial,sans-serif;color:#1b2434}h1{color:#1f3a5f;font-size:18pt}h2{color:#1f3a5f;font-size:12pt}.print-foot{margin-top:16pt;color:#888;font-size:8pt}</style>' +
+    '</head><body>' + inner + '</body></html>';
+}
+function printDocument(innerHtml) {
+  document.getElementById('print-area').innerHTML = innerHtml;
+  setTimeout(() => window.print(), 60);
 }
 
 /* ---------------------------------------------------------------

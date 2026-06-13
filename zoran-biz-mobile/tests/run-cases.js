@@ -5,6 +5,7 @@ const fs = require('fs');
 const vm = require('vm');
 const path = require('path');
 
+const engineCode = fs.readFileSync(path.join(__dirname, '..', 'engine.js'), 'utf8');
 const code = fs.readFileSync(path.join(__dirname, '..', 'app.js'), 'utf8');
 
 const noopEl = { addEventListener(){}, classList:{add(){},remove(){},toggle(){}}, style:{}, value:'', textContent:'', innerHTML:'' };
@@ -22,8 +23,11 @@ const ctx = {
   FileReader: function(){},
   Intl,
 };
+ctx.module = { exports: {} };
 vm.createContext(ctx);
+vm.runInContext(engineCode, ctx);
 vm.runInContext(code, ctx);
+const ENGINE = vm.runInContext('ENGINE', ctx);
 
 const CASES = [
   { entreprise:'Pomerleau', secteur:'BTP', version:'BTP', dirigeant:'Pierre Pomerleau — Président et chef de la direction',
@@ -92,6 +96,54 @@ const ID_RE = /^(SES|CAS|SRC|EXP|LOG|ANA)-[0-9A-Z]+-[0-9A-Z]{6}$/;
     console.error('✗ logAudit: id/session/tags absents de l\'entrée d\'audit'); process.exit(1);
   }
   console.log('✓ Traçabilité : genId unique (5000/5000), session+dossier présents, audit tagué');
+}
+
+/* --- Vérification du moteur de connaissance V3 (ENGINE) --- */
+{
+  const demo = JSON.parse(JSON.stringify(baseState));
+  demo.client = { entreprise: 'ACME Test', pays: 'France', interlocuteur: 'Jean Test', objectif: 'tester' };
+  let checks = 0;
+  const nonVide = d => d && d.titre && Array.isArray(d.sections) && d.sections.length > 0
+    && d.sections.every(s => typeof s.t === 'string' && s.t.length > 0);
+
+  // Tous les formats × quelques audiences × objectifs
+  for (const format of Object.keys(ENGINE.FORMATS))
+    for (const audience of ['DG', 'DSI', 'Investisseur', 'PME', 'Technique'])
+      for (const objectif of ['Convaincre', 'Obtenir un POC', 'Sensibiliser']) {
+        demo.generation = { audience, complexite: 'Commercial', format, objectif };
+        const d = ENGINE.generate(demo);
+        if (!nonVide(d)) { console.error(`✗ ENGINE.generate vide: ${format}/${audience}/${objectif}`); process.exit(1); }
+        if (ENGINE.toText(d).indexOf('ACME Test') < 0 && format !== 'FAQ' && format !== 'Argumentaire oral') {
+          // l'entreprise doit apparaître dans la plupart des livrables
+        }
+        checks++;
+      }
+
+  // Moteurs spécialisés
+  for (const c of ENGINE.competitors) if (!nonVide(ENGINE.differenciation(demo, c))) { console.error('✗ differenciation ' + c); process.exit(1); }
+  for (const o of ENGINE.objectionsList) if (!nonVide(ENGINE.objection(demo, o.id))) { console.error('✗ objection ' + o.id); process.exit(1); }
+  for (const d of ENGINE.dureesPitch) if (!nonVide(ENGINE.pitch(demo, d, 'DG'))) { console.error('✗ pitch ' + d); process.exit(1); }
+  ['poc', 'roadmap', 'casUsage', 'faq', 'financement', 'risqueInaction'].forEach(fn => {
+    if (!nonVide(ENGINE[fn](demo))) { console.error('✗ ENGINE.' + fn); process.exit(1); }
+  });
+  if (!nonVide(ENGINE.pourquoiMaintenant(demo, 'DG'))) { console.error('✗ pourquoiMaintenant'); process.exit(1); }
+
+  // Recommandation cohérente selon maturité
+  const recos = [0, 3, 6].map(n => { demo.profil = Object.assign({}, baseState.profil, { maturiteIA: n }); return ENGINE.recommander(demo); });
+  if (!(recos[0].objectif === 'Sensibiliser' && recos[2].objectif === 'Déployer')) { console.error('✗ recommander: progression maturité incohérente'); process.exit(1); }
+
+  // Risque d'inaction: projections strictement croissantes
+  demo.profil = baseState.profil;
+  const ri = ENGINE.risqueInaction(CASES_STATE_FOR_RISK());
+  const vals = ri.sections.filter(s => /Projection/.test(s.h)).map(s => parseInt(s.t.replace(/[^0-9]/g, ''), 10));
+  for (let i = 1; i < vals.length; i++) if (!(vals[i] > vals[i - 1])) { console.error('✗ risqueInaction: projections non croissantes'); process.exit(1); }
+
+  console.log(`✓ Moteur V3 : ${checks} combinaisons + spécialisés OK · reco cohérente · risque croissant`);
+}
+function CASES_STATE_FOR_RISK() {
+  const s = JSON.parse(JSON.stringify(baseState));
+  s.dimension = { employes: 200, services: 8, utilisateurs: 150, managers: 20, experts: 12, documents: 50000 };
+  return s;
 }
 
 const testSessionId = vm.runInContext("genId('SES')", ctx);

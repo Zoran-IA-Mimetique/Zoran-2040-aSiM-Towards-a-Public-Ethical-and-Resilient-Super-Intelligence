@@ -277,6 +277,26 @@ body {
   margin: 0 0 10px;
 }
 
+/* ---------- Moteur de connaissance (V3) ---------- */
+.chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.chip {
+  border: 1.5px solid var(--line);
+  background: #fff;
+  color: var(--ink-soft);
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.chip.on { border-color: var(--accent); background: var(--accent-soft); color: var(--ink); }
+.rapide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+@media (max-width: 360px) { .rapide-grid { grid-template-columns: 1fr; } }
+.rapide-grid .btn { text-align: left; }
+.gen-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+#gen-output-body { font-size: 14.5px; line-height: 1.5; }
+#gen-output-body.editing { outline: 2px dashed var(--blue); outline-offset: 4px; border-radius: 6px; background: var(--blue-soft); padding: 6px; }
+
 /* ---------- Navigation basse ---------- */
 .bottomnav {
   position: fixed;

@@ -127,6 +127,109 @@
     </div>
   </section>
 
+  <!-- ================= ÉCRAN : MOTEUR DE CONNAISSANCE (V3) ================= -->
+  <section class="screen" id="screen-moteur" data-title="Moteur">
+    <h1 class="screen-title">🧠 Moteur ZORAN</h1>
+    <p class="screen-intro">Une seule saisie client → des dizaines de livrables adaptés. Le contenu est composé à partir de la base de connaissance ZORAN et de votre dossier (brouillons réels, éditables et exportables).</p>
+
+    <div class="card">
+      <h2>Profil prospect</h2>
+      <div class="field-grid">
+        <div class="field">
+          <label for="in-taille">Taille entreprise</label>
+          <select id="in-taille" data-bind="profil.taille">
+            <option>Artisan</option><option>TPE</option><option selected>PME</option>
+            <option>ETI</option><option>Grand groupe</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="in-secteur">Secteur</label>
+          <input type="text" id="in-secteur" data-bind="profil.secteur" placeholder="BTP, santé, banque…">
+        </div>
+        <div class="field">
+          <label for="in-maturite">Maturité IA (0–6)</label>
+          <select id="in-maturite" data-bind="profil.maturiteIA">
+            <option value="0">0 — Aucune IA</option>
+            <option value="1">1 — Découverte</option>
+            <option value="2" selected>2 — Expérimentation</option>
+            <option value="3">3 — Premiers usages</option>
+            <option value="4">4 — Déploiement partiel</option>
+            <option value="5">5 — Déploiement généralisé</option>
+            <option value="6">6 — IA avancée</option>
+          </select>
+          <small class="field-error" data-err="profil.maturiteIA"></small>
+        </div>
+        <div class="field">
+          <label for="in-budget">Budget estimé</label>
+          <input type="text" id="in-budget" data-bind="profil.budget" placeholder="ex. 20–50 k€">
+        </div>
+        <div class="field">
+          <label for="in-niveau-tech">Niveau technique</label>
+          <select id="in-niveau-tech" data-bind="profil.niveauTechnique">
+            <option>faible</option><option selected>moyen</option><option>élevé</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="in-urgence">Urgence</label>
+          <select id="in-urgence" data-bind="profil.urgence">
+            <option>faible</option><option selected>moyenne</option><option>forte</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>Objections connues</label>
+        <div id="profil-objections" class="chips"></div>
+      </div>
+    </div>
+
+    <div class="card" id="moteur-reco">
+      <h2>🎯 Recommandation automatique</h2>
+      <div id="reco-body"></div>
+      <button class="btn btn-primary btn-block" id="btn-reco-apply" style="margin-top:10px">Appliquer la recommandation au générateur</button>
+    </div>
+
+    <div class="card">
+      <h2>⚙️ Générateur de livrable</h2>
+      <div class="field-grid">
+        <div class="field">
+          <label for="gen-audience">Audience</label>
+          <select id="gen-audience" data-bind="generation.audience"></select>
+        </div>
+        <div class="field">
+          <label for="gen-complexite">Complexité</label>
+          <select id="gen-complexite" data-bind="generation.complexite"></select>
+        </div>
+        <div class="field">
+          <label for="gen-format">Format</label>
+          <select id="gen-format" data-bind="generation.format"></select>
+        </div>
+        <div class="field">
+          <label for="gen-objectif">Objectif</label>
+          <select id="gen-objectif" data-bind="generation.objectif"></select>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-block" id="btn-generer">🔵 Générer le livrable</button>
+    </div>
+
+    <div class="card">
+      <h2>⚡ Moteurs rapides</h2>
+      <div id="moteur-rapide" class="rapide-grid"></div>
+    </div>
+
+    <div class="card" id="gen-output-card" style="display:none">
+      <h2 id="gen-output-titre">Livrable</h2>
+      <div class="gen-meta" id="gen-output-meta"></div>
+      <div class="an-text" id="gen-output-body" contenteditable="false"></div>
+      <div class="btn-row" style="margin-top:12px">
+        <button class="btn" id="btn-gen-edit">✏️ Modifier</button>
+        <button class="btn" id="btn-gen-copy">📋 Copier</button>
+        <button class="btn" id="btn-gen-pdf">📄 PDF</button>
+        <button class="btn" id="btn-gen-word">📝 Word</button>
+        <button class="btn" id="btn-gen-email">✉️ Email</button>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= ÉCRAN 3 : ZORAN (MODULES) ================= -->
   <section class="screen" id="screen-zoran" data-title="ZORAN">
     <h1 class="screen-title">🧩 Modules ZORAN</h1>
@@ -291,6 +394,7 @@
 <nav class="bottomnav" id="bottomnav">
   <button data-screen="screen-accueil" class="active"><span>🏠</span>Accueil</button>
   <button data-screen="screen-analyse"><span>🔎</span>Analyse</button>
+  <button data-screen="screen-moteur"><span>🧠</span>Moteur</button>
   <button data-screen="screen-zoran"><span>🧩</span>ZORAN</button>
   <button data-screen="screen-dimension"><span>📐</span>Dimension</button>
   <button data-screen="screen-licences"><span>🪪</span>Licences</button>
@@ -302,6 +406,7 @@
 
 <div class="toast" id="toast"></div>
 
+<script src="engine.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

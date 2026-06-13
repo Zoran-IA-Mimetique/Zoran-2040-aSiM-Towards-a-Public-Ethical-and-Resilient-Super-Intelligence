@@ -97,6 +97,33 @@ sont imprimées en pied de page des devis PDF/Word et dans les emails générés
 Le harnais `tests/run-cases.js` vérifie l'unicité et le format des IDs ainsi que
 la cohérence complète des calculs sur 10 dossiers réels.
 
+## Moteur de connaissance V3 (écran « Moteur »)
+
+À partir d'**un seul dossier client**, l'application compose des livrables prêts à
+l'emploi, adaptés à l'audience, à la complexité, au format et à l'objectif. La
+génération est faite par un **moteur de composition embarqué** (`engine.js`) :
+déterministe, sans backend ni clé API. Les textes produits sont des **brouillons
+réels, éditables et exportables** (PDF / Word / Email / copie) — ce n'est pas un
+appel à un LLM en direct, mais une assemblage intelligent de la base de
+connaissance ZORAN et des données du dossier.
+
+Capacités :
+- **Profil prospect** : taille, secteur, maturité IA (0–6), budget, niveau
+  technique, urgence, objections connues.
+- **Recommandation automatique** : meilleur angle, argument, format, objectif,
+  POC et stratégie d'adoption selon le profil.
+- **Générateur adaptatif** : 17 audiences × 8 niveaux de complexité × 15 formats
+  × 14 objectifs métier.
+- **Moteurs rapides** : « Pourquoi l'IA maintenant », risque de ne rien faire
+  (chiffré, projections 12/24/36/60 mois), plan de POC, feuille de route,
+  cas d'usage, FAQ, dossier de financement, comparatifs (vs ChatGPT, Claude,
+  Copilot, Gemini, GED, moteur documentaire), pitchs (15 s → 30 min) et
+  réponses à objections (versions DG / DSI / Investisseur).
+
+> Les contenus sont des points de départ professionnels à relire et personnaliser,
+> pas des affirmations à publier telles quelles. Les chiffres (ROI, coût de
+> l'inaction) dépendent des hypothèses saisies dans l'app.
+
 ## Design
 
 Interface contemporaine et sobre aux couleurs de l'institut IA / ZORAN :
