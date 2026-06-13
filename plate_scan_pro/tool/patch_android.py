@@ -12,7 +12,7 @@ MANIFEST = "android/app/src/main/AndroidManifest.xml"
 GRADLE_KTS = "android/app/build.gradle.kts"
 GRADLE_GROOVY = "android/app/build.gradle"
 
-COMPILE_SDK = 35
+COMPILE_SDK = 36
 MIN_SDK = 23
 
 PERMS = [
