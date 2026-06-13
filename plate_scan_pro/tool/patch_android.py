@@ -110,8 +110,22 @@ def patch_root_gradle() -> None:
     if ZRN_MARKER in content:
         print(f"Root gradle already patched ({path})")
         return
-    with open(path, "a", encoding="utf-8") as fh:
-        fh.write(block)
+
+    snippet = block.strip() + "\n\n"
+    # Our afterEvaluate hooks must be registered BEFORE Flutter's
+    # `subprojects { project.evaluationDependsOn(":app") }` block forces
+    # evaluation; otherwise Gradle throws "project is already evaluated".
+    idx = content.find("evaluationDependsOn")
+    if idx != -1:
+        sub_idx = content.rfind("subprojects", 0, idx)
+        if sub_idx == -1:
+            sub_idx = idx
+        content = content[:sub_idx] + snippet + content[sub_idx:]
+    else:
+        content = content + "\n" + snippet
+
+    with open(path, "w", encoding="utf-8") as fh:
+        fh.write(content)
     print(f"Patched root {path} (subprojects compileSdk={COMPILE_SDK})")
 
 

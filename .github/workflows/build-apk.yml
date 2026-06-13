@@ -42,6 +42,9 @@ jobs:
             --project-name plate_scan_pro \
             --platforms=android \
             .
+          # Remove the default widget test scaffolded by `flutter create`
+          # (references a non-existent MyApp; our tests live elsewhere).
+          rm -f test/widget_test.dart
 
       - name: Patch Android manifest (permissions)
         run: python3 tool/patch_android.py
