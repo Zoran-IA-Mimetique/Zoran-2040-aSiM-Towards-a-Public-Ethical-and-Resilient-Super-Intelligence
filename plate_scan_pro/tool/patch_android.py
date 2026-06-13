@@ -86,9 +86,30 @@ def patch_gradle() -> None:
     for pat, repl in subs:
         g = re.sub(pat, repl, g)
 
+    # Disable R8 minify/shrink for release: the ML Kit text plugin references
+    # optional language recognizers (Chinese/Japanese/Korean/Devanagari) that
+    # aren't bundled, which makes R8 fail on missing classes. We don't need
+    # shrinking for a field tool, so turn it off in the release buildType.
+    if ZRN_MARKER not in g:
+        if ".kts" in path:
+            g = re.sub(
+                r"(release\s*\{)",
+                r"\1\n            // " + ZRN_MARKER +
+                "\n            isMinifyEnabled = false"
+                "\n            isShrinkResources = false",
+                g, count=1)
+        else:
+            g = re.sub(
+                r"(release\s*\{)",
+                r"\1\n            // " + ZRN_MARKER +
+                "\n            minifyEnabled false"
+                "\n            shrinkResources false",
+                g, count=1)
+
     with open(path, "w", encoding="utf-8") as fh:
         fh.write(g)
-    print(f"Patched {path} (compileSdk={COMPILE_SDK}, minSdk={MIN_SDK})")
+    print(f"Patched {path} (compileSdk={COMPILE_SDK}, minSdk={MIN_SDK}, "
+          f"release minify disabled)")
     print(g)
 
 
