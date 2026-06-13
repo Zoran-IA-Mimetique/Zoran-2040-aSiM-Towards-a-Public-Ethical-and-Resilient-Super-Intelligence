@@ -1,0 +1,33 @@
+[
+  {
+    "mod_id": "ZRN_PLATE_001",
+    "date": "2026-06-13T09:55:00Z",
+    "actor": "CLAUDE",
+    "files": [
+      "plate_scan_pro/pubspec.yaml",
+      "plate_scan_pro/analysis_options.yaml",
+      "plate_scan_pro/lib/main.dart",
+      "plate_scan_pro/lib/theme/zoran_theme.dart",
+      "plate_scan_pro/lib/models/plate_event.dart",
+      "plate_scan_pro/lib/services/plate_normalizer.dart",
+      "plate_scan_pro/lib/services/plate_detector.dart",
+      "plate_scan_pro/lib/services/location_service.dart",
+      "plate_scan_pro/lib/services/feedback_service.dart",
+      "plate_scan_pro/lib/services/settings_service.dart",
+      "plate_scan_pro/lib/services/export_service.dart",
+      "plate_scan_pro/lib/services/image_storage.dart",
+      "plate_scan_pro/lib/data/event_repository.dart",
+      "plate_scan_pro/lib/ui/scan_screen.dart",
+      "plate_scan_pro/lib/ui/history_screen.dart",
+      "plate_scan_pro/lib/ui/dashboard_screen.dart",
+      "plate_scan_pro/lib/ui/settings_screen.dart",
+      "plate_scan_pro/lib/ui/home_shell.dart",
+      "plate_scan_pro/test/plate_normalizer_test.dart",
+      "plate_scan_pro/tool/patch_android.py",
+      ".github/workflows/build-apk.yml"
+    ],
+    "reason": "Création V1 ZORAN Plate Scan Pro : pipeline ANPR offline complet (CameraX, ML Kit OCR, normalisation FR, copie auto, vibration, anti-doublons, GPS, historique SQLite, preuves photo, tableau de bord, exports CSV/XLSX/JSON/PDF) + CI de build APK téléchargeable.",
+    "proof": "Tests unitaires de normalisation (flutter test) ; build APK via GitHub Actions publiant une Release.",
+    "rollback": "git revert du commit sur la branche claude/zoran-plate-scan-android-ux3zup ; suppression du dossier plate_scan_pro/ et du workflow .github/workflows/build-apk.yml."
+  }
+]
