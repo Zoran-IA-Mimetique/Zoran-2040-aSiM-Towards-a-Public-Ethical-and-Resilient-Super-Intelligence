@@ -11,9 +11,39 @@ import sys
 MANIFEST = "android/app/src/main/AndroidManifest.xml"
 GRADLE_KTS = "android/app/build.gradle.kts"
 GRADLE_GROOVY = "android/app/build.gradle"
+ROOT_KTS = "android/build.gradle.kts"
+ROOT_GROOVY = "android/build.gradle"
 
 COMPILE_SDK = 36
 MIN_SDK = 23
+
+ZRN_MARKER = "ZRN: force plugin subprojects compileSdk"
+
+ROOT_BLOCK_KTS = f"""
+
+// {ZRN_MARKER}
+subprojects {{
+    afterEvaluate {{
+        extensions.findByName("android")?.withGroovyBuilder {{
+            "compileSdkVersion"({COMPILE_SDK})
+        }}
+    }}
+}}
+"""
+
+ROOT_BLOCK_GROOVY = f"""
+
+// {ZRN_MARKER}
+subprojects {{
+    afterEvaluate {{ proj ->
+        if (proj.hasProperty('android')) {{
+            proj.android {{
+                compileSdkVersion {COMPILE_SDK}
+            }}
+        }}
+    }}
+}}
+"""
 
 PERMS = [
     'android.permission.CAMERA',
@@ -62,6 +92,29 @@ def patch_gradle() -> None:
     print(g)
 
 
+def patch_root_gradle() -> None:
+    """Append a subprojects block to the ROOT gradle file forcing every
+    plugin module (geocoding_android, etc.) to compile against a recent SDK.
+    Some plugins pin an old compileSdk (e.g. 33) internally, which fails
+    AGP's strict dependency check. Idempotent."""
+    if os.path.exists(ROOT_KTS):
+        path, block = ROOT_KTS, ROOT_BLOCK_KTS
+    elif os.path.exists(ROOT_GROOVY):
+        path, block = ROOT_GROOVY, ROOT_BLOCK_GROOVY
+    else:
+        print(f"WARNING: no root gradle file ({ROOT_KTS} / {ROOT_GROOVY})")
+        return
+
+    with open(path, "r", encoding="utf-8") as fh:
+        content = fh.read()
+    if ZRN_MARKER in content:
+        print(f"Root gradle already patched ({path})")
+        return
+    with open(path, "a", encoding="utf-8") as fh:
+        fh.write(block)
+    print(f"Patched root {path} (subprojects compileSdk={COMPILE_SDK})")
+
+
 def main() -> int:
     with open(MANIFEST, "r", encoding="utf-8") as fh:
         xml = fh.read()
@@ -89,6 +142,7 @@ def main() -> int:
     print(xml)
 
     patch_gradle()
+    patch_root_gradle()
     return 0
 
 
