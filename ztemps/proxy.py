@@ -142,3 +142,78 @@ class RelationalOverlapProxy:
                 for candidate in candidates
             )
         return CoherenceProfile(values)
+
+
+@dataclass(frozen=True)
+class OverlapRatioProxy:
+    """Proxy révisé — décision D1 de `DECISIONS-SPEC-001.md`.
+
+    Le proxy à seuil (`RelationalOverlapProxy`) sature : quand les relations ont
+    décru vers zéro, l'écart pas-à-pas passe sous la tolérance et tout est
+    déclaré conservé, si bien qu'un objet mort est mesuré parfaitement cohérent
+    (constat F1 de `RESULTATS-PROXY-C-001.md`).
+
+    Le défaut ne vient pas de la lecture incrémentale — qui doit être conservée,
+    la loi du §3 étant écrite comme une différentielle — mais du **comptage à
+    seuil**, qui jette l'information de magnitude. On le remplace par un rapport
+    de recouvrement continu :
+
+    ```text
+    C_s = Σ_s min(|r|, |r'|) · compatible(r, r')  /  Σ_s max(|r|, |r'|)
+    ```
+
+    Propriétés, vérifiées dans les tests :
+
+    - état inchangé → `C = 1` (P1 tient) ;
+    - décroissance exponentielle uniforme de facteur `q` → `C = q` **constant**,
+      donc `D` constant par pas et `τ_Z` linéaire dans le temps de référence.
+      C'est P5 au sens fort, que le proxy à seuil ne pouvait pas produire ;
+    - relations toutes nulles → dénominateur nul → `C = 0` : un objet dont
+      aucune relation n'est mesurable n'est plus défini. La saturation devient
+      une dissolution, ce qui est le comportement attendu ;
+    - **aucune tolérance θ** : un paramètre libre de moins.
+    """
+
+    spec: ObjectSpec
+
+    def _overlap(
+        self,
+        before: RelationalState,
+        after: RelationalState,
+        relations: Iterable[Relation],
+    ) -> float:
+        numerator = 0.0
+        denominator = 0.0
+        for rel in relations:
+            r0 = before.get(rel, 0.0)
+            r1 = after.get(rel, 0.0)
+            denominator += max(abs(r0), abs(r1))
+            if r0 * r1 >= 0.0:  # compatibles : pas d'inversion de signe
+                numerator += min(abs(r0), abs(r1))
+        if denominator == 0.0:
+            # Aucune relation mesurable : l'identité n'est pas définie à cette
+            # échelle. Ce n'est pas « parfaitement conservé ».
+            return 0.0
+        return numerator / denominator
+
+    def __call__(
+        self, before: RelationalState, after: RelationalState
+    ) -> CoherenceProfile:
+        before = {_key(*r): v for r, v in before.items()}
+        after = {_key(*r): v for r, v in after.items()}
+        scale_sets = self.spec.scale_sets(before)
+        candidates: Sequence[RelationalState] = [after] + [
+            self._relabel(after, perm) for perm in self.spec.symmetries
+        ]
+        return CoherenceProfile(
+            {
+                scale: max(
+                    self._overlap(before, candidate, relations)
+                    for candidate in candidates
+                )
+                for scale, relations in scale_sets.items()
+            }
+        )
+
+    def _relabel(self, state: RelationalState, perm: Permutation) -> RelationalState:
+        return {_key(perm.get(i, i), perm.get(j, j)): v for (i, j), v in state.items()}

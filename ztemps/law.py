@@ -117,12 +117,20 @@ def tau_z(
     *,
     evaluation_sample_ids: Iterable[str] | None = None,
     stop_on_dissolution: bool = True,
+    dissolving_scales: Iterable[Scale] | None = None,
 ) -> TauZResult:
     """Intégration discrète τ_Z(N) = τ_* · Σ[e=1..N] D(C(e)) (§3).
 
     L'intégration s'arrête à la dissolution : quand une composante du profil
-    atteint 0, le porteur du temps n'est plus défini et la somme ne peut pas se
-    poursuivre sur *ce* objet (§4, P2). Le temps déjà accumulé reste valide.
+    atteint 0 **à une échelle jugée porteuse de l'identité**, le porteur du temps
+    n'est plus défini et la somme ne peut pas se poursuivre sur *cet* objet
+    (§4, P2). Le temps déjà accumulé reste valide.
+
+    `dissolving_scales` déclare quelles échelles dissolvent l'objet. Par défaut
+    **toutes**, ce qui reproduit le comportement de l'essai PROXY-C-001 et garde
+    ses résultats publiés reproductibles. La décision D2 de
+    `DECISIONS-SPEC-001.md` retient `{Scale.OBJET}` pour les essais ultérieurs ;
+    elle doit alors être passée explicitement, jamais appliquée en douce.
 
     `evaluation_sample_ids` active le contrôle de fuite de calibration du §3.
     """
@@ -138,10 +146,12 @@ def tau_z(
                 "Les poids doivent venir d'un jeu séparé (§3)."
             )
 
+    carriers = frozenset(Scale) if dissolving_scales is None else frozenset(dissolving_scales)
+
     total = 0.0
     records: list[Record] = []
     for index, event in enumerate(events, start=1):
-        dissolved = event.profile.dissolved_scales
+        dissolved = tuple(s for s in event.profile.dissolved_scales if s in carriers)
         if dissolved:
             if stop_on_dissolution:
                 return TauZResult(
