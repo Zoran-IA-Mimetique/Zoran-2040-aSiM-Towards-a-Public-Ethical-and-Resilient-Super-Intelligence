@@ -9,6 +9,7 @@ Zoran 2040 aSiM (Artificial Super Intelligence Mimétique) est une infrastructur
 - [Z-TEMPS-PHYS-V1.1 — proposition](Z-TEMPS-PHYS-V1.1-PROPOSITION.md) : révision proposée par l'implémentation, où chaque modification cite l'essai qui l'impose. Sans autorité tant qu'elle n'est pas adoptée.
 - [Passerelle Z-temps](PASSERELLE_Z-TEMPS.md) : liaison entre les deux textes ci-dessus — registres distincts, correspondance des quatre régimes, points ouverts.
 - [Pilote multi-domaine V1.5](Z-TEMPS-CROSS-DOMAIN-PILOT-V1.5.md) : comparaison expérimentale sur deux jeux de données publics (oscillateur nanomécanique lévité, qubit supraconducteur).
+- [Matrice des jumeaux conjoints V1.3](Z-TEMPS-JUMEAUX-CONJOINTS-MATRICE-V1.3.md) : protocole documentaire testant `R_total = R_A + R_B + R_AB` sur des cas humains publiés.
 - `Zoran_2040_aSiM_WhitePaper*.pdf` : white paper (vision, architecture, POC, gouvernance).
 
 ### Essais, protocoles figés avant mesure
@@ -18,6 +19,7 @@ Zoran 2040 aSiM (Artificial Super Intelligence Mimétique) est une infrastructur
 - [Décisions de spécification 001](DECISIONS-SPEC-001.md) : arbitrage des deux questions laissées ouvertes par l'essai 001 (D1 recouvrement continu, D2 dissolution par l'échelle `OBJET` seule). Prises par l'implémentation, renversables par les auteurs.
 - [PROXY-C-003](PRE-ENREGISTREMENT-PROXY-C-003.md) → [résultats](RESULTATS-PROXY-C-003.md) : l'essai 001 rejoué sous D1 et D2. **Quatre critères sur cinq** passent contre deux. Met au jour une contradiction interne : `τ_*` absorbe l'inverse du taux de décohérence, donc P5 et le §4 ne peuvent pas être vrais ensemble.
 - [TAU-004](PRE-ENREGISTREMENT-TAU-004.md) → [résultats](RESULTATS-TAU-004.md) : **prédiction confirmée à la précision machine**. `τ_*` n'est pas universelle — elle vaut l'inverse du taux du système (`γ·τ_*` constant à 1.9 % près), et cela vaut pour **tout** proxy satisfaisant P1. Recommandation : retirer P5b et réécrire le §3.
+- [JUMEAUX-005](PRE-ENREGISTREMENT-JUMEAUX-005.md) → [résultats](RESULTATS-JUMEAUX-005.md) : codage des fiches de la matrice V1.3 en variables comparables. **INDÉCIDABLE** — trois cas codables, et à `n = 3` le meilleur `p` atteignable est 0.167. Aucun coefficient n'a été calculé ; il en faut 4 pour conclure, 5 pour un résultat robuste.
 
 ## Implémentation de référence
 
