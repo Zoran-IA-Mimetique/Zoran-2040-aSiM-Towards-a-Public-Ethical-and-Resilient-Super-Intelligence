@@ -8,12 +8,12 @@ Zoran 2040 aSiM (Artificial Super Intelligence Mimétique) est une infrastructur
 - [Z-TEMPS-PHYS-V1](Z-TEMPS-PHYS-V1.md) : spécification falsifiable de la cinématique physique de la cohérence — loi candidate `dτ_Z = τ_* · D(C(e)) · dN`, invariants obligatoires, prédictions P1-P5 et falsificateurs. Statut de loi physique **non acquis**.
 - [Passerelle Z-temps](PASSERELLE_Z-TEMPS.md) : liaison entre les deux textes ci-dessus — registres distincts, correspondance des quatre régimes, points ouverts.
 - [Pilote multi-domaine V1.5](Z-TEMPS-CROSS-DOMAIN-PILOT-V1.5.md) : comparaison expérimentale sur deux jeux de données publics (oscillateur nanomécanique lévité, qubit supraconducteur).
+- `Zoran_2040_aSiM_WhitePaper*.pdf` : white paper (vision, architecture, POC, gouvernance).
 
 ### Essais, protocoles figés avant mesure
 
 - [PROXY-C-001](PRE-ENREGISTREMENT-PROXY-C-001.md) → [résultats](RESULTATS-PROXY-C-001.md) : premier proxy de cohérence. **Échec** — trois critères sur cinq ; deux questions ouvertes renvoyées à la spécification.
 - [GRANULARITE-002](PRE-ENREGISTREMENT-GRANULARITE-002.md) → [résultats](RESULTATS-GRANULARITE-002.md) : quantification du verrou de résolution du pilote. Estimateur validé ; la variation cumulée brute de l'oscillateur est **à 98.8 % au moins un artefact d'échantillonnage** (exposant d'agrégation 1.589, contre 1.5 pour un bruit stationnaire).
-- `Zoran_2040_aSiM_WhitePaper*.pdf` : white paper (vision, architecture, POC, gouvernance).
 
 ## Implémentation de référence
 
