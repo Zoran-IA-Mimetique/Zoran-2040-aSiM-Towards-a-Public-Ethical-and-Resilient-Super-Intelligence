@@ -122,6 +122,10 @@ v3 = protocole de mesure, v4 = EthicChain de référence. PHYS-V1 la déplace :
   [`PROXY-C-001`](PRE-ENREGISTREMENT-PROXY-C-001.md) et ses
   [résultats](RESULTATS-PROXY-C-001.md). Trois critères sur cinq ne passent pas.
   L'invariance de représentation, elle, passe exactement.
+  **Second essai** : [`GRANULARITE-002`](PRE-ENREGISTREMENT-GRANULARITE-002.md)
+  → [résultats](RESULTATS-GRANULARITE-002.md), qui chiffre le verrou de
+  résolution nommé par le pilote multi-domaine. Toute variation cumulée publiée
+  sans granularité déclarée déclenche le falsificateur du §7, tiret 1.
 - **v4 se rapproche.** L'invariant 6 et les `Record` du paquet donnent déjà le
   format de ligne qu'EthicChain doit journaliser.
 

@@ -1,0 +1,39 @@
+{
+  "essai": "GRANULARITE-002",
+  "tests": {
+    "G1_signal_lisse": {
+      "exposant": 0.002030058516639736,
+      "seuil": 0.15,
+      "passe": true
+    },
+    "G2_bruit_stationnaire": {
+      "exposant": 1.5088884653316421,
+      "theorie": 1.5,
+      "intervalle": [
+        1.35,
+        1.65
+      ],
+      "passe": true
+    },
+    "G3_melange": {
+      "fraction_bruit_vraie": 0.9957213709991704,
+      "fraction_bruit_estimee": 0.9962274656245541,
+      "ecart": 0.0005060946253837573,
+      "seuil": 0.1,
+      "exposant_estime": 1.6491922935765018,
+      "passe": true
+    },
+    "G4_pilote": {
+      "interpretable": true,
+      "exposant_infere": 1.589337148315491,
+      "part_signal": 0.349,
+      "part_bruit_granularite_fine": 28.368,
+      "fraction_bruit_minorant": 0.987846919942891,
+      "hypothese_fermeture": "S = net (signal monotone) — la fraction est un minorant",
+      "passe": null,
+      "note": "descriptif, sans seuil pré-enregistré"
+    }
+  },
+  "estimateur_valide": true,
+  "verdict": "ESTIMATEUR_VALIDE"
+}
