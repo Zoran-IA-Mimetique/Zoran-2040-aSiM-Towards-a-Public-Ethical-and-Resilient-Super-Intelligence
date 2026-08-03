@@ -131,8 +131,34 @@ Le script sort `ACCORD` ou `DESACCORD_LOI_REFUTEE`.
 
 Les séries brutes de la campagne de 1 728 circuits mentionnée dans le
 [pilote V1.5](Z-TEMPS-CROSS-DOMAIN-PILOT-V1.5.md) conviendraient telles quelles,
-si elles existent encore. À défaut, les processeurs quantiques accessibles en
-ligne fournissent gratuitement des courbes `T1` et `T2` par qubit.
+si elles existent encore.
+
+**Si le fichier n'existe pas, il se fabrique.** Une recherche de jeux publics
+contenant les *courbes brutes* (et non les seuls `T1`/`T2` ajustés) n'a rien
+donné : la littérature publie les temps caractéristiques, presque jamais les
+séries. `experiments/acquire_qubit_006.py` mesure donc les deux courbes
+directement sur un processeur supraconducteur, via un compte gratuit :
+
+```bash
+pip install qiskit qiskit-ibm-runtime
+export IBM_QUANTUM_TOKEN="…"
+python -m experiments.acquire_qubit_006          # écrit les deux CSV
+python -m experiments.run_shape_006 experiments/mesures_T1.csv
+python -m experiments.run_shape_006 experiments/mesures_T2.csv
+```
+
+### Pourquoi il n'y a pas de mode simulateur
+
+C'est une décision, pas un oubli. Un simulateur alimenté par un modèle de bruit
+en `1/f` restituerait l'exposant qu'on y aurait mis : il confirmerait la loi par
+construction. Le script n'offre donc **aucun repli** — FORME-006 ne peut être
+tranché que par un dispositif physique, et lui offrir une porte de sortie
+synthétique reviendrait à saboter le seul test sans paramètre libre dont le
+cadre dispose.
+
+Le script n'a pas pu être exécuté ici : aucun jeton n'était disponible. Il
+échoue proprement et bruyamment en son absence, plutôt que de basculer sur autre
+chose.
 
 ## 6. Ce que cet essai n'établit pas
 
