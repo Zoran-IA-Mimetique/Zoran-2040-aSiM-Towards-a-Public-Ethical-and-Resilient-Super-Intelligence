@@ -5,7 +5,8 @@ Zoran 2040 aSiM (Artificial Super Intelligence Mimétique) est une infrastructur
 ## Documents
 
 - [Manifeste du Z-temps — v1](MANIFESTE_Z-TEMPS_v1.md) : position du projet sur le temps comme dimension architecturale (temps stratifié, réversible, synchrone, opposable) et engagements opérationnels associés.
-- [Z-TEMPS-PHYS-V1](Z-TEMPS-PHYS-V1.md) : spécification falsifiable de la cinématique physique de la cohérence — loi candidate `dτ_Z = τ_* · D(C(e)) · dN`, invariants obligatoires, prédictions P1-P5 et falsificateurs. Statut de loi physique **non acquis**.
+- [Z-TEMPS-PHYS-V1](Z-TEMPS-PHYS-V1.md) : spécification falsifiable de la cinématique physique de la cohérence — loi candidate `dτ_Z = τ_* · D(C(e)) · dN`, invariants obligatoires, prédictions P1-P5 et falsificateurs. Statut de loi physique **non acquis**. **Spécification en vigueur.**
+- [Z-TEMPS-PHYS-V1.1 — proposition](Z-TEMPS-PHYS-V1.1-PROPOSITION.md) : révision proposée par l'implémentation, où chaque modification cite l'essai qui l'impose. Sans autorité tant qu'elle n'est pas adoptée.
 - [Passerelle Z-temps](PASSERELLE_Z-TEMPS.md) : liaison entre les deux textes ci-dessus — registres distincts, correspondance des quatre régimes, points ouverts.
 - [Pilote multi-domaine V1.5](Z-TEMPS-CROSS-DOMAIN-PILOT-V1.5.md) : comparaison expérimentale sur deux jeux de données publics (oscillateur nanomécanique lévité, qubit supraconducteur).
 - `Zoran_2040_aSiM_WhitePaper*.pdf` : white paper (vision, architecture, POC, gouvernance).

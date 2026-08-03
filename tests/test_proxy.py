@@ -111,7 +111,6 @@ class KnownDefects(unittest.TestCase):
         self.assertEqual(profile.dissolved_scales, (Scale.LOCAL,))
 
 
-
 class OverlapRatio(unittest.TestCase):
     """Proxy révisé — décision D1 de DECISIONS-SPEC-001.md."""
 
@@ -164,5 +163,7 @@ class OverlapRatio(unittest.TestCase):
         proxy = OverlapRatioProxy(run.spec)
         measured = proxy(run.states[0], run.states[1])[Scale.OBJET]
         self.assertAlmostEqual(measured, math.exp(-0.35 * 0.25), places=12)
+
+
 if __name__ == "__main__":
     unittest.main()
