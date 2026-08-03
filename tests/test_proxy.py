@@ -1,4 +1,4 @@
-"""Proxy candidat `RelationalOverlapProxy` — comportement et défauts connus.
+"""Proxies candidats de `C` — comportements, défauts publiés, et révision D1.
 
 Certains tests ci-dessous **verrouillent un défaut** plutôt qu'une qualité : la
 saturation décrite en F1 de `RESULTATS-PROXY-C-001.md` est un comportement réel
@@ -10,7 +10,7 @@ nouveau pré-enregistrement.
 import unittest
 
 from ztemps.profile import Scale
-from ztemps.proxy import ObjectSpec, RelationalOverlapProxy
+from ztemps.proxy import ObjectSpec, OverlapRatioProxy, RelationalOverlapProxy
 from ztemps.systems import dephasing_family, path_symmetries
 
 
@@ -111,5 +111,58 @@ class KnownDefects(unittest.TestCase):
         self.assertEqual(profile.dissolved_scales, (Scale.LOCAL,))
 
 
+
+class OverlapRatio(unittest.TestCase):
+    """Proxy révisé — décision D1 de DECISIONS-SPEC-001.md."""
+
+    def test_unchanged_state_is_fully_coherent(self):
+        proxy = OverlapRatioProxy(chain_spec())
+        state = {(0, 1): 0.5, (1, 2): -0.3, (2, 3): 0.9}
+        self.assertTrue(proxy(state, dict(state)).is_closed)
+
+    def test_uniform_decay_gives_the_decay_factor_itself(self):
+        """Le cœur de D1 : C = q constant, donc D constant, donc τ_Z linéaire."""
+        proxy = OverlapRatioProxy(chain_spec())
+        before = {(0, 1): 0.5, (1, 2): 0.8, (2, 3): 0.2}
+        q = 0.75
+        after = {k: v * q for k, v in before.items()}
+        self.assertAlmostEqual(proxy(before, after)[Scale.LOCAL], q)
+
+    def test_is_scale_invariant(self):
+        """Multiplier toutes les relations par une constante ne change rien.
+
+        C'est cette propriété qui rend le T2 de l'essai 003 structurellement
+        trivial : la graine ne change que les amplitudes initiales.
+        """
+        proxy = OverlapRatioProxy(chain_spec())
+        before = {(0, 1): 0.5, (1, 2): 0.8, (2, 3): 0.2}
+        after = {k: v * 0.75 for k, v in before.items()}
+        scaled = proxy({k: 7 * v for k, v in before.items()},
+                       {k: 7 * v for k, v in after.items()})
+        self.assertAlmostEqual(scaled[Scale.LOCAL], proxy(before, after)[Scale.LOCAL])
+
+    def test_vanished_relations_dissolve_instead_of_saturating(self):
+        """Le contraire du défaut F1 : un objet éteint se dissout, il ne sature pas."""
+        proxy = OverlapRatioProxy(chain_spec())
+        before = {(0, 1): 1e-9, (1, 2): 1e-9, (2, 3): 1e-9}
+        after = {k: 0.0 for k in before}
+        self.assertEqual(proxy(before, after)[Scale.LOCAL], 0.0)
+
+    def test_sign_flip_still_incompatible(self):
+        proxy = OverlapRatioProxy(chain_spec())
+        before = {(0, 1): 0.5, (1, 2): 0.5, (2, 3): 0.5}
+        after = {k: -v for k, v in before.items()}
+        self.assertEqual(proxy(before, after)[Scale.LOCAL], 0.0)
+
+    def test_recovers_the_physical_decay_rate(self):
+        """C = exp(-γ·Δt) : le proxy retrouve le taux, d'où τ_* ∝ 1/γ (§4 des résultats)."""
+        import math
+
+        from ztemps.systems import dephasing_family
+
+        run = dephasing_family(gamma=0.35, dt=0.25)
+        proxy = OverlapRatioProxy(run.spec)
+        measured = proxy(run.states[0], run.states[1])[Scale.OBJET]
+        self.assertAlmostEqual(measured, math.exp(-0.35 * 0.25), places=12)
 if __name__ == "__main__":
     unittest.main()

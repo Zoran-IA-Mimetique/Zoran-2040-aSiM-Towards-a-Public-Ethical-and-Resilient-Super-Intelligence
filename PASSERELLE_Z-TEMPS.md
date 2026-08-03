@@ -41,7 +41,7 @@ aucun test de ce dépôt ne l'établit.
 Le paquet [`ztemps/`](ztemps/) rend exécutables les parties de PHYS-V1 qui le
 peuvent aujourd'hui, et refuse d'aller plus loin.
 
-**Implémenté et testé** (43 tests, `python -m unittest discover -s tests -t .`) :
+**Implémenté et testé** (51 tests, `python -m unittest discover -s tests -t .`) :
 
 - conditions de domaine du §2, profil complet obligatoire sur les quatre échelles ;
 - `D(C(e)) = Σ_s w_s · (1 - C_s(e))` et l'intégration discrète `τ_Z(N)` (§3) ;
@@ -103,8 +103,21 @@ lourd que les trois précédentes. Elles sont documentées en détail dans
    dépend alors de la cardinalité de l'échelle, ce qui réintroduit une
    dépendance à la représentation par une porte dérobée.
 
-Les questions 4 et 5 appartiennent aux auteurs de la spécification. Elles
-bloquent l'essai 002.
+Les questions 4 et 5 bloquaient tout essai ultérieur. Faute d'arbitrage, elles
+ont été **tranchées par l'implémentation** dans
+[`DECISIONS-SPEC-001.md`](DECISIONS-SPEC-001.md) — D1 conserve la lecture
+incrémentale et abandonne le comptage à seuil, D2 réserve la dissolution à
+l'échelle `OBJET`. Ces décisions n'ont pas l'autorité de la spécification et
+restent renversables, au prix du rejeu des essais concernés.
+
+Une sixième question est née de l'essai 003, et elle est plus lourde que les
+cinq précédentes :
+
+6. **P5 et le §4 se contredisent.** Le proxy révisé donne `C = e^(-γΔt)`, d'où
+   `τ_* ∝ 1/γ` : `τ_*` absorbe le taux du système calibré. Si le temps propre
+   est bien « la quantité cumulée de transformation » (§4), un objet qui se
+   transforme deux fois plus vite accumule deux fois plus de temps propre — ce
+   qui interdit la relation stable avec le temps propre relativiste qu'exige P5.
 
 ## 5. Effet sur la feuille de route du manifeste
 

@@ -121,5 +121,39 @@ class Traceability(unittest.TestCase):
             )
 
 
+class DissolvingScales(unittest.TestCase):
+    """D2 — seule l'échelle déclarée porteuse de l'identité dissout l'objet."""
+
+    def _local_only_zero(self):
+        return event(
+            "eval-1",
+            CoherenceProfile(
+                {
+                    Scale.LOCAL: 0.0,
+                    Scale.OBJET: 0.5,
+                    Scale.CADRE: 0.5,
+                    Scale.GLOBAL: 0.5,
+                }
+            ),
+        )
+
+    def test_default_still_dissolves_on_any_scale(self):
+        """Le défaut reproduit l'essai 001 : ses résultats publiés ne bougent pas."""
+        result = tau_z([self._local_only_zero()], weights(), tau_star=1.0)
+        self.assertFalse(result.is_defined)
+
+    def test_under_d2_a_local_zero_does_not_dissolve(self):
+        result = tau_z(
+            [self._local_only_zero()],
+            weights(),
+            tau_star=1.0,
+            dissolving_scales={Scale.OBJET},
+        )
+        self.assertTrue(result.is_defined)
+        self.assertEqual(result.n_integrated, 1)
+        # L'échelle perdue contribue sa perte maximale au lieu d'arrêter le compte.
+        self.assertAlmostEqual(result.value, 1.0 * (1 - 0) + 3 * (1 - 0.5))
+
+
 if __name__ == "__main__":
     unittest.main()

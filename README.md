@@ -14,6 +14,8 @@ Zoran 2040 aSiM (Artificial Super Intelligence Mimétique) est une infrastructur
 
 - [PROXY-C-001](PRE-ENREGISTREMENT-PROXY-C-001.md) → [résultats](RESULTATS-PROXY-C-001.md) : premier proxy de cohérence. **Échec** — trois critères sur cinq ; deux questions ouvertes renvoyées à la spécification.
 - [GRANULARITE-002](PRE-ENREGISTREMENT-GRANULARITE-002.md) → [résultats](RESULTATS-GRANULARITE-002.md) : quantification du verrou de résolution du pilote. Estimateur validé ; la variation cumulée brute de l'oscillateur est **à 98.8 % au moins un artefact d'échantillonnage** (exposant d'agrégation 1.589, contre 1.5 pour un bruit stationnaire).
+- [Décisions de spécification 001](DECISIONS-SPEC-001.md) : arbitrage des deux questions laissées ouvertes par l'essai 001 (D1 recouvrement continu, D2 dissolution par l'échelle `OBJET` seule). Prises par l'implémentation, renversables par les auteurs.
+- [PROXY-C-003](PRE-ENREGISTREMENT-PROXY-C-003.md) → [résultats](RESULTATS-PROXY-C-003.md) : l'essai 001 rejoué sous D1 et D2. **Quatre critères sur cinq** passent contre deux. Met au jour une contradiction interne : `τ_*` absorbe l'inverse du taux de décohérence, donc P5 et le §4 ne peuvent pas être vrais ensemble.
 
 ## Implémentation de référence
 

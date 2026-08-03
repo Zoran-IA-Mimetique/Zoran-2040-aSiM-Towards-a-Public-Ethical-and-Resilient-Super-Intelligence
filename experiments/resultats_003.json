@@ -1,0 +1,117 @@
+{
+  "essai": "PROXY-C-003",
+  "decisions": [
+    "D1 recouvrement continu",
+    "D2 dissolution par OBJET seul"
+  ],
+  "tau_star": 2.9839655412401576,
+  "poids": "uniformes 1/4",
+  "tests": {
+    "T1_monotonie": {
+      "par_famille": {
+        "décohérence-20400": true,
+        "décohérence-20402": true,
+        "mémoire-20401": true
+      },
+      "passe": true
+    },
+    "T2_transfert_intra": {
+      "e_rel": 1.7340626289383397e-16,
+      "seuil": 0.15,
+      "passe": true
+    },
+    "T3_transfert_inter": {
+      "e_rel": 0.7267106834314176,
+      "seuil": 0.3,
+      "passe": false
+    },
+    "T4_invariance": {
+      "ecart_max": 2.220446049250313e-16,
+      "seuil": 1e-09,
+      "passe": true
+    },
+    "T5_cadres": {
+      "passe": true,
+      "detail": "les quatre cadres sont conservés"
+    }
+  },
+  "verdict": "ECHEC",
+  "diagnostic": {
+    "décohérence-20400": {
+      "n_pas": 24,
+      "n_pas_integres": 24,
+      "dissous_au_pas": null,
+      "echelles_dissoutes": [],
+      "profils": {
+        "pas_1": {
+          "LOCAL": 0.9162188716508777,
+          "OBJET": 0.9162188716508777,
+          "CADRE": 0.9162188716508777,
+          "GLOBAL": 0.9162188716508777
+        },
+        "pas_2": {
+          "LOCAL": 0.9162188716508779,
+          "OBJET": 0.9162188716508777,
+          "CADRE": 0.9162188716508777,
+          "GLOBAL": 0.9162188716508777
+        },
+        "pas_3": {
+          "LOCAL": 0.9162188716508776,
+          "OBJET": 0.9162188716508776,
+          "CADRE": 0.9162188716508776,
+          "GLOBAL": 0.9162188716508776
+        },
+        "pas_12": {
+          "LOCAL": 0.9162188716508776,
+          "OBJET": 0.9162188716508778,
+          "CADRE": 0.9162188716508778,
+          "GLOBAL": 0.9162188716508778
+        },
+        "pas_24": {
+          "LOCAL": 0.9162188716508776,
+          "OBJET": 0.9162188716508777,
+          "CADRE": 0.9162188716508777,
+          "GLOBAL": 0.9162188716508777
+        }
+      }
+    },
+    "mémoire-20401": {
+      "n_pas": 24,
+      "n_pas_integres": 24,
+      "dissous_au_pas": null,
+      "echelles_dissoutes": [],
+      "profils": {
+        "pas_1": {
+          "LOCAL": 0.8882958727990891,
+          "OBJET": 0.8806066534648304,
+          "CADRE": 0.8806066534648305,
+          "GLOBAL": 0.8806066534648304
+        },
+        "pas_2": {
+          "LOCAL": 0.9323190925620215,
+          "OBJET": 0.9162900434655143,
+          "CADRE": 0.9162900434655143,
+          "GLOBAL": 0.9162900434655143
+        },
+        "pas_3": {
+          "LOCAL": 0.8992940157532011,
+          "OBJET": 0.9064217902799347,
+          "CADRE": 0.9064217902799347,
+          "GLOBAL": 0.9064217902799347
+        },
+        "pas_12": {
+          "LOCAL": 0.9415735876058267,
+          "OBJET": 0.9259910383578476,
+          "CADRE": 0.9259910383578475,
+          "GLOBAL": 0.9259910383578476
+        },
+        "pas_24": {
+          "LOCAL": 0.9506557613153918,
+          "OBJET": 0.9268820615808981,
+          "CADRE": 0.9268820615808984,
+          "GLOBAL": 0.9268820615808981
+        }
+      }
+    }
+  }
+}
