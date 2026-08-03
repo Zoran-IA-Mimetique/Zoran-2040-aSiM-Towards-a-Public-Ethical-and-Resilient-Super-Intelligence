@@ -1,0 +1,57 @@
+{
+  "essai": "FORME-006",
+  "tests": {
+    "F1_F2_F3_forme": {
+      "ecart_max": 0.004314743733851323,
+      "seuil": 0.05,
+      "passe": true
+    },
+    "F6_enveloppe": {
+      "ecart_max": 1.199040866595169e-14,
+      "seuil": 0.05,
+      "passe": true
+    },
+    "F4_independance_tau_star": {
+      "ecart": 8.881784197001252e-16,
+      "seuil": 1e-09,
+      "passe": true
+    },
+    "F5_independance_poids": {
+      "pentes": [
+        1.9956852562661487,
+        1.9956852562661478,
+        1.9956852562661491
+      ],
+      "dispersion": 1.3322676295501878e-15,
+      "seuil": 1e-09,
+      "passe": true
+    }
+  },
+  "par_beta": {
+    "0.5": {
+      "pente_tau_z": 0.5029291894549018,
+      "pente_r2": 0.9999999654788293,
+      "beta_ajuste_sur_enveloppe": 0.5,
+      "ecart_a_beta": 0.002929189454901837
+    },
+    "1.0": {
+      "pente_tau_z": 1.0,
+      "pente_r2": 1.0,
+      "beta_ajuste_sur_enveloppe": 0.9999999999999996,
+      "ecart_a_beta": 0.0
+    },
+    "1.5": {
+      "pente_tau_z": 1.4981587657030626,
+      "pente_r2": 0.9999999970192054,
+      "beta_ajuste_sur_enveloppe": 1.4999999999999998,
+      "ecart_a_beta": 0.0018412342969373885
+    },
+    "2.0": {
+      "pente_tau_z": 1.9956852562661487,
+      "pente_r2": 0.9999999634344471,
+      "beta_ajuste_sur_enveloppe": 1.999999999999988,
+      "ecart_a_beta": 0.004314743733851323
+    }
+  },
+  "verdict": "INSTRUMENT_VALIDE"
+}

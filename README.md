@@ -20,6 +20,7 @@ Zoran 2040 aSiM (Artificial Super Intelligence Mimétique) est une infrastructur
 - [PROXY-C-003](PRE-ENREGISTREMENT-PROXY-C-003.md) → [résultats](RESULTATS-PROXY-C-003.md) : l'essai 001 rejoué sous D1 et D2. **Quatre critères sur cinq** passent contre deux. Met au jour une contradiction interne : `τ_*` absorbe l'inverse du taux de décohérence, donc P5 et le §4 ne peuvent pas être vrais ensemble.
 - [TAU-004](PRE-ENREGISTREMENT-TAU-004.md) → [résultats](RESULTATS-TAU-004.md) : **prédiction confirmée à la précision machine**. `τ_*` n'est pas universelle — elle vaut l'inverse du taux du système (`γ·τ_*` constant à 1.9 % près), et cela vaut pour **tout** proxy satisfaisant P1. Recommandation : retirer P5b et réécrire le §3.
 - [JUMEAUX-005](PRE-ENREGISTREMENT-JUMEAUX-005.md) → [résultats](RESULTATS-JUMEAUX-005.md) : codage des fiches de la matrice V1.3 en variables comparables. **INDÉCIDABLE** — trois cas codables, et à `n = 3` le meilleur `p` atteignable est 0.167. Aucun coefficient n'a été calculé ; il en faut 4 pour conclure, 5 pour un résultat robuste.
+- [FORME-006](PRE-ENREGISTREMENT-FORME-006.md) → [résultats](RESULTATS-FORME-006.md) : **la première prédiction sans paramètre libre du cadre**. La pente log-log de `τ_Z(t)` égale l'exposant d'étirement `β` de la décroissance sous-jacente — indépendamment de `τ_*` (10⁻¹⁶) et des poids (10⁻¹⁵). Instrument validé sur `β ∈ {0.5, 1, 1.5, 2}` à 0.004 près. **Reste à mesurer sur données réelles ; le falsificateur est armé.**
 
 ## Implémentation de référence
 
