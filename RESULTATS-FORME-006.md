@@ -1,9 +1,18 @@
 # Résultats — Essai FORME-006
 
+> ⚠ **RÉTRACTÉ EN PARTIE — voir [`RETRACTATION-FORME-006.md`](RETRACTATION-FORME-006.md).**
+>
+> L'interprétation ci-dessous est fausse. Sur enveloppe uniforme, `τ_Z` se
+> réduit à `-ln A(t)` : la « prédiction » pente = `β` est une identité
+> algébrique, pas un énoncé sur le monde. F4 et F5 ne testaient rien, les quatre
+> échelles étant identiques. Le code et les chiffres sont exacts ; ce qu'on leur
+> a fait dire ne l'est pas.
+
 **Verdict : INSTRUMENT VALIDÉ.** Les six critères passent.
 
-Le cadre Z-TEMPS dispose désormais d'**un énoncé réfutable sans paramètre
-libre**, testable sur un seul dispositif. C'est le premier.
+~~Le cadre Z-TEMPS dispose désormais d'un énoncé réfutable sans paramètre
+libre, testable sur un seul dispositif. C'est le premier.~~ **Faux — voir la
+rétractation.**
 
 Protocole : [`PRE-ENREGISTREMENT-FORME-006.md`](PRE-ENREGISTREMENT-FORME-006.md).
 Données : [`experiments/resultats_006.json`](experiments/resultats_006.json).

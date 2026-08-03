@@ -74,3 +74,79 @@ class TauZShape(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class Retraction(unittest.TestCase):
+    """Verrouille le constat de RETRACTATION-FORME-006.md.
+
+    Ces tests ne protègent pas une qualité : ils empêchent qu'on réaffirme un
+    jour que FORME-006 était un test, alors que c'est de l'algèbre.
+    """
+
+    def test_uniform_envelope_makes_tau_z_the_log_of_the_decay(self):
+        """τ_Z ≡ -ln A(t) : la prédiction est une identité, pas un énoncé."""
+        times, amplitudes = synthetic(2.0)
+        cumulative = cumulative_tau_z(envelope_states(amplitudes))
+        for t, value in list(zip(times[1:], cumulative))[20:]:
+            reference = -math.log(math.exp(-((t / 3.0) ** 2)))
+            self.assertLess(abs(value - reference) / reference, 0.02)
+
+    def test_weight_independence_only_holds_when_scales_are_identical(self):
+        """F5 tenait parce que Σ w_s = 1, pas parce que la loi le prédisait.
+
+        Dès que les échelles décroissent différemment, la pente dépend des
+        poids — et le paramètre libre est de retour.
+        """
+        from ztemps import Transformation, Weights, tau_z
+        from ztemps.proxy import ObjectSpec, OverlapRatioProxy
+
+        spec = ObjectSpec(
+            constituents=frozenset(range(4)),
+            adjacency=frozenset((i, i + 1) for i in range(3)),
+        )
+        proxy = OverlapRatioProxy(spec)
+        pairs = [(i, j) for i in range(4) for j in range(4) if i < j]
+        adjacent = {(0, 1), (1, 2), (2, 3)}
+        states = [
+            {
+                p: (
+                    math.exp(-((k * 0.02 / 3.0) ** 2))
+                    if p in adjacent
+                    else math.exp(-k * 0.02 / 3.0)
+                )
+                for p in pairs
+            }
+            for k in range(201)
+        ]
+        events = [
+            Transformation(sample_id=f"p{k}", profile=proxy(states[k - 1], states[k]))
+            for k in range(1, 201)
+        ]
+
+        def slope_for(weights):
+            w = Weights(weights, calibration_sample_ids={"retractation"})
+            cumulative = [
+                tau_z(
+                    events[:k], w, tau_star=1.0, dissolving_scales={Scale.OBJET}
+                ).value
+                for k in range(1, 201)
+            ]
+            return tau_z_exponent([k * 0.02 for k in range(1, 201)], cumulative).exponent
+
+        local_heavy = slope_for(
+            {
+                Scale.LOCAL: 0.97,
+                Scale.OBJET: 0.01,
+                Scale.CADRE: 0.01,
+                Scale.GLOBAL: 0.01,
+            }
+        )
+        global_heavy = slope_for(
+            {
+                Scale.LOCAL: 0.01,
+                Scale.OBJET: 0.01,
+                Scale.CADRE: 0.01,
+                Scale.GLOBAL: 0.97,
+            }
+        )
+        self.assertGreater(abs(local_heavy - global_heavy), 0.4)
