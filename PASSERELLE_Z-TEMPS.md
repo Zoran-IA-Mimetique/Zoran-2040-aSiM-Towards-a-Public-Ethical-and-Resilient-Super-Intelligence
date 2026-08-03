@@ -89,6 +89,23 @@ sont signalées ici plutôt que dissimulées dans le code.
    avant elle. L'alternative — intégrer le dernier pas puis s'arrêter — est
    défendable et donnerait une valeur différente.
 
+Deux autres sont apparues en *exécutant* le protocole, et elles pèsent plus
+lourd que les trois précédentes. Elles sont documentées en détail dans
+[`RESULTATS-PROXY-C-001.md`](RESULTATS-PROXY-C-001.md) :
+
+4. **Par rapport à quoi `C` mesure-t-elle la conservation ?** Lecture
+   incrémentale (par rapport à la configuration précédente) ou référentielle
+   (par rapport à une configuration d'origine) ? La première rend un système
+   entièrement décohéré « parfaitement cohérent » ; la seconde casse la forme
+   différentielle de la loi. **Aucune ne fonctionne telle quelle.**
+5. **`C_s = 0` à une seule échelle dissout-il l'objet entier ?** Le §2 dit
+   « à l'échelle s », le §4 dit « dissolution de l'objet ». Et la dissolution
+   dépend alors de la cardinalité de l'échelle, ce qui réintroduit une
+   dépendance à la représentation par une porte dérobée.
+
+Les questions 4 et 5 appartiennent aux auteurs de la spécification. Elles
+bloquent l'essai 002.
+
 ## 5. Effet sur la feuille de route du manifeste
 
 La feuille de route de la v1 du manifeste (§VI) prévoyait v2 = horloge logique,
@@ -99,8 +116,12 @@ v3 = protocole de mesure, v4 = EthicChain de référence. PHYS-V1 la déplace :
   temps. La spec d'horodatage devient une spec de comptage de transformations.
 - **v3 devient l'étape critique et change d'objet.** Il ne s'agit plus de rendre
   reproductibles les métriques PolyResonator, mais de construire **le premier
-  proxy physique de `C`**, protocole fixé avant l'essai, et de tester son
-  transfert entre deux des trois familles du §8. C'est ce que demande le §10.
+  proxy de `C`**, protocole fixé avant l'essai, et de tester son transfert entre
+  deux des trois familles du §8. C'est ce que demande le §10.
+  **Premier essai fait, et échoué** : voir le pré-enregistrement
+  [`PROXY-C-001`](PRE-ENREGISTREMENT-PROXY-C-001.md) et ses
+  [résultats](RESULTATS-PROXY-C-001.md). Trois critères sur cinq ne passent pas.
+  L'invariance de représentation, elle, passe exactement.
 - **v4 se rapproche.** L'invariant 6 et les `Record` du paquet donnent déjà le
   format de ligne qu'EthicChain doit journaliser.
 
