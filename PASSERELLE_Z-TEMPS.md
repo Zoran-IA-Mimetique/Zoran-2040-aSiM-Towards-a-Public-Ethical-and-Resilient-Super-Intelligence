@@ -41,7 +41,7 @@ aucun test de ce dépôt ne l'établit.
 Le paquet [`ztemps/`](ztemps/) rend exécutables les parties de PHYS-V1 qui le
 peuvent aujourd'hui, et refuse d'aller plus loin.
 
-**Implémenté et testé** (51 tests, `python -m unittest discover -s tests -t .`) :
+**Implémenté et testé** (55 tests, `python -m unittest discover -s tests -t .`) :
 
 - conditions de domaine du §2, profil complet obligatoire sur les quatre échelles ;
 - `D(C(e)) = Σ_s w_s · (1 - C_s(e))` et l'intégration discrète `τ_Z(N)` (§3) ;
@@ -118,6 +118,12 @@ cinq précédentes :
    est bien « la quantité cumulée de transformation » (§4), un objet qui se
    transforme deux fois plus vite accumule deux fois plus de temps propre — ce
    qui interdit la relation stable avec le temps propre relativiste qu'exige P5.
+   **Mesuré depuis** par [TAU-004](RESULTATS-TAU-004.md) : `γ·τ_*` est constant
+   à 1.9 % près, et la démonstration en §3 de ces résultats montre que cela vaut
+   pour *tout* proxy satisfaisant P1. Ce n'est donc pas un défaut du proxy mais
+   une propriété de la forme `dτ_Z = τ_* · D · dN`. Recommandation : scinder P5
+   en P5a (monotonie par système, conservée) et P5b (relation stable entre
+   systèmes, **réfutée**), et retirer P5b.
 
 ## 5. Effet sur la feuille de route du manifeste
 
