@@ -41,7 +41,7 @@ aucun test de ce dépôt ne l'établit.
 Le paquet [`ztemps/`](ztemps/) rend exécutables les parties de PHYS-V1 qui le
 peuvent aujourd'hui, et refuse d'aller plus loin.
 
-**Implémenté et testé** (72 tests, `python -m unittest discover -s tests -t .`) :
+**Implémenté et testé** (82 tests, `python -m unittest discover -s tests -t .`) :
 
 - conditions de domaine du §2, profil complet obligatoire sur les quatre échelles ;
 - `D(C(e)) = Σ_s w_s · (1 - C_s(e))` et l'intégration discrète `τ_Z(N)` (§3) ;
