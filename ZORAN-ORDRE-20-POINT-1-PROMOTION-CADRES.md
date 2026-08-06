@@ -1,22 +1,27 @@
-# Ordre de travail §20 — point 1 : objet `CadreCausal` et promotion
+# Ordre de travail §20 — points 1, 2, 3 et 4
 
-**Statut : livré. `S = NON_MESURÉ`.**
+**Statut : points 1, 2, 3 et 4 livrés sur 8. `S = NON_MESURÉ`.**
+
+> **Correction.** Une version antérieure de ce document et son résumé annonçaient
+> « 1 point sur 8 ». C'était faux : les points 2 et 3 — les deux hiérarchies
+> déclarées — étaient livrés en même temps que le point 1. Le point 4 l'est
+> depuis. Le décompte exact est **4 sur 8**.
 
 > Ajouter au moteur multicadres un objet `CadreCausal` et une fonction
 > proposer/promotionner les cadres selon les sept critères, sans prétendre à la
 > perfection.
 
 Lettre de mission : [`LETTRE_DE_MISSION_ZORAN_REPRISE_TOTALE_2026-08-06.docx`](LETTRE_DE_MISSION_ZORAN_REPRISE_TOTALE_2026-08-06.docx).
-Code : [`zoran/cadres.py`](zoran/cadres.py), [`zoran/hierarchies.py`](zoran/hierarchies.py).
+Code : [`zoran/cadres.py`](zoran/cadres.py), [`zoran/hierarchies.py`](zoran/hierarchies.py), [`zoran/proxys.py`](zoran/proxys.py).
 Exécution : `python -m experiments.run_cadres_008`.
 
 ---
 
 ## 1. Ce qui a été fait, et ce qui ne l'a pas été
 
-**Fait** — points 1, 2 et 3 de l'ordre de travail : l'objet `CadreCausal`, la
-fonction de promotion sur les sept critères du §12.1, et les deux hiérarchies
-déclarées du §13 et du §14.
+**Fait** — points 1 à 4 : l'objet `CadreCausal`, la fonction de promotion sur
+les sept critères du §12.1, les deux hiérarchies déclarées du §13 et du §14, et
+le gel de structure des proxys.
 
 **Pas fait, délibérément** :
 
@@ -30,8 +35,8 @@ déclarées du §13 et du §14.
 - **Aucune sélection automatique de hiérarchie.** Le module juge des cadres
   **déclarés**. Il ne prétend pas être le « sélecteur parfait » dont le §18
   établit le statut `NON RETROUVÉ`.
-- **Aucun gel de proxys ni de seuils.** C'est le point 4 de l'ordre de travail,
-  et il vient après.
+- **Aucune valeur de seuil.** Le gel du point 4 porte sur la structure ; les
+  valeurs restent `NON_MESURÉ` jusqu'à exécution des protocoles (§23).
 
 ## 2. Résultat de la promotion
 
@@ -80,37 +85,62 @@ un test — pas seulement documenté.
 | Deux cadres (§0) | `evaluer_hierarchie()` | compte les cadres **promus**, pas les niveaux déclarés |
 | Champ vide | `__post_init__` | refusé à la construction : `None` explicite plutôt que coquille silencieuse |
 
-## 4. Une question rendue au demandeur
+## 4. Question thermique — arbitrée par l'auteur
 
-En déclarant R1 — Voisinage, la lettre liste « température » parmi ses proxys.
-R0 — Bille liste « température de contact ». Ce sont vraisemblablement deux
-grandeurs distinctes, mais rien ne le dit explicitement.
+`R0_temperature_contact` et `R1_temperature_voisinage` ont **la même dimension
+physique sans être la même observable** :
 
-**Je ne l'ai pas tranché.** J'ai omis « température » de R1 et signalé l'omission
-en note, plutôt que de créer un recouvrement non tracé qui aurait fait échouer
-le critère 7 — ou, pire, de l'inscrire comme partage sans mandat.
+| | Lieu de mesure | Nature |
+| --- | --- | --- |
+| `R0_temperature_contact` | interface bille–piste | pics rapides, résolus temporellement |
+| `R1_temperature_voisinage` | film, cage, zone de contacts | agrégée spatialement et temporellement |
 
-Deux issues, et le choix vous revient :
+**Elles restent séparées**, et le lien est déclaré comme **transfert causal**
+`R0 → R1` (`proxys.TRANSFERTS_ROULEMENT`) plutôt que comme partage de variable.
+Les fusionner produirait exactement le double comptage — ou la perte
+d'information — que le §12.1 interdit.
 
-1. Ce sont deux grandeurs distinctes → réintroduire « température » dans R1 sous
-   un nom qui les sépare ;
-2. C'est la même grandeur → la tracer explicitement dans `variables_partagees`,
-   ce que le §22 autorise : « Les cadres se recouvrent uniquement si les
-   variables partagées sont explicitement tracées ».
+Le transfert lui-même reste `NON_MESURÉ` : retard et facteur de forme ne sont pas
+calibrés.
 
-Dans les deux cas, une ligne à changer. Tant que ce n'est pas tranché, le proxy
-reste absent de R1, ce qui est le choix le plus conservateur.
-
-## 5. Suite immédiate — point 4 de l'ordre
+## 5. Point 4 — gel de la structure, livré
 
 > Geler les proxys, les seuils, les liens causaux et les données manquantes
 > avant calcul.
 
-C'est la marche suivante, et elle est bloquante pour les points 5 à 8. Elle
-demande vos arbitrages, pas du code : quels seuils, quel sens, quelle criticité,
-quel traitement des absences.
+Je m'étais déclaré bloqué sur ce point en attendant vos seuils. **C'était une
+erreur** : la structure se gèle sans inventer une seule valeur.
 
-## 6. Ce que rien de tout cela n'établit
+**Gelé** — identité, grandeur, unité, lieu de mesure, **sens** du seuil,
+criticité, traitement des absences, protocole de calibration. Six proxys du
+roulement dans `zoran/proxys.py`.
+
+**Non gelé, et c'est l'objet du gel** — la **valeur** des seuils, qui reste
+`None`, c'est-à-dire `NON_MESURÉ`. Le §23 l'exige.
+
+Le code interdit de tricher : **un seuil chiffré sans protocole de calibration
+déclaré est refusé à la construction**. On ne peut pas poser un nombre sans dire
+comment il s'obtiendrait.
+
+Conséquence directe, calculée : `portes_absolues()` retourne les proxys critiques
+dont le seuil manque. **Elle n'est pas vide.** Aucune porte absolue n'est donc
+calculable, et le §24 interdit toute comparaison relative tant que c'est le cas.
+
+Détail notable : `R1_epaisseur_film` est le seul proxy dont le sens est
+`DECROISSANT_DEGRADE`. Le sens est déclaré par proxy, jamais supposé uniforme.
+
+## 6. Suite — point 5
+
+> Développer le premier passage NASA historique à 1,4 Ah et appliquer les portes
+> absolues.
+
+Bloqué, mais pour une raison désormais explicite et non plus par défaut : les
+portes absolues exigent des seuils calibrés, et les protocoles de calibration
+sont déclarés sans avoir été exécutés. Le §17 rappelle en outre que le premier
+passage NASA historique est un développement **non aveugle** — une confirmation
+indépendante reste obligatoire.
+
+## 7. Ce que rien de tout cela n'établit
 
 - **Aucune validation physique.** `PASS structurel` logiciel, comme le §16 le
   classe pour le moteur v0. La validation physique reste `NON_MESURÉE`.
@@ -124,4 +154,4 @@ quel traitement des absences.
 
 ---
 
-*Point 1 livré. 96 tests. `S = NON_MESURÉ`.*
+*Points 1 à 4 livrés sur 8. 102 tests. `S = NON_MESURÉ`.*

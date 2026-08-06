@@ -136,3 +136,71 @@ class AucuneMoyenne(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class GelDeStructure(unittest.TestCase):
+    """Point 4 de l'ordre de travail — §23, « sens des seuils » et NON_MESURÉ."""
+
+    def test_un_seuil_sans_protocole_est_refuse(self):
+        """§23 — « Les coefficients physiques non calibrés restent NON_MESURÉ »."""
+        from zoran.proxys import Criticite, ProxyDeclare, SensSeuil, TraitementAbsence
+
+        with self.assertRaises(ValueError) as ctx:
+            ProxyDeclare(
+                identifiant="X",
+                cadre="C",
+                grandeur="g",
+                unite="K",
+                lieu_de_mesure="l",
+                sens_seuil=SensSeuil.CROISSANT_DEGRADE,
+                criticite=Criticite.CRITIQUE,
+                traitement_absence=TraitementAbsence.NON_MESURE,
+                seuil=42.0,  # sans protocole
+            )
+        self.assertIn("§23", str(ctx.exception))
+
+    def test_tous_les_seuils_restent_non_mesures(self):
+        from zoran.proxys import PROXYS_ROULEMENT
+
+        for proxy in PROXYS_ROULEMENT:
+            with self.subTest(proxy=proxy.identifiant):
+                self.assertFalse(proxy.seuil_est_mesure)
+                self.assertEqual(proxy.statut_seuil(), "NON_MESURÉ")
+
+    def test_aucune_porte_absolue_n_est_calculable(self):
+        """§24 — les portes absolues passent avant toute comparaison relative."""
+        from zoran.proxys import PROXYS_ROULEMENT, portes_absolues
+
+        bloquantes = portes_absolues(PROXYS_ROULEMENT)
+        self.assertGreater(len(bloquantes), 0)
+        self.assertIn("R0_temperature_contact", bloquantes)
+
+    def test_la_structure_est_gelee_meme_sans_valeurs(self):
+        from zoran.proxys import PROXYS_ROULEMENT, gel_complet
+
+        gele, motif = gel_complet(PROXYS_ROULEMENT)
+        self.assertTrue(gele, motif)
+        self.assertIn("NON_MESURÉES", motif)
+
+    def test_les_deux_temperatures_restent_distinctes(self):
+        """Arbitrage de l'auteur : même dimension, observables différentes."""
+        from zoran.proxys import PROXYS_ROULEMENT, TRANSFERTS_ROULEMENT
+
+        noms = {p.identifiant for p in PROXYS_ROULEMENT}
+        self.assertIn("R0_temperature_contact", noms)
+        self.assertIn("R1_temperature_voisinage", noms)
+        contact = next(p for p in PROXYS_ROULEMENT if p.identifiant.endswith("contact"))
+        voisin = next(p for p in PROXYS_ROULEMENT if p.identifiant.endswith("voisinage"))
+        self.assertEqual(contact.unite, voisin.unite)  # même dimension
+        self.assertNotEqual(contact.lieu_de_mesure, voisin.lieu_de_mesure)  # pas la même
+        self.assertTrue(
+            any(t.grandeur == "chaleur de contact" for t in TRANSFERTS_ROULEMENT),
+            "le lien R0→R1 doit être un transfert déclaré, pas une fusion",
+        )
+
+    def test_le_film_degrade_en_decroissant(self):
+        """Le sens du seuil est déclaré par proxy, pas supposé uniforme."""
+        from zoran.proxys import PROXYS_ROULEMENT, SensSeuil
+
+        film = next(p for p in PROXYS_ROULEMENT if "film" in p.identifiant)
+        self.assertIs(film.sens_seuil, SensSeuil.DECROISSANT_DEGRADE)

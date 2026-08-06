@@ -12,6 +12,8 @@ Zoran 2040 aSiM (Artificial Super Intelligence Mimétique) est une infrastructur
 - [Matrice des jumeaux conjoints V1.3](Z-TEMPS-JUMEAUX-CONJOINTS-MATRICE-V1.3.md) : protocole documentaire testant `R_total = R_A + R_B + R_AB` sur des cas humains publiés.
 - `Zoran_2040_aSiM_WhitePaper*.pdf` : white paper (vision, architecture, POC, gouvernance).
 
+**Statut canonique : [cadre d'audit conditionnel](Z-TEMPS-STATUT-CANONIQUE.md)**, décision du 6 août 2026. Z-TEMPS n'est plus présenté comme une loi physique. Une branche expérimentale isolée (fixation des poids par la structure) reste ouverte, avec sa condition de falsification pré-enregistrée.
+
 ### Essais, protocoles figés avant mesure
 
 - [PROXY-C-001](PRE-ENREGISTREMENT-PROXY-C-001.md) → [résultats](RESULTATS-PROXY-C-001.md) : premier proxy de cohérence. **Échec** — trois critères sur cinq ; deux questions ouvertes renvoyées à la spécification.
@@ -26,9 +28,20 @@ Zoran 2040 aSiM (Artificial Super Intelligence Mimétique) est une infrastructur
 ## Mission ZORAN — reprise totale (6 août 2026)
 
 - [Lettre de mission](LETTRE_DE_MISSION_ZORAN_REPRISE_TOTALE_2026-08-06.docx) — Frédéric Tabary, Institut IA Inc. Verrous, discipline épistémique, ordre de travail §20.
-- [Ordre §20 point 1 — promotion des cadres](ZORAN-ORDRE-20-POINT-1-PROMOTION-CADRES.md) : objet `CadreCausal` et promotion sur les sept critères du §12.1, livré. **R2 antipodal n'est pas promu** — il reste une relation diagnostique, conformément au §13. Les cadres planète restent `NON_MESURÉ`. Code : [`zoran/`](zoran/).
+- [Ordre §20 — points 1 à 4 sur 8](ZORAN-ORDRE-20-POINT-1-PROMOTION-CADRES.md) : objet `CadreCausal`, promotion sur les sept critères du §12.1, les deux hiérarchies §13/§14, et le gel de structure des proxys. **R2 antipodal n'est pas promu** — il reste une relation diagnostique. Les cadres planète restent `NON_MESURÉ`. Les valeurs de seuils aussi : un seuil chiffré sans protocole de calibration est refusé à la construction. Code : [`zoran/`](zoran/).
 
 `S = NON_MESURÉ` — proxys, seuils et pondérations non calibrés (§27).
+
+## Vérifiabilité
+
+| | |
+| --- | --- |
+| Dépôt | `Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence` |
+| Branche | `claude/z-temps-manifeste-v1-r57pby` |
+| Base | `cdf9039` (`main`) |
+| Reproduction des tests | `python -m unittest discover -s tests -t .` |
+
+Le numéro de PR seul ne suffit pas à identifier un état : citer dépôt + SHA.
 
 ## Implémentation de référence
 

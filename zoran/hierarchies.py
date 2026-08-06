@@ -23,7 +23,7 @@ ROULEMENT = (
         identifiant="R0 — Bille",
         frontiere="intégrité de la bille et roulement local",
         fonction="porter la charge au contact",
-        proxys=("géométrie", "fissure", "piqûre", "dureté", "température de contact"),
+        proxys=("géométrie", "R0_fissure", "piqûre", "dureté", "R0_temperature_contact"),
         triplet=Triplet(
             operant="charge, rotation, contact, frottement",
             operande="bille",
@@ -39,7 +39,13 @@ ROULEMENT = (
         frontiere="contacts immédiats : billes adjacentes, cage, segments de "
         "pistes, film lubrifiant",
         fonction="répartir la charge entre contacts voisins",
-        proxys=("charge locale", "glissement", "vibration", "film"),
+        proxys=(
+            "charge locale",
+            "glissement",
+            "vibration",
+            "R1_epaisseur_film",
+            "R1_temperature_voisinage",
+        ),
         triplet=Triplet(
             operant="charge, lubrification, désalignement",
             operande="billes voisines, cage, pistes, lubrifiant",
@@ -47,13 +53,12 @@ ROULEMENT = (
         ),
         causalite_testable=("R0 — Bille", "R3 — Roulement complet"),
         invariants=("épaisseur minimale de film", "seuil de glissement"),
-        variables_partagees={
-            "R0 — Bille": (),  # aucun proxy commun déclaré : voir note
-        },
-        note="« température » est volontairement absente ici bien que la lettre "
-        "la liste, afin de ne pas créer un recouvrement non tracé avec R0. "
-        "À trancher par l'auteur : soit tracer le partage, soit l'attribuer "
-        "à un seul cadre.",
+        note="ARBITRÉ par l'auteur : R0_temperature_contact et "
+        "R1_temperature_voisinage ont la même dimension physique mais ne sont "
+        "pas la même observable. Elles restent séparées, et le lien est décrit "
+        "comme un transfert causal (voir proxys.TRANSFERTS_ROULEMENT) plutôt "
+        "que comme un partage de variable. Les fusionner créerait un double "
+        "comptage ou une perte d'information.",
     ),
     CadreCausal(
         identifiant="R2 — Relation antipodale",
