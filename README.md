@@ -23,7 +23,7 @@ Zoran 2040 aSiM (Artificial Super Intelligence Mimétique) est une infrastructur
 - [TAU-004](PRE-ENREGISTREMENT-TAU-004.md) → [résultats](RESULTATS-TAU-004.md) : **prédiction confirmée à la précision machine**. `τ_*` n'est pas universelle — elle vaut l'inverse du taux du système (`γ·τ_*` constant à 1.9 % près), et cela vaut pour **tout** proxy satisfaisant P1. Recommandation : retirer P5b et réécrire le §3.
 - [JUMEAUX-005](PRE-ENREGISTREMENT-JUMEAUX-005.md) → [résultats](RESULTATS-JUMEAUX-005.md) : codage des fiches de la matrice V1.3 en variables comparables. **INDÉCIDABLE** — trois cas codables, et à `n = 3` le meilleur `p` atteignable est 0.167. Aucun coefficient n'a été calculé ; il en faut 4 pour conclure, 5 pour un résultat robuste.
 - [FORME-006](PRE-ENREGISTREMENT-FORME-006.md) → [résultats](RESULTATS-FORME-006.md) : **la première prédiction sans paramètre libre du cadre**. La pente log-log de `τ_Z(t)` égale l'exposant d'étirement `β` de la décroissance sous-jacente — indépendamment de `τ_*` (10⁻¹⁶) et des poids (10⁻¹⁵). Instrument validé sur `β ∈ {0.5, 1, 1.5, 2}` à 0.004 près. **⚠ [RÉTRACTÉ](RETRACTATION-FORME-006.md)** : sur enveloppe uniforme `τ_Z` se réduit à `-ln A(t)`, la prédiction est une identité algébrique. Des données réelles n'auraient rien tranché. Le contenu propre de la loi est le mélange multi-échelle — mais sa pente se règle par les poids (1.49 à 1.98). **Trivial ou inajustable : dans les deux cas, pas de test.** Ce n'est pas un problème de données, c'est un problème de spécification.
-- [ROLES-007](PRE-ENREGISTREMENT-ROLES-007.md) → [résultats](RESULTATS-ROLES-007.md) : **verdict pré-enregistré `DISSOCIATION_NON_ETABLIE`** (R5 échoue ; il était mal conçu, ce qui ne le retire pas du protocole). Mesures R1-R4 : sur un interféromètre **fermé**, `τ_Z` vaut **exactement zéro** pendant que la phase accumule `Δφ = 0.12` — le cas canonique qui motive tout le cadre. La loi confond deux rôles que la physique sépare : l'**accumulateur** (la phase, qui porte le temps) et la **lisibilité** (la visibilité, qui le rend mesurable). *La cohérence n'est pas ce qui change, c'est ce qui rend le changement lisible.*
+- [ROLES-007](PRE-ENREGISTREMENT-ROLES-007.md) → [résultats](RESULTATS-ROLES-007.md) : **verdict pré-enregistré `DISSOCIATION_NON_ETABLIE`** (R5 échoue ; il était mal conçu, ce qui ne le retire pas du protocole). Résultats calculés R1-R4 sur le modèle, aucune mesure physique exécutée : sur un interféromètre **fermé**, `τ_Z` vaut **exactement zéro** pendant que la phase accumule `Δφ = 0.12` — le cas canonique qui motive tout le cadre. Lecture **exploratoire** de ce calcul, à pré-enregistrer sous ROLES-008 : la loi confondrait deux rôles que la physique sépare, l'**accumulateur** (la phase) et la **lisibilité** (la visibilité). *La cohérence n'est pas ce qui change, c'est ce qui rend le changement lisible* — hypothèse, pas résultat.
 
 ## Mission ZORAN — reprise totale (6 août 2026)
 
@@ -41,8 +41,12 @@ Zoran 2040 aSiM (Artificial Super Intelligence Mimétique) est une infrastructur
 
 `S = NON_MESURÉ` — proxys, seuils et pondérations non calibrés (§27). La forme
 canonique `S = (β × ΔΦ) / (1 + T + σ)` est gelée dans [`zoran/jauge.py`](zoran/jauge.py),
-qui **refuse** de produire un nombre tant qu'un proxy critique reste sans seuil
-calibré.
+qui sépare deux registres : `calcul_formel()` évalue l'**arithmétique** et rend le
+statut `CALCUL_FORMEL` — jamais une mesure — tandis que `evaluer_S()` exige un
+**contrat de mesure** reliant chacun des quatre termes à son proxy, sa
+normalisation, son incertitude et sa provenance. Aucun contrat n'existe dans ce
+dépôt : `evaluer_S()` rend `S = NON_MESURÉ`. Des proxys calibrés mais non reliés
+aux quatre termes ne débloquent rien.
 
 ## Vérifiabilité
 

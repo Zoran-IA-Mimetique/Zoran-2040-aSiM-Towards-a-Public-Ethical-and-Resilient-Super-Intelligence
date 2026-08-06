@@ -29,9 +29,14 @@ le gel de structure des proxys.
   le réécrire aveuglément : ajouter d'abord au moteur actuel un module minimal
   de promotion ». Le moteur v0 et ses 7 tests unitaires ne sont pas dans ce
   dépôt ; ce module s'ajoute, il ne remplace rien.
-- **Aucun calcul de `S` ni de `Φ_C`.** Le §27 fixe `S = NON_MESURÉ`, le §12.2
-  interdit une valeur numérique de `Φ_C` hors domaine défini. Aucune fonction
-  du module n'en produit.
+- **Aucune valeur mesurée de `S` ni de `Φ_C`.** Le §27 fixe `S = NON_MESURÉ`,
+  le §12.2 interdit une valeur numérique de `Φ_C` hors domaine défini.
+  [`zoran/jauge.py`](zoran/jauge.py) gèle la forme canonique et sépare deux
+  registres : `calcul_formel()` évalue l'**arithmétique** de la formule et rend
+  le statut `CALCUL_FORMEL` — le statut `MESURE` y est structurellement
+  interdit — tandis que `evaluer_S()` exige un **contrat de mesure** reliant
+  chacun des quatre termes à son proxy, sa normalisation, son incertitude et sa
+  provenance. Aucun contrat n'existe : `evaluer_S()` rend `NON_MESURÉ`.
 - **Aucune sélection automatique de hiérarchie.** Le module juge des cadres
   **déclarés**. Il ne prétend pas être le « sélecteur parfait » dont le §18
   établit le statut `NON RETROUVÉ`.
@@ -69,7 +74,10 @@ Ce refus n'est pas une politesse documentaire : un test le verrouille, et il
 | B3 — Régulateur | **cadre** |
 | B4 — Planète | **NON_MESURÉ** |
 
-La règle des deux cadres du §0 est satisfaite dans les deux hiérarchies.
+La règle des deux cadres du §0 rend **`PASS structurel`** dans les deux
+hiérarchies : `R0 — Bille` + `R1 — Voisinage`, et `B0 — Cellule` +
+`B1 — Voisines`. `PASS structurel` qualifie une forme déclarée, pas une
+validation physique.
 
 ## 3. Verrous encodés dans le code
 
@@ -81,8 +89,9 @@ un test — pas seulement documenté.
 | Règle de promotion (§12.1) | `promouvoir()` | ne peut pas retourner `CADRE` avec un critère absent ; `repli=CADRE` lève une erreur |
 | NON_MESURÉ (§2) | `criteres_locaux()` | un champ absent vaut `None`, **jamais `False`** — l'absence n'est pas une négation |
 | Aucune moyenne (§12.2) | `RapportPromotion` | aucun score, aucune agrégation numérique ; conjonction de portes |
-| Double comptage (§12.1 c.7) | `_double_comptage()` | jugé sur la hiérarchie ; un proxy commun non tracé le déclenche |
-| Deux cadres (§0) | `evaluer_hierarchie()` | compte les cadres **promus**, pas les niveaux déclarés |
+| Double comptage (§12.1 c.7) | `_double_comptage()` | jugé sur la hiérarchie, et sur l'**identifiant d'effet causal** — pas sur le nom du proxy ; identité non établissable → `NON_MESURÉ`, jamais un PASS |
+| Deux cadres (§0) | `_verifier_regle_deux_cadres()` | exige nommément le `LOCAL` et son premier `VOISINAGE_RELATIONNEL`, tous deux promus, lien causal déclaré des deux côtés ; verdict `PASS structurel` / `FAIL` / `NON_MESURÉ` |
+| Fabrication de `S` (§27) | `evaluer_S()` | refuse des nombres nus ; exige un contrat reliant les quatre termes à leurs proxys calibrés |
 | Champ vide | `__post_init__` | refusé à la construction : `None` explicite plutôt que coquille silencieuse |
 
 ## 4. Question thermique — arbitrée par l'auteur
@@ -154,4 +163,4 @@ indépendante reste obligatoire.
 
 ---
 
-*Points 1 à 4 livrés sur 8. 102 tests. `S = NON_MESURÉ`.*
+*Points 1 à 4 livrés sur 8. 124 tests. `S = NON_MESURÉ`.*

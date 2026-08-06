@@ -109,20 +109,26 @@ vers la déclaration. Ce serait le même défaut sous un autre nom.
 
 [ROLES-007](RESULTATS-ROLES-007.md) et la non-unicité fournissent une piste
 identifiable. Arrêter maintenant détruirait une direction de recherche qui a un
-énoncé précis :
+énoncé précis — **énoncé à l'état d'hypothèse exploratoire, pas de résultat** :
 
 > La cohérence n'est pas ce qui change, c'est ce qui rend le changement lisible.
 
-L'accumulateur `φ` et la lisibilité `C` sont deux grandeurs, et la loi n'en
-assignait qu'une. C'est réparable en principe. Ce n'est pas encore réparé.
+L'accumulateur `φ` et la lisibilité `C` seraient deux grandeurs dont la loi n'en
+assigne qu'une. Le verdict pré-enregistré de ROLES-007 est
+`DISSOCIATION_NON_ETABLIE` : cette lecture attend ROLES-008 pour être testée.
+Réparable en principe ; pas encore réparé, et pas encore établi.
 
-## 4. Ce qui est mesuré, et ce qui ne l'est pas
+## 4. Ce qui est établi analytiquement, et ce qui ne l'est pas
+
+Aucune ligne de cette section ne relève de la mesure physique. « Établi »
+signifie ici **démontré ou calculé**, sur des modèles dont les paramètres sont
+posés.
 
 | Élément | Statut |
 | --- | --- |
-| Borne de non-identifiabilité des poids | **établie** — [rétractation 006](RETRACTATION-FORME-006.md) |
-| Dissociation accumulateur / lisibilité | **établie** — [ROLES-007](RESULTATS-ROLES-007.md), exacte |
-| `τ_* = 1/(D'(0)·γ)` | **établie** — [TAU-004](RESULTATS-TAU-004.md), analytique |
+| Borne de non-identifiabilité des poids | **établie analytiquement** — [rétractation 006](RETRACTATION-FORME-006.md) |
+| Dissociation accumulateur / lisibilité | **`DISSOCIATION_NON_ETABLIE`** — [ROLES-007](RESULTATS-ROLES-007.md) : lecture R2/R4 **exploratoire**, R5 échoue |
+| `τ_* = 1/(D'(0)·γ)` | **établie analytiquement** — [TAU-004](RESULTATS-TAU-004.md) |
 | Règle structurelle de fixation des poids | **NON_MESURÉE** — hypothèse de la branche A |
 | Seuil de falsification `δ` de la branche A | **SEUIL_NON_CALIBRÉ** — la branche ne peut pas être exécutée |
 | Validation physique de quoi que ce soit | **NON_MESURÉE** — aucune ligne de ce dépôt ne mesure le monde |

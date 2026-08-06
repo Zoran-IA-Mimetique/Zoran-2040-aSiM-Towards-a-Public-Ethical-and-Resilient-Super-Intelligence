@@ -18,7 +18,12 @@ Reproduction : `python -m experiments.run_roles_007`.
 
 ---
 
-## 1. Le résultat, en trois nombres
+## 1. Les résultats calculés sur le modèle, en trois nombres
+
+Ces trois nombres sortent du modèle analytique à deux branches de
+[`ztemps/interference.py`](ztemps/interference.py). **Aucune mesure physique
+n'a été exécutée** : `ω_L`, `ω_R` et le taux de décohérence sont posés, pas
+observés.
 
 | | Interféromètre **fermé** | Avec décohérence |
 | --- | --- | --- |
@@ -53,7 +58,8 @@ soit le résultat.**
 
 Constater après coup qu'un critère était mal conçu **ne le retire pas du
 protocole**. Le verdict pré-enregistré tient. Ce qui suit est une lecture des
-mesures R1-R4, avec le statut d'hypothèse — pas de conclusion.
+**résultats calculés R1-R4 sur le modèle** — aucune mesure physique n'a été
+exécutée — avec le statut d'hypothèse, pas de conclusion.
 
 ## 2. Lecture exploratoire — statut d'hypothèse, pas de résultat
 
@@ -185,5 +191,6 @@ La reformulation déplace le problème sur le bon objet ; elle ne le résout pas
 
 ---
 
-*Essai ROLES-007 — la dissociation est exacte. La cohérence n'est pas ce qui
-change, c'est ce qui rend le changement lisible.*
+*Essai ROLES-007 — verdict pré-enregistré `DISSOCIATION_NON_ETABLIE`, lecture
+R2/R4 exploratoire. « La cohérence n'est pas ce qui change, c'est ce qui rend le
+changement lisible » est une **hypothèse issue de l'essai**, pas son résultat.*

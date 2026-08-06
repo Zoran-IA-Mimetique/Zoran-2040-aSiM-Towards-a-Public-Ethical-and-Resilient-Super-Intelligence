@@ -21,8 +21,14 @@ from .cadres import (
 )
 from .jauge import (
     CONSTANTE_DENOMINATEUR,
+    CONTRAT_ZORAN,
     FORMULE_CANONIQUE,
-    TermesJauge,
+    TERMES,
+    ContratDeMesure,
+    ResultatFormel,
+    StatutJauge,
+    TermeMesure,
+    calcul_formel,
     evaluer_S,
 )
 from .proxys import (
@@ -39,10 +45,12 @@ from .proxys import (
 
 __all__ = [
     "CONSTANTE_DENOMINATEUR",
+    "CONTRAT_ZORAN",
     "CadreCausal",
     "Calibration",
     "Critere",
     "Criticite",
+    "ContratDeMesure",
     "FORMULE_CANONIQUE",
     "LienTransfert",
     "PartageDeclare",
@@ -52,12 +60,16 @@ __all__ = [
     "RoleNiveau",
     "SensSeuil",
     "Statut",
+    "ResultatFormel",
+    "StatutJauge",
     "StatutSeuil",
-    "TermesJauge",
+    "TERMES",
+    "TermeMesure",
     "TraitementAbsence",
     "TransfertCausal",
     "Triplet",
     "VerdictRegleDeuxCadres",
+    "calcul_formel",
     "evaluer_S",
     "evaluer_hierarchie",
     "gel_complet",

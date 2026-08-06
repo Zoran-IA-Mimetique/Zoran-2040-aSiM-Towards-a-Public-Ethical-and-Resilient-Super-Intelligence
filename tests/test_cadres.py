@@ -15,18 +15,22 @@ import unittest
 
 from zoran import (
     CONSTANTE_DENOMINATEUR,
+    CONTRAT_ZORAN,
     FORMULE_CANONIQUE,
     CadreCausal,
     Calibration,
+    ContratDeMesure,
     Critere,
     LienTransfert,
     PartageDeclare,
     RoleNiveau,
     Statut,
+    StatutJauge,
     StatutSeuil,
-    TermesJauge,
+    TermeMesure,
     Triplet,
     VerdictRegleDeuxCadres,
+    calcul_formel,
     evaluer_S,
     evaluer_hierarchie,
     portes_absolues,
@@ -502,27 +506,168 @@ class MissionCorrective(unittest.TestCase):
         self.assertEqual(FORMULE_CANONIQUE, "S = (β × ΔΦ) / (1 + T + σ)")
         self.assertEqual(CONSTANTE_DENOMINATEUR, 1.0)
 
-        valeur, motif = evaluer_S(TermesJauge(), PROXYS_ROULEMENT)
+        valeur, motif = evaluer_S(CONTRAT_ZORAN, PROXYS_ROULEMENT)
         self.assertIsNone(valeur)
         self.assertIn("NON_MESURÉ", motif)
 
-        # Même avec les quatre termes posés, les proxys non calibrés bloquent.
-        valeur, motif = evaluer_S(
-            TermesJauge(beta=1.0, delta_phi=1.0, T=0.0, sigma=0.0), PROXYS_ROULEMENT
-        )
-        self.assertIsNone(valeur)
-        self.assertIn("sans seuil calibré", motif)
 
-        # Le `1` du dénominateur est obligatoire : T = σ = 0 doit rester borné.
-        calibration = Calibration(1.0, 0.1, "campagne", "provenance")
-        calibres = tuple(
-            _proxy(f"P{i}", protocole_calibration="p", seuil=1.0, calibration=calibration)
-            for i in range(2)
+# --- Correctif final — la jauge ne fabrique pas de score ------------------
+
+
+def _terme(valeur, proxy="P0", **surcharges):
+    defauts = dict(
+        normalisation="grandeur brute divisée par sa valeur nominale",
+        incertitude=0.05,
+        provenance="campagne fictive, empreinte sha256:0000",
+    )
+    defauts.update(surcharges)
+    return TermeMesure(valeur=valeur, proxy=proxy, **defauts)
+
+
+def _proxy_calibre(identifiant):
+    return _proxy(
+        identifiant,
+        protocole_calibration="banc instrumenté",
+        seuil=1.0,
+        calibration=Calibration(1.0, 0.1, "campagne fictive", "sha256:0000"),
+    )
+
+
+class JaugeSansFabrication(unittest.TestCase):
+    """Le défaut : quatre `float` renseignés étaient pris pour quatre mesures.
+
+    Ces tests séparent le **calcul formel** — de l'arithmétique — de
+    l'**évaluation mesurée**, qui exige un contrat reliant chaque terme à son
+    proxy, sa normalisation, son incertitude et sa provenance.
+    """
+
+    # 1. Quatre floats bruts ne produisent aucun S.
+    def test_quatre_floats_bruts_ne_produisent_aucun_s(self):
+        with self.assertRaises(TypeError):
+            evaluer_S(1.0, 2.0, 3.0, 4.0)  # l'ancienne signature n'existe plus
+        with self.assertRaises(TypeError) as ctx:
+            evaluer_S(0.7, [_proxy_calibre("P0")])  # un nombre nu n'est pas un contrat
+        self.assertIn("ne mesurent rien", str(ctx.exception))
+        valeur, motif = evaluer_S()
+        self.assertIsNone(valeur)
+        self.assertIn("aucun contrat de mesure", motif)
+        # Un terme sans provenance est refusé à la construction.
+        for champ in ("proxy", "normalisation", "provenance"):
+            with self.subTest(champ=champ):
+                with self.assertRaises(ValueError):
+                    _terme(1.0, **{champ: "   "})
+        # Un contrat partiel ne débloque rien.
+        partiel = ContratDeMesure(beta=_terme(1.0), delta_phi=_terme(1.0))
+        valeur, motif = evaluer_S(partiel, [_proxy_calibre("P0")])
+        self.assertIsNone(valeur)
+        self.assertIn("contrat incomplet", motif)
+        self.assertIn("T", motif)
+
+    # 2. Proxys calibrés mais non reliés aux termes → NON_MESURÉ.
+    def test_proxys_calibres_non_relies_ne_debloquent_rien(self):
+        contrat = ContratDeMesure(
+            beta=_terme(2.0, proxy="TERME_BETA"),
+            delta_phi=_terme(3.0, proxy="TERME_DELTA_PHI"),
+            T=_terme(0.0, proxy="TERME_T"),
+            sigma=_terme(0.0, proxy="TERME_SIGMA"),
         )
-        valeur, _ = evaluer_S(
-            TermesJauge(beta=2.0, delta_phi=3.0, T=0.0, sigma=0.0), calibres
+        etrangers = [_proxy_calibre(f"SANS_RAPPORT_{i}") for i in range(4)]
+        valeur, motif = evaluer_S(contrat, etrangers)
+        self.assertIsNone(valeur)
+        self.assertIn("absent des proxys", motif)
+        # Reliés mais non calibrés : toujours NON_MESURÉ.
+        relies_non_calibres = [
+            _proxy(nom, protocole_calibration="banc instrumenté")
+            for nom in ("TERME_BETA", "TERME_DELTA_PHI", "TERME_T", "TERME_SIGMA")
+        ]
+        valeur, motif = evaluer_S(contrat, relies_non_calibres)
+        self.assertIsNone(valeur)
+        self.assertIn("non calibré", motif)
+
+    # 3. T ou σ négatif → hors domaine.
+    def test_charge_negative_est_hors_domaine(self):
+        for nom, args in (("T", (2.0, 3.0, -0.5, 0.0)), ("σ", (2.0, 3.0, 0.0, -0.5))):
+            with self.subTest(terme=nom):
+                resultat = calcul_formel(*args)
+                self.assertIsNone(resultat.valeur)
+                self.assertIs(resultat.statut, StatutJauge.HORS_DOMAINE)
+                self.assertIn(nom, resultat.motif)
+
+    # 4. NaN ou infini → hors domaine.
+    def test_nan_et_infini_sont_hors_domaine(self):
+        for valeur in (float("nan"), float("inf"), float("-inf")):
+            with self.subTest(valeur=valeur):
+                resultat = calcul_formel(valeur, 3.0, 0.0, 0.0)
+                self.assertIsNone(resultat.valeur)
+                self.assertIs(resultat.statut, StatutJauge.HORS_DOMAINE)
+            with self.subTest(valeur=valeur, position="denominateur"):
+                self.assertIs(
+                    calcul_formel(2.0, 3.0, valeur, 0.0).statut,
+                    StatutJauge.HORS_DOMAINE,
+                )
+        # Et un terme non fini est refusé dès la construction du contrat.
+        with self.assertRaises(ValueError):
+            _terme(float("nan"))
+
+    # 5. T = σ = 0 conserve le dénominateur formel égal à 1.
+    def test_le_denominateur_reste_un_quand_les_charges_sont_nulles(self):
+        resultat = calcul_formel(2.0, 3.0, 0.0, 0.0)
+        self.assertEqual(resultat.valeur, 6.0)  # 6 / (1 + 0 + 0)
+        self.assertIs(resultat.statut, StatutJauge.CALCUL_FORMEL)
+        self.assertIn("dénominateur 1.0", resultat.motif)
+        self.assertIn("PAS une mesure", resultat.motif)
+        # Le statut MESURE est structurellement interdit sur un calcul formel.
+        from zoran.jauge import ResultatFormel
+
+        with self.assertRaises(ValueError):
+            ResultatFormel(6.0, StatutJauge.MESURE, "tentative")
+
+    # 6. Aucune documentation ne présente le résultat algébrique comme une mesure.
+    def test_aucune_documentation_ne_presente_le_calcul_comme_une_mesure(self):
+        interdits = (
+            "S mesuré",
+            "S est mesuré",
+            "score mesuré",
+            "S = 6",
+            "jauge mesurée",
         )
-        self.assertEqual(valeur, 6.0)  # 6 / (1 + 0 + 0), et non une division par zéro
+        for chemin in sorted(RACINE.glob("*.md")) + [RACINE / "zoran" / "jauge.py"]:
+            texte = chemin.read_text(encoding="utf-8")
+            for phrase in interdits:
+                with self.subTest(fichier=chemin.name, phrase=phrase):
+                    self.assertNotIn(phrase, texte)
+        jauge = (RACINE / "zoran" / "jauge.py").read_text(encoding="utf-8")
+        self.assertIn("CALCUL_FORMEL", jauge)
+        self.assertIn("ne mesure rien", jauge)
+
+    # 7. ROLES-007 reste NON ÉTABLI dans tous les documents faisant autorité.
+    def test_roles_007_reste_non_etabli_dans_les_documents_faisant_autorite(self):
+        faisant_autorite = (
+            "README.md",
+            "Z-TEMPS-STATUT-CANONIQUE.md",
+            "RESULTATS-ROLES-007.md",
+        )
+        for nom in faisant_autorite:
+            texte = (RACINE / nom).read_text(encoding="utf-8")
+            with self.subTest(document=nom):
+                self.assertIn("DISSOCIATION_NON_ETABLIE", texte)
+                for surclassement in (
+                    "dissociation est établie",
+                    "dissociation établie",
+                    "la dissociation est exacte",
+                    "ROLES-007, exacte",
+                ):
+                    if surclassement == "dissociation est établie" and nom == (
+                        "RESULTATS-ROLES-007.md"
+                    ):
+                        continue  # cité dans la correction d'audit, entre guillemets
+                    self.assertNotIn(surclassement, texte)
+        # Aucune mesure physique n'est revendiquée pour cet essai.
+        for nom in faisant_autorite:
+            texte = (RACINE / nom).read_text(encoding="utf-8")
+            with self.subTest(document=nom, controle="mesures R1-R4"):
+                self.assertNotIn("Mesures R1-R4", texte)
+                self.assertNotIn("mesures R1-R4", texte)
 
 
 if __name__ == "__main__":
