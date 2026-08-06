@@ -23,6 +23,13 @@ Zoran 2040 aSiM (Artificial Super Intelligence Mimétique) est une infrastructur
 - [FORME-006](PRE-ENREGISTREMENT-FORME-006.md) → [résultats](RESULTATS-FORME-006.md) : **la première prédiction sans paramètre libre du cadre**. La pente log-log de `τ_Z(t)` égale l'exposant d'étirement `β` de la décroissance sous-jacente — indépendamment de `τ_*` (10⁻¹⁶) et des poids (10⁻¹⁵). Instrument validé sur `β ∈ {0.5, 1, 1.5, 2}` à 0.004 près. **⚠ [RÉTRACTÉ](RETRACTATION-FORME-006.md)** : sur enveloppe uniforme `τ_Z` se réduit à `-ln A(t)`, la prédiction est une identité algébrique. Des données réelles n'auraient rien tranché. Le contenu propre de la loi est le mélange multi-échelle — mais sa pente se règle par les poids (1.49 à 1.98). **Trivial ou inajustable : dans les deux cas, pas de test.** Ce n'est pas un problème de données, c'est un problème de spécification.
 - [ROLES-007](PRE-ENREGISTREMENT-ROLES-007.md) → [résultats](RESULTATS-ROLES-007.md) : sur un interféromètre **fermé**, `τ_Z` vaut **exactement zéro** pendant que la phase accumule `Δφ = 0.12` — le cas canonique qui motive tout le cadre. La loi confond deux rôles que la physique sépare : l'**accumulateur** (la phase, qui porte le temps) et la **lisibilité** (la visibilité, qui le rend mesurable). *La cohérence n'est pas ce qui change, c'est ce qui rend le changement lisible.*
 
+## Mission ZORAN — reprise totale (6 août 2026)
+
+- [Lettre de mission](LETTRE_DE_MISSION_ZORAN_REPRISE_TOTALE_2026-08-06.docx) — Frédéric Tabary, Institut IA Inc. Verrous, discipline épistémique, ordre de travail §20.
+- [Ordre §20 point 1 — promotion des cadres](ZORAN-ORDRE-20-POINT-1-PROMOTION-CADRES.md) : objet `CadreCausal` et promotion sur les sept critères du §12.1, livré. **R2 antipodal n'est pas promu** — il reste une relation diagnostique, conformément au §13. Les cadres planète restent `NON_MESURÉ`. Code : [`zoran/`](zoran/).
+
+`S = NON_MESURÉ` — proxys, seuils et pondérations non calibrés (§27).
+
 ## Implémentation de référence
 
 Le paquet [`ztemps/`](ztemps/) rend exécutables l'arithmétique de la loi candidate, ses conditions de domaine, ses invariants et ses prédictions P1-P3. Il ne mesure pas la cohérence `C` : c'est l'étape que la spécification désigne elle-même comme la prochaine.
