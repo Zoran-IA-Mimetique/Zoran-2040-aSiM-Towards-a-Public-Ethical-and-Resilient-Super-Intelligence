@@ -11,8 +11,8 @@
         "R3 — Roulement complet",
         "R4 — Machine"
       ],
-      "regle_des_deux_cadres": true,
-      "motif": "4 cadre(s) promu(s) : la règle des deux cadres est satisfaite",
+      "regle_des_deux_cadres": "PASS structurel",
+      "motif": "PASS structurel : LOCAL « R0 — Bille » et VOISINAGE_RELATIONNEL « R1 — Voisinage » promus, lien causal déclaré des deux côtés",
       "detail": [
         {
           "identifiant": "R0 — Bille",
@@ -51,9 +51,10 @@
             "frontière explicite",
             "triplet opérant-opérande-opéré",
             "relation causale testable avec les autres niveaux",
-            "invariant critique ou seuil de sortie propre"
+            "invariant critique ou seuil de sortie propre",
+            "absence de double comptage"
           ],
-          "motif": "NON_MESURÉ : frontière explicite ; triplet opérant-opérande-opéré ; relation causale testable avec les autres niveaux ; invariant critique ou seuil de sortie propre",
+          "motif": "NON_MESURÉ : frontière explicite ; triplet opérant-opérande-opéré ; relation causale testable avec les autres niveaux ; invariant critique ou seuil de sortie propre ; absence de double comptage — identité causale non établie pour : ['phase', 'ovalisation', 'transfert par bagues', 'asymétrie'] — NON_MESURÉ, pas un PASS",
           "criteres": {
             "frontière explicite": "NON_MESURÉ",
             "fonction ou objectif propre": true,
@@ -61,7 +62,7 @@
             "triplet opérant-opérande-opéré": "NON_MESURÉ",
             "relation causale testable avec les autres niveaux": "NON_MESURÉ",
             "invariant critique ou seuil de sortie propre": "NON_MESURÉ",
-            "absence de double comptage": true
+            "absence de double comptage": "NON_MESURÉ"
           }
         },
         {
@@ -124,8 +125,8 @@
         "B2 — Pack",
         "B3 — Régulateur"
       ],
-      "regle_des_deux_cadres": true,
-      "motif": "4 cadre(s) promu(s) : la règle des deux cadres est satisfaite",
+      "regle_des_deux_cadres": "PASS structurel",
+      "motif": "PASS structurel : LOCAL « B0 — Cellule » et VOISINAGE_RELATIONNEL « B1 — Voisines » promus, lien causal déclaré des deux côtés",
       "detail": [
         {
           "identifiant": "B0 — Cellule",

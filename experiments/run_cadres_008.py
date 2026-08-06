@@ -12,16 +12,24 @@ import json
 import sys
 from pathlib import Path
 
-from zoran import Critere, evaluer_hierarchie
-from zoran.hierarchies import BATTERIE, REPLIS_BATTERIE, REPLIS_ROULEMENT, ROULEMENT
+from zoran import evaluer_hierarchie, portes_absolues
+from zoran.proxys import PROXYS_ROULEMENT
+from zoran.hierarchies import (
+    BATTERIE,
+    REPLIS_BATTERIE,
+    REPLIS_ROULEMENT,
+    ROULEMENT,
+    TRANSFERTS_BATTERIE_CADRES,
+    TRANSFERTS_ROULEMENT_CADRES,
+)
 
 
-def rapport(nom, cadres, replis):
-    resultat = evaluer_hierarchie(cadres, replis=replis)
+def rapport(nom, cadres, replis, transferts):
+    resultat = evaluer_hierarchie(cadres, replis=replis, transferts=transferts)
     return {
         "hierarchie": nom,
         "cadres_promus": list(resultat.cadres_promus),
-        "regle_des_deux_cadres": resultat.deux_cadres_obligatoires,
+        "regle_des_deux_cadres": resultat.regle_deux_cadres.value,
         "motif": resultat.motif,
         "detail": [
             {
@@ -45,8 +53,15 @@ def main() -> int:
         "S": "NON_MESURÉ",
         "motif_S": "proxys, seuils et pondérations non calibrés (§27)",
         "hierarchies": [
-            rapport("roulement (§13)", ROULEMENT, REPLIS_ROULEMENT),
-            rapport("batterie (§14)", BATTERIE, REPLIS_BATTERIE),
+            rapport(
+                "roulement (§13)",
+                ROULEMENT,
+                REPLIS_ROULEMENT,
+                TRANSFERTS_ROULEMENT_CADRES,
+            ),
+            rapport(
+                "batterie (§14)", BATTERIE, REPLIS_BATTERIE, TRANSFERTS_BATTERIE_CADRES
+            ),
         ],
     }
 
@@ -59,7 +74,11 @@ def main() -> int:
 
     out = Path(__file__).with_name("resultats_008.json")
     out.write_text(json.dumps(resultats, indent=2, ensure_ascii=False), encoding="utf-8")
-    print(f"\nS = {resultats['S']} — {resultats['motif_S']}")
+    bloquantes = portes_absolues(PROXYS_ROULEMENT)
+    resultats["portes_absolues_bloquantes"] = list(bloquantes)
+    print(f"\nportes absolues non calculables : {len(bloquantes)} proxys critiques "
+          "sans seuil calibré")
+    print(f"S = {resultats['S']} — {resultats['motif_S']}")
     return 0
 
 

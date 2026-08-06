@@ -43,6 +43,50 @@ class Criticite(str, Enum):
     NON_MESUREE = "NON_MESURÉ"
 
 
+class StatutSeuil(str, Enum):
+    """Défaut 3 de l'audit — un protocole déclaré n'est pas une calibration exécutée.
+
+    L'ancienne version qualifiait de « MESURÉ » un seuil simplement renseigné
+    avec un texte de protocole. C'était faux : un protocole dit comment on
+    obtiendrait la valeur, il ne l'obtient pas.
+    """
+
+    NON_MESURE = "NON_MESURÉ"
+    PROTOCOLE_ABSENT = "protocole absent"
+    PROTOCOLE_DECLARE = "protocole déclaré, calibration non exécutée"
+    CALIBRATION_EXECUTEE = "calibration exécutée, traçabilité incomplète"
+    SEUIL_CALIBRE = "seuil calibré, traçable"
+
+
+@dataclass(frozen=True)
+class Calibration:
+    """Résultat d'une calibration réellement exécutée.
+
+    Les cinq champs sont obligatoires pour atteindre `SEUIL_CALIBRE`. Il ne
+    suffit pas d'avoir un nombre : il faut savoir d'où il vient, avec quelle
+    incertitude, et pouvoir le retrouver.
+    """
+
+    resultat: float
+    incertitude: float
+    source: str      # jeu de données ou campagne
+    provenance: str  # fichier, empreinte ou identifiant d'exécution
+
+    def __post_init__(self) -> None:
+        if self.incertitude < 0.0:
+            raise ValueError("l'incertitude ne peut pas être négative")
+        for champ in ("source", "provenance"):
+            if not getattr(self, champ).strip():
+                raise ValueError(
+                    f"{champ} vide : une calibration sans provenance vérifiable "
+                    "n'est pas traçable (§23)"
+                )
+
+    @property
+    def est_complete(self) -> bool:
+        return bool(self.source.strip() and self.provenance.strip())
+
+
 class TraitementAbsence(str, Enum):
     """§24 — « Les données manquantes sont NON_MESURÉ, jamais imputées »."""
 
@@ -65,6 +109,8 @@ class ProxyDeclare:
     protocole_calibration: str | None = None
     #: Reste `None` — NON_MESURÉ — tant que le protocole n'a pas été exécuté.
     seuil: float | None = None
+    #: Résultat de la calibration, quand elle a réellement été exécutée.
+    calibration: Calibration | None = None
     note: str = ""
 
     def __post_init__(self) -> None:
@@ -79,11 +125,23 @@ class ProxyDeclare:
             )
 
     @property
-    def seuil_est_mesure(self) -> bool:
-        return self.seuil is not None
+    def seuil_est_calibre(self) -> bool:
+        """Vrai seulement si la calibration a été exécutée **et** est traçable.
 
-    def statut_seuil(self) -> str:
-        return "MESURÉ" if self.seuil_est_mesure else "NON_MESURÉ"
+        Renommé depuis `seuil_est_mesure` : l'ancien nom laissait croire qu'un
+        seuil renseigné était mesuré (défaut 3 de l'audit).
+        """
+        return self.statut_seuil() is StatutSeuil.SEUIL_CALIBRE
+
+    def statut_seuil(self) -> StatutSeuil:
+        """Statut exact, en cinq valeurs distinctes plutôt qu'un booléen."""
+        if not self.protocole_calibration:
+            return StatutSeuil.PROTOCOLE_ABSENT
+        if self.calibration is None:
+            return StatutSeuil.PROTOCOLE_DECLARE
+        if self.seuil is None or not self.calibration.est_complete:
+            return StatutSeuil.CALIBRATION_EXECUTEE
+        return StatutSeuil.SEUIL_CALIBRE
 
 
 @dataclass(frozen=True)
@@ -120,7 +178,7 @@ def portes_absolues(proxys: Sequence[ProxyDeclare]) -> tuple[str, ...]:
     return tuple(
         p.identifiant
         for p in proxys
-        if p.criticite is Criticite.CRITIQUE and not p.seuil_est_mesure
+        if p.criticite is Criticite.CRITIQUE and not p.seuil_est_calibre
     )
 
 
@@ -139,8 +197,8 @@ def gel_complet(proxys: Sequence[ProxyDeclare]) -> tuple[bool, str]:
         return False, " ; ".join(manques)
     return True, (
         "structure gelée : identités, unités, lieux, sens, criticités et "
-        "protocoles sont déclarés. Les valeurs de seuils restent NON_MESURÉES "
-        "jusqu'à exécution des protocoles."
+        "protocoles sont déclarés. Aucun seuil n'est calibré — les protocoles "
+        "sont DÉCLARÉS, pas EXÉCUTÉS."
     )
 
 

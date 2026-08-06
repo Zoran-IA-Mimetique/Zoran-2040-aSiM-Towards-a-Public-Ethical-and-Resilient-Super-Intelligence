@@ -1,37 +1,40 @@
-"""Objet `CadreCausal` et promotion selon les sept critères.
+"""Objet `CadreCausal`, promotion, rôles typés et identité causale.
 
-Exécute le point 1 de l'ordre de travail verrouillé (§20 de la lettre de
-mission du 6 août 2026) :
-
-> Ajouter au moteur multicadres un objet CadreCausal et une fonction
-> proposer/promotionner les cadres selon les sept critères, sans prétendre à la
-> perfection.
+Exécute le point 1 de l'ordre de travail verrouillé (§20), corrigé par l'audit
+du SHA `01eec9c` sur ses défauts 2 et 4.
 
 ## Ce que ce module ne fait pas
 
 La conclusion d'audit du §18 est explicite : « Ne pas le réécrire aveuglément ».
-Ce module **n'est pas** un sélecteur automatique de hiérarchie, et ne prétend
-pas l'être. Il applique les sept critères du §12.1 à des cadres **déclarés**, et
-refuse la promotion quand une condition manque.
+Ce module **n'est pas** un sélecteur automatique de hiérarchie. Il applique les
+sept critères du §12.1 à des cadres **déclarés**, et refuse la promotion quand
+une condition manque.
 
-Il ne calcule ni `S` ni `Φ_C`. Le §27 fixe `S = NON_MESURÉ` tant que les proxys,
-seuils et pondérations ne sont pas calibrés ; le §12.2 interdit une valeur
-numérique de `Φ_C` hors domaine défini. Aucune fonction ici ne les produit.
+Il ne calcule ni `S` ni `Φ_C` (§27, §12.2).
 
-## Verrous encodés dans le code, pas seulement documentés
+## Correction du défaut 2 — la règle des deux cadres était sous-spécifiée
 
-- **Règle de promotion (§12.1)** — si une condition manque, l'ensemble reste
-  voisinage, secteur, relation ou proxy. `promouvoir()` ne peut pas retourner
-  `CADRE` avec un critère absent.
-- **NON_MESURÉ (§2)** — une absence n'est jamais imputée. Un critère non
-  renseigné vaut `NON_MESURE`, distinct de « non satisfait ».
-- **Aucune moyenne (§12.2)** — le verdict est une conjonction de portes, jamais
-  une moyenne des critères. Il n'existe pas de « score de cadre » ici.
-- **Règle des deux cadres (§0)** — local et premier relationnel englobant sont
-  obligatoires ; les niveaux supérieurs ne s'ajoutent que si la chaîne causale
-  les atteint.
-- **Double comptage (§12.1, critère 7)** — évaluable seulement sur la
-  hiérarchie, jamais sur un cadre isolé. Le code le reflète.
+« Au moins deux cadres promus » était insuffisant : deux cadres quelconques
+satisfaisaient la porte. Les rôles sont désormais **typés**, et la règle exige
+nommément le cadre `LOCAL` et son premier `VOISINAGE_RELATIONNEL`, avec leur
+lien causal déclaré des deux côtés.
+
+## Correction du défaut 4 — le contrôle du double comptage était lexical
+
+Il comparait des **noms** de proxys. Il comparait donc mal :
+
+- deux noms différents désignant le même effet passaient inaperçus ;
+- deux observables distinctes portant un nom voisin étaient confondues.
+
+Le contrôle porte désormais sur un **identifiant d'effet causal**, distinct du
+nom du proxy. Quand cet identifiant n'est pas déclaré, l'identité sémantique
+n'est pas établissable et le verdict est `NON_MESURÉ` — **jamais un PASS
+automatique**.
+
+Limite conservée et déclarée : le contrôle reste **structurel**. Il vérifie que
+les identifiants d'effet sont cohérents avec les déclarations, pas que deux
+effets physiquement identiques ont bien reçu le même identifiant. Cette dernière
+garantie relève de la physique, pas du moteur.
 """
 
 from __future__ import annotations
@@ -52,6 +55,29 @@ class Statut(str, Enum):
     NON_MESURE = "NON_MESURÉ"
 
 
+class RoleNiveau(str, Enum):
+    """Rôle du niveau dans la hiérarchie — défaut 2 de l'audit.
+
+    La règle des deux cadres du §0 ne porte pas sur un **nombre** de cadres mais
+    sur deux rôles nommés : le local, et son premier relationnel englobant.
+    """
+
+    LOCAL = "cadre local"
+    VOISINAGE_RELATIONNEL = "premier cadre relationnel englobant"
+    ENGLOBANT = "cadre englobant supérieur"
+    SUPERIEUR = "cadre supérieur causal"
+    PLANETE = "cadre planète"
+    RELATION_DIAGNOSTIQUE = "relation diagnostique, non promue par défaut"
+
+
+class VerdictRegleDeuxCadres(str, Enum):
+    """La règle des deux cadres n'est pas booléenne : elle peut être indécidable."""
+
+    PASS = "PASS structurel"
+    FAIL = "FAIL"
+    NON_MESURE = "NON_MESURÉ"
+
+
 class Critere(str, Enum):
     """Les sept conditions du §12.1, dans l'ordre de la lettre."""
 
@@ -64,7 +90,6 @@ class Critere(str, Enum):
     SANS_DOUBLE_COMPTE = "absence de double comptage"
 
 
-#: Le critère 7 se juge sur la hiérarchie entière, pas sur un cadre isolé.
 CRITERES_LOCAUX = tuple(c for c in Critere if c is not Critere.SANS_DOUBLE_COMPTE)
 
 
@@ -85,26 +110,49 @@ class Triplet:
 
 
 @dataclass(frozen=True)
+class PartageDeclare:
+    """Variable partagée entre deux cadres, avec sa provenance.
+
+    §22 : « Les cadres se recouvrent uniquement si les variables partagées sont
+    explicitement tracées. » Un partage sans provenance n'est pas une trace :
+    il vaut `NON_MESURÉ`.
+    """
+
+    effet_causal: str
+    provenance: str
+
+    def __post_init__(self) -> None:
+        if not self.effet_causal.strip():
+            raise ValueError("un partage sans effet causal identifié n'est pas traçable")
+
+    @property
+    def est_trace(self) -> bool:
+        return bool(self.provenance.strip())
+
+
+@dataclass(frozen=True)
 class CadreCausal:
     """Un niveau déclaré, avec ce qui est renseigné et ce qui ne l'est pas.
 
-    Un champ laissé à `None` vaut **NON_MESURÉ** : la lettre interdit de le
-    traiter comme une absence de la propriété (§2). Un champ renseigné mais vide
-    est refusé à la construction — mieux vaut `None` explicite qu'une coquille
-    silencieuse.
+    Un champ laissé à `None` vaut **NON_MESURÉ** (§2). Un champ renseigné mais
+    vide est refusé à la construction.
     """
 
     identifiant: str
+    role: RoleNiveau | None = None
     frontiere: str | None = None
     fonction: str | None = None
     proxys: tuple[str, ...] = ()
     triplet: Triplet | None = None
-    #: Identifiants des cadres avec lesquels une causalité testable est déclarée.
     causalite_testable: tuple[str, ...] = ()
-    #: Invariants critiques ou seuils de sortie propres au cadre.
     invariants: tuple[str, ...] = ()
-    #: Variables partagées avec d'autres cadres, tracées explicitement (§12.1).
-    variables_partagees: Mapping[str, tuple[str, ...]] = field(default_factory=dict)
+    #: Nom de proxy → identifiant d'effet causal. Défaut 4 de l'audit : le
+    #: contrôle de double comptage porte sur l'effet, pas sur le nom.
+    effets_causaux: Mapping[str, str] = field(default_factory=dict)
+    #: Identifiant d'autre cadre → partages déclarés avec leur provenance.
+    variables_partagees: Mapping[str, tuple[PartageDeclare, ...]] = field(
+        default_factory=dict
+    )
     note: str = ""
 
     def __post_init__(self) -> None:
@@ -116,6 +164,24 @@ class CadreCausal:
                 raise ValueError(
                     f"{nom} renseigné mais vide : utiliser None pour NON_MESURÉ (§2)"
                 )
+        inconnus = set(self.effets_causaux) - set(self.proxys)
+        if inconnus:
+            raise ValueError(
+                f"{self.identifiant} : effets causaux déclarés pour des proxys "
+                f"absents du cadre : {sorted(inconnus)}"
+            )
+
+    def effet(self, proxy: str) -> str | None:
+        """Identifiant d'effet causal, ou `None` si l'identité n'est pas établie."""
+        return self.effets_causaux.get(proxy)
+
+    @property
+    def effets_declares(self) -> frozenset[str]:
+        return frozenset(self.effets_causaux.values())
+
+    @property
+    def proxys_sans_effet(self) -> tuple[str, ...]:
+        return tuple(p for p in self.proxys if p not in self.effets_causaux)
 
     def criteres_locaux(self) -> dict[Critere, bool | None]:
         """État des six critères jugeables sur le cadre seul.
@@ -147,30 +213,94 @@ class RapportPromotion:
         return self.statut is Statut.CADRE
 
 
-def _double_comptage(
-    cadre: CadreCausal, hierarchie: Sequence[CadreCausal]
-) -> tuple[bool | None, str]:
-    """Critère 7 — jugé sur la hiérarchie, jamais sur le cadre seul.
+@dataclass(frozen=True)
+class LienTransfert:
+    """Transfert causal déclaré entre deux cadres, sur un effet donné.
 
-    « Les cadres se recouvrent uniquement si les variables partagées sont
-    explicitement tracées » (§22). Un proxy commun à deux cadres sans
-    déclaration de partage est un double comptage.
+    Sert à distinguer un **transfert** — un effet qui circule de R0 vers R1 —
+    de **deux dettes indépendantes** qui seraient comptées deux fois.
+    """
+
+    source: str
+    cible: str
+    effet_causal: str
+
+    def relie(self, a: str, b: str) -> bool:
+        return {self.source, self.cible} == {a, b}
+
+
+def _effets_partages(
+    cadre: CadreCausal, autre: CadreCausal
+) -> tuple[frozenset[str], tuple[str, ...]]:
+    """Effets causaux communs, et proxys dont l'identité n'est pas établissable."""
+    communs = cadre.effets_declares & autre.effets_declares
+    indetermines = cadre.proxys_sans_effet + autre.proxys_sans_effet
+    return communs, indetermines
+
+
+def _double_comptage(
+    cadre: CadreCausal,
+    hierarchie: Sequence[CadreCausal],
+    transferts: Sequence[LienTransfert],
+) -> tuple[bool | None, str]:
+    """Critère 7 — sur l'**effet causal**, jamais sur le nom du proxy.
+
+    Trois issues :
+
+    - `True` — aucun effet commun non justifié ;
+    - `False` — un même effet causal attribué deux fois sans règle de partage
+      ni transfert déclaré ;
+    - `None` — identité sémantique non établissable : `NON_MESURÉ`, jamais un
+      PASS automatique.
     """
     autres = [c for c in hierarchie if c.identifiant != cadre.identifiant]
     if not autres:
         return None, "cadre isolé : le critère 7 n'est pas jugeable (§12.1)"
 
-    non_traces: list[str] = []
-    for autre in autres:
-        communs = set(cadre.proxys) & set(autre.proxys)
-        traces = set(cadre.variables_partagees.get(autre.identifiant, ()))
-        traces |= set(autre.variables_partagees.get(cadre.identifiant, ()))
-        for proxy in sorted(communs - traces):
-            non_traces.append(f"{proxy} partagé avec {autre.identifiant}")
+    if cadre.proxys_sans_effet:
+        return None, (
+            "identité causale non établie pour : "
+            f"{list(cadre.proxys_sans_effet)} — NON_MESURÉ, pas un PASS"
+        )
 
-    if non_traces:
-        return False, "recouvrement non tracé : " + " ; ".join(non_traces[:4])
-    return True, "aucun proxy partagé non tracé"
+    non_justifies: list[str] = []
+    sans_provenance: list[str] = []
+
+    for autre in autres:
+        communs, indetermines = _effets_partages(cadre, autre)
+        if indetermines and communs:
+            return None, (
+                f"identité causale incomplète côté {autre.identifiant} : "
+                f"{sorted(set(indetermines))}"
+            )
+        for effet in sorted(communs):
+            partages = tuple(cadre.variables_partagees.get(autre.identifiant, ()))
+            partages += tuple(autre.variables_partagees.get(cadre.identifiant, ()))
+            declares = [p for p in partages if p.effet_causal == effet]
+            transfert = any(
+                t.effet_causal == effet
+                and t.relie(cadre.identifiant, autre.identifiant)
+                for t in transferts
+            )
+            if transfert:
+                continue  # un transfert n'est pas deux dettes indépendantes
+            if not declares:
+                non_justifies.append(f"{effet} avec {autre.identifiant}")
+            elif not any(p.est_trace for p in declares):
+                sans_provenance.append(f"{effet} avec {autre.identifiant}")
+
+    if non_justifies:
+        return False, (
+            "même effet causal attribué deux fois sans partage ni transfert "
+            "déclaré : " + " ; ".join(non_justifies[:4])
+        )
+    if sans_provenance:
+        return None, (
+            "variable partagée sans provenance : "
+            + " ; ".join(sans_provenance[:4])
+            + " — NON_MESURÉ (§22)"
+        )
+    return True, "aucun effet causal partagé non justifié"
 
 
 def promouvoir(
@@ -178,13 +308,9 @@ def promouvoir(
     hierarchie: Sequence[CadreCausal] = (),
     *,
     repli: Statut = Statut.VOISINAGE,
+    transferts: Sequence[LienTransfert] = (),
 ) -> RapportPromotion:
-    """Applique les sept critères. **Ne promeut jamais un ensemble incomplet.**
-
-    `repli` déclare ce que l'ensemble reste s'il n'est pas promu — voisinage,
-    secteur, relation ou proxy, selon ce que l'auteur en dit. Le défaut est
-    `VOISINAGE`, le plus neutre.
-    """
+    """Applique les sept critères. **Ne promeut jamais un ensemble incomplet.**"""
     if repli is Statut.CADRE:
         raise ValueError(
             "le repli ne peut pas être CADRE : ce serait contourner la règle de "
@@ -192,7 +318,7 @@ def promouvoir(
         )
 
     criteres: dict[Critere, bool | None] = dict(cadre.criteres_locaux())
-    ok_septieme, motif_septieme = _double_comptage(cadre, hierarchie)
+    ok_septieme, motif_septieme = _double_comptage(cadre, hierarchie, transferts)
     criteres[Critere.SANS_DOUBLE_COMPTE] = ok_septieme
 
     manquants = tuple(c for c in Critere if criteres[c] is not True)
@@ -206,8 +332,8 @@ def promouvoir(
             "les sept critères du §12.1 sont satisfaits",
         )
 
-    non_mesures = tuple(c for c in manquants if criteres[c] is None)
     refuses = tuple(c for c in manquants if criteres[c] is False)
+    non_mesures = tuple(c for c in manquants if criteres[c] is None)
 
     if refuses:
         motif = "critère(s) non satisfait(s) : " + " ; ".join(c.value for c in refuses)
@@ -215,6 +341,8 @@ def promouvoir(
             motif += f" — {motif_septieme}"
     else:
         motif = "NON_MESURÉ : " + " ; ".join(c.value for c in non_mesures)
+        if Critere.SANS_DOUBLE_COMPTE in non_mesures:
+            motif += f" — {motif_septieme}"
 
     return RapportPromotion(cadre.identifiant, repli, criteres, manquants, motif)
 
@@ -224,7 +352,7 @@ class RapportHierarchie:
     """Verdict d'ensemble. Conjonction de portes, jamais une moyenne (§12.2)."""
 
     rapports: tuple[RapportPromotion, ...]
-    deux_cadres_obligatoires: bool
+    regle_deux_cadres: VerdictRegleDeuxCadres
     motif: str
 
     @property
@@ -233,37 +361,93 @@ class RapportHierarchie:
 
     @property
     def admissible(self) -> bool:
-        """Aucune moyenne ne compense un manque : c'est une conjonction."""
-        return self.deux_cadres_obligatoires
+        """PASS structurel uniquement. Ne dit rien de la validité physique."""
+        return self.regle_deux_cadres is VerdictRegleDeuxCadres.PASS
+
+
+def _verifier_regle_deux_cadres(
+    cadres: Sequence[CadreCausal], promus: frozenset[str]
+) -> tuple[VerdictRegleDeuxCadres, str]:
+    """§0 — le cadre local ET son premier relationnel englobant, nommément.
+
+    Défaut 2 de l'audit : deux cadres quelconques ne satisfont pas cette règle.
+    """
+    par_role = {r: [c for c in cadres if c.role is r] for r in RoleNiveau}
+    sans_role = [c.identifiant for c in cadres if c.role is None]
+
+    locaux = par_role[RoleNiveau.LOCAL]
+    voisinages = par_role[RoleNiveau.VOISINAGE_RELATIONNEL]
+
+    if not locaux:
+        return (
+            VerdictRegleDeuxCadres.FAIL,
+            "aucun cadre déclaré LOCAL : la règle des deux cadres du §0 ne peut "
+            "pas être satisfaite par deux cadres quelconques",
+        )
+    if len(locaux) > 1 or len(voisinages) > 1:
+        return (
+            VerdictRegleDeuxCadres.NON_MESURE,
+            "ordre hiérarchique ambigu : "
+            f"{len(locaux)} LOCAL et {len(voisinages)} VOISINAGE_RELATIONNEL "
+            "déclarés — la paire minimale n'est pas identifiable",
+        )
+    if not voisinages:
+        return (
+            VerdictRegleDeuxCadres.FAIL,
+            "aucun premier cadre relationnel englobant déclaré : un cadre "
+            "supérieur non directement englobant ne le remplace pas",
+        )
+
+    local, voisinage = locaux[0], voisinages[0]
+
+    if local.identifiant not in promus or voisinage.identifiant not in promus:
+        manquants = [
+            c.identifiant
+            for c in (local, voisinage)
+            if c.identifiant not in promus
+        ]
+        return (
+            VerdictRegleDeuxCadres.FAIL,
+            f"rôle déclaré mais cadre non promu : {manquants}",
+        )
+
+    lien_aller = voisinage.identifiant in local.causalite_testable
+    lien_retour = local.identifiant in voisinage.causalite_testable
+    if not (lien_aller and lien_retour):
+        return (
+            VerdictRegleDeuxCadres.NON_MESURE,
+            "lien causal entre le local et son premier englobant non déclaré "
+            f"des deux côtés (aller={lien_aller}, retour={lien_retour})",
+        )
+
+    motif = (
+        f"PASS structurel : LOCAL « {local.identifiant} » et "
+        f"VOISINAGE_RELATIONNEL « {voisinage.identifiant} » promus, lien causal "
+        "déclaré des deux côtés"
+    )
+    if sans_role:
+        motif += f" — rôles NON_MESURÉS par ailleurs : {sans_role}"
+    return VerdictRegleDeuxCadres.PASS, motif
 
 
 def evaluer_hierarchie(
     cadres: Iterable[CadreCausal],
     *,
     replis: Mapping[str, Statut] | None = None,
+    transferts: Sequence[LienTransfert] = (),
 ) -> RapportHierarchie:
-    """Évalue une hiérarchie déclarée et vérifie la règle des deux cadres.
-
-    § 0 : « Les deux cadres obligatoires sont : local et premier supérieur
-    relationnel englobant des objets voisins. » Le contrôle porte donc sur le
-    nombre de cadres **effectivement promus**, pas sur le nombre de niveaux
-    déclarés — un niveau déclaré mais non promu ne compte pas.
-    """
+    """Évalue une hiérarchie déclarée et vérifie la règle des deux cadres typée."""
     cadres = tuple(cadres)
     replis = replis or {}
     rapports = tuple(
-        promouvoir(c, cadres, repli=replis.get(c.identifiant, Statut.VOISINAGE))
+        promouvoir(
+            c,
+            cadres,
+            repli=replis.get(c.identifiant, Statut.VOISINAGE),
+            transferts=transferts,
+        )
         for c in cadres
     )
-    promus = tuple(r for r in rapports if r.est_cadre)
-    assez = len(promus) >= 2
-    motif = (
-        f"{len(promus)} cadre(s) promu(s) : la règle des deux cadres est satisfaite"
-        if assez
-        else (
-            f"{len(promus)} cadre(s) promu(s) — la règle des deux cadres du §0 "
-            "exige le cadre local ET son premier relationnel englobant. "
-            "Verdict : NON_MESURÉ tant que le second n'est pas complété."
-        )
-    )
-    return RapportHierarchie(rapports, assez, motif)
+    promus = frozenset(r.identifiant for r in rapports if r.est_cadre)
+    verdict, motif = _verifier_regle_deux_cadres(cadres, promus)
+    return RapportHierarchie(rapports, verdict, motif)

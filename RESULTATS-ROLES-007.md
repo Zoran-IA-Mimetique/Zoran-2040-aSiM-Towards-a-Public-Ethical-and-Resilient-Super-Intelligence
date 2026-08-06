@@ -1,8 +1,16 @@
 # Résultats — Essai ROLES-007
 
-**Verdict machine : `DISSOCIATION_NON_ETABLIE`** — parce que R5 échoue. Mais R5
-n'aurait rien pu montrer, et c'est une erreur de ma part. **La dissociation est
-établie par R2 et R4, tous deux exacts.**
+> **VERDICT PRÉ-ENREGISTRÉ, INCHANGÉ : `DISSOCIATION_NON_ETABLIE`.**
+>
+> Correction d'audit. Une version antérieure de ce document affirmait que « la
+> dissociation est établie par R2 et R4 ». **C'était une requalification
+> rétroactive du verdict, et elle est retirée.** Un essai dont un critère
+> pré-enregistré échoue n'est pas un PASS, quelle que soit la qualité de
+> l'analyse postérieure.
+>
+> L'analyse selon laquelle R2 et R4 suffiraient est conservée, mais reclassée :
+> **HYPOTHÈSE EXPLORATOIRE issue de ROLES-007**. Pour devenir un résultat, elle
+> exige un protocole distinct — ROLES-008 — figé avant exécution.
 
 Protocole : [`PRE-ENREGISTREMENT-ROLES-007.md`](PRE-ENREGISTREMENT-ROLES-007.md).
 Données : [`experiments/resultats_007.json`](experiments/resultats_007.json).
@@ -36,17 +44,23 @@ lisibilité — et c'est elle seule que `τ_Z` mesure.
 | **R4** phase insensible à la décohérence | écart `0.0` | **PASSE** |
 | **R5** corrélations de rang | `1.0` contre `1.0` | **ÉCHEC** |
 
-### R5 était mal conçu — mon erreur
+### R5 était mal conçu — mon erreur, et elle ne s'annule pas
 
 Les deux corrélations valent exactement `1.0`. C'était inévitable : `τ_Z`,
 `−ln V` et `|Δφ|` croissent tous de façon monotone avec `t`, et une corrélation
 de rang ne peut pas les distinguer. **R5 ne pouvait pas discriminer, quel que
 soit le résultat.**
 
-Le verdict machine reste tel que le protocole le calcule. Je ne le réécris pas
-après coup — mais R5 n'entame pas R2 et R4, qui sont exacts et qui suffisent.
+Constater après coup qu'un critère était mal conçu **ne le retire pas du
+protocole**. Le verdict pré-enregistré tient. Ce qui suit est une lecture des
+mesures R1-R4, avec le statut d'hypothèse — pas de conclusion.
 
-## 2. La réponse à la question posée
+## 2. Lecture exploratoire — statut d'hypothèse, pas de résultat
+
+Tout ce qui suit est **HYPOTHÈSE EXPLORATOIRE issue de ROLES-007**, à
+pré-enregistrer sous ROLES-008 avant de pouvoir être affirmé.
+
+### Réponse candidate à la question posée
 
 > Qu'est-ce qui joue le rôle de la cohérence, de la transformation et de la
 > mémoire ?
@@ -127,10 +141,19 @@ séparée, cette phrase devient exacte au sens physique : la décohérence
 n'arrête pas l'accumulation de phase, **elle la rend inaccessible à la mesure**.
 `Δφ` existe encore ; plus personne ne peut le lire.
 
-La grandeur qui articule les deux rôles est `V · |Δφ|` — la part de
-l'accumulation encore lisible. Mesurée ici : elle finit à `0.020` alors que
-`|Δφ|` vaut `0.120`. **83 % de la différence accumulée est devenue illisible
-sans avoir cessé d'exister.**
+`V · |Δφ|` est un **proxy candidat** de la part encore lisible — pas une mesure
+de cette part. Écrire qu'il « mesure la part lisible » supposerait résolues trois
+choses qui ne le sont pas, et qu'il faut distinguer :
+
+| | |
+| --- | --- |
+| Perte de lisibilité **locale** | ce que `V` décroissant décrit dans le canal observé |
+| **Décohérence** du sous-système | ce qui se passe dans le système lui-même |
+| Information **conservée globalement** | ce que l'environnement emporte, et qui n'est pas détruit |
+
+Le chiffre de 83 % vaut pour le proxy `V · |Δφ|` sur ce modèle à deux branches.
+**Ce n'est pas un fait physique établi.** `0.020` contre `0.120` est une
+propriété du calcul, pas une mesure du monde.
 
 ## 5. Ce que Z-TEMPS ajouterait alors — et c'est étroit
 

@@ -70,8 +70,28 @@ Sur un système à décroissances **différenciées par échelle**, dont les `β
 sont ajustés indépendamment sur chaque enveloppe :
 
 > **A est réfutée si la pente de `τ_Z` sous poids structurels s'écarte de plus
-> de `0.10` de la valeur prédite par la règle, ou si deux déclarations
-> légitimes du même objet donnent des pentes différant de plus de `0.10`.**
+> de `δ` de la valeur prédite par la règle, ou si deux déclarations légitimes du
+> même objet donnent des pentes différant de plus de `δ`.**
+
+### `δ` est `SEUIL_NON_CALIBRÉ` — la branche reste `NON_MESURÉE`
+
+La valeur `0.10` avait été posée sans justification. **Elle est retirée comme
+seuil opérationnel.** Un seuil de falsification qui ne dérive ni d'une
+incertitude, ni d'une résolution, ni d'une analyse de sensibilité, est un
+nombre choisi — c'est-à-dire exactement ce que la branche A prétend éliminer.
+
+Pour que `δ` devienne calibré, il faut au minimum l'un des trois :
+
+1. l'incertitude de l'estimateur de pente sur des séries de longueur et de
+   bruit représentatifs ;
+2. la résolution atteignable, c'est-à-dire le plus petit écart de pente
+   distinguable du bruit d'ajustement ;
+3. une analyse de sensibilité montrant à partir de quel écart la conclusion
+   bascule.
+
+**Tant que `δ` n'est pas calibré, la branche A est `NON_MESURÉE` et ne peut pas
+être exécutée** — l'exécuter reviendrait à fixer le seuil après avoir vu les
+pentes.
 
 Le second membre est le plus exigeant : si la pente dépend de la *manière de
 déclarer* l'objet, la règle n'a fait que déplacer le paramètre libre de `w_s`
@@ -104,6 +124,7 @@ assignait qu'une. C'est réparable en principe. Ce n'est pas encore réparé.
 | Dissociation accumulateur / lisibilité | **établie** — [ROLES-007](RESULTATS-ROLES-007.md), exacte |
 | `τ_* = 1/(D'(0)·γ)` | **établie** — [TAU-004](RESULTATS-TAU-004.md), analytique |
 | Règle structurelle de fixation des poids | **NON_MESURÉE** — hypothèse de la branche A |
+| Seuil de falsification `δ` de la branche A | **SEUIL_NON_CALIBRÉ** — la branche ne peut pas être exécutée |
 | Validation physique de quoi que ce soit | **NON_MESURÉE** — aucune ligne de ce dépôt ne mesure le monde |
 
 ---
