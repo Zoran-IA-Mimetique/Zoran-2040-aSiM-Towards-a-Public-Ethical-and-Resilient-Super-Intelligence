@@ -88,11 +88,32 @@ Un seul fichier ajouté, `AUDIT_ZORAN_IA_DETERINISTE_2026-08-25.md` (312 lignes)
 
 ### 3.3 PR #2 — `claude/frames-cursors-engine-eSEZG` (moteur de décision)
 
-_(section complétée par l'audit agent — voir ci-dessous)_
+Moteur de décision Python « cadres & curseurs » + couche BTP/RE2020 + UI, 32 fichiers, ~4 800 lignes. Tests exécutés réellement : **84 passed** — la PR et `ENGINE.md` annoncent « 42 tests » (chiffre faux, resté figé) et **aucune CI ne les exécute**. **Décompte : 2 critiques, 8 majeurs, 15 mineurs.**
+
+**Critiques :**
+- **Fausse « conformité RE2020 » sur seuils inventés** : les seuils (`carbone: 0.6`, `energie: 0.45`… valeurs normalisées [0,1] arbitraires) n'ont aucun lien avec les indicateurs réglementaires réels (Ic construction/Ic énergie en kgCO2eq/m², Cep,nr, Bbio, DH). L'UI publiée affiche pourtant un verdict « Conformité RE2020 : Conforme » (`ui/standalone.html:704-719`) — affirmation réglementaire trompeuse pour un outil destiné au BTP.
+- **Bug de propagation au cœur des 4 implémentations du moteur** : le delta brut est propagé même quand la source sature (clamp) — vérifié : `A=0.9`, delta `+0.5` → A ne monte que de 0.1 mais B reçoit l'effet de 0.5 (`btp_engine.py:143-148`, `decision_engine/engine.py:72-81`, moteur min, port JS). Résultats incohérents et silencieux.
+
+**Majeurs (sélection)** : la suggestion « Améliorer le score global » **dégrade** le score (vérifié : 0.5746 → 0.5414) car `compute_score` moyenne les valeurs brutes sans direction min/max ; apprentissage statistique faux sur données incomplètes (covariance calculée sur des paires désalignées, vérifié) ; port JS du traducteur incomplet malgré la promesse « moteur identique » — 3 des 4 exemples cliquables de la démo publiée reposent sur des règles absentes du JS ; `decide()` renvoie un champ `impacts` qui est un alias de `decision` (contrat du docstring non rempli) ; `serve.py` écoute sur `0.0.0.0` avec CORS `*`, sans auth, et renvoie les exceptions brutes au client ; description de PR désynchronisée (couches omises, chiffres faux).
+
+**Mineurs (sélection)** : quadruple implémentation du moteur avec dérive ; « exactement l'amortissement RE2020 » faux (la RE2020 utilise une ACV dynamique sur 50 ans) ; dataset « d'apprentissage » circulaire verrouillé par un test qui valide la circularité ; énumération de chemins exponentielle sans limite ; imports morts ; franglais systémique ; pas de packaging ni `conftest.py`.
+
+**Jugement** : code propre et exécutable, mais un bug de fond dans le moteur et une prétention réglementaire RE2020 non fondée — maquette pédagogique honorable présentée comme un outil métier fiable.
 
 ### 3.4 PR #3 — `claude/routine-cognitive-mvp-BQ9nA` (PWA Routine Cognitive)
 
-_(section complétée par l'audit agent — voir ci-dessous)_
+PWA React+TypeScript de « micro-actions cognitives », 55 fichiers, +14 107 lignes. Vérification par exécution réelle : `npm test` **51/51 OK**, lint **0/0**, build **OK** — les chiffres de la PR sont exacts. Mais `npm audit` révèle **13 vulnérabilités (2 critiques, 7 high)**, jamais mentionnées. **Décompte : 3 critiques, 7 majeurs, 15 mineurs.**
+
+**Critiques :**
+- **Dérive de périmètre totale** : une app de bien-être à la racine d'un dépôt de white paper, et `.github/workflows/deploy-pages.yml` **s'approprie le GitHub Pages du dépôt** pour servir l'app à l'URL du white paper dès merge sur main.
+- **XSS stockée dans la version standalone** : `standalone/routine-cognitive.html` injecte `suggestedTime`/`id` importés depuis un JSON dans du `innerHTML` sans échappement (`doImport()` ~l.395 → `editor()` ~l.280) — un fichier importé malveillant exécute du script. La version Vite assainit, la standalone non, en contradiction avec la « REGLE 9 » que la PR coche « OK ».
+- **Audit de sécurité neutralisé** : `ci.yml:36` `npm audit --audit-level=high || true` — l'étape ne peut jamais échouer, même avec 2 vulnérabilités critiques sur dépendances directes.
+
+**Majeurs (sélection)** : application intégralement dupliquée en deux implémentations déjà divergentes (validation, cadence des notifications, quotas — double maintenance garantie de casser) ; statut « Ignorées » affiché partout mais **inatteignable** (aucun chemin de code ne le définit) ; bouton « PLUS TARD » **sans effet** (l'anti-doublon empêche toute re-notification) ; notifications perdues pour la journée si la permission est accordée en cours de journée ; action de notification perdue si l'app est fermée (rejeu promis en commentaire, jamais implémenté) ; réglages horaires non validés côté React (champ vidé → plus aucune notification, silencieusement) ; promesse d'installation PWA standalone irréalisable en `file://`.
+
+**À noter** : la PR revendique la conformité à `BEST_PRACTICES_CODING.md`… qu'elle crée elle-même dans le même commit — auto-certification. Mineurs : index IndexedDB déclaré jamais créé, code mort, CSS mort, tri cassé pour les routines à 00:00, accessibilité lacunaire, manifest `lang:"en"` pour une app française, ESLint EOL.
+
+**Jugement** : les preuves chiffrées sont exactes et le code React correct, mais deux fonctionnalités annoncées n'existent pas, la sécurité est neutralisée en CI, et l'ensemble est hors périmètre.
 
 ### 3.5 PR #4 — `claude/zoran-business-mobile-app-fulkfa` (ZORAN Biz Mobile)
 
