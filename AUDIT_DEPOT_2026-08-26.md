@@ -100,7 +100,18 @@ _(section complétée par l'audit agent — voir ci-dessous)_
 
 ### 3.6 PR #5 — `claude/zoran-plate-scan-android-ux3zup` (Plate Scan Pro)
 
-_(section complétée par l'audit agent — voir ci-dessous)_
+App Android Flutter de lecture de plaques (ANPR) pour agents de stationnement. 25 fichiers, +2 203 lignes ; 1 commit de création + 6 commits de rafistolage CI. **Décompte : 5 critiques, 14 majeurs, 13 mineurs.**
+
+**Critiques :**
+- **RGPD totalement absent** : l'app collecte plaques + GPS + adresse + photos de voie publique + identifiant agent, pour un usage de contrôle du stationnement (traitement type LAPI), sans base légale documentée, sans information des personnes, sans durée de conservation, sans chiffrement au repos (SQLite et photos en clair), sans contrôle d'accès, avec exports non chiffrés partageables (`export_service.dart:20-23`). Le dépôt hôte revendique pourtant « conformité RGPD/AI Act ».
+- **GPS falsifié silencieusement** : en cas de timeout, `location_service.dart:39,67-78` enregistre `Position(0,0)` (golfe de Guinée) comme vraie position, affichée « GPS : Oui » dans les exports — falsification d'une donnée à vocation probatoire.
+- **La « purge irréversible » n'efface pas les photos** : `event_repository.dart:81-89` supprime les lignes SQLite mais laisse les images sur disque à jamais — droit à l'effacement impossible.
+- **APK signé en clé debug publié en Release publique** depuis une PR draft non revue, avec instruction de contourner Play Protect (« Installer quand même ») ; la clé debug est régénérée à chaque run CI → chaque mise à jour exige une désinstallation, donc **perte de toutes les données**.
+- **Chaîne de preuve fictive** : `TEST_REPORT.md` et `TRACEABILITY.json` citent comme preuve des « tests en CI » — le workflow n'exécute **aucun** test et `flutter analyze` est neutralisé par `|| true`.
+
+**Majeurs (sélection)** : workflow déclenché uniquement sur la branche de PR (mort après merge) ; `pubspec.lock` exclu du versionnage (builds non reproductibles — cause directe des 6 commits de rafistolage) ; `android/` non versionné et régénéré puis rustiné par regex sans vérification (`tool/patch_android.py:70-150`) ; R8 désactivé au lieu de règles ProGuard (APK 91 Mo non obfusqué) ; permission caméra jamais gérée (`permission_handler` déclaré mais jamais importé ; refus → spinner infini) ; fuite de stockage (les JPEG de capture en boucle ne sont jamais supprimés — saturation en quelques heures d'usage) ; validation SIV fausse (lettres interdites I/O/U non vérifiées sur le groupe final, corrections OCR produisant des plaques impossibles marquées valides) ; aucun support FNI/plaques étrangères (cas quotidien du métier, non documenté comme limite) ; score de confiance « 92 % » en grande partie une constante forgée (0.85 par défaut, `plate_detector.dart:94-102`) ; crop de preuve potentiellement faux (rotation EXIF non appliquée au décodage) ; copie automatique de la plaque dans le presse-papiers global (canal de fuite par conception) ; fichier APK annoncé dans le README inexistant sous ce nom ; contrôleurs Flutter non `dispose()`.
+
+**Jugement** : code superficiellement propre, plausible en démo, mais inéligible à tout déploiement réel ; la documentation qualité affirme des preuves qui n'existent pas — l'apparence de rigueur excède largement la rigueur réelle.
 
 ### 3.7 PR #7 — `claude/z-temps-manifeste-v1-r57pby` (Z-temps)
 
