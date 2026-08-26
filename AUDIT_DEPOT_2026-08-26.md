@@ -8,7 +8,32 @@
 
 ## 0. Synthèse exécutive
 
-_(sera complétée en fin d'audit)_
+**Le verdict en une phrase** : `main` est un dépôt-vitrine de 6 fichiers dont aucune revendication n'est étayée par son contenu, et les 8 PR ouvertes en font un fourre-tout de projets sans rapport entre eux — dont plusieurs contiennent des problèmes graves (données de personnes réelles associées à des faits inventés, XSS, APK debug distribués au public, métriques auto-attribuées présentées comme des mesures).
+
+**Bilan chiffré consolidé** (constats propres à chaque périmètre) :
+
+| Périmètre | Critiques | Majeurs | Mineurs |
+|---|---|---|---|
+| `main` + métadonnées GitHub (§1–2) | 2 | 5 | 4 |
+| PR #1 fractal-law-tree | 6 | 8 | 9 |
+| PR #2 frames-cursors-engine | 2 | 8 | 15 |
+| PR #3 routine-cognitive | 3 | 7 | 15 |
+| PR #4 zoran-business-mobile | 4 | 10 | 14 |
+| PR #5 plate-scan | 5 | 14 | 13 |
+| PR #6 protocole exploration | 0 | 2 | 0 |
+| PR #7 z-temps | 3 | 8 | 11 |
+| PR #8 audit externe | 0 | 1 | 2 |
+| **Total** | **25** | **63** | **83** |
+
+**Les cinq constats les plus graves, tous périmètres confondus :**
+
+1. **Des personnes réelles associées à des faits inventés, publiés** (PR #4) : 10 dirigeants d'entreprises réelles (Pomerleau, CAE, Bombardier, BNC, STM, CGI…) nommés et titrés, chacun affublé d'un « intérêt » commercial fabriqué pour ZORAN et de devis fictifs, qualifiés de « dossiers réels » par le README — exposition juridique directe, et contradiction frontale avec la « Loi 1 : jamais halluciner » du projet.
+2. **Des APK Android signés en clé debug distribués au public** (PR #5) depuis une PR draft jamais revue, avec instruction de contourner Play Protect, sur la page Releases du dépôt white paper — et une app ANPR (plaques + GPS + photos) sans le moindre dispositif RGPD, dans un projet qui revendique la « conformité RGPD/AI Act ».
+3. **L'écart systémique entre le discours et le contenu** : README de `main` sans un seul artefact à l'appui ; « conformité RE2020 » sur seuils inventés (PR #2) ; « pré-enregistrements » figés 18 secondes avant leurs résultats (PR #7) ; scores d'« honnêteté » auto-attribués à 1.000 et « validation réelle ≈ 0 % » admise (PR #1) ; rapports de tests cités comme preuves alors qu'aucune CI ne les exécute (PR #5, #2). C'est le motif récurrent de tout le dépôt : l'apparence de rigueur excède partout la rigueur réelle.
+4. **Sécurité** : XSS stockée dans la version standalone de la PR #3 ; `npm audit` neutralisé par `|| true` avec 2 vulnérabilités critiques ; clé API Anthropic en localStorage navigateur (PR #1) ; serveurs de dev exposés `0.0.0.0` + CORS `*` sans auth (PR #2).
+5. **Gouvernance à l'abandon** : `main` figé depuis un an, 8 PR ouvertes jamais fusionnées ni fermées (dont une de 202 675 lignes qui a servi de branche de développement permanente), descriptions de PR fausses sur les chiffres dans 4 cas sur 8 (PR #1, #2, #4, #7), releases et tags issus de branches non fusionnées.
+
+---
 
 ---
 
@@ -148,7 +173,18 @@ App Android Flutter de lecture de plaques (ANPR) pour agents de stationnement. 2
 
 ### 3.7 PR #7 — `claude/z-temps-manifeste-v1-r57pby` (Z-temps)
 
-_(section complétée par l'audit agent — voir ci-dessous)_
+« Essais » à prétention scientifique + code Python (ztemps/, zoran/), 72 fichiers, ~10 030 lignes. Tests exécutés réellement : **124 tests, 123 passés, 1 ignoré** — la PR annonce « 117 tests » : chiffre faux, et c'est précisément le « défaut d'audit n°1 » (description périmée) que cette PR prétendait corriger, reproduit à l'identique. Les 8 scripts d'essais régénèrent des JSON strictement identiques aux fichiers commis (reproductibilité déterministe vérifiée). **Décompte : 3 critiques, 8 majeurs, 11 mineurs.**
+
+**Critiques :**
+- **Le « pré-enregistrement » est un théâtre de pré-enregistrement** : horodatages git vérifiés — protocole « figé » 18 secondes à 2 minutes 24 avant la publication des résultats, avec le script d'analyse et ses seuils déjà commis dans le commit de « gel » ; pour deux essais, **les données analysées sont dans le même commit que le protocole**. La phrase de la PR (« l'antériorité du protocole est vérifiable dans l'historique ») est littéralement vraie mais matériellement trompeuse : même auteur, même session, aucun registre externe.
+- **La seule pièce quasi empirique du corpus est invérifiable** : le « pilote V1.5 » cite « deux jeux de données publics » sans DOI, citation, ni code source des valeurs ; le « 98.8 % » et le « facteur 41 » mis en avant dans PR et README sont bâtis sur trois nombres non traçables.
+- **Chiffre de tests faux dans la PR** (117 vs 124 réels), cf. ci-dessus.
+
+**Majeurs (sélection)** : le verrou anti-fuite calibration/évaluation, vendu comme « rendu exécutable », est **contourné par les essais eux-mêmes** (le jeu de calibration déclaré = exactement les événements évalués ; provenance satisfaite par des chaînes bidon) ; TAU-004 « PRÉDICTION CONFIRMÉE à 2.6·10⁻¹⁵ » est une identité algébrique du propre simulateur du dépôt — le critère énoncé dans la rétractation de FORME-006 (« une précision de 10⁻⁷ aurait dû m'alerter ») condamne TAU-004, qui garde pourtant son label ; tous les seuils des essais 001→007 sont des nombres posés sans dérivation, alors que le dépôt refuse ailleurs tout `SEUIL_NON_CALIBRÉ` ; script Qiskit revendiqué « il fonctionne » alors qu'il déclare lui-même n'avoir jamais été exécuté ; la source normative du volet `zoran/` est un **.docx binaire de 108 Ko** invérifiable en revue ; la « promotion sur sept critères » est déclarative (toute chaîne non vide satisfait le critère) ; codage documentaire de **jumelles conjointes réelles nommées** à partir de sources de seconde main ; dérive de périmètre complète (pronostic de roulements à billes et de packs batterie dans un dépôt de white paper IA).
+
+**Points au crédit** : suite verte et déterministe, rétractation et verdicts négatifs réellement publiés, formule S effectivement bloquée sans contrat.
+
+**Jugement** : exercice d'auto-falsification simulée soigné mais autoréférentiel — aucune mesure du monde, des « confirmations » qui sont des identités algébriques de son propre simulateur, sous un appareil de rigueur en grande partie décoratif.
 
 ### 3.8 PR #1 — `claude/zoran-fractal-law-tree-pPfzR` (arbre fractal + dérive massive)
 
@@ -170,4 +206,25 @@ La plus grosse branche : **125 commits, 450 fichiers, 202 675 lignes ajoutées**
 
 ## 4. Recommandations priorisées
 
-_(sera complétée en fin d'audit)_
+### Urgent (exposition juridique / sécurité)
+1. **Retirer immédiatement les données des dirigeants réels de la PR #4** (`tests/run-cases.js`, `tests/resultats-montreal.json`) : personnes réelles nommées + faits commerciaux inventés publiés sous MIT. C'est le seul point de l'audit qui expose juridiquement, aujourd'hui, sans merge.
+2. **Supprimer les releases `plate-scan-v1.0-6`/`-7` et leurs tags** (ou au minimum les passer en pre-release avec avertissement) : APK debug non maintenables distribués au public depuis le dépôt white paper.
+3. **Corriger la XSS d'import de la version standalone (PR #3)** et retirer le `|| true` qui neutralise `npm audit` avant tout merge éventuel.
+
+### Structurel (gouvernance)
+4. **Décider du destin de chaque PR** : aucune des 8 ne concerne le white paper. Le geste sain est de **déplacer chaque application dans son propre dépôt** (plate-scan, routine-cognitive, biz-mobile, decision-engine, z-temps, fractal-law-tree) et de fermer les PR ici. La PR #8 (audit d'un dépôt tiers) a sa place dans le dépôt audité, pas ici.
+5. **Cesser d'utiliser une branche de PR comme branche de développement permanente** (PR #1 : 125 commits, 202 675 lignes, description devenue fausse à ~96 %). Une PR doit décrire ce qu'elle contient.
+6. **Mettre à jour ou fermer** : 4 descriptions de PR sur 8 contiennent des chiffres faux (tests, contenus, familles de lois).
+
+### `main` (le livrable affiché)
+7. **Supprimer les deux PDF dupliqués** `…FULL (1).pdf` et `…FULL (2).pdf` (identiques octet à octet, zéro perte).
+8. **Régénérer les PDF avec une police embarquée** (les glyphes Δ et ↔ ne se rendent pas ; police japonaise HeiseiMin-W3 non embarquée pour du texte français) et publier les artefacts annoncés par les annexes (JSON de métriques, format .zgs) ou retirer leur mention.
+9. **Cadrer le README** : distinguer ce que ce dépôt livre (un white paper) de ce que l'écosystème revendique ; retirer ou adosser « +20 % mesuré », « 100 POC », « reproductible, vérifiable », « auditable via EthicChain ». Ajouter les liens réels vers les dépôts censés porter les preuves.
+10. **Hygiène** : `.gitignore`, `CONTRIBUTING.md`, `CITATION.cff`, topics GitHub ; envisager CC BY 4.0 pour le document (MIT vise le logiciel) ; activer « Keep my email addresses private » pour les commits futurs (l'historique existant exigerait `git filter-repo`).
+
+### Fond (si le projet veut être pris au sérieux)
+11. **Une seule règle réglerait 80 % des constats critiques : ne publier une affirmation chiffrée que si le dépôt contient de quoi la reproduire.** Aujourd'hui, « +20 % de cohérence », « conformité RE2020 », « HS honesty 1.000 », « prédiction confirmée à 10⁻¹⁵ », « tests en CI » et « 10 dossiers réels » sont tous, à des degrés divers, des affirmations sans adossement — et deux audits internes au projet (PR #6 et le propre `P0_5_SPEC.md` de la PR #1) l'avaient déjà écrit avant le présent rapport, sans qu'aucune correction ne suive.
+
+---
+
+*Audit réalisé le 2026-08-26. `main` au SHA `cdf9039` ; branches auditées à leur HEAD respectif (PR #1 `590952a`, #2 `c19a739`, #3 `4794cb9`, #4 `b7bd236`, #5 `b3388d8`, #6 `7825b97`, #7 `f5a9e1d`, #8 `5616fc9`). Toutes les affirmations d'exécution correspondent à des commandes réellement lancées dans des worktrees locaux ; aucun fichier existant n'a été modifié.*
