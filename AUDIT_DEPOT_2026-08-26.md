@@ -152,7 +152,19 @@ _(section complétée par l'audit agent — voir ci-dessous)_
 
 ### 3.8 PR #1 — `claude/zoran-fractal-law-tree-pPfzR` (arbre fractal + dérive massive)
 
-_(section complétée par l'audit agent — voir ci-dessous)_
+La plus grosse branche : **125 commits, 450 fichiers, 202 675 lignes ajoutées**. La PR décrit une app 3D « 50 lois » ; la branche a servi de branche de développement permanente (imposé par son propre `CLAUDE.md` : « toute modification doit se faire sur `claude/zoran-fractal-law-tree-pPfzR` »). **Décompte : 6 critiques, 8 majeurs, 9 mineurs.**
+
+**Critiques :**
+- **Description de PR intégralement périmée/fausse** : la PR annonce « 50 lois, 106 liens, 10 familles, DOI » et colle une sortie de tests — réel exécuté : **242 nœuds, 286 arêtes, 8 familles, 0 DOI** ; les familles VAR et ISO n'existent plus ; la sortie de tests publiée est irreproductible. L'URL d'aperçu de la PR est en outre syntaxiquement cassée (backticks/parenthèses inversés — l'image ne se rend pas).
+- **~96 % des fichiers (433/450) ne sont mentionnés nulle part dans la PR**, dont `audit/` : 312 fichiers, 99 649 lignes — **49 % de la diff** est constituée de rapports d'auto-audit.
+- **Scores auto-attribués présentés comme des mesures** : « HS (honesty): 1.000 », « S_global 0.896 », rapports de « supériorité ZORAN vs Claude brut » produits par un script qui avoue lui-même « MODE OFFLINE — pas d'appel LLM. Scores heuristiques » ; ~140 champs de pseudo-métriques par nœud (`anti_hallucination_score`, `superior_law_probability`…) sans aucun protocole externe. `audit/TICKETS_PROGRESS.md:11` reconnaît : « **Progression VALIDATION RÉELLE ≈ 0 %** ».
+- **Tests commis cassés** (vérifié) : 6 scripts importent des modules supprimés par les commits « REMOVE » → `ERR_MODULE_NOT_FOUND`.
+
+**Majeurs (sélection)** : chemins machine codés en dur (`/opt/node22/...playwright`) dans 3 outils — contredit le ticket « validation clone propre : PASS » ; tag git revendiqué (`frozen-core-reference`) inexistant ; README auto-contradictoire (91 lois vs 45 vs 242 réelles ; « 22 documents Oracle » vs 312 fichiers ; image référencée absente car gitignorée) ; binaires et artefacts générés commités (PNG 308 Ko, JSON 224 Ko, SVG d'aperçu désynchronisé des données) ; code mort livré malgré la campagne « REMOVE » ; outillage personnel commité (`.claude/skills/speckit-*`, `.specify/`) ; **clé API Anthropic gérée côté navigateur** (localStorage en clair + `anthropic-dangerous-direct-browser-access`) pour une app destinée à GitHub Pages ; mode par défaut coûteux (4 appels LLM par question, l'économe étant l'opt-in).
+
+**Mineurs (sélection)** : monolithes front (main.js 66 Ko) ; second corpus « sandbox » de 120 lois embarqué sans mention ; **0 test pytest pour 29 scripts Python** et aucune CI ; `html_description` injecté en innerHTML depuis le fichier de données ; documents de mission proliférant à la racine avec référence nominative (« backend Fred »).
+
+**Jugement** : capsule P0 fossilisée sur laquelle 125 commits ont dérivé ; la moitié du contenu est de l'auto-audit aux métriques auto-attribuées (validation réelle admise ≈ 0 %) ; infusionnable sans réécriture de la description et découpage drastique.
 
 ---
 
