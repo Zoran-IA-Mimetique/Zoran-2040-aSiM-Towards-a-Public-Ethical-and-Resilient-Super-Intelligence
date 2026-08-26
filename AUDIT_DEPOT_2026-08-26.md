@@ -117,7 +117,19 @@ PWA React+TypeScript de « micro-actions cognitives », 55 fichiers, +14 107 lig
 
 ### 3.5 PR #4 — `claude/zoran-business-mobile-app-fulkfa` (ZORAN Biz Mobile)
 
-_(section complétée par l'audit agent — voir ci-dessous)_
+App commerciale HTML/CSS/JS sans dépendance, 9 fichiers, ~6 300 lignes. `node --check` OK, `node tests/run-cases.js` passe (« 10/10 ») — mais le test **réécrit un fichier versionné** à chaque exécution (arbre git sale). **Décompte : 4 critiques, 10 majeurs, 14 mineurs.**
+
+**Critiques :**
+- **Données personnelles de personnes réelles + faits fabriqués, commités et publiés** : `tests/run-cases.js:33-72` contient 10 entreprises réelles (Pomerleau, AtkinsRéalis, CAE, Bombardier, Banque Nationale, BFL, STM, Dialogue, CGI, Metro) avec **dirigeants réels nommés et titrés**, chacun associé à un « intérêt » commercial **inventé** pour ZORAN et à des devis/ROI fictifs — le README les qualifie de « 10 dossiers réels ». Plusieurs titres sont inexacts ou périmés. Contradiction frontale avec la « Loi 1 : jamais halluciner » revendiquée par le projet, et exposition juridique (données personnelles + affirmations commerciales fausses attribuées à des personnes réelles, sous licence MIT publique).
+- **Extraction PDF/Word largement factice** : `extractPdfText` ne fonctionne que sur des PDF non compressés (quasi inexistants) ; le repli regex sur du binaire injecte du **pseudo-texte aléatoire** dans l'analyse ; `.doc`/`.rtf`/`.msg`/images lus comme binaire brut sans filtre. La PR vend un « import tous formats » fonctionnel ; seuls les formats texte marchent.
+- **Chiffres commerciaux inventés présentés comme des calculs** : tarifs 130–240 €/user/an, « dette documentaire 0,15 €/document/an », « 1 à 2 h par jour » sous la rubrique « Preuves » — sans source ; et le test **échoue si le ROI n'est pas vendeur** (ROI ≤ 0 ou payback > 12 mois = échec), assertion marketing garantissant des ROI affichés de 600 à 1 741 %.
+- **Octet NUL brut (0x00) dans les sources** (`app.js:358`, standalone:1750) : git et grep traitent ces fichiers comme binaires, diffs illisibles.
+
+**Majeurs (sélection)** : standalone de 2 691 lignes = duplication byte-à-byte des 4 fichiers sans script de build (divergence garantie) ; fonctionnalité d'import JSON documentée dans le README **inexistante** dans l'app ; bug du reset (formulaire garde les anciennes valeurs + listeners empilés en double) ; export JSON invalide (BOM `﻿` — `JSON.parse` échoue, vérifié) ; champ `state.client.secteur` inexistant → le secteur n'apparaît jamais dans les livrables ; formules ROI dupliquées avec défauts divergents (deux sources de vérité) ; devise `€` codée en dur pour des prospects montréalais (CAD) ; corps de PR omettant 42 % du diff ; API `readAsBinaryString` dépréciée.
+
+**Point positif** : pas de XSS — `escapeHtml` appliqué systématiquement avant chaque `innerHTML` (vérifié ligne à ligne).
+
+**Jugement** : démonstration commerciale maquillée en produit ; point bloquant absolu avant tout merge : la publication de dossiers commerciaux fabriqués attribués à dix dirigeants réels nommément cités.
 
 ### 3.6 PR #5 — `claude/zoran-plate-scan-android-ux3zup` (Plate Scan Pro)
 
