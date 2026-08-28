@@ -67,12 +67,13 @@ class TestDryRunSample(unittest.TestCase):
         self.assertEqual(local_before["counts"]["relations_coherent"], 3)
         self.assertEqual(local_before["counts"]["relations_applicable"], 4)
         self.assertAlmostEqual(local_before["s"], 30.0)
-        # Projection : +3 cibles patchées (adaptateur, runtime, doublon),
-        # algèbre K3 bloquée par guard, 2 quarantaines maintenues → 70,00.
+        # Projection v1.0.1 : +2 cibles patchées (adaptateur, doublon) ;
+        # algèbre K3 bloquée (protégée) ET runtime bloqué (reçu Amygdale→K3
+        # manquant) ; 2 quarantaines maintenues → 60,00.
         local_after = measure["after"]["frames"]["local"]
-        self.assertAlmostEqual(local_after["s"], 70.0)
-        self.assertAlmostEqual(measure["overall_delta_s"], 40.0)
-        self.assertEqual(measure["before"]["overall_point"], 30.0)
+        self.assertAlmostEqual(local_after["s"], 60.0)
+        self.assertAlmostEqual(measure["overall_delta_s"], 30.0)
+        self.assertAlmostEqual(measure["before"]["overall_point"], 30.0)
         self.assertFalse(measure["runtime_promotion"])
 
     def test_protected_k3_target_blocked_and_no_apply(self):
@@ -81,7 +82,11 @@ class TestDryRunSample(unittest.TestCase):
         self.assertIn("components/k3_frame_algebra_v1_1/algebra.py", blocked_paths)
         self.assertIn("GUARD_PROTECTED_COMPONENTS",
                       blocked_paths["components/k3_frame_algebra_v1_1/algebra.py"])
-        self.assertEqual(len(plan["patches"]), 3)
+        # v1.0.1 : le runtime porte GAP-005 (MISSING_GUARD sans reçu) → bloqué.
+        self.assertIn("components/zoran_chat_runtime_v1/runtime.py", blocked_paths)
+        self.assertIn("GUARD_AMYGDALA_K3_RECEIPT",
+                      blocked_paths["components/zoran_chat_runtime_v1/runtime.py"])
+        self.assertEqual(len(plan["patches"]), 2)
         for p in plan["patches"]:
             self.assertEqual(p["status"], "PROPOSED_DRY_RUN")
             self.assertFalse(p["applied"])
@@ -103,9 +108,22 @@ class TestDryRunSample(unittest.TestCase):
         self.assertEqual(requests[0]["brick"], "components/gm4_verbalizer_v1")
         self.assertEqual(requests[0]["status"], "OPEN")
 
+    def test_certificate_verdict_is_derived_not_hardcoded(self):
+        # v1.0.1 : cadre local FAIL (30,00) → PASS_DRY_RUN interdit.
+        cert = self._load("ZCE_CONTROL_CERTIFICATE_V1.json")
+        self.assertEqual(cert["body"]["verdict"], "FAIL_DRY_RUN")
+        self.assertEqual(cert["body"]["k3_verdict"], "FAIL")
+        self.assertEqual(cert["k3_verdict"], "FAIL")
+        basis = cert["body"]["verdict_basis"]
+        self.assertEqual(basis["min_frame"], "local")
+        self.assertIn("local", basis["failing_frames"])
+        # Aucune sortie stampée ne porte un PASS non mesuré.
+        for name in engine.OUTPUT_FILES:
+            self.assertEqual(self._load(name)["k3_verdict"], "FAIL")
+
     def test_certificate_hashes_every_output(self):
         cert = self._load("ZCE_CONTROL_CERTIFICATE_V1.json")["body"]
-        self.assertEqual(cert["verdict"], "PASS_DRY_RUN")
+        self.assertEqual(cert["verdict"], "FAIL_DRY_RUN")
         for name in engine.OUTPUT_FILES + ["ZCE_JOURNAL_V1.jsonl"]:
             claimed = [c for c in cert["claims"]
                        if c["claim"].startswith("sorties hachées")][0]["receipt"]

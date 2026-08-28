@@ -20,6 +20,13 @@ GUARD_PROTECTED_COMPONENTS = "GUARD_PROTECTED_COMPONENTS"
 GUARD_MODIFICATION_BUDGET = "GUARD_MODIFICATION_BUDGET"
 GUARD_IMPACT_RADIUS = "GUARD_IMPACT_RADIUS"
 GUARD_ROLLBACK_FIRST = "GUARD_ROLLBACK_FIRST"
+# v1.0.1 — l'Amygdale est l'étalon de veto : une cible portant un
+# MISSING_GUARD Amygdale/K3 est bloquée tant que le reçu Amygdale→K3
+# n'est pas présent et vérifié contre le manifeste.
+GUARD_AMYGDALA_K3_RECEIPT = "GUARD_AMYGDALA_K3_RECEIPT"
+# v1.0.1 — le répertoire de sortie ne peut être ni dans la racine gelée
+# ni dans les répertoires des entrées (fail-closed).
+GUARD_OUTPUT_ISOLATION = "GUARD_OUTPUT_ISOLATION"
 
 ALL_GUARDS = [
     GUARD_DRY_RUN_ONLY,
@@ -30,6 +37,8 @@ ALL_GUARDS = [
     GUARD_MODIFICATION_BUDGET,
     GUARD_IMPACT_RADIUS,
     GUARD_ROLLBACK_FIRST,
+    GUARD_AMYGDALA_K3_RECEIPT,
+    GUARD_OUTPUT_ISOLATION,
 ]
 
 # Briques que le moteur n'a pas le droit de réécrire.

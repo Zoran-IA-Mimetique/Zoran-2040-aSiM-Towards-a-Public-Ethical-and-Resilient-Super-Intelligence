@@ -1,15 +1,18 @@
 """Cohérence numérique multicadre (plan §9 et §15.2).
 
-Formule active : S = (β × ΔΦ_coh) / (1 + T + σ), S ∈ [0,100], β = 100,
-ΔΦ_coh = (mission_aligned/mission_applicable) × (relations_coherent/relations_applicable).
+Formule active : S = (β × ΔΦ_coh) / (1 + T + σ), S ∈ [0,100].
+Jauge canonique v1.0.1 : β, ΔΦ_coh, T et σ sont chacun bornés à [0,10] ;
+β = 10 et ΔΦ_coh = 10 × (mission_aligned/mission_applicable) ×
+(relations_coherent/relations_applicable) ∈ [0,10].
 
 Ce module reproduit exactement les comptages gelés de l'étalon
 ZORAN-SKILL-MAX-HARNESS-CONTRACT:v2 tels qu'utilisés dans
 ZORAN_LEGACY_CODE_RECOVERY_MEASURE_V1.json (ex. 8/12 × 8/12 → 44,44).
 
 Règles dures :
- - donnée manquante → veto conservateur S=0, intervalle [0,100],
-   classe BOUNDED_CONSERVATIVE, donnée absente nommée ;
+ - donnée manquante OU dénominateur de comptage nul OU T/σ hors [0,10]
+   → veto conservateur S=0, intervalle [0,100], classe
+   BOUNDED_CONSERVATIVE, cause nommée — jamais S=100 par défaut ;
  - agrégation = minimum des six cadres, aucune moyenne ;
  - cinématique ΔS = S_après − S_avant.
 """
@@ -20,30 +23,50 @@ CLASS_OBSERVED = "DETERMINISTIC_OBSERVED"
 CLASS_PROJECTED = "PROJECTED_DRY_RUN"
 CLASS_CONSERVATIVE = "BOUNDED_CONSERVATIVE"
 
-BETA = 100.0
+BETA = 10.0
+PARAM_MIN, PARAM_MAX = 0.0, 10.0
+
+
+def delta_phi_coh(mission_aligned, mission_applicable, relations_coherent,
+                  relations_applicable):
+    """ΔΦ_coh ∈ [0,10]. Dénominateur nul → 0,0 (veto), jamais 10,0."""
+    if not mission_applicable or not relations_applicable:
+        return 0.0
+    ratio = (mission_aligned / mission_applicable) * \
+            (relations_coherent / relations_applicable)
+    return max(0.0, min(PARAM_MAX, PARAM_MAX * ratio))
 
 
 def s_score(mission_aligned, mission_applicable, relations_coherent,
             relations_applicable, t=0.0, sigma=0.0):
-    """Score ponctuel S. Un dénominateur nul (0 applicable) vaut ratio 1,0 :
-    cas 'rapport vide' du plan §12, la mesure reste possible."""
-    m_ratio = (mission_aligned / mission_applicable) if mission_applicable else 1.0
-    r_ratio = (relations_coherent / relations_applicable) if relations_applicable else 1.0
-    return (BETA * m_ratio * r_ratio) / (1.0 + t + sigma)
+    """Score ponctuel S = (β × ΔΦ_coh) / (1 + T + σ).
+    Un dénominateur de comptage nul produit S=0 (veto), jamais S=100."""
+    phi = delta_phi_coh(mission_aligned, mission_applicable,
+                        relations_coherent, relations_applicable)
+    return (BETA * phi) / (1.0 + t + sigma)
 
 
 def frame_cell(frame, counts, calibration_class, cause, t=0.0, sigma=0.0):
     """Cellule de mesure d'un cadre. `counts` doit porter les quatre proxys ;
-    toute clé absente ou None déclenche le veto conservateur nommé."""
+    donnée absente, dénominateur nul ou T/σ hors [0,10] → veto conservateur."""
     required = ["mission_aligned", "mission_applicable",
                 "relations_coherent", "relations_applicable"]
     missing = sorted(k for k in required if counts.get(k) is None)
     if missing:
         return conservative_cell(frame, "donnée absente: %s" % ", ".join(missing))
-    s = s_score(counts["mission_aligned"], counts["mission_applicable"],
-                counts["relations_coherent"], counts["relations_applicable"],
-                t=t, sigma=sigma)
-    s = max(0.0, min(100.0, s))
+    zero_denoms = sorted(k for k in ("mission_applicable", "relations_applicable")
+                         if counts[k] == 0)
+    if zero_denoms:
+        return conservative_cell(
+            frame, "dénominateur de comptage nul: %s" % ", ".join(zero_denoms))
+    bad_params = sorted(name for name, value in (("T", t), ("sigma", sigma))
+                        if not (PARAM_MIN <= value <= PARAM_MAX))
+    if bad_params:
+        return conservative_cell(
+            frame, "paramètre hors [0,10]: %s" % ", ".join(bad_params))
+    phi = delta_phi_coh(counts["mission_aligned"], counts["mission_applicable"],
+                        counts["relations_coherent"], counts["relations_applicable"])
+    s = max(0.0, min(100.0, (BETA * phi) / (1.0 + t + sigma)))
     if calibration_class == CLASS_OBSERVED:
         interval = [s, s]
         evidence_quality = 1.0
@@ -55,6 +78,7 @@ def frame_cell(frame, counts, calibration_class, cause, t=0.0, sigma=0.0):
         "frame": frame,
         "status": "PASS" if s >= 100.0 else "FAIL",
         "counts": counts,
+        "delta_phi_coh": phi,
         "s": s,
         "interval": interval,
         "calibration_class": calibration_class,
@@ -111,6 +135,7 @@ def measure(before_cells, after_cells):
         "formula": "S=(beta*delta_phi_coh)/(1+T+sigma)",
         "kinematic_formula": "delta_S=S_after-S_before",
         "beta": BETA,
+        "parameter_range": [PARAM_MIN, PARAM_MAX],
         "before": before,
         "after": after,
         "delta_s_frames": delta_frames,
@@ -118,3 +143,27 @@ def measure(before_cells, after_cells):
         "runtime_promotion": False,
         "promotion_scope": "DRY_RUN_ONLY",
     }
+
+
+def verdict(measure_result):
+    """Verdict K3 réel du run, dérivé — jamais codé en dur.
+
+    Base : l'agrégat OBSERVÉ (« avant ») ; la projection ne peut jamais
+    accorder un PASS. Un cadre FAIL ou une borne basse à 0 interdit PASS.
+    Retourne (k3_verdict, basis) où k3_verdict ∈ {PASS, FAIL}.
+    """
+    before = measure_result["before"]
+    frames = before["frames"]
+    min_frame = min(FRAMES, key=lambda f: frames[f]["s"])
+    failing = sorted(f for f in FRAMES if frames[f]["status"] != "PASS")
+    lower_bound = before["overall_lower_bound"]
+    k3 = "PASS" if not failing and lower_bound > 0.0 else "FAIL"
+    basis = {
+        "basis": "OBSERVED_BEFORE_AGGREGATE",
+        "min_frame": min_frame,
+        "min_frame_s": frames[min_frame]["s"],
+        "overall_lower_bound": lower_bound,
+        "failing_frames": failing,
+        "cause": frames[min_frame]["cause"],
+    }
+    return k3, basis

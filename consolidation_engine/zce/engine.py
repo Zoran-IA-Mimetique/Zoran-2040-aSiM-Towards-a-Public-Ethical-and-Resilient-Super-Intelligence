@@ -36,6 +36,69 @@ class InputRejected(ValueError):
     """Entrée non conforme au contrat : le moteur refuse de continuer (fail-closed)."""
 
 
+def check_output_isolation(out_dir, root, input_paths):
+    """Correction v1.0.1 §5 : --out ne peut être ni dans --root ni dans les
+    répertoires des entrées. Fail-closed AVANT toute écriture."""
+    out = os.path.realpath(out_dir)
+    forbidden = [("racine gelée --root", os.path.realpath(root))]
+    for input_path in input_paths:
+        directory = os.path.realpath(os.path.dirname(input_path) or ".")
+        forbidden.append(("répertoire d'entrée %s" % directory, directory))
+    for label, directory in forbidden:
+        if out == directory or out.startswith(directory + os.sep):
+            raise InputRejected(
+                "%s: répertoire de sortie '%s' situé dans %s — refusé "
+                "fail-closed" % (guards.GUARD_OUTPUT_ISOLATION, out, label))
+
+
+def check_integrity(root, manifest, graph, ledger):
+    """Correction v1.0.1 §6 : exhaustivité et unicité, fail-closed.
+
+    Bloquent le run : un fichier réel sous la racine absent du manifeste ;
+    un chemin, object_id, relation_id ou gap_id dupliqué ; un SHA-256
+    déclaré mal formé.
+    """
+    errors = []
+    objects = manifest["objects"]
+
+    def duplicates(values):
+        seen, dups = set(), set()
+        for value in values:
+            if value in seen:
+                dups.add(value)
+            seen.add(value)
+        return sorted(dups)
+
+    for path in duplicates([e["path"] for e in objects]):
+        errors.append("chemin dupliqué au manifeste: %s" % path)
+    for oid in duplicates([e["object_id"] for e in objects if e.get("object_id")]):
+        errors.append("object_id dupliqué au manifeste: %s" % oid)
+    for rid in duplicates([r["relation_id"] for r in graph["relations"]]):
+        errors.append("relation_id dupliqué au graphe: %s" % rid)
+    for gid in duplicates([g["gap_id"] for g in ledger["gaps"]]):
+        errors.append("gap_id dupliqué au registre: %s" % gid)
+
+    for entry in objects:
+        if not util.is_sha256(entry["content_sha256"]):
+            errors.append("SHA-256 mal formé au manifeste: %s (%s)"
+                          % (entry["path"], entry["content_sha256"]))
+
+    declared = set(e["path"] for e in objects)
+    abs_root = os.path.realpath(root)
+    for dirpath, dirnames, filenames in os.walk(abs_root):
+        dirnames.sort()
+        for filename in sorted(filenames):
+            rel = os.path.relpath(os.path.join(dirpath, filename), abs_root)
+            rel = rel.replace(os.sep, "/")
+            if rel not in declared:
+                errors.append("fichier réel absent du manifeste: %s" % rel)
+
+    if errors:
+        raise InputRejected("intégrité refusée (fail-closed): "
+                            + "; ".join(sorted(errors)))
+    return {"objects_declared": len(declared), "integrity": "PASS"}
+
+
 def load_and_validate_inputs(manifest_path, graph_path, ledger_path, schemas_dir):
     """Opération 1 : lecture + validation par schéma, fail-closed."""
     schemas = {}
@@ -63,6 +126,10 @@ def run_dry_run(root, manifest_path, graph_path, ledger_path, out_dir,
                 now=None, schemas_dir=None):
     now = util.parse_now(now)
     schemas_dir = schemas_dir or os.path.join(os.path.dirname(__file__), "..", "schemas")
+
+    # Guard v1.0.1 §5 — isolation du répertoire de sortie, avant toute écriture.
+    check_output_isolation(out_dir, root, [manifest_path, graph_path, ledger_path])
+
     journal = receipts.Journal(now)
 
     # Op 1 — lecture et validation des entrées gelées.
@@ -73,6 +140,10 @@ def run_dry_run(root, manifest_path, graph_path, ledger_path, out_dir,
     gaps = ledger["gaps"]
     relations = graph["relations"]
     journal.log("INPUTS_VALIDATED", input_receipts)
+
+    # Op 1bis (v1.0.1 §6) — exhaustivité et unicité, fail-closed.
+    integrity_receipt = check_integrity(root, manifest, graph, ledger)
+    journal.log("INTEGRITY_VERIFIED", integrity_receipt)
 
     # Op 2 — contrôle de chaque fichier avant intervention + identités.
     controls = {}
@@ -129,6 +200,10 @@ def run_dry_run(root, manifest_path, graph_path, ledger_path, out_dir,
                                  input_receipts, schemas, journal)
     journal.log("COHERENCE_MEASURED", measure)
 
+    # Verdict K3 réel (v1.0.1 §2) : repris du cadre minimal observé,
+    # jamais codé en dur ; il stampe toutes les sorties et le certificat.
+    k3_verdict, verdict_basis = coherence.verdict(measure)
+
     # Op 8 — publication des sorties, du journal et du certificat.
     source_repo = manifest.get("source_repo", "UNKNOWN")
     source_ref = manifest.get("source_ref", "UNKNOWN")
@@ -163,7 +238,7 @@ def run_dry_run(root, manifest_path, graph_path, ledger_path, out_dir,
             object_id="ZCE-" + filename.replace(".json", ""),
             object_type=object_type, body=body, now=now,
             source_repo=source_repo, source_ref=source_ref,
-            guard_ids=guards.ALL_GUARDS, k3_verdict="PASS",
+            guard_ids=guards.ALL_GUARDS, k3_verdict=k3_verdict,
             rollback={"procedure": "supprimer le répertoire de sortie du run ; "
                                    "aucune autre trace n'existe (dry-run)"})
         outputs_sha[filename] = receipts.write_stamped(
@@ -187,6 +262,7 @@ def run_dry_run(root, manifest_path, graph_path, ledger_path, out_dir,
         "rollback_entries": len(rollback_entries),
         "rollback_seq": journal.seq_of("ROLLBACK_PLAN_SEALED"),
         "patch_seq": journal.seq_of("PATCH_PLAN_PROPOSED"),
+        "journal_chain_ok": journal.chain_ok(),
     }
     certificate_body = receipts.build_certificate(
         now=now, inputs_sha=input_receipts, outputs_sha=outputs_sha,
@@ -198,11 +274,12 @@ def run_dry_run(root, manifest_path, graph_path, ledger_path, out_dir,
         notes=["la projection 'après' suppose patches appliqués et paquets "
                "livrés ; elle ne certifie aucun comportement runtime",
                "aucun moteur historique 00-11 chargé",
-               "aucun code LLM exécuté"])
+               "aucun code LLM exécuté"],
+        k3_verdict=k3_verdict, verdict_basis=verdict_basis)
     certificate = identity.stamp(
         object_id="ZCE-CONTROL-CERTIFICATE", object_type="control_certificate",
         body=certificate_body, now=now, source_repo=source_repo,
-        source_ref=source_ref, guard_ids=guards.ALL_GUARDS, k3_verdict="PASS",
+        source_ref=source_ref, guard_ids=guards.ALL_GUARDS, k3_verdict=k3_verdict,
         rollback={"procedure": "supprimer le répertoire de sortie du run"})
     outputs_sha["ZCE_CONTROL_CERTIFICATE_V1.json"] = receipts.write_stamped(
         receipts.out_path(out_dir, "ZCE_CONTROL_CERTIFICATE_V1.json"), certificate)
@@ -215,6 +292,7 @@ def run_dry_run(root, manifest_path, graph_path, ledger_path, out_dir,
         "coherence_before": measure["before"]["overall_point"],
         "coherence_after_projected": measure["after"]["overall_point"],
         "overall_delta_s": measure["overall_delta_s"],
+        "k3_verdict": k3_verdict,
         "verdict": certificate_body["verdict"],
     }
 
@@ -263,11 +341,10 @@ def _measure_coherence(decisions, resolved, dangling, patches, blocked,
     upper = counts(len(_active_guards()), len(_active_guards()),
                    violations_detected, violations_detected)
 
-    seqs = [e["seq"] for e in journal.entries]
-    monotonic = int(seqs == sorted(seqs) and len(set(seqs)) == len(seqs))
+    chain = receipts.verify_chain(journal.entries)
     stamped = sum(1 for e in journal.entries if e["ts"] == journal.now)
     temporal = counts(stamped, len(journal.entries),
-                      monotonic * len(journal.entries), len(journal.entries))
+                      int(chain["ok"]) * len(journal.entries), len(journal.entries))
 
     globalc = counts(len(pack_requests), len(missing_bricks),
                      len(rollback_entries),
@@ -278,7 +355,7 @@ def _measure_coherence(decisions, resolved, dangling, patches, blocked,
         "lower": "entrées et schémas validés / chargés",
         "peer": "décisions causées / totales ; doublons confirmés / réclamés",
         "upper": "guards actifs / requis ; cibles interdites bloquées / détectées",
-        "temporal": "événements horodatés / journalisés ; séquence strictement croissante",
+        "temporal": "événements horodatés / journalisés ; chaîne d'intégrité du journal valide",
         "global": "PACK_REQUEST émis / briques manquantes ; rollbacks scellés / cibles patchables",
     }
     process_frames = {"lower": lower, "peer": peer, "upper": upper,

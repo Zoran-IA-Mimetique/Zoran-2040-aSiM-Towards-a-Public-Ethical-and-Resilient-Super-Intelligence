@@ -20,8 +20,16 @@ class TestFormula(unittest.TestCase):
         for counts, expected in cases:
             self.assertAlmostEqual(coherence.s_score(*counts), expected, places=9)
 
-    def test_zero_applicable_is_empty_report_not_veto(self):
-        self.assertEqual(coherence.s_score(0, 0, 0, 0), 100.0)
+    def test_zero_applicable_is_veto_never_100(self):
+        # v1.0.1 : dénominateur de comptage nul → S=0, jamais S=100.
+        self.assertEqual(coherence.s_score(0, 0, 0, 0), 0.0)
+        self.assertEqual(coherence.s_score(5, 0, 5, 10), 0.0)
+        self.assertEqual(coherence.s_score(5, 10, 5, 0), 0.0)
+
+    def test_canonical_parameters_in_0_10(self):
+        self.assertEqual(coherence.BETA, 10.0)
+        self.assertEqual(coherence.delta_phi_coh(10, 10, 10, 10), 10.0)
+        self.assertEqual(coherence.delta_phi_coh(0, 10, 10, 10), 0.0)
 
     def test_t_sigma_dampen(self):
         self.assertAlmostEqual(coherence.s_score(10, 10, 10, 10, t=1.0), 50.0)

@@ -7,6 +7,15 @@ import os
 
 ISO_FMT = "%Y-%m-%dT%H:%M:%SZ"
 
+SHA256_HEX_LEN = 64
+
+
+def is_sha256(value) -> bool:
+    """Vrai si `value` est un SHA-256 hexadécimal minuscule bien formé."""
+    if not isinstance(value, str) or len(value) != SHA256_HEX_LEN:
+        return False
+    return all(c in "0123456789abcdef" for c in value)
+
 
 def canonical_json(obj) -> str:
     """Sérialisation canonique : clés triées, séparateurs fixes, UTF-8."""

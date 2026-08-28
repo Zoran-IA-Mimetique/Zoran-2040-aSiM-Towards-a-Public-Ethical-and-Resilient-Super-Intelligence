@@ -35,6 +35,10 @@ def main(argv=None):
 
     p_gate = sub.add_parser("gate-candidate", help="décider sur un candidat LLM structuré")
     p_gate.add_argument("--candidate", required=True)
+    p_gate.add_argument("--manifest", help="manifeste gelé (requis pour ACCEPT ; "
+                                           "absent → REJECT fail-closed)")
+    p_gate.add_argument("--ledger", help="registre des écarts (requis pour ACCEPT ; "
+                                         "absent → REJECT fail-closed)")
     p_gate.add_argument("--now")
     p_gate.add_argument("--out", help="fichier de décision (optionnel)")
 
@@ -87,7 +91,10 @@ def main(argv=None):
     if args.cmd == "gate-candidate":
         candidate = util.load_json(args.candidate)
         schema = util.load_json(os.path.join(SCHEMAS_DIR, "llm_candidate.schema.json"))
-        decision = llm_gate.gate(candidate, schema, util.parse_now(args.now))
+        manifest = util.load_json(args.manifest) if args.manifest else None
+        ledger = util.load_json(args.ledger) if args.ledger else None
+        decision = llm_gate.gate(candidate, schema, util.parse_now(args.now),
+                                 manifest=manifest, ledger=ledger)
         if args.out:
             util.write_json(args.out, decision)
         print(json.dumps(decision, sort_keys=True, ensure_ascii=False, indent=2))

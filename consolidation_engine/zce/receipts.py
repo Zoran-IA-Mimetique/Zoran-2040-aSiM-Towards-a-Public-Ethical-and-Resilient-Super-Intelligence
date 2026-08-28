@@ -1,14 +1,42 @@
-"""Journal append-only, reçus et certificat de contrôle.
+"""Journal append-only chaîné, reçus et certificat de contrôle.
 
-Le journal est la preuve d'ordre : chaque événement porte un numéro de
-séquence strictement croissant, l'horodatage gelé du run et le SHA-256
-de sa charge utile. Il démontre notamment que le plan de rollback est
-scellé AVANT le plan de patch (GUARD_ROLLBACK_FIRST).
+Le journal est la preuve d'ordre ET d'intégrité (v1.0.1) : chaque
+événement porte un numéro de séquence strictement croissant,
+l'horodatage gelé du run, le SHA-256 de sa charge utile, le
+`previous_event_sha256` de l'événement précédent (génèse = 64 zéros) et
+son propre `event_sha256`. Toute falsification d'un événement casse la
+chaîne, détectable par `verify_chain`. Il démontre notamment que le plan
+de rollback est scellé AVANT le plan de patch (GUARD_ROLLBACK_FIRST).
 """
 
 import os
 
 from . import util
+
+GENESIS_SHA256 = "0" * 64
+
+
+def _entry_sha256(entry: dict) -> str:
+    """SHA-256 de l'événement, calculé sur tous ses champs sauf event_sha256."""
+    hashable = {k: v for k, v in entry.items() if k != "event_sha256"}
+    return util.sha256_obj(hashable)
+
+
+def verify_chain(entries) -> dict:
+    """Vérifie le chaînage complet ; retourne {ok, broken_seq, cause}."""
+    previous = GENESIS_SHA256
+    for i, entry in enumerate(entries):
+        if entry.get("seq") != i + 1:
+            return {"ok": False, "broken_seq": entry.get("seq"),
+                    "cause": "séquence non strictement croissante"}
+        if entry.get("previous_event_sha256") != previous:
+            return {"ok": False, "broken_seq": entry["seq"],
+                    "cause": "previous_event_sha256 ne chaîne pas"}
+        if entry.get("event_sha256") != _entry_sha256(entry):
+            return {"ok": False, "broken_seq": entry["seq"],
+                    "cause": "event_sha256 falsifié ou contenu altéré"}
+        previous = entry["event_sha256"]
+    return {"ok": True, "broken_seq": None, "cause": ""}
 
 
 class Journal:
@@ -17,12 +45,15 @@ class Journal:
         self.entries = []
 
     def log(self, event: str, payload) -> dict:
+        previous = self.entries[-1]["event_sha256"] if self.entries else GENESIS_SHA256
         entry = {
             "seq": len(self.entries) + 1,
             "ts": self.now,
             "event": event,
             "payload_sha256": util.sha256_obj(payload),
+            "previous_event_sha256": previous,
         }
+        entry["event_sha256"] = _entry_sha256(entry)
         self.entries.append(entry)
         return entry
 
@@ -32,6 +63,9 @@ class Journal:
                 return entry["seq"]
         return None
 
+    def chain_ok(self) -> bool:
+        return verify_chain(self.entries)["ok"]
+
     def write(self, path: str) -> str:
         lines = [util.canonical_json(e) for e in self.entries]
         text = "\n".join(lines) + "\n"
@@ -40,9 +74,12 @@ class Journal:
 
 
 def build_certificate(now, inputs_sha, outputs_sha, counters, guard_states,
-                      aggregate_before, aggregate_after, blocked, notes):
+                      aggregate_before, aggregate_after, blocked, notes,
+                      k3_verdict, verdict_basis):
     """Certificat de contrôle du run : chaque claim est adossé à un reçu
-    (SHA d'entrée ou de sortie) ; aucun claim libre."""
+    (SHA d'entrée ou de sortie) ; aucun claim libre. Le verdict est REPRIS
+    de la mesure (cadre minimal observé), jamais codé en dur : un cadre
+    FAIL ou une borne basse à 0 interdit PASS_DRY_RUN."""
     claims = [
         {"claim": "entrées lues et validées par schéma",
          "receipt": inputs_sha},
@@ -74,7 +111,9 @@ def build_certificate(now, inputs_sha, outputs_sha, counters, guard_states,
         "coherence_overall_after_projected": aggregate_after,
         "patches_blocked_by_guards": blocked,
         "notes": notes,
-        "verdict": "PASS_DRY_RUN",
+        "k3_verdict": k3_verdict,
+        "verdict_basis": verdict_basis,
+        "verdict": "PASS_DRY_RUN" if k3_verdict == "PASS" else "FAIL_DRY_RUN",
     }
 
 

@@ -6,11 +6,17 @@ from zce import cli, guards, llm_gate, util
 
 BASE = os.path.join(os.path.dirname(__file__), "..")
 SCHEMA = util.load_json(os.path.join(BASE, "schemas", "llm_candidate.schema.json"))
+MANIFEST = util.load_json(os.path.join(BASE, "sample", "inputs", "manifest.json"))
+LEDGER = util.load_json(os.path.join(BASE, "sample", "inputs", "gap_ledger.json"))
 NOW = "2026-08-28T12:00:00Z"
 
 
 def load_candidate(name):
     return util.load_json(os.path.join(BASE, "sample", "candidates", name))
+
+
+def gate_with_context(candidate):
+    return llm_gate.gate(candidate, SCHEMA, NOW, manifest=MANIFEST, ledger=LEDGER)
 
 
 class TestGuards(unittest.TestCase):
@@ -43,13 +49,13 @@ class TestGuards(unittest.TestCase):
 
 class TestLlmGate(unittest.TestCase):
     def test_good_candidate_accepted_for_sandbox_only(self):
-        decision = llm_gate.gate(load_candidate("llm_candidate_ok.json"), SCHEMA, NOW)
+        decision = gate_with_context(load_candidate("llm_candidate_ok.json"))
         self.assertEqual(decision["decision"], llm_gate.DECISION_ACCEPT)
         self.assertFalse(decision["executed"])
         self.assertFalse(decision["applied"])
 
     def test_bad_candidate_rejected_with_named_causes(self):
-        decision = llm_gate.gate(load_candidate("llm_candidate_bad.json"), SCHEMA, NOW)
+        decision = gate_with_context(load_candidate("llm_candidate_bad.json"))
         self.assertEqual(decision["decision"], llm_gate.DECISION_REJECT)
         causes = " | ".join(decision["causes"])
         self.assertIn("GUARD_PROTECTED_COMPONENTS", causes)
@@ -60,20 +66,20 @@ class TestLlmGate(unittest.TestCase):
     def test_forbidden_execution_key_rejected(self):
         candidate = load_candidate("llm_candidate_ok.json")
         candidate["command"] = "echo hi"
-        decision = llm_gate.gate(candidate, SCHEMA, NOW)
+        decision = gate_with_context(candidate)
         self.assertEqual(decision["decision"], llm_gate.DECISION_REJECT)
         self.assertTrue(any("GUARD_NO_LLM_EXECUTION" in c for c in decision["causes"]))
 
     def test_claims_applied_forces_rollback(self):
         candidate = load_candidate("llm_candidate_ok.json")
         candidate["claims_applied"] = True
-        decision = llm_gate.gate(candidate, SCHEMA, NOW)
+        decision = gate_with_context(candidate)
         self.assertEqual(decision["decision"], llm_gate.DECISION_ROLLBACK)
 
     def test_oversized_diff_rejected(self):
         candidate = load_candidate("llm_candidate_ok.json")
         candidate["diff_unified"] = "\n".join("+x" for _ in range(200))
-        decision = llm_gate.gate(candidate, SCHEMA, NOW)
+        decision = gate_with_context(candidate)
         self.assertEqual(decision["decision"], llm_gate.DECISION_REJECT)
         self.assertTrue(any("GUARD_MODIFICATION_BUDGET" in c for c in decision["causes"]))
 

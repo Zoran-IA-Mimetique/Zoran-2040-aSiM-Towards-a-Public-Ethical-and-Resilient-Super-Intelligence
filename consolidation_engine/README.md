@@ -48,13 +48,15 @@ Robot déterministe de consolidation, conforme au plan canonique minimal
 | `GUARD_MODIFICATION_BUDGET` | ≤ 10 patchs/run, ≤ 3 fichiers/patch, ≤ 80 lignes de diff |
 | `GUARD_IMPACT_RADIUS` | cibles hors des préfixes autorisés bloquées |
 | `GUARD_ROLLBACK_FIRST` | plan de rollback scellé avant le plan de patch (prouvé au journal) |
+| `GUARD_AMYGDALA_K3_RECEIPT` | v1.0.1 : cible portant un `MISSING_GUARD` Amygdale/K3 bloquée tant que le reçu Amygdale→K3 (`guard_receipt`) n'est pas présent ET vérifié contre le manifeste |
+| `GUARD_OUTPUT_ISOLATION` | v1.0.1 : `--out` refusé fail-closed s'il est dans `--root` ou dans un répertoire d'entrée |
 
 ## Commandes exactes
 
 Depuis `consolidation_engine/` :
 
 ```bash
-# tests déterministes (33 tests)
+# tests déterministes (58 tests : 33 conservés de v1.0.0 + 25 pour v1.0.1)
 python3 -m unittest discover -s tests
 
 # valider les trois entrées gelées
@@ -68,9 +70,13 @@ python3 -m zce dry-run --root sample/frozen_tree \
   --ledger sample/inputs/gap_ledger.json \
   --out sample/reference_run --now 2026-08-28T12:00:00Z
 
-# porte déterministe des candidats LLM
-python3 -m zce gate-candidate --candidate sample/candidates/llm_candidate_ok.json   # exit 0
-python3 -m zce gate-candidate --candidate sample/candidates/llm_candidate_bad.json  # exit 3
+# porte déterministe des candidats LLM (v1.0.1 : manifeste + registre requis ;
+# sans eux, REJECT fail-closed — les chemins réels du diff sont confrontés à
+# target_path, au gap, au rayon autorisé et au rollback)
+python3 -m zce gate-candidate --candidate sample/candidates/llm_candidate_ok.json \
+  --manifest sample/inputs/manifest.json --ledger sample/inputs/gap_ledger.json   # exit 0
+python3 -m zce gate-candidate --candidate sample/candidates/llm_candidate_bad.json \
+  --manifest sample/inputs/manifest.json --ledger sample/inputs/gap_ledger.json   # exit 3
 
 # l'application est structurellement refusée en V1
 python3 -m zce apply   # exit 3, GUARD_DRY_RUN_ONLY
@@ -89,18 +95,33 @@ UTC, `content_sha256`, provenance, guards, rollback, verdict) :
 Le run de référence commité dans `sample/reference_run/` est rejouable :
 relancer la commande `dry-run` ci-dessus doit reproduire les mêmes octets.
 
-## Conventions de mesure V1 (déclarées, pas cachées)
+## Conventions de mesure v1.0.1 (déclarées, pas cachées)
 
+- Jauge canonique : `S = (β × ΔΦ_coh) / (1 + T + σ)` avec **β, ΔΦ_coh, T et
+  σ chacun dans [0,10]** (β = 10 ; `ΔΦ_coh = 10 × ratio_mission ×
+  ratio_relations`). Un paramètre hors bornes → veto conservateur nommé.
+- **Dénominateur de comptage nul ou donnée absente → S=0, intervalle
+  [0,100], classe `BOUNDED_CONSERVATIVE`, cause nommée — jamais S=100.**
 - Cadres `PASS` à 100, `FAIL` sinon ; agrégation = minimum des six cadres.
 - Cellules « avant » : classe `DETERMINISTIC_OBSERVED`, intervalle `[S,S]`,
-  preuve 1,0. Cellules « après » : classe **`PROJECTED_DRY_RUN`** (extension
-  V1) : la projection suppose patchs appliqués et paquets livrés ; intervalle
+  preuve 1,0. Cellules « après » : classe **`PROJECTED_DRY_RUN`** : la
+  projection suppose patchs appliqués et paquets livrés ; intervalle
   conservateur `[0,S]`, preuve 0,5, `runtime_promotion=false`. Elle ne
   certifie **aucun** comportement runtime.
-- Seul le cadre `local` distingue avant/après en V1 ; les cinq autres
-  mesurent le processus du run (validation, causes, guards, journal, reçus).
-- Dénominateur nul = cas « rapport vide » du §12 : ratio 1, la mesure reste
-  possible ; une donnée réellement absente déclenche le veto conservateur nommé.
+- Seul le cadre `local` distingue avant/après ; les cinq autres mesurent le
+  processus du run (validation, causes, guards, chaîne du journal, reçus).
+- **Verdict dérivé, jamais codé en dur** : le certificat et toutes les
+  sorties reprennent le verdict du cadre minimal de l'agrégat OBSERVÉ ; un
+  cadre `FAIL` ou une borne basse à 0 interdit `PASS_DRY_RUN` → le run de
+  référence, qui contient volontairement quarantaines et écarts, est
+  certifié **`FAIL_DRY_RUN`** (S avant 30,00 < 100), et c'est le
+  comportement attendu.
+- **Journal chaîné** : chaque événement porte `previous_event_sha256`
+  (génèse = 64 zéros) et `event_sha256` ; `receipts.verify_chain` détecte
+  toute falsification (testé).
+- **Intégrité des entrées** : fichier réel absent du manifeste, chemin /
+  `object_id` / `relation_id` / `gap_id` dupliqué ou SHA-256 mal formé →
+  run bloqué fail-closed avant tout contrôle.
 
 ## Rollback
 
@@ -109,8 +130,8 @@ relancer la commande `dry-run` ci-dessus doit reproduire les mêmes octets.
   `test_frozen_tree_never_modified`).
 - **De chaque patch futur :** `ZCE_ROLLBACK_PLAN_V1.json` fixe, avant toute
   proposition, le SHA-256 de référence et la procédure de restauration de
-  chaque cible ; le journal prouve l'ordre (`ROLLBACK_PLAN_SEALED` seq 6 <
-  `PATCH_PLAN_PROPOSED` seq 7).
+  chaque cible ; le journal prouve l'ordre (`ROLLBACK_PLAN_SEALED` seq 7 <
+  `PATCH_PLAN_PROPOSED` seq 8).
 - **De ce livrable :** revert du commit ; aucun fichier existant du dépôt
   n'est modifié.
 

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "zoran-consolidation-engine"
-version = "1.0.0"
+version = "1.0.1"
 description = "ZORAN_CONSOLIDATION_ENGINE_V1 — robot déterministe de consolidation (dry-run strict, plan canonique v1.1 §15)"
 requires-python = ">=3.9"
 license = {text = "MIT"}

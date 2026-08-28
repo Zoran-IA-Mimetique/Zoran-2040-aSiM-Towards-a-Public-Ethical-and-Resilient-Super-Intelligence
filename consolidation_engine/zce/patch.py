@@ -31,6 +31,33 @@ def build_rollback_plan(decisions, controls):
     return entries
 
 
+def missing_guard_block(path, gaps, controls):
+    """Correction v1.0.1 §1 : l'Amygdale est l'étalon de veto.
+
+    Une cible portant un écart MISSING_GUARD (veto Amygdale/K3 non prouvé)
+    est bloquée tant que le reçu Amygdale→K3 n'est pas présent ET vérifié :
+    le reçu doit désigner un objet du manifeste contrôlé OK dont le SHA-256
+    réel égale le SHA-256 déclaré du reçu. Retourne la liste des gap_id
+    bloquants (vide si aucun ou si tous les reçus sont vérifiés).
+    """
+    blocking = []
+    for gap in gaps:
+        if gap["kind"] != "MISSING_GUARD" or gap["target"] != path:
+            continue
+        receipt = gap.get("guard_receipt") or {}
+        receipt_path = receipt.get("path")
+        receipt_sha = receipt.get("content_sha256")
+        ctl = controls.get(receipt_path)
+        verified = (
+            ctl is not None and ctl["ok"]
+            and receipt_sha is not None
+            and ctl["actual_sha256"] == receipt_sha
+        )
+        if not verified:
+            blocking.append(gap["gap_id"])
+    return sorted(blocking)
+
+
 def build_patch_plan(decisions, gaps, rollback_entries, controls):
     """Propose un patch borné par décision WIRE/CORRECT et une résorption
     par DUPLICATE. Retourne (patches, blocked, budget_receipt)."""
@@ -46,6 +73,12 @@ def build_patch_plan(decisions, gaps, rollback_entries, controls):
         gap = gaps_by_id.get(decision.get("gap_id"))
         radius = gap.get("allowed_paths") if gap and gap.get("allowed_paths") else None
         violations = guards.check_patch_target(path, radius)
+        guard_gaps = missing_guard_block(path, gaps, controls)
+        if guard_gaps:
+            violations = violations + [guards.GUARD_AMYGDALA_K3_RECEIPT]
+            decision = dict(decision, cause="%s ; reçu Amygdale→K3 absent ou non "
+                            "vérifié pour: %s" % (decision["cause"],
+                                                  ", ".join(guard_gaps)))
         if violations:
             blocked.append({"path": path, "label": decision["label"],
                             "blocked_by": violations, "cause": decision["cause"]})

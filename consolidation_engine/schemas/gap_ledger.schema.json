@@ -17,7 +17,15 @@
           "allowed_paths": {"type": "array", "items": {"type": "string"}},
           "max_diff_lines": {"type": "integer"},
           "acceptance_tests": {"type": "array", "items": {"type": "string"}},
-          "evidence": {"type": "string"}
+          "evidence": {"type": "string"},
+          "guard_receipt": {
+            "type": "object",
+            "required": ["path", "content_sha256"],
+            "properties": {
+              "path": {"type": "string"},
+              "content_sha256": {"type": "string"}
+            }
+          }
         }
       }
     }
