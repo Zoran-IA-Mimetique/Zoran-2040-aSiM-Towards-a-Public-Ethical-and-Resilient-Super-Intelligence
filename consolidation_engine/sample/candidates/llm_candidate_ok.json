@@ -1,0 +1,16 @@
+{
+  "schema": "zoran.zce.llm_candidate.v1",
+  "candidate_id": "CAND-OK-001",
+  "kind": "PATCH_CANDIDATE",
+  "provider": "llm-exemple",
+  "target_path": "lib/zoran-core-runtime.ts",
+  "gap_id": "GAP-002",
+  "diff_unified": "--- a/lib/zoran-core-runtime.ts\n+++ b/lib/zoran-core-runtime.ts\n@@ -4,3 +4,4 @@\n export function adaptCoreResponse(response: unknown): unknown {\n-  return response;\n+  return { ...(response as object), receipts: true };\n }",
+  "tests_declared": ["E2E: texte, identité, verdict et cohérence inchangés"],
+  "falsifier": "si un reçu affiché diffère du reçu ZMOS source, le patch est faux",
+  "rollback_ref": {
+    "path": "lib/zoran-core-runtime.ts",
+    "content_sha256": "c20054a3e07fdec1750cdfd0c0665f83b745fc0c8190fc8ace79b3ae24abb200"
+  },
+  "claims_applied": false
+}

@@ -1,0 +1,37 @@
+{
+  "schema": "zoran.zce.relation_graph.v1",
+  "relations": [
+    {
+      "relation_id": "REL-001",
+      "type": "DEPENDS_ON",
+      "from": "components/nl_k3_boundary_v1/boundary.py",
+      "to": "components/k3_frame_algebra_v1_1/algebra.py",
+      "level": "STATIC",
+      "evidence": "la frontière consomme l'algèbre des cadres"
+    },
+    {
+      "relation_id": "REL-002",
+      "type": "TESTS",
+      "from": "components/nl_k3_boundary_v1/test_boundary.py",
+      "to": "components/nl_k3_boundary_v1/boundary.py",
+      "level": "TESTED",
+      "evidence": "test fail-closed rejouable"
+    },
+    {
+      "relation_id": "REL-003",
+      "type": "CONSUMES",
+      "from": "components/zoran_chat_runtime_v1/runtime.py",
+      "to": "components/gm4_verbalizer_v1/verbalizer.py",
+      "level": "RUNTIME",
+      "evidence": "le runtime déclare consommer le verbaliseur GM4, brique absente"
+    },
+    {
+      "relation_id": "REL-004",
+      "type": "DEPENDS_ON",
+      "from": "lib/zoran-core-runtime.ts",
+      "to": "components/zoran_chat_runtime_v1/runtime.py",
+      "level": "STATIC",
+      "evidence": "l'adaptateur cœur→UI dépend du runtime chat"
+    }
+  ]
+}

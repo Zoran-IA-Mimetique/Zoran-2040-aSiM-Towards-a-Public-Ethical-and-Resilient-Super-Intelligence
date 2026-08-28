@@ -1,0 +1,46 @@
+{
+  "schema": "zoran.zce.gap_ledger.v1",
+  "gaps": [
+    {
+      "gap_id": "GAP-001",
+      "kind": "WIRE",
+      "target": "components/k3_frame_algebra_v1_1/algebra.py",
+      "cause": "étalon numérique commun non branché (plan §7)",
+      "evidence": "aucune relation vers l'étalon dans le graphe"
+    },
+    {
+      "gap_id": "GAP-002",
+      "kind": "WIRE",
+      "target": "lib/zoran-core-runtime.ts",
+      "cause": "reçus non affichés côté interface (plan §7, adaptateur cœur→UI)",
+      "allowed_paths": ["lib/"],
+      "max_diff_lines": 60,
+      "acceptance_tests": ["E2E: texte, identité, verdict et cohérence inchangés"],
+      "evidence": "contrat UI présent, badge non raccordé"
+    },
+    {
+      "gap_id": "GAP-003",
+      "kind": "CORRECT",
+      "target": "components/zoran_chat_runtime_v1/runtime.py",
+      "cause": "faits spécialisés codés en dur à remplacer par le contexte ZMOS générique",
+      "allowed_paths": ["components/zoran_chat_runtime_v1/"],
+      "max_diff_lines": 40,
+      "acceptance_tests": ["même entrée + même état → même plan de réponse sur 1000 rejeux"],
+      "evidence": "plan §7, ligne runtime chat"
+    },
+    {
+      "gap_id": "GAP-004",
+      "kind": "MISSING_BRICK",
+      "target": "components/gm4_verbalizer_v1",
+      "cause": "verbaliseur GM4 déclaré consommé (REL-003) mais absent de la surface gelée",
+      "evidence": "relation pendante REL-003"
+    },
+    {
+      "gap_id": "GAP-005",
+      "kind": "MISSING_GUARD",
+      "target": "components/zoran_chat_runtime_v1/runtime.py",
+      "cause": "aucun reçu POST K3 émis par le tour de chat",
+      "evidence": "plan §7 : veto Amygdale non prouvé dans chaque tour"
+    }
+  ]
+}

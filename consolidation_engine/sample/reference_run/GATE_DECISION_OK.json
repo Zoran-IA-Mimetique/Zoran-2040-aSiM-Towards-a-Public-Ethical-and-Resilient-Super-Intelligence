@@ -1,0 +1,1 @@
+{"applied":false,"candidate_id":"CAND-OK-001","candidate_sha256":"d9a94bc5c9633a47811cc114c658b392ababdc52bbedf97b4194164a3e34cf6b","causes":[],"decided_at":"2026-08-28T12:00:00Z","decision":"ACCEPT_FOR_SANDBOX","executed":false,"next_step":"sandbox isolée + falsificateur + POST K3 + preuve de rollback avant toute admission réelle","schema":"zoran.zce.gate_decision.v1"}

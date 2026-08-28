@@ -1,0 +1,26 @@
+{
+  "$comment": "zoran.zce.manifest.v1 — manifeste des objets de la surface gelée. Sous-ensemble JSON Schema supporté par zce.schema_check : type, required, properties, items, enum, additionalProperties.",
+  "type": "object",
+  "required": ["schema", "source_repo", "source_ref", "objects"],
+  "properties": {
+    "schema": {"type": "string", "enum": ["zoran.zce.manifest.v1"]},
+    "source_repo": {"type": "string"},
+    "source_ref": {"type": "string"},
+    "objects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "object_type", "status", "content_sha256"],
+        "properties": {
+          "path": {"type": "string"},
+          "object_id": {"type": "string"},
+          "object_type": {"type": "string", "enum": ["component", "doc", "test", "config", "schema", "archive", "unknown"]},
+          "status": {"type": "string", "enum": ["active", "archived", "unknown"]},
+          "size": {"type": "integer"},
+          "content_sha256": {"type": "string"},
+          "field_scope": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    }
+  }
+}
