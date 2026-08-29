@@ -24,6 +24,10 @@ jobs:
     steps:
       - name: Checkout exact pull-request head
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          # Revue Codex P1 : sans ref explicite, pull_request teste le commit
+          # de merge synthétique, pas le head exact. On épingle le head SHA.
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - name: Set up Python 3.11
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
@@ -69,3 +73,54 @@ jobs:
           code=$?
           set -e
           test "$code" -eq 3
+
+  r3-evidence:
+    # Revue Codex P1 : le bundle R3 doit être validé par la CI, pas seulement
+    # transporté — sommes pinnées, manifeste interne, 20 tests, campagne 1M.
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: consolidation_engine
+    steps:
+      - name: Checkout exact pull-request head
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Set up Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+      - name: Install pytest
+        run: python -m pip install --quiet pytest
+      - name: Verify pinned sums, receipts and bundle internal manifest
+        run: >-
+          python tools/verify_r3_evidence.py
+          --evidence-dir evidence/r3
+          --workdir "$RUNNER_TEMP/opg"
+      - name: Run bundle unit and adversarial tests (20)
+        run: |
+          cd "$RUNNER_TEMP/opg/ZORAN_OPPOSED_PAIR_GATE_V1_1"
+          PYTHONPATH=. python -m pytest -q opposed_pair_gate/tests/test_gate.py
+      - name: Replay 1M deterministic campaign and compare to stored receipt
+        run: |
+          cd "$RUNNER_TEMP/opg/ZORAN_OPPOSED_PAIR_GATE_V1_1"
+          PYTHONPATH=. python opposed_pair_gate/tests/run_falsification_1m.py \
+            > "$RUNNER_TEMP/campaign_out.json"
+          python - <<'EOF'
+          import json, os
+          out_path = os.path.join(os.environ["RUNNER_TEMP"], "campaign_out.json")
+          root = os.path.join(os.environ["RUNNER_TEMP"], "opg",
+                              "ZORAN_OPPOSED_PAIR_GATE_V1_1")
+          got = json.load(open(out_path, encoding="utf-8"))
+          ref = json.load(open(os.path.join(
+              root, "opposed_pair_gate", "results", "FALSIFICATION_1M.json"),
+              encoding="utf-8"))
+          drop = {"elapsed_seconds"}
+          got_cmp = {k: v for k, v in got.items() if k not in drop}
+          ref_cmp = {k: v for k, v in ref.items() if k not in drop}
+          assert got_cmp == ref_cmp, "campagne rejouée ≠ reçu embarqué"
+          assert got["status"] == "PASS_1M_IMPLEMENTATION_GATE"
+          assert got["violations"] == 0
+          print("campagne 1M rejouée: conforme au reçu embarqué, 0 violation")
+          EOF
