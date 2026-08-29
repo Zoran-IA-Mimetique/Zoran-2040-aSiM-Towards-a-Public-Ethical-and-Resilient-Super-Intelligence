@@ -1,0 +1,31 @@
+{
+  "schema": "zoran.zce.r2-evidence-supersession.v1",
+  "object_id": "ZCE-R2-EVIDENCE-SUPERSESSION-R3",
+  "policy": "APPEND_ONLY_NO_REWRITE",
+  "chain": [
+    {
+      "stage": "R2_TERMINAL_EMBEDDED",
+      "passed": 19,
+      "total": 32,
+      "status": "SUPERSEDED_BUT_RETAINED"
+    },
+    {
+      "stage": "R2_TERMINAL_MAX_HARNESS",
+      "passed": 26,
+      "total": 32,
+      "snapshot_sha256": "92ee4a751688a55548fdaffa05901fb5722485b561fda94909adad54c8254331",
+      "audit_file_sha256": "8f63e99b607a0be78903abac86a8b2f692ae74e1d1d2026295889a578724bed5",
+      "status": "SUPERSEDED_BUT_RETAINED"
+    },
+    {
+      "stage": "R2_GIT_EVIDENCE_MAX_HARNESS",
+      "passed": 30,
+      "total": 32,
+      "snapshot_sha256": "c544f11012dff15a2c39e24e4402ce0482ae5bd3b7ce55b85d04f7ecec5c3c15",
+      "audit_file_sha256": "e0b65a91a8e406746a994fdab1a2154d4516cadf6ca84eac5ce22d0bb7de6489",
+      "status": "CURRENT_R2_MECHANICAL_BASELINE"
+    }
+  ],
+  "blocked_controls": ["C26", "C31"],
+  "interpretation": "INTERNAL_MECHANICAL_PROGRESS_ONLY_NO_PROMOTION"
+}

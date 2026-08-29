@@ -1,0 +1,20 @@
+{
+  "schema": "zoran.pack-request.k3-amygdala-productive-authorities.v1",
+  "object_id": "PACK_REQUEST_K3_AMYGDALA_PRODUCTIVE_AUTHORITIES_V1",
+  "status": "OPEN_BLOCKING_LIVE_K3_RESULT",
+  "observed": {
+    "distinct_productive_k3_authorities": 0,
+    "distinct_productive_amygdala_authorities": 0,
+    "externally_anchored_trust_bundle": false,
+    "pinned_productive_policy": false
+  },
+  "required_human_inputs": [
+    "name two distinct custodians or services",
+    "approve exact K3 and Amygdala roles and scopes",
+    "approve Amygdala policy, validity, rotation, revocation and anti-rollback rules",
+    "choose an external trust anchor",
+    "generate distinct private keys outside the robot and provide public keys plus signed delegations and proofs of possession"
+  ],
+  "robot_must_not": ["invent keys", "self-appoint productive authorities", "define trust root from environment variables", "certify live K3/Amygdala without distinct signatures"],
+  "closure_gate": "two_distinct_productive_authorities_found AND role_separation_proven AND anchor_provisioned AND live_transport_verified AND coordinated_substitution_rejected"
+}

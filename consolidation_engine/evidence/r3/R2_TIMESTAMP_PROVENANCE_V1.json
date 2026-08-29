@@ -1,0 +1,11 @@
+{
+  "schema": "zoran.zce.timestamp-provenance.v1",
+  "object_id": "ZCE-R2-TIMESTAMP-PROVENANCE-R3",
+  "fixed_epoch": "2026-08-29T12:00:00Z",
+  "fixed_epoch_semantics": "DETERMINISTIC_LOGICAL_TIME_FOR_REPRODUCIBLE_OUTPUTS",
+  "is_observed_wall_clock": false,
+  "is_external_time_anchor": false,
+  "prohibited_claim": "The fixed epoch must never be presented as factual creation or publication time.",
+  "observed_time_status": "NON_MESURÉ_WITHOUT_EXTERNAL_ANCHOR",
+  "c02_note": "Harness C02 remains a structural timestamp/hash check; factual provenance requires a separate external anchor."
+}

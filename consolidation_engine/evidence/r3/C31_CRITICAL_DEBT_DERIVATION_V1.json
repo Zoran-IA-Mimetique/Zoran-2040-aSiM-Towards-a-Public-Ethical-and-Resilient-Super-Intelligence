@@ -1,0 +1,37 @@
+{
+  "schema": "zoran.zce.c31-critical-debt-derivation.v1",
+  "object_id": "ZCE-C31-CRITICAL-DEBT-DERIVATION-R3",
+  "mission_contract_sha256": "040a8874c598f0aef31638fb3a5d958d53d0b2a8d412b319910f39b8403502ab",
+  "ledger": {
+    "open_count": 9,
+    "open_scopes": [
+      "frame:climate",
+      "frame:downstream_consumers",
+      "frame:energy",
+      "frame:law",
+      "frame:planetary",
+      "frame:privacy",
+      "frame:science",
+      "frame:upper",
+      "frame:upper:authority_signature"
+    ],
+    "chain_integrity": "PASS",
+    "rewrite_resistance": "TAMPER_EVIDENT_LOCAL_ONLY"
+  },
+  "external_critical_blockers": [
+    {
+      "id": "C26_REMOTE_PROMOTION_GOVERNANCE",
+      "status": "OPEN_BLOCKING",
+      "cause": "exact-head CI, independent review and protected branch are not all proven on the product target"
+    },
+    {
+      "id": "PACK_REQUEST_K3_AMYGDALA_PRODUCTIVE_AUTHORITIES_V1",
+      "status": "OPEN_BLOCKING_LIVE_K3_RESULT",
+      "cause": "two distinct productive authorities, pinned policy and externally anchored trust bundle are absent in the observed scope"
+    }
+  ],
+  "derivation": "9 append-only ledger debts + 2 external critical blockers = 11",
+  "derived_open_critical_debt": 11,
+  "c31_verdict": "FAIL",
+  "closure_rule": "C31 may pass only when every enumerated item is closed by linked evidence; no count may be self-declared or averaged."
+}

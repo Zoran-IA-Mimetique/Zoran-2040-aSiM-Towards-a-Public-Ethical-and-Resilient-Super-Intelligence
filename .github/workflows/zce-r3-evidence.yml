@@ -1,0 +1,71 @@
+name: ZCE R3 deterministic evidence
+
+on:
+  pull_request:
+    paths:
+      - "consolidation_engine/**"
+      - ".github/workflows/zce-r3-evidence.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: zce-r3-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deterministic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: consolidation_engine
+    steps:
+      - name: Checkout exact pull-request head
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Set up Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+      - name: Unit tests
+        run: python -m unittest discover -s tests
+      - name: Validate frozen inputs
+        run: >-
+          python -m zce validate
+          --manifest sample/inputs/manifest.json
+          --graph sample/inputs/relation_graph.json
+          --ledger sample/inputs/gap_ledger.json
+      - name: Reproduce reference run byte-for-byte
+        run: |
+          python -m zce dry-run \
+            --root sample/frozen_tree \
+            --manifest sample/inputs/manifest.json \
+            --graph sample/inputs/relation_graph.json \
+            --ledger sample/inputs/gap_ledger.json \
+            --out sample/reference_run \
+            --now 2026-08-28T12:00:00Z
+          git diff --exit-code -- sample/reference_run
+      - name: Accept admissible candidate
+        run: >-
+          python -m zce gate-candidate
+          --candidate sample/candidates/llm_candidate_ok.json
+          --manifest sample/inputs/manifest.json
+          --ledger sample/inputs/gap_ledger.json
+      - name: Reject hostile candidate with exit 3
+        run: |
+          set +e
+          python -m zce gate-candidate \
+            --candidate sample/candidates/llm_candidate_bad.json \
+            --manifest sample/inputs/manifest.json \
+            --ledger sample/inputs/gap_ledger.json
+          code=$?
+          set -e
+          test "$code" -eq 3
+      - name: Keep apply structurally disabled
+        run: |
+          set +e
+          python -m zce apply
+          code=$?
+          set -e
+          test "$code" -eq 3
