@@ -7,7 +7,7 @@
   "branch": "claude/zoran-consolidation-engine-qj175v",
   "base_sha": "cdf9039777b4f71f62153a06d96ecf949ed94cc5",
   "r4_parent_head": "8d7d027a35d542576f6f0186b3e78f5e4f5f026b",
-  "exact_r4_head_resolution": "Read pull_request.head.sha, then require both workflow jobs and the review commit_id to equal it. Do not trust a synthetic merge SHA.",
+  "exact_r4_head_resolution": "Capture pull_request.head.sha into ZCE_EXPECTED_HEAD BEFORE any fetch, then require the detached checkout, both workflow check-run head_sha values and the review commit_id to equal that immutable value. Never trust a synthetic merge SHA or a re-resolved mutable ref.",
   "proof_index": {
     "closed_manifest": "evidence/r4/SHA256SUMS",
     "mission_contract": "evidence/r4/source/ZCE_R4_MISSION_CONTRACT.json",
@@ -23,15 +23,24 @@
     "opg_bundle": "evidence/r3/ZORAN_OPPOSED_PAIR_GATE_V1_1.zip"
   },
   "replay_commands": [
+    "test -n \"$ZCE_EXPECTED_HEAD\" && test \"${#ZCE_EXPECTED_HEAD}\" -eq 40 && export ZCE_EXPECTED_HEAD",
     "git fetch origin pull/10/head:refs/remotes/origin/pr-10-head",
-    "git checkout --detach refs/remotes/origin/pr-10-head",
-    "test \"$(git rev-parse HEAD)\" = \"$(git rev-parse refs/remotes/origin/pr-10-head)\"",
+    "git checkout --detach \"$ZCE_EXPECTED_HEAD\"",
+    "test \"$(git rev-parse HEAD)\" = \"$ZCE_EXPECTED_HEAD\"",
     "(cd consolidation_engine && python -m unittest discover -s tests)",
-    "(cd consolidation_engine && python tools/verify_r3_evidence.py --evidence-dir evidence/r3 --r4-evidence-dir evidence/r4 --workdir \"$(mktemp -d)\" --require-c31-v2)",
+    "export ZCE_OPG_WORKDIR=\"$(mktemp -d)/opg\"",
+    "(cd consolidation_engine && python tools/verify_r3_evidence.py --evidence-dir evidence/r3 --r4-evidence-dir evidence/r4 --workdir \"$ZCE_OPG_WORKDIR\" --require-c31-v2)",
+    "(cd \"$ZCE_OPG_WORKDIR/ZORAN_OPPOSED_PAIR_GATE_V1_1\" && PYTHONPATH=. python -m pytest -q opposed_pair_gate/tests/test_gate.py)",
+    "(cd \"$ZCE_OPG_WORKDIR/ZORAN_OPPOSED_PAIR_GATE_V1_1\" && PYTHONPATH=. python opposed_pair_gate/tests/run_falsification_1m.py > \"$ZCE_OPG_WORKDIR/campaign_out.json\")",
+    "jq -S 'del(.elapsed_seconds)' \"$ZCE_OPG_WORKDIR/campaign_out.json\" > \"$ZCE_OPG_WORKDIR/campaign_norm.json\"",
+    "jq -S 'del(.elapsed_seconds)' \"$ZCE_OPG_WORKDIR/ZORAN_OPPOSED_PAIR_GATE_V1_1/opposed_pair_gate/results/FALSIFICATION_1M.json\" > \"$ZCE_OPG_WORKDIR/campaign_ref.json\"",
+    "diff \"$ZCE_OPG_WORKDIR/campaign_norm.json\" \"$ZCE_OPG_WORKDIR/campaign_ref.json\"",
+    "test \"$(jq -r .violations \"$ZCE_OPG_WORKDIR/campaign_out.json\")\" = \"0\" && test \"$(jq -r .status \"$ZCE_OPG_WORKDIR/campaign_out.json\")\" = \"PASS_1M_IMPLEMENTATION_GATE\"",
     "git bundle verify consolidation_engine/evidence/r4/source/ZCE_R2_GIT_EVIDENCE_9808ae1.bundle",
     "gh api repos/Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence/branches/main",
     "gh api repos/Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence/rulesets",
-    "gh pr checks 10 --repo Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence"
+    "test \"$(gh api \"repos/Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence/commits/$ZCE_EXPECTED_HEAD/check-runs\" --jq '[.check_runs[] | select((.name==\"deterministic\" or .name==\"r3-evidence\") and .conclusion==\"success\" and .head_sha==env.ZCE_EXPECTED_HEAD)] | length')\" -eq 2",
+    "test \"$(gh api repos/Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence/pulls/10/reviews --jq '[.[] | select(.commit_id == env.ZCE_EXPECTED_HEAD)] | length')\" -ge 1"
   ],
   "c31_acceptance": {
     "ledger_chain": "PASS",

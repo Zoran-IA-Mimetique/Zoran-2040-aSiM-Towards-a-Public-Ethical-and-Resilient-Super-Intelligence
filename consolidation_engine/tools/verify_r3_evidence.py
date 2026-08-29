@@ -29,7 +29,7 @@ ZIP_MANIFEST = f"{ZIP_ROOT}/MANIFEST_SHA256.json"
 OPG_ZIP_SHA256 = "267394d8a0620be5ace50b7c8f164d684d75d1e57e136b361b5bc7772976d520"
 OPG_ZIP_SIZE = 25602
 R3_SHA256SUMS_SHA256 = "4f87b2e42390181099b58cfc9a86e23e71a41c0999276d2a50c5c49ad59468a9"
-R4_SHA256SUMS_SHA256 = "73d107bd6d990eefe7f8a6fd8155a1972eae6f7c579b07dab7f8d5c91aa982f1"
+R4_SHA256SUMS_SHA256 = "6982e5e24edf95466bb45afd0640b1d6ccfb602b24bf81278b9761c227a3272c"
 OPG_ALLOWED_PATHS = (
     "LETTRE_MISSION_CHATGPT_WORK_OPG_V1.md",
     "OPG_INTEGRATION_K3_ZMOS.md",
@@ -96,7 +96,7 @@ R4_PINNED_ROOT_SHA256 = {
     "R2_EVIDENCE_SUPERSESSION_V2.json":
         "1a5fb39d127c7db36b53ea5c9ae9e8c06874b42f87cc3ae3d31188c6c16762d5",
     "R4_CONTRADICTION_REPLAY_PACK_V1.json":
-        "cd4fc038ac9371416f15a352588fec9a94df8b28eecaf1f76b15a445d2fe4a0e",
+        "7b66e780e691bbe78ede71bbcd9079742cab78b4d77c8f8afaf868761f1c4f15",
 }
 
 EXPECTED_DEBT_KEYS = [
@@ -1201,15 +1201,24 @@ def validate_remote_and_replay(r3_dir: Path, parsed: dict) -> None:
         "opg_bundle": "evidence/r3/ZORAN_OPPOSED_PAIR_GATE_V1_1.zip",
     }
     expected_commands = [
+        "test -n \"$ZCE_EXPECTED_HEAD\" && test \"${#ZCE_EXPECTED_HEAD}\" -eq 40 && export ZCE_EXPECTED_HEAD",
         "git fetch origin pull/10/head:refs/remotes/origin/pr-10-head",
-        "git checkout --detach refs/remotes/origin/pr-10-head",
-        "test \"$(git rev-parse HEAD)\" = \"$(git rev-parse refs/remotes/origin/pr-10-head)\"",
+        "git checkout --detach \"$ZCE_EXPECTED_HEAD\"",
+        "test \"$(git rev-parse HEAD)\" = \"$ZCE_EXPECTED_HEAD\"",
         "(cd consolidation_engine && python -m unittest discover -s tests)",
-        "(cd consolidation_engine && python tools/verify_r3_evidence.py --evidence-dir evidence/r3 --r4-evidence-dir evidence/r4 --workdir \"$(mktemp -d)\" --require-c31-v2)",
+        "export ZCE_OPG_WORKDIR=\"$(mktemp -d)/opg\"",
+        "(cd consolidation_engine && python tools/verify_r3_evidence.py --evidence-dir evidence/r3 --r4-evidence-dir evidence/r4 --workdir \"$ZCE_OPG_WORKDIR\" --require-c31-v2)",
+        "(cd \"$ZCE_OPG_WORKDIR/ZORAN_OPPOSED_PAIR_GATE_V1_1\" && PYTHONPATH=. python -m pytest -q opposed_pair_gate/tests/test_gate.py)",
+        "(cd \"$ZCE_OPG_WORKDIR/ZORAN_OPPOSED_PAIR_GATE_V1_1\" && PYTHONPATH=. python opposed_pair_gate/tests/run_falsification_1m.py > \"$ZCE_OPG_WORKDIR/campaign_out.json\")",
+        "jq -S 'del(.elapsed_seconds)' \"$ZCE_OPG_WORKDIR/campaign_out.json\" > \"$ZCE_OPG_WORKDIR/campaign_norm.json\"",
+        "jq -S 'del(.elapsed_seconds)' \"$ZCE_OPG_WORKDIR/ZORAN_OPPOSED_PAIR_GATE_V1_1/opposed_pair_gate/results/FALSIFICATION_1M.json\" > \"$ZCE_OPG_WORKDIR/campaign_ref.json\"",
+        "diff \"$ZCE_OPG_WORKDIR/campaign_norm.json\" \"$ZCE_OPG_WORKDIR/campaign_ref.json\"",
+        "test \"$(jq -r .violations \"$ZCE_OPG_WORKDIR/campaign_out.json\")\" = \"0\" && test \"$(jq -r .status \"$ZCE_OPG_WORKDIR/campaign_out.json\")\" = \"PASS_1M_IMPLEMENTATION_GATE\"",
         "git bundle verify consolidation_engine/evidence/r4/source/ZCE_R2_GIT_EVIDENCE_9808ae1.bundle",
         "gh api repos/Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence/branches/main",
         "gh api repos/Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence/rulesets",
-        "gh pr checks 10 --repo Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence",
+        "test \"$(gh api \"repos/Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence/commits/$ZCE_EXPECTED_HEAD/check-runs\" --jq '[.check_runs[] | select((.name==\"deterministic\" or .name==\"r3-evidence\") and .conclusion==\"success\" and .head_sha==env.ZCE_EXPECTED_HEAD)] | length')\" -eq 2",
+        "test \"$(gh api repos/Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence/pulls/10/reviews --jq '[.[] | select(.commit_id == env.ZCE_EXPECTED_HEAD)] | length')\" -ge 1",
     ]
     expected_c31_acceptance = {
         "ledger_chain": "PASS",
@@ -1242,7 +1251,7 @@ def validate_remote_and_replay(r3_dir: Path, parsed: dict) -> None:
             replay["base_sha"] == BASE_SHA and
             replay["r4_parent_head"] == remote["observed_head"] == BASELINE_HEAD and
             replay["exact_r4_head_resolution"] ==
-            "Read pull_request.head.sha, then require both workflow jobs and the review commit_id to equal it. Do not trust a synthetic merge SHA." and
+            "Capture pull_request.head.sha into ZCE_EXPECTED_HEAD BEFORE any fetch, then require the detached checkout, both workflow check-run head_sha values and the review commit_id to equal that immutable value. Never trust a synthetic merge SHA or a re-resolved mutable ref." and
             replay["proof_index"] == expected_proof_index and
             replay["replay_commands"] == expected_commands and
             c31 == expected_c31_acceptance and
