@@ -56,7 +56,7 @@ Robot déterministe de consolidation, conforme au plan canonique minimal
 Depuis `consolidation_engine/` :
 
 ```bash
-# tests déterministes (58 tests : 33 conservés de v1.0.0 + 25 pour v1.0.1)
+# tests déterministes (88 tests au jalon R4, sans skip/xfail admis en CI)
 python3 -m unittest discover -s tests
 
 # valider les trois entrées gelées
@@ -64,19 +64,26 @@ python3 -m zce validate --manifest sample/inputs/manifest.json \
   --graph sample/inputs/relation_graph.json --ledger sample/inputs/gap_ledger.json
 
 # dry-run complet sur l'échantillon gelé (horodatage gelé → rejouable bit à bit)
+ZCE_REPLAY_TMP="$(mktemp -d)"
+ZCE_REPLAY_OUT="$ZCE_REPLAY_TMP/reference_run"  # doit ne pas exister
 python3 -m zce dry-run --root sample/frozen_tree \
   --manifest sample/inputs/manifest.json \
   --graph sample/inputs/relation_graph.json \
   --ledger sample/inputs/gap_ledger.json \
-  --out sample/reference_run --now 2026-08-28T12:00:00Z
+  --out "$ZCE_REPLAY_OUT" --now 2026-08-28T12:00:00Z
 
 # porte déterministe des candidats LLM (v1.0.1 : manifeste + registre requis ;
 # sans eux, REJECT fail-closed — les chemins réels du diff sont confrontés à
 # target_path, au gap, au rayon autorisé et au rollback)
 python3 -m zce gate-candidate --candidate sample/candidates/llm_candidate_ok.json \
-  --manifest sample/inputs/manifest.json --ledger sample/inputs/gap_ledger.json   # exit 0
+  --manifest sample/inputs/manifest.json --ledger sample/inputs/gap_ledger.json \
+  --now 2026-08-28T12:00:00Z --out "$ZCE_REPLAY_OUT/GATE_DECISION_OK.json"   # exit 0
 python3 -m zce gate-candidate --candidate sample/candidates/llm_candidate_bad.json \
-  --manifest sample/inputs/manifest.json --ledger sample/inputs/gap_ledger.json   # exit 3
+  --manifest sample/inputs/manifest.json --ledger sample/inputs/gap_ledger.json \
+  --now 2026-08-28T12:00:00Z --out "$ZCE_REPLAY_OUT/GATE_DECISION_BAD.json"  # exit 3
+
+# ensemble fermé exact : 9 sorties du dry-run + 2 décisions de gate
+diff -r sample/reference_run "$ZCE_REPLAY_OUT"
 
 # l'application est structurellement refusée en V1
 python3 -m zce apply   # exit 3, GUARD_DRY_RUN_ONLY
@@ -92,8 +99,10 @@ UTC, `content_sha256`, provenance, guards, rollback, verdict) :
 `ZCE_PACK_REQUESTS_V1.json`, `ZCE_COHERENCE_MEASURE_V1.json`,
 `ZCE_JOURNAL_V1.jsonl`, `ZCE_CONTROL_CERTIFICATE_V1.json`.
 
-Le run de référence commité dans `sample/reference_run/` est rejouable :
-relancer la commande `dry-run` ci-dessus doit reproduire les mêmes octets.
+Le run de référence commité dans `sample/reference_run/` est rejouable dans
+un répertoire **neuf** : le dry-run reproduit 9 fichiers, puis les deux gates
+horodatés reproduisent `GATE_DECISION_OK.json` et `GATE_DECISION_BAD.json`.
+L'ensemble fermé des 11 fichiers doit être identique octet par octet.
 
 ## Conventions de mesure v1.0.1 (déclarées, pas cachées)
 

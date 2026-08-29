@@ -1,0 +1,31 @@
+{
+  "schema": "zoran.zce.c31-fail-closed-criticality-policy.v1",
+  "object_id": "ZCE-C31-FAIL-CLOSED-CRITICALITY-POLICY-R4",
+  "mission_contract_sha256": "cc4c8aa7260b5ade8bfa970137cc9a73e58cd4b0c9024620e1458fbf9c423fb7",
+  "scope": "LOCAL_R4_AUDIT_ONLY_NON_CANONICAL",
+  "rules": [
+    {
+      "id": "NO_INVENTED_CRITICALITY",
+      "condition": "A debt record has no signed or pinned criticality field or weighting policy.",
+      "result": "Its criticality is NON_MESURÉ; it is neither upgraded to CRITICAL nor downgraded to NON_CRITICAL."
+    },
+    {
+      "id": "ZERO_NOT_PROVEN_FROM_UNKNOWN",
+      "condition": "One or more debts have NON_MESURÉ criticality.",
+      "result": "The exact open critical debt count is NON_MESURÉ and zero critical debt is not proven."
+    },
+    {
+      "id": "C31_FAIL_CLOSED",
+      "condition": "Zero open critical debt is not proven or an explicit promotion blocker remains open.",
+      "result": "C31 verdict is FAIL."
+    }
+  ],
+  "prohibited_inferences": [
+    "OPEN implies CRITICAL",
+    "UNWEIGHTED_COUNT implies severity",
+    "NON_MESURÉ implies safe",
+    "a PACK_REQUEST automatically adds a second debt"
+  ],
+  "promotion_effect": "NONE",
+  "global_zoran": "NON_MESURÉ"
+}

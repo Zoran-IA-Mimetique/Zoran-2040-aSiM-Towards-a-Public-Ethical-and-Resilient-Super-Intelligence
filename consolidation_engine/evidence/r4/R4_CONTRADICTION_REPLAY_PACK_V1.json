@@ -1,0 +1,69 @@
+{
+  "schema": "zoran.zce.r4-contradiction-replay-pack.v1",
+  "object_id": "ZCE-R4-CONTRADICTION-REPLAY-PACK-V1",
+  "mission_contract_sha256": "cc4c8aa7260b5ade8bfa970137cc9a73e58cd4b0c9024620e1458fbf9c423fb7",
+  "repository": "Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence",
+  "pull_request": 10,
+  "branch": "claude/zoran-consolidation-engine-qj175v",
+  "base_sha": "cdf9039777b4f71f62153a06d96ecf949ed94cc5",
+  "r4_parent_head": "8d7d027a35d542576f6f0186b3e78f5e4f5f026b",
+  "exact_r4_head_resolution": "Read pull_request.head.sha, then require both workflow jobs and the review commit_id to equal it. Do not trust a synthetic merge SHA.",
+  "proof_index": {
+    "closed_manifest": "evidence/r4/SHA256SUMS",
+    "mission_contract": "evidence/r4/source/ZCE_R4_MISSION_CONTRACT.json",
+    "c31_derivation": "evidence/r4/C31_LEDGER_PIN_AND_DERIVATION_V2.json",
+    "c31_criticality_policy": "evidence/r4/C31_FAIL_CLOSED_CRITICALITY_POLICY_V1.json",
+    "c31_authority_alias_relation": "evidence/r4/C31_AUTHORITY_PACK_DEBT_RELATION_V1.json",
+    "c26_pack_request": "evidence/r4/C26_PROTECTED_PROMOTION_AUTHORITY_PACK_REQUEST_V1.json",
+    "r2_supersession": "evidence/r4/R2_EVIDENCE_SUPERSESSION_V2.json",
+    "remote_supersession": "evidence/r4/GIT_REMOTE_PROMOTION_EVIDENCE_SUPERSESSION_V2.json",
+    "r2_bundle": "evidence/r4/source/ZCE_R2_GIT_EVIDENCE_9808ae1.bundle",
+    "r2_ledger": "evidence/r4/source/R2_DETTE_COH_9808AE1.jsonl",
+    "r2_k3_audit": "evidence/r4/source/R2_K3_AUDIT_9808AE1.jsonl",
+    "opg_bundle": "evidence/r3/ZORAN_OPPOSED_PAIR_GATE_V1_1.zip"
+  },
+  "replay_commands": [
+    "git fetch origin pull/10/head:refs/remotes/origin/pr-10-head",
+    "git checkout --detach refs/remotes/origin/pr-10-head",
+    "test \"$(git rev-parse HEAD)\" = \"$(git rev-parse refs/remotes/origin/pr-10-head)\"",
+    "(cd consolidation_engine && python -m unittest discover -s tests)",
+    "(cd consolidation_engine && python tools/verify_r3_evidence.py --evidence-dir evidence/r3 --r4-evidence-dir evidence/r4 --workdir \"$(mktemp -d)\" --require-c31-v2)",
+    "git bundle verify consolidation_engine/evidence/r4/source/ZCE_R2_GIT_EVIDENCE_9808ae1.bundle",
+    "gh api repos/Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence/branches/main",
+    "gh api repos/Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence/rulesets",
+    "gh pr checks 10 --repo Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence"
+  ],
+  "c31_acceptance": {
+    "ledger_chain": "PASS",
+    "open_ledger_debts": 9,
+    "external_open_promotion_blockers": 1,
+    "authority_pack_identity_equivalence": "NON_MESURÉ",
+    "authority_pack_additional_count_range": [
+      0,
+      1
+    ],
+    "unique_unresolved_item_count_range": [
+      9,
+      11
+    ],
+    "exact_open_critical_debt": "NON_MESURÉ",
+    "zero_open_critical_debt_proven": false,
+    "verdict_until_zero": "FAIL"
+  },
+  "c26_acceptance": {
+    "exact_head_ci": "PASS required",
+    "independent_review": "PASS required on exact final head",
+    "real_branch_protection_or_ruleset": "PASS required",
+    "current_verdict": "FAIL"
+  },
+  "non_measured_limits": [
+    "global Zoran promotion",
+    "causal external validation",
+    "productive K3/Amygdala authorities",
+    "product runtime integration",
+    "supply-chain SBOM and signed attestation",
+    "GitHub-hosted ubuntu-24.04 runner image immutability",
+    "Xavier GitHub identity until explicitly resolved"
+  ],
+  "global_zoran": "NON_MESURÉ"
+}

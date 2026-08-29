@@ -1,0 +1,63 @@
+{
+  "schema": "zoran.zce.r2-evidence-supersession.v2",
+  "object_id": "ZCE-R2-EVIDENCE-SUPERSESSION-R4",
+  "mission_contract_sha256": "cc4c8aa7260b5ade8bfa970137cc9a73e58cd4b0c9024620e1458fbf9c423fb7",
+  "policy": "APPEND_ONLY_NO_REWRITE",
+  "supersedes": {
+    "object_id": "ZCE-R2-EVIDENCE-SUPERSESSION-R3",
+    "path": "../r3/R2_EVIDENCE_SUPERSESSION_V1.json",
+    "content_sha256": "a88e653414245e7dd0ca4b01c639a6963404655f813eff3713d293a0392403c5",
+    "reason": "V1 mixed canonical snapshot digests with byte-level audit_file_sha256 labels and did not pin the legacy 19/32 receipt/report."
+  },
+  "source_bundle": {
+    "path": "source/ZCE_R2_GIT_EVIDENCE_9808ae1.bundle",
+    "sha256": "efabe41e40d0c4fa650f216778bc50726999ae657a78f87f6d9b65217b118777",
+    "commit": "9808ae11d2f7f9ab3c8f9f435620f67c6bcdb6b6",
+    "tree": "28301c9dde19ea6456cdfff0259ad4f71214415e"
+  },
+  "chain": [
+    {
+      "stage": "R2_TERMINAL_EMBEDDED_LEGACY_CLAIM",
+      "passed": 19,
+      "total": 32,
+      "receipt_bundle_path": "ZORAN_ZCE_PARTIAL_ROBOT_R2/ZCE_PARTIAL_R2_TERMINAL_RECEIPT.json",
+      "receipt_file_sha256": "3f36d3309b59e3c297740f061c85a039aa26881a3ad9aabda32bb20497b17044",
+      "report_bundle_path": "ZORAN_ZCE_PARTIAL_ROBOT_R2/ZCE_PARTIAL_R2_TERMINAL_REPORT.md",
+      "report_file_sha256": "e443ef59c89082a2101d462b38eb652d51e60433a7066a4efac43baa2f819493",
+      "status": "SUPERSEDED_BUT_RETAINED",
+      "interpretation": "Legacy terminal claim, not a structured Max Harness snapshot."
+    },
+    {
+      "stage": "R2_TERMINAL_MAX_HARNESS",
+      "passed": 26,
+      "total": 32,
+      "snapshot_path": "source/ZCE_R2_MAX_HARNESS_TERMINAL_SNAPSHOT.json",
+      "snapshot_file_sha256": "ae3b084c42be562c6ff99d567534913c2a6e9a5251e31c28c67b99ad8d8a5dc1",
+      "snapshot_canonical_sha256": "92ee4a751688a55548fdaffa05901fb5722485b561fda94909adad54c8254331",
+      "audit_path": "source/ZCE_R2_MAX_HARNESS_TERMINAL_AUDIT.json",
+      "audit_file_sha256": "9fc954d5583b6c94bc98e838d4e867541245094057a742b30325eac4bfe81194",
+      "status": "SUPERSEDED_BUT_RETAINED"
+    },
+    {
+      "stage": "R2_GIT_EVIDENCE_MAX_HARNESS",
+      "passed": 30,
+      "total": 32,
+      "snapshot_path": "source/ZCE_R2_MAX_HARNESS_GIT_EVIDENCE_SNAPSHOT.json",
+      "snapshot_file_sha256": "a1c4ef95b81c2c5f2e8e2e48ef18e1d52089abbcbb2573911a27d512c34f07f2",
+      "snapshot_canonical_sha256": "c544f11012dff15a2c39e24e4402ce0482ae5bd3b7ce55b85d04f7ecec5c3c15",
+      "audit_path": "source/ZCE_R2_MAX_HARNESS_GIT_EVIDENCE_AUDIT.json",
+      "audit_file_sha256": "c94cb1f8d03a3600b9dba48c0594ce1163d902c9571bee8f95b873e10853904b",
+      "status": "CURRENT_R2_MECHANICAL_BASELINE"
+    }
+  ],
+  "digest_semantics": {
+    "file_sha256": "SHA256 over exact stored bytes",
+    "snapshot_canonical_sha256": "SHA256 over UTF-8 JSON with recursive key sort, separators comma/colon, ensure_ascii=false, no trailing LF"
+  },
+  "blocked_controls": [
+    "C26",
+    "C31"
+  ],
+  "interpretation": "INTERNAL_MECHANICAL_PROGRESS_ONLY_NO_PROMOTION",
+  "global_zoran": "NON_MESURÉ"
+}

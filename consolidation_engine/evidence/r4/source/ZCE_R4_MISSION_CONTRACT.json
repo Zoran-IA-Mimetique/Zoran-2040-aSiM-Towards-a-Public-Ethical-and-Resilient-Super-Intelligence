@@ -1,0 +1,99 @@
+{
+  "contract_sha256": "cc4c8aa7260b5ade8bfa970137cc9a73e58cd4b0c9024620e1458fbf9c423fb7",
+  "execution_plan": {
+    "objective": "Corriger les trois falsifications de la PR #10 sur la même branche, obtenir les preuves exact-head/revue/dettes, recalculer Max Harness et émettre POST sans fusion ni déploiement.",
+    "requirements": [
+      {
+        "id": "role",
+        "value": "robot_seul_audit_correction_couture_certification"
+      },
+      {
+        "id": "branch",
+        "value": "claude/zoran-consolidation-engine-qj175v"
+      },
+      {
+        "id": "no_main",
+        "value": true
+      },
+      {
+        "id": "no_merge_deploy",
+        "value": true
+      },
+      {
+        "id": "c26",
+        "value": "exact_head_ci_review_protection_fail_closed"
+      },
+      {
+        "id": "c31",
+        "value": "non_circular_no_double_count_debt_chain"
+      },
+      {
+        "id": "global",
+        "value": "NON_MESURÉ"
+      },
+      {
+        "id": "brick_request",
+        "value": "report_immediately_to_root"
+      }
+    ]
+  },
+  "objective": {
+    "id": "objective",
+    "sha256": "e84fce0a59b8ac6cb8d3f1c49c14de9a00fa14cc728e1c82d4190653d38b459a",
+    "source_quote": "Tu dois récupérer le HEAD public, ré-auditer, corriger les 3 points, pousser sur la même branche (jamais main), déclencher CI, redemander revue, corriger jusqu’à zéro finding technique, recalculer Max Harness et émettre POST.",
+    "value": "Corriger les trois falsifications de la PR #10 sur la même branche, obtenir les preuves exact-head/revue/dettes, recalculer Max Harness et émettre POST sans fusion ni déploiement."
+  },
+  "requirements": [
+    {
+      "id": "role",
+      "sha256": "a5c3d32f9630d9f7545a35802ffc8d8a173b762a130d03a5ea6ec39ff214224b",
+      "source_quote": "toi seul audites, corriges, couds, certifies et produis les reçus/rapports",
+      "value": "robot_seul_audit_correction_couture_certification"
+    },
+    {
+      "id": "branch",
+      "sha256": "79f55ce9fc0eba235f65234a5b60dc42d40add45feb644d02af09b9fb74cdc06",
+      "source_quote": "branche claude/zoran-consolidation-engine-qj175v",
+      "value": "claude/zoran-consolidation-engine-qj175v"
+    },
+    {
+      "id": "no_main",
+      "sha256": "27cd50f9d7105a96606bcb89256a18267d8fbbe113645a7a45520488a5593f47",
+      "source_quote": "jamais main",
+      "value": true
+    },
+    {
+      "id": "no_merge_deploy",
+      "sha256": "7245c88f91eb5176b60c98380ce74484e72af66aeb51b740a79515152033cadc",
+      "source_quote": "Ne merge/déploie pas.",
+      "value": true
+    },
+    {
+      "id": "c26",
+      "sha256": "ddb2928c622d4de17fde345020ef9e07f8ba7b5d8386ad5359c391dc5ccd2e68",
+      "source_quote": "C26 exige exact-head CI + revue indépendante PASS + protection réelle; fail-closed si autorité externe manque.",
+      "value": "exact_head_ci_review_protection_fail_closed"
+    },
+    {
+      "id": "c31",
+      "sha256": "b35fe2a27015e6216cfb97e7ee2d8a884f7c3f5f12710c6654e0c64357ca403c",
+      "source_quote": "C31 exige dérivation non circulaire, sans double compte, et chaîne de dettes/reçus.",
+      "value": "non_circular_no_double_count_debt_chain"
+    },
+    {
+      "id": "global",
+      "sha256": "c7aa0cfa5801d6e13cb41ccc11b6e0d57b5e6a644d626b4a1c21990a535d535f",
+      "source_quote": "Global reste NON_MESURÉ tant que preuves externes manquent.",
+      "value": "NON_MESURÉ"
+    },
+    {
+      "id": "brick_request",
+      "sha256": "eca0569a9f146cd88b1e3849b9458f18b64ac406bd0cf700dda0cc31aad9623a",
+      "source_quote": "Signale immédiatement chaque brique manquante à /root.",
+      "value": "report_immediately_to_root"
+    }
+  ],
+  "schema": "zoran.mission-contract.v1",
+  "source_sha256": "8659d1adbfc4dd618bcc3f16c816b6457943e592fb52e6b8a3823b7cc02a259d",
+  "source_text": "Tu es le robot déterministe souverain ZCE R4. Rôles absolus : toi seul audites, corriges, couds, certifies et produis les reçus/rapports; /root ne fait que chercher/réparer/fournir les briques. Reprends depuis la PR publique #10 du dépôt Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence, branche claude/zoran-consolidation-engine-qj175v, HEAD connu 06bea5308fc89b77a41e0496456b9d18f1e38f7c. Contexte: R3 a publié workflow + 9 preuves + ZIP OPG V1.1; premier run 33246895427 vert mais revue Codex a falsifié la clôture avec 3 threads: P1 checkout merge synthétique au lieu du head SHA; P1 CI ne valide pas ZIP OPG/manifest/20 tests/1M/reçus; P2 C31 9+2=11 non dérivable car ledger non publié/pinné. Tu dois récupérer le HEAD public, ré-auditer, corriger les 3 points, pousser sur la même branche (jamais main), déclencher CI, redemander revue, corriger jusqu’à zéro finding technique, recalculer Max Harness et émettre POST. Ne merge/déploie pas. C26 exige exact-head CI + revue indépendante PASS + protection réelle; fail-closed si autorité externe manque. C31 exige dérivation non circulaire, sans double compte, et chaîne de dettes/reçus. Global reste NON_MESURÉ tant que preuves externes manquent. Signale immédiatement chaque brique manquante à /root. Reprends sans pause."
+}

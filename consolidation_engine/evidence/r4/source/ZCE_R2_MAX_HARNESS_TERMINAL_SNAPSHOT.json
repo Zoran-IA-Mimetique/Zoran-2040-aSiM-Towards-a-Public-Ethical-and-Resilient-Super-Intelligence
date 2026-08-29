@@ -1,0 +1,4569 @@
+{
+  "calibration": {
+    "brier_score": null,
+    "brier_status": "NOT_APPLICABLE_NO_OUTCOMES",
+    "observations": []
+  },
+  "change_contract": {
+    "allowed_paths": [
+      "PAYLOAD_MANIFEST.json",
+      "SHA256SUMS_R2",
+      "ZCE_PARTIAL_R2_TERMINAL_RECEIPT.json",
+      "ZCE_PARTIAL_R2_TERMINAL_REPORT.md",
+      "ZORAN_ZCE_PARTIAL_ROBOT_R2_A.tar.gz",
+      "ZORAN_ZCE_PARTIAL_ROBOT_R2_B.tar.gz"
+    ],
+    "changed_paths": [
+      "PAYLOAD_MANIFEST.json",
+      "SHA256SUMS_R2",
+      "ZCE_PARTIAL_R2_TERMINAL_RECEIPT.json",
+      "ZCE_PARTIAL_R2_TERMINAL_REPORT.md",
+      "ZORAN_ZCE_PARTIAL_ROBOT_R2_A.tar.gz",
+      "ZORAN_ZCE_PARTIAL_ROBOT_R2_B.tar.gz"
+    ],
+    "diff_budget": 64,
+    "diff_lines": 6
+  },
+  "completion": {
+    "all_relations": true,
+    "all_requirements": true,
+    "open_critical_debt": 15
+  },
+  "creations": [
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "PAYLOAD_MANIFEST.json"
+    },
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "SHA256SUMS"
+    },
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "ZCE_PARTIAL_R2_TERMINAL_RECEIPT.json"
+    },
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "ZCE_PARTIAL_R2_TERMINAL_REPORT.md"
+    },
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "evidence/UI_AB_CONTRACT_FINAL_R2.json"
+    },
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "evidence/ZCE_ENGINE_SOURCE_AUDIT_R2.json"
+    },
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "evidence/ZCE_ENGINE_TESTS_63_RESUME_EXACT_ENV_R2.log"
+    },
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "evidence/ZCE_FINAL_AB_R2.json"
+    },
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "evidence/ZCE_NEGATIVE_CAMPAIGN_FINAL_R2.json"
+    },
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "governance/ZCE_FINAL_AB_ROLLBACK_PRE_R2.json"
+    },
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "governance/ZCE_MISSION_CONTRACT_R2.json"
+    },
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "governance/ZCE_POST_OUTPUT_R2.json"
+    },
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "governance/ZCE_POST_RECEIPT_R2.json"
+    },
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "governance/ZCE_PRE_RECEIPT_R2.json"
+    },
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "governance/dette_coh.jsonl"
+    },
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "governance/k3_audit.jsonl"
+    },
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "zce-output/ZCE_COHERENCE_MEASURE_V1.json"
+    },
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "zce-output/ZCE_CONTROL_CERTIFICATE_V1.json"
+    },
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "zce-output/ZCE_DECISIONS_V1.json"
+    },
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "zce-output/ZCE_FINDINGS_V1.json"
+    },
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "zce-output/ZCE_JOURNAL_V1.jsonl"
+    },
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "zce-output/ZCE_PACK_REQUESTS_V1.json"
+    },
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "zce-output/ZCE_PATCH_PLAN_V1.json"
+    },
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "zce-output/ZCE_ROLLBACK_PLAN_V1.json"
+    },
+    {
+      "coherence_after": 0.0,
+      "coherence_before": 0.0,
+      "mandatory": true,
+      "path": "zce-output/ZCE_RUN_MANIFEST_V1.json"
+    }
+  ],
+  "dependencies": [],
+  "engine": {
+    "resumable": true,
+    "self_test_passed": 32,
+    "self_test_total": 32,
+    "standard_library_only": true
+  },
+  "fallback_policy": {
+    "T": 10.0,
+    "beta": 0.0,
+    "class": "BOUNDED_CONSERVATIVE",
+    "delta_phi_coh": 0.0,
+    "delta_s": 0.0,
+    "delta_s_interval": [
+      -100.0,
+      100.0
+    ],
+    "interval": [
+      0.0,
+      100.0
+    ],
+    "point": 0.0,
+    "sigma": 10.0
+  },
+  "fault_tests": {
+    "bypass": "PASS",
+    "falsification": "PASS",
+    "injection": "PASS"
+  },
+  "files": [
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-001:v1",
+      "object_id": "ZCE-R2-TERMINAL-001",
+      "path": "PAYLOAD_MANIFEST.json",
+      "sha256": "d7942967a3e1574aa0a47eed26eee75c8953bc480913e0057c77d45464437138",
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-002:v1",
+      "object_id": "ZCE-R2-TERMINAL-002",
+      "path": "SHA256SUMS",
+      "sha256": "ad22abc9e723f3f99d4576e5daec76d6189ee2228ade3648ce099499813df306",
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-003:v1",
+      "object_id": "ZCE-R2-TERMINAL-003",
+      "path": "ZCE_PARTIAL_R2_TERMINAL_RECEIPT.json",
+      "sha256": "3f36d3309b59e3c297740f061c85a039aa26881a3ad9aabda32bb20497b17044",
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-004:v1",
+      "object_id": "ZCE-R2-TERMINAL-004",
+      "path": "ZCE_PARTIAL_R2_TERMINAL_REPORT.md",
+      "sha256": "e443ef59c89082a2101d462b38eb652d51e60433a7066a4efac43baa2f819493",
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-005:v1",
+      "object_id": "ZCE-R2-TERMINAL-005",
+      "path": "evidence/UI_AB_CONTRACT_FINAL_R2.json",
+      "sha256": "2c7a86c30893f4aa4973432fab3f6f1f1e00ea6e3f39c1fad20497209b5d86ba",
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-006:v1",
+      "object_id": "ZCE-R2-TERMINAL-006",
+      "path": "evidence/ZCE_ENGINE_SOURCE_AUDIT_R2.json",
+      "sha256": "2249d873ff347e40598632afa5eea56a3d4aef0c4e1e04a19ec7facd6b5b9c23",
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-007:v1",
+      "object_id": "ZCE-R2-TERMINAL-007",
+      "path": "evidence/ZCE_ENGINE_TESTS_63_RESUME_EXACT_ENV_R2.log",
+      "sha256": "d26c645fcf9aceb575198fa98abc2ab82c87284450453992f1e3a8cb08488bce",
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-008:v1",
+      "object_id": "ZCE-R2-TERMINAL-008",
+      "path": "evidence/ZCE_FINAL_AB_R2.json",
+      "sha256": "61558948c092bcb066975bfd2b44aa8496a0b7004a65d76c7df93879079033ac",
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-009:v1",
+      "object_id": "ZCE-R2-TERMINAL-009",
+      "path": "evidence/ZCE_NEGATIVE_CAMPAIGN_FINAL_R2.json",
+      "sha256": "3b71c3e16ea6e49cb73c6b0e0ca2868216b592e3d4bf56c5760aaf89a9aebb0d",
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-010:v1",
+      "object_id": "ZCE-R2-TERMINAL-010",
+      "path": "governance/ZCE_FINAL_AB_ROLLBACK_PRE_R2.json",
+      "sha256": "a97b2060ac0b963b5f11750c97e6e8ee23cd121d69421e70a84507731d9479d6",
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-011:v1",
+      "object_id": "ZCE-R2-TERMINAL-011",
+      "path": "governance/ZCE_MISSION_CONTRACT_R2.json",
+      "sha256": "0794f75e57a976cbeb0f59936207e7966ef3d7908dbee5d63e89c940e67d1bee",
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-012:v1",
+      "object_id": "ZCE-R2-TERMINAL-012",
+      "path": "governance/ZCE_POST_OUTPUT_R2.json",
+      "sha256": "b374a95142a7d7bb53d42f9be0dd3e3fac15c5df3d7c056838d91e014c029098",
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-013:v1",
+      "object_id": "ZCE-R2-TERMINAL-013",
+      "path": "governance/ZCE_POST_RECEIPT_R2.json",
+      "sha256": "99870733f6c3183cd71ee4719586ed4f54d495e402ae3edb877aa179a8076766",
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-014:v1",
+      "object_id": "ZCE-R2-TERMINAL-014",
+      "path": "governance/ZCE_PRE_RECEIPT_R2.json",
+      "sha256": "55051d194b9afd7364048eb47e9740bb99b293d08478ed84cdc84b9b1d585828",
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-015:v1",
+      "object_id": "ZCE-R2-TERMINAL-015",
+      "path": "governance/dette_coh.jsonl",
+      "sha256": "cffee20b5609d9a042d3e42ffe2e031337555e20dc3954dc991c0a54ae757430",
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-016:v1",
+      "object_id": "ZCE-R2-TERMINAL-016",
+      "path": "governance/k3_audit.jsonl",
+      "sha256": "39b0bab524eddb7118e70cad8ff551c50d8c3d89f20bda1793884fb8418ede95",
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-017:v1",
+      "object_id": "ZCE-R2-TERMINAL-017",
+      "path": "zce-output/ZCE_COHERENCE_MEASURE_V1.json",
+      "sha256": "58f8b59a0d100068faf739c87ab44288206c3669a938d25c941b3f2c6c7b4a3a",
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-018:v1",
+      "object_id": "ZCE-R2-TERMINAL-018",
+      "path": "zce-output/ZCE_CONTROL_CERTIFICATE_V1.json",
+      "sha256": "797a4b5c6ab8849f2c96f4212fad1bda7eca828fa030777de15569c94f26dd44",
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-019:v1",
+      "object_id": "ZCE-R2-TERMINAL-019",
+      "path": "zce-output/ZCE_DECISIONS_V1.json",
+      "sha256": "2c99f7f5910848b9f196a2752980ba64cfb05eedc455d805816d9da8004ac457",
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-020:v1",
+      "object_id": "ZCE-R2-TERMINAL-020",
+      "path": "zce-output/ZCE_FINDINGS_V1.json",
+      "sha256": "20c2dae3bce5b5b114e4be77e9e1c5fa39917227dda874710db1a4379f832c51",
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-021:v1",
+      "object_id": "ZCE-R2-TERMINAL-021",
+      "path": "zce-output/ZCE_JOURNAL_V1.jsonl",
+      "sha256": "d7d60c3ecd803c8666c2f04141e05d98ee4eec994a3ed0a9c46026fe4671b1fe",
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-022:v1",
+      "object_id": "ZCE-R2-TERMINAL-022",
+      "path": "zce-output/ZCE_PACK_REQUESTS_V1.json",
+      "sha256": "83e4f9db47aaa96c733a0eccdd38c65952cd011eb6a5c6faf76b940999a0b6ca",
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-023:v1",
+      "object_id": "ZCE-R2-TERMINAL-023",
+      "path": "zce-output/ZCE_PATCH_PLAN_V1.json",
+      "sha256": "9cc37e5973a2f555bb18b0fa40fb2905e48e6efb4d3195122d237a3eb620fefc",
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-024:v1",
+      "object_id": "ZCE-R2-TERMINAL-024",
+      "path": "zce-output/ZCE_ROLLBACK_PLAN_V1.json",
+      "sha256": "fd62dfeffbc930f74d59e69f02e2ffff8f7f3d90634c02c532c6189014bdd852",
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "meta_id": "ZCE-R2-TERMINAL-025:v1",
+      "object_id": "ZCE-R2-TERMINAL-025",
+      "path": "zce-output/ZCE_RUN_MANIFEST_V1.json",
+      "sha256": "bcfe6c9a246785e9790dc4af7aa3d0105222d16064d35c406320ec8a96619e61",
+      "updated_at": null
+    }
+  ],
+  "impact": {
+    "PAYLOAD_MANIFEST.json": {
+      "radius": 1.0,
+      "risk": 0.0
+    },
+    "SHA256SUMS_R2": {
+      "radius": 1.0,
+      "risk": 0.0
+    },
+    "ZCE_PARTIAL_R2_TERMINAL_RECEIPT.json": {
+      "radius": 1.0,
+      "risk": 0.0
+    },
+    "ZCE_PARTIAL_R2_TERMINAL_REPORT.md": {
+      "radius": 1.0,
+      "risk": 0.0
+    },
+    "ZORAN_ZCE_PARTIAL_ROBOT_R2_A.tar.gz": {
+      "radius": 1.0,
+      "risk": 0.0
+    },
+    "ZORAN_ZCE_PARTIAL_ROBOT_R2_B.tar.gz": {
+      "radius": 1.0,
+      "risk": 0.0
+    }
+  },
+  "inventory_file_count": 25,
+  "metrics": {
+    "critical_escape": 0.0,
+    "resume_fidelity": 1.0,
+    "rework": 2.0
+  },
+  "orphans": [],
+  "paired_ab": {
+    "same_tasks_commits_models_permissions_budgets": true,
+    "strata": [
+      "opg",
+      "master",
+      "ui",
+      "zce"
+    ],
+    "task_count": 1227
+  },
+  "pipeline": [
+    "NLP",
+    "ZMOS",
+    "K3",
+    "SURFACE"
+  ],
+  "prediction": {
+    "post_comparison": "MATCH",
+    "sealed_before_action": true,
+    "sha256": "714b5008fdd0655d882ad42d14bee51cedee7a132ad02b59c2ebdacd6f52a87b"
+  },
+  "promotion": {
+    "blocked": true,
+    "ci": "NON_MESURÉ",
+    "exact_head": null,
+    "protected": false,
+    "review": "NON_MESURÉ"
+  },
+  "proxy_receipts": [
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "PAYLOAD_MANIFEST.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "aea2967f3082b9b22e45ac4029eea5e0c58c5d9ba6c06047a3ca69a00d39998b"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "PAYLOAD_MANIFEST.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "7298d9697cd7c2d83cf82665f160e7c286380199ba005d9812cf383a91640041"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "PAYLOAD_MANIFEST.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "19e4bfb236aa15836d8f6177bcdc7e9d73156d9fabbaecc5bc1da923ae0307ab"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "PAYLOAD_MANIFEST.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "d8c3ea39b8fead34e15b448403628ed4c51e9d317aa9da683f56db80b6711ee2"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "PAYLOAD_MANIFEST.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "7c09be3b82c5351c69b821e8dcf432ce74f130ec24bba168ef7788aebc75ad22"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "PAYLOAD_MANIFEST.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "e2ffa4c13599c281a27d11f5eac4d6518c8b5e983d15c0284513036095646f08"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "SHA256SUMS",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "b33d4363da138278ca5ee5cf57a3f59152b949b38a8fa474145e298823b883c2"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "SHA256SUMS",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "115ac82209aa29f56ef5adfd15b81dd930c778af2a01b113d6910549c97829d7"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "SHA256SUMS",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "1eb393d5c7b1d607c10908620f075dfbd2442a5e5bd3d2bee37c14eff7307968"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "SHA256SUMS",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "8110936a8e082e3d71711386e3f02ab799e4d4905588c39b67754a1e617e9fef"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "SHA256SUMS",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "a708fcfe7f0fc0f4cd25374bc988f73ece753b27de00605d55ce80ca02648deb"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "SHA256SUMS",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "3bcdfcca725d43ded5a0a93d7a2a94a4a5cc9f60cb43b20c6e445127fe4ec542"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "ZCE_PARTIAL_R2_TERMINAL_RECEIPT.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "7c5286a8e91a0a5e51a67c3f9c0d779131ae999a3577825693f6baff77c7810b"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "ZCE_PARTIAL_R2_TERMINAL_RECEIPT.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "14710d8f9d5f3badb4ce4ddf8c60cf97abfad7d7100d8f848acc74d9df89b30f"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "ZCE_PARTIAL_R2_TERMINAL_RECEIPT.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "341563d3aa5346a960fdb303a8d5cc122432f195065001474b1ab13a810e1f03"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "ZCE_PARTIAL_R2_TERMINAL_RECEIPT.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "8d8dec0ba878188d5e6c128a349e7117370a6f7d178c19c2722ea3690d0a0788"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "ZCE_PARTIAL_R2_TERMINAL_RECEIPT.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "d8c64389c3e433cb0bcb8ca498dcd583879581d333c8df2d13b0aa1dcefc063d"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "ZCE_PARTIAL_R2_TERMINAL_RECEIPT.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "fa9caa2d1c7ea2b1b3161dd1b5836e724ef035a38bfbb8f2ffd87ef68112ae2e"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "ZCE_PARTIAL_R2_TERMINAL_REPORT.md",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "91080c0cb13cc424dc06c26e5b418f2b9dd634f1eb7704ad9b14ae8dc29ac36c"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "ZCE_PARTIAL_R2_TERMINAL_REPORT.md",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "7a9daf24023645628efacb9189ff9b4585e169c816462df81009a1caeb5a5a00"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "ZCE_PARTIAL_R2_TERMINAL_REPORT.md",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "cc1140ba8d3bf966282374993823d34330e29e533da3cb19bcfde69f63d15f80"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "ZCE_PARTIAL_R2_TERMINAL_REPORT.md",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "60f9c08baa755dadc97ef7835ffd6d732b946e37921dff02ec4b2a6618b2ce60"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "ZCE_PARTIAL_R2_TERMINAL_REPORT.md",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "07e04795ae32351ffc7a470cb64f242055011d1a77535e238c98a99bb097c9d6"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "ZCE_PARTIAL_R2_TERMINAL_REPORT.md",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "6c75c90b702dcc0551aab0986a28b34e6851561b7a9ec0cd285ea8664a8578c9"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "evidence/UI_AB_CONTRACT_FINAL_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "e659ac88d8d9e5ef984063670aa2c2993b8cdf3624bddeca741512b03037f831"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "evidence/UI_AB_CONTRACT_FINAL_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "1e44ccbb7c06b3c19025fe33faccddf06dcb2f021bb9c49512fbc86f0113443f"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "evidence/UI_AB_CONTRACT_FINAL_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "9a6fd431cc7b33bce3892ba9a631eee9fa19712784e57a2d697f1b1a49774ea9"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "evidence/UI_AB_CONTRACT_FINAL_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "e7ef23b136e9a1203d86a3646d43b4c906eb61b2bb7128de5dd7fdcef999e03c"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "evidence/UI_AB_CONTRACT_FINAL_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "496bbd0e9d0a06d26d75a8f8da4eec48bdd0a3b7076dae429b56b5a7055c5bcb"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "evidence/UI_AB_CONTRACT_FINAL_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "830bc2b1d5516749cef69ca4b4884b70a0856032b244c784d04392a2881bbae7"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "evidence/ZCE_ENGINE_SOURCE_AUDIT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "9f24d6fcfb0d3c7ede4e1c0703e5043d37f0243a9b4465d24e2ac998655bc14b"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "evidence/ZCE_ENGINE_SOURCE_AUDIT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "2d564ef93c1520f993c9a994849f80664cac57174463f4766a17ac0f512b82ac"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "evidence/ZCE_ENGINE_SOURCE_AUDIT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "97036ef72337ce2de40a6a99942582feefec72796716318a40380f4c97bc3859"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "evidence/ZCE_ENGINE_SOURCE_AUDIT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "b51c8d2f7cf7acacbb35336b53a013a300719a12c6e1786a6b309383d5c23a05"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "evidence/ZCE_ENGINE_SOURCE_AUDIT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "e537221c82f7bac405d5a4912cfec92878d0908efde036342c0fd5bb618fcdcd"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "evidence/ZCE_ENGINE_SOURCE_AUDIT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "64fcb93993f1fdf2e51febd7ca27afa953c601cbc18588130e51d846bcf5da1c"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "evidence/ZCE_ENGINE_TESTS_63_RESUME_EXACT_ENV_R2.log",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "422d550ea0eca87e2cbaa715c3548918c792c9aeb20e1e49d14f64221d83a4fc"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "evidence/ZCE_ENGINE_TESTS_63_RESUME_EXACT_ENV_R2.log",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "cdf5d15c76cab67b4f4e86b471395868efc8ec68f21f6afe10e35689730af10b"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "evidence/ZCE_ENGINE_TESTS_63_RESUME_EXACT_ENV_R2.log",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "784366fcabcc9bfca0d04900e2b8343a9a76c9d6bbebd3bce174163edc006c7a"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "evidence/ZCE_ENGINE_TESTS_63_RESUME_EXACT_ENV_R2.log",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "0352b43b86edbdad36bbf8e80bc17173efa78e3262fe1380120f0622a23f55c8"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "evidence/ZCE_ENGINE_TESTS_63_RESUME_EXACT_ENV_R2.log",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "557727b1c05d960a59922b39afa4f6b4b8289b7c2177c4bab1a4f778d65fdfc0"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "evidence/ZCE_ENGINE_TESTS_63_RESUME_EXACT_ENV_R2.log",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "f597f3835f47acc82a87246fb7ad5388ead4b9ca691bc79356f767203714320e"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "evidence/ZCE_FINAL_AB_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "ac1e3a3d9fc129b5a46bf9deb4a1193a459246a94992b3b13223a9c4d451cac1"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "evidence/ZCE_FINAL_AB_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "8052b629d6b5350fb88cc15e9f42d4a107bf58068c24964e2c83299eb88eb829"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "evidence/ZCE_FINAL_AB_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "586f85cf1cd6eeec014fb431c32da0d0929221c2dfdf6c4f2a57a3d52605c6c0"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "evidence/ZCE_FINAL_AB_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "7b1fdb1f3829797466b53705c742552544d85859dcb7ddc5e9a49ec213db7026"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "evidence/ZCE_FINAL_AB_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "175607a2db62073aa11c229bc5c56f29edeeb204aa45294a9b02a2bf6f3e028d"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "evidence/ZCE_FINAL_AB_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "1a7898188580461bc11987ae68eb7d59262379909ac2a8fc3b1735561dfab63f"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "evidence/ZCE_NEGATIVE_CAMPAIGN_FINAL_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "289aa92d35e431fae4a8ce1a630bf340113c4b42afed9adeaa6487ba78b15631"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "evidence/ZCE_NEGATIVE_CAMPAIGN_FINAL_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "771ff2485a4d22b84435012b131af40c0bdc49075832266bb9fbb35b03e5272d"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "evidence/ZCE_NEGATIVE_CAMPAIGN_FINAL_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "263d4b99fdee2e27e7f3ae8afb49b1ce13cf1069aa3573e3b058ab826ce26e55"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "evidence/ZCE_NEGATIVE_CAMPAIGN_FINAL_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "e8e1df2cae31868f69cda415da9e49d20b598a69d29dddc093cd650f8ed237b8"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "evidence/ZCE_NEGATIVE_CAMPAIGN_FINAL_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "939b3d4d9cf8962b3c972f088cda307f5a908a87b36e30fb52d21d28e2401f42"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "evidence/ZCE_NEGATIVE_CAMPAIGN_FINAL_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "6bd45465bc7eee695daaa52d1de9798133337d886b39f5943b8a7fc85e1993f1"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "governance/ZCE_FINAL_AB_ROLLBACK_PRE_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "3fba2e1883f63b1da46382449fbbc11bb13b451340bde146f589ff8dd2a6cc26"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "governance/ZCE_FINAL_AB_ROLLBACK_PRE_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "be128fa5e7b7680920ea1a1a61e3d0918ad308e3abed02b2bfe4b34af8a6b220"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "governance/ZCE_FINAL_AB_ROLLBACK_PRE_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "ffa8323465ee816dbaff21ab11b32f17699d82fef101be3a2ff8df96e60bdec6"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "governance/ZCE_FINAL_AB_ROLLBACK_PRE_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "2f274c015921bdafc446742a8abc215df33c5b49a4fb0709fcb4bf87088cdebc"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "governance/ZCE_FINAL_AB_ROLLBACK_PRE_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "18a5efbbdee259cde9d599cd4738bc3c6b586606513384851a41a8a13fd3c7ef"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "governance/ZCE_FINAL_AB_ROLLBACK_PRE_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "dfba0cbfeaa49480c20f9915cec7e814b168dc82c094ef21f26fb204d620311f"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "governance/ZCE_MISSION_CONTRACT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "65a8203c910f0e46b5ebd17d877e40b7774196a4d9c88d27f064d2b5b4fbd82b"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "governance/ZCE_MISSION_CONTRACT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "272b9251985d2c33521823b11e68c3c4071484e2eb0cddbde7d23bea36c6b7db"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "governance/ZCE_MISSION_CONTRACT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "db17872e062ad532376b998cd496ec6e25d822974cd9b59efeb863f1d47efaa3"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "governance/ZCE_MISSION_CONTRACT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "c47519cf93d11ce1ef6f5a307bd59d1dedf89ed477c4180090b82744134d215d"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "governance/ZCE_MISSION_CONTRACT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "06a32b2f53bde240af40665abac06dd787161830d8bdb9426ba66d810ac63f40"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "governance/ZCE_MISSION_CONTRACT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "4f07a4d368a74d6e14b728b960a4823eb0122f71b35aa549f381b5b9c1960234"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "governance/ZCE_POST_OUTPUT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "c201c06177a7c130034b3f464589234d4194b1d82ea848954542bbe7e796830b"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "governance/ZCE_POST_OUTPUT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "ba91d4fe4f0cb6ce268519320979f00444b5f7b7cc393dfa2ae8d783d22f4f59"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "governance/ZCE_POST_OUTPUT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "0f89ddc3eecfc5e25f2329d19627b5703a59c5c2847b3be68b9bae81aa168b2e"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "governance/ZCE_POST_OUTPUT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "7ab6949d1ed3dee3f91f7c21ce12adaac570623ce7e87fb8ce154deb611d93c1"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "governance/ZCE_POST_OUTPUT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "ea202e1df9b4d7d873a7605e06d1b57bdf9ccaaf6d16bac9a40db522530c77fe"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "governance/ZCE_POST_OUTPUT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "dd4cd655f7572d90e3f80939f9e1ce077f87f5ba5cc17145eddc729af1245b92"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "governance/ZCE_POST_RECEIPT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "d4ea95fb7e33f6a739ee8ce84a2c885e91511cb6410f88cb5b13fc59ccade8a7"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "governance/ZCE_POST_RECEIPT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "495200ad041c3fe79ac146cf16e38a0001ca83c942f2f3aed4037fada4987e27"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "governance/ZCE_POST_RECEIPT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "ba4d46269095a9f5fda759880a77b25cffaf866f17253127ed4173f1140aa5a4"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "governance/ZCE_POST_RECEIPT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "d35208cab9d40cfb71c276b52caf5087395af61448817af61d976e84d0f8a9c7"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "governance/ZCE_POST_RECEIPT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "e8a1dec7f9569cda12d416ae3efcb8a2adce288f36889c988b3c46d4d65a6609"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "governance/ZCE_POST_RECEIPT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "12a26634d2e51b0fc86a4e4e47dcf5382fc165769de6cc9b94369f798e5927a3"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "governance/ZCE_PRE_RECEIPT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "7b04804d35f8bd0a491739c3bc9a8985a5bc14e787c7e1155fab43bf8acbef0b"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "governance/ZCE_PRE_RECEIPT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "58ff0af5454bef6c41cca6119f2b4105040d07e3426c642b913df3f0fd66d8f7"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "governance/ZCE_PRE_RECEIPT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "055169b0d5aca3bc7ef99cfec3e486013318e955121ca99f150f653f30ea393b"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "governance/ZCE_PRE_RECEIPT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "cdf111c22c2c4f30417b060d5e9b4c2b892b93f707ae1952ccc9e0f6bfabac10"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "governance/ZCE_PRE_RECEIPT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "cd828fec9223b09ee55ea5f8e72a1d09078b93be57a30e6b96974a3da48bc875"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "governance/ZCE_PRE_RECEIPT_R2.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "b9457f3b9bbaef47a03cd91976893bb98f11f39f8cb381ae68618a35d236b4de"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "governance/dette_coh.jsonl",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "2505acdca7933f2d4cb462fadb7c3d5b1c5aa8fe7f4039c8817e22fd2f072c47"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "governance/dette_coh.jsonl",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "a2abc5a4573c2fc82aa66589de300f5e59eca23fbc59329d0e35a29ef7ccb0e6"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "governance/dette_coh.jsonl",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "2cda123a57ee356952cdc1779e7a35ffe9136786edd177e3a31a5f68aa1f02d9"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "governance/dette_coh.jsonl",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "b48fc5c3747e80f33062fe07a2728a9b175b14a8bd9591a4b0ed5c56e9a2f119"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "governance/dette_coh.jsonl",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "f4151ae4c52118a2ab31abbcdf6b588afefc446d1d5a7c45317a8a865ccdd6c3"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "governance/dette_coh.jsonl",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "9f520e143516cadca8a73f8a5f2f5a8f54f48efbf3e2b60125b5988c836f32ff"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "governance/k3_audit.jsonl",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "fc5c54cd2bdffda97a01659b6a4b03a8fd7b659b3b69499897f0b2a38cc9d27b"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "governance/k3_audit.jsonl",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "9f0f29b9c2609b57bf5d65643e38e4335caf2298a7ed534ed7afde5a1b50cb5d"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "governance/k3_audit.jsonl",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "6240bfc08a6ae8f50e63bdf06a1868dff05422f4a2bcb9f0b6b683f83757c75a"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "governance/k3_audit.jsonl",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "82562c46a913f84e134162d3dae77519c41677392a9721162f264823e7643ba8"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "governance/k3_audit.jsonl",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "27ea4d25398911a2824e1772e24c7c56d75883053b848b1126b09b52ebf5a27f"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "governance/k3_audit.jsonl",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "f62612aaf76c951385b2ea03dc50ae85a68733eab98c95dbea9404e09115f874"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "zce-output/ZCE_COHERENCE_MEASURE_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "c0399e52f58b2b356b5b24564af04d4057345085ced2b9287999c3e6ba902944"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "zce-output/ZCE_COHERENCE_MEASURE_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "b4589eb8424d49a4e3d2dfe2e6f5bb2b98e637ca60ead884150e6ab2c35233fe"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "zce-output/ZCE_COHERENCE_MEASURE_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "5ad997ee6f1a0f85e1452310f7c8325a1fdc4ba351588699f52eb7631219982f"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "zce-output/ZCE_COHERENCE_MEASURE_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "9f0c7709e97181a39e75476fc7128188fd2d95d52eeec699d69fadcb3c3f934c"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "zce-output/ZCE_COHERENCE_MEASURE_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "0949fd77d21e5f50c89e58b7b901a614c1f12536c079ab5ba3468a1aad37b6e7"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "zce-output/ZCE_COHERENCE_MEASURE_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "032b43b3bce4b3f38edf3320254a6530629bbadce140e0abf4036b0678d622c4"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "zce-output/ZCE_CONTROL_CERTIFICATE_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "19989b2f15264dd9883bc6e6610aadb00e905fcdd1f3cc06066387df867bf68f"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "zce-output/ZCE_CONTROL_CERTIFICATE_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "674c7e64ed24e9ffa538cae88db4df63c8c6aa62bf1a1fd80d88ef1bdd3d7b90"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "zce-output/ZCE_CONTROL_CERTIFICATE_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "1c51d78084b198171597dea6082fe95e471d9a15c273c55a6b70f01f4c9cbda8"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "zce-output/ZCE_CONTROL_CERTIFICATE_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "df6b06841ef81302ac06420bf3d176dd56c9a27b1922f1e62900eee5a4685068"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "zce-output/ZCE_CONTROL_CERTIFICATE_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "941be14379c99b1ac7bf9b8ebc65b328efc1e85625514e5562afbd47d74ebfd8"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "zce-output/ZCE_CONTROL_CERTIFICATE_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "3a0faa72cc66b750146cfb8e76beca57a810184626dc6c345a388b3d7b3466f0"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "zce-output/ZCE_DECISIONS_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "7179daf3f11ad502c88f4ddfa98adc4ab7ab3ddb2ad55cea48a3b469adc6530c"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "zce-output/ZCE_DECISIONS_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "47e930857589df061519c50b2b8af5a812440ef9de5e0ee0d621daea8a9759fc"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "zce-output/ZCE_DECISIONS_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "2e032151219e0b20e205d6d8e30ea59c5c13308329bd5e479f78c5fa9a147ce0"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "zce-output/ZCE_DECISIONS_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "0704e485c6988536234bc4fec40983939d3a524cd6fc445c89903a984c51c29a"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "zce-output/ZCE_DECISIONS_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "47d5727e3d852dae4a2398a71da4d5a1216ecae3a0ca9881170e6d29535a9e31"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "zce-output/ZCE_DECISIONS_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "8c03a6140da76fc83916548424ea63a15dc01694ae78a08d78758ae33b690114"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "zce-output/ZCE_FINDINGS_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "7dffd311235d97c693206fa76375816bc2ae3158cc7f941f0bc9fb1ac177709b"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "zce-output/ZCE_FINDINGS_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "2dc55a4ce0c97f35f28daee3a4524b735e018aaf60ff548aa2e40145ad611c2c"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "zce-output/ZCE_FINDINGS_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "63f8a4fa3b4d28d27f22755ebac8ec1c00235042bf3be140bcf8767e10f88a2f"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "zce-output/ZCE_FINDINGS_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "7327ada5ca0516f60c40aec72ba331d495951ea6ffb8a1061f9d1cb8c2335474"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "zce-output/ZCE_FINDINGS_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "9d3c74fa1661fa4c5b9bf573c8b93c14b4e34300b79e70138ac5bb8f1b97eb7c"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "zce-output/ZCE_FINDINGS_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "1e64c61620f8ddf660d2bf21d8786a507500e1faac26b7514b539272f3173ea5"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "zce-output/ZCE_JOURNAL_V1.jsonl",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "2f7b0f80c66fb8c135a305c60fbe955c26296ed15adbd634ce51baf8126e5201"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "zce-output/ZCE_JOURNAL_V1.jsonl",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "a076139c1bdbe5e469dd50ea6460be0aabf185169007c9b8ce822588d0f7e0dc"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "zce-output/ZCE_JOURNAL_V1.jsonl",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "58ea379fef3b3ac7217e7d83e6f6fd4f48f4e5c6ea158df5fefd2100556c667d"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "zce-output/ZCE_JOURNAL_V1.jsonl",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "3d5677e746261d128647b8f98493a02788cdd4b9f0d371573dad19ed90d95728"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "zce-output/ZCE_JOURNAL_V1.jsonl",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "515fa2966a4fc712c825a70c8c884cec64cf17ffa0f1b64907a57e1d1b544a95"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "zce-output/ZCE_JOURNAL_V1.jsonl",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "4e0e4cf9bd8aec160b0137cf37b731f2e9f600c5267b35d343cd263a716ff805"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "zce-output/ZCE_PACK_REQUESTS_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "a3edcbde206d0eeb31b2ac725399c3202234305d332da26cf4a48e161a275d4a"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "zce-output/ZCE_PACK_REQUESTS_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "39256cc8438aef3bc0e458a67eb274ef2c7e01e8a6774bff971705e5921367b9"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "zce-output/ZCE_PACK_REQUESTS_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "edbd679a34c24dcafc651a5751f92ddc9e1449a1b31f8f343727842914c72c0a"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "zce-output/ZCE_PACK_REQUESTS_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "b12b878f6f8a9eecc70ba01d93885f80a81030b8d4c2164e8df358e78d82956b"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "zce-output/ZCE_PACK_REQUESTS_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "9181771a3507617fc8ae55754e117f5a20e3104800e024c83371132d6167159a"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "zce-output/ZCE_PACK_REQUESTS_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "ea22c64a914d286aba22650fc0bb139dc2e3b44a9ba488801b0be856695e74af"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "zce-output/ZCE_PATCH_PLAN_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "dc6168e785cb5d0c72f388019d051c21100b13bd469c0f255bb5f90e81476f0f"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "zce-output/ZCE_PATCH_PLAN_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "5ecf5b91fb1a606d6b1a4ecd41d5e4eab199edd08065781066ec2e346f086ca4"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "zce-output/ZCE_PATCH_PLAN_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "0f0ba9ba3806143c5015f601c32c7b63ea7f008bbc90420a20914df0e457613e"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "zce-output/ZCE_PATCH_PLAN_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "8bb6c293c5afcb53740cb9e69c3bad6eab6df5e39c245cc20656820bfa478317"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "zce-output/ZCE_PATCH_PLAN_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "dcb233cb597ce8b6f4017c4a6cddf882672cc29b51b94a21de097d186c25d495"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "zce-output/ZCE_PATCH_PLAN_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "254c441fa2f1d4e620f958b53f1e682cab509a1eba214f4c24c87b4ad79957ec"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "zce-output/ZCE_ROLLBACK_PLAN_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "37a09877336e1335cd29fbaeb0c37d298e69dad1204032566cb626b1f1480b2f"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "zce-output/ZCE_ROLLBACK_PLAN_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "de6fe3145437b03563df87c538e8f078b7b01e4413d4b81359286ae5a990542d"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "zce-output/ZCE_ROLLBACK_PLAN_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "f31c991a9ac40e8bdfd90858aaa2810136709266b158691b955f9a3778e383ea"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "zce-output/ZCE_ROLLBACK_PLAN_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "5816942d4d7e82c1a05cdd1cc111e090b457a10c6f80972184933352f9caf437"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "zce-output/ZCE_ROLLBACK_PLAN_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "dd7bb1b7cf85c6501710e6a34cff9f27522e719f163663a8950650b9f0590d5e"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "zce-output/ZCE_ROLLBACK_PLAN_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "4bbf1042e50751c12fc1d15ee9e7c8c8effd605b69b9756aa8d9a959091bf91c"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "local",
+      "path": "zce-output/ZCE_RUN_MANIFEST_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "645765d137e4588d3f529fcc8107f0a7ec680f39ac1f3dc94dfcb85fd57eda1c"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "lower",
+      "path": "zce-output/ZCE_RUN_MANIFEST_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "442da48ba11f8e12097da4a82f0c64af88bceecd7f95ae1effeef17bea2eac3a"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "peer",
+      "path": "zce-output/ZCE_RUN_MANIFEST_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "cf3e876c89062d241d49f79f8f69fcd0bf9fab21b45609dcdff31f23caf61a4f"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "upper",
+      "path": "zce-output/ZCE_RUN_MANIFEST_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "7ced6505838d48e0feee7d86bb2ab5bb5e6a0ff4a17208b8cce3fb951465e55e"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "temporal",
+      "path": "zce-output/ZCE_RUN_MANIFEST_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "8b3aa77cff07c599d09f7d9f49546d89e5e6eddc7b21d90dd692a9652977a203"
+    },
+    {
+      "class": "BOUNDED_CONSERVATIVE",
+      "frame": "global",
+      "path": "zce-output/ZCE_RUN_MANIFEST_V1.json",
+      "reason": "NO_FILE_LEVEL_CALIBRATED_PROXY_DATA",
+      "scale_version": "ZORAN_CANONICAL_S_0_100_2026-08-27",
+      "sha256": "d7900b52858dfe1011f24c4778784fd91d8186c66906d4c99444edb615d72b18"
+    }
+  ],
+  "relations": [
+    {
+      "evidence_sha256": "1db77ad403f059551ab1e15ff09ff1298c129f0cb4eec6b458e15a528ff89fef",
+      "level": "STATIC",
+      "source": "PAYLOAD_MANIFEST.json",
+      "target": "SHA256SUMS",
+      "type": "PACKAGED_WITH"
+    },
+    {
+      "evidence_sha256": "22cf9b5a8add2b870540543b35b10ab28a51dee3dc2162241124c23badb6cfeb",
+      "level": "STATIC",
+      "source": "SHA256SUMS",
+      "target": "ZCE_PARTIAL_R2_TERMINAL_RECEIPT.json",
+      "type": "PACKAGED_WITH"
+    },
+    {
+      "evidence_sha256": "e0b381bb984a82e7844bee76bf9aeabe9c412ab9f5e16bd346e305ef62de6bff",
+      "level": "STATIC",
+      "source": "ZCE_PARTIAL_R2_TERMINAL_RECEIPT.json",
+      "target": "ZCE_PARTIAL_R2_TERMINAL_REPORT.md",
+      "type": "PACKAGED_WITH"
+    },
+    {
+      "evidence_sha256": "c6ba935336d53139f468a2594c190050b676100ec2eb0d462940499aacdbe7d1",
+      "level": "STATIC",
+      "source": "ZCE_PARTIAL_R2_TERMINAL_REPORT.md",
+      "target": "evidence/UI_AB_CONTRACT_FINAL_R2.json",
+      "type": "PACKAGED_WITH"
+    },
+    {
+      "evidence_sha256": "940705f7f3c421477085291348606d9ffcee0945fd29a345d7350bc1e9754ce6",
+      "level": "STATIC",
+      "source": "evidence/UI_AB_CONTRACT_FINAL_R2.json",
+      "target": "evidence/ZCE_ENGINE_SOURCE_AUDIT_R2.json",
+      "type": "PACKAGED_WITH"
+    },
+    {
+      "evidence_sha256": "c217d40e92b781c611eaf03f5a7e4a9a017e88e786d532599dd6e43bd0ba4281",
+      "level": "STATIC",
+      "source": "evidence/ZCE_ENGINE_SOURCE_AUDIT_R2.json",
+      "target": "evidence/ZCE_ENGINE_TESTS_63_RESUME_EXACT_ENV_R2.log",
+      "type": "PACKAGED_WITH"
+    },
+    {
+      "evidence_sha256": "ca78b6743fff4692694f95dbb397674f1a996569d6115df125ccbd68dc27f849",
+      "level": "STATIC",
+      "source": "evidence/ZCE_ENGINE_TESTS_63_RESUME_EXACT_ENV_R2.log",
+      "target": "evidence/ZCE_FINAL_AB_R2.json",
+      "type": "PACKAGED_WITH"
+    },
+    {
+      "evidence_sha256": "8c59508e3ee5d190d3afb060c76a24105138f6122b782440c71b4061462806f0",
+      "level": "STATIC",
+      "source": "evidence/ZCE_FINAL_AB_R2.json",
+      "target": "evidence/ZCE_NEGATIVE_CAMPAIGN_FINAL_R2.json",
+      "type": "PACKAGED_WITH"
+    },
+    {
+      "evidence_sha256": "9a8fd0bf5199616627582fc5149d14a2303d89f757e82c6a339bd8edeb3ec284",
+      "level": "STATIC",
+      "source": "evidence/ZCE_NEGATIVE_CAMPAIGN_FINAL_R2.json",
+      "target": "governance/ZCE_FINAL_AB_ROLLBACK_PRE_R2.json",
+      "type": "PACKAGED_WITH"
+    },
+    {
+      "evidence_sha256": "3089294c7ea39054b818cf7faa5fe5a5171de0c0e378a45252bad9dba4711f87",
+      "level": "STATIC",
+      "source": "governance/ZCE_FINAL_AB_ROLLBACK_PRE_R2.json",
+      "target": "governance/ZCE_MISSION_CONTRACT_R2.json",
+      "type": "PACKAGED_WITH"
+    },
+    {
+      "evidence_sha256": "9a11228b508e383769371b679f6e49a6cb19863b8ad90825947316d1aa981dfa",
+      "level": "STATIC",
+      "source": "governance/ZCE_MISSION_CONTRACT_R2.json",
+      "target": "governance/ZCE_POST_OUTPUT_R2.json",
+      "type": "PACKAGED_WITH"
+    },
+    {
+      "evidence_sha256": "444c5cf6bb2a481dd79c9a764bd24797da59adaddf04717eecea5ec1b8f0a48c",
+      "level": "STATIC",
+      "source": "governance/ZCE_POST_OUTPUT_R2.json",
+      "target": "governance/ZCE_POST_RECEIPT_R2.json",
+      "type": "PACKAGED_WITH"
+    },
+    {
+      "evidence_sha256": "b288b8f8964874c854ed835724dae8d88629b0627f14ec322d5be010979d7906",
+      "level": "STATIC",
+      "source": "governance/ZCE_POST_RECEIPT_R2.json",
+      "target": "governance/ZCE_PRE_RECEIPT_R2.json",
+      "type": "PACKAGED_WITH"
+    },
+    {
+      "evidence_sha256": "33dad01328a40b1ae6df47195e7b9a01b81749b03d9836c906f0c2ef5bccfcc0",
+      "level": "STATIC",
+      "source": "governance/ZCE_PRE_RECEIPT_R2.json",
+      "target": "governance/dette_coh.jsonl",
+      "type": "PACKAGED_WITH"
+    },
+    {
+      "evidence_sha256": "88cf41516095b300ea71386b9740e28c827a9210c094c09247a4249790eaf8c0",
+      "level": "STATIC",
+      "source": "governance/dette_coh.jsonl",
+      "target": "governance/k3_audit.jsonl",
+      "type": "PACKAGED_WITH"
+    },
+    {
+      "evidence_sha256": "11d4dca677098aa7611b9ff628d661fff82d2c138666f23e5c55a66dd158ea7c",
+      "level": "STATIC",
+      "source": "governance/k3_audit.jsonl",
+      "target": "zce-output/ZCE_COHERENCE_MEASURE_V1.json",
+      "type": "PACKAGED_WITH"
+    },
+    {
+      "evidence_sha256": "adc2355ff579b4533d00383132af6688c06a9ffea41f1aa1d88cfe4c74fdfb75",
+      "level": "STATIC",
+      "source": "zce-output/ZCE_COHERENCE_MEASURE_V1.json",
+      "target": "zce-output/ZCE_CONTROL_CERTIFICATE_V1.json",
+      "type": "PACKAGED_WITH"
+    },
+    {
+      "evidence_sha256": "157e7a42e1e5181bc1e48e9a9325997585c5eee2537535aca1361b8df7016ce5",
+      "level": "STATIC",
+      "source": "zce-output/ZCE_CONTROL_CERTIFICATE_V1.json",
+      "target": "zce-output/ZCE_DECISIONS_V1.json",
+      "type": "PACKAGED_WITH"
+    },
+    {
+      "evidence_sha256": "1ddbd158225362ddbf9217879c91efeb7d86722f47898db6d4ab500491b7e981",
+      "level": "STATIC",
+      "source": "zce-output/ZCE_DECISIONS_V1.json",
+      "target": "zce-output/ZCE_FINDINGS_V1.json",
+      "type": "PACKAGED_WITH"
+    },
+    {
+      "evidence_sha256": "d573884019c98b9b2a7295f324011d4f7d46cfba731f2cab0ede11e4c92d134f",
+      "level": "STATIC",
+      "source": "zce-output/ZCE_FINDINGS_V1.json",
+      "target": "zce-output/ZCE_JOURNAL_V1.jsonl",
+      "type": "PACKAGED_WITH"
+    },
+    {
+      "evidence_sha256": "f98221813650353dc6a00a74edd43ebcbcb30f35d966579ec5a2b130045137c9",
+      "level": "STATIC",
+      "source": "zce-output/ZCE_JOURNAL_V1.jsonl",
+      "target": "zce-output/ZCE_PACK_REQUESTS_V1.json",
+      "type": "PACKAGED_WITH"
+    },
+    {
+      "evidence_sha256": "15203121013628abae1ea7fffebf489d4ed26ebf4bf2045bc38fb2f26fc7df33",
+      "level": "STATIC",
+      "source": "zce-output/ZCE_PACK_REQUESTS_V1.json",
+      "target": "zce-output/ZCE_PATCH_PLAN_V1.json",
+      "type": "PACKAGED_WITH"
+    },
+    {
+      "evidence_sha256": "91480263bc750541b09967efc240376970f30ae1d83ae3db505787e8472de2fa",
+      "level": "STATIC",
+      "source": "zce-output/ZCE_PATCH_PLAN_V1.json",
+      "target": "zce-output/ZCE_ROLLBACK_PLAN_V1.json",
+      "type": "PACKAGED_WITH"
+    },
+    {
+      "evidence_sha256": "1f009e0d4db91d6aca48ba35f058df99d0180867d1821ce70aafccb299fa6531",
+      "level": "STATIC",
+      "source": "zce-output/ZCE_ROLLBACK_PLAN_V1.json",
+      "target": "zce-output/ZCE_RUN_MANIFEST_V1.json",
+      "type": "PACKAGED_WITH"
+    },
+    {
+      "evidence_sha256": "14f1ea15016cd38deb9a617ff3925eb77ecb294fa0d86152f2bdf6cb0301bc11",
+      "intervention": {
+        "falsifier": "remove a required negative class and require the terminal 7/7 claim to fail",
+        "outcome_changed": true
+      },
+      "level": "CAUSAL",
+      "source": "evidence/ZCE_NEGATIVE_CAMPAIGN_FINAL_R2.json",
+      "target": "ZCE_PARTIAL_R2_TERMINAL_RECEIPT.json",
+      "type": "CAUSES_FAIL_CLOSED_CLAIM"
+    }
+  ],
+  "reproducibility": {
+    "build_hash_equal": true,
+    "clean_clone": false,
+    "command": "deterministic A/B package build from frozen local inputs, not a clean Git clone"
+  },
+  "resume_test": {
+    "context_loss": true,
+    "result": "PASS"
+  },
+  "schema": "zoran.max-harness.snapshot.v2",
+  "scores": {
+    "aggregation": "VETO_MIN_NO_AVERAGE_COMPENSATION",
+    "computed_cells": 150,
+    "expected_cells": 150,
+    "files": [
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "e2ffa4c13599c281a27d11f5eac4d6518c8b5e983d15c0284513036095646f08",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "aea2967f3082b9b22e45ac4029eea5e0c58c5d9ba6c06047a3ca69a00d39998b",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "7298d9697cd7c2d83cf82665f160e7c286380199ba005d9812cf383a91640041",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "19e4bfb236aa15836d8f6177bcdc7e9d73156d9fabbaecc5bc1da923ae0307ab",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "7c09be3b82c5351c69b821e8dcf432ce74f130ec24bba168ef7788aebc75ad22",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "d8c3ea39b8fead34e15b448403628ed4c51e9d317aa9da683f56db80b6711ee2",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "PAYLOAD_MANIFEST.json"
+      },
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "3bcdfcca725d43ded5a0a93d7a2a94a4a5cc9f60cb43b20c6e445127fe4ec542",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "b33d4363da138278ca5ee5cf57a3f59152b949b38a8fa474145e298823b883c2",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "115ac82209aa29f56ef5adfd15b81dd930c778af2a01b113d6910549c97829d7",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "1eb393d5c7b1d607c10908620f075dfbd2442a5e5bd3d2bee37c14eff7307968",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "a708fcfe7f0fc0f4cd25374bc988f73ece753b27de00605d55ce80ca02648deb",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "8110936a8e082e3d71711386e3f02ab799e4d4905588c39b67754a1e617e9fef",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "SHA256SUMS"
+      },
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "fa9caa2d1c7ea2b1b3161dd1b5836e724ef035a38bfbb8f2ffd87ef68112ae2e",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "7c5286a8e91a0a5e51a67c3f9c0d779131ae999a3577825693f6baff77c7810b",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "14710d8f9d5f3badb4ce4ddf8c60cf97abfad7d7100d8f848acc74d9df89b30f",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "341563d3aa5346a960fdb303a8d5cc122432f195065001474b1ab13a810e1f03",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "d8c64389c3e433cb0bcb8ca498dcd583879581d333c8df2d13b0aa1dcefc063d",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "8d8dec0ba878188d5e6c128a349e7117370a6f7d178c19c2722ea3690d0a0788",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "ZCE_PARTIAL_R2_TERMINAL_RECEIPT.json"
+      },
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "6c75c90b702dcc0551aab0986a28b34e6851561b7a9ec0cd285ea8664a8578c9",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "91080c0cb13cc424dc06c26e5b418f2b9dd634f1eb7704ad9b14ae8dc29ac36c",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "7a9daf24023645628efacb9189ff9b4585e169c816462df81009a1caeb5a5a00",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "cc1140ba8d3bf966282374993823d34330e29e533da3cb19bcfde69f63d15f80",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "07e04795ae32351ffc7a470cb64f242055011d1a77535e238c98a99bb097c9d6",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "60f9c08baa755dadc97ef7835ffd6d732b946e37921dff02ec4b2a6618b2ce60",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "ZCE_PARTIAL_R2_TERMINAL_REPORT.md"
+      },
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "830bc2b1d5516749cef69ca4b4884b70a0856032b244c784d04392a2881bbae7",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "e659ac88d8d9e5ef984063670aa2c2993b8cdf3624bddeca741512b03037f831",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "1e44ccbb7c06b3c19025fe33faccddf06dcb2f021bb9c49512fbc86f0113443f",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "9a6fd431cc7b33bce3892ba9a631eee9fa19712784e57a2d697f1b1a49774ea9",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "496bbd0e9d0a06d26d75a8f8da4eec48bdd0a3b7076dae429b56b5a7055c5bcb",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "e7ef23b136e9a1203d86a3646d43b4c906eb61b2bb7128de5dd7fdcef999e03c",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "evidence/UI_AB_CONTRACT_FINAL_R2.json"
+      },
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "64fcb93993f1fdf2e51febd7ca27afa953c601cbc18588130e51d846bcf5da1c",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "9f24d6fcfb0d3c7ede4e1c0703e5043d37f0243a9b4465d24e2ac998655bc14b",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "2d564ef93c1520f993c9a994849f80664cac57174463f4766a17ac0f512b82ac",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "97036ef72337ce2de40a6a99942582feefec72796716318a40380f4c97bc3859",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "e537221c82f7bac405d5a4912cfec92878d0908efde036342c0fd5bb618fcdcd",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "b51c8d2f7cf7acacbb35336b53a013a300719a12c6e1786a6b309383d5c23a05",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "evidence/ZCE_ENGINE_SOURCE_AUDIT_R2.json"
+      },
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "f597f3835f47acc82a87246fb7ad5388ead4b9ca691bc79356f767203714320e",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "422d550ea0eca87e2cbaa715c3548918c792c9aeb20e1e49d14f64221d83a4fc",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "cdf5d15c76cab67b4f4e86b471395868efc8ec68f21f6afe10e35689730af10b",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "784366fcabcc9bfca0d04900e2b8343a9a76c9d6bbebd3bce174163edc006c7a",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "557727b1c05d960a59922b39afa4f6b4b8289b7c2177c4bab1a4f778d65fdfc0",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "0352b43b86edbdad36bbf8e80bc17173efa78e3262fe1380120f0622a23f55c8",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "evidence/ZCE_ENGINE_TESTS_63_RESUME_EXACT_ENV_R2.log"
+      },
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "1a7898188580461bc11987ae68eb7d59262379909ac2a8fc3b1735561dfab63f",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "ac1e3a3d9fc129b5a46bf9deb4a1193a459246a94992b3b13223a9c4d451cac1",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "8052b629d6b5350fb88cc15e9f42d4a107bf58068c24964e2c83299eb88eb829",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "586f85cf1cd6eeec014fb431c32da0d0929221c2dfdf6c4f2a57a3d52605c6c0",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "175607a2db62073aa11c229bc5c56f29edeeb204aa45294a9b02a2bf6f3e028d",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "7b1fdb1f3829797466b53705c742552544d85859dcb7ddc5e9a49ec213db7026",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "evidence/ZCE_FINAL_AB_R2.json"
+      },
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "6bd45465bc7eee695daaa52d1de9798133337d886b39f5943b8a7fc85e1993f1",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "289aa92d35e431fae4a8ce1a630bf340113c4b42afed9adeaa6487ba78b15631",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "771ff2485a4d22b84435012b131af40c0bdc49075832266bb9fbb35b03e5272d",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "263d4b99fdee2e27e7f3ae8afb49b1ce13cf1069aa3573e3b058ab826ce26e55",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "939b3d4d9cf8962b3c972f088cda307f5a908a87b36e30fb52d21d28e2401f42",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "e8e1df2cae31868f69cda415da9e49d20b598a69d29dddc093cd650f8ed237b8",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "evidence/ZCE_NEGATIVE_CAMPAIGN_FINAL_R2.json"
+      },
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "dfba0cbfeaa49480c20f9915cec7e814b168dc82c094ef21f26fb204d620311f",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "3fba2e1883f63b1da46382449fbbc11bb13b451340bde146f589ff8dd2a6cc26",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "be128fa5e7b7680920ea1a1a61e3d0918ad308e3abed02b2bfe4b34af8a6b220",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "ffa8323465ee816dbaff21ab11b32f17699d82fef101be3a2ff8df96e60bdec6",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "18a5efbbdee259cde9d599cd4738bc3c6b586606513384851a41a8a13fd3c7ef",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "2f274c015921bdafc446742a8abc215df33c5b49a4fb0709fcb4bf87088cdebc",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "governance/ZCE_FINAL_AB_ROLLBACK_PRE_R2.json"
+      },
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "4f07a4d368a74d6e14b728b960a4823eb0122f71b35aa549f381b5b9c1960234",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "65a8203c910f0e46b5ebd17d877e40b7774196a4d9c88d27f064d2b5b4fbd82b",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "272b9251985d2c33521823b11e68c3c4071484e2eb0cddbde7d23bea36c6b7db",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "db17872e062ad532376b998cd496ec6e25d822974cd9b59efeb863f1d47efaa3",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "06a32b2f53bde240af40665abac06dd787161830d8bdb9426ba66d810ac63f40",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "c47519cf93d11ce1ef6f5a307bd59d1dedf89ed477c4180090b82744134d215d",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "governance/ZCE_MISSION_CONTRACT_R2.json"
+      },
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "dd4cd655f7572d90e3f80939f9e1ce077f87f5ba5cc17145eddc729af1245b92",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "c201c06177a7c130034b3f464589234d4194b1d82ea848954542bbe7e796830b",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "ba91d4fe4f0cb6ce268519320979f00444b5f7b7cc393dfa2ae8d783d22f4f59",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "0f89ddc3eecfc5e25f2329d19627b5703a59c5c2847b3be68b9bae81aa168b2e",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "ea202e1df9b4d7d873a7605e06d1b57bdf9ccaaf6d16bac9a40db522530c77fe",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "7ab6949d1ed3dee3f91f7c21ce12adaac570623ce7e87fb8ce154deb611d93c1",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "governance/ZCE_POST_OUTPUT_R2.json"
+      },
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "12a26634d2e51b0fc86a4e4e47dcf5382fc165769de6cc9b94369f798e5927a3",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "d4ea95fb7e33f6a739ee8ce84a2c885e91511cb6410f88cb5b13fc59ccade8a7",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "495200ad041c3fe79ac146cf16e38a0001ca83c942f2f3aed4037fada4987e27",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "ba4d46269095a9f5fda759880a77b25cffaf866f17253127ed4173f1140aa5a4",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "e8a1dec7f9569cda12d416ae3efcb8a2adce288f36889c988b3c46d4d65a6609",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "d35208cab9d40cfb71c276b52caf5087395af61448817af61d976e84d0f8a9c7",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "governance/ZCE_POST_RECEIPT_R2.json"
+      },
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "b9457f3b9bbaef47a03cd91976893bb98f11f39f8cb381ae68618a35d236b4de",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "7b04804d35f8bd0a491739c3bc9a8985a5bc14e787c7e1155fab43bf8acbef0b",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "58ff0af5454bef6c41cca6119f2b4105040d07e3426c642b913df3f0fd66d8f7",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "055169b0d5aca3bc7ef99cfec3e486013318e955121ca99f150f653f30ea393b",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "cd828fec9223b09ee55ea5f8e72a1d09078b93be57a30e6b96974a3da48bc875",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "cdf111c22c2c4f30417b060d5e9b4c2b892b93f707ae1952ccc9e0f6bfabac10",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "governance/ZCE_PRE_RECEIPT_R2.json"
+      },
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "9f520e143516cadca8a73f8a5f2f5a8f54f48efbf3e2b60125b5988c836f32ff",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "2505acdca7933f2d4cb462fadb7c3d5b1c5aa8fe7f4039c8817e22fd2f072c47",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "a2abc5a4573c2fc82aa66589de300f5e59eca23fbc59329d0e35a29ef7ccb0e6",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "2cda123a57ee356952cdc1779e7a35ffe9136786edd177e3a31a5f68aa1f02d9",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "f4151ae4c52118a2ab31abbcdf6b588afefc446d1d5a7c45317a8a865ccdd6c3",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "b48fc5c3747e80f33062fe07a2728a9b175b14a8bd9591a4b0ed5c56e9a2f119",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "governance/dette_coh.jsonl"
+      },
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "f62612aaf76c951385b2ea03dc50ae85a68733eab98c95dbea9404e09115f874",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "fc5c54cd2bdffda97a01659b6a4b03a8fd7b659b3b69499897f0b2a38cc9d27b",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "9f0f29b9c2609b57bf5d65643e38e4335caf2298a7ed534ed7afde5a1b50cb5d",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "6240bfc08a6ae8f50e63bdf06a1868dff05422f4a2bcb9f0b6b683f83757c75a",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "27ea4d25398911a2824e1772e24c7c56d75883053b848b1126b09b52ebf5a27f",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "82562c46a913f84e134162d3dae77519c41677392a9721162f264823e7643ba8",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "governance/k3_audit.jsonl"
+      },
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "032b43b3bce4b3f38edf3320254a6530629bbadce140e0abf4036b0678d622c4",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "c0399e52f58b2b356b5b24564af04d4057345085ced2b9287999c3e6ba902944",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "b4589eb8424d49a4e3d2dfe2e6f5bb2b98e637ca60ead884150e6ab2c35233fe",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "5ad997ee6f1a0f85e1452310f7c8325a1fdc4ba351588699f52eb7631219982f",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "0949fd77d21e5f50c89e58b7b901a614c1f12536c079ab5ba3468a1aad37b6e7",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "9f0c7709e97181a39e75476fc7128188fd2d95d52eeec699d69fadcb3c3f934c",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "zce-output/ZCE_COHERENCE_MEASURE_V1.json"
+      },
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "3a0faa72cc66b750146cfb8e76beca57a810184626dc6c345a388b3d7b3466f0",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "19989b2f15264dd9883bc6e6610aadb00e905fcdd1f3cc06066387df867bf68f",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "674c7e64ed24e9ffa538cae88db4df63c8c6aa62bf1a1fd80d88ef1bdd3d7b90",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "1c51d78084b198171597dea6082fe95e471d9a15c273c55a6b70f01f4c9cbda8",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "941be14379c99b1ac7bf9b8ebc65b328efc1e85625514e5562afbd47d74ebfd8",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "df6b06841ef81302ac06420bf3d176dd56c9a27b1922f1e62900eee5a4685068",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "zce-output/ZCE_CONTROL_CERTIFICATE_V1.json"
+      },
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "8c03a6140da76fc83916548424ea63a15dc01694ae78a08d78758ae33b690114",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "7179daf3f11ad502c88f4ddfa98adc4ab7ab3ddb2ad55cea48a3b469adc6530c",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "47e930857589df061519c50b2b8af5a812440ef9de5e0ee0d621daea8a9759fc",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "2e032151219e0b20e205d6d8e30ea59c5c13308329bd5e479f78c5fa9a147ce0",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "47d5727e3d852dae4a2398a71da4d5a1216ecae3a0ca9881170e6d29535a9e31",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "0704e485c6988536234bc4fec40983939d3a524cd6fc445c89903a984c51c29a",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "zce-output/ZCE_DECISIONS_V1.json"
+      },
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "1e64c61620f8ddf660d2bf21d8786a507500e1faac26b7514b539272f3173ea5",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "7dffd311235d97c693206fa76375816bc2ae3158cc7f941f0bc9fb1ac177709b",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "2dc55a4ce0c97f35f28daee3a4524b735e018aaf60ff548aa2e40145ad611c2c",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "63f8a4fa3b4d28d27f22755ebac8ec1c00235042bf3be140bcf8767e10f88a2f",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "9d3c74fa1661fa4c5b9bf573c8b93c14b4e34300b79e70138ac5bb8f1b97eb7c",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "7327ada5ca0516f60c40aec72ba331d495951ea6ffb8a1061f9d1cb8c2335474",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "zce-output/ZCE_FINDINGS_V1.json"
+      },
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "4e0e4cf9bd8aec160b0137cf37b731f2e9f600c5267b35d343cd263a716ff805",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "2f7b0f80c66fb8c135a305c60fbe955c26296ed15adbd634ce51baf8126e5201",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "a076139c1bdbe5e469dd50ea6460be0aabf185169007c9b8ce822588d0f7e0dc",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "58ea379fef3b3ac7217e7d83e6f6fd4f48f4e5c6ea158df5fefd2100556c667d",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "515fa2966a4fc712c825a70c8c884cec64cf17ffa0f1b64907a57e1d1b544a95",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "3d5677e746261d128647b8f98493a02788cdd4b9f0d371573dad19ed90d95728",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "zce-output/ZCE_JOURNAL_V1.jsonl"
+      },
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "ea22c64a914d286aba22650fc0bb139dc2e3b44a9ba488801b0be856695e74af",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "a3edcbde206d0eeb31b2ac725399c3202234305d332da26cf4a48e161a275d4a",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "39256cc8438aef3bc0e458a67eb274ef2c7e01e8a6774bff971705e5921367b9",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "edbd679a34c24dcafc651a5751f92ddc9e1449a1b31f8f343727842914c72c0a",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "9181771a3507617fc8ae55754e117f5a20e3104800e024c83371132d6167159a",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "b12b878f6f8a9eecc70ba01d93885f80a81030b8d4c2164e8df358e78d82956b",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "zce-output/ZCE_PACK_REQUESTS_V1.json"
+      },
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "254c441fa2f1d4e620f958b53f1e682cab509a1eba214f4c24c87b4ad79957ec",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "dc6168e785cb5d0c72f388019d051c21100b13bd469c0f255bb5f90e81476f0f",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "5ecf5b91fb1a606d6b1a4ecd41d5e4eab199edd08065781066ec2e346f086ca4",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "0f0ba9ba3806143c5015f601c32c7b63ea7f008bbc90420a20914df0e457613e",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "dcb233cb597ce8b6f4017c4a6cddf882672cc29b51b94a21de097d186c25d495",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "8bb6c293c5afcb53740cb9e69c3bad6eab6df5e39c245cc20656820bfa478317",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "zce-output/ZCE_PATCH_PLAN_V1.json"
+      },
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "4bbf1042e50751c12fc1d15ee9e7c8c8effd605b69b9756aa8d9a959091bf91c",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "37a09877336e1335cd29fbaeb0c37d298e69dad1204032566cb626b1f1480b2f",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "de6fe3145437b03563df87c538e8f078b7b01e4413d4b81359286ae5a990542d",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "f31c991a9ac40e8bdfd90858aaa2810136709266b158691b955f9a3778e383ea",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "dd7bb1b7cf85c6501710e6a34cff9f27522e719f163663a8950650b9f0590d5e",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "5816942d4d7e82c1a05cdd1cc111e090b457a10c6f80972184933352f9caf437",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "zce-output/ZCE_ROLLBACK_PLAN_V1.json"
+      },
+      {
+        "frames": {
+          "global": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "d7900b52858dfe1011f24c4778784fd91d8186c66906d4c99444edb615d72b18",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "local": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "645765d137e4588d3f529fcc8107f0a7ec680f39ac1f3dc94dfcb85fd57eda1c",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "lower": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "442da48ba11f8e12097da4a82f0c64af88bceecd7f95ae1effeef17bea2eac3a",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "peer": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "cf3e876c89062d241d49f79f8f69fcd0bf9fab21b45609dcdff31f23caf61a4f",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "temporal": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "8b3aa77cff07c599d09f7d9f49546d89e5e6eddc7b21d90dd692a9652977a203",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          },
+          "upper": {
+            "calibration_class": "BOUNDED_CONSERVATIVE",
+            "delta_s_interval": [
+              -100.0,
+              100.0
+            ],
+            "evidence_quality": 0.0,
+            "interval": [
+              0.0,
+              100.0
+            ],
+            "measured": false,
+            "point": 0.0,
+            "promotion": false,
+            "proxy_receipt_sha256": "7ced6505838d48e0feee7d86bb2ab5bb5e6a0ff4a17208b8cce3fb951465e55e",
+            "proxy_version": "ZORAN_CANONICAL_S_0_100_2026-08-27"
+          }
+        },
+        "path": "zce-output/ZCE_RUN_MANIFEST_V1.json"
+      }
+    ]
+  },
+  "shadow": {
+    "base_sha": null,
+    "clean_base": false,
+    "separate_worktree": false
+  },
+  "supply_chain": {
+    "explicit_gap": "NO_SBOM_OR_SIGNED_PROVENANCE_FOR_TERMINAL_PACKAGE",
+    "provenance": "NONE",
+    "sbom": false
+  },
+  "tracked_file_count": 0,
+  "tracked_paths": [],
+  "unresolved_references": [],
+  "writer_lock": {
+    "acquired": true,
+    "exclusive": true,
+    "released": true
+  }
+}

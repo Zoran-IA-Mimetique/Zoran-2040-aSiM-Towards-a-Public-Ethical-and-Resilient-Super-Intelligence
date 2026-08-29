@@ -196,6 +196,19 @@ class TestC5OutputIsolation(unittest.TestCase):
         self.assertIn("GUARD_OUTPUT_ISOLATION", str(ctx.exception))
         self.assertFalse(os.path.exists(out))
 
+    def test_preexisting_output_is_refused_and_stale_file_is_preserved(self):
+        with tempfile.TemporaryDirectory(prefix="zce_stale_out_") as tmp:
+            out = os.path.join(tmp, "run")
+            os.mkdir(out)
+            stale = os.path.join(out, "STALE_OUTPUT.json")
+            with open(stale, "w", encoding="utf-8") as stream:
+                stream.write("stale\n")
+            with self.assertRaises(engine.InputRejected) as ctx:
+                self._run(out)
+            self.assertIn("GUARD_OUTPUT_ISOLATION", str(ctx.exception))
+            with open(stale, "r", encoding="utf-8") as stream:
+                self.assertEqual(stream.read(), "stale\n")
+
 
 class TestC6ManifestIntegrity(unittest.TestCase):
     def setUp(self):

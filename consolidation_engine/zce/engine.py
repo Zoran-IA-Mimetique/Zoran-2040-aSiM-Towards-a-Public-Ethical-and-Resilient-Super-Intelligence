@@ -38,7 +38,12 @@ class InputRejected(ValueError):
 
 def check_output_isolation(out_dir, root, input_paths):
     """Correction v1.0.1 §5 : --out ne peut être ni dans --root ni dans les
-    répertoires des entrées. Fail-closed AVANT toute écriture."""
+    répertoires des entrées et doit être entièrement neuf. Fail-closed AVANT
+    toute écriture afin qu'aucune sortie obsolète ne survive au rejeu."""
+    if os.path.lexists(out_dir):
+        raise InputRejected(
+            "%s: répertoire de sortie '%s' déjà existant — refusé "
+            "fail-closed" % (guards.GUARD_OUTPUT_ISOLATION, out_dir))
     out = os.path.realpath(out_dir)
     forbidden = [("racine gelée --root", os.path.realpath(root))]
     for input_path in input_paths:

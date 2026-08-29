@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   deterministic:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     defaults:
       run:
@@ -28,56 +28,188 @@ jobs:
           # Revue Codex P1 : sans ref explicite, pull_request teste le commit
           # de merge synthétique, pas le head exact. On épingle le head SHA.
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Assert checkout is the exact requested head
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          test "${#EXPECTED_HEAD}" -eq 40
+          case "$EXPECTED_HEAD" in *[!0-9a-f]*) exit 1;; esac
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          git diff --quiet --exit-code
       - name: Set up Python 3.11
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
-          python-version: "3.11"
+          python-version: "3.11.16"
       - name: Unit tests
-        run: python -m unittest discover -s tests
+        run: |
+          sentinel="$RUNNER_TEMP/zce-unit-tests.pass"
+          test ! -e "$sentinel"
+          ZCE_SENTINEL="$sentinel" python -I - <<'EOF'
+          import os
+          from pathlib import Path
+          import sys
+          import unittest
+
+          sys.path.insert(0, str(Path.cwd()))
+          suite = unittest.defaultTestLoader.discover("tests")
+          expected = 88
+          if suite.countTestCases() != expected:
+              raise SystemExit(
+                  "expected exactly %d repository tests, got %d" %
+                  (expected, suite.countTestCases())
+              )
+          result = unittest.TextTestRunner(verbosity=2).run(suite)
+          if (result.testsRun != expected or not result.wasSuccessful() or
+                  result.skipped or result.expectedFailures or
+                  result.unexpectedSuccesses):
+              raise SystemExit(1)
+          Path(os.environ["ZCE_SENTINEL"]).write_text(
+              "PASS:88:0-skipped:0-expected-failures:0-unexpected-successes\n",
+              encoding="utf-8",
+          )
+          EOF
+          test "$(cat "$sentinel")" = \
+            "PASS:88:0-skipped:0-expected-failures:0-unexpected-successes"
       - name: Validate frozen inputs
-        run: >-
-          python -m zce validate
-          --manifest sample/inputs/manifest.json
-          --graph sample/inputs/relation_graph.json
-          --ledger sample/inputs/gap_ledger.json
-      - name: Reproduce reference run byte-for-byte
         run: |
-          python -m zce dry-run \
-            --root sample/frozen_tree \
-            --manifest sample/inputs/manifest.json \
-            --graph sample/inputs/relation_graph.json \
-            --ledger sample/inputs/gap_ledger.json \
-            --out sample/reference_run \
-            --now 2026-08-28T12:00:00Z
-          git diff --exit-code -- sample/reference_run
-      - name: Accept admissible candidate
-        run: >-
-          python -m zce gate-candidate
-          --candidate sample/candidates/llm_candidate_ok.json
-          --manifest sample/inputs/manifest.json
-          --ledger sample/inputs/gap_ledger.json
-      - name: Reject hostile candidate with exit 3
+          sentinel="$RUNNER_TEMP/zce-inputs.pass"
+          test ! -e "$sentinel"
+          ZCE_SENTINEL="$sentinel" python -I - \
+            sample/inputs/manifest.json \
+            sample/inputs/relation_graph.json \
+            sample/inputs/gap_ledger.json <<'EOF'
+          import os
+          from pathlib import Path
+          import sys
+
+          sys.path.insert(0, str(Path.cwd()))
+          from zce.cli import main
+
+          code = main([
+              "validate", "--manifest", sys.argv[1],
+              "--graph", sys.argv[2], "--ledger", sys.argv[3],
+          ])
+          if code != 0:
+              raise SystemExit("input validation did not return 0")
+          Path(os.environ["ZCE_SENTINEL"]).write_text(
+              "PASS:VALIDATED_FROZEN_INPUTS\n", encoding="utf-8")
+          EOF
+          test "$(cat "$sentinel")" = "PASS:VALIDATED_FROZEN_INPUTS"
+      - name: Reproduce exact 9-file dry-run and 2 gate receipts
         run: |
-          set +e
-          python -m zce gate-candidate \
-            --candidate sample/candidates/llm_candidate_bad.json \
-            --manifest sample/inputs/manifest.json \
-            --ledger sample/inputs/gap_ledger.json
-          code=$?
-          set -e
-          test "$code" -eq 3
+          output="$RUNNER_TEMP/reference_run"
+          test ! -e "$output"
+          sentinel="$RUNNER_TEMP/zce-reference.pass"
+          test ! -e "$sentinel"
+          ZCE_OUTPUT="$output" ZCE_SENTINEL="$sentinel" python -I - <<'EOF'
+          import hashlib
+          import os
+          from pathlib import Path
+          import sys
+
+          sys.path.insert(0, str(Path.cwd()))
+          from zce.cli import main
+
+          output = Path(os.environ["ZCE_OUTPUT"])
+          fixed = "2026-08-28T12:00:00Z"
+          dry_code = main([
+              "dry-run", "--root", "sample/frozen_tree",
+              "--manifest", "sample/inputs/manifest.json",
+              "--graph", "sample/inputs/relation_graph.json",
+              "--ledger", "sample/inputs/gap_ledger.json",
+              "--out", str(output), "--now", fixed,
+          ])
+          if dry_code != 0:
+              raise SystemExit("dry-run did not return 0")
+          ok_code = main([
+              "gate-candidate", "--candidate",
+              "sample/candidates/llm_candidate_ok.json",
+              "--manifest", "sample/inputs/manifest.json",
+              "--ledger", "sample/inputs/gap_ledger.json",
+              "--now", fixed, "--out", str(output / "GATE_DECISION_OK.json"),
+          ])
+          bad_code = main([
+              "gate-candidate", "--candidate",
+              "sample/candidates/llm_candidate_bad.json",
+              "--manifest", "sample/inputs/manifest.json",
+              "--ledger", "sample/inputs/gap_ledger.json",
+              "--now", fixed, "--out", str(output / "GATE_DECISION_BAD.json"),
+          ])
+          if (ok_code, bad_code) != (0, 3):
+              raise SystemExit("gate decisions did not return exact codes 0/3")
+
+          def closed_files(root):
+              root = Path(root)
+              if not root.is_dir() or root.is_symlink():
+                  raise SystemExit("reference root is not a real directory")
+              result = {}
+              for path in root.rglob("*"):
+                  relative = path.relative_to(root).as_posix()
+                  if path.is_symlink():
+                      raise SystemExit("symlink rejected: " + relative)
+                  if path.is_dir():
+                      continue
+                  if not path.is_file():
+                      raise SystemExit("special file rejected: " + relative)
+                  result[relative] = hashlib.sha256(path.read_bytes()).hexdigest()
+              return result
+
+          exact_names = {
+              "GATE_DECISION_BAD.json",
+              "GATE_DECISION_OK.json",
+              "ZCE_COHERENCE_MEASURE_V1.json",
+              "ZCE_CONTROL_CERTIFICATE_V1.json",
+              "ZCE_DECISIONS_V1.json",
+              "ZCE_FINDINGS_V1.json",
+              "ZCE_JOURNAL_V1.jsonl",
+              "ZCE_PACK_REQUESTS_V1.json",
+              "ZCE_PATCH_PLAN_V1.json",
+              "ZCE_ROLLBACK_PLAN_V1.json",
+              "ZCE_RUN_MANIFEST_V1.json",
+          }
+          expected = closed_files(Path("sample/reference_run"))
+          actual = closed_files(output)
+          if set(expected) != exact_names or set(actual) != exact_names:
+              raise SystemExit(
+                  "reference file set is not the exact frozen 9+2 contract")
+          if actual != expected:
+              raise SystemExit(
+                  "reference run file/hash set diverged: expected=%r actual=%r" %
+                  (expected, actual)
+              )
+          Path(os.environ["ZCE_SENTINEL"]).write_text(
+              "PASS:EXACT_REFERENCE_9_DRY_RUN_PLUS_2_GATES\n",
+              encoding="utf-8",
+          )
+          EOF
+          test "$(cat "$sentinel")" = \
+            "PASS:EXACT_REFERENCE_9_DRY_RUN_PLUS_2_GATES"
       - name: Keep apply structurally disabled
         run: |
-          set +e
-          python -m zce apply
-          code=$?
-          set -e
-          test "$code" -eq 3
+          sentinel="$RUNNER_TEMP/zce-apply-guard.pass"
+          test ! -e "$sentinel"
+          ZCE_SENTINEL="$sentinel" python -I - <<'EOF'
+          import os
+          from pathlib import Path
+          import sys
+
+          sys.path.insert(0, str(Path.cwd()))
+          from zce.cli import main
+
+          if main(["apply"]) != 3:
+              raise SystemExit("apply guard did not return exact code 3")
+          Path(os.environ["ZCE_SENTINEL"]).write_text(
+              "PASS:APPLY_REFUSED_EXIT_3\n", encoding="utf-8")
+          EOF
+          test "$(cat "$sentinel")" = "PASS:APPLY_REFUSED_EXIT_3"
 
   r3-evidence:
     # Revue Codex P1 : le bundle R3 doit être validé par la CI, pas seulement
     # transporté — sommes pinnées, manifeste interne, 20 tests, campagne 1M.
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     defaults:
       run:
@@ -87,40 +219,124 @@ jobs:
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Assert checkout is the exact requested head
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          test "${#EXPECTED_HEAD}" -eq 40
+          case "$EXPECTED_HEAD" in *[!0-9a-f]*) exit 1;; esac
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          git diff --quiet --exit-code
       - name: Set up Python 3.11
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
-          python-version: "3.11"
-      - name: Install pytest
-        run: python -m pip install --quiet pytest
-      - name: Verify pinned sums, receipts and bundle internal manifest
-        run: >-
-          python tools/verify_r3_evidence.py
-          --evidence-dir evidence/r3
-          --workdir "$RUNNER_TEMP/opg"
-      - name: Run bundle unit and adversarial tests (20)
+          python-version: "3.11.16"
+      - name: Verify pinned sums, receipts, safe ZIP and C31 V2
         run: |
-          cd "$RUNNER_TEMP/opg/ZORAN_OPPOSED_PAIR_GATE_V1_1"
-          PYTHONPATH=. python -m pytest -q opposed_pair_gate/tests/test_gate.py
+          sentinel="$RUNNER_TEMP/r4-verifier.pass"
+          test ! -e "$sentinel"
+          R4_SENTINEL="$sentinel" python -I - \
+            tools/verify_r3_evidence.py \
+            --evidence-dir evidence/r3 \
+            --r4-evidence-dir evidence/r4 \
+            --workdir "$RUNNER_TEMP/opg" \
+            --require-c31-v2 <<'EOF'
+          import os
+          from pathlib import Path
+          import runpy
+          import sys
+
+          script, *arguments = sys.argv[1:]
+          sys.argv = [script, *arguments]
+          try:
+              runpy.run_path(script, run_name="__main__")
+          except SystemExit as exc:
+              if exc.code not in (0, None):
+                  raise
+          Path(os.environ["R4_SENTINEL"]).write_text(
+              "PASS:R4_VERIFIER_RETURNED_NORMALLY\n", encoding="utf-8")
+          EOF
+          test "$(cat "$sentinel")" = "PASS:R4_VERIFIER_RETURNED_NORMALLY"
+      - name: Verify recovered source bundle history
+        run: git bundle verify evidence/r4/source/ZCE_R2_GIT_EVIDENCE_9808ae1.bundle
+      - name: Run exactly 20 stdlib unit and adversarial tests
+        env:
+          OPG_ROOT: ${{ runner.temp }}/opg/ZORAN_OPPOSED_PAIR_GATE_V1_1
+        run: |
+          sentinel="$RUNNER_TEMP/opg-tests.pass"
+          test ! -e "$sentinel"
+          OPG_SENTINEL="$sentinel" python -I - <<'EOF'
+          import importlib.util
+          import os
+          from pathlib import Path
+          import sys
+          import unittest
+
+          root = Path(os.environ["OPG_ROOT"]).resolve()
+          sys.path.insert(0, str(root))
+          test_path = root / "opposed_pair_gate" / "tests" / "test_gate.py"
+          spec = importlib.util.spec_from_file_location("opg_test_gate", test_path)
+          if spec is None or spec.loader is None:
+              raise SystemExit("cannot load pinned OPG test module")
+          module = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(module)
+          suite = unittest.defaultTestLoader.loadTestsFromModule(module)
+          if suite.countTestCases() != 20:
+              raise SystemExit(
+                  "expected exactly 20 tests, got %d" % suite.countTestCases()
+              )
+          result = unittest.TextTestRunner(verbosity=2).run(suite)
+          if (result.testsRun != 20 or not result.wasSuccessful() or
+                  result.skipped or result.expectedFailures or
+                  result.unexpectedSuccesses):
+              raise SystemExit(1)
+          Path(os.environ["OPG_SENTINEL"]).write_text(
+              "PASS:20:0-skipped:0-expected-failures:0-unexpected-successes\n",
+              encoding="utf-8",
+          )
+          EOF
+          test "$(cat "$sentinel")" = \
+            "PASS:20:0-skipped:0-expected-failures:0-unexpected-successes"
       - name: Replay 1M deterministic campaign and compare to stored receipt
+        env:
+          OPG_ROOT: ${{ runner.temp }}/opg/ZORAN_OPPOSED_PAIR_GATE_V1_1
         run: |
-          cd "$RUNNER_TEMP/opg/ZORAN_OPPOSED_PAIR_GATE_V1_1"
-          PYTHONPATH=. python opposed_pair_gate/tests/run_falsification_1m.py \
-            > "$RUNNER_TEMP/campaign_out.json"
-          python - <<'EOF'
-          import json, os
-          out_path = os.path.join(os.environ["RUNNER_TEMP"], "campaign_out.json")
-          root = os.path.join(os.environ["RUNNER_TEMP"], "opg",
-                              "ZORAN_OPPOSED_PAIR_GATE_V1_1")
-          got = json.load(open(out_path, encoding="utf-8"))
-          ref = json.load(open(os.path.join(
-              root, "opposed_pair_gate", "results", "FALSIFICATION_1M.json"),
-              encoding="utf-8"))
+          sentinel="$RUNNER_TEMP/opg-campaign.pass"
+          test ! -e "$sentinel"
+          OPG_SENTINEL="$sentinel" python -I - <<'EOF'
+          import importlib.util
+          import json
+          import os
+          from pathlib import Path
+          import sys
+
+          root = Path(os.environ["OPG_ROOT"]).resolve()
+          sys.path.insert(0, str(root))
+          script = root / "opposed_pair_gate" / "tests" / "run_falsification_1m.py"
+          spec = importlib.util.spec_from_file_location("opg_campaign", script)
+          if spec is None or spec.loader is None:
+              raise SystemExit("cannot load pinned OPG campaign module")
+          module = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(module)
+          got = module.run(1_000_000)
+          with (root / "opposed_pair_gate" / "results" /
+                "FALSIFICATION_1M.json").open(encoding="utf-8") as stream:
+              ref = json.load(stream)
           drop = {"elapsed_seconds"}
           got_cmp = {k: v for k, v in got.items() if k not in drop}
           ref_cmp = {k: v for k, v in ref.items() if k not in drop}
-          assert got_cmp == ref_cmp, "campagne rejouée ≠ reçu embarqué"
-          assert got["status"] == "PASS_1M_IMPLEMENTATION_GATE"
-          assert got["violations"] == 0
+          if got_cmp != ref_cmp:
+              raise SystemExit("campagne rejouée != reçu embarqué")
+          if got.get("status") != "PASS_1M_IMPLEMENTATION_GATE":
+              raise SystemExit("statut campagne invalide")
+          if got.get("violations") != 0:
+              raise SystemExit("violations de campagne non nulles")
+          Path(os.environ["OPG_SENTINEL"]).write_text(
+              "PASS:1000000:0-violations:RECEIPT-MATCH\n", encoding="utf-8")
           print("campagne 1M rejouée: conforme au reçu embarqué, 0 violation")
           EOF
+          test "$(cat "$sentinel")" = \
+            "PASS:1000000:0-violations:RECEIPT-MATCH"

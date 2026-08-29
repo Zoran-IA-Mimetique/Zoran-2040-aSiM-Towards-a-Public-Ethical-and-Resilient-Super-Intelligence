@@ -1,0 +1,155 @@
+{
+  "schema": "zoran.zce.c31-critical-debt-derivation.v2",
+  "object_id": "ZCE-C31-CRITICAL-DEBT-DERIVATION-R4",
+  "mission_contract_sha256": "cc4c8aa7260b5ade8bfa970137cc9a73e58cd4b0c9024620e1458fbf9c423fb7",
+  "supersedes": {
+    "object_id": "ZCE-C31-CRITICAL-DEBT-DERIVATION-R3",
+    "path": "../r3/C31_CRITICAL_DEBT_DERIVATION_V1.json",
+    "content_sha256": "4bd84ca513d6369fe28dfc6ee590e43afad41043da9c8236529b53b2897f2c48",
+    "reason": "V1 did not publish or pin the productive ledger and asserted an exact 9+2 count without proving either blocker identity or disjointness."
+  },
+  "source_bundle": {
+    "path": "source/ZCE_R2_GIT_EVIDENCE_9808ae1.bundle",
+    "sha256": "efabe41e40d0c4fa650f216778bc50726999ae657a78f87f6d9b65217b118777",
+    "size_bytes": 56734,
+    "reference": "refs/heads/main",
+    "commit": "9808ae11d2f7f9ab3c8f9f435620f67c6bcdb6b6",
+    "tree": "28301c9dde19ea6456cdfff0259ad4f71214415e",
+    "history": "COMPLETE_BUNDLE",
+    "ledger_repository_path": "ZORAN_ZCE_PARTIAL_ROBOT_R2/governance/dette_coh.jsonl",
+    "audit_repository_path": "ZORAN_ZCE_PARTIAL_ROBOT_R2/governance/k3_audit.jsonl",
+    "pre_receipt_repository_path": "ZORAN_ZCE_PARTIAL_ROBOT_R2/governance/ZCE_PRE_RECEIPT_R2.json",
+    "post_receipt_repository_path": "ZORAN_ZCE_PARTIAL_ROBOT_R2/governance/ZCE_POST_RECEIPT_R2.json",
+    "terminal_receipt_repository_path": "ZORAN_ZCE_PARTIAL_ROBOT_R2/ZCE_PARTIAL_R2_TERMINAL_RECEIPT.json",
+    "terminal_report_repository_path": "ZORAN_ZCE_PARTIAL_ROBOT_R2/ZCE_PARTIAL_R2_TERMINAL_REPORT.md"
+  },
+  "ledger": {
+    "path": "source/R2_DETTE_COH_9808AE1.jsonl",
+    "sha256": "cffee20b5609d9a042d3e42ffe2e031337555e20dc3954dc991c0a54ae757430",
+    "size_bytes": 5436,
+    "event_count": 9,
+    "event_hash_algorithm": "SHA256_UTF8_CANONICAL_JSON_RECORD_WITHOUT_EVENT_HASH",
+    "chain_head": "99c61c6627e5da042d9bbbf2fba742a0c3b5a6281962825cea295112d11b0982",
+    "chain_integrity": "PASS",
+    "rewrite_resistance": "TAMPER_EVIDENT_LOCAL_ONLY",
+    "open_count": 9,
+    "open_debts": [
+      {
+        "sequence": 1,
+        "scope": "frame:upper",
+        "debt_key": "9767b83cd21d55aa8301a0a59bb8c706dbb4498bf61debe55bc1e71e52f9a2d0",
+        "event_hash": "2f3e70744f78c8e8998e73c2af635852727881089d699a34139a2524484ee80c"
+      },
+      {
+        "sequence": 2,
+        "scope": "frame:science",
+        "debt_key": "84f6527b65c052ba64edcd1a73610d37e3b7f11ebef29b6c6cf414b91191107f",
+        "event_hash": "5df1308c4b0922b2e40baf691d052a842a515fa770b3003e468a0e0a8399ffcd"
+      },
+      {
+        "sequence": 3,
+        "scope": "frame:privacy",
+        "debt_key": "8344950e6070d7345936da9bbdf67d1593b169b1ad2d65096a0d24130086c85d",
+        "event_hash": "600a4852a22c6aaaa62246eb69962c3cd22935519123fc582e5158d939c3ae31"
+      },
+      {
+        "sequence": 4,
+        "scope": "frame:law",
+        "debt_key": "a99a431471a300c36cd18a70aafef24e78b6be9bbb851890d3b86e6d274332db",
+        "event_hash": "3267ca32d7b3ab73f0328824fe15322f4eba021f2fa87fac99a483c8151b0976"
+      },
+      {
+        "sequence": 5,
+        "scope": "frame:energy",
+        "debt_key": "a65e129979aeaed2bf9c516e4e38ce7e7154f97191fa06743b78b13c566096cb",
+        "event_hash": "02e68c592fa4b06476bf857a4a6e832f1829f3cfeadf53e587464bd43c2ff9d0"
+      },
+      {
+        "sequence": 6,
+        "scope": "frame:climate",
+        "debt_key": "8e98e389308b86de9b024b43c4107f4617dd65274bea4839139e717a467ef6ab",
+        "event_hash": "10bb780f1db13498ee9b4d2e3cb8aabe8d521615a95fe7be0cd210abbf10e9ac"
+      },
+      {
+        "sequence": 7,
+        "scope": "frame:planetary",
+        "debt_key": "e8696a8860dbbe5cdab478b3d162faae09144296c1efb75c0d4b3fc80a15b2a2",
+        "event_hash": "bd12724c0cd617292d82f13d28ebf2aa875aae5d2b0211fdd78db85a37fc852a"
+      },
+      {
+        "sequence": 8,
+        "scope": "frame:downstream_consumers",
+        "debt_key": "7a39ba8c9e0676388857a6b821d9e54e2449ad8d5f9a26e406f6a64a543bb916",
+        "event_hash": "e6c5652c99c4109d66fdcd2930d636fcd1b7aa7c8c02809ee0ae5e87ccb6ac26"
+      },
+      {
+        "sequence": 9,
+        "scope": "frame:upper:authority_signature",
+        "debt_key": "7c179390262bd4618ba6afd22e79f35e24872b0be43ca754a811640a495fb36e",
+        "event_hash": "99c61c6627e5da042d9bbbf2fba742a0c3b5a6281962825cea295112d11b0982"
+      }
+    ]
+  },
+  "k3_audit": {
+    "path": "source/R2_K3_AUDIT_9808AE1.jsonl",
+    "sha256": "39b0bab524eddb7118e70cad8ff551c50d8c3d89f20bda1793884fb8418ede95",
+    "size_bytes": 36512,
+    "event_count": 2,
+    "chain_head": "3aa65f17affe2cb3c5b704945dd9f30d8d8adb1957933d503653b29520974612",
+    "chain_integrity": "PASS",
+    "pre_receipt_sha256": "55051d194b9afd7364048eb47e9740bb99b293d08478ed84cdc84b9b1d585828",
+    "post_receipt_sha256": "99870733f6c3183cd71ee4719586ed4f54d495e402ae3edb877aa179a8076766",
+    "terminal_receipt_sha256": "3f36d3309b59e3c297740f061c85a039aa26881a3ad9aabda32bb20497b17044",
+    "terminal_report_sha256": "e443ef59c89082a2101d462b38eb652d51e60433a7066a4efac43baa2f819493"
+  },
+  "criticality_policy": {
+    "path": "C31_FAIL_CLOSED_CRITICALITY_POLICY_V1.json",
+    "content_sha256": "89268da245f74b04d751fcdeeb2ae4312059340185f83e241359da271b120ef5",
+    "effect": "Unknown criticality is preserved as NON_MESURÉ and cannot prove zero."
+  },
+  "external_promotion_blockers": [
+    {
+      "id": "C26_REMOTE_PROMOTION_GOVERNANCE",
+      "status": "OPEN_BLOCKING_EXTERNAL_AUTHORITY",
+      "disjoint_from_ledger": "NON_MESURÉ",
+      "evidence_object_id": "C26_PROTECTED_PROMOTION_AUTHORITY_V1",
+      "evidence_path": "C26_PROTECTED_PROMOTION_AUTHORITY_PACK_REQUEST_V1.json",
+      "evidence_sha256": "6d89c0fe3c480a9b780a936387dfd092c8a0f7864c13b653a8f1668806fecaf7"
+    }
+  ],
+  "remediation_aliases": [
+    {
+      "id": "PACK_REQUEST_K3_AMYGDALA_PRODUCTIVE_AUTHORITIES_V1",
+      "status": "OPEN_BLOCKING_LIVE_K3_RESULT",
+      "candidate_ledger_debt_key": "7c179390262bd4618ba6afd22e79f35e24872b0be43ca754a811640a495fb36e",
+      "candidate_ledger_scope": "frame:upper:authority_signature",
+      "identity_equivalence": "NON_MESURÉ",
+      "additional_count_min": 0,
+      "additional_count_max": 1,
+      "additional_count_exact": "NON_MESURÉ",
+      "relation_path": "C31_AUTHORITY_PACK_DEBT_RELATION_V1.json",
+      "relation_sha256": "c0c3ddb86f0e02252fdef05d4732e9f32015ac7c4450a956da9e6592d17991e3",
+      "reason": "The pinned sources establish only a thematic authority relation. They do not name the same K3+Amygdala object, so aliasing remains NON_MESURÉ."
+    }
+  ],
+  "derivation": {
+    "ledger_open_count": 9,
+    "external_open_promotion_blocker_count": 1,
+    "authority_pack_additional_count_min": 0,
+    "authority_pack_additional_count_max": 1,
+    "authority_pack_additional_count_exact": "NON_MESURÉ",
+    "c26_ledger_overlap": "NON_MESURÉ",
+    "unique_unresolved_item_count_min": 9,
+    "unique_unresolved_item_count_max": 11,
+    "unique_unresolved_item_count_exact": "NON_MESURÉ",
+    "open_critical_debt_count_exact": "NON_MESURÉ",
+    "formula": "9 ledger debts UNION 1 C26 blocker UNION 1 authority PACK_REQUEST; C26 overlap and PACK_REQUEST identity with ledger debt 9 are both NON_MESURÉ, therefore |union| is in [9,11].",
+    "non_circular": true,
+    "double_count_rejected": "POTENTIAL_OVERLAPS_PRESERVED_AS_NON_MESURÉ"
+  },
+  "derived_open_critical_debt": "NON_MESURÉ",
+  "zero_open_critical_debt_proven": false,
+  "c31_verdict": "FAIL",
+  "closure_rule": "C31 passes only with zero unique open critical debt and linked repayment evidence for every ledger key plus external blockers.",
+  "global_zoran": "NON_MESURÉ"
+}
