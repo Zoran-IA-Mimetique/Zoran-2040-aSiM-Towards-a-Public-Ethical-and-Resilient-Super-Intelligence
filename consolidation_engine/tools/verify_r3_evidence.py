@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.util
 import json
 import math
 import os
@@ -20,6 +21,7 @@ import shutil
 import stat
 import subprocess
 import sys
+import unittest
 import zipfile
 
 
@@ -29,7 +31,7 @@ ZIP_MANIFEST = f"{ZIP_ROOT}/MANIFEST_SHA256.json"
 OPG_ZIP_SHA256 = "267394d8a0620be5ace50b7c8f164d684d75d1e57e136b361b5bc7772976d520"
 OPG_ZIP_SIZE = 25602
 R3_SHA256SUMS_SHA256 = "4f87b2e42390181099b58cfc9a86e23e71a41c0999276d2a50c5c49ad59468a9"
-R4_SHA256SUMS_SHA256 = "6982e5e24edf95466bb45afd0640b1d6ccfb602b24bf81278b9761c227a3272c"
+R4_SHA256SUMS_SHA256 = "82c0abdd67082a35deffe602bd2bff0ba2be652ff96634fb805315587efc6f6c"
 OPG_ALLOWED_PATHS = (
     "LETTRE_MISSION_CHATGPT_WORK_OPG_V1.md",
     "OPG_INTEGRATION_K3_ZMOS.md",
@@ -68,6 +70,7 @@ BRANCH = "claude/zoran-consolidation-engine-qj175v"
 BASE_SHA = "cdf9039777b4f71f62153a06d96ecf949ed94cc5"
 BASELINE_HEAD = "8d7d027a35d542576f6f0186b3e78f5e4f5f026b"
 BASELINE_RUN_ID = 33247790517
+REPOSITORY_TEST_COUNT = 91
 R2_BUNDLE_SHA = "efabe41e40d0c4fa650f216778bc50726999ae657a78f87f6d9b65217b118777"
 R2_COMMIT = "9808ae11d2f7f9ab3c8f9f435620f67c6bcdb6b6"
 R2_TREE = "28301c9dde19ea6456cdfff0259ad4f71214415e"
@@ -96,7 +99,7 @@ R4_PINNED_ROOT_SHA256 = {
     "R2_EVIDENCE_SUPERSESSION_V2.json":
         "1a5fb39d127c7db36b53ea5c9ae9e8c06874b42f87cc3ae3d31188c6c16762d5",
     "R4_CONTRADICTION_REPLAY_PACK_V1.json":
-        "7b66e780e691bbe78ede71bbcd9079742cab78b4d77c8f8afaf868761f1c4f15",
+        "ee29f4a4e9b777ef729e41723cceea6b77ca2a1b3d135cb206a7bc26b883f48e",
 }
 
 EXPECTED_DEBT_KEYS = [
@@ -207,11 +210,12 @@ R4_CONTRACTS = {
          "global_zoran"}),
     "R4_CONTRADICTION_REPLAY_PACK_V1.json": (
         "zoran.zce.r4-contradiction-replay-pack.v1",
-        {"schema", "object_id", "mission_contract_sha256", "repository",
-         "pull_request", "branch", "base_sha", "r4_parent_head",
-         "exact_r4_head_resolution", "proof_index", "replay_commands",
-         "c31_acceptance", "c26_acceptance", "non_measured_limits",
-         "global_zoran"}),
+         {"schema", "object_id", "mission_contract_sha256", "repository",
+          "pull_request", "branch", "base_sha", "r4_parent_head",
+          "exact_r4_head_resolution", "proof_index",
+          "replay_execution_contract", "replay_commands",
+          "c31_acceptance", "c26_acceptance", "non_measured_limits",
+          "global_zoran"}),
 }
 
 
@@ -612,6 +616,100 @@ def validate_opg_tree(r3_dir: Path, root: Path) -> None:
     require((r3_dir / "OPG_V1_1_R3_REPAIR_RECEIPT.json").read_bytes() ==
             (root / "OPG_V1_1_R3_REPAIR_RECEIPT.json").read_bytes(),
             "OPG_RECEIPT_RELATION")
+
+
+def _load_module_from_path(name: str, path: Path):
+    require(path.is_file() and not path.is_symlink(),
+            f"EXEC_MODULE_PATH:{name}")
+    spec = importlib.util.spec_from_file_location(name, path)
+    require(spec is not None and spec.loader is not None,
+            f"EXEC_MODULE_SPEC:{name}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def execute_repository_tests(engine_dir: Path, expected: int) -> None:
+    """Run the closed repository suite without startup-path auto imports."""
+    require(type(expected) is int and expected > 0, "REPO_TEST_EXPECTATION")
+    tests_dir = engine_dir / "tests"
+    require(tests_dir.is_dir() and not tests_dir.is_symlink(),
+            "REPO_TEST_DIRECTORY")
+    inserted = str(engine_dir.resolve())
+    original_sys_path = list(sys.path)
+    sys.path.insert(0, inserted)
+    try:
+        suite = unittest.defaultTestLoader.discover(str(tests_dir))
+        require(suite.countTestCases() == expected,
+                f"REPO_TEST_COUNT:{suite.countTestCases()}:{expected}")
+        result = unittest.TextTestRunner(verbosity=2).run(suite)
+    finally:
+        sys.path[:] = original_sys_path
+    require(result.testsRun == expected and result.wasSuccessful() and
+            not result.skipped and not result.expectedFailures and
+            not result.unexpectedSuccesses,
+            "REPO_TEST_RESULT")
+    print(f"PASS_REPOSITORY_TESTS:{expected}:0-skipped:"
+          "0-expected-failures:0-unexpected-successes")
+
+
+def require_exact_python_runtime() -> None:
+    require(sys.implementation.name == "cpython" and
+            tuple(sys.version_info[:3]) == (3, 11, 16),
+            "PYTHON_RUNTIME_NOT_CPYTHON_3_11_16")
+
+
+def execute_opg_evidence(root: Path) -> None:
+    """Re-run the exact OPG 20-test suite and 1M receipt using stdlib only."""
+    inserted = str(root.resolve())
+    original_sys_path = list(sys.path)
+    sys.path.insert(0, inserted)
+    try:
+        test_module = _load_module_from_path(
+            "zce_r4_opg_test_gate",
+            root / "opposed_pair_gate/tests/test_gate.py",
+        )
+        suite = unittest.defaultTestLoader.loadTestsFromModule(test_module)
+        require(suite.countTestCases() == 20,
+                f"OPG_EXEC_TEST_COUNT:{suite.countTestCases()}")
+        result = unittest.TextTestRunner(verbosity=2).run(suite)
+        require(result.testsRun == 20 and result.wasSuccessful() and
+                not result.skipped and not result.expectedFailures and
+                not result.unexpectedSuccesses,
+                "OPG_EXEC_TEST_RESULT")
+
+        campaign_module = _load_module_from_path(
+            "zce_r4_opg_campaign",
+            root / "opposed_pair_gate/tests/run_falsification_1m.py",
+        )
+        run = getattr(campaign_module, "run", None)
+        require(callable(run), "OPG_EXEC_CAMPAIGN_ENTRYPOINT")
+        observed = run(1_000_000)
+        expected = strict_json_file(
+            root / "opposed_pair_gate/results/FALSIFICATION_1M.json")
+    finally:
+        sys.path[:] = original_sys_path
+
+    require(isinstance(observed, dict) and isinstance(expected, dict),
+            "OPG_EXEC_CAMPAIGN_OBJECT")
+    observed_projection = {
+        key: value for key, value in observed.items()
+        if key != "elapsed_seconds"
+    }
+    expected_projection = {
+        key: value for key, value in expected.items()
+        if key != "elapsed_seconds"
+    }
+    require(strict_typed_equal(observed_projection, expected_projection),
+            "OPG_EXEC_CAMPAIGN_RECEIPT_MISMATCH")
+    require(observed.get("cases_requested") == 1_000_000 and
+            observed.get("cases_executed") == 1_000_000 and
+            observed.get("violations") == 0 and
+            observed.get("status") == "PASS_1M_IMPLEMENTATION_GATE",
+            "OPG_EXEC_CAMPAIGN_TERMINAL")
+    print("PASS_OPG_TESTS:20:0-skipped:0-expected-failures:"
+          "0-unexpected-successes")
+    print("PASS_OPG_CAMPAIGN:1000000:0-violations:RECEIPT-MATCH")
 
 
 def validate_hash_chain(raw: bytes, label: str) -> tuple[list[dict], str | None]:
@@ -1201,25 +1299,34 @@ def validate_remote_and_replay(r3_dir: Path, parsed: dict) -> None:
         "opg_bundle": "evidence/r3/ZORAN_OPPOSED_PAIR_GATE_V1_1.zip",
     }
     expected_commands = [
-        "test -n \"$ZCE_EXPECTED_HEAD\" && test \"${#ZCE_EXPECTED_HEAD}\" -eq 40 && export ZCE_EXPECTED_HEAD",
-        "git fetch origin pull/10/head:refs/remotes/origin/pr-10-head",
-        "git checkout --detach \"$ZCE_EXPECTED_HEAD\"",
-        "test \"$(git rev-parse HEAD)\" = \"$ZCE_EXPECTED_HEAD\"",
-        "(cd consolidation_engine && python -m unittest discover -s tests)",
-        "export ZCE_OPG_WORKDIR=\"$(mktemp -d)/opg\"",
-        "(cd consolidation_engine && python tools/verify_r3_evidence.py --evidence-dir evidence/r3 --r4-evidence-dir evidence/r4 --workdir \"$ZCE_OPG_WORKDIR\" --require-c31-v2)",
-        "(cd \"$ZCE_OPG_WORKDIR/ZORAN_OPPOSED_PAIR_GATE_V1_1\" && PYTHONPATH=. python -m pytest -q opposed_pair_gate/tests/test_gate.py)",
-        "(cd \"$ZCE_OPG_WORKDIR/ZORAN_OPPOSED_PAIR_GATE_V1_1\" && PYTHONPATH=. python opposed_pair_gate/tests/run_falsification_1m.py > \"$ZCE_OPG_WORKDIR/campaign_out.json\")",
-        "jq -S 'del(.elapsed_seconds)' \"$ZCE_OPG_WORKDIR/campaign_out.json\" > \"$ZCE_OPG_WORKDIR/campaign_norm.json\"",
-        "jq -S 'del(.elapsed_seconds)' \"$ZCE_OPG_WORKDIR/ZORAN_OPPOSED_PAIR_GATE_V1_1/opposed_pair_gate/results/FALSIFICATION_1M.json\" > \"$ZCE_OPG_WORKDIR/campaign_ref.json\"",
-        "diff \"$ZCE_OPG_WORKDIR/campaign_norm.json\" \"$ZCE_OPG_WORKDIR/campaign_ref.json\"",
-        "test \"$(jq -r .violations \"$ZCE_OPG_WORKDIR/campaign_out.json\")\" = \"0\" && test \"$(jq -r .status \"$ZCE_OPG_WORKDIR/campaign_out.json\")\" = \"PASS_1M_IMPLEMENTATION_GATE\"",
+        "set -euo pipefail; export GIT_CONFIG_NOSYSTEM=1 GIT_CONFIG_GLOBAL=/dev/null GIT_TERMINAL_PROMPT=0 GIT_OPTIONAL_LOCKS=0; test -z \"$(git status --porcelain=v1 --untracked-files=all)\"; ZCE_EXPECTED_HEAD=\"$(gh api repos/Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence/pulls/10 --jq '.head.sha')\"; case \"$ZCE_EXPECTED_HEAD\" in *[!0-9a-f]*|'') exit 1;; esac; test \"${#ZCE_EXPECTED_HEAD}\" -eq 40; readonly ZCE_EXPECTED_HEAD; export ZCE_EXPECTED_HEAD",
+        "git -c core.hooksPath=/dev/null fetch --no-tags origin pull/10/head:refs/remotes/origin/pr-10-head",
+        "test \"$(git rev-parse refs/remotes/origin/pr-10-head)\" = \"$ZCE_EXPECTED_HEAD\"",
+        "git -c core.hooksPath=/dev/null checkout --detach \"$ZCE_EXPECTED_HEAD\"",
+        "test \"$(git rev-parse HEAD)\" = \"$ZCE_EXPECTED_HEAD\"; test -z \"$(git status --porcelain=v1 --untracked-files=all)\"; git diff --check",
+        "ZCE_OPG_WORKDIR=\"$(mktemp -d)/opg\"; readonly ZCE_OPG_WORKDIR; export ZCE_OPG_WORKDIR",
+        "(cd consolidation_engine && python -I tools/verify_r3_evidence.py --evidence-dir evidence/r3 --r4-evidence-dir evidence/r4 --workdir \"$ZCE_OPG_WORKDIR\" --require-c31-v2 --require-cpython-3-11-16 --execute-repository-tests --execute-opg)",
         "git bundle verify consolidation_engine/evidence/r4/source/ZCE_R2_GIT_EVIDENCE_9808ae1.bundle",
         "gh api repos/Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence/branches/main",
         "gh api repos/Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence/rulesets",
-        "test \"$(gh api \"repos/Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence/commits/$ZCE_EXPECTED_HEAD/check-runs\" --jq '[.check_runs[] | select((.name==\"deterministic\" or .name==\"r3-evidence\") and .conclusion==\"success\" and .head_sha==env.ZCE_EXPECTED_HEAD)] | length')\" -eq 2",
-        "test \"$(gh api repos/Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence/pulls/10/reviews --jq '[.[] | select(.commit_id == env.ZCE_EXPECTED_HEAD)] | length')\" -ge 1",
+        "test \"$(gh api \"repos/Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence/commits/$ZCE_EXPECTED_HEAD/check-runs\" --jq '[.check_runs[] | select(.name==\"deterministic\" and .app.id==15368 and .status==\"completed\" and .conclusion==\"success\" and .head_sha==env.ZCE_EXPECTED_HEAD)] | length')\" -ge 1",
+        "test \"$(gh api \"repos/Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence/commits/$ZCE_EXPECTED_HEAD/check-runs\" --jq '[.check_runs[] | select(.name==\"r3-evidence\" and .app.id==15368 and .status==\"completed\" and .conclusion==\"success\" and .head_sha==env.ZCE_EXPECTED_HEAD)] | length')\" -ge 1",
+        "gh api repos/Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence/pulls/10/reviews --jq '[.[] | select(.commit_id == env.ZCE_EXPECTED_HEAD)] | map({user:.user.login,state:.state,commit_id:.commit_id})'",
+        "test -z \"$(git status --porcelain=v1 --untracked-files=all)\"; git diff --check; test \"$(gh api repos/Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence/pulls/10 --jq '.head.sha')\" = \"$ZCE_EXPECTED_HEAD\"",
     ]
+    expected_execution_contract = {
+        "session": "ONE_FRESH_BASH_SESSION",
+        "shell_prelude": "set -euo pipefail",
+        "order": "EXACT_LIST_ORDER_STOP_ON_FIRST_NONZERO",
+        "head_capture": "COMMAND_1_GITHUB_API_BEFORE_FETCH",
+        "json_eval": "PROHIBITED",
+        "python_runtime": "CPYTHON_3_11_16_ISOLATED_STDLIB_ONLY",
+        "workspace": "NEW_DISPOSABLE_CLEAN_CLONE_REQUIRED",
+        "git_environment":
+            "SYSTEM_AND_GLOBAL_CONFIG_DISABLED; HOOKS_DISABLED; NO_PROMPT",
+        "review_semantics":
+            "EXACT_HEAD_REVIEWS_ARE_REPORTED_NOT_PROMOTED; DISTINCT_APPROVED_REVIEW_REMAINS_C26_REQUIRED",
+    }
     expected_c31_acceptance = {
         "ledger_chain": "PASS",
         "open_ledger_debts": 9,
@@ -1251,8 +1358,10 @@ def validate_remote_and_replay(r3_dir: Path, parsed: dict) -> None:
             replay["base_sha"] == BASE_SHA and
             replay["r4_parent_head"] == remote["observed_head"] == BASELINE_HEAD and
             replay["exact_r4_head_resolution"] ==
-            "Capture pull_request.head.sha into ZCE_EXPECTED_HEAD BEFORE any fetch, then require the detached checkout, both workflow check-run head_sha values and the review commit_id to equal that immutable value. Never trust a synthetic merge SHA or a re-resolved mutable ref." and
+            "Capture pull_request.head.sha from the GitHub API into a validated readonly ZCE_EXPECTED_HEAD BEFORE any fetch, then require the fetched PR ref, detached checkout and each required check-run head_sha to equal that immutable value. Report only reviews whose commit_id equals it; absence of a distinct APPROVED review keeps C26 FAIL." and
             replay["proof_index"] == expected_proof_index and
+            strict_typed_equal(replay["replay_execution_contract"],
+                               expected_execution_contract) and
             replay["replay_commands"] == expected_commands and
             c31 == expected_c31_acceptance and
             replay["c26_acceptance"] == expected_c26_acceptance and
@@ -1268,6 +1377,12 @@ def parse_args():
                         help="répertoire evidence/r4")
     parser.add_argument("--workdir", required=True, type=Path)
     parser.add_argument("--require-c31-v2", action="store_true")
+    parser.add_argument("--execute-repository-tests", action="store_true",
+                        help="rejoue exactement le corpus unittest du dépôt")
+    parser.add_argument("--execute-opg", action="store_true",
+                        help="rejoue OPG 20 tests puis la campagne 1M")
+    parser.add_argument("--require-cpython-3-11-16", action="store_true",
+                        help="refuse tout runtime autre que CPython 3.11.16")
     return parser.parse_args()
 
 
@@ -1280,6 +1395,8 @@ def main() -> int:
     r4_dir = args.r4_evidence_dir.resolve()
     workdir = args.workdir.resolve()
     require(args.require_c31_v2, "C31_V2_MUST_BE_REQUIRED")
+    if args.require_cpython_3_11_16:
+        require_exact_python_runtime()
     require(not paths_overlap(workdir, r3_dir) and
             not paths_overlap(workdir, r4_dir),
             "ROOT_WORKDIR_EVIDENCE_OVERLAP")
@@ -1304,6 +1421,11 @@ def main() -> int:
     validate_r2_supersession(r3_dir, r4_dir, r4, bundle)
     validate_remote_and_replay(r3_dir, r4)
     validate_pinned_r4_receipts(r4_dir)
+    if args.execute_repository_tests:
+        execute_repository_tests(Path(__file__).resolve().parents[1],
+                                 REPOSITORY_TEST_COUNT)
+    if args.execute_opg:
+        execute_opg_evidence(opg_root)
     require(sha256_file(r3_dir / "SHA256SUMS") == R3_SHA256SUMS_SHA256,
             "R3_MANIFEST_PIN_FINAL")
     require(sha256_file(r4_dir / "SHA256SUMS") == R4_SHA256SUMS_SHA256,

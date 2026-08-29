@@ -3,7 +3,9 @@
 
 from __future__ import annotations
 
+import contextlib
 import hashlib
+import io
 import json
 import os
 from pathlib import Path
@@ -12,6 +14,7 @@ import stat
 import subprocess
 import sys
 import tempfile
+import types
 import unittest
 from unittest import mock
 import zipfile
@@ -556,6 +559,112 @@ class R4EvidenceVerifierTests(unittest.TestCase):
                 self.assertNotEqual(result.returncode, 0)
                 self.assertIn("R3_MANIFEST_PIN", result.stderr)
 
+    def test_replay_pack_captures_head_and_uses_shared_stdlib_executor(self):
+        pack = verifier.strict_json_file(
+            R4 / "R4_CONTRADICTION_REPLAY_PACK_V1.json")
+        commands = pack["replay_commands"]
+        self.assertEqual(len(commands), 14)
+        first = commands[0]
+        joined = "\n".join(commands)
+        self.assertIn("/pulls/10 --jq '.head.sha'", first)
+        self.assertIn("readonly ZCE_EXPECTED_HEAD", first)
+        self.assertIn("*[!0-9a-f]*", first)
+        self.assertIn("GIT_CONFIG_GLOBAL=/dev/null", first)
+        self.assertIn("GIT_CONFIG_NOSYSTEM=1", first)
+        self.assertIn("core.hooksPath=/dev/null", joined)
+        self.assertIn("refs/remotes/origin/pr-10-head", commands[2])
+        self.assertIn("--execute-repository-tests", joined)
+        self.assertIn("--execute-opg", joined)
+        self.assertIn("--require-cpython-3-11-16", joined)
+        self.assertNotIn("pytest", joined)
+        self.assertNotIn("PYTHONPATH", joined)
+        self.assertNotIn("jq -S", joined)
+        self.assertEqual(joined.count('.name==\"deterministic\"'), 1)
+        self.assertEqual(joined.count('.name==\"r3-evidence\"'), 1)
+        self.assertEqual(joined.count('.app.id==15368'), 2)
+        self.assertIn("/pulls/10 --jq '.head.sha'", commands[-1])
+        self.assertIn('= \"$ZCE_EXPECTED_HEAD\"', commands[-1])
+        self.assertIn("git status --porcelain=v1 --untracked-files=all",
+                      commands[-1])
+        self.assertIn("git diff --check", commands[-1])
+        self.assertEqual(pack["c26_acceptance"]["current_verdict"], "FAIL")
+        self.assertEqual(
+            pack["replay_execution_contract"]["review_semantics"],
+            "EXACT_HEAD_REVIEWS_ARE_REPORTED_NOT_PROMOTED; "
+            "DISTINCT_APPROVED_REVIEW_REMAINS_C26_REQUIRED",
+        )
+
+    def test_opg_executor_strictly_compares_replayed_receipt(self):
+        class ExactTwenty(unittest.TestCase):
+            pass
+
+        for index in range(20):
+            setattr(ExactTwenty, f"test_{index:02d}", lambda self: None)
+        test_module = types.ModuleType("exact_twenty")
+        test_module.ExactTwenty = ExactTwenty
+        baseline = {
+            "schema": "zoran.opg.falsification.v1.1",
+            "cases_requested": 1_000_000,
+            "cases_executed": 1_000_000,
+            "violations": 0,
+            "status": "PASS_1M_IMPLEMENTATION_GATE",
+            "elapsed_seconds": 1.0,
+        }
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            result_path = (
+                root / "opposed_pair_gate/results/FALSIFICATION_1M.json"
+            )
+            result_path.parent.mkdir(parents=True)
+            result_path.write_text(
+                json.dumps(baseline, ensure_ascii=False) + "\n",
+                encoding="utf-8",
+            )
+            exact_campaign = types.SimpleNamespace(
+                run=lambda count: dict(baseline, elapsed_seconds=2.0))
+            with contextlib.redirect_stdout(io.StringIO()), \
+                    contextlib.redirect_stderr(io.StringIO()), \
+                    mock.patch.object(
+                        verifier, "_load_module_from_path",
+                        side_effect=[test_module, exact_campaign]):
+                verifier.execute_opg_evidence(root)
+
+            coerced_campaign = types.SimpleNamespace(
+                run=lambda count: dict(baseline, violations=False,
+                                       elapsed_seconds=2.0))
+            with contextlib.redirect_stdout(io.StringIO()), \
+                    contextlib.redirect_stderr(io.StringIO()), \
+                    mock.patch.object(
+                        verifier, "_load_module_from_path",
+                        side_effect=[test_module, coerced_campaign]), \
+                    self.assertRaisesRegex(
+                        verifier.VerificationError,
+                        "OPG_EXEC_CAMPAIGN_RECEIPT_MISMATCH"):
+                verifier.execute_opg_evidence(root)
+
+    def test_exact_python_runtime_guard_is_type_and_patch_strict(self):
+        good_implementation = types.SimpleNamespace(name="cpython")
+        with mock.patch.object(verifier.sys, "implementation",
+                               good_implementation), \
+                mock.patch.object(verifier.sys, "version_info",
+                                  (3, 11, 16, "final", 0)):
+            verifier.require_exact_python_runtime()
+        bad_cases = [
+            (types.SimpleNamespace(name="pypy"), (3, 11, 16, "final", 0)),
+            (good_implementation, (3, 11, 15, "final", 0)),
+            (good_implementation, (3, 12, 13, "final", 0)),
+        ]
+        for implementation, version in bad_cases:
+            with self.subTest(implementation=implementation.name,
+                              version=version[:3]), \
+                    mock.patch.object(verifier.sys, "implementation",
+                                      implementation), \
+                    mock.patch.object(verifier.sys, "version_info", version), \
+                    self.assertRaisesRegex(
+                        verifier.VerificationError,
+                        "PYTHON_RUNTIME_NOT_CPYTHON_3_11_16"):
+                verifier.require_exact_python_runtime()
+
         baseline_r3 = {
             name: verifier.strict_json_file(R3 / name)
             for name in verifier.R3_CONTRACTS
@@ -703,7 +812,7 @@ class R4EvidenceVerifierTests(unittest.TestCase):
         self.assertIn("result.unexpectedSuccesses", workflow)
         self.assertEqual(
             workflow.count(
-                "PASS:88:0-skipped:0-expected-failures:0-unexpected-successes"
+                "PASS:91:0-skipped:0-expected-failures:0-unexpected-successes"
             ),
             2,
         )
