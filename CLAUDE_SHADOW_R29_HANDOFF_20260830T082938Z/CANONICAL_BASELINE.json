@@ -1,0 +1,48 @@
+{
+  "verdict": "BLOCKED_ACCESS",
+  "utc_timestamp": "2026-08-30T08:29:38Z",
+  "target_repository": {
+    "url": "https://github.com/zorania2025/Zoran-IA-deteriniste",
+    "reachable": false,
+    "evidence": [
+      "add_repo refused: cross-tier adds are not supported in v1 (session scoped to owner zoran-ia-mimetique)",
+      "git ls-remote anonymous read failed: fatal: could not read Username for 'https://github.com' (private or nonexistent repository)"
+    ],
+    "head": "UNVERIFIED",
+    "tree": "UNVERIFIED",
+    "canonical_plan_sha256": "UNVERIFIED",
+    "r29_counter": "UNVERIFIED (claimed baseline 377/573 = 65.794066 %, not reconcilable from this session)",
+    "registry_sha_prefix_claimed": "617f9be2",
+    "linguistic_v2_head_prefix_claimed": "fa66c4ec",
+    "coordination_issue": "#18 (unreachable)"
+  },
+  "attached_repository": {
+    "full_name": "zoran-ia-mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence",
+    "head": "cdf9039777b4f71f62153a06d96ecf949ed94cc5",
+    "tree": "abad69cf41f3c49d6c1df3a6134aa2cbf9a4a5d3",
+    "branch": "claude/zoran-requirements-mapping-oez3gp",
+    "worktree_clean": true,
+    "files": [
+      {
+        "path": "README.md",
+        "sha256": "43c93853ece08b48c968b7f18633bda2daea7c82195727bbb1697bb4087759c1"
+      },
+      {
+        "path": "LICENSE",
+        "sha256": "5bc2d4bdd33d1dff5e3f0381bf73db48a619a4f7fffea98a1d4b76fa535bd0d2"
+      },
+      {
+        "path": "Zoran_2040_aSiM_WhitePaper.pdf",
+        "sha256": "db7cc4dcb30ffa1fb1b3498b5da1e8cfb239ae47771d5110975ca5a49c463327"
+      },
+      {
+        "path": "Zoran_2040_aSiM_WhitePaper_FULL.pdf",
+        "sha256": "c62197cb3a54075e0f5a4d43d2d9ec45777403168a6f7e00e94445e3c4a7b3cf",
+        "note": "FULL (1).pdf and FULL (2).pdf are byte-identical copies (same size); see SHA256SUMS"
+      }
+    ],
+    "r29_artifacts_found": false,
+    "note": "Repository contains only the Zoran 2040 aSiM white paper (README + PDFs). No R29 plan, no requirements registry, no FACT-008/FACT-017 candidates, no linguistic V2 certification, no code, no tests."
+  },
+  "r29_open_matrix": "NOT_PRODUCED — source data unreachable; producing it would violate the no-invention rule"
+}
