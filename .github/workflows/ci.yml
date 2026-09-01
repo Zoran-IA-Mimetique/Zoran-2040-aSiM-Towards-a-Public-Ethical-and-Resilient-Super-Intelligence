@@ -1,0 +1,35 @@
+name: CI
+
+# REGLE 10 — CI/CD : build, lint, tests, audit sécurité automatiques.
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: ['main']
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Tests
+        run: npm run test
+
+      - name: Build
+        run: npm run build
+
+      - name: Audit sécurité (non bloquant sur vulnérabilités transitives)
+        run: npm audit --audit-level=high || true
