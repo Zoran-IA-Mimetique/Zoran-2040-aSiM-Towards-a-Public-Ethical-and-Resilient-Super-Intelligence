@@ -1,0 +1,214 @@
+{
+  "ordre_de_travail": "§20 point 1 — objet CadreCausal et promotion",
+  "S": "NON_MESURÉ",
+  "motif_S": "proxys, seuils et pondérations non calibrés (§27)",
+  "hierarchies": [
+    {
+      "hierarchie": "roulement (§13)",
+      "cadres_promus": [
+        "R0 — Bille",
+        "R1 — Voisinage",
+        "R3 — Roulement complet",
+        "R4 — Machine"
+      ],
+      "regle_des_deux_cadres": "PASS structurel",
+      "motif": "PASS structurel : LOCAL « R0 — Bille » et VOISINAGE_RELATIONNEL « R1 — Voisinage » promus, lien causal déclaré des deux côtés",
+      "detail": [
+        {
+          "identifiant": "R0 — Bille",
+          "statut": "cadre",
+          "manquants": [],
+          "motif": "les sept critères du §12.1 sont satisfaits",
+          "criteres": {
+            "frontière explicite": true,
+            "fonction ou objectif propre": true,
+            "variables et proxys mesurables propres": true,
+            "triplet opérant-opérande-opéré": true,
+            "relation causale testable avec les autres niveaux": true,
+            "invariant critique ou seuil de sortie propre": true,
+            "absence de double comptage": true
+          }
+        },
+        {
+          "identifiant": "R1 — Voisinage",
+          "statut": "cadre",
+          "manquants": [],
+          "motif": "les sept critères du §12.1 sont satisfaits",
+          "criteres": {
+            "frontière explicite": true,
+            "fonction ou objectif propre": true,
+            "variables et proxys mesurables propres": true,
+            "triplet opérant-opérande-opéré": true,
+            "relation causale testable avec les autres niveaux": true,
+            "invariant critique ou seuil de sortie propre": true,
+            "absence de double comptage": true
+          }
+        },
+        {
+          "identifiant": "R2 — Relation antipodale",
+          "statut": "relation",
+          "manquants": [
+            "frontière explicite",
+            "triplet opérant-opérande-opéré",
+            "relation causale testable avec les autres niveaux",
+            "invariant critique ou seuil de sortie propre",
+            "absence de double comptage"
+          ],
+          "motif": "NON_MESURÉ : frontière explicite ; triplet opérant-opérande-opéré ; relation causale testable avec les autres niveaux ; invariant critique ou seuil de sortie propre ; absence de double comptage — identité causale non établie pour : ['phase', 'ovalisation', 'transfert par bagues', 'asymétrie'] — NON_MESURÉ, pas un PASS",
+          "criteres": {
+            "frontière explicite": "NON_MESURÉ",
+            "fonction ou objectif propre": true,
+            "variables et proxys mesurables propres": true,
+            "triplet opérant-opérande-opéré": "NON_MESURÉ",
+            "relation causale testable avec les autres niveaux": "NON_MESURÉ",
+            "invariant critique ou seuil de sortie propre": "NON_MESURÉ",
+            "absence de double comptage": "NON_MESURÉ"
+          }
+        },
+        {
+          "identifiant": "R3 — Roulement complet",
+          "statut": "cadre",
+          "manquants": [],
+          "motif": "les sept critères du §12.1 sont satisfaits",
+          "criteres": {
+            "frontière explicite": true,
+            "fonction ou objectif propre": true,
+            "variables et proxys mesurables propres": true,
+            "triplet opérant-opérande-opéré": true,
+            "relation causale testable avec les autres niveaux": true,
+            "invariant critique ou seuil de sortie propre": true,
+            "absence de double comptage": true
+          }
+        },
+        {
+          "identifiant": "R4 — Machine",
+          "statut": "cadre",
+          "manquants": [],
+          "motif": "les sept critères du §12.1 sont satisfaits",
+          "criteres": {
+            "frontière explicite": true,
+            "fonction ou objectif propre": true,
+            "variables et proxys mesurables propres": true,
+            "triplet opérant-opérande-opéré": true,
+            "relation causale testable avec les autres niveaux": true,
+            "invariant critique ou seuil de sortie propre": true,
+            "absence de double comptage": true
+          }
+        },
+        {
+          "identifiant": "R5 — Planète",
+          "statut": "NON_MESURÉ",
+          "manquants": [
+            "variables et proxys mesurables propres",
+            "triplet opérant-opérande-opéré",
+            "relation causale testable avec les autres niveaux",
+            "invariant critique ou seuil de sortie propre"
+          ],
+          "motif": "NON_MESURÉ : variables et proxys mesurables propres ; triplet opérant-opérande-opéré ; relation causale testable avec les autres niveaux ; invariant critique ou seuil de sortie propre",
+          "criteres": {
+            "frontière explicite": true,
+            "fonction ou objectif propre": true,
+            "variables et proxys mesurables propres": "NON_MESURÉ",
+            "triplet opérant-opérande-opéré": "NON_MESURÉ",
+            "relation causale testable avec les autres niveaux": "NON_MESURÉ",
+            "invariant critique ou seuil de sortie propre": "NON_MESURÉ",
+            "absence de double comptage": true
+          }
+        }
+      ]
+    },
+    {
+      "hierarchie": "batterie (§14)",
+      "cadres_promus": [
+        "B0 — Cellule",
+        "B1 — Voisines",
+        "B2 — Pack",
+        "B3 — Régulateur"
+      ],
+      "regle_des_deux_cadres": "PASS structurel",
+      "motif": "PASS structurel : LOCAL « B0 — Cellule » et VOISINAGE_RELATIONNEL « B1 — Voisines » promus, lien causal déclaré des deux côtés",
+      "detail": [
+        {
+          "identifiant": "B0 — Cellule",
+          "statut": "cadre",
+          "manquants": [],
+          "motif": "les sept critères du §12.1 sont satisfaits",
+          "criteres": {
+            "frontière explicite": true,
+            "fonction ou objectif propre": true,
+            "variables et proxys mesurables propres": true,
+            "triplet opérant-opérande-opéré": true,
+            "relation causale testable avec les autres niveaux": true,
+            "invariant critique ou seuil de sortie propre": true,
+            "absence de double comptage": true
+          }
+        },
+        {
+          "identifiant": "B1 — Voisines",
+          "statut": "cadre",
+          "manquants": [],
+          "motif": "les sept critères du §12.1 sont satisfaits",
+          "criteres": {
+            "frontière explicite": true,
+            "fonction ou objectif propre": true,
+            "variables et proxys mesurables propres": true,
+            "triplet opérant-opérande-opéré": true,
+            "relation causale testable avec les autres niveaux": true,
+            "invariant critique ou seuil de sortie propre": true,
+            "absence de double comptage": true
+          }
+        },
+        {
+          "identifiant": "B2 — Pack",
+          "statut": "cadre",
+          "manquants": [],
+          "motif": "les sept critères du §12.1 sont satisfaits",
+          "criteres": {
+            "frontière explicite": true,
+            "fonction ou objectif propre": true,
+            "variables et proxys mesurables propres": true,
+            "triplet opérant-opérande-opéré": true,
+            "relation causale testable avec les autres niveaux": true,
+            "invariant critique ou seuil de sortie propre": true,
+            "absence de double comptage": true
+          }
+        },
+        {
+          "identifiant": "B3 — Régulateur",
+          "statut": "cadre",
+          "manquants": [],
+          "motif": "les sept critères du §12.1 sont satisfaits",
+          "criteres": {
+            "frontière explicite": true,
+            "fonction ou objectif propre": true,
+            "variables et proxys mesurables propres": true,
+            "triplet opérant-opérande-opéré": true,
+            "relation causale testable avec les autres niveaux": true,
+            "invariant critique ou seuil de sortie propre": true,
+            "absence de double comptage": true
+          }
+        },
+        {
+          "identifiant": "B4 — Planète",
+          "statut": "NON_MESURÉ",
+          "manquants": [
+            "variables et proxys mesurables propres",
+            "triplet opérant-opérande-opéré",
+            "relation causale testable avec les autres niveaux",
+            "invariant critique ou seuil de sortie propre"
+          ],
+          "motif": "NON_MESURÉ : variables et proxys mesurables propres ; triplet opérant-opérande-opéré ; relation causale testable avec les autres niveaux ; invariant critique ou seuil de sortie propre",
+          "criteres": {
+            "frontière explicite": true,
+            "fonction ou objectif propre": true,
+            "variables et proxys mesurables propres": "NON_MESURÉ",
+            "triplet opérant-opérande-opéré": "NON_MESURÉ",
+            "relation causale testable avec les autres niveaux": "NON_MESURÉ",
+            "invariant critique ou seuil de sortie propre": "NON_MESURÉ",
+            "absence de double comptage": true
+          }
+        }
+      ]
+    }
+  ]
+}

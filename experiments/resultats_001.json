@@ -1,0 +1,116 @@
+{
+  "essai": "PROXY-C-001",
+  "tau_star": 0.9711256176947901,
+  "tolerance": 0.05,
+  "poids": "uniformes 1/4",
+  "tests": {
+    "T1_monotonie": {
+      "par_famille": {
+        "décohérence-20400": false,
+        "décohérence-20402": false,
+        "mémoire-20401": false
+      },
+      "passe": false
+    },
+    "T2_transfert_intra": {
+      "e_rel": 0.4297230858299446,
+      "seuil": 0.15,
+      "passe": false
+    },
+    "T3_transfert_inter": {
+      "e_rel": 1.0,
+      "seuil": 0.3,
+      "passe": false
+    },
+    "T4_invariance": {
+      "ecart_max": 0.0,
+      "seuil": 1e-09,
+      "passe": true
+    },
+    "T5_cadres": {
+      "passe": true,
+      "detail": "les quatre cadres sont conservés"
+    }
+  },
+  "verdict": "ECHEC",
+  "diagnostic": {
+    "décohérence-20400": {
+      "n_pas": 24,
+      "n_pas_integres": 24,
+      "dissous_au_pas": null,
+      "echelles_dissoutes": [],
+      "profils": {
+        "pas_1": {
+          "LOCAL": 0.2,
+          "OBJET": 0.2,
+          "CADRE": 0.2,
+          "GLOBAL": 0.2
+        },
+        "pas_2": {
+          "LOCAL": 0.2,
+          "OBJET": 0.26666666666666666,
+          "CADRE": 0.26666666666666666,
+          "GLOBAL": 0.26666666666666666
+        },
+        "pas_3": {
+          "LOCAL": 0.2,
+          "OBJET": 0.26666666666666666,
+          "CADRE": 0.26666666666666666,
+          "GLOBAL": 0.26666666666666666
+        },
+        "pas_12": {
+          "LOCAL": 1.0,
+          "OBJET": 1.0,
+          "CADRE": 1.0,
+          "GLOBAL": 1.0
+        },
+        "pas_24": {
+          "LOCAL": 1.0,
+          "OBJET": 1.0,
+          "CADRE": 1.0,
+          "GLOBAL": 1.0
+        }
+      }
+    },
+    "mémoire-20401": {
+      "n_pas": 24,
+      "n_pas_integres": 0,
+      "dissous_au_pas": 1,
+      "echelles_dissoutes": [
+        "LOCAL"
+      ],
+      "profils": {
+        "pas_1": {
+          "LOCAL": 0.0,
+          "OBJET": 0.4666666666666667,
+          "CADRE": 0.4666666666666667,
+          "GLOBAL": 0.4666666666666667
+        },
+        "pas_2": {
+          "LOCAL": 0.8,
+          "OBJET": 0.7333333333333333,
+          "CADRE": 0.7333333333333333,
+          "GLOBAL": 0.7333333333333333
+        },
+        "pas_3": {
+          "LOCAL": 0.2,
+          "OBJET": 0.5333333333333333,
+          "CADRE": 0.5333333333333333,
+          "GLOBAL": 0.5333333333333333
+        },
+        "pas_12": {
+          "LOCAL": 1.0,
+          "OBJET": 0.8666666666666667,
+          "CADRE": 0.8666666666666667,
+          "GLOBAL": 0.8666666666666667
+        },
+        "pas_24": {
+          "LOCAL": 1.0,
+          "OBJET": 0.8,
+          "CADRE": 0.8,
+          "GLOBAL": 0.8
+        }
+      }
+    }
+  }
+}

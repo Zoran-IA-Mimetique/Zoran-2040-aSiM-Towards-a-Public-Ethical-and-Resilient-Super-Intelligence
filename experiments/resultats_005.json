@@ -1,0 +1,136 @@
+{
+  "essai": "JUMEAUX-005",
+  "provenance": "codage de la matrice V1.3 ; articles sources non consultés",
+  "codage": [
+    {
+      "case_id": "J1 — pygopages, moelle en U",
+      "source": "Yokota et al., 2021, DOI 10.3171/CASE218 (via matrice V1.3)",
+      "s": 1.0,
+      "a": 1.0,
+      "codable": true,
+      "partage": {
+        "nerveuse": "partagée",
+        "vasculaire": "inconnu",
+        "squelettique": "partagée",
+        "viscérale": "inconnu"
+      },
+      "autonomie": {
+        "motrice": "partagée",
+        "preferences": "inconnu",
+        "fonction_post_separation": "partagée"
+      },
+      "justification": {
+        "nerveuse": "« sac dural unique contenant une moelle épinière continue en U »",
+        "squelettique": "« union sacrée » (ligne pygopages de la matrice)",
+        "motrice": "« aucun déficit des membres inférieurs ni trouble de marche »",
+        "fonction_post_separation": "« 16 mois de suivi » après séparation",
+        "vasculaire/viscérale": "non énoncées par la fiche — inconnu, pas absence"
+      }
+    },
+    {
+      "case_id": "J2 — parapagus dicephalus",
+      "source": "Bovendeert et al., 2020, DOI 10.1186/s13256-020-02501-x (via matrice V1.3)",
+      "s": 0.6666666666666666,
+      "a": null,
+      "codable": false,
+      "partage": {
+        "nerveuse": "distincte",
+        "vasculaire": "inconnu",
+        "squelettique": "partagée",
+        "viscérale": "partagée"
+      },
+      "autonomie": {
+        "motrice": "inconnu",
+        "preferences": "inconnu",
+        "fonction_post_separation": "non_applicable"
+      },
+      "justification": {
+        "nerveuse": "« deux têtes, deux colonnes vertébrales »",
+        "squelettique": "« un tronc »",
+        "viscérale": "« foie fusionné »",
+        "autonomie": "« spécimen anatomique ; aucune donnée comportementale » → NON CODABLE, et non codé zéro"
+      }
+    },
+    {
+      "case_id": "J3 — thoraco-omphalo-ischiopage séparés",
+      "source": "Sheng et al., DOI 10.3233/PRM-220121 (via matrice V1.3)",
+      "s": 0.6666666666666666,
+      "a": 1.0,
+      "codable": true,
+      "partage": {
+        "nerveuse": "distincte",
+        "vasculaire": "inconnu",
+        "squelettique": "partagée",
+        "viscérale": "partagée"
+      },
+      "autonomie": {
+        "motrice": "partagée",
+        "preferences": "inconnu",
+        "fonction_post_separation": "partagée"
+      },
+      "justification": {
+        "nerveuse": "« deux systèmes nerveux » (ligne de la matrice)",
+        "squelettique": "« pelvis et une jambe partagés »",
+        "viscérale": "« foie, gros intestin, vessie » partagés",
+        "motrice/fonction": "« suivi fonctionnel cinq ans après séparation »"
+      }
+    },
+    {
+      "case_id": "J4 — craniopage, partage sensoriel rapporté",
+      "source": "Zohny et Savulescu, 2024, DOI 10.1017/S0963180124000197 (via matrice V1.3)",
+      "s": 1.0,
+      "a": 0.5,
+      "codable": true,
+      "partage": {
+        "nerveuse": "partagée",
+        "vasculaire": "inconnu",
+        "squelettique": "inconnu",
+        "viscérale": "inconnu"
+      },
+      "autonomie": {
+        "motrice": "distincte",
+        "preferences": "partagée",
+        "fonction_post_separation": "non_applicable"
+      },
+      "justification": {
+        "nerveuse": "« connexion thalamique, partage sensoriel et moteur »",
+        "squelettique": "la matrice dit « crânes parfois fusionnés » — « parfois » n'affirme rien pour ce cas : inconnu",
+        "motrice": "« partage sensoriel et moteur » n'affirme pas l'autonomie motrice",
+        "preferences": "« préférences et comportements distincts rapportés »",
+        "fonction_post_separation": "jamais séparées — non applicable"
+      }
+    }
+  ],
+  "tests": {
+    "J1_cas_codables": {
+      "n": 3,
+      "exclus": [
+        "J2 — parapagus dicephalus"
+      ]
+    },
+    "J2_seuil_de_taille": {
+      "declenche": true,
+      "n": 3,
+      "seuil": 4,
+      "action": "aucun ρ n'est calculé ni publié",
+      "motif": "à n = 3, le meilleur p atteignable est 0.1667 > 0.05 : aucune donnée ne peut conclure"
+    },
+    "J3_correlation": {
+      "effectue": false
+    },
+    "J4_robustesse": {
+      "survit_a_une_inversion": false,
+      "p_avec_une_inversion": 0.5
+    }
+  },
+  "detectabilite": {
+    "n": 3,
+    "p_minimal_ordre_parfait": 0.16666666666666666,
+    "p_minimal_une_inversion": 0.5,
+    "conclut_au_seuil": false,
+    "robuste_au_seuil": false,
+    "n_minimal_pour_conclure": 4,
+    "n_minimal_pour_un_resultat_robuste": 5
+  },
+  "verdict": "INDECIDABLE"
+}

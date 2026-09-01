@@ -1,0 +1,21 @@
+name: Z-TEMPS — invariants et prédictions
+
+# Les invariants du §5 et les prédictions P1-P3 de Z-TEMPS-PHYS-V1 sont
+# vérifiés à chaque push. Un échec n'est pas un bug de build : c'est un
+# falsificateur au sens du §7, à remonter à la spécification.
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  invariants:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Exécuter les tests (stdlib uniquement, aucune dépendance)
+        run: python -m unittest discover -s tests -t . -v

@@ -1,0 +1,48 @@
+{
+  "essai": "ROLES-007",
+  "ferme": {
+    "phase_finale": 0.1200000000000001,
+    "visibilite_finale": 1.0,
+    "tau_z_final": 0.0
+  },
+  "avec_decoherence": {
+    "phase_finale": 0.1200000000000001,
+    "visibilite_finale": 0.1690133154060661,
+    "tau_z_final": 1.7672895197598124
+  },
+  "tests": {
+    "R1_phase_accumule": {
+      "phase": 0.1200000000000001,
+      "seuil_minimal": 0.1,
+      "passe": true
+    },
+    "R2_tau_z_nul_si_ferme": {
+      "tau_z": 0.0,
+      "seuil": 1e-12,
+      "passe": true,
+      "note": "un succès ici est une mauvaise nouvelle pour la loi"
+    },
+    "R3_tau_z_suit_la_decoherence": {
+      "tau_z": 1.7672895197598124,
+      "seuil_minimal": 0.5,
+      "passe": true
+    },
+    "R4_phase_insensible_a_la_decoherence": {
+      "ecart": 0.0,
+      "seuil": 1e-12,
+      "passe": true
+    },
+    "R5_correlation": {
+      "rho_avec_moins_ln_V": 1.0,
+      "rho_avec_phase": 1.0,
+      "passe": false,
+      "note": "les deux peuvent être élevés car tout croît avec t ; ce qui compte est l'écart, et R2 est le critère décisif"
+    }
+  },
+  "lisible": {
+    "V_fois_phase_au_debut": 0.0005999733339259169,
+    "V_fois_phase_a_la_fin": 0.02028159784872795,
+    "phase_a_la_fin": 0.1200000000000001
+  },
+  "verdict": "DISSOCIATION_NON_ETABLIE"
+}
