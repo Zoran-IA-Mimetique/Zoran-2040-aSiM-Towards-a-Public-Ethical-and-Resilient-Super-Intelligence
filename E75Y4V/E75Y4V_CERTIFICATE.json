@@ -1,0 +1,9 @@
+{
+  "actual_verdict": "NON_MESURÉ_E75Y4V_PRE_R12_BOOTSTRAP_0_OF_4_EVIDENCE",
+  "bounded_verdict": "PASS_E75Y4V_BOOTSTRAP_CHRONOLOGY_VALIDATOR_250_OF_250_VETO_50_OF_50_CONTROL",
+  "cases": 350,
+  "certificates_events": 350,
+  "meta_operator": "M_ZORAN(test, cadre) -> CERTIFICAT_STRUCTURE",
+  "scalar_gauge": "NON_MESURÉ",
+  "scientific_status": "NON_MESURÉ"
+}

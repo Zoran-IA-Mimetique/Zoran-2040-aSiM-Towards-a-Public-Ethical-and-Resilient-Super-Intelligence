@@ -1,0 +1,62 @@
+{
+  "actual_r12": {
+    "anchor_library_created_at": "2026-08-12T07:31:13.064887Z",
+    "anchor_status": "CANDIDATE_BEFORE_LIBRARY_PUBLICATION",
+    "bootstrap_verdict": "NON_MESURÉ",
+    "chronology_conditions_non_mesure": 4,
+    "chronology_conditions_passed": 0,
+    "counteraudit_after_anchor_seconds": 211.485935,
+    "counteraudit_library_created_at": "2026-08-12T07:34:44.550822Z",
+    "counteraudit_verdict": "PASS_BORNÉ_LIBRARY_ANCHORED_R12",
+    "counteraudit_xattrs_verified": true,
+    "public_key_sha256": "1b5e4034fee327c92d3d100e73813dba54e993849c02ec7c484c68c08a237739"
+  },
+  "actual_verdict": "NON_MESURÉ_E75Y4V_PRE_R12_BOOTSTRAP_0_OF_4_EVIDENCE",
+  "attack_families": {
+    "missing_floor": [
+      "floor_predates_decision",
+      "NON_MESURÉ"
+    ],
+    "pin_after_decision": [
+      "pin_predates_decision",
+      "FAIL"
+    ],
+    "rollbackable_floor": [
+      "floor_is_non_restorable",
+      "FAIL"
+    ],
+    "self_declared_pin": [
+      "pin_is_independent",
+      "FAIL"
+    ],
+    "unordered_or_equal_timestamp": [
+      "pin_predates_decision",
+      "NON_MESURÉ"
+    ]
+  },
+  "bounded_verdict": "PASS_E75Y4V_BOOTSTRAP_CHRONOLOGY_VALIDATOR_250_OF_250_VETO_50_OF_50_CONTROL",
+  "campaign": "E75Y4V",
+  "cases": 350,
+  "certificates": 350,
+  "chronology_inference": "The final counteraudit was created 211.485935 seconds after the Library anchor. Its xattrs check proves post-publication integrity, not preestablished trust before R12 decision.",
+  "counts": {
+    "actual_r12_non_mesure": 50,
+    "chronology_attacks": 250,
+    "content_only_false_accepts": 250,
+    "controls_pass": 50,
+    "strict_fail": 150,
+    "strict_non_mesure": 100,
+    "strict_veto": 250
+  },
+  "event_chain_head": "650b7e7a3cbbee056ee45afe94e427428854c7da392842ef18b6fb6daf32464d",
+  "events": 350,
+  "limitations": [
+    "Library search is indexed retrieval, not an exhaustive byte scan of every historical object.",
+    "Zero exact hits is absence of retrieved evidence, not proof of nonexistence.",
+    "No productive independent root or non-restorable client floor was observed.",
+    "Integration, scalar calibration, scientific effects, and fresh full Zenodo reading remain NON_MESURÉ."
+  ],
+  "method": "Four exact Library queries bounded before anchor creation, timestamp ordering, 50 valid controls, five attack families times 50, and 50 observations of the actual R12 bootstrap evidence.",
+  "question": "Does indexed evidence predating the R12 anchor establish a preexisting independent pin and a non-restorable monotonic floor?",
+  "scientific_status": "NON_MESURÉ"
+}
