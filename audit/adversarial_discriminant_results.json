@@ -1,0 +1,81 @@
+{
+  "mission_id": "ZORAN_CORE_OS_FOUNDATION_20260520",
+  "test": "adversarial_discriminant",
+  "generated_at": "2026-05-20T19:44:48.599Z",
+  "scope": "architecture_validation_only",
+  "ground_truth": "synthetic_zoran_expected_score (NON-BET)",
+  "n": 5,
+  "rows": [
+    {
+      "case_id": "CASE_1",
+      "label": "A1_EXPERT_COURT",
+      "expected": 9,
+      "len": 340,
+      "engine_v12": 1,
+      "verdict": "SURVIVES_CONTRADICTORY",
+      "survivors": 1,
+      "causal": 1,
+      "destroyed": 0,
+      "fragile": 0
+    },
+    {
+      "case_id": "CASE_2",
+      "label": "A2_VRAI_TERRAIN_VERNACULAIRE",
+      "expected": 8,
+      "len": 529,
+      "engine_v12": 0.7,
+      "verdict": "SURVIVES_CONTRADICTORY",
+      "survivors": 0,
+      "causal": 0,
+      "destroyed": 0,
+      "fragile": 0
+    },
+    {
+      "case_id": "CASE_3",
+      "label": "A4_CAUSALITE_INVERSEE",
+      "expected": 2.5,
+      "len": 345,
+      "engine_v12": 0.52,
+      "verdict": "PARTIALLY_FRAGILE",
+      "survivors": 0,
+      "causal": 3,
+      "destroyed": 2,
+      "fragile": 1
+    },
+    {
+      "case_id": "CASE_4",
+      "label": "A5_FAUX_EXPERT_LONG",
+      "expected": 2,
+      "len": 746,
+      "engine_v12": 0.7,
+      "verdict": "SURVIVES_CONTRADICTORY",
+      "survivors": 0,
+      "causal": 0,
+      "destroyed": 0,
+      "fragile": 0
+    },
+    {
+      "case_id": "CASE_5",
+      "label": "B1_EXPERT_RGA_COMPLET_SYSTÉMIQUE",
+      "expected": 9.5,
+      "len": 696,
+      "engine_v12": 0.7,
+      "verdict": "SURVIVES_CONTRADICTORY",
+      "survivors": 1,
+      "causal": 2,
+      "destroyed": 0,
+      "fragile": 1
+    }
+  ],
+  "spearman": {
+    "engine": 0.447,
+    "baseline_len": -0.3,
+    "baseline_neg_len": 0.3,
+    "best_baseline": 0.3
+  },
+  "margin_vs_baseline": 0.147,
+  "separation_ok": false,
+  "verdict": "INCONCLUSIVE",
+  "recommendation": "DÉCISION ORACLE — signal faible/ambigu ; n=5 insuffisant pour trancher seul.",
+  "caveat": "Validation architecture seulement. Validation metier reste gated sur P0-MINI BET humain."
+}

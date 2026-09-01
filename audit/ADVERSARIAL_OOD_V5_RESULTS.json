@@ -1,0 +1,295 @@
+{
+  "mission_id": "ADVERSARIAL_OOD_V5_20260517",
+  "total_adversarial_cases": 8,
+  "adversarial_no_failure": 3,
+  "total_failure_modes_detected": 5,
+  "mutation_pairs": 3,
+  "mutation_pairs_passing": 3,
+  "adversarial_results": [
+    {
+      "id": "CONTRADICTION_01",
+      "type": "CONTRADICTION_INTERNE",
+      "text": "Il faut absolument installer ce composant pour améliorer la performance.\n    Cependant, il ne faut absolument pas installer ce composant car il dégrade la\n    performance. Cette solution est parfaite. Cette solution est dangereuse.\n    Toujours utiliser cette méthode. Ne jamais utiliser cette méthode.",
+      "expectation": "system SHOULD detect inconsistency or low utility",
+      "scores": {
+        "practical_usefulness": 0.988,
+        "meta_noise": 0.402,
+        "concrete_runtime_alignment": 0.715,
+        "terrain_alignment": 0,
+        "useful_information_density_v2": 0.7,
+        "cognitive_load": 0.264,
+        "robustness_OOD": 0,
+        "systemic_coherence": 0.3,
+        "sys_multiscale": 0,
+        "goodhart_risk": 0.083,
+        "fragility_risk": 0.7,
+        "seductive_but_fragile": 1,
+        "seductive_complexity": 0,
+        "domain_leak": false
+      },
+      "failures": [
+        "practical_usefulness 0.988 > 0.70 sur contradictions"
+      ]
+    },
+    {
+      "id": "FAUX_CONSENSUS_01",
+      "type": "FAUX_CONSENSUS",
+      "text": "Tous les experts s'accordent à dire que cette méthode est optimale.\n    Il est universellement reconnu que c'est la meilleure approche. Personne ne\n    conteste cette évidence. Le consensus est total et indiscutable. Aucune source\n    n'est citée mais c'est largement admis dans la communauté scientifique.",
+      "expectation": "high seductive_but_fragile, low practical_usefulness",
+      "scores": {
+        "practical_usefulness": 0.5,
+        "meta_noise": 0.5,
+        "concrete_runtime_alignment": 0.5,
+        "terrain_alignment": 0,
+        "useful_information_density_v2": 0,
+        "cognitive_load": 0.617,
+        "robustness_OOD": 0.5,
+        "systemic_coherence": 0.3,
+        "sys_multiscale": 0,
+        "goodhart_risk": 0,
+        "fragility_risk": 0.2,
+        "seductive_but_fragile": 0,
+        "seductive_complexity": 0.349,
+        "domain_leak": false
+      },
+      "failures": [
+        "seductive_but_fragile 0 < 0.30 (consensus sans source)"
+      ]
+    },
+    {
+      "id": "NOISE_INJECTION_01",
+      "type": "NOISE_INJECTION",
+      "text": "Vérifier le couple de serrage à 35 Nm selon DTU 25.41. Les fraises\n    grimpent au sommet de la montagne arc-en-ciel. Mesurer la planéité avec un\n    niveau laser. Le saxophone bleu danse au crépuscule. Inspecter visuellement\n    les déformations. La quantique des champs résonne en silence.",
+      "expectation": "mixed signal — actions concrètes mais bruit visible",
+      "scores": {
+        "practical_usefulness": 0.955,
+        "meta_noise": 0.409,
+        "concrete_runtime_alignment": 0.7,
+        "terrain_alignment": 0.25,
+        "useful_information_density_v2": 0.9,
+        "cognitive_load": 0.389,
+        "robustness_OOD": 0.5,
+        "systemic_coherence": 0.3,
+        "sys_multiscale": 0,
+        "goodhart_risk": 0.083,
+        "fragility_risk": 0.2,
+        "seductive_but_fragile": 0,
+        "seductive_complexity": 0,
+        "domain_leak": false
+      },
+      "failures": [
+        "practical_usefulness 0.955 > 0.80 malgré bruit injecté"
+      ]
+    },
+    {
+      "id": "SEDUCTIVE_PEDANT_01",
+      "type": "SEDUCTIVE_PEDANT",
+      "text": "L'épistémologie holistique ontologique de cette herméneutique\n    téléologique transcende les paradigmes axiomatiques tautologiques. La\n    méta-systémique isomorphique fractale émergente convoque la résonance\n    cognitive paradoxale dans une dialectique méta-théorique transversale.",
+      "expectation": "seductive_complexity HIGH (>0.7), practical_usefulness LOW",
+      "scores": {
+        "practical_usefulness": 0.5,
+        "meta_noise": 0.5,
+        "concrete_runtime_alignment": 0.5,
+        "terrain_alignment": 0,
+        "useful_information_density_v2": 0,
+        "cognitive_load": 0.645,
+        "robustness_OOD": 0.5,
+        "systemic_coherence": 0.35,
+        "sys_multiscale": 0.25,
+        "goodhart_risk": 0,
+        "fragility_risk": 0.2,
+        "seductive_but_fragile": 0,
+        "seductive_complexity": 1,
+        "domain_leak": false
+      },
+      "failures": []
+    },
+    {
+      "id": "SCALE_CHANGE_01",
+      "type": "SCALE_CHANGE",
+      "text": "Vérifier le serrage à 0.5 Nm. Cette décision affectera l'écosystème\n    planétaire sur 1 milliard d'années. Mesurer la planéité au micron. Le PIB\n    mondial dépend de cette intervention sur 30 ans. Inspecter à la loupe.\n    Stratégie civilisationnelle sur 5 millénaires.",
+      "expectation": "incohérence d'échelle — multiscale élevé mais peu pertinent",
+      "scores": {
+        "practical_usefulness": 1,
+        "meta_noise": 0.4,
+        "concrete_runtime_alignment": 0.72,
+        "terrain_alignment": 0,
+        "useful_information_density_v2": 0.9,
+        "cognitive_load": 0.524,
+        "robustness_OOD": 0.5,
+        "systemic_coherence": 0.362,
+        "sys_multiscale": 0.25,
+        "goodhart_risk": 0,
+        "fragility_risk": 0.18,
+        "seductive_but_fragile": 0,
+        "seductive_complexity": 0.076,
+        "domain_leak": false
+      },
+      "failures": []
+    },
+    {
+      "id": "TEMPORAL_INVERSION_01",
+      "type": "TEMPORAL_INVERSION",
+      "text": "Le bâtiment s'effondrera demain à cause du séisme survenu hier. La\n    fissure de la semaine prochaine est due à la fatigue d'il y a 10 ans qui\n    apparaîtra dans 2 ans. L'effet précède sa cause sur ce projet, comme\n    démontré rétroactivement par les mesures à venir.",
+      "expectation": "pas de métrique actuelle qui détecte temporal inversion",
+      "scores": {
+        "practical_usefulness": 0.5,
+        "meta_noise": 0.5,
+        "concrete_runtime_alignment": 0.5,
+        "terrain_alignment": 0.125,
+        "useful_information_density_v2": 0.9,
+        "cognitive_load": 0.507,
+        "robustness_OOD": 0.5,
+        "systemic_coherence": 0.362,
+        "sys_multiscale": 0.25,
+        "goodhart_risk": 0,
+        "fragility_risk": 0.2,
+        "seductive_but_fragile": 0,
+        "seductive_complexity": 0,
+        "domain_leak": false
+      },
+      "failures": [
+        "GAP CONNU : aucune métrique ne détecte inversion temporelle causale"
+      ]
+    },
+    {
+      "id": "HYBRID_GOOD_BAD_01",
+      "type": "HYBRID_GOOD_BAD",
+      "text": "Pour optimiser le KPI de productivité, il faut maximiser le score\n    de satisfaction. Mais attention au Goodhart : ce proxy ne capture pas la\n    réalité terrain. Préserver les marges de sécurité, la redondance critique.\n    Multi-factoriel : plusieurs causes en interaction. Long terme : dette\n    invisible à surveiller. Pousser au maximum chaque indicateur.",
+      "expectation": "signal MIXTE — système doit déclarer ambivalence, pas trancher",
+      "scores": {
+        "practical_usefulness": 0.5,
+        "meta_noise": 0.5,
+        "concrete_runtime_alignment": 0.5,
+        "terrain_alignment": 0.125,
+        "useful_information_density_v2": 0,
+        "cognitive_load": 0.45,
+        "robustness_OOD": 0.5,
+        "systemic_coherence": 0.542,
+        "sys_multiscale": 0.5,
+        "goodhart_risk": 0.333,
+        "fragility_risk": 0.17,
+        "seductive_but_fragile": 0,
+        "seductive_complexity": 0.096,
+        "domain_leak": false
+      },
+      "failures": []
+    },
+    {
+      "id": "FAKE_HEDGE_01",
+      "type": "FAKE_HEDGE",
+      "text": "Il est probable que peut-être cette solution probablement convient\n    selon le contexte à vérifier sous certaines conditions. Vraisemblablement\n    dans la plupart des cas si confirmé. À condition que peut-être nécessite\n    expertise selon les cas en général à valider probable.",
+      "expectation": "haute robustness_OOD apparente mais inutile",
+      "scores": {
+        "practical_usefulness": 1,
+        "meta_noise": 0.4,
+        "concrete_runtime_alignment": 0.72,
+        "terrain_alignment": 0.125,
+        "useful_information_density_v2": 0.54,
+        "cognitive_load": 0.665,
+        "robustness_OOD": 0.9,
+        "systemic_coherence": 0.35,
+        "sys_multiscale": 0.25,
+        "goodhart_risk": 0,
+        "fragility_risk": 0.16,
+        "seductive_but_fragile": 0,
+        "seductive_complexity": 0.196,
+        "domain_leak": false
+      },
+      "failures": [
+        "robustness_OOD 0.9 > 0.85 sur hedges décoratifs (faux positif)"
+      ]
+    }
+  ],
+  "mutation_results": [
+    {
+      "name": "stable_pair_BTP",
+      "a": "Vérifier le joint d'étanchéité. Mesurer la planéité. Couple de serrage 35 Nm.",
+      "b": "Contrôler le joint d'étanchéité. Mesurer la planéité. Couple à 35 Nm.",
+      "expect_stable": true,
+      "result": {
+        "stability_score": 0.809,
+        "action_preservation": 0.5,
+        "number_preservation": 1,
+        "structure_preservation": 1,
+        "length_ratio": 0.896,
+        "evidence": {
+          "shared_actions": [
+            "mesurer"
+          ],
+          "lost_actions": [
+            "vérifier"
+          ],
+          "added_actions": [],
+          "shared_numbers": [],
+          "lost_numbers": [],
+          "added_numbers": []
+        },
+        "verdict": "STABLE"
+      },
+      "pass": true
+    },
+    {
+      "name": "unstable_pair_inversion",
+      "a": "Vérifier le joint. Réduire la pression à 2 bar. Étape 1 prioritaire.",
+      "b": "Ignorer le joint. Augmenter la pression à 8 bar. Étape 5 facultative.",
+      "expect_stable": false,
+      "result": {
+        "stability_score": 0.348,
+        "action_preservation": 0,
+        "number_preservation": 0,
+        "structure_preservation": 1,
+        "length_ratio": 0.986,
+        "evidence": {
+          "shared_actions": [],
+          "lost_actions": [
+            "vérifier",
+            "réduire"
+          ],
+          "added_actions": [],
+          "shared_numbers": [],
+          "lost_numbers": [
+            "2bar"
+          ],
+          "added_numbers": [
+            "8bar"
+          ]
+        },
+        "verdict": "UNSTABLE"
+      },
+      "pass": true
+    },
+    {
+      "name": "paraphrase_only",
+      "a": "Installer le composant à 35 Nm puis vérifier l'étanchéité. Mesurer la planéité.",
+      "b": "À 35 Nm, installer le composant. Vérifier l'étanchéité. Mesurer la planéité.",
+      "expect_stable": true,
+      "result": {
+        "stability_score": 0.794,
+        "action_preservation": 1,
+        "number_preservation": 1,
+        "structure_preservation": 0,
+        "length_ratio": 0.962,
+        "evidence": {
+          "shared_actions": [
+            "installer",
+            "vérifier",
+            "mesurer"
+          ],
+          "lost_actions": [],
+          "added_actions": [],
+          "shared_numbers": [],
+          "lost_numbers": [],
+          "added_numbers": []
+        },
+        "verdict": "STABLE"
+      },
+      "pass": true
+    }
+  ],
+  "honest_summary": {
+    "falsifiability_principle": "Ce rapport documente où le système se TROMPE, pas où il a raison.",
+    "purpose": "Anti-religion ZORAN. Si toutes les métriques passent, le test est suspect.",
+    "failure_modes_acceptable": "Quelques failures attendues (gap TEMPORAL_INVERSION volontaire)."
+  }
+}

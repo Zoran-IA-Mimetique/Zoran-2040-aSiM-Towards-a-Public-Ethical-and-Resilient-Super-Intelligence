@@ -1,0 +1,88 @@
+{
+  "mission_id": "ZORAN_SUPERIOR_LAWS_DISCOVERY_ENGINE_20260515",
+  "timestamp": "2026-05-15T21:10:00+02:00",
+  "false_superior_count": 4,
+  "false_superior_details": [
+    {
+      "id": "ULG-001",
+      "family": "ULG",
+      "canonical": true,
+      "attractor_tier": "μ1",
+      "superior_law_probability": 0.762,
+      "composition_score": 0.7333333333333333,
+      "invariant_score": 0.5,
+      "multi_scale_score": 2,
+      "runtime_stability": 0.85,
+      "cross_domain_score": 22,
+      "branches_explained": 25,
+      "reusability_score": 1,
+      "topological_weight": 1.0,
+      "contradictions_count": 0,
+      "hierarchical_rank": 125.0,
+      "false_superior_flags": [
+        "pseudo-universal language in description",
+        "pseudo-universal global frame: 'système ZORAN entier (graphe complet de toutes familles)'"
+      ]
+    },
+    {
+      "id": "ULG-002",
+      "family": "ULG",
+      "canonical": true,
+      "attractor_tier": null,
+      "superior_law_probability": 0.59,
+      "composition_score": 1.0,
+      "invariant_score": 0.25,
+      "multi_scale_score": 1,
+      "runtime_stability": 0.75,
+      "cross_domain_score": 10,
+      "branches_explained": 8,
+      "reusability_score": 1,
+      "topological_weight": 0.808,
+      "contradictions_count": 0,
+      "hierarchical_rank": 39.1,
+      "false_superior_flags": [
+        "pseudo-universal language in description"
+      ]
+    },
+    {
+      "id": "DVE-001",
+      "family": "DVE",
+      "canonical": true,
+      "attractor_tier": "μ1",
+      "superior_law_probability": 0.758,
+      "composition_score": 0.7333333333333333,
+      "invariant_score": 0.5,
+      "multi_scale_score": 2,
+      "runtime_stability": 0.8,
+      "cross_domain_score": 18,
+      "branches_explained": 25,
+      "reusability_score": 3,
+      "topological_weight": 0.992,
+      "contradictions_count": 2,
+      "hierarchical_rank": 124.8,
+      "false_superior_flags": [
+        "pseudo-universal global frame: 'graphe complet de toutes les dérivations possibles'"
+      ]
+    },
+    {
+      "id": "WP11-003",
+      "family": "WP11",
+      "canonical": true,
+      "attractor_tier": null,
+      "superior_law_probability": 0.585,
+      "composition_score": 1.0,
+      "invariant_score": 0.5,
+      "multi_scale_score": 2,
+      "runtime_stability": 0.86,
+      "cross_domain_score": 8,
+      "branches_explained": 5,
+      "reusability_score": 0,
+      "topological_weight": 0.772,
+      "contradictions_count": 0,
+      "hierarchical_rank": 39.2,
+      "false_superior_flags": [
+        "pseudo-universal global frame: 'graphe complet — toutes paires de cadres F1, F2'"
+      ]
+    }
+  ]
+}

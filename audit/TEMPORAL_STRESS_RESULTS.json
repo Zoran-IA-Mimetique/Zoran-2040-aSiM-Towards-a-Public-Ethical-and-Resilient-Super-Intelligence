@@ -1,0 +1,47 @@
+{
+  "mission_id": "ZORAN_TEMPORAL_COHERENCE_AND_SELECTION_ENGINE_20260515",
+  "timestamp": "2026-05-15T21:24:00+02:00",
+  "hs_baseline": 1.0,
+  "tests": [
+    {
+      "name": "perturbation_legere",
+      "hs_after": 1.0,
+      "delta_hs": 0.0,
+      "elements_affected": 1,
+      "verdict": "stable",
+      "graph_resists": true
+    },
+    {
+      "name": "perturbation_forte",
+      "hs_after": 1.0,
+      "delta_hs": 0.0,
+      "elements_affected": 37,
+      "verdict": "stable",
+      "graph_resists": true
+    },
+    {
+      "name": "contradiction_locale",
+      "hs_after": 1.0,
+      "delta_hs": 0.0,
+      "elements_affected": 2,
+      "verdict": "stable",
+      "graph_resists": true
+    },
+    {
+      "name": "retrait_dependance",
+      "hs_after": 1.0,
+      "delta_hs": 0.0,
+      "elements_affected": 1,
+      "verdict": "stable",
+      "graph_resists": true
+    },
+    {
+      "name": "collapse_partiel",
+      "hs_after": 0.9,
+      "delta_hs": -0.1,
+      "elements_affected": 26,
+      "verdict": "dégradation tolérable",
+      "graph_resists": true
+    }
+  ]
+}

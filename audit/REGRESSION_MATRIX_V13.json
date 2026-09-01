@@ -1,0 +1,110 @@
+{
+  "mission_id": "ZORAN_V13_MAX_SECURITY_LAB_PROTOCOL_20260520",
+  "created_at": "2026-05-20T17:35:00Z",
+  "purpose": "Surfaces a re-verifier apres tout changement. Baseline = etat verifie au 2026-05-20.",
+  "baseline": {
+    "smoke_test": {
+      "tool": "tools/smoke_test.mjs",
+      "score": "14/14",
+      "console_errors": 0,
+      "page_errors": 0,
+      "checks": {
+        "boot_ok": true,
+        "click_open_panel": true,
+        "focus_branche": true,
+        "prune_toggle": true,
+        "drag_panel": true,
+        "sidebar_toggle": true,
+        "manual_pan": true,
+        "layer_toggle": true,
+        "chat_routes_compete": true,
+        "route_viz_in_graph": true,
+        "popup_draggable": true,
+        "popup_minimize": true,
+        "pan_right_drag": true,
+        "esc_closes_panel": true
+      },
+      "known_fail": null,
+      "note_pan_right_drag": "Corrige 2026-05-20 (ticket S5) : bug etait dans le test (LEFT-priming + drag sur panneau ouvert + events synthetiques obsoletes), pas dans l'app."
+    },
+    "cta_v13_runtime_check": {
+      "tool": "tools/cta_v13_runtime_check.mjs",
+      "score": "7/7",
+      "status": "PASS"
+    },
+    "graph_counts": {
+      "nodes": 242,
+      "links": 286,
+      "families": 8,
+      "S_local": 0.86,
+      "S_global_proxy": 0.90,
+      "HS": 1.00
+    }
+  },
+  "zones": [
+    {
+      "zone": "boot",
+      "protected_surface": "demarrage app, graphe 3D",
+      "dependencies": ["main.js", "graph.js"],
+      "tests_impacted": ["smoke_test.mjs:boot_ok"],
+      "benchmarks_impacted": [],
+      "rendering_impacted": false,
+      "ui_impacted": true
+    },
+    {
+      "zone": "graphe",
+      "protected_surface": "drag, focus, prune, pan, layers",
+      "dependencies": ["main.js", "graph.js", "search.js"],
+      "tests_impacted": ["smoke_test.mjs:focus_branche", "smoke_test.mjs:prune_toggle", "smoke_test.mjs:manual_pan", "smoke_test.mjs:layer_toggle", "smoke_test.mjs:pan_right_drag"],
+      "benchmarks_impacted": [],
+      "rendering_impacted": true,
+      "ui_impacted": true
+    },
+    {
+      "zone": "panneau",
+      "protected_surface": "ouverture loi, drag, minimize",
+      "dependencies": ["panel.js", "main.js"],
+      "tests_impacted": ["smoke_test.mjs:click_open_panel", "smoke_test.mjs:drag_panel", "smoke_test.mjs:popup_draggable", "smoke_test.mjs:popup_minimize"],
+      "benchmarks_impacted": [],
+      "rendering_impacted": true,
+      "ui_impacted": true
+    },
+    {
+      "zone": "chat",
+      "protected_surface": "competition routes, visualisation routes",
+      "dependencies": ["chat.js", "superiority.js", "search.js"],
+      "tests_impacted": ["smoke_test.mjs:chat_routes_compete", "smoke_test.mjs:route_viz_in_graph"],
+      "benchmarks_impacted": [],
+      "rendering_impacted": true,
+      "ui_impacted": true
+    },
+    {
+      "zone": "scoring",
+      "protected_surface": "calcul de score, moteurs branches",
+      "dependencies": ["superiority.js", "llm.js", "rezo_engine.js", "btp_supremacy_engine.js", "anti_goodhart.js", "fragility_detector.js", "seductive_complexity.js"],
+      "tests_impacted": [],
+      "benchmarks_impacted": ["audit/*.json"],
+      "rendering_impacted": false,
+      "ui_impacted": false
+    },
+    {
+      "zone": "rendering",
+      "protected_surface": "rendu reponses, CTA inline V13",
+      "dependencies": ["superiority_render.js", "chat.js", "cta_schema.js", "cta_priority_engine.js", "cta_metrics.js"],
+      "tests_impacted": ["cta_v13_runtime_check.mjs"],
+      "benchmarks_impacted": [],
+      "rendering_impacted": true,
+      "ui_impacted": true
+    },
+    {
+      "zone": "coherence",
+      "protected_surface": "S_local, S_global, HS",
+      "dependencies": ["systemic_coherence.js", "oracle.js"],
+      "tests_impacted": ["smoke_test.mjs:status_coherence"],
+      "benchmarks_impacted": [],
+      "rendering_impacted": false,
+      "ui_impacted": true
+    }
+  ],
+  "rule": "Toute regression sous la baseline = blocage commit. Toute amelioration = nouvelle baseline documentee + signee."
+}

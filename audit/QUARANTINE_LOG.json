@@ -1,0 +1,44 @@
+{
+  "mission_id": "ZORAN_P1_DEMONSTRATED_EXPANSION_50_LAWS_20260515",
+  "candidates_total": 52,
+  "integrated_count": 46,
+  "quarantined_count": 6,
+  "quarantined": [
+    {
+      "id": "UDE-008",
+      "reason": "compositions insuffisantes (0 < 3)",
+      "phase": 4,
+      "found": []
+    },
+    {
+      "id": "ULG-007",
+      "reason": "compositions insuffisantes (0 < 3)",
+      "phase": 4,
+      "found": []
+    },
+    {
+      "id": "SDE-007",
+      "reason": "compositions insuffisantes (0 < 3)",
+      "phase": 4,
+      "found": []
+    },
+    {
+      "id": "GHUC-007",
+      "reason": "compositions insuffisantes (0 < 3)",
+      "phase": 4,
+      "found": []
+    },
+    {
+      "id": "PAL-008",
+      "reason": "compositions insuffisantes (0 < 3)",
+      "phase": 4,
+      "found": []
+    },
+    {
+      "id": "DVE-007",
+      "reason": "compositions insuffisantes (0 < 3)",
+      "phase": 4,
+      "found": []
+    }
+  ]
+}

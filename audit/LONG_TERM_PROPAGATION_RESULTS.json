@@ -1,0 +1,13 @@
+{
+  "mission_id": "ZORAN_EXPERIMENTAL_CORE_CONTINUATION_20260516",
+  "tests_run": [
+    "propagation_longue_10_iters",
+    "perturbation_lente_5pct_per_iter"
+  ],
+  "results_summary": {
+    "avg_runtime_sustainability": 0.762,
+    "avg_long_term_stability": 0.988,
+    "avg_collapse_sensitivity": 0.894,
+    "graph_resists": false
+  }
+}

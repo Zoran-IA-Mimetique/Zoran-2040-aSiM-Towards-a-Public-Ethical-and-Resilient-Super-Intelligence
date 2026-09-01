@@ -1,0 +1,444 @@
+{
+  "mission_id": "ZORAN_NOISE_MINIMIZATION_AND_LAW_SELECTION_ENGINE_20260516",
+  "timestamp": "2026-05-16T03:55:00+02:00",
+  "laws_scored": 241,
+  "decisions": {
+    "reject": 94,
+    "keep": 147
+  },
+  "keep_runtime_count": 147,
+  "reject_count": 94,
+  "reduction_pct": 39.0,
+  "avg_runtime_gain": 0.354,
+  "avg_noise_contribution": 0.282,
+  "avg_signal_to_noise": 0.54,
+  "avg_frugality_ratio": 0.724,
+  "system_signal_to_noise": 0.556,
+  "global_noise_ratio": 0.798,
+  "top10_noise_contributors": [
+    {
+      "id": "GHUC-001",
+      "runtime_gain": -0.105,
+      "noise_contribution": 0.665,
+      "precision_gain": 0.817,
+      "drift_risk": 0.465,
+      "frugality_ratio": 0.1,
+      "runtime_usefulness": 0.064,
+      "runtime_efficiency": 0.195,
+      "signal_to_noise": 0.0,
+      "noise_ratio": 2.0,
+      "precision_per_cost": 0.553,
+      "structural_usefulness": 0.2,
+      "keep_runtime": false
+    },
+    {
+      "id": "DVE-001",
+      "runtime_gain": -0.065,
+      "noise_contribution": 0.614,
+      "precision_gain": 0.854,
+      "drift_risk": 0.409,
+      "frugality_ratio": 0.1,
+      "runtime_usefulness": 0.067,
+      "runtime_efficiency": 0.235,
+      "signal_to_noise": 0.0,
+      "noise_ratio": 2.0,
+      "precision_per_cost": 0.647,
+      "structural_usefulness": 0.2,
+      "keep_runtime": false
+    },
+    {
+      "id": "WP12-001",
+      "runtime_gain": 0.007,
+      "noise_contribution": 0.585,
+      "precision_gain": 0.902,
+      "drift_risk": 0.402,
+      "frugality_ratio": 0.106,
+      "runtime_usefulness": 0.076,
+      "runtime_efficiency": 0.307,
+      "signal_to_noise": 0.013,
+      "noise_ratio": 2.0,
+      "precision_per_cost": 0.588,
+      "structural_usefulness": 0.2,
+      "keep_runtime": false
+    },
+    {
+      "id": "WP12-009",
+      "runtime_gain": 0.027,
+      "noise_contribution": 0.564,
+      "precision_gain": 0.725,
+      "drift_risk": 0.517,
+      "frugality_ratio": 0.124,
+      "runtime_usefulness": 0.086,
+      "runtime_efficiency": 0.327,
+      "signal_to_noise": 0.046,
+      "noise_ratio": 2.0,
+      "precision_per_cost": 0.539,
+      "structural_usefulness": 0.2,
+      "keep_runtime": false
+    },
+    {
+      "id": "ULG-001",
+      "runtime_gain": -0.026,
+      "noise_contribution": 0.561,
+      "precision_gain": 0.816,
+      "drift_risk": 0.563,
+      "frugality_ratio": 0.1,
+      "runtime_usefulness": 0.072,
+      "runtime_efficiency": 0.274,
+      "signal_to_noise": 0.0,
+      "noise_ratio": 2.0,
+      "precision_per_cost": 0.665,
+      "structural_usefulness": 0.2,
+      "keep_runtime": false
+    },
+    {
+      "id": "UDE-001",
+      "runtime_gain": 0.038,
+      "noise_contribution": 0.552,
+      "precision_gain": 0.853,
+      "drift_risk": 0.42,
+      "frugality_ratio": 0.133,
+      "runtime_usefulness": 0.107,
+      "runtime_efficiency": 0.338,
+      "signal_to_noise": 0.064,
+      "noise_ratio": 2.0,
+      "precision_per_cost": 0.595,
+      "structural_usefulness": 0.2,
+      "keep_runtime": false
+    },
+    {
+      "id": "UDE-009",
+      "runtime_gain": 0.042,
+      "noise_contribution": 0.537,
+      "precision_gain": 0.622,
+      "drift_risk": 0.491,
+      "frugality_ratio": 0.139,
+      "runtime_usefulness": 0.107,
+      "runtime_efficiency": 0.342,
+      "signal_to_noise": 0.073,
+      "noise_ratio": 2.0,
+      "precision_per_cost": 0.49,
+      "structural_usefulness": 0.2,
+      "keep_runtime": false
+    },
+    {
+      "id": "WP11-001",
+      "runtime_gain": 0.081,
+      "noise_contribution": 0.533,
+      "precision_gain": 0.874,
+      "drift_risk": 0.404,
+      "frugality_ratio": 0.178,
+      "runtime_usefulness": 0.155,
+      "runtime_efficiency": 0.381,
+      "signal_to_noise": 0.132,
+      "noise_ratio": 2.0,
+      "precision_per_cost": 0.68,
+      "structural_usefulness": 0.2,
+      "keep_runtime": false
+    },
+    {
+      "id": "WP12-007",
+      "runtime_gain": 0.063,
+      "noise_contribution": 0.519,
+      "precision_gain": 0.692,
+      "drift_risk": 0.508,
+      "frugality_ratio": 0.163,
+      "runtime_usefulness": 0.129,
+      "runtime_efficiency": 0.363,
+      "signal_to_noise": 0.109,
+      "noise_ratio": 2.0,
+      "precision_per_cost": 0.58,
+      "structural_usefulness": 0.2,
+      "keep_runtime": false
+    },
+    {
+      "id": "DVE-008",
+      "runtime_gain": 0.04,
+      "noise_contribution": 0.519,
+      "precision_gain": 0.683,
+      "drift_risk": 0.675,
+      "frugality_ratio": 0.143,
+      "runtime_usefulness": 0.106,
+      "runtime_efficiency": 0.34,
+      "signal_to_noise": 0.071,
+      "noise_ratio": 2.0,
+      "precision_per_cost": 0.654,
+      "structural_usefulness": 0.2,
+      "keep_runtime": false
+    }
+  ],
+  "top10_signal_to_noise": [
+    {
+      "id": "UDE-030",
+      "runtime_gain": 0.628,
+      "noise_contribution": 0.113,
+      "precision_gain": 0.465,
+      "drift_risk": 0.525,
+      "frugality_ratio": 1.0,
+      "runtime_usefulness": 0.722,
+      "runtime_efficiency": 0.928,
+      "signal_to_noise": 0.848,
+      "noise_ratio": 0.179,
+      "precision_per_cost": 1.0,
+      "structural_usefulness": 0.2,
+      "keep_runtime": true
+    },
+    {
+      "id": "SDE-028",
+      "runtime_gain": 0.618,
+      "noise_contribution": 0.112,
+      "precision_gain": 0.504,
+      "drift_risk": 0.525,
+      "frugality_ratio": 1.0,
+      "runtime_usefulness": 0.72,
+      "runtime_efficiency": 0.918,
+      "signal_to_noise": 0.846,
+      "noise_ratio": 0.181,
+      "precision_per_cost": 1.0,
+      "structural_usefulness": 0.2,
+      "keep_runtime": true
+    },
+    {
+      "id": "SDE-002-b-i",
+      "runtime_gain": 0.615,
+      "noise_contribution": 0.113,
+      "precision_gain": 0.502,
+      "drift_risk": 0.534,
+      "frugality_ratio": 1.0,
+      "runtime_usefulness": 0.717,
+      "runtime_efficiency": 0.915,
+      "signal_to_noise": 0.845,
+      "noise_ratio": 0.184,
+      "precision_per_cost": 1.0,
+      "structural_usefulness": 0.2,
+      "keep_runtime": true
+    },
+    {
+      "id": "SDE-002-a-i",
+      "runtime_gain": 0.614,
+      "noise_contribution": 0.114,
+      "precision_gain": 0.503,
+      "drift_risk": 0.532,
+      "frugality_ratio": 1.0,
+      "runtime_usefulness": 0.716,
+      "runtime_efficiency": 0.914,
+      "signal_to_noise": 0.843,
+      "noise_ratio": 0.186,
+      "precision_per_cost": 1.0,
+      "structural_usefulness": 0.2,
+      "keep_runtime": true
+    },
+    {
+      "id": "SDE-002-b-ii",
+      "runtime_gain": 0.611,
+      "noise_contribution": 0.114,
+      "precision_gain": 0.497,
+      "drift_risk": 0.541,
+      "frugality_ratio": 1.0,
+      "runtime_usefulness": 0.714,
+      "runtime_efficiency": 0.911,
+      "signal_to_noise": 0.843,
+      "noise_ratio": 0.187,
+      "precision_per_cost": 1.0,
+      "structural_usefulness": 0.2,
+      "keep_runtime": true
+    },
+    {
+      "id": "SDE-002-a-ii",
+      "runtime_gain": 0.612,
+      "noise_contribution": 0.115,
+      "precision_gain": 0.5,
+      "drift_risk": 0.536,
+      "frugality_ratio": 1.0,
+      "runtime_usefulness": 0.715,
+      "runtime_efficiency": 0.912,
+      "signal_to_noise": 0.842,
+      "noise_ratio": 0.187,
+      "precision_per_cost": 1.0,
+      "structural_usefulness": 0.2,
+      "keep_runtime": true
+    },
+    {
+      "id": "UDE-028",
+      "runtime_gain": 0.632,
+      "noise_contribution": 0.126,
+      "precision_gain": 0.469,
+      "drift_risk": 0.523,
+      "frugality_ratio": 1.0,
+      "runtime_usefulness": 0.723,
+      "runtime_efficiency": 0.931,
+      "signal_to_noise": 0.834,
+      "noise_ratio": 0.199,
+      "precision_per_cost": 1.0,
+      "structural_usefulness": 0.2,
+      "keep_runtime": true
+    },
+    {
+      "id": "WP11-002-b-i",
+      "runtime_gain": 0.613,
+      "noise_contribution": 0.131,
+      "precision_gain": 0.497,
+      "drift_risk": 0.541,
+      "frugality_ratio": 1.0,
+      "runtime_usefulness": 0.707,
+      "runtime_efficiency": 0.913,
+      "signal_to_noise": 0.824,
+      "noise_ratio": 0.214,
+      "precision_per_cost": 1.0,
+      "structural_usefulness": 0.2,
+      "keep_runtime": true
+    },
+    {
+      "id": "WP11-002-a-i",
+      "runtime_gain": 0.615,
+      "noise_contribution": 0.133,
+      "precision_gain": 0.515,
+      "drift_risk": 0.519,
+      "frugality_ratio": 1.0,
+      "runtime_usefulness": 0.709,
+      "runtime_efficiency": 0.915,
+      "signal_to_noise": 0.822,
+      "noise_ratio": 0.216,
+      "precision_per_cost": 1.0,
+      "structural_usefulness": 0.2,
+      "keep_runtime": true
+    },
+    {
+      "id": "WP11-002-b-ii",
+      "runtime_gain": 0.609,
+      "noise_contribution": 0.132,
+      "precision_gain": 0.494,
+      "drift_risk": 0.545,
+      "frugality_ratio": 1.0,
+      "runtime_usefulness": 0.704,
+      "runtime_efficiency": 0.909,
+      "signal_to_noise": 0.822,
+      "noise_ratio": 0.217,
+      "precision_per_cost": 1.0,
+      "structural_usefulness": 0.2,
+      "keep_runtime": true
+    }
+  ],
+  "rejected_sample": [
+    {
+      "id": "ULG-001",
+      "snr": 0.0,
+      "fr": 0.1,
+      "rg": -0.026
+    },
+    {
+      "id": "ULG-002",
+      "snr": 0.012,
+      "fr": 0.107,
+      "rg": 0.007
+    },
+    {
+      "id": "ULG-003",
+      "snr": 0.267,
+      "fr": 0.312,
+      "rg": 0.148
+    },
+    {
+      "id": "ULG-004",
+      "snr": 0.356,
+      "fr": 0.422,
+      "rg": 0.193
+    },
+    {
+      "id": "ULG-005",
+      "snr": 0.436,
+      "fr": 0.565,
+      "rg": 0.249
+    },
+    {
+      "id": "DVE-001",
+      "snr": 0.0,
+      "fr": 0.1,
+      "rg": -0.065
+    },
+    {
+      "id": "DVE-002",
+      "snr": 0.229,
+      "fr": 0.265,
+      "rg": 0.127
+    },
+    {
+      "id": "DVE-003",
+      "snr": 0.333,
+      "fr": 0.377,
+      "rg": 0.184
+    },
+    {
+      "id": "DVE-004",
+      "snr": 0.489,
+      "fr": 0.667,
+      "rg": 0.293
+    },
+    {
+      "id": "DVE-005",
+      "snr": 0.166,
+      "fr": 0.206,
+      "rg": 0.088
+    },
+    {
+      "id": "UDE-001",
+      "snr": 0.064,
+      "fr": 0.133,
+      "rg": 0.038
+    },
+    {
+      "id": "UDE-004",
+      "snr": 0.487,
+      "fr": 0.584,
+      "rg": 0.302
+    },
+    {
+      "id": "UDE-005",
+      "snr": 0.485,
+      "fr": 0.582,
+      "rg": 0.301
+    },
+    {
+      "id": "GHUC-001",
+      "snr": 0.0,
+      "fr": 0.1,
+      "rg": -0.105
+    },
+    {
+      "id": "GHUC-002",
+      "snr": 0.146,
+      "fr": 0.189,
+      "rg": 0.083
+    },
+    {
+      "id": "GHUC-003",
+      "snr": 0.386,
+      "fr": 0.423,
+      "rg": 0.232
+    },
+    {
+      "id": "GHUC-004",
+      "snr": 0.403,
+      "fr": 0.455,
+      "rg": 0.231
+    },
+    {
+      "id": "WP11-001",
+      "snr": 0.132,
+      "fr": 0.178,
+      "rg": 0.081
+    },
+    {
+      "id": "WP11-002",
+      "snr": 0.382,
+      "fr": 0.413,
+      "rg": 0.232
+    },
+    {
+      "id": "WP11-003",
+      "snr": 0.384,
+      "fr": 0.422,
+      "rg": 0.24
+    }
+  ]
+}

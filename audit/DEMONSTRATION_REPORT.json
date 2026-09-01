@@ -1,0 +1,3947 @@
+{
+  "mission_id": "ZORAN_RUNTIME_ARCHITECTURE_AND_ORACLE_GOVERNANCE_20260515",
+  "phase": "B_cross_demonstration",
+  "timestamp": "2026-05-15T20:30:00+02:00",
+  "total_laws": 241,
+  "passing_all_phases": 241,
+  "failing": 0,
+  "pass_rate": 1.0,
+  "by_phase_pass": {
+    "1_detection": 241,
+    "2_frames": 241,
+    "3_demonstration": 241,
+    "4_composition": 241,
+    "5_fractal_family": 175
+  },
+  "by_family": {
+    "ULG": {
+      "total": 26,
+      "passing": 26,
+      "failing": []
+    },
+    "DVE": {
+      "total": 26,
+      "passing": 26,
+      "failing": []
+    },
+    "UDE": {
+      "total": 33,
+      "passing": 33,
+      "failing": []
+    },
+    "GHUC": {
+      "total": 37,
+      "passing": 37,
+      "failing": []
+    },
+    "WP11": {
+      "total": 37,
+      "passing": 37,
+      "failing": []
+    },
+    "WP12": {
+      "total": 33,
+      "passing": 33,
+      "failing": []
+    },
+    "SDE": {
+      "total": 28,
+      "passing": 28,
+      "failing": []
+    },
+    "PAL": {
+      "total": 21,
+      "passing": 21,
+      "failing": []
+    }
+  },
+  "composition_stats": {
+    "min": 3,
+    "max": 27,
+    "avg": 9.46,
+    "distribution": {
+      "3": 49,
+      "4": 23,
+      "5": 20,
+      "6": 12,
+      "7": 21,
+      "8": 7,
+      "9": 14,
+      "10": 10,
+      "11": 12,
+      "12": 13,
+      "13": 6,
+      "14": 3,
+      "15": 4,
+      "16": 3,
+      "18": 12,
+      "19": 3,
+      "20": 3,
+      "21": 1,
+      "22": 14,
+      "23": 6,
+      "24": 3,
+      "25": 1,
+      "27": 1
+    }
+  },
+  "failing_laws_detail": [],
+  "all_verdicts": [
+    {
+      "id": "ULG-001",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 11,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-002",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 15,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-003",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 13,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-004",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 12,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-005",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 11,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-001",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 11,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-002",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 11,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-003",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 11,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-004",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 9,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-005",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 12,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-001",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 20,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-002",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 19,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-003",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 19,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-004",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 18,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-005",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 20,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-001",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 15,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-002",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 19,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-002-a",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 8,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-002-a-i",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-002-a-ii",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-002-b",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 8,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-002-b-i",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-002-b-ii",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-003",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 16,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-004",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 14,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-001",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 13,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-002",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 15,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-003",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 15,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-004",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 13,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-005",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 8,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-001",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 24,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-002",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 23,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-003",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 22,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-004",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 22,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-005",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 22,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-001",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 10,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-002",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 16,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-003",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 12,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-004",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 9,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-005",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 9,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "PAL-001",
+      "family": "PAL",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 10,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "PAL-002",
+      "family": "PAL",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 13,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "PAL-003",
+      "family": "PAL",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 9,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "PAL-004",
+      "family": "PAL",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 10,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "PAL-005",
+      "family": "PAL",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 11,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-002-a",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 7,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-002-b",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 7,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-002-a-i",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-002-a-ii",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-002-b-i",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-002-b-ii",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 4,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-002-a",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 6,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-002-b",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 6,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-002-a-i",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-002-a-ii",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-002-b-i",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-002-b-ii",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-002-a",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 6,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-002-b",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 6,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-002-a-i",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-002-a-ii",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-002-b-i",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-002-b-ii",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-002-a",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 9,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-002-b",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 9,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-002-a-i",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-002-a-ii",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-002-b-i",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-002-b-ii",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "PAL-002-a",
+      "family": "PAL",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 7,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "PAL-002-b",
+      "family": "PAL",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 7,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "PAL-002-a-i",
+      "family": "PAL",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "PAL-002-a-ii",
+      "family": "PAL",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "PAL-002-b-i",
+      "family": "PAL",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "PAL-002-b-ii",
+      "family": "PAL",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 5,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-003-a",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 5,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-003-b",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 5,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-004-a",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 5,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-004-b",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 5,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-006",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 11,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-006",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 18,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-007",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 18,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-006",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 7,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-006",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 22,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-007",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 27,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-006",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 10,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "PAL-006",
+      "family": "PAL",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 10,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-006",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 5,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-005",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 16,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-007",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 18,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-008",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 22,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-008",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 12,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-009",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 11,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-010",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 12,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-011",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 10,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-012",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-013",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-014",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 5,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-015",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-016",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-017",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 5,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-008",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 10,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-009",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 8,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-010",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 4,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-011",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 4,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-012",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 9,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-013",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 4,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-014",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 5,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-015",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 8,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-009",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 24,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-010",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 20,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-011",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 18,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-012",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 18,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-013",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 18,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-014",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 24,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-015",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 18,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-017",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 18,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-018",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 18,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-019",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 21,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-006",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 5,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-007",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 14,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-008",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 14,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-009",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 4,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-010",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 5,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-011",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 6,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-012",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 6,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-013",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 5,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-014",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 5,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-015",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 12,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-008",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 4,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-009",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 12,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-010",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 4,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-011",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 7,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-012",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 4,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-013",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 12,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-014",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 12,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-015",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 4,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-017",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 4,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-018",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 12,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-009",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 25,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-010",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 23,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-011",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 23,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-012",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 22,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-013",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 22,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-014",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 22,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-015",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 23,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-016",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 22,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-017",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 5,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-018",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 22,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-019",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 8,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-020",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 23,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-008",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 7,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-009",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 10,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-010",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 4,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-011",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 7,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-012",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 9,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-013",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 10,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-014",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 7,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-015",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 4,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-016",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 11,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-017",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 9,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "PAL-007",
+      "family": "PAL",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 9,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "PAL-008",
+      "family": "PAL",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 9,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "PAL-010",
+      "family": "PAL",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "PAL-012",
+      "family": "PAL",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 5,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "PAL-013",
+      "family": "PAL",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "PAL-014",
+      "family": "PAL",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-019",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-020",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 18,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-016",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 11,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-021",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 22,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-018",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 7,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "PAL-015",
+      "family": "PAL",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 5,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-016",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 4,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-020",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 13,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-021",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 7,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-022",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 22,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-019",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-020",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 10,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-021",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 5,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-017",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 13,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-018",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-022",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 4,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-024",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 7,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-026",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 9,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-024",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 5,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-027",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 6,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-027",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 7,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-028",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-029",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-021",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 4,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-028",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-029",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-018",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 6,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-019",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-019",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-022",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 5,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-031",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 22,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-020",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 6,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-021",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-032",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-021",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 4,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-024",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 7,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-025",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 7,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-026",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-028",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-029",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 7,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-030",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-031",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 7,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-032",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-034",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 5,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-035",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 7,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-022",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 6,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-023",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-024",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-032",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 12,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-025",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 11,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-026",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 6,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-034",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 22,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "PAL-017",
+      "family": "PAL",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 9,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-034",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 7,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-027",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 4,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-035",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 23,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-021",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 4,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-023",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 4,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "ULG-022",
+      "family": "ULG",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 4,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-024",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 4,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-036",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 6,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "DVE-022",
+      "family": "DVE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 8,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-036",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-040",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP12-041",
+      "family": "WP12",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 3,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-035",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 12,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-029",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 4,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-036",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 7,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-037",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 18,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "UDE-038",
+      "family": "UDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": false
+      },
+      "compositions_count": 7,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "SDE-028",
+      "family": "SDE",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 4,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "WP11-037",
+      "family": "WP11",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 12,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "GHUC-030",
+      "family": "GHUC",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 11,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    },
+    {
+      "id": "PAL-019",
+      "family": "PAL",
+      "phases": {
+        "1_detection": true,
+        "2_frames": true,
+        "3_demonstration": true,
+        "4_composition": true,
+        "5_fractal_family": true
+      },
+      "compositions_count": 9,
+      "passes_all_phases": true,
+      "runtime_admissible_should_be": true,
+      "issues": [],
+      "runtime_admissible_actual": true
+    }
+  ]
+}

@@ -1,0 +1,1213 @@
+{
+  "mission_id": "V11_CAUSAL_COMPRESSION_20260517",
+  "n_cases": 20,
+  "experts_tested": [
+    "EXPERT_RGA",
+    "EXPERT_HUMIDITE",
+    "EXPERT_LEGAL",
+    "EXPERT_GEOTECH",
+    "EXPERT_THERMIQUE"
+  ],
+  "budgets": [
+    50,
+    100,
+    150,
+    250
+  ],
+  "results": [
+    {
+      "case_id": "EXPERT_RGA_budget_50",
+      "expert_id": "EXPERT_RGA",
+      "budget": 50,
+      "original_words": 249,
+      "compressed_words": 45,
+      "kept_sections": {
+        "danger": 1,
+        "dominant_cause": 1,
+        "instrumentation": 2
+      },
+      "dropped_sections": {
+        "instrumentation": 4,
+        "limits": 2,
+        "cofactors": 1,
+        "unclassified": 9
+      },
+      "sentences_kept": 4,
+      "sentences_dropped": 16,
+      "terminal_integrity": {
+        "score": 0,
+        "components": {
+          "conclusion_present": false,
+          "falsification_present": false,
+          "action_present": false,
+          "limits_present": false,
+          "truncated_end": false
+        },
+        "missing": [
+          "conclusion_present",
+          "falsification_present",
+          "action_present",
+          "limits_present"
+        ],
+        "verdict": "CRITICAL_TRUNCATION"
+      },
+      "causal_retention": {
+        "ratio": 0.75,
+        "original_critical_sections": 4,
+        "retained_critical_sections": 3,
+        "retention_by_section": {
+          "danger": 1,
+          "dominant_cause": 1,
+          "falsification": null,
+          "instrumentation": 0.5,
+          "urgent_actions": null,
+          "limits": 0
+        },
+        "verdict": "PARTIALLY_PRESERVED"
+      },
+      "useful_density_after": 1,
+      "damage_index": {
+        "damage_index": 0.2,
+        "integrity_loss": 0.25,
+        "causal_loss": 0.25,
+        "lost_critical_components": [
+          "limits"
+        ],
+        "introduced_truncation": false,
+        "verdict": "MINOR_DAMAGE"
+      }
+    },
+    {
+      "case_id": "EXPERT_RGA_budget_100",
+      "expert_id": "EXPERT_RGA",
+      "budget": 100,
+      "original_words": 249,
+      "compressed_words": 96,
+      "kept_sections": {
+        "danger": 1,
+        "dominant_cause": 1,
+        "cofactors": 1,
+        "instrumentation": 4
+      },
+      "dropped_sections": {
+        "limits": 2,
+        "unclassified": 9
+      },
+      "sentences_kept": 7,
+      "sentences_dropped": 11,
+      "terminal_integrity": {
+        "score": 0.25,
+        "components": {
+          "conclusion_present": false,
+          "falsification_present": false,
+          "action_present": true,
+          "limits_present": false,
+          "truncated_end": false
+        },
+        "missing": [
+          "conclusion_present",
+          "falsification_present",
+          "limits_present"
+        ],
+        "verdict": "DEGRADED"
+      },
+      "causal_retention": {
+        "ratio": 0.75,
+        "original_critical_sections": 4,
+        "retained_critical_sections": 3,
+        "retention_by_section": {
+          "danger": 1,
+          "dominant_cause": 1,
+          "falsification": null,
+          "instrumentation": 1,
+          "urgent_actions": null,
+          "limits": 0
+        },
+        "verdict": "PARTIALLY_PRESERVED"
+      },
+      "useful_density_after": 1,
+      "damage_index": {
+        "damage_index": 0.1,
+        "integrity_loss": 0,
+        "causal_loss": 0.25,
+        "lost_critical_components": [
+          "limits"
+        ],
+        "introduced_truncation": false,
+        "verdict": "MINOR_DAMAGE"
+      }
+    },
+    {
+      "case_id": "EXPERT_RGA_budget_150",
+      "expert_id": "EXPERT_RGA",
+      "budget": 150,
+      "original_words": 249,
+      "compressed_words": 145,
+      "kept_sections": {
+        "danger": 1,
+        "dominant_cause": 1,
+        "cofactors": 1,
+        "unclassified": 3,
+        "instrumentation": 4,
+        "limits": 1
+      },
+      "dropped_sections": {
+        "unclassified": 6
+      },
+      "sentences_kept": 11,
+      "sentences_dropped": 6,
+      "terminal_integrity": {
+        "score": 0.25,
+        "components": {
+          "conclusion_present": false,
+          "falsification_present": false,
+          "action_present": false,
+          "limits_present": true,
+          "truncated_end": false
+        },
+        "missing": [
+          "conclusion_present",
+          "falsification_present",
+          "action_present"
+        ],
+        "verdict": "DEGRADED"
+      },
+      "causal_retention": {
+        "ratio": 1,
+        "original_critical_sections": 4,
+        "retained_critical_sections": 4,
+        "retention_by_section": {
+          "danger": 1,
+          "dominant_cause": 1,
+          "falsification": null,
+          "instrumentation": 1,
+          "urgent_actions": null,
+          "limits": 1
+        },
+        "verdict": "WELL_PRESERVED"
+      },
+      "useful_density_after": 1,
+      "damage_index": {
+        "damage_index": 0,
+        "integrity_loss": 0,
+        "causal_loss": 0,
+        "lost_critical_components": [],
+        "introduced_truncation": false,
+        "verdict": "ACCEPTABLE"
+      }
+    },
+    {
+      "case_id": "EXPERT_RGA_budget_250",
+      "expert_id": "EXPERT_RGA",
+      "budget": 250,
+      "original_words": 249,
+      "compressed_words": 249,
+      "kept_sections": {
+        "danger": 1,
+        "dominant_cause": 1,
+        "cofactors": 1,
+        "unclassified": 9,
+        "instrumentation": 4,
+        "limits": 1
+      },
+      "dropped_sections": {},
+      "sentences_kept": 17,
+      "sentences_dropped": 0,
+      "terminal_integrity": {
+        "score": 0.25,
+        "components": {
+          "conclusion_present": false,
+          "falsification_present": false,
+          "action_present": false,
+          "limits_present": true,
+          "truncated_end": false
+        },
+        "missing": [
+          "conclusion_present",
+          "falsification_present",
+          "action_present"
+        ],
+        "verdict": "DEGRADED"
+      },
+      "causal_retention": {
+        "ratio": 1,
+        "original_critical_sections": 4,
+        "retained_critical_sections": 4,
+        "retention_by_section": {
+          "danger": 1,
+          "dominant_cause": 1,
+          "falsification": null,
+          "instrumentation": 1,
+          "urgent_actions": null,
+          "limits": 1
+        },
+        "verdict": "WELL_PRESERVED"
+      },
+      "useful_density_after": 0.703,
+      "damage_index": {
+        "damage_index": 0,
+        "integrity_loss": 0,
+        "causal_loss": 0,
+        "lost_critical_components": [],
+        "introduced_truncation": false,
+        "verdict": "ACCEPTABLE"
+      }
+    },
+    {
+      "case_id": "EXPERT_HUMIDITE_budget_50",
+      "expert_id": "EXPERT_HUMIDITE",
+      "budget": 50,
+      "original_words": 219,
+      "compressed_words": 43,
+      "kept_sections": {
+        "dominant_cause": 1,
+        "instrumentation": 1
+      },
+      "dropped_sections": {
+        "urgent_actions": 6,
+        "limits": 2,
+        "unclassified": 6,
+        "cofactors": 1
+      },
+      "sentences_kept": 2,
+      "sentences_dropped": 15,
+      "terminal_integrity": {
+        "score": 0,
+        "components": {
+          "conclusion_present": false,
+          "falsification_present": false,
+          "action_present": false,
+          "limits_present": false,
+          "truncated_end": false
+        },
+        "missing": [
+          "conclusion_present",
+          "falsification_present",
+          "action_present",
+          "limits_present"
+        ],
+        "verdict": "CRITICAL_TRUNCATION"
+      },
+      "causal_retention": {
+        "ratio": 0.5,
+        "original_critical_sections": 4,
+        "retained_critical_sections": 2,
+        "retention_by_section": {
+          "danger": null,
+          "dominant_cause": 1,
+          "falsification": null,
+          "instrumentation": 1,
+          "urgent_actions": 0,
+          "limits": 0
+        },
+        "verdict": "PARTIALLY_PRESERVED"
+      },
+      "useful_density_after": 1,
+      "damage_index": {
+        "damage_index": 0.4,
+        "integrity_loss": 0.5,
+        "causal_loss": 0.5,
+        "lost_critical_components": [
+          "action",
+          "limits"
+        ],
+        "introduced_truncation": false,
+        "verdict": "MODERATE_DAMAGE"
+      }
+    },
+    {
+      "case_id": "EXPERT_HUMIDITE_budget_100",
+      "expert_id": "EXPERT_HUMIDITE",
+      "budget": 100,
+      "original_words": 219,
+      "compressed_words": 100,
+      "kept_sections": {
+        "dominant_cause": 1,
+        "instrumentation": 1,
+        "urgent_actions": 2,
+        "limits": 1
+      },
+      "dropped_sections": {
+        "urgent_actions": 2,
+        "unclassified": 6,
+        "cofactors": 1
+      },
+      "sentences_kept": 5,
+      "sentences_dropped": 9,
+      "terminal_integrity": {
+        "score": 0.25,
+        "components": {
+          "conclusion_present": false,
+          "falsification_present": false,
+          "action_present": false,
+          "limits_present": true,
+          "truncated_end": false
+        },
+        "missing": [
+          "conclusion_present",
+          "falsification_present",
+          "action_present"
+        ],
+        "verdict": "DEGRADED"
+      },
+      "causal_retention": {
+        "ratio": 1,
+        "original_critical_sections": 4,
+        "retained_critical_sections": 4,
+        "retention_by_section": {
+          "danger": null,
+          "dominant_cause": 1,
+          "falsification": null,
+          "instrumentation": 1,
+          "urgent_actions": 0.667,
+          "limits": 1
+        },
+        "verdict": "WELL_PRESERVED"
+      },
+      "useful_density_after": 1,
+      "damage_index": {
+        "damage_index": 0.125,
+        "integrity_loss": 0.25,
+        "causal_loss": 0,
+        "lost_critical_components": [
+          "action"
+        ],
+        "introduced_truncation": false,
+        "verdict": "MINOR_DAMAGE"
+      }
+    },
+    {
+      "case_id": "EXPERT_HUMIDITE_budget_150",
+      "expert_id": "EXPERT_HUMIDITE",
+      "budget": 150,
+      "original_words": 219,
+      "compressed_words": 143,
+      "kept_sections": {
+        "unclassified": 1,
+        "dominant_cause": 1,
+        "cofactors": 1,
+        "instrumentation": 1,
+        "urgent_actions": 3,
+        "limits": 1
+      },
+      "dropped_sections": {
+        "unclassified": 5
+      },
+      "sentences_kept": 8,
+      "sentences_dropped": 5,
+      "terminal_integrity": {
+        "score": 0.5,
+        "components": {
+          "conclusion_present": false,
+          "falsification_present": false,
+          "action_present": true,
+          "limits_present": true,
+          "truncated_end": false
+        },
+        "missing": [
+          "conclusion_present",
+          "falsification_present"
+        ],
+        "verdict": "PARTIAL"
+      },
+      "causal_retention": {
+        "ratio": 1,
+        "original_critical_sections": 4,
+        "retained_critical_sections": 4,
+        "retention_by_section": {
+          "danger": null,
+          "dominant_cause": 1,
+          "falsification": null,
+          "instrumentation": 1,
+          "urgent_actions": 1,
+          "limits": 1
+        },
+        "verdict": "WELL_PRESERVED"
+      },
+      "useful_density_after": 1,
+      "damage_index": {
+        "damage_index": 0,
+        "integrity_loss": 0,
+        "causal_loss": 0,
+        "lost_critical_components": [],
+        "introduced_truncation": false,
+        "verdict": "ACCEPTABLE"
+      }
+    },
+    {
+      "case_id": "EXPERT_HUMIDITE_budget_250",
+      "expert_id": "EXPERT_HUMIDITE",
+      "budget": 250,
+      "original_words": 219,
+      "compressed_words": 219,
+      "kept_sections": {
+        "unclassified": 6,
+        "dominant_cause": 1,
+        "cofactors": 1,
+        "instrumentation": 1,
+        "urgent_actions": 3,
+        "limits": 1
+      },
+      "dropped_sections": {},
+      "sentences_kept": 13,
+      "sentences_dropped": 0,
+      "terminal_integrity": {
+        "score": 0.5,
+        "components": {
+          "conclusion_present": false,
+          "falsification_present": false,
+          "action_present": true,
+          "limits_present": true,
+          "truncated_end": false
+        },
+        "missing": [
+          "conclusion_present",
+          "falsification_present"
+        ],
+        "verdict": "PARTIAL"
+      },
+      "causal_retention": {
+        "ratio": 1,
+        "original_critical_sections": 4,
+        "retained_critical_sections": 4,
+        "retention_by_section": {
+          "danger": null,
+          "dominant_cause": 1,
+          "falsification": null,
+          "instrumentation": 1,
+          "urgent_actions": 1,
+          "limits": 1
+        },
+        "verdict": "WELL_PRESERVED"
+      },
+      "useful_density_after": 0.685,
+      "damage_index": {
+        "damage_index": 0,
+        "integrity_loss": 0,
+        "causal_loss": 0,
+        "lost_critical_components": [],
+        "introduced_truncation": false,
+        "verdict": "ACCEPTABLE"
+      }
+    },
+    {
+      "case_id": "EXPERT_LEGAL_budget_50",
+      "expert_id": "EXPERT_LEGAL",
+      "budget": 50,
+      "original_words": 222,
+      "compressed_words": 48,
+      "kept_sections": {
+        "urgent_actions": 2,
+        "unclassified": 1,
+        "falsification": 1
+      },
+      "dropped_sections": {
+        "instrumentation": 2,
+        "unclassified": 9,
+        "cofactors": 1
+      },
+      "sentences_kept": 4,
+      "sentences_dropped": 12,
+      "terminal_integrity": {
+        "score": 0.3,
+        "components": {
+          "conclusion_present": false,
+          "falsification_present": true,
+          "action_present": false,
+          "limits_present": false,
+          "truncated_end": false
+        },
+        "missing": [
+          "conclusion_present",
+          "action_present",
+          "limits_present"
+        ],
+        "verdict": "DEGRADED"
+      },
+      "causal_retention": {
+        "ratio": 0.667,
+        "original_critical_sections": 3,
+        "retained_critical_sections": 2,
+        "retention_by_section": {
+          "danger": null,
+          "dominant_cause": null,
+          "falsification": 1,
+          "instrumentation": 0,
+          "urgent_actions": 1,
+          "limits": null
+        },
+        "verdict": "PARTIALLY_PRESERVED"
+      },
+      "useful_density_after": 1,
+      "damage_index": {
+        "damage_index": 0.35,
+        "integrity_loss": 0.5,
+        "causal_loss": 0.333,
+        "lost_critical_components": [
+          "action",
+          "limits"
+        ],
+        "introduced_truncation": false,
+        "verdict": "MODERATE_DAMAGE"
+      }
+    },
+    {
+      "case_id": "EXPERT_LEGAL_budget_100",
+      "expert_id": "EXPERT_LEGAL",
+      "budget": 100,
+      "original_words": 222,
+      "compressed_words": 96,
+      "kept_sections": {
+        "unclassified": 3,
+        "urgent_actions": 2,
+        "instrumentation": 1,
+        "falsification": 1
+      },
+      "dropped_sections": {
+        "unclassified": 7,
+        "cofactors": 1
+      },
+      "sentences_kept": 7,
+      "sentences_dropped": 8,
+      "terminal_integrity": {
+        "score": 0.3,
+        "components": {
+          "conclusion_present": false,
+          "falsification_present": true,
+          "action_present": false,
+          "limits_present": false,
+          "truncated_end": false
+        },
+        "missing": [
+          "conclusion_present",
+          "action_present",
+          "limits_present"
+        ],
+        "verdict": "DEGRADED"
+      },
+      "causal_retention": {
+        "ratio": 1,
+        "original_critical_sections": 3,
+        "retained_critical_sections": 3,
+        "retention_by_section": {
+          "danger": null,
+          "dominant_cause": null,
+          "falsification": 1,
+          "instrumentation": 1,
+          "urgent_actions": 1,
+          "limits": null
+        },
+        "verdict": "WELL_PRESERVED"
+      },
+      "useful_density_after": 1,
+      "damage_index": {
+        "damage_index": 0.25,
+        "integrity_loss": 0.5,
+        "causal_loss": 0,
+        "lost_critical_components": [
+          "action",
+          "limits"
+        ],
+        "introduced_truncation": false,
+        "verdict": "MODERATE_DAMAGE"
+      }
+    },
+    {
+      "case_id": "EXPERT_LEGAL_budget_150",
+      "expert_id": "EXPERT_LEGAL",
+      "budget": 150,
+      "original_words": 222,
+      "compressed_words": 146,
+      "kept_sections": {
+        "unclassified": 5,
+        "urgent_actions": 2,
+        "instrumentation": 1,
+        "falsification": 1
+      },
+      "dropped_sections": {
+        "cofactors": 1,
+        "unclassified": 5
+      },
+      "sentences_kept": 9,
+      "sentences_dropped": 6,
+      "terminal_integrity": {
+        "score": 0.5,
+        "components": {
+          "conclusion_present": true,
+          "falsification_present": true,
+          "action_present": false,
+          "limits_present": false,
+          "truncated_end": false
+        },
+        "missing": [
+          "action_present",
+          "limits_present"
+        ],
+        "verdict": "PARTIAL"
+      },
+      "causal_retention": {
+        "ratio": 1,
+        "original_critical_sections": 3,
+        "retained_critical_sections": 3,
+        "retention_by_section": {
+          "danger": null,
+          "dominant_cause": null,
+          "falsification": 1,
+          "instrumentation": 1,
+          "urgent_actions": 1,
+          "limits": null
+        },
+        "verdict": "WELL_PRESERVED"
+      },
+      "useful_density_after": 0.685,
+      "damage_index": {
+        "damage_index": 0.17,
+        "integrity_loss": 0.3,
+        "causal_loss": 0,
+        "lost_critical_components": [
+          "action",
+          "limits"
+        ],
+        "introduced_truncation": false,
+        "verdict": "MINOR_DAMAGE"
+      }
+    },
+    {
+      "case_id": "EXPERT_LEGAL_budget_250",
+      "expert_id": "EXPERT_LEGAL",
+      "budget": 250,
+      "original_words": 222,
+      "compressed_words": 222,
+      "kept_sections": {
+        "unclassified": 10,
+        "urgent_actions": 2,
+        "cofactors": 1,
+        "instrumentation": 1,
+        "falsification": 1
+      },
+      "dropped_sections": {},
+      "sentences_kept": 15,
+      "sentences_dropped": 0,
+      "terminal_integrity": {
+        "score": 0.8,
+        "components": {
+          "conclusion_present": false,
+          "falsification_present": true,
+          "action_present": true,
+          "limits_present": true,
+          "truncated_end": false
+        },
+        "missing": [
+          "conclusion_present"
+        ],
+        "verdict": "COMPLETE"
+      },
+      "causal_retention": {
+        "ratio": 1,
+        "original_critical_sections": 3,
+        "retained_critical_sections": 3,
+        "retention_by_section": {
+          "danger": null,
+          "dominant_cause": null,
+          "falsification": 1,
+          "instrumentation": 1,
+          "urgent_actions": 1,
+          "limits": null
+        },
+        "verdict": "WELL_PRESERVED"
+      },
+      "useful_density_after": 0.45,
+      "damage_index": {
+        "damage_index": 0,
+        "integrity_loss": 0,
+        "causal_loss": 0,
+        "lost_critical_components": [],
+        "introduced_truncation": false,
+        "verdict": "ACCEPTABLE"
+      }
+    },
+    {
+      "case_id": "EXPERT_GEOTECH_budget_50",
+      "expert_id": "EXPERT_GEOTECH",
+      "budget": 50,
+      "original_words": 216,
+      "compressed_words": 49,
+      "kept_sections": {
+        "instrumentation": 1,
+        "dominant_cause": 1
+      },
+      "dropped_sections": {
+        "instrumentation": 4,
+        "urgent_actions": 2,
+        "limits": 2,
+        "unclassified": 7,
+        "cofactors": 1
+      },
+      "sentences_kept": 2,
+      "sentences_dropped": 16,
+      "terminal_integrity": {
+        "score": 0,
+        "components": {
+          "conclusion_present": false,
+          "falsification_present": false,
+          "action_present": false,
+          "limits_present": false,
+          "truncated_end": false
+        },
+        "missing": [
+          "conclusion_present",
+          "falsification_present",
+          "action_present",
+          "limits_present"
+        ],
+        "verdict": "CRITICAL_TRUNCATION"
+      },
+      "causal_retention": {
+        "ratio": 0.5,
+        "original_critical_sections": 4,
+        "retained_critical_sections": 2,
+        "retention_by_section": {
+          "danger": null,
+          "dominant_cause": 1,
+          "falsification": null,
+          "instrumentation": 0.333,
+          "urgent_actions": 0,
+          "limits": 0
+        },
+        "verdict": "PARTIALLY_PRESERVED"
+      },
+      "useful_density_after": 1,
+      "damage_index": {
+        "damage_index": 0.4,
+        "integrity_loss": 0.5,
+        "causal_loss": 0.5,
+        "lost_critical_components": [
+          "action",
+          "limits"
+        ],
+        "introduced_truncation": false,
+        "verdict": "MODERATE_DAMAGE"
+      }
+    },
+    {
+      "case_id": "EXPERT_GEOTECH_budget_100",
+      "expert_id": "EXPERT_GEOTECH",
+      "budget": 100,
+      "original_words": 216,
+      "compressed_words": 100,
+      "kept_sections": {
+        "unclassified": 1,
+        "instrumentation": 2,
+        "dominant_cause": 1,
+        "urgent_actions": 1
+      },
+      "dropped_sections": {
+        "instrumentation": 2,
+        "limits": 2,
+        "unclassified": 6,
+        "cofactors": 1
+      },
+      "sentences_kept": 5,
+      "sentences_dropped": 11,
+      "terminal_integrity": {
+        "score": 0.25,
+        "components": {
+          "conclusion_present": false,
+          "falsification_present": false,
+          "action_present": true,
+          "limits_present": false,
+          "truncated_end": false
+        },
+        "missing": [
+          "conclusion_present",
+          "falsification_present",
+          "limits_present"
+        ],
+        "verdict": "DEGRADED"
+      },
+      "causal_retention": {
+        "ratio": 0.75,
+        "original_critical_sections": 4,
+        "retained_critical_sections": 3,
+        "retention_by_section": {
+          "danger": null,
+          "dominant_cause": 1,
+          "falsification": null,
+          "instrumentation": 0.667,
+          "urgent_actions": 1,
+          "limits": 0
+        },
+        "verdict": "PARTIALLY_PRESERVED"
+      },
+      "useful_density_after": 1,
+      "damage_index": {
+        "damage_index": 0.2,
+        "integrity_loss": 0.25,
+        "causal_loss": 0.25,
+        "lost_critical_components": [
+          "limits"
+        ],
+        "introduced_truncation": false,
+        "verdict": "MINOR_DAMAGE"
+      }
+    },
+    {
+      "case_id": "EXPERT_GEOTECH_budget_150",
+      "expert_id": "EXPERT_GEOTECH",
+      "budget": 150,
+      "original_words": 216,
+      "compressed_words": 148,
+      "kept_sections": {
+        "unclassified": 3,
+        "instrumentation": 3,
+        "dominant_cause": 1,
+        "urgent_actions": 1,
+        "limits": 1
+      },
+      "dropped_sections": {
+        "cofactors": 1,
+        "unclassified": 4
+      },
+      "sentences_kept": 9,
+      "sentences_dropped": 5,
+      "terminal_integrity": {
+        "score": 0.5,
+        "components": {
+          "conclusion_present": false,
+          "falsification_present": false,
+          "action_present": true,
+          "limits_present": true,
+          "truncated_end": false
+        },
+        "missing": [
+          "conclusion_present",
+          "falsification_present"
+        ],
+        "verdict": "PARTIAL"
+      },
+      "causal_retention": {
+        "ratio": 1,
+        "original_critical_sections": 4,
+        "retained_critical_sections": 4,
+        "retention_by_section": {
+          "danger": null,
+          "dominant_cause": 1,
+          "falsification": null,
+          "instrumentation": 1,
+          "urgent_actions": 1,
+          "limits": 1
+        },
+        "verdict": "WELL_PRESERVED"
+      },
+      "useful_density_after": 1,
+      "damage_index": {
+        "damage_index": 0,
+        "integrity_loss": 0,
+        "causal_loss": 0,
+        "lost_critical_components": [],
+        "introduced_truncation": false,
+        "verdict": "ACCEPTABLE"
+      }
+    },
+    {
+      "case_id": "EXPERT_GEOTECH_budget_250",
+      "expert_id": "EXPERT_GEOTECH",
+      "budget": 250,
+      "original_words": 216,
+      "compressed_words": 216,
+      "kept_sections": {
+        "unclassified": 7,
+        "instrumentation": 3,
+        "dominant_cause": 1,
+        "cofactors": 1,
+        "urgent_actions": 1,
+        "limits": 1
+      },
+      "dropped_sections": {},
+      "sentences_kept": 14,
+      "sentences_dropped": 0,
+      "terminal_integrity": {
+        "score": 0.5,
+        "components": {
+          "conclusion_present": false,
+          "falsification_present": false,
+          "action_present": true,
+          "limits_present": true,
+          "truncated_end": false
+        },
+        "missing": [
+          "conclusion_present",
+          "falsification_present"
+        ],
+        "verdict": "PARTIAL"
+      },
+      "causal_retention": {
+        "ratio": 1,
+        "original_critical_sections": 4,
+        "retained_critical_sections": 4,
+        "retention_by_section": {
+          "danger": null,
+          "dominant_cause": 1,
+          "falsification": null,
+          "instrumentation": 1,
+          "urgent_actions": 1,
+          "limits": 1
+        },
+        "verdict": "WELL_PRESERVED"
+      },
+      "useful_density_after": 0.694,
+      "damage_index": {
+        "damage_index": 0,
+        "integrity_loss": 0,
+        "causal_loss": 0,
+        "lost_critical_components": [],
+        "introduced_truncation": false,
+        "verdict": "ACCEPTABLE"
+      }
+    },
+    {
+      "case_id": "EXPERT_THERMIQUE_budget_50",
+      "expert_id": "EXPERT_THERMIQUE",
+      "budget": 50,
+      "original_words": 213,
+      "compressed_words": 47,
+      "kept_sections": {
+        "dominant_cause": 1,
+        "instrumentation": 1,
+        "unclassified": 1
+      },
+      "dropped_sections": {
+        "urgent_actions": 2,
+        "unclassified": 10,
+        "cofactors": 1
+      },
+      "sentences_kept": 3,
+      "sentences_dropped": 13,
+      "terminal_integrity": {
+        "score": 0,
+        "components": {
+          "conclusion_present": false,
+          "falsification_present": false,
+          "action_present": false,
+          "limits_present": false,
+          "truncated_end": false
+        },
+        "missing": [
+          "conclusion_present",
+          "falsification_present",
+          "action_present",
+          "limits_present"
+        ],
+        "verdict": "CRITICAL_TRUNCATION"
+      },
+      "causal_retention": {
+        "ratio": 0.667,
+        "original_critical_sections": 3,
+        "retained_critical_sections": 2,
+        "retention_by_section": {
+          "danger": null,
+          "dominant_cause": 1,
+          "falsification": null,
+          "instrumentation": 1,
+          "urgent_actions": 0,
+          "limits": null
+        },
+        "verdict": "PARTIALLY_PRESERVED"
+      },
+      "useful_density_after": 1,
+      "damage_index": {
+        "damage_index": 0.225,
+        "integrity_loss": 0.25,
+        "causal_loss": 0.333,
+        "lost_critical_components": [
+          "limits"
+        ],
+        "introduced_truncation": false,
+        "verdict": "MINOR_DAMAGE"
+      }
+    },
+    {
+      "case_id": "EXPERT_THERMIQUE_budget_100",
+      "expert_id": "EXPERT_THERMIQUE",
+      "budget": 100,
+      "original_words": 213,
+      "compressed_words": 99,
+      "kept_sections": {
+        "unclassified": 2,
+        "dominant_cause": 1,
+        "cofactors": 1,
+        "instrumentation": 1,
+        "urgent_actions": 1
+      },
+      "dropped_sections": {
+        "unclassified": 9
+      },
+      "sentences_kept": 6,
+      "sentences_dropped": 9,
+      "terminal_integrity": {
+        "score": 0,
+        "components": {
+          "conclusion_present": false,
+          "falsification_present": false,
+          "action_present": false,
+          "limits_present": false,
+          "truncated_end": false
+        },
+        "missing": [
+          "conclusion_present",
+          "falsification_present",
+          "action_present",
+          "limits_present"
+        ],
+        "verdict": "CRITICAL_TRUNCATION"
+      },
+      "causal_retention": {
+        "ratio": 1,
+        "original_critical_sections": 3,
+        "retained_critical_sections": 3,
+        "retention_by_section": {
+          "danger": null,
+          "dominant_cause": 1,
+          "falsification": null,
+          "instrumentation": 1,
+          "urgent_actions": 1,
+          "limits": null
+        },
+        "verdict": "WELL_PRESERVED"
+      },
+      "useful_density_after": 0.758,
+      "damage_index": {
+        "damage_index": 0.125,
+        "integrity_loss": 0.25,
+        "causal_loss": 0,
+        "lost_critical_components": [
+          "limits"
+        ],
+        "introduced_truncation": false,
+        "verdict": "MINOR_DAMAGE"
+      }
+    },
+    {
+      "case_id": "EXPERT_THERMIQUE_budget_150",
+      "expert_id": "EXPERT_THERMIQUE",
+      "budget": 150,
+      "original_words": 213,
+      "compressed_words": 147,
+      "kept_sections": {
+        "unclassified": 5,
+        "dominant_cause": 1,
+        "cofactors": 1,
+        "instrumentation": 1,
+        "urgent_actions": 1
+      },
+      "dropped_sections": {
+        "unclassified": 6
+      },
+      "sentences_kept": 9,
+      "sentences_dropped": 6,
+      "terminal_integrity": {
+        "score": 0.25,
+        "components": {
+          "conclusion_present": false,
+          "falsification_present": false,
+          "action_present": true,
+          "limits_present": false,
+          "truncated_end": false
+        },
+        "missing": [
+          "conclusion_present",
+          "falsification_present",
+          "limits_present"
+        ],
+        "verdict": "DEGRADED"
+      },
+      "causal_retention": {
+        "ratio": 1,
+        "original_critical_sections": 3,
+        "retained_critical_sections": 3,
+        "retention_by_section": {
+          "danger": null,
+          "dominant_cause": 1,
+          "falsification": null,
+          "instrumentation": 1,
+          "urgent_actions": 1,
+          "limits": null
+        },
+        "verdict": "WELL_PRESERVED"
+      },
+      "useful_density_after": 0.51,
+      "damage_index": {
+        "damage_index": 0.025,
+        "integrity_loss": 0,
+        "causal_loss": 0,
+        "lost_critical_components": [
+          "limits"
+        ],
+        "introduced_truncation": false,
+        "verdict": "ACCEPTABLE"
+      }
+    },
+    {
+      "case_id": "EXPERT_THERMIQUE_budget_250",
+      "expert_id": "EXPERT_THERMIQUE",
+      "budget": 250,
+      "original_words": 213,
+      "compressed_words": 213,
+      "kept_sections": {
+        "unclassified": 11,
+        "dominant_cause": 1,
+        "cofactors": 1,
+        "instrumentation": 1,
+        "urgent_actions": 1
+      },
+      "dropped_sections": {},
+      "sentences_kept": 15,
+      "sentences_dropped": 0,
+      "terminal_integrity": {
+        "score": 0.25,
+        "components": {
+          "conclusion_present": false,
+          "falsification_present": false,
+          "action_present": false,
+          "limits_present": true,
+          "truncated_end": false
+        },
+        "missing": [
+          "conclusion_present",
+          "falsification_present",
+          "action_present"
+        ],
+        "verdict": "DEGRADED"
+      },
+      "causal_retention": {
+        "ratio": 1,
+        "original_critical_sections": 3,
+        "retained_critical_sections": 3,
+        "retention_by_section": {
+          "danger": null,
+          "dominant_cause": 1,
+          "falsification": null,
+          "instrumentation": 1,
+          "urgent_actions": 1,
+          "limits": null
+        },
+        "verdict": "WELL_PRESERVED"
+      },
+      "useful_density_after": 0.352,
+      "damage_index": {
+        "damage_index": 0,
+        "integrity_loss": 0,
+        "causal_loss": 0,
+        "lost_critical_components": [],
+        "introduced_truncation": false,
+        "verdict": "ACCEPTABLE"
+      }
+    }
+  ],
+  "analysis": {
+    "integrity_threshold_pass": 1,
+    "damage_threshold_pass": 17,
+    "causal_retention_pass": 13,
+    "total": 20
+  }
+}

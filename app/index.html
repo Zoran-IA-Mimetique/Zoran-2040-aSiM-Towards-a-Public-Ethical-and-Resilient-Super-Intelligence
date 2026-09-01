@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZORAN — Arbre Relationnel des Lois</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header id="topbar">
+    <div class="brand">
+      <span class="logo">◈</span>
+      <span class="title">ZORAN <span class="dim">— Arbre Relationnel des Lois</span></span>
+    </div>
+    <div class="controls">
+      <button id="btn-sidebar"  title="Masquer/afficher sidebar (S) — mode immersif">⇤</button>
+      <input id="search" type="search" placeholder="Rechercher loi, famille, domaine…" autocomplete="off" />
+      <button id="btn-back"    title="Précédent (Alt+←)">←</button>
+      <button id="btn-forward" title="Suivant (Alt+→)">→</button>
+      <button id="btn-reset"   title="Recentrer (R)">⌖</button>
+      <button id="btn-focus"   title="Focus branche (F)">⊕</button>
+      <button id="btn-prune"   title="Pruning : masquer faible poids (P)">∿</button>
+      <button id="btn-oracle"  title="Audit Oracle (O)">⊙</button>
+    </div>
+  </header>
+
+  <aside id="sidebar">
+    <section class="panel">
+      <h3>Familles</h3>
+      <ul id="families"></ul>
+    </section>
+    <section class="panel">
+      <h3>Noyaux émergents ◉</h3>
+      <ul id="cores-list"></ul>
+      <div id="cores-controls" style="display:flex;gap:4px;margin-top:6px">
+        <button id="cores-all" title="Tout afficher" style="flex:1;font-size:10px;height:22px;background:var(--bg-2);color:var(--fg-1);border:1px solid var(--line);border-radius:3px;cursor:pointer">tous</button>
+        <button id="cores-isolate" title="Isoler sélectionné" style="flex:1;font-size:10px;height:22px;background:var(--bg-2);color:var(--fg-1);border:1px solid var(--line);border-radius:3px;cursor:pointer">isoler</button>
+      </div>
+    </section>
+    <section class="panel">
+      <h3>Lois supérieures ★</h3>
+      <ul id="superior-laws"></ul>
+    </section>
+    <section class="panel">
+      <h3>Sélection temporelle ▾</h3>
+      <ul id="temporal-laws"></ul>
+    </section>
+    <section class="panel">
+      <h3>Index</h3>
+      <ul id="index"></ul>
+    </section>
+    <section class="panel legend">
+      <h3>Légende</h3>
+      <ul>
+        <li><span class="swatch" style="background:#4ea3ff"></span>canonique</li>
+        <li><span class="swatch" style="background:#3ad17a"></span>variante</li>
+        <li><span class="swatch" style="background:#b86bff"></span>palieronique</li>
+        <li><span class="swatch" style="background:#ff6b6b"></span>instable</li>
+        <li><span class="swatch" style="background:#7a7a7a"></span>absorbée</li>
+        <li><span class="swatch" style="background:#ffcc4d"></span>attracteur</li>
+      </ul>
+    </section>
+  </aside>
+
+  <main id="graph"></main>
+
+  <!-- Étiquette flottante enrichie : réponse multi-cadres + parents + cadres -->
+  <div id="answer-label-overlay" aria-live="polite">
+    <button id="answer-label-close" title="Fermer (Esc)" aria-label="Fermer l'étiquette">×</button>
+    <div class="ans-id"></div>
+    <div class="ans-title"></div>
+    <div class="ans-frames"></div>
+    <div class="ans-parents"></div>
+  </div>
+
+  <section id="detail" class="hidden" aria-hidden="true" role="dialog" aria-labelledby="detail-title-mini">
+    <header id="detail-header" class="drag-handle" title="Glisser pour déplacer">
+      <span id="detail-handle" aria-hidden="true">⋮⋮</span>
+      <span id="detail-title-mini"></span>
+      <button id="detail-close" title="Fermer (Esc)">×</button>
+    </header>
+    <div id="detail-body"></div>
+  </section>
+
+  <!-- Chat bar bottom-centered (mission RUNTIME_COGNITIVE_PATH_COMPETITION) -->
+  <section id="chat-bar" aria-label="Question au graphe">
+    <button id="chat-settings" title="Réglages clé API Claude" aria-label="Réglages LLM">⚙</button>
+    <span id="zoran-profile-slot" title="Profil utilisateur — adapte transparence et détail"></span>
+    <button id="chat-mic" title="Dictée vocale" aria-label="Activer micro">🎙</button>
+    <button id="chat-file" title="Charger fichier" aria-label="Charger fichier">📎</button>
+    <input id="chat-file-input" type="file" accept=".txt,.md,.json,.csv,.pdf" hidden>
+    <input id="chat-input" type="text" placeholder="Pose une question au graphe — Entrée pour faire concourir 6 routes…" autocomplete="off">
+    <button id="chat-reset" title="Effacer le prompt + réinitialiser ZORAN pour nouvelle question" aria-label="Reset">⟲</button>
+    <button id="chat-send" title="Soumettre (Entrée)" aria-label="Envoyer">↑</button>
+  </section>
+
+  <!-- Modal réglages API -->
+  <div id="settings-modal" class="hidden" role="dialog" aria-labelledby="settings-title">
+    <div class="settings-backdrop"></div>
+    <div class="settings-box">
+      <header>
+        <span id="settings-title">Synthèse LLM — Claude API</span>
+        <button id="settings-close" aria-label="Fermer">×</button>
+      </header>
+      <div class="settings-body">
+        <p style="font-size:12px;color:var(--fg-2);line-height:1.5;margin:0 0 12px 0">
+          Sans clé API, ZORAN affiche la loi retenue + ses cadres mais ne synthétise pas de réponse en langage naturel.
+          Avec une clé Anthropic, ZORAN appelle Claude pour composer une réponse cohérente multi-cadres.
+        </p>
+        <label for="settings-key" style="display:block;font-size:11px;color:var(--fg-2);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px">Clé API Anthropic</label>
+        <input id="settings-key" type="text" placeholder="sk-ant-api03-..." autocomplete="off" spellcheck="false"
+               style="width:100%;height:38px;padding:0 12px;background:var(--bg-2);color:var(--fg-0);border:1px solid var(--line);border-radius:5px;font-family:ui-monospace,monospace;font-size:12px;outline:none">
+        <label for="settings-model" style="display:block;font-size:11px;color:var(--fg-2);margin:14px 0 4px 0;text-transform:uppercase;letter-spacing:1px">Modèle</label>
+        <select id="settings-model" style="width:100%;height:34px;padding:0 10px;background:var(--bg-2);color:var(--fg-0);border:1px solid var(--line);border-radius:5px;font-size:13px;outline:none">
+          <option value="claude-haiku-4-5-20251001">Haiku 4.5 — rapide, peu cher</option>
+          <option value="claude-sonnet-4-6" selected>Sonnet 4.6 — équilibré</option>
+          <option value="claude-opus-4-7">Opus 4.7 — plus capable</option>
+        </select>
+        <label style="display:flex;align-items:flex-start;gap:8px;margin-top:14px;font-size:12px;cursor:pointer">
+          <input id="settings-bench" type="checkbox" style="width:16px;height:16px;cursor:pointer;margin-top:2px">
+          <span>
+            <strong>Mode économe</strong> — 1 seule réponse synthétisée<br>
+            <span style="font-size:10px;color:var(--fg-2)">
+              Par défaut (case décochée) : <strong>comparaison complète</strong> CLAUDE brut + 3 routes
+              ZORAN avec reformulations + juge (~7 appels API, ~0.04-0.10$ Sonnet, ~0.01$ Haiku).<br>
+              Cochez pour passer en mode simple (~1 appel API, ~0.005-0.01$).
+            </span>
+          </span>
+        </label>
+        <p style="font-size:10px;color:var(--fg-2);margin:14px 0 0 0;line-height:1.5">
+          ⚠ La clé est stockée en localStorage et envoyée depuis le navigateur (entête anthropic-dangerous-direct-browser-access).
+          Utilise une clé restreinte / un usage personnel uniquement.
+        </p>
+        <div style="display:flex;gap:8px;margin-top:18px;justify-content:space-between;flex-wrap:wrap">
+          <button id="settings-reset-cache" title="Vide tout localStorage + recharge avec cache-bust"
+                  style="background:var(--bg-2);color:var(--accent);border:1px solid var(--accent);border-radius:5px;padding:7px 14px;font-size:11px;cursor:pointer;font-weight:600">⟳ Reset cache + reload</button>
+          <div style="display:flex;gap:8px">
+            <button id="settings-clear" style="background:var(--bg-2);color:var(--unstable);border:1px solid var(--line);border-radius:5px;padding:7px 14px;font-size:12px;cursor:pointer">Effacer la clé</button>
+            <button id="settings-save" style="background:var(--canonical);color:#07080c;border:none;border-radius:5px;padding:7px 18px;font-size:12px;font-weight:700;cursor:pointer">Enregistrer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="chat-results" class="hidden" aria-hidden="true">
+    <header id="chat-results-header">
+      <span id="chat-results-q"></span>
+      <button id="chat-results-close" title="Fermer">×</button>
+    </header>
+    <div id="chat-results-body"></div>
+  </section>
+
+  <footer id="statusbar">
+    <span id="status-mission"></span>
+    <span id="status-counts"></span>
+    <span id="status-coherence"></span>
+    <span id="status-fps"></span>
+  </footer>
+
+  <!-- 3D force graph (vanilla) -->
+  <script src="https://unpkg.com/three@0.155.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/3d-force-graph@1.73.4/dist/3d-force-graph.min.js"></script>
+
+  <!-- Wire ⚙ button INDEPENDAMMENT du module ESM (fallback robuste) -->
+  <!-- Si chat.js plante (réseau, cache partiel), le bouton reste fonctionnel -->
+  <script>
+  (function() {
+    const KEY = 'zoran.anthropic.key';
+    const MOD = 'zoran.anthropic.model';
+    function setVal(s, v) { try { v ? localStorage.setItem(s, v) : localStorage.removeItem(s); } catch (_) {} }
+    function getVal(s)    { try { return localStorage.getItem(s) || ''; } catch (_) { return ''; } }
+    function wire() {
+      const btn = document.getElementById('chat-settings');
+      const modal = document.getElementById('settings-modal');
+      if (!btn || !modal) { console.warn('[ZORAN] ⚙ fallback : DOM not ready'); return false; }
+      if (btn.dataset.zoranWired) return true;
+      btn.dataset.zoranWired = '1';
+      const keyInput = document.getElementById('settings-key');
+      const modelSel = document.getElementById('settings-model');
+      const close    = document.getElementById('settings-close');
+      const backdrop = modal.querySelector('.settings-backdrop');
+      const save     = document.getElementById('settings-save');
+      const clear    = document.getElementById('settings-clear');
+      function open() {
+        keyInput.value = getVal(KEY);
+        modelSel.value = getVal(MOD) || 'claude-sonnet-4-6';
+        modal.classList.remove('hidden');
+        setTimeout(() => keyInput.focus(), 50);
+        console.log('[ZORAN] ⚙ modal opened (fallback wire)');
+      }
+      function shut() { modal.classList.add('hidden'); }
+      btn.addEventListener('click', e => { e.preventDefault(); open(); });
+      close.addEventListener('click', shut);
+      backdrop.addEventListener('click', shut);
+      save.addEventListener('click', () => {
+        setVal(KEY, keyInput.value.trim());
+        setVal(MOD, modelSel.value);
+        shut();
+        console.log('[ZORAN] ⚙ key saved (length=' + keyInput.value.trim().length + ')');
+      });
+      clear.addEventListener('click', () => { setVal(KEY, ''); keyInput.value = ''; });
+      // Bouton "Reset cache + reload" : purge localStorage + force fetch fresh
+      const resetBtn = document.getElementById('settings-reset-cache');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          if (!confirm('Vider TOUT le localStorage ZORAN (clé API, position popup, settings...) et recharger ?')) return;
+          try { localStorage.clear(); } catch(_){}
+          // Force fresh fetch via query string timestamp
+          const url = new URL(location.href);
+          url.searchParams.set('_v', Date.now());
+          location.replace(url.toString());
+        });
+      }
+      window.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) shut();
+      });
+      console.log('[ZORAN] ⚙ fallback wired OK');
+      return true;
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', wire);
+    } else {
+      wire();
+    }
+  })();
+  </script>
+
+  <!-- Cache-bust mobile-friendly : ?v=YYYYMMDDHHMM bump à chaque release majeur -->
+  <script type="module" src="./src/main.js?v=20260518-cta-runtime-v13"></script>
+</body>
+</html>

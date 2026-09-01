@@ -1,0 +1,356 @@
+{
+  "mission_id": "ZORAN_REVERSIBLE_100_LAWS_PIPELINE_20260515",
+  "batch_id": "P4_REV_001",
+  "quarantined_count": 41,
+  "quarantined": [
+    {
+      "id": "SBX-ULG-104",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "ULG-014",
+        "ULG-002"
+      ]
+    },
+    {
+      "id": "SBX-ULG-105",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "ULG-003",
+        "ULG-013"
+      ]
+    },
+    {
+      "id": "SBX-ULG-106",
+      "reason": "parent 'ULG-024' unknown",
+      "phase": 1
+    },
+    {
+      "id": "SBX-ULG-107",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "ULG-010",
+        "ULG-021"
+      ]
+    },
+    {
+      "id": "SBX-ULG-109",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "ULG-005",
+        "ULG-001"
+      ]
+    },
+    {
+      "id": "SBX-ULG-111",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "ULG-002",
+        "ULG-017"
+      ]
+    },
+    {
+      "id": "SBX-DVE-103",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "DVE-014",
+        "DVE-003"
+      ]
+    },
+    {
+      "id": "SBX-DVE-104",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "DVE-001",
+        "DVE-012"
+      ]
+    },
+    {
+      "id": "SBX-DVE-106",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "DVE-006",
+        "DVE-003"
+      ]
+    },
+    {
+      "id": "SBX-UDE-103",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "UDE-011",
+        "UDE-001"
+      ]
+    },
+    {
+      "id": "SBX-UDE-104",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "UDE-019",
+        "UDE-026"
+      ]
+    },
+    {
+      "id": "SBX-UDE-109",
+      "reason": "parent 'UDE-023' unknown",
+      "phase": 1
+    },
+    {
+      "id": "SBX-UDE-112",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "UDE-001",
+        "UDE-007"
+      ]
+    },
+    {
+      "id": "SBX-GHUC-102",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "GHUC-003",
+        "GHUC-013"
+      ]
+    },
+    {
+      "id": "SBX-GHUC-104",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "GHUC-002",
+        "GHUC-011"
+      ]
+    },
+    {
+      "id": "SBX-GHUC-105",
+      "reason": "parent 'GHUC-019' unknown",
+      "phase": 1
+    },
+    {
+      "id": "SBX-GHUC-108",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "GHUC-002",
+        "GHUC-026"
+      ]
+    },
+    {
+      "id": "SBX-GHUC-109",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "GHUC-005",
+        "GHUC-022"
+      ]
+    },
+    {
+      "id": "SBX-GHUC-110",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "GHUC-023",
+        "GHUC-008"
+      ]
+    },
+    {
+      "id": "SBX-WP11-101",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP11-007",
+        "WP11-024"
+      ]
+    },
+    {
+      "id": "SBX-WP11-105",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP11-015",
+        "WP11-005"
+      ]
+    },
+    {
+      "id": "SBX-WP11-107",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP11-022",
+        "WP11-003"
+      ]
+    },
+    {
+      "id": "SBX-WP11-109",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP11-007",
+        "WP11-027"
+      ]
+    },
+    {
+      "id": "SBX-WP11-111",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP11-035",
+        "WP11-001"
+      ]
+    },
+    {
+      "id": "SBX-WP12-101",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP12-001",
+        "WP12-015"
+      ]
+    },
+    {
+      "id": "SBX-WP12-102",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP12-001",
+        "WP12-035"
+      ]
+    },
+    {
+      "id": "SBX-WP12-106",
+      "reason": "parent 'WP12-037' unknown",
+      "phase": 1
+    },
+    {
+      "id": "SBX-WP12-107",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP12-001",
+        "WP12-020"
+      ]
+    },
+    {
+      "id": "SBX-WP12-108",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP12-001",
+        "WP12-022"
+      ]
+    },
+    {
+      "id": "SBX-SDE-105",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "SDE-015",
+        "SDE-003"
+      ]
+    },
+    {
+      "id": "SBX-SDE-108",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "SDE-001",
+        "SDE-017"
+      ]
+    },
+    {
+      "id": "SBX-SDE-110",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "SDE-001",
+        "SDE-016"
+      ]
+    },
+    {
+      "id": "SBX-SDE-111",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "SDE-013",
+        "SDE-019"
+      ]
+    },
+    {
+      "id": "SBX-PAL-104",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "PAL-010",
+        "PAL-005"
+      ]
+    },
+    {
+      "id": "SBX-PAL-105",
+      "reason": "parent 'PAL-009' unknown",
+      "phase": 1
+    },
+    {
+      "id": "SBX-PAL-108",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "PAL-014",
+        "PAL-005"
+      ]
+    },
+    {
+      "id": "SBX-GHUC-113",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "GHUC-014",
+        "SBX-GHUC-103"
+      ]
+    },
+    {
+      "id": "SBX-WP11-113",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP11-001",
+        "WP11-032"
+      ]
+    },
+    {
+      "id": "SBX-WP11-114",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "WP11-013",
+        "WP11-001"
+      ]
+    },
+    {
+      "id": "SBX-PAL-110",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "PAL-019",
+        "PAL-001"
+      ]
+    },
+    {
+      "id": "SBX-GHUC-115",
+      "reason": "comps 2<3",
+      "phase": 4,
+      "found": [
+        "SBX-WP11-103",
+        "WP11-026"
+      ]
+    }
+  ]
+}

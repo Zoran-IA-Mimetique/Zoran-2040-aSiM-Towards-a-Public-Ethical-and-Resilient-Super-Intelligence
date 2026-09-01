@@ -1,0 +1,356 @@
+{
+  "mission_id": "MASSIVE_META_AUDIT_V5_20260517",
+  "corpus_size": 525,
+  "by_pattern": {
+    "PUR_GOODHART": {
+      "count": 105,
+      "avg_meta_risk": 0.566,
+      "avg_refutation_score": 0,
+      "refutation_fires": 105,
+      "grounding_present": 0
+    },
+    "AVEC_SOURCES": {
+      "count": 105,
+      "avg_meta_risk": 0.566,
+      "avg_refutation_score": 0,
+      "refutation_fires": 105,
+      "grounding_present": 105
+    },
+    "AVEC_CONTRE_HYPOTHESES": {
+      "count": 105,
+      "avg_meta_risk": 0.566,
+      "avg_refutation_score": 1,
+      "refutation_fires": 0,
+      "grounding_present": 0
+    },
+    "HYPER_OPTIMISE": {
+      "count": 105,
+      "avg_meta_risk": 0.566,
+      "avg_refutation_score": 0,
+      "refutation_fires": 105,
+      "grounding_present": 0
+    },
+    "CONTEXTE_LIMITE": {
+      "count": 105,
+      "avg_meta_risk": 0.566,
+      "avg_refutation_score": 0,
+      "refutation_fires": 105,
+      "grounding_present": 0
+    }
+  },
+  "by_domain": {
+    "SAAS": {
+      "count": 75,
+      "avg_meta_risk": 0.566,
+      "avg_refutation_score": 0.2
+    },
+    "SAAS_NRR": {
+      "count": 75,
+      "avg_meta_risk": 0.504,
+      "avg_refutation_score": 0.2
+    },
+    "MARKETING": {
+      "count": 75,
+      "avg_meta_risk": 0.661,
+      "avg_refutation_score": 0.2
+    },
+    "PRODUCT": {
+      "count": 75,
+      "avg_meta_risk": 0.503,
+      "avg_refutation_score": 0.2
+    },
+    "BTP": {
+      "count": 75,
+      "avg_meta_risk": 0.531,
+      "avg_refutation_score": 0.2
+    },
+    "MEDECINE": {
+      "count": 75,
+      "avg_meta_risk": 0.553,
+      "avg_refutation_score": 0.2
+    },
+    "CONTENT": {
+      "count": 75,
+      "avg_meta_risk": 0.646,
+      "avg_refutation_score": 0.2
+    }
+  },
+  "validation_metrics": {
+    "expectations_matched": 315,
+    "expectations_total": 525,
+    "success_rate": 60
+  },
+  "duration_ms": 66,
+  "sample_cases": [
+    {
+      "domain": "SAAS",
+      "pattern": "PUR_GOODHART",
+      "text": "Le LTV/CAC atteint 5.2, excellent résultat (>3). Performance optimale validée.",
+      "expect": {
+        "goodhart_high": true,
+        "refutation_fires": true
+      },
+      "eval": {
+        "kpis_detected": [
+          "LTV/CAC"
+        ],
+        "meta_risk_composite": 0.566,
+        "avg_manipulability": 0.65,
+        "avg_proxy_distance": 0.55,
+        "avg_delayed_failure": 0.7,
+        "refutation_score": 0,
+        "refutation_fires": true,
+        "counter_hyp_count": 2,
+        "self_refutation_count": 0,
+        "validation_status": "unverified",
+        "goodhart_risk": 0,
+        "grounding_present": false,
+        "temporal_bounded": false,
+        "scope_explicit": false
+      }
+    },
+    {
+      "domain": "SAAS",
+      "pattern": "PUR_GOODHART",
+      "text": "Le LTV/CAC atteint 5.2, excellent résultat (>3). Performance optimale validée. L'équipe est satisfaite.",
+      "expect": {
+        "goodhart_high": true,
+        "refutation_fires": true
+      },
+      "eval": {
+        "kpis_detected": [
+          "LTV/CAC"
+        ],
+        "meta_risk_composite": 0.566,
+        "avg_manipulability": 0.65,
+        "avg_proxy_distance": 0.55,
+        "avg_delayed_failure": 0.7,
+        "refutation_score": 0,
+        "refutation_fires": true,
+        "counter_hyp_count": 2,
+        "self_refutation_count": 0,
+        "validation_status": "unverified",
+        "goodhart_risk": 0,
+        "grounding_present": false,
+        "temporal_bounded": false,
+        "scope_explicit": false
+      }
+    },
+    {
+      "domain": "SAAS",
+      "pattern": "PUR_GOODHART",
+      "text": "Mise à jour : Le LTV/CAC atteint 5.2, excellent résultat (>3). Performance optimale validée.",
+      "expect": {
+        "goodhart_high": true,
+        "refutation_fires": true
+      },
+      "eval": {
+        "kpis_detected": [
+          "LTV/CAC"
+        ],
+        "meta_risk_composite": 0.566,
+        "avg_manipulability": 0.65,
+        "avg_proxy_distance": 0.55,
+        "avg_delayed_failure": 0.7,
+        "refutation_score": 0,
+        "refutation_fires": true,
+        "counter_hyp_count": 2,
+        "self_refutation_count": 0,
+        "validation_status": "unverified",
+        "goodhart_risk": 0,
+        "grounding_present": false,
+        "temporal_bounded": false,
+        "scope_explicit": false
+      }
+    },
+    {
+      "domain": "SAAS",
+      "pattern": "PUR_GOODHART",
+      "text": "Le LTV/CAC atteint 5.2, excellent résultat (>3). Performance optimale validée. À noter.",
+      "expect": {
+        "goodhart_high": true,
+        "refutation_fires": true
+      },
+      "eval": {
+        "kpis_detected": [
+          "LTV/CAC"
+        ],
+        "meta_risk_composite": 0.566,
+        "avg_manipulability": 0.65,
+        "avg_proxy_distance": 0.55,
+        "avg_delayed_failure": 0.7,
+        "refutation_score": 0,
+        "refutation_fires": true,
+        "counter_hyp_count": 2,
+        "self_refutation_count": 0,
+        "validation_status": "unverified",
+        "goodhart_risk": 0,
+        "grounding_present": false,
+        "temporal_bounded": false,
+        "scope_explicit": false
+      }
+    },
+    {
+      "domain": "SAAS",
+      "pattern": "PUR_GOODHART",
+      "text": "Rapport hebdo : Le LTV/CAC atteint 5.2, excellent résultat (>3). Performance optimale validée.",
+      "expect": {
+        "goodhart_high": true,
+        "refutation_fires": true
+      },
+      "eval": {
+        "kpis_detected": [
+          "LTV/CAC"
+        ],
+        "meta_risk_composite": 0.566,
+        "avg_manipulability": 0.65,
+        "avg_proxy_distance": 0.55,
+        "avg_delayed_failure": 0.7,
+        "refutation_score": 0,
+        "refutation_fires": true,
+        "counter_hyp_count": 2,
+        "self_refutation_count": 0,
+        "validation_status": "unverified",
+        "goodhart_risk": 0,
+        "grounding_present": false,
+        "temporal_bounded": false,
+        "scope_explicit": false
+      }
+    },
+    {
+      "domain": "SAAS",
+      "pattern": "PUR_GOODHART",
+      "text": "Constat : Le LTV/CAC atteint 5.2, excellent résultat (>3). Performance optimale validée.",
+      "expect": {
+        "goodhart_high": true,
+        "refutation_fires": true
+      },
+      "eval": {
+        "kpis_detected": [
+          "LTV/CAC"
+        ],
+        "meta_risk_composite": 0.566,
+        "avg_manipulability": 0.65,
+        "avg_proxy_distance": 0.55,
+        "avg_delayed_failure": 0.7,
+        "refutation_score": 0,
+        "refutation_fires": true,
+        "counter_hyp_count": 2,
+        "self_refutation_count": 0,
+        "validation_status": "unverified",
+        "goodhart_risk": 0,
+        "grounding_present": false,
+        "temporal_bounded": false,
+        "scope_explicit": false
+      }
+    },
+    {
+      "domain": "SAAS",
+      "pattern": "PUR_GOODHART",
+      "text": "Le LTV/CAC atteint 5.2, excellent résultat (>3). Performance optimale validée. Bilan provisoire.",
+      "expect": {
+        "goodhart_high": true,
+        "refutation_fires": true
+      },
+      "eval": {
+        "kpis_detected": [
+          "LTV/CAC"
+        ],
+        "meta_risk_composite": 0.566,
+        "avg_manipulability": 0.65,
+        "avg_proxy_distance": 0.55,
+        "avg_delayed_failure": 0.7,
+        "refutation_score": 0,
+        "refutation_fires": true,
+        "counter_hyp_count": 2,
+        "self_refutation_count": 0,
+        "validation_status": "unverified",
+        "goodhart_risk": 0,
+        "grounding_present": false,
+        "temporal_bounded": false,
+        "scope_explicit": false
+      }
+    },
+    {
+      "domain": "SAAS",
+      "pattern": "PUR_GOODHART",
+      "text": "Le LTV/CAC atteint 5.2, remarquable résultat (>3). Performance optimale validée.",
+      "expect": {
+        "goodhart_high": true,
+        "refutation_fires": true
+      },
+      "eval": {
+        "kpis_detected": [
+          "LTV/CAC"
+        ],
+        "meta_risk_composite": 0.566,
+        "avg_manipulability": 0.65,
+        "avg_proxy_distance": 0.55,
+        "avg_delayed_failure": 0.7,
+        "refutation_score": 0,
+        "refutation_fires": true,
+        "counter_hyp_count": 2,
+        "self_refutation_count": 0,
+        "validation_status": "unverified",
+        "goodhart_risk": 0,
+        "grounding_present": false,
+        "temporal_bounded": false,
+        "scope_explicit": false
+      }
+    },
+    {
+      "domain": "SAAS",
+      "pattern": "PUR_GOODHART",
+      "text": "Le LTV/CAC atteint 5.2, excellent résultat (>3). Performance optimisée validée.",
+      "expect": {
+        "goodhart_high": true,
+        "refutation_fires": true
+      },
+      "eval": {
+        "kpis_detected": [
+          "LTV/CAC"
+        ],
+        "meta_risk_composite": 0.566,
+        "avg_manipulability": 0.65,
+        "avg_proxy_distance": 0.55,
+        "avg_delayed_failure": 0.7,
+        "refutation_score": 0,
+        "refutation_fires": true,
+        "counter_hyp_count": 2,
+        "self_refutation_count": 0,
+        "validation_status": "unverified",
+        "goodhart_risk": 0,
+        "grounding_present": false,
+        "temporal_bounded": false,
+        "scope_explicit": false
+      }
+    },
+    {
+      "domain": "SAAS",
+      "pattern": "PUR_GOODHART",
+      "text": "Le LTV/CAC a obtenu 5.2, excellent résultat (>3). Performance optimale validée.",
+      "expect": {
+        "goodhart_high": true,
+        "refutation_fires": true
+      },
+      "eval": {
+        "kpis_detected": [
+          "LTV/CAC"
+        ],
+        "meta_risk_composite": 0.566,
+        "avg_manipulability": 0.65,
+        "avg_proxy_distance": 0.55,
+        "avg_delayed_failure": 0.7,
+        "refutation_score": 0,
+        "refutation_fires": true,
+        "counter_hyp_count": 2,
+        "self_refutation_count": 0,
+        "validation_status": "unverified",
+        "goodhart_risk": 0,
+        "grounding_present": false,
+        "temporal_bounded": false,
+        "scope_explicit": false
+      }
+    }
+  ]
+}
