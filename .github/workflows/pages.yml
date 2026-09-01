@@ -1,0 +1,46 @@
+name: Déploiement de la démo (GitHub Pages)
+
+# Publie l'interface autonome ui/standalone.html sur GitHub Pages
+# comme un vrai logiciel cliquable (aucun serveur : tout tourne dans le navigateur).
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'ui/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch: {}   # declenchement manuel possible depuis l'onglet Actions
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assembler le site
+        run: |
+          mkdir -p _site
+          cp ui/standalone.html _site/index.html
+          # garde aussi le nom d'origine accessible
+          cp ui/standalone.html _site/standalone.html
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

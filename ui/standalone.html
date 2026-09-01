@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Moteur BTP — assistant d'ingénierie (autonome)</title>
+  <style>
+    :root { --bg:#0d1117; --bg2:#0f1620; --card:#161c24; --card2:#1b232d;
+            --line:#222c38; --fg:#e6edf3; --muted:#8b949e;
+            --ok:#3fb950; --warn:#d29922; --bad:#f85149; --accent:#58a6ff;
+            --accent2:#7c5cff; }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+           background: radial-gradient(1100px 520px at 85% -15%, #11161f 0%, var(--bg) 60%);
+           color:var(--fg); min-height:100vh; -webkit-font-smoothing:antialiased;
+           letter-spacing:-0.005em; }
+
+    /* topbar */
+    .topbar { position:sticky; top:0; z-index:10;
+              display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+              padding:12px 20px; background:rgba(13,17,23,.82);
+              backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:700; font-size:17px; }
+    .logo { width:30px; height:30px; border-radius:8px; display:grid; place-items:center;
+            background:linear-gradient(135deg, var(--accent), var(--accent2));
+            color:#fff; font-size:15px; font-weight:800; }
+    .brand small { display:block; font-weight:500; font-size:11px; color:var(--muted); }
+    .topbar .spacer { flex:1; }
+    .badge { font-size:11px; color:var(--muted); border:1px solid var(--line);
+             padding:4px 10px; border-radius:999px; background:var(--card); }
+    .badge b { color:var(--ok); }
+
+    /* layout */
+    .layout { max-width:1180px; margin:0 auto; padding:18px 16px 28px;
+              display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.15fr); gap:16px; }
+    @media (max-width:860px){ .layout{ grid-template-columns:1fr; } }
+    .col { display:flex; flex-direction:column; gap:16px; min-width:0; }
+    .col-output { position:sticky; top:64px; align-self:start; }
+    @media (max-width:860px){ .col-output{ position:static; } }
+
+    .card { background:var(--card); border:1px solid var(--line); border-radius:14px;
+            padding:18px; box-shadow:0 1px 0 rgba(255,255,255,.02) inset;
+            transition:border-color .2s ease; }
+    .card:hover { border-color:#2b3744; }
+
+    /* barre de verdict (synthese scannable) */
+    .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(132px,1fr));
+             gap:8px; margin-bottom:4px; }
+    .stat { background:var(--bg2); border:1px solid var(--line); border-radius:10px;
+            padding:10px 12px; transition:border-color .2s ease; }
+    .stat-k { display:block; font-size:10.5px; color:var(--muted); margin-bottom:4px;
+              text-transform:uppercase; letter-spacing:.04em; }
+    .stat-v { font-size:15px; font-weight:700; letter-spacing:-0.01em; }
+    .stat.good .stat-v { color:var(--ok); }   .stat.good { border-color:rgba(63,185,80,.28); }
+    .stat.bad  .stat-v { color:var(--bad); }  .stat.bad  { border-color:rgba(248,81,73,.28); }
+    .stat.mid  .stat-v { color:var(--warn); } .stat.mid  { border-color:rgba(210,153,34,.28); }
+
+    /* exemples cliquables */
+    .chips { display:flex; flex-wrap:wrap; gap:7px; align-items:center; margin:9px 0 4px; }
+    .chip-lbl { font-size:11.5px; color:var(--muted); margin-right:2px; }
+    .chip { background:var(--bg2); color:var(--fg); border:1px solid var(--line);
+            border-radius:999px; padding:5px 11px; font-size:12px; cursor:pointer;
+            transition:border-color .2s ease, background .2s ease; }
+    .chip:hover { border-color:var(--accent); background:#171a20; }
+
+    /* projets & comparaison */
+    .mini { background:var(--bg2); color:var(--fg); border:1px solid var(--line);
+            border-radius:8px; padding:5px 10px; font-size:12px; cursor:pointer;
+            transition:border-color .2s ease; }
+    .mini:hover { border-color:var(--accent); }
+    .proj { display:flex; align-items:center; gap:8px; padding:7px 0;
+            border-top:1px solid var(--line); }
+    .proj:first-child { border-top:none; }
+    .proj-name { flex:1; font-size:13px; font-weight:600; min-width:0;
+                 overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .cmp-table { width:100%; border-collapse:collapse; font-size:13px; }
+    .cmp-table th, .cmp-table td { text-align:left; padding:7px 9px;
+                 border-bottom:1px solid var(--line); }
+    .cmp-table th { color:var(--muted); font-size:11px; text-transform:uppercase;
+                 letter-spacing:.04em; }
+    .cmp-table td.ok { color:var(--ok); }
+    .cmp-table td.bad { color:var(--bad); }
+    .cmp-table td.mid { color:var(--warn); }
+    @media print {
+      .topbar, .col-input, footer, #exportbar { display:none !important; }
+      .layout { display:block; max-width:100%; }
+      .col-output { position:static; }
+      .card { border:none; box-shadow:none; padding:0; }
+      body { background:#fff; }
+    }
+    .card-title { display:flex; align-items:center; gap:8px; font-weight:700; font-size:14px;
+                  margin:0 0 12px; }
+    .card-title .dot { width:8px; height:8px; border-radius:50%; background:var(--accent); }
+
+    /* form controls */
+    textarea, select, input[type=text]{
+      width:100%; background:var(--bg2); color:var(--fg); border:1px solid var(--line);
+      border-radius:9px; padding:11px; font-size:14px; font-family:inherit; }
+    textarea:focus, select:focus { outline:none; border-color:var(--accent); }
+    button { background:var(--card2); color:var(--fg); border:1px solid var(--line);
+             border-radius:9px; padding:9px 14px; font-size:13px; font-weight:600;
+             cursor:pointer; transition:filter .15s, border-color .15s; }
+    button:hover { filter:brightness(1.18); border-color:#33404f; }
+    button.primary { background:linear-gradient(135deg, var(--accent), var(--accent2));
+                     border:none; color:#fff; }
+    .row { display:flex; gap:8px; margin-top:10px; align-items:center; flex-wrap:wrap; }
+
+    .frame { margin-bottom:16px; }
+    .frame:last-child { margin-bottom:0; }
+    .frame label { display:flex; justify-content:space-between; align-items:center;
+                   font-size:15px; margin-bottom:8px; }
+    .frame .val { color:var(--accent); font-variant-numeric:tabular-nums; font-weight:600; }
+    input[type=range] { width:100%; height:30px; accent-color:var(--accent); }
+    .toggle { display:inline-block; width:22px; text-align:center; cursor:pointer;
+              user-select:none; color:var(--muted); font-size:13px; }
+    .toggle.active { color:var(--ok); }
+    .section { margin-top:16px; margin-bottom:6px; font-weight:700; font-size:11px;
+               color:var(--muted); text-transform:uppercase; letter-spacing:.05em;
+               border-top:1px solid var(--line); padding-top:12px; }
+    .section:first-child { border-top:none; padding-top:0; margin-top:0; }
+    .line { font-size:14px; padding:4px 0; font-variant-numeric:tabular-nums; line-height:1.45; }
+    .line.ok::before  { content:"✔ "; color:var(--ok); }
+    .line.warn::before{ content:"⚠ "; color:var(--warn); }
+    .line.bad::before { content:"❌ "; color:var(--bad); }
+    .line.bad { color:var(--bad); }
+    .line.sug::before { content:"👉 "; }
+    .pill { display:inline-block; font-size:11px; padding:2px 8px; border-radius:999px;
+            background:#21262d; color:var(--muted); margin-left:6px; }
+    .pill.ok { background:rgba(63,185,80,.16); color:var(--ok); }
+    .hint { font-size:12px; color:var(--muted); margin-top:4px; }
+    .empty { color:var(--muted); font-size:13px; text-align:center; padding:30px 10px; }
+    footer { color:var(--muted); font-size:11px; text-align:center; padding:6px 0 24px; }
+    code { background:var(--bg2); padding:1px 5px; border-radius:5px; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">Z</span>
+      <span>Moteur BTP
+        <small>cadres &amp; curseurs · assistant d'ingénierie</small></span>
+    </div>
+    <span class="spacer"></span>
+    <span class="badge"><b>100 %</b> navigateur · offline</span>
+    <span class="badge">moteur réel — aucune boîte noire</span>
+  </header>
+
+  <main class="layout">
+   <section class="col col-input">
+    <div class="card">
+      <h2 class="card-title"><span class="dot"></span>Idée libre → structure → simulation</h2>
+      <p class="hint" style="margin-top:-4px;margin-bottom:10px">Décris une idée OU glisse les curseurs. Le traducteur propose une structure, le <b>moteur décide</b>.</p>
+      <textarea id="idea" rows="2" placeholder="ex: poche d'eau autour du bâtiment, stockage thermique pour réduire l'énergie"></textarea>
+      <div class="chips" id="examples">
+        <span class="chip-lbl">Exemples :</span>
+        <button class="chip" onclick="useExample(this)">Poche d'eau + stockage thermique, investissement lourd</button>
+        <button class="chip" onclick="useExample(this)">Isolation biosourcée, faible carbone, surcoût modéré</button>
+        <button class="chip" onclick="useExample(this)">Pompes à chaleur multiples, système complexe, peu fiable</button>
+        <button class="chip" onclick="useExample(this)">Rénovation sobre en énergie, budget serré</button>
+      </div>
+      <div class="row">
+        <button class="primary" onclick="runIdea()">Traduire &amp; simuler</button>
+        <button id="micbtn" onclick="toggleMic()" title="Parler au lieu de taper">🎤 Parler</button>
+        <label style="font-size:12px;color:var(--muted)">
+          <input type="checkbox" id="autoadj" checked style="width:auto"> auto-optimiser (faisabilité)
+        </label>
+        <span id="micstatus" style="font-size:12px;color:var(--muted)"></span>
+      </div>
+      <div style="margin-top:14px">
+        <div style="display:flex;justify-content:space-between;font-size:13px">
+          <span>⏳ Horizon d'évaluation (cadre temporel)</span>
+          <span><b id="hval">30</b> ans</span>
+        </div>
+        <input type="range" id="horizon" min="1" max="50" step="1" value="30"
+          oninput="setHorizon(this.value)">
+        <div class="hint">Le carbone de construction est lourd, l'usage est sobre : le verdict dépend de la durée.</div>
+        <div class="row" style="margin-top:10px">
+          <span style="font-size:13px">💶 Taux d'actualisation (coût)</span>
+          <select id="discount" onchange="setDiscount(this.value)" style="width:auto">
+            <option value="0">0 % (coût total brut)</option>
+            <option value="0.02">2 %/an</option>
+            <option value="0.04">4 %/an</option>
+            <option value="0.06">6 %/an</option>
+          </select>
+        </div>
+      </div>
+      <pre id="jsonout" style="display:none;margin-top:12px;overflow:auto;font-size:12px"></pre>
+    </div>
+
+    <div class="card">
+      <h2 class="card-title"><span class="dot"></span>Cadres &amp; curseurs</h2>
+      <div id="controls"></div>
+    </div>
+
+    <div class="card">
+      <h2 class="card-title"><span class="dot"></span>Projets &amp; comparaison</h2>
+      <p class="hint" style="margin-top:-4px;margin-bottom:10px">Enregistre l'état courant (idée, curseurs, horizon, actualisation) — tout reste dans ton navigateur.</p>
+      <div class="row" style="margin-top:0">
+        <input type="text" id="projname" placeholder="nom du projet (ex: Variante biosourcée)" style="flex:1;min-width:140px">
+        <button class="primary" onclick="saveProject()">💾 Enregistrer</button>
+      </div>
+      <div id="projlist" style="margin-top:10px"></div>
+      <div class="row">
+        <button class="mini" onclick="compareSelected()">⚖️ Comparer la sélection</button>
+        <span class="hint">Coche 2–3 projets puis compare.</span>
+      </div>
+    </div>
+   </section>
+
+   <section class="col col-output">
+    <div class="card">
+      <h2 class="card-title"><span class="dot" style="background:var(--accent2)"></span>Décision du moteur</h2>
+      <div class="row" id="exportbar" style="margin-top:0;margin-bottom:4px">
+        <button class="mini" onclick="exportReport()">⬇️ Exporter (HTML)</button>
+        <button class="mini" onclick="window.print()">🖨️ Imprimer / PDF</button>
+      </div>
+      <div id="report"><div class="empty">Lance une simulation pour voir la décision, les bilans et les suggestions.</div></div>
+    </div>
+   </section>
+  </main>
+  <footer>Démo autonome — moteur identique à <code>btp_engine.py</code> (porté en JS).</footer>
+
+<script>
+/* ===================== MODÈLE BTP (identique à btp_engine.create_btp_engine) ===================== */
+const MODEL = {
+  frames: {
+    "mur.isolation":     { value:0.6, active:true,  weight:1.5 },
+    "mur.epaisseur":     { value:0.5, active:false, weight:0.8 },
+    "mur.reparabilite":  { value:0.6, active:false, weight:0.7 },
+    "toiture.isolation": { value:0.7, active:true,  weight:1.4 },
+    "toiture.cout":      { value:0.6, active:true,  weight:1.0 },
+    "systeme.energie":   { value:0.5, active:true,  weight:2.0 },
+    "systeme.cout":      { value:0.5, active:true,  weight:1.2 },
+    "systeme.maintenance":{value:0.5, active:false, weight:0.9 },
+    "systeme.fiabilite": { value:0.6, active:false, weight:1.7 }, // fiabilite (execution)
+    "global.surface":    { value:0.7, active:false, weight:1.0 },
+    "global.carbone":    { value:0.6, active:false, weight:1.8 },  // construction (embodied)
+    "global.carbone_annuel":{value:0.3, active:false, weight:1.0 }, // usage / an
+    "global.cout_initial":{ value:0.6, active:false, weight:1.2 }, // investissement (CAPEX)
+    "global.cout_annuel": { value:0.3, active:false, weight:1.0 }, // exploitation/an (OPEX)
+  },
+  deps: [
+    ["mur.isolation","systeme.energie",-0.5],
+    ["toiture.isolation","systeme.energie",-0.4],
+    ["mur.isolation","mur.epaisseur",0.4],
+    ["mur.epaisseur","global.surface",-0.3],
+    ["systeme.energie","systeme.cout",0.3],
+    ["mur.reparabilite","systeme.maintenance",-0.5],
+    ["mur.epaisseur","global.carbone",0.2],
+    ["toiture.isolation","toiture.cout",0.3],
+    ["systeme.cout","global.surface",-0.1],
+    ["systeme.energie","global.carbone",0.25],
+    ["systeme.energie","global.carbone_annuel",0.5],   // carbone d'usage suit l'energie
+    ["systeme.energie","global.cout_annuel",0.4],      // exploitation suit l'energie
+    ["mur.isolation","global.cout_initial",0.3],       // isolation alourdit l'investissement
+  ],
+  constraints: {
+    "global.carbone": { max:0.65 },
+    "systeme.energie": { max:0.4 },
+    "toiture.cout": { max:0.8 },
+  },
+  horizon: 30,             // cadre temporel par defaut (annees)
+  baseline_annual: 0.5,    // batiment de reference (carbone ET cout d'usage)
+  discount_rate: 0.0,      // taux d'actualisation (valeur temps de l'argent)
+  maintenance_penalty: 0.15, // surcout si le systeme defaille (sensibilite execution)
+};
+const EPS = 1e-9;
+const clamp = v => Math.max(0, Math.min(1, v));
+
+/* ===================== MOTEUR (porté de btp_engine.Engine) ===================== */
+function makeEngine(model, gamma=1.0) {
+  // copie profonde des frames
+  const frames = {};
+  for (const k in model.frames) frames[k] = Object.assign({}, model.frames[k]);
+  const graph = {}, rgraph = {};
+  for (const [s,t,w] of model.deps) {
+    (graph[s] = graph[s] || []).push([t,w]);
+    (rgraph[t] = rgraph[t] || []).push([s,w]);
+  }
+  const response = d => gamma === 1.0 ? d : Math.sign(d) * Math.pow(Math.abs(d), gamma);
+
+  function propagate(source, delta) {
+    const impacts = {};
+    (function walk(node, d, path) {
+      for (const [target, weight] of (graph[node] || [])) {
+        if (path.has(target)) continue;               // anti-cycle
+        const c = weight * response(d);
+        if (Math.abs(c) < EPS) continue;
+        impacts[target] = (impacts[target] || 0) + c;  // chemins multiples additionnés
+        walk(target, c, new Set(path).add(target));
+      }
+    })(source, delta, new Set([source]));
+    return impacts;
+  }
+  function applyDelta(name, delta) {
+    if (!(name in frames)) return;
+    const impacts = propagate(name, delta);
+    frames[name].value = clamp(frames[name].value + delta);
+    for (const t in impacts) frames[t].value = clamp(frames[t].value + impacts[t]);
+  }
+  function checkConstraints() {
+    const v = [];
+    for (const key in model.constraints) {
+      if (!(key in frames)) continue;
+      const val = frames[key].value, rule = model.constraints[key];
+      if ("max" in rule && val > rule.max + EPS)
+        v.push([key, `⚠️ ${key} = ${val.toFixed(2)} (max: ${rule.max})`]);
+      if ("min" in rule && val < rule.min - EPS)
+        v.push([key, `⚠️ ${key} = ${val.toFixed(2)} (min: ${rule.min})`]);
+    }
+    return v;
+  }
+  function score() {
+    let as=0, aw=0, ts=0, tw=0;
+    for (const k in frames) {
+      const f = frames[k], wv = f.value * f.weight;
+      ts += wv; tw += f.weight;
+      if (f.active) { as += wv; aw += f.weight; }
+    }
+    const a = aw ? as/aw : 0, t = tw ? ts/tw : 0;
+    return { active_score:+a.toFixed(4), total_score:+t.toFixed(4), gap:+(t-a).toFixed(4) };
+  }
+  function explain() {
+    const active={}, ignored={}, impacts={};
+    for (const k in frames) {
+      const f = frames[k];
+      (f.active ? active : ignored)[k] = +f.value.toFixed(3);
+      let pressure = 0;
+      for (const [src,w] of (rgraph[k] || [])) if (frames[src].active) pressure += frames[src].value * w;
+      impacts[k] = +pressure.toFixed(3);
+    }
+    return { active, ignored, impacts, score:score(), violations:checkConstraints() };
+  }
+  function suggestActions() {
+    const out = [], st = explain();
+    for (const [key,msg] of checkConstraints())
+      out.push({priority:1, message:`Corriger ${key} (limite dépassée)`});
+    for (const name in st.impacts)
+      if (name in st.ignored && Math.abs(st.impacts[name]) > 0.25)
+        out.push({priority:2, message:`Activer ${name} (impact fort ignoré : ${st.impacts[name]>0?'+':''}${st.impacts[name]})`});
+    if (st.score.active_score < 0.6)
+      out.push({priority:3, message:"Améliorer le score global (énergie/coût)"});
+    return out.sort((a,b)=>a.priority-b.priority);
+  }
+  function totalViolation() {
+    let tv = 0;
+    for (const key in model.constraints) {
+      if (!(key in frames)) continue;
+      const v = frames[key].value, r = model.constraints[key];
+      if ("max" in r) tv += Math.max(0, v - r.max);
+      if ("min" in r) tv += Math.max(0, r.min - v);
+    }
+    return tv;
+  }
+  function snap() { const s={}; for (const k in frames) s[k]=[frames[k].value,frames[k].active]; return s; }
+  function restore(s) { for (const k in s) { frames[k].value=s[k][0]; frames[k].active=s[k][1]; } }
+  function autoAdjust(step=0.05, maxIter=200) {
+    // levier = cadre actif, racine du graphe (sortant mais pas entrant)
+    const cand = Object.keys(frames).filter(n => frames[n].active && graph[n] && !rgraph[n]);
+    let cur = totalViolation(), iters = 0;
+    while (cur > EPS && iters < maxIter) {
+      let best = null;
+      for (const name of cand) for (const d of [step,-step]) {
+        const s = snap(); applyDelta(name, d); const nv = totalViolation(); restore(s);
+        if (best === null || nv < best[0]) best = [nv, name, d];
+      }
+      if (best === null || best[0] >= cur - EPS) break;
+      applyDelta(best[1], best[2]); cur = best[0]; iters++;
+    }
+    return { iterations:iters, violation:+cur.toFixed(4), feasible: cur <= EPS };
+  }
+  function inject(name, spec) {
+    if (!(name in frames)) frames[name] = { value:0.5, active:true, weight:1.0 };
+    if ("value" in spec) frames[name].value = clamp(spec.value);
+    if ("active" in spec) frames[name].active = !!spec.active;
+    if ("weight" in spec) frames[name].weight = spec.weight;
+  }
+  function effectiveAnnual(ideal, baseline, reliability, maintenance) {
+    const r = Math.max(0, Math.min(1, reliability));
+    return r * ideal + (1 - r) * (baseline + maintenance);  // mode dégradé + maintenance
+  }
+  function lifecycleCarbon(horizon, baseline, reliability=1.0, maintenance=0.0) {
+    if (!("global.carbone" in frames) || !("global.carbone_annuel" in frames)) return null;
+    const h = horizon == null ? (model.horizon || 30) : +horizon;
+    const base = baseline == null ? (model.baseline_annual || 0.5) : +baseline;
+    const initial = frames["global.carbone"].value;
+    const annual = effectiveAnnual(frames["global.carbone_annuel"].value, base, reliability, maintenance);
+    const cumulative = initial + annual * h;
+    const per_year = cumulative / (h + 1);
+    const favorable = cumulative < base * h - EPS;
+    return {
+      initial:+initial.toFixed(3), annual:+annual.toFixed(3), reliability:+reliability.toFixed(3),
+      horizon:h, baseline_annual:+base.toFixed(3), cumulative:+cumulative.toFixed(3),
+      cumulative_baseline:+(base*h).toFixed(3), per_year:+per_year.toFixed(3),
+      payback_years: (base - annual > EPS) ? +(initial/(base-annual)).toFixed(1) : null,
+      favorable, verdict: favorable ? "favorable sur cet horizon" : "défavorable sur cet horizon",
+    };
+  }
+  function annuityFactor(years, rate) {
+    if (rate <= EPS) return years;
+    let f = 0; const n = Math.round(years);
+    for (let t = 1; t <= n; t++) f += 1 / Math.pow(1 + rate, t);
+    return f;
+  }
+  function lifecycleCost(horizon, baseline, rate, reliability=1.0, maintenance=0.0) {
+    if (!("global.cout_initial" in frames) || !("global.cout_annuel" in frames)) return null;
+    const h = horizon == null ? (model.horizon || 30) : +horizon;
+    const base = baseline == null ? (model.baseline_annual || 0.5) : +baseline;
+    const r = rate == null ? (model.discount_rate || 0) : +rate;
+    const factor = annuityFactor(h, r);
+    const capex = frames["global.cout_initial"].value;
+    const opex = effectiveAnnual(frames["global.cout_annuel"].value, base, reliability, maintenance);
+    const total = capex + opex * factor;
+    const baseline_total = base * factor;
+    const favorable = total < baseline_total - EPS;
+    const sober = base - opex > EPS;
+    return {
+      capex:+capex.toFixed(3), opex_annuel:+opex.toFixed(3), reliability:+reliability.toFixed(3),
+      horizon:h, discount_rate:r, total:+total.toFixed(3), baseline_total:+baseline_total.toFixed(3),
+      payback_years: sober ? +(capex/(base-opex)).toFixed(1) : null,
+      roi: (sober && capex > EPS) ? +((baseline_total-total)/capex).toFixed(2) : null,
+      favorable, verdict: favorable ? "rentable sur cet horizon" : "non rentable sur cet horizon",
+    };
+  }
+  function breakEvenReliability(kind, horizon, maintenance) {
+    const compute = kind === "carbon" ? lifecycleCarbon : lifecycleCost;
+    for (let r = 0; r <= 1 + EPS; r += 0.01) {
+      const res = kind === "carbon" ? compute(horizon, null, r, maintenance)
+                                    : compute(horizon, null, null, r, maintenance);
+      if (res && res.favorable) return +r.toFixed(2);
+    }
+    return null;
+  }
+  function robustness(horizon) {
+    if (!("systeme.fiabilite" in frames)) return null;
+    const r = frames["systeme.fiabilite"].value;
+    const m = model.maintenance_penalty || 0.15;
+    const h = horizon == null ? (model.horizon || 30) : +horizon;
+    const out = { fiabilite:+r.toFixed(3), maintenance_penalty:m, horizon:h };
+    const flags = [];
+    [["carbon","carbone"],["cost","cout"]].forEach(([kind,key]) => {
+      const opt  = kind==="carbon" ? lifecycleCarbon(h) : lifecycleCost(h);
+      const real = kind==="carbon" ? lifecycleCarbon(h, null, r, m) : lifecycleCost(h, null, null, r, m);
+      if (!opt) return;
+      out[key] = { optimiste_favorable:opt.favorable, realiste_favorable:real.favorable,
+                   break_even_reliability: breakEvenReliability(kind, h, m) };
+      flags.push(real.favorable);
+    });
+    out.robuste = flags.length > 0 && flags.every(Boolean);
+    out.message = out.robuste ? "favorable même au niveau de fiabilité réel — solution robuste"
+                              : "avantage sensible à l'exécution : dépend de la fiabilité et de la maintenance";
+    return out;
+  }
+  /* --- assistant d'ingenierie : analyse / detection / correction --- */
+  const act = n => { const f = frames[n]; return (f && f.active) ? f : null; };
+  const inactive = n => { const f = frames[n]; return !f || !f.active; };
+  function analyzeProject() {
+    const issues = [];
+    const e = act("systeme.energie"), ca = act("global.carbone_annuel");
+    if (e && ca && e.value < 0.4 && ca.value > 0.5)
+      issues.push({ type:"incoherence", message:"Énergie faible mais carbone d'usage élevé",
+        suggestion:"Source d'énergie trop carbonée : viser une énergie décarbonée ou du stockage thermique" });
+    const fi = act("systeme.fiabilite"), ci = act("global.cout_initial");
+    if (fi && ci && fi.value < 0.5 && ci.value > 0.7)
+      issues.push({ type:"risk", message:"Investissement lourd peu fiable",
+        suggestion:"Fiabiliser (redondance, maintenance) ou alléger le CAPEX" });
+    const inertie = act("systeme.inertie"), react = act("systeme.reactivite");
+    if (inertie && inertie.value > 0.7 && !react)
+      issues.push({ type:"inertia", message:"Inertie forte sans pilotage rapide",
+        suggestion:"Ajouter un bypass / appoint actif pour gérer les pointes (été)" });
+    const comp = act("systeme.complexite");
+    if (comp && comp.value > 0.8)
+      issues.push({ type:"complexity", message:"Système trop complexe",
+        suggestion:"Centraliser (échangeur) ou simplifier le circuit" });
+    for (const [key, msg] of checkConstraints())
+      issues.push({ type:"constraint", message:msg, suggestion:`Ramener ${key} dans les bornes` });
+    return issues;
+  }
+  function detectMissingFrames() {
+    const missing = [], seen = new Set();
+    const push = (frame, reason) => { if (!seen.has(frame)) { seen.add(frame); missing.push({frame, reason}); } };
+    if (!inactive("global.carbone") && inactive("global.carbone_annuel"))
+      push("global.carbone_annuel", "Carbone d'usage non évalué (seulement la construction)");
+    if (!inactive("systeme.energie") && inactive("global.carbone_annuel"))
+      push("global.carbone_annuel", "Impact carbone de la consommation non suivi");
+    if (!inactive("global.cout_initial") && inactive("global.cout_annuel"))
+      push("global.cout_annuel", "Coût d'exploitation non évalué");
+    const ci = frames["global.cout_initial"];
+    if (ci && ci.active && ci.value > 0.7 && inactive("systeme.fiabilite"))
+      push("systeme.fiabilite", "Investissement lourd : fiabilité non évaluée");
+    return missing;
+  }
+  function suggestFixes() {
+    const fixes = [];
+    for (const m of detectMissingFrames()) fixes.push({ action:"activate", frame:m.frame, reason:m.reason });
+    for (const issue of analyzeProject()) {
+      if (issue.type === "inertia") fixes.push({ action:"add", frame:"systeme.reactivite", value:0.6, reason:"Pilotage rapide pour compenser l'inertie" });
+      else if (issue.type === "risk") fixes.push({ action:"adjust", frame:"systeme.fiabilite", delta:0.2, reason:"Fiabiliser le système (redondance / maintenance)" });
+      else if (issue.type === "complexity") fixes.push({ action:"add", frame:"systeme.echangeur_central", value:0.7, reason:"Réduit la complexité globale" });
+    }
+    return fixes;
+  }
+  function autoCorrect() {
+    const applied = [];
+    for (const fix of suggestFixes()) {
+      const n = fix.frame;
+      if (!(n in frames)) frames[n] = { value: fix.value != null ? fix.value : 0.6, active:true, weight:1.2 };
+      else if (fix.action === "activate" || fix.action === "add") { frames[n].active = true; if (fix.value != null) frames[n].value = clamp(fix.value); }
+      else if (fix.action === "adjust") applyDelta(n, fix.delta != null ? fix.delta : 0.1);
+      applied.push(fix);
+    }
+    autoAdjust();
+    return applied;
+  }
+  return { frames, applyDelta, explain, suggestActions, autoAdjust, totalViolation, inject,
+           lifecycleCarbon, lifecycleCost, robustness,
+           analyzeProject, detectMissingFrames, suggestFixes, autoCorrect };
+}
+
+/* ===================== TRADUCTEUR (porté de translator.py) ===================== */
+const FRAME_DEFAULTS = {
+  "systeme.energie":[0.5,2.0,"min"], "systeme.cout":[0.5,1.2,"min"],
+  "systeme.maintenance":[0.5,0.9,"min"], "systeme.inertie":[0.6,1.5,"max"],
+  "global.carbone":[0.6,1.8,"min"], "global.surface":[0.7,1.0,"max"],
+  "mur.isolation":[0.6,1.5,"max"], "toiture.isolation":[0.7,1.4,"max"],
+  "mur.reparabilite":[0.6,0.7,"max"],
+};
+const KW = [
+  [/énergie|energie|consommation|conso|chauffage|électr|electr/, "systeme.energie"],
+  [/co[uû]t|budget|prix|dépense|depense|euro/, "systeme.cout"],
+  [/maintenance|entretien|exploitation/, "systeme.maintenance"],
+  [/inertie|stockage thermique|thermique|tampon|eau|hydraulique|masse/, "systeme.inertie"],
+  [/carbone|co2|empreinte|émission|emission/, "global.carbone"],
+  [/surface|espace|m2|mètres carrés|metres carres/, "global.surface"],
+  [/isolation|isoler|isolant/, "mur.isolation"],
+  [/toiture|toit|couverture/, "toiture.isolation"],
+  [/réparab|reparab|démontable|demontable|recycl/, "mur.reparabilite"],
+];
+const RE_REDUCE = /rédui|redui|baiss|diminu|minimis|moins|limit|économis|economis|abaiss/;
+const RE_INCREASE = /augment|maximis|amélior|amelior|renforc|booster|accro[iî]tre|plus de|davantage/;
+const RE_INNOV = /innov|nouveau|nouvelle|concept|prototype|inédit|inedit|idée|idee/;
+const DELTA = 0.2;
+
+function translateIdea(idea) {
+  const text = idea.toLowerCase();
+  const found = [];
+  for (const [re, frame] of KW) if (re.test(text) && !found.includes(frame)) found.push(frame);
+  const frames = {}, deltas = {};
+  const reduce_ = RE_REDUCE.test(text), increase = RE_INCREASE.test(text);
+  for (const frame of found) {
+    const [value, weight, kind] = FRAME_DEFAULTS[frame];
+    frames[frame] = { value, active:true, weight };
+    let d = 0;
+    if (kind === "min") d = reduce_ ? -DELTA : (increase ? DELTA : 0);
+    else d = increase ? DELTA : 0;
+    if (d) deltas[frame] = +d.toFixed(3);
+  }
+  if (!found.length) { const [v,w] = FRAME_DEFAULTS["systeme.energie"]; frames["systeme.energie"]={value:v,active:true,weight:w}; }
+  return {
+    frames, deltas,
+    context: { idea: idea.trim().slice(0,160),
+               type: RE_INNOV.test(text) ? "innovation" : "optimisation",
+               confidence: +Math.min(0.9, 0.4 + 0.15*found.length).toFixed(2) }
+  };
+}
+
+function useExample(btn) {
+  document.getElementById("idea").value = btn.textContent;
+  runIdea();
+}
+
+function runIdea() {
+  const idea = document.getElementById("idea").value || "";
+  const payload = translateIdea(idea);
+  // cadre temporel détecté dans l'idée -> curseur horizon
+  if (payload.context && payload.context.horizon != null) {
+    setHorizon(payload.context.horizon);
+    document.getElementById("horizon").value = payload.context.horizon;
+  }
+  const eng = makeEngine(MODEL);
+  for (const k in payload.frames) eng.inject(k, payload.frames[k]);
+  for (const k in (payload.deltas||{})) eng.applyDelta(k, payload.deltas[k]);
+  const adj = document.getElementById("autoadj").checked ? eng.autoAdjust() : null;
+  // synchronise les curseurs visibles avec l'état résultant
+  for (const k in state) if (k in eng.frames) {
+    state[k] = { value: eng.frames[k].value, active: eng.frames[k].active };
+    const sl = controls.querySelector(`input[data-k="${k}"]`);
+    const tg = controls.querySelector(`.toggle[data-k="${k}"]`);
+    if (sl) { sl.value = state[k].value; document.getElementById("v-"+k).textContent = state[k].value.toFixed(2); }
+    if (tg) tg.classList.toggle("active", state[k].active);
+  }
+  const jo = document.getElementById("jsonout");
+  jo.style.display = "block";
+  jo.textContent = "JSON traducteur :\n" + JSON.stringify(payload, null, 2)
+    + (adj ? `\n\nauto-optimisation : ${adj.feasible ? "✅ faisable" : "⚠️ infaisable"} en ${adj.iterations} pas (violation ${adj.violation})` : "");
+  renderEngine(eng);
+}
+
+/* ===================== MICRO (reconnaissance vocale native) ===================== */
+// Web Speech API : 100% navigateur, aucune dépendance, aucun serveur.
+let recognition = null, listening = false;
+function micSupported() {
+  return "webkitSpeechRecognition" in window || "SpeechRecognition" in window;
+}
+function setMic(status, on) {
+  document.getElementById("micstatus").textContent = status;
+  const b = document.getElementById("micbtn");
+  b.textContent = on ? "⏹ Stop" : "🎤 Parler";
+  b.classList.toggle("active", !!on);
+}
+function toggleMic() {
+  if (!micSupported()) {
+    setMic("micro non supporté par ce navigateur — tape ton idée", false);
+    return;
+  }
+  if (listening) { recognition.stop(); return; }
+  const Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new Rec();
+  recognition.lang = "fr-FR";
+  recognition.interimResults = true;   // affichage en direct
+  recognition.continuous = false;
+  const ideaEl = document.getElementById("idea");
+  const base = ideaEl.value ? ideaEl.value.trim() + " " : "";
+  recognition.onstart = () => { listening = true; setMic("🔴 écoute… parle maintenant", true); };
+  recognition.onerror = (e) => {
+    const msg = e.error === "not-allowed" ? "micro refusé (autorise l'accès)" : "erreur micro : " + e.error;
+    setMic(msg, false); listening = false;
+  };
+  recognition.onresult = (e) => {
+    let txt = "";
+    for (let i = 0; i < e.results.length; i++) txt += e.results[i][0].transcript;
+    ideaEl.value = base + txt;
+  };
+  recognition.onend = () => {
+    listening = false;
+    setMic(ideaEl.value.trim() ? "✅ transcrit — simulation…" : "rien entendu", false);
+    if (ideaEl.value.trim()) runIdea();   // enchaîne automatiquement
+  };
+  recognition.start();
+}
+// masquer le bouton si non supporté (ex. certains navigateurs iOS)
+if (!micSupported()) {
+  const b = document.getElementById("micbtn");
+  if (b) { b.disabled = true; b.title = "Reconnaissance vocale non disponible ici"; b.style.opacity = .5; }
+}
+
+/* ===================== UI ===================== */
+const UI_FRAMES = [
+  ["mur.isolation","Isolation murs"],
+  ["toiture.isolation","Isolation toiture"],
+  ["systeme.energie","Énergie"],
+  ["systeme.cout","Coût"],
+  ["global.surface","Surface"],
+  ["global.carbone","Carbone construction"],
+  ["global.carbone_annuel","Carbone usage/an"],
+  ["global.cout_initial","Investissement (CAPEX)"],
+  ["global.cout_annuel","Exploitation/an (OPEX)"],
+  ["systeme.fiabilite","Fiabilité (exécution)"],
+];
+const state = {};
+for (const k in MODEL.frames) state[k] = { value: MODEL.frames[k].value, active: MODEL.frames[k].active };
+
+const controls = document.getElementById("controls");
+UI_FRAMES.forEach(([key,label]) => {
+  const div = document.createElement("div");
+  div.className = "frame";
+  div.innerHTML = `
+    <label>
+      <span><span class="toggle ${state[key].active?'active':''}" data-k="${key}">●</span> ${label}</span>
+      <span class="val" id="v-${key}">${state[key].value.toFixed(2)}</span>
+    </label>
+    <input type="range" min="0" max="1" step="0.01" value="${state[key].value}" data-k="${key}">`;
+  controls.appendChild(div);
+});
+
+controls.addEventListener("input", e => {
+  const k = e.target.dataset.k;
+  state[k].value = parseFloat(e.target.value);
+  document.getElementById("v-"+k).textContent = state[k].value.toFixed(2);
+  render();
+});
+controls.addEventListener("click", e => {
+  if (!e.target.classList.contains("toggle")) return;
+  const k = e.target.dataset.k;
+  state[k].active = !state[k].active;
+  e.target.classList.toggle("active", state[k].active);
+  render();
+});
+
+function render() {
+  // moteur frais à chaque rendu, valeurs/activations issues de l'UI
+  const eng = makeEngine(MODEL);
+  for (const k in state) { eng.frames[k].value = clamp(state[k].value); eng.frames[k].active = state[k].active; }
+  renderEngine(eng);
+}
+
+function renderEngine(eng) {
+  const d = eng.explain();
+  // --- barre de verdict : synthèse scannable des 4 dimensions ---
+  const _lc = eng.lifecycleCarbon(HORIZON), _cc = eng.lifecycleCost(HORIZON), _rb = eng.robustness(HORIZON);
+  const conforme = d.violations.length === 0;
+  const stat = (label, cls, val) => `<div class="stat ${cls}"><span class="stat-k">${label}</span><span class="stat-v">${val}</span></div>`;
+  let html = `<div class="stats">`;
+  html += stat("Conformité RE2020", conforme ? "good" : "bad", conforme ? "Conforme" : `${d.violations.length} écart(s)`);
+  if (_lc) html += stat("Carbone — cycle de vie", _lc.favorable ? "good" : "bad", _lc.favorable ? "Favorable" : "Défavorable");
+  if (_cc) html += stat("Coût — cycle de vie", _cc.favorable ? "good" : "bad", _cc.favorable ? "Favorable" : "Défavorable");
+  if (_rb) html += stat("Robustesse", _rb.robuste ? "good" : "mid", _rb.robuste ? "Robuste" : "Sensible");
+  html += stat("Score actif", "", d.score.active_score);
+  html += `</div>`;
+  html += `<div class="section">Décision (cadres actifs)</div>`;
+  for (const k in d.active) html += `<div class="line ok">${k} : ${d.active[k]}</div>`;
+  html += `<div class="section">Impacts ignorés (surveillés)</div>`;
+  for (const k in d.ignored) html += `<div class="line warn">${k} : ${d.ignored[k]}</div>`;
+  if (d.violations.length) {
+    html += `<div class="section">Contraintes RE2020</div>`;
+    for (const [,m] of d.violations) html += `<div class="line bad">${m}</div>`;
+  } else {
+    html += `<div class="section">Contraintes RE2020 <span class="pill">conforme</span></div>`;
+  }
+  const sugg = eng.suggestActions();
+  if (sugg.length) {
+    html += `<div class="section">Suggestions</div>`;
+    sugg.forEach(s => html += `<div class="line sug">${s.message}</div>`);
+  }
+  const lc = eng.lifecycleCarbon(HORIZON);
+  if (lc) {
+    const cls = lc.favorable ? "ok" : "bad";
+    const mark = lc.favorable ? "✔" : "❌";
+    html += `<div class="section">Bilan carbone — cycle de vie (${lc.horizon} ans)</div>`;
+    html += `<div class="line">construction : ${lc.initial} · usage/an : ${lc.annual} · amorti/an : ${lc.per_year}</div>`;
+    html += `<div class="line">cumulé ${lc.cumulative} vs référence ${lc.cumulative_baseline}`
+          + (lc.payback_years != null ? ` · retour carbone ≈ ${lc.payback_years} ans` : ``) + `</div>`;
+    html += `<div class="line ${cls}">${mark} ${lc.verdict}</div>`;
+  }
+  const cc = eng.lifecycleCost(HORIZON);
+  if (cc) {
+    const cls = cc.favorable ? "ok" : "bad";
+    const mark = cc.favorable ? "✔" : "❌";
+    const act = cc.discount_rate > 0 ? ` · actualisé ${(cc.discount_rate*100).toFixed(0)}%/an` : ``;
+    html += `<div class="section">Coût total — cycle de vie (${cc.horizon} ans${act})</div>`;
+    html += `<div class="line">investissement : ${cc.capex} · exploitation/an : ${cc.opex_annuel}</div>`;
+    html += `<div class="line">total ${cc.total} vs référence ${cc.baseline_total}`
+          + (cc.payback_years != null ? ` · retour invest. ≈ ${cc.payback_years} ans` : ``)
+          + (cc.roi != null ? ` · ROI ${cc.roi}` : ``) + `</div>`;
+    html += `<div class="line ${cls}">${mark} ${cc.verdict}</div>`;
+  }
+  const rb = eng.robustness(HORIZON);
+  if (rb) {
+    const cls = rb.robuste ? "ok" : "warn";
+    const mark = rb.robuste ? "✔" : "⚠";
+    html += `<div class="section">Robustesse — sensibilité à l'exécution (fiabilité ${rb.fiabilite})</div>`;
+    const fmt = o => `optimiste ${o.optimiste_favorable?'✔':'❌'} · réaliste ${o.realiste_favorable?'✔':'❌'}`
+                   + (o.break_even_reliability!=null ? ` · seuil fiabilité ${Math.round(o.break_even_reliability*100)}%` : ` · jamais favorable`);
+    if (rb.carbone) html += `<div class="line">carbone : ${fmt(rb.carbone)}</div>`;
+    if (rb.cout)    html += `<div class="line">coût&nbsp;&nbsp;&nbsp;: ${fmt(rb.cout)}</div>`;
+    html += `<div class="line ${cls}">${mark} ${rb.message}</div>`;
+  }
+  const issues = eng.analyzeProject(), missing = eng.detectMissingFrames(), fixes = eng.suggestFixes();
+  html += `<div class="section">⚠️ Problèmes &amp; cadres manquants</div>`;
+  if (!issues.length && !missing.length) {
+    html += `<div class="line ok">✔ aucun problème détecté</div>`;
+  } else {
+    issues.forEach(i => html += `<div class="line bad">⚠️ ${i.message} <span style="color:var(--muted)">→ ${i.suggestion}</span></div>`);
+    missing.forEach(m => html += `<div class="line warn">＋ cadre manquant : ${m.frame} <span style="color:var(--muted)">(${m.reason})</span></div>`);
+  }
+  if (fixes.length) {
+    html += `<div class="section">💡 Corrections proposées</div>`;
+    fixes.forEach(f => html += `<div class="line sug">💡 ${f.action} ${f.frame} — ${f.reason}</div>`);
+    html += `<div class="line"><button onclick="autoCorrect()">⚙️ Appliquer &amp; retester</button></div>`;
+  }
+  html += `<div class="section">Score</div>`;
+  html += `<div class="line">actif ${d.score.active_score} · total ${d.score.total_score} · écart ignorés ${d.score.gap}</div>`;
+  document.getElementById("report").innerHTML = html;
+}
+
+// Auto-correction : applique les suggestions sur l'etat courant puis re-rend.
+function autoCorrect() {
+  const eng = makeEngine(MODEL);
+  for (const k in state) if (k in eng.frames) { eng.frames[k].value = clamp(state[k].value); eng.frames[k].active = state[k].active; }
+  eng.autoCorrect();
+  // re-synchronise l'etat UI avec le resultat corrige
+  for (const k in eng.frames) {
+    if (!(k in state)) state[k] = { value: eng.frames[k].value, active: eng.frames[k].active };
+    else state[k] = { value: eng.frames[k].value, active: eng.frames[k].active };
+    const sl = controls.querySelector(`input[data-k="${k}"]`);
+    const tg = controls.querySelector(`.toggle[data-k="${k}"]`);
+    if (sl) { sl.value = state[k].value; const lab = document.getElementById("v-"+k); if (lab) lab.textContent = state[k].value.toFixed(2); }
+    if (tg) tg.classList.toggle("active", state[k].active);
+  }
+  renderEngine(eng);
+}
+
+let HORIZON = MODEL.horizon;
+function setHorizon(v) {
+  HORIZON = +v;
+  document.getElementById("hval").textContent = v;
+  render();
+}
+function setDiscount(v) {
+  MODEL.discount_rate = +v;   // l'engine relit model.discount_rate
+  render();
+}
+
+/* ===================== PROJETS · COMPARAISON · EXPORT ===================== */
+// Tout est stocké localement (localStorage) : aucun serveur, aucune fuite de données.
+const LS_KEY = "zoran_btp_projects_v1";
+function escapeHtml(s){ return String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function loadProjects(){ try { return JSON.parse(localStorage.getItem(LS_KEY)) || []; } catch(e){ return []; } }
+function saveProjects(list){ try { localStorage.setItem(LS_KEY, JSON.stringify(list)); } catch(e){ alert("Stockage local indisponible (mode privé ?)."); } }
+
+function snapshot(){
+  return {
+    name: (document.getElementById("projname").value || "").trim()
+          || ("Projet " + new Date().toLocaleString("fr-FR")),
+    idea: document.getElementById("idea").value || "",
+    horizon: HORIZON,
+    discount: MODEL.discount_rate || 0,
+    state: JSON.parse(JSON.stringify(state)),
+    ts: Date.now()
+  };
+}
+function saveProject(){
+  const list = loadProjects(), snap = snapshot();
+  const i = list.findIndex(p => p.name === snap.name);   // même nom -> remplace
+  if (i >= 0) list[i] = snap; else list.push(snap);
+  saveProjects(list);
+  document.getElementById("projname").value = "";
+  renderProjects();
+}
+function applySnapshot(snap){
+  document.getElementById("idea").value = snap.idea || "";
+  for (const k in state) if (snap.state && snap.state[k])
+    state[k] = { value: snap.state[k].value, active: snap.state[k].active };
+  for (const k in state) {  // resynchronise curseurs + bascules
+    const sl = controls.querySelector(`input[data-k="${k}"]`);
+    const tg = controls.querySelector(`.toggle[data-k="${k}"]`);
+    if (sl) { sl.value = state[k].value; document.getElementById("v-"+k).textContent = state[k].value.toFixed(2); }
+    if (tg) tg.classList.toggle("active", state[k].active);
+  }
+  HORIZON = snap.horizon;
+  document.getElementById("horizon").value = snap.horizon;
+  document.getElementById("hval").textContent = snap.horizon;
+  MODEL.discount_rate = snap.discount || 0;
+  document.getElementById("discount").value = String(snap.discount || 0);
+  render();
+}
+function renderProjects(){
+  const list = loadProjects(), box = document.getElementById("projlist");
+  if (!list.length) { box.innerHTML = `<div class="hint">Aucun projet enregistré pour l'instant.</div>`; return; }
+  box.innerHTML = list.map((p,i) => `
+    <div class="proj">
+      <input type="checkbox" class="cmp" data-i="${i}" style="width:auto" title="comparer">
+      <span class="proj-name" title="${escapeHtml(p.idea||"")}">${escapeHtml(p.name)}</span>
+      <button class="mini" data-act="load" data-i="${i}">Charger</button>
+      <button class="mini" data-act="del"  data-i="${i}" title="supprimer">✕</button>
+    </div>`).join("");
+}
+document.getElementById("projlist").addEventListener("click", e => {
+  const b = e.target.closest("button[data-act]"); if (!b) return;
+  const list = loadProjects(), i = +b.dataset.i, p = list[i]; if (!p) return;
+  if (b.dataset.act === "load") applySnapshot(p);
+  else if (b.dataset.act === "del") { list.splice(i,1); saveProjects(list); renderProjects(); }
+});
+
+function engineFromSnap(snap){
+  const eng = makeEngine(MODEL);
+  for (const k in snap.state) if (eng.frames[k]) {
+    eng.frames[k].value = clamp(snap.state[k].value);
+    eng.frames[k].active = snap.state[k].active;
+  }
+  return eng;
+}
+function verdicts(snap){
+  const prev = MODEL.discount_rate;
+  MODEL.discount_rate = snap.discount || 0;          // lifecycleCost lit model.discount_rate
+  const eng = engineFromSnap(snap), d = eng.explain();
+  const out = {
+    conforme: d.violations.length === 0,
+    lc: eng.lifecycleCarbon(snap.horizon),
+    cc: eng.lifecycleCost(snap.horizon),
+    rb: eng.robustness(snap.horizon),
+    score: d.score.active_score
+  };
+  MODEL.discount_rate = prev;
+  return out;
+}
+function compareSelected(){
+  const idx = [...document.querySelectorAll("#projlist .cmp:checked")].map(c => +c.dataset.i);
+  if (idx.length < 2) { alert("Coche au moins 2 projets à comparer."); return; }
+  const list = loadProjects(), snaps = idx.slice(0,3).map(i => list[i]);
+  const cols = snaps.map(s => ({ s, v: verdicts(s) }));
+  const cell = (ok,t,f) => `<td class="${ok?"ok":"bad"}">${ok?t:f}</td>`;
+  const fav = o => o ? `<td class="${o.favorable?"ok":"bad"}">${o.favorable?"Favorable":"Défavorable"}</td>` : `<td>—</td>`;
+  let h = `<div class="section">Comparaison de ${cols.length} projets</div>`;
+  h += `<table class="cmp-table"><thead><tr><th>Critère</th>`
+     + cols.map(c => `<th>${escapeHtml(c.s.name)}</th>`).join("") + `</tr></thead><tbody>`;
+  h += `<tr><td>Horizon</td>` + cols.map(c => `<td>${c.s.horizon} ans</td>`).join("") + `</tr>`;
+  h += `<tr><td>Conformité RE2020</td>` + cols.map(c => cell(c.v.conforme,"Conforme","Non conforme")).join("") + `</tr>`;
+  h += `<tr><td>Carbone — cycle de vie</td>` + cols.map(c => fav(c.v.lc)).join("") + `</tr>`;
+  h += `<tr><td>Coût — cycle de vie</td>` + cols.map(c => fav(c.v.cc)).join("") + `</tr>`;
+  h += `<tr><td>Robustesse</td>` + cols.map(c => c.v.rb ? `<td class="${c.v.rb.robuste?"ok":"mid"}">${c.v.rb.robuste?"Robuste":"Sensible"}</td>` : `<td>—</td>`).join("") + `</tr>`;
+  h += `<tr><td>Score actif</td>` + cols.map(c => `<td>${c.v.score}</td>`).join("") + `</tr>`;
+  h += `</tbody></table><div class="hint" style="margin-top:8px">« Charger » un projet pour revoir son détail complet.</div>`;
+  document.getElementById("report").innerHTML = h;
+}
+
+function exportReport(){
+  const repEl = document.getElementById("report");
+  if (!repEl || repEl.querySelector(".empty")) { alert("Lance d'abord une simulation."); return; }
+  const idea = (document.getElementById("idea").value || "").trim() || "(curseurs manuels)";
+  const body = repEl.innerHTML.replace(/<button[\s\S]*?<\/button>/g, "");  // retire les boutons interactifs
+  const css = `:root{--ok:#1a7f37;--warn:#9a6700;--bad:#cf222e;--muted:#6b7785;--line:#e2e6ea}
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;max-width:800px;margin:24px auto;padding:0 18px;color:#11161f;line-height:1.5}
+h1{font-size:21px;margin:0 0 4px}.meta{color:var(--muted);font-size:13px;margin-bottom:8px}
+.section{margin-top:18px;margin-bottom:4px;font-weight:700;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;border-top:1px solid var(--line);padding-top:12px}
+.line{font-size:14px;padding:3px 0}.line.ok::before{content:"\\2714 ";color:var(--ok)}.line.warn::before{content:"\\26A0 ";color:var(--warn)}.line.bad::before{content:"\\274C ";color:var(--bad)}.line.bad{color:var(--bad)}.line.sug::before{content:"\\1F449 "}
+.pill{font-size:11px;padding:2px 8px;border-radius:999px;background:#eef1f4;color:var(--muted)}.pill.ok{background:#e4f5e8;color:var(--ok)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-bottom:6px}
+.stat{border:1px solid var(--line);border-radius:10px;padding:9px 11px}.stat-k{display:block;font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}.stat-v{font-size:15px;font-weight:700}
+.stat.good .stat-v{color:var(--ok)}.stat.bad .stat-v{color:var(--bad)}.stat.mid .stat-v{color:var(--warn)}
+.cmp-table{width:100%;border-collapse:collapse;font-size:13px}.cmp-table th,.cmp-table td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)}.cmp-table th{color:var(--muted);font-size:11px;text-transform:uppercase}.cmp-table td.ok{color:var(--ok)}.cmp-table td.bad{color:var(--bad)}.cmp-table td.mid{color:var(--warn)}
+.foot{margin-top:24px;color:var(--muted);font-size:11px;border-top:1px solid var(--line);padding-top:10px}`;
+  const html = `<!doctype html><html lang="fr"><head><meta charset="utf-8">`
+    + `<meta name="viewport" content="width=device-width,initial-scale=1">`
+    + `<title>Rapport — Moteur BTP</title><style>${css}</style></head><body>`
+    + `<h1>Rapport de décision — Moteur BTP</h1>`
+    + `<div class="meta"><b>Idée :</b> ${escapeHtml(idea)}<br>`
+    + `<b>Horizon :</b> ${HORIZON} ans · <b>Actualisation :</b> ${Math.round((MODEL.discount_rate||0)*100)} %/an · `
+    + `<b>Généré le</b> ${escapeHtml(new Date().toLocaleString("fr-FR"))}</div>`
+    + body
+    + `<div class="foot">Moteur autonome de décision sous contraintes — verdicts calculés localement, aucune boîte noire.</div>`
+    + `</body></html>`;
+  const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `rapport-btp-${new Date().toISOString().slice(0,10)}.html`;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+renderProjects();
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+# Dépendances de développement / optionnelles du moteur de décision.
+# Le moteur lui-même ne dépend que de la bibliothèque standard Python.
+
+# Tests
+pytest>=7.0
+
+# API HTTP optionnelle (decision_engine/api.py)
+fastapi>=0.100
+uvicorn>=0.20
