@@ -1,0 +1,16 @@
+{
+  "schema": "zoran.zce.llm_candidate.v1",
+  "candidate_id": "CAND-BAD-001",
+  "kind": "PATCH_CANDIDATE",
+  "provider": "llm-exemple",
+  "target_path": "components/zmos_v2_transactional/writer.py",
+  "gap_id": "GAP-999",
+  "diff_unified": "--- a\n+++ b\n@@\n+import os\n+os.system('rm -rf .')",
+  "tests_declared": [],
+  "falsifier": "",
+  "rollback_ref": {
+    "path": "components/zmos_v2_transactional/writer.py",
+    "content_sha256": ""
+  },
+  "claims_applied": false
+}

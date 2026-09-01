@@ -1,0 +1,37 @@
+{
+  "schema": "zoran.opg.r3-repair-receipt.v1",
+  "object_id": "ZORAN-OPG-V1-1-R3-REPAIR",
+  "mission_contract_sha256": "040a8874c598f0aef31638fb3a5d958d53d0b2a8d412b319910f39b8403502ab",
+  "input": {
+    "name": "ZORAN_OPPOSED_PAIR_GATE_V1.zip",
+    "sha256": "463e7c2c417bdf0139f89e68e8c5045ff45e8f44c8e7eb050da6e4bcaec9908a",
+    "verdict": "REJECT_FALSE_ACCEPTS"
+  },
+  "falsified_cases": [
+    "missing_claims_accepted",
+    "unknown_spec_fields_accepted",
+    "duplicate_critical_frames_accepted",
+    "inverse_proven_without_content_bound_proof_accepted",
+    "unbounded_baseline_tolerance_accepted",
+    "forged_minimal_k3_adapter_receipt_accepted"
+  ],
+  "repairs": [
+    "closed_exact_schemas",
+    "content_bound_preregistration_receipt",
+    "content_bound_certified_measurement_receipts",
+    "exact_baseline_horizon_depth_policy_binding",
+    "strict_inverse_proof_trust",
+    "duplicate_and_self_pair_rejection",
+    "fail_closed_k3_adapter",
+    "semantic_receipt_validation"
+  ],
+  "tests": {
+    "unit_and_adversarial": {"passed": 20, "total": 20, "verdict": "PASS"},
+    "campaign": {"passed": 1000000, "total": 1000000, "violations": 0, "verdict": "PASS_1M_IMPLEMENTATION_GATE"}
+  },
+  "bounded_verdict": "PASS_CANDIDATE_IMPLEMENTATION_NON_PROMOTED",
+  "runtime_integration": "NON_MESURÉ",
+  "external_causal_validation": "NON_MESURÉ",
+  "productive_k3_amygdala_authorities": "ABSENT_IN_OBSERVED_SCOPE",
+  "global_zoran_promotion": "NON_MESURÉ"
+}

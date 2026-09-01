@@ -1,0 +1,23 @@
+{
+  "schema": "zoran.zce.master-r2.1-reaudit.v1",
+  "object_id": "ZCE-MASTER-R2-1-REAUDIT-R3",
+  "mission_contract_sha256": "040a8874c598f0aef31638fb3a5d958d53d0b2a8d412b319910f39b8403502ab",
+  "source": {
+    "archive": "ZORAN_MASTER_INDEX_REMOTE_FAILURE_OBSERVABILITY_R2_1.tar.gz",
+    "sha256": "dc0b39e244b4dc7b9637b06aef93fb4092f33295a50216ee4ffed3baf9689320",
+    "source_bundle_sha256": "3917b1bf185780bb605cb8b9834c8e5a3b6f39279977e2dc516a679f5588089a",
+    "source_commit": "62cd8212cbb80f0235bd27461b78574cdeef3f81",
+    "source_tree": "7668993e2d9a83e2069fad48e4fa99f5dc80a46d"
+  },
+  "integrity": {"manifest_entries_passed": 15, "manifest_entries_total": 15, "verdict": "PASS"},
+  "tests": {
+    "focused_exact_wheelhouse": {"passed": 62, "total": 62, "elapsed_seconds": 9.20, "verdict": "PASS"},
+    "negative_campaign_a": {"passed": 9, "total": 9, "sha256": "eb2966150a2a68a4129bae33ef3edfe430d055e797013eba71c8db914c0a7526"},
+    "negative_campaign_b": {"passed": 9, "total": 9, "sha256": "eb2966150a2a68a4129bae33ef3edfe430d055e797013eba71c8db914c0a7526"},
+    "a_b_byte_identical": true,
+    "remote_failure_receipt_sha256": "87f0ece6e3c9184d8c0e00911ba157ead444ef598994363640e5459919e12cbc"
+  },
+  "successor_policy": "MASTER_R2_1_REQUIRED_FOR_ALL_NEW_RUNS",
+  "bounded_verdict": "PASS_BRICK_ONLY_NON_PROMOTED",
+  "global_zoran": "NON_MESURÉ"
+}

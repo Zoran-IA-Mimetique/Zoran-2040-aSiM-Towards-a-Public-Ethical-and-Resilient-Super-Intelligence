@@ -1,0 +1,23 @@
+{
+  "$comment": "zoran.zce.relation_graph.v1 — liaisons typées entre objets (plan §8).",
+  "type": "object",
+  "required": ["schema", "relations"],
+  "properties": {
+    "schema": {"type": "string", "enum": ["zoran.zce.relation_graph.v1"]},
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["relation_id", "type", "from", "to", "level", "evidence"],
+        "properties": {
+          "relation_id": {"type": "string"},
+          "type": {"type": "string", "enum": ["DEPENDS_ON", "IMPORTS", "IMPLEMENTS", "TESTS", "PRODUCES", "CONSUMES", "DERIVES_FROM", "SUMMARIZES", "SUPERSEDES", "GOVERNS", "VETOES", "VERBALIZES", "ROLLBACKS_TO"]},
+          "from": {"type": "string"},
+          "to": {"type": "string"},
+          "level": {"type": "string", "enum": ["STATIC", "RUNTIME", "TESTED", "CAUSAL"]},
+          "evidence": {"type": "string"}
+        }
+      }
+    }
+  }
+}

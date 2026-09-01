@@ -1,0 +1,31 @@
+{
+  "schema": "zoran.zce.git-remote-promotion-evidence.v1",
+  "object_id": "ZCE-GIT-REMOTE-PROMOTION-EVIDENCE-R3-PREPUBLICATION",
+  "product_target": {
+    "repository": "zorania2025/Zoran-IA-deteriniste",
+    "visibility": "private",
+    "permission": "write",
+    "main_head": "742fea7",
+    "pull_request": 10,
+    "pull_request_head": "51c2731aa20b6044477aa5f19c0f26b7a3d93106",
+    "workflow_runs": {"total": 4, "success": 0, "failure_before_steps": 4},
+    "branch_protection_administration_available": false,
+    "verdict": "BLOCKED_EXTERNAL"
+  },
+  "public_evidence_target": {
+    "repository": "Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence",
+    "visibility": "public",
+    "permission": "admin",
+    "pull_request": 10,
+    "pull_request_url": "https://github.com/Zoran-IA-Mimetique/Zoran-2040-aSiM-Towards-a-Public-Ethical-and-Resilient-Super-Intelligence/pull/10",
+    "branch": "claude/zoran-consolidation-engine-qj175v",
+    "observed_head_before_r3_publication": "c00187f35e95dd4ee6e75ca25cf6e23902fe700e",
+    "branch_protected": false,
+    "main_protected": false,
+    "rulesets": [],
+    "review": "NON_MESURÉ",
+    "ci": "NON_MESURÉ_PREPUBLICATION",
+    "scope": "PUBLIC_EVIDENCE_ONLY_NOT_PRODUCT_RUNTIME"
+  },
+  "c26_verdict": "FAIL"
+}

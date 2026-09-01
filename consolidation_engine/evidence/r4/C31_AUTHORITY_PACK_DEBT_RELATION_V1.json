@@ -1,0 +1,38 @@
+{
+  "schema": "zoran.zce.c31-authority-pack-debt-relation.v1",
+  "object_id": "ZCE-C31-AUTHORITY-PACK-DEBT-RELATION-R4",
+  "mission_contract_sha256": "cc4c8aa7260b5ade8bfa970137cc9a73e58cd4b0c9024620e1458fbf9c423fb7",
+  "relation": "POSSIBLY_REMEDIATES",
+  "from": {
+    "object_id": "PACK_REQUEST_K3_AMYGDALA_PRODUCTIVE_AUTHORITIES_V1",
+    "path": "../r3/PACK_REQUEST_K3_AMYGDALA_PRODUCTIVE_AUTHORITIES_V1.json",
+    "content_sha256": "67fed21206cdaa5e7bb9b8aa3e005619fcc9d61ad069af6c4787c46540e387ad",
+    "observed_distinct_productive_k3_authorities": 0,
+    "observed_distinct_productive_amygdala_authorities": 0,
+    "status": "OPEN_BLOCKING_LIVE_K3_RESULT"
+  },
+  "to": {
+    "source_path": "source/R2_DETTE_COH_9808AE1.jsonl",
+    "source_sha256": "cffee20b5609d9a042d3e42ffe2e031337555e20dc3954dc991c0a54ae757430",
+    "sequence": 9,
+    "scope": "frame:upper:authority_signature",
+    "debt_key": "7c179390262bd4618ba6afd22e79f35e24872b0be43ca754a811640a495fb36e",
+    "evidence_sha256": "7d77288d4dc636208b4ff6387c12325ef8d314b345854324c027724369b41810",
+    "event_hash": "99c61c6627e5da042d9bbbf2fba742a0c3b5a6281962825cea295112d11b0982"
+  },
+  "k3_witness": {
+    "bundle_path": "ZORAN_ZCE_PARTIAL_ROBOT_R2/governance/ZCE_PRE_RECEIPT_R2.json",
+    "file_sha256": "55051d194b9afd7364048eb47e9740bb99b293d08478ed84cdc84b9b1d585828",
+    "reason": "AUTHORITY_SIGNATURE_UNVERIFIED",
+    "ledger_chain_head": "99c61c6627e5da042d9bbbf2fba742a0c3b5a6281962825cea295112d11b0982"
+  },
+  "matching_rule": "The PACK_REQUEST and ledger debt share an authority theme, but the productive K3+Amygdala object identity is absent from the ledger event and PRE witness. Identity equivalence cannot be inferred retroactively from this R4 relation.",
+  "identity_equivalence": "NON_MESURÉ",
+  "contributes_additional_debt_count": "NON_MESURÉ",
+  "possible_additional_count_range": [
+    0,
+    1
+  ],
+  "bounded_relation_verdict": "NON_MESURÉ",
+  "global_zoran": "NON_MESURÉ"
+}

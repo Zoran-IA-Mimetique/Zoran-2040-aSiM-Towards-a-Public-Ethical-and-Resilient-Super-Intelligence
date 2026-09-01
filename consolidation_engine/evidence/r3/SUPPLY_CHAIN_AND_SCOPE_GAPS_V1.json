@@ -1,0 +1,22 @@
+{
+  "schema": "zoran.zce.supply-chain-scope-gaps.v1",
+  "object_id": "ZCE-SUPPLY-CHAIN-SCOPE-GAPS-R3",
+  "r2_local_evidence": {
+    "run_manifest_sha256": "bcfe6c9a246785e9790dc4af7aa3d0105222d16064d35c406320ec8a96619e61",
+    "control_certificate_sha256": "797a4b5c6ab8849f2c96f4212fad1bda7eca828fa030777de15569c94f26dd44",
+    "git_commit_signed": false,
+    "artifact_attestation": false,
+    "sbom": false
+  },
+  "master_r2_1_repository_index": {
+    "records": 939,
+    "index_file_sha256": "904f344cd76c58999c9cffddcea53ae645ffa1488681d6d8d477c7f56cfb0d6b",
+    "index_sha256": "dfd5e20e859dea6b882d44d49faba7466a90550ead50abe89a68c1821f347775"
+  },
+  "required_for_promotion": ["SPDX_OR_CYCLONEDX_SBOM", "SIGNED_IN_TOTO_ATTESTATION_BOUND_TO_EXACT_HEAD_AND_ARTIFACT", "20_OBJECTS_TO_EVIDENCE_FILES_CROSSWALK"],
+  "candidate_upstream": {
+    "action": "actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6",
+    "status": "NOT_YET_EXECUTED"
+  },
+  "verdict": "EXPLICIT_GAP_PROMOTION_BLOCKED"
+}

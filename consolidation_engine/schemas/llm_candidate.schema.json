@@ -1,0 +1,26 @@
+{
+  "$comment": "zoran.zce.llm_candidate.v1 — candidat structuré proposé par un LLM. Jamais une commande ; jamais exécuté ; décidé par la porte déterministe.",
+  "type": "object",
+  "required": ["schema", "candidate_id", "kind", "provider", "target_path", "gap_id", "diff_unified", "tests_declared", "falsifier", "rollback_ref", "claims_applied"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"type": "string", "enum": ["zoran.zce.llm_candidate.v1"]},
+    "candidate_id": {"type": "string"},
+    "kind": {"type": "string", "enum": ["PATCH_CANDIDATE", "TEXT_CANDIDATE"]},
+    "provider": {"type": "string"},
+    "target_path": {"type": "string"},
+    "gap_id": {"type": "string"},
+    "diff_unified": {"type": "string"},
+    "tests_declared": {"type": "array", "items": {"type": "string"}},
+    "falsifier": {"type": "string"},
+    "rollback_ref": {
+      "type": "object",
+      "required": ["path", "content_sha256"],
+      "properties": {
+        "path": {"type": "string"},
+        "content_sha256": {"type": "string"}
+      }
+    },
+    "claims_applied": {"type": "boolean"}
+  }
+}
