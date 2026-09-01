@@ -1,0 +1,52 @@
+{
+  "bounded_pass": "PASS_E75Y4V_BOOTSTRAP_CHRONOLOGY_VALIDATOR_250_OF_250_VETO_50_OF_50_CONTROL",
+  "campaign": "E75Y4V",
+  "canonical_equation": {
+    "S_ADD_V2": "HISTORIQUE_NON_CANONIQUE",
+    "S_PRODUCT_T002": "FAIL_BLOQUANT",
+    "S_TECP": "NON_MESURÉ",
+    "kinematics": "ΔS = S_après − S_avant",
+    "meta_operator": "M_ZORAN(test, cadre) -> CERTIFICAT_STRUCTURE",
+    "scalar_gauge": "S = (β × ΔΦ_coh)/(1 + T + σ)"
+  },
+  "date": "2026-08-29",
+  "handoff_id": "HANDOFF_276",
+  "next_priority": "Materialize a finite corpus of every pre-2026-08-12T07:31:13.064887Z authority/floor candidate, scan it byte-for-byte for the exact R12 fingerprint and floor evidence, then falsify independence, rollback resistance and N-to-N+1 continuity.",
+  "non_mesure": [
+    "exhaustive historical byte scan",
+    "predating independent R12 pin",
+    "predating non-restorable client floor",
+    "productive publisher identity",
+    "R12-to-R23 continuity",
+    "independent recovery",
+    "integration",
+    "scalar calibration",
+    "scientific effects",
+    "fresh full Zenodo corpus read"
+  ],
+  "preserved_failures": [
+    "E75Y4V first package attempt required absent optional debt log",
+    "E75Y4U 0/6 A2 bindings",
+    "E75Y4T outside A2 co-rollback",
+    "E75Y4T initial 27/28 audit FAIL",
+    "E75Y4S",
+    "E75Y4M-R",
+    "R29",
+    "R4/R4.1",
+    "BGE R2",
+    "ZCE R2 C26/C31",
+    "R12 historical failures",
+    "all earlier FAIL"
+  ],
+  "report": {
+    "path": "E75Y4V/ZORAN_RAPPORT_E75Y4V_PRE_R12_BOOTSTRAP_CHRONOLOGY_2026-08-29.md",
+    "sha256": "fa20af796b06d3deab0122a4885a8338417600f4093e771897d34a8b34861ea9"
+  },
+  "results": {
+    "path": "E75Y4V/E75Y4V_RESULTS.json",
+    "sha256": "5617d54afb59dfb09dbf225c24e09f6ea24bd2f250907012ef5c3fa1cf5fe4e0"
+  },
+  "schema": "zoran.handoff.v1",
+  "scientific_status": "NON_MESURÉ",
+  "status": "NON_MESURÉ_E75Y4V_PRE_R12_BOOTSTRAP_0_OF_4_EVIDENCE"
+}
