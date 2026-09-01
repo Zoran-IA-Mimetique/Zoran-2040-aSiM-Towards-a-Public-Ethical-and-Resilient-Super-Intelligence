@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0e3a8f">
+<title>ZORAN Biz Mobile</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-brand">
+    <span class="logo">Z</span>
+    <div>
+      <div class="brand-name">ZORAN <span>Biz</span></div>
+      <div class="brand-sub" id="topbar-sub">Assistant commercial mobile</div>
+    </div>
+  </div>
+  <div class="topbar-version" id="topbar-version">v1</div>
+</header>
+
+<main id="app">
+
+  <!-- ================= ÉCRAN 1 : ACCUEIL ================= -->
+  <section class="screen active" id="screen-accueil" data-title="Accueil">
+    <h1 class="screen-title">🏠 Accueil</h1>
+    <p class="screen-intro">Renseignez le prospect, puis lancez l'analyse ZORAN.</p>
+
+    <div class="card">
+      <div class="field">
+        <label for="in-entreprise">Entreprise *</label>
+        <input type="text" id="in-entreprise" data-bind="client.entreprise" placeholder="Ex. : Bâtir Atlantique SAS" autocomplete="organization">
+        <small class="field-error" data-err="client.entreprise"></small>
+      </div>
+      <div class="field">
+        <label for="in-site">Site web</label>
+        <input type="url" id="in-site" data-bind="client.siteWeb" placeholder="https://exemple.fr" inputmode="url">
+        <small class="field-error" data-err="client.siteWeb"></small>
+      </div>
+      <div class="field">
+        <label for="in-pays">Pays</label>
+        <input type="text" id="in-pays" data-bind="client.pays" placeholder="France">
+        <small class="field-error" data-err="client.pays"></small>
+      </div>
+      <div class="field">
+        <label for="in-interlocuteur">Interlocuteur *</label>
+        <input type="text" id="in-interlocuteur" data-bind="client.interlocuteur" placeholder="Prénom Nom" autocomplete="name">
+        <small class="field-error" data-err="client.interlocuteur"></small>
+      </div>
+      <div class="field">
+        <label for="in-fonction">Fonction</label>
+        <input type="text" id="in-fonction" data-bind="client.fonction" placeholder="Ex. : Directeur Général">
+        <small class="field-error" data-err="client.fonction"></small>
+      </div>
+      <div class="field">
+        <label for="in-objectif">Objectif du rendez-vous</label>
+        <textarea id="in-objectif" data-bind="client.objectif" rows="3" placeholder="Ex. : réduire le temps passé sur les devis et centraliser la connaissance interne"></textarea>
+        <small class="field-error" data-err="client.objectif"></small>
+      </div>
+      <button class="btn btn-primary btn-block" id="btn-analyser">🔵 Analyser</button>
+    </div>
+
+    <div class="card">
+      <h2>📥 Sources d'entrée (tous formats)</h2>
+      <p class="screen-intro" style="margin-bottom:10px">
+        Importez un fichier (PDF, Word, email, texte, HTML, JSON…), collez un email
+        ou indiquez l'URL du site cible. ZORAN extrait le texte et pré-remplit l'analyse.
+      </p>
+
+      <div class="field">
+        <label for="in-files">Fichier(s) — PDF / Word / email / image / autre</label>
+        <input type="file" id="in-files" multiple
+               accept=".pdf,.doc,.docx,.eml,.msg,.txt,.md,.html,.htm,.json,.csv,.rtf,image/*,*/*">
+      </div>
+
+      <div class="field">
+        <label for="in-url">URL du site cible</label>
+        <div style="display:flex; gap:8px">
+          <input type="url" id="in-url" placeholder="https://exemple.fr" inputmode="url" style="flex:1">
+          <button class="btn btn-mini" id="btn-url-add" type="button">Ajouter</button>
+        </div>
+        <small class="screen-intro" style="margin:6px 0 0">Le contenu distant peut être bloqué par le navigateur (CORS) ; l'URL reste tracée comme source.</small>
+      </div>
+
+      <div class="field">
+        <label for="in-paste">Coller un email / un texte</label>
+        <textarea id="in-paste" rows="4" placeholder="Collez ici le corps d'un email reçu, un brief, des notes…"></textarea>
+        <button class="btn btn-mini" id="btn-paste-add" type="button" style="margin-top:8px">Ajouter ce texte comme source</button>
+      </div>
+
+      <div id="sources-list"></div>
+      <button class="btn btn-block" id="btn-extract" style="margin-top:8px">🔵 Extraire &amp; pré-remplir depuis les sources</button>
+    </div>
+  </section>
+
+  <!-- ================= ÉCRAN 2 : ANALYSE ================= -->
+  <section class="screen" id="screen-analyse" data-title="Analyse">
+    <h1 class="screen-title">🔎 Analyse</h1>
+    <p class="screen-intro" id="an-meta">Aucune analyse générée. Lancez « Analyser » depuis l'accueil.</p>
+
+    <div class="card an-card">
+      <h2>Résumé exécutif</h2>
+      <div class="an-text" id="an-resume" data-an="resume"></div>
+    </div>
+    <div class="card an-card">
+      <h2>Compréhension entreprise</h2>
+      <div class="an-text" id="an-comprehension" data-an="comprehension"></div>
+    </div>
+    <div class="card an-card">
+      <h2>Enjeux</h2>
+      <div class="an-text" id="an-enjeux" data-an="enjeux"></div>
+    </div>
+    <div class="card an-card">
+      <h2>Risques</h2>
+      <div class="an-text" id="an-risques" data-an="risques"></div>
+    </div>
+    <div class="card an-card">
+      <h2>Opportunités</h2>
+      <div class="an-text" id="an-opportunites" data-an="opportunites"></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="btn-an-modifier">🔵 Modifier</button>
+      <button class="btn" id="btn-an-regenerer">🔵 Régénérer</button>
+      <button class="btn" id="btn-an-approfondir">🔵 Approfondir</button>
+    </div>
+  </section>
+
+  <!-- ================= ÉCRAN : MOTEUR DE CONNAISSANCE (V3) ================= -->
+  <section class="screen" id="screen-moteur" data-title="Moteur">
+    <h1 class="screen-title">🧠 Moteur ZORAN</h1>
+    <p class="screen-intro">Une seule saisie client → des dizaines de livrables adaptés. Le contenu est composé à partir de la base de connaissance ZORAN et de votre dossier (brouillons réels, éditables et exportables).</p>
+
+    <div class="card">
+      <h2>Profil prospect</h2>
+      <div class="field-grid">
+        <div class="field">
+          <label for="in-taille">Taille entreprise</label>
+          <select id="in-taille" data-bind="profil.taille">
+            <option>Artisan</option><option>TPE</option><option selected>PME</option>
+            <option>ETI</option><option>Grand groupe</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="in-secteur">Secteur</label>
+          <input type="text" id="in-secteur" data-bind="profil.secteur" placeholder="BTP, santé, banque…">
+        </div>
+        <div class="field">
+          <label for="in-maturite">Maturité IA (0–6)</label>
+          <select id="in-maturite" data-bind="profil.maturiteIA">
+            <option value="0">0 — Aucune IA</option>
+            <option value="1">1 — Découverte</option>
+            <option value="2" selected>2 — Expérimentation</option>
+            <option value="3">3 — Premiers usages</option>
+            <option value="4">4 — Déploiement partiel</option>
+            <option value="5">5 — Déploiement généralisé</option>
+            <option value="6">6 — IA avancée</option>
+          </select>
+          <small class="field-error" data-err="profil.maturiteIA"></small>
+        </div>
+        <div class="field">
+          <label for="in-budget">Budget estimé</label>
+          <input type="text" id="in-budget" data-bind="profil.budget" placeholder="ex. 20–50 k€">
+        </div>
+        <div class="field">
+          <label for="in-niveau-tech">Niveau technique</label>
+          <select id="in-niveau-tech" data-bind="profil.niveauTechnique">
+            <option>faible</option><option selected>moyen</option><option>élevé</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="in-urgence">Urgence</label>
+          <select id="in-urgence" data-bind="profil.urgence">
+            <option>faible</option><option selected>moyenne</option><option>forte</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>Objections connues</label>
+        <div id="profil-objections" class="chips"></div>
+      </div>
+    </div>
+
+    <div class="card" id="moteur-reco">
+      <h2>🎯 Recommandation automatique</h2>
+      <div id="reco-body"></div>
+      <button class="btn btn-primary btn-block" id="btn-reco-apply" style="margin-top:10px">Appliquer la recommandation au générateur</button>
+    </div>
+
+    <div class="card">
+      <h2>⚙️ Générateur de livrable</h2>
+      <div class="field-grid">
+        <div class="field">
+          <label for="gen-audience">Audience</label>
+          <select id="gen-audience" data-bind="generation.audience"></select>
+        </div>
+        <div class="field">
+          <label for="gen-complexite">Complexité</label>
+          <select id="gen-complexite" data-bind="generation.complexite"></select>
+        </div>
+        <div class="field">
+          <label for="gen-format">Format</label>
+          <select id="gen-format" data-bind="generation.format"></select>
+        </div>
+        <div class="field">
+          <label for="gen-objectif">Objectif</label>
+          <select id="gen-objectif" data-bind="generation.objectif"></select>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-block" id="btn-generer">🔵 Générer le livrable</button>
+    </div>
+
+    <div class="card">
+      <h2>⚡ Moteurs rapides</h2>
+      <div id="moteur-rapide" class="rapide-grid"></div>
+    </div>
+
+    <div class="card" id="gen-output-card" style="display:none">
+      <h2 id="gen-output-titre">Livrable</h2>
+      <div class="gen-meta" id="gen-output-meta"></div>
+      <div class="an-text" id="gen-output-body" contenteditable="false"></div>
+      <div class="btn-row" style="margin-top:12px">
+        <button class="btn" id="btn-gen-edit">✏️ Modifier</button>
+        <button class="btn" id="btn-gen-copy">📋 Copier</button>
+        <button class="btn" id="btn-gen-pdf">📄 PDF</button>
+        <button class="btn" id="btn-gen-word">📝 Word</button>
+        <button class="btn" id="btn-gen-email">✉️ Email</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ÉCRAN 3 : ZORAN (MODULES) ================= -->
+  <section class="screen" id="screen-zoran" data-title="ZORAN">
+    <h1 class="screen-title">🧩 Modules ZORAN</h1>
+    <p class="screen-intro">Activez les capacités du moteur. Chaque module impacte le devis et le ROI.</p>
+
+    <div class="modules-grid" id="modules-grid"></div>
+
+    <div class="btn-row">
+      <button class="btn" id="btn-mod-all-on">🔵 Tout activer</button>
+      <button class="btn" id="btn-mod-all-off">🔵 Tout désactiver</button>
+    </div>
+  </section>
+
+  <!-- ================= ÉCRAN 4 : DIMENSIONNEMENT ================= -->
+  <section class="screen" id="screen-dimension" data-title="Dimensionnement">
+    <h1 class="screen-title">📐 Dimensionnement</h1>
+    <p class="screen-intro">Calibrez le déploiement. Tout est recalculé automatiquement.</p>
+
+    <div class="card">
+      <div class="field-grid">
+        <div class="field">
+          <label for="in-employes">Employés</label>
+          <input type="number" id="in-employes" data-bind="dimension.employes" inputmode="numeric" min="1" max="100000">
+          <small class="field-error" data-err="dimension.employes"></small>
+        </div>
+        <div class="field">
+          <label for="in-services">Services</label>
+          <input type="number" id="in-services" data-bind="dimension.services" inputmode="numeric" min="1" max="500">
+          <small class="field-error" data-err="dimension.services"></small>
+        </div>
+        <div class="field">
+          <label for="in-utilisateurs">Utilisateurs</label>
+          <input type="number" id="in-utilisateurs" data-bind="dimension.utilisateurs" inputmode="numeric" min="1" max="50000">
+          <small class="field-error" data-err="dimension.utilisateurs"></small>
+        </div>
+        <div class="field">
+          <label for="in-managers">Managers</label>
+          <input type="number" id="in-managers" data-bind="dimension.managers" inputmode="numeric" min="0" max="50000">
+          <small class="field-error" data-err="dimension.managers"></small>
+        </div>
+        <div class="field">
+          <label for="in-experts">Experts</label>
+          <input type="number" id="in-experts" data-bind="dimension.experts" inputmode="numeric" min="0" max="50000">
+          <small class="field-error" data-err="dimension.experts"></small>
+        </div>
+        <div class="field">
+          <label for="in-documents">Documents</label>
+          <input type="number" id="in-documents" data-bind="dimension.documents" inputmode="numeric" min="0" max="10000000">
+          <small class="field-error" data-err="dimension.documents"></small>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="dim-result"></div>
+  </section>
+
+  <!-- ================= ÉCRAN 5 : LICENCES ================= -->
+  <section class="screen" id="screen-licences" data-title="Licences">
+    <h1 class="screen-title">🪪 Licences</h1>
+    <p class="screen-intro" id="licence-reco"></p>
+    <div id="licences-grid"></div>
+  </section>
+
+  <!-- ================= ÉCRAN 6 : ROI ================= -->
+  <section class="screen" id="screen-roi" data-title="ROI">
+    <h1 class="screen-title">📈 Retour sur investissement</h1>
+    <p class="screen-intro">Hypothèses modifiables en direct devant le client.</p>
+
+    <div class="card">
+      <h2>Hypothèses</h2>
+      <div class="field-grid">
+        <div class="field">
+          <label for="in-roi-heures">Heures gagnées / utilisateur / semaine</label>
+          <input type="number" id="in-roi-heures" data-bind="roiHyp.heures" step="0.5" min="0" max="20" inputmode="decimal">
+          <small class="field-error" data-err="roiHyp.heures"></small>
+        </div>
+        <div class="field">
+          <label for="in-roi-cout">Coût horaire chargé (€)</label>
+          <input type="number" id="in-roi-cout" data-bind="roiHyp.coutHoraire" step="1" min="10" max="500" inputmode="decimal">
+          <small class="field-error" data-err="roiHyp.coutHoraire"></small>
+        </div>
+        <div class="field">
+          <label for="in-roi-adoption">Taux d'adoption (%)</label>
+          <input type="number" id="in-roi-adoption" data-bind="roiHyp.adoption" step="5" min="10" max="100" inputmode="numeric">
+          <small class="field-error" data-err="roiHyp.adoption"></small>
+        </div>
+        <div class="field">
+          <label for="in-roi-semaines">Semaines travaillées / an</label>
+          <input type="number" id="in-roi-semaines" data-bind="roiHyp.semaines" step="1" min="20" max="52" inputmode="numeric">
+          <small class="field-error" data-err="roiHyp.semaines"></small>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="roi-result"></div>
+
+    <div class="card">
+      <h2>Coûts vs gains cumulés (3 ans)</h2>
+      <canvas id="roi-chart" height="220"></canvas>
+      <div class="chart-legend">
+        <span><i class="dot dot-cost"></i> Coûts cumulés</span>
+        <span><i class="dot dot-gain"></i> Gains cumulés</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ÉCRAN 7 : DEVIS ================= -->
+  <section class="screen" id="screen-devis" data-title="Devis">
+    <h1 class="screen-title">🧾 Devis</h1>
+    <p class="screen-intro" id="devis-meta"></p>
+    <div class="card" id="devis-table"></div>
+
+    <div class="card">
+      <h2>📤 Exporter le dossier</h2>
+      <p class="screen-intro" style="margin-bottom:10px">Générez le livrable dans le format attendu par le client.</p>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="btn-export-pdf">📄 PDF</button>
+        <button class="btn" id="btn-export-word">📝 Word</button>
+        <button class="btn" id="btn-export-email">✉️ Email</button>
+      </div>
+      <button class="btn btn-block" id="btn-export-json" style="margin-top:4px">🔵 Exporter le JSON du dossier</button>
+    </div>
+  </section>
+
+  <!-- ================= ÉCRAN 8 : VERSIONS ================= -->
+  <section class="screen" id="screen-versions" data-title="Versions">
+    <h1 class="screen-title">🎯 Versions du discours</h1>
+    <p class="screen-intro">Choisissez le profil de votre interlocuteur : le pitch s'adapte.</p>
+    <div class="versions-grid" id="versions-grid"></div>
+    <div class="card" id="version-pitch"></div>
+  </section>
+
+  <!-- ================= ÉCRAN 9 : AUDIT ================= -->
+  <section class="screen" id="screen-audit" data-title="Audit">
+    <h1 class="screen-title">🛡️ Audit &amp; traçabilité</h1>
+
+    <div class="card">
+      <h2>Pipeline de calcul (Python virtuel)</h2>
+      <div id="audit-trace"></div>
+    </div>
+
+    <div class="card">
+      <h2>Historique des modifications</h2>
+      <div id="audit-log"></div>
+    </div>
+
+    <div class="card">
+      <h2>JSON source</h2>
+      <pre id="audit-json"></pre>
+      <div class="btn-row">
+        <button class="btn" id="btn-json-copy">🔵 Copier le JSON</button>
+        <button class="btn btn-danger" id="btn-reset">⚠️ Réinitialiser</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Zone d'impression du devis (remplie par JS au moment de l'export) -->
+<div id="print-area" aria-hidden="true"></div>
+
+<nav class="bottomnav" id="bottomnav">
+  <button data-screen="screen-accueil" class="active"><span>🏠</span>Accueil</button>
+  <button data-screen="screen-analyse"><span>🔎</span>Analyse</button>
+  <button data-screen="screen-moteur"><span>🧠</span>Moteur</button>
+  <button data-screen="screen-zoran"><span>🧩</span>ZORAN</button>
+  <button data-screen="screen-dimension"><span>📐</span>Dimension</button>
+  <button data-screen="screen-licences"><span>🪪</span>Licences</button>
+  <button data-screen="screen-roi"><span>📈</span>ROI</button>
+  <button data-screen="screen-devis"><span>🧾</span>Devis</button>
+  <button data-screen="screen-versions"><span>🎯</span>Versions</button>
+  <button data-screen="screen-audit"><span>🛡️</span>Audit</button>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<script src="engine.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

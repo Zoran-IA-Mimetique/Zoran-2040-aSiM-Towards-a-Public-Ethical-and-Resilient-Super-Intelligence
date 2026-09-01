@@ -1,0 +1,2691 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0e3a8f">
+<title>ZORAN Biz Mobile</title>
+<style>
+/* ============================================================
+   ZORAN Biz Mobile — feuille de style mobile-first
+   ============================================================ */
+
+:root {
+  /* Palette ZORAN / institut IA — classe & contemporaine */
+  --blue: #1f3a5f;          /* encre profonde (couleur d'action) */
+  --blue-dark: #14263f;     /* nuit */
+  --blue-soft: #eef1f6;     /* voile froid */
+  --accent: #b08d4f;        /* or discret */
+  --accent-soft: #f3ecdd;
+  --ink: #1b2434;
+  --ink-soft: #6b7382;
+  --bg: #f7f6f2;            /* ivoire */
+  --card: #ffffff;
+  --line: #e7e4dc;
+  --ok: #2f7d5b;
+  --warn: #b67f1e;
+  --danger: #b23a48;
+  --radius: 12px;
+  --shadow: 0 1px 2px rgba(27, 36, 52, 0.04), 0 6px 22px rgba(27, 36, 52, 0.06);
+  --nav-h: 64px;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+/* ---------- Barre supérieure ---------- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(12px + env(safe-area-inset-top)) 18px 12px;
+  background: var(--blue-dark);
+  color: #fff;
+  border-bottom: 2px solid var(--accent);
+}
+.topbar-brand { display: flex; align-items: center; gap: 11px; }
+.logo {
+  display: grid;
+  place-items: center;
+  width: 38px; height: 38px;
+  border-radius: 9px;
+  background: transparent;
+  border: 1.5px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 20px;
+}
+.brand-name { font-family: var(--serif); font-weight: 600; letter-spacing: 0.4px; font-size: 17px; }
+.brand-name span { font-weight: 400; opacity: 0.7; }
+.brand-sub { font-size: 11px; opacity: 0.7; letter-spacing: 0.3px; }
+.topbar-version {
+  font-size: 11px;
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 4px 9px;
+  border-radius: 999px;
+  letter-spacing: 0.5px;
+}
+
+/* ---------- Écrans ---------- */
+#app {
+  padding: 16px 14px calc(var(--nav-h) + 24px + env(safe-area-inset-bottom));
+  max-width: 760px;
+  margin: 0 auto;
+}
+.screen { display: none; animation: fadein 0.18s ease-out; }
+.screen.active { display: block; }
+@keyframes fadein { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+.screen-title { font-family: var(--serif); font-weight: 600; font-size: 25px; letter-spacing: 0.2px; margin: 6px 0 4px; }
+.screen-intro { color: var(--ink-soft); font-size: 14px; margin: 0 0 16px; }
+
+/* ---------- Cartes ---------- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+  margin-bottom: 14px;
+}
+.card h2 { font-family: var(--serif); font-weight: 600; font-size: 17px; margin: 0 0 12px; color: var(--blue-dark); }
+
+/* ---------- Champs ---------- */
+.field { margin-bottom: 12px; }
+.field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: var(--ink);
+}
+.field input, .field textarea, .field select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  background: #fbfcfe;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.15s;
+}
+.field input:focus, .field textarea:focus { border-color: var(--blue); background: #fff; }
+.field input.invalid, .field textarea.invalid { border-color: var(--danger); background: #fff5f6; }
+.field-error { display: none; color: var(--danger); font-size: 12px; margin-top: 4px; }
+.field-error.show { display: block; }
+
+.field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 12px; }
+.field-grid .field { margin-bottom: 0; }
+@media (max-width: 360px) { .field-grid { grid-template-columns: 1fr; } }
+
+/* ---------- Boutons ---------- */
+.btn {
+  appearance: none;
+  border: 1px solid var(--blue);
+  background: #fff;
+  color: var(--blue);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.06s, background 0.15s, box-shadow 0.15s;
+}
+.btn:active { transform: scale(0.98); }
+.btn-primary { background: var(--blue); color: #fff; border-color: var(--blue); }
+.btn-primary:hover { box-shadow: 0 4px 14px rgba(31, 58, 95, 0.25); }
+.btn-block { display: block; width: 100%; margin-top: 6px; }
+.btn-danger { border-color: var(--danger); color: var(--danger); }
+.btn-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.btn-row .btn { flex: 1 1 30%; min-width: 110px; }
+.btn-mini {
+  font-size: 13px;
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+
+/* ---------- Analyse ---------- */
+.an-card h2 { display: flex; align-items: center; gap: 6px; }
+.an-text { font-size: 14.5px; white-space: pre-wrap; }
+.an-text:empty::before { content: "—"; color: var(--ink-soft); }
+.an-text[contenteditable="true"] {
+  outline: 2px dashed var(--blue);
+  outline-offset: 4px;
+  border-radius: 6px;
+  background: var(--blue-soft);
+}
+
+/* ---------- Modules ZORAN ---------- */
+.modules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+@media (max-width: 360px) { .modules-grid { grid-template-columns: 1fr; } }
+.module-card {
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.module-card.on { border-color: var(--accent); box-shadow: var(--shadow), inset 3px 0 0 var(--accent); }
+.module-head { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.module-name { font-weight: 700; font-size: 14px; }
+.module-icon { font-size: 20px; }
+.module-desc { font-size: 12px; color: var(--ink-soft); min-height: 30px; }
+.module-state { font-size: 11.5px; font-weight: 700; }
+.module-card.on .module-state { color: var(--ok); }
+.module-card:not(.on) .module-state { color: var(--ink-soft); }
+.module-actions { display: flex; gap: 6px; }
+.module-actions .btn { flex: 1; font-size: 12.5px; padding: 8px 6px; }
+
+/* ---------- Tableaux / lignes de résultats ---------- */
+.kv { display: flex; justify-content: space-between; gap: 10px; padding: 8px 0; border-bottom: 1px dashed var(--line); font-size: 14px; }
+.kv:last-child { border-bottom: none; }
+.kv b { text-align: right; white-space: nowrap; }
+.kv.total { font-size: 15.5px; border-top: 2px solid var(--blue); border-bottom: none; padding-top: 10px; }
+.kv.total b { color: var(--blue-dark); }
+.kv .pos { color: var(--ok); }
+.kv .neg { color: var(--danger); }
+
+.badge {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 700;
+  background: var(--blue-soft);
+  color: var(--blue-dark);
+}
+.badge.ok { background: #e2f6ec; color: var(--ok); }
+.badge.warn { background: #fdf1dd; color: var(--warn); }
+
+/* ---------- Licences ---------- */
+.licence-card {
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 14px 16px;
+  margin-bottom: 10px;
+}
+.licence-card.reco { border-color: var(--accent); box-shadow: var(--shadow), inset 3px 0 0 var(--accent); }
+.licence-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.licence-name { font-weight: 800; font-size: 16px; }
+.licence-price { font-weight: 700; color: var(--blue-dark); }
+.licence-desc { font-size: 13px; color: var(--ink-soft); }
+
+/* ---------- Graphique ROI ---------- */
+#roi-chart { width: 100%; display: block; }
+.chart-legend { display: flex; gap: 16px; justify-content: center; font-size: 12.5px; color: var(--ink-soft); margin-top: 8px; }
+.dot { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; }
+.dot-cost { background: #d63649; }
+.dot-gain { background: #18a35d; }
+
+/* ---------- Versions ---------- */
+.versions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; margin-bottom: 14px; }
+.versions-grid button {
+  border: 1.5px solid var(--line);
+  background: var(--card);
+  border-radius: 12px;
+  padding: 12px 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+}
+.versions-grid button .v-ico { display: block; font-size: 20px; margin-bottom: 4px; }
+.versions-grid button.active { border-color: var(--blue); background: var(--blue-soft); color: var(--blue-dark); }
+
+/* ---------- Audit ---------- */
+#audit-trace .step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 0;
+  font-size: 13.5px;
+}
+#audit-trace .step .s-ico { font-size: 16px; }
+#audit-trace .step .s-detail { color: var(--ink-soft); font-size: 12px; }
+.log-entry {
+  border-left: 3px solid var(--blue);
+  padding: 6px 10px;
+  margin-bottom: 8px;
+  background: #f8faff;
+  border-radius: 0 8px 8px 0;
+  font-size: 12.5px;
+}
+.log-entry .log-meta { color: var(--ink-soft); font-size: 11px; }
+.log-entry code { background: var(--blue-soft); padding: 1px 5px; border-radius: 5px; font-size: 11.5px; }
+#audit-json {
+  background: #101a30;
+  color: #cfe1ff;
+  font-size: 11px;
+  border-radius: 10px;
+  padding: 12px;
+  overflow-x: auto;
+  max-height: 320px;
+  margin: 0 0 10px;
+}
+
+/* ---------- Moteur de connaissance (V3) ---------- */
+.chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.chip {
+  border: 1.5px solid var(--line);
+  background: #fff;
+  color: var(--ink-soft);
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.chip.on { border-color: var(--accent); background: var(--accent-soft); color: var(--ink); }
+.rapide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+@media (max-width: 360px) { .rapide-grid { grid-template-columns: 1fr; } }
+.rapide-grid .btn { text-align: left; }
+.gen-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+#gen-output-body { font-size: 14.5px; line-height: 1.5; }
+#gen-output-body.editing { outline: 2px dashed var(--blue); outline-offset: 4px; border-radius: 6px; background: var(--blue-soft); padding: 6px; }
+
+/* ---------- Navigation basse ---------- */
+.bottomnav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 60;
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  background: #fff;
+  border-top: 1px solid var(--line);
+  padding-bottom: env(safe-area-inset-bottom);
+  height: calc(var(--nav-h) + env(safe-area-inset-bottom));
+  scrollbar-width: none;
+}
+.bottomnav::-webkit-scrollbar { display: none; }
+.bottomnav button {
+  flex: 1 0 72px;
+  border: none;
+  background: none;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  cursor: pointer;
+  padding: 6px 2px;
+}
+.bottomnav button span { font-size: 19px; }
+.bottomnav button.active { color: var(--blue); }
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--nav-h) + 18px + env(safe-area-inset-bottom));
+  transform: translateX(-50%) translateY(20px);
+  background: var(--ink);
+  color: #fff;
+  font-size: 13.5px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s;
+  z-index: 100;
+  max-width: 90vw;
+  text-align: center;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ---------- Impression (Export PDF) ---------- */
+#print-area { display: none; }
+
+@media print {
+  body > *:not(#print-area) { display: none !important; }
+  #print-area { display: block !important; padding: 0; color: #000; }
+  #print-area h1 { font-size: 20px; margin-bottom: 2px; }
+  #print-area .print-sub { color: #555; font-size: 12px; margin-bottom: 16px; }
+  #print-area table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  #print-area th, #print-area td { border: 1px solid #bbb; padding: 7px 10px; text-align: left; }
+  #print-area td:last-child, #print-area th:last-child { text-align: right; }
+  #print-area .print-total td { font-weight: 700; background: #eef2fb; }
+  #print-area .print-foot { margin-top: 18px; font-size: 11px; color: #666; }
+}
+
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-brand">
+    <span class="logo">Z</span>
+    <div>
+      <div class="brand-name">ZORAN <span>Biz</span></div>
+      <div class="brand-sub" id="topbar-sub">Assistant commercial mobile</div>
+    </div>
+  </div>
+  <div class="topbar-version" id="topbar-version">v1</div>
+</header>
+
+<main id="app">
+
+  <!-- ================= ÉCRAN 1 : ACCUEIL ================= -->
+  <section class="screen active" id="screen-accueil" data-title="Accueil">
+    <h1 class="screen-title">🏠 Accueil</h1>
+    <p class="screen-intro">Renseignez le prospect, puis lancez l'analyse ZORAN.</p>
+
+    <div class="card">
+      <div class="field">
+        <label for="in-entreprise">Entreprise *</label>
+        <input type="text" id="in-entreprise" data-bind="client.entreprise" placeholder="Ex. : Bâtir Atlantique SAS" autocomplete="organization">
+        <small class="field-error" data-err="client.entreprise"></small>
+      </div>
+      <div class="field">
+        <label for="in-site">Site web</label>
+        <input type="url" id="in-site" data-bind="client.siteWeb" placeholder="https://exemple.fr" inputmode="url">
+        <small class="field-error" data-err="client.siteWeb"></small>
+      </div>
+      <div class="field">
+        <label for="in-pays">Pays</label>
+        <input type="text" id="in-pays" data-bind="client.pays" placeholder="France">
+        <small class="field-error" data-err="client.pays"></small>
+      </div>
+      <div class="field">
+        <label for="in-interlocuteur">Interlocuteur *</label>
+        <input type="text" id="in-interlocuteur" data-bind="client.interlocuteur" placeholder="Prénom Nom" autocomplete="name">
+        <small class="field-error" data-err="client.interlocuteur"></small>
+      </div>
+      <div class="field">
+        <label for="in-fonction">Fonction</label>
+        <input type="text" id="in-fonction" data-bind="client.fonction" placeholder="Ex. : Directeur Général">
+        <small class="field-error" data-err="client.fonction"></small>
+      </div>
+      <div class="field">
+        <label for="in-objectif">Objectif du rendez-vous</label>
+        <textarea id="in-objectif" data-bind="client.objectif" rows="3" placeholder="Ex. : réduire le temps passé sur les devis et centraliser la connaissance interne"></textarea>
+        <small class="field-error" data-err="client.objectif"></small>
+      </div>
+      <button class="btn btn-primary btn-block" id="btn-analyser">🔵 Analyser</button>
+    </div>
+
+    <div class="card">
+      <h2>📥 Sources d'entrée (tous formats)</h2>
+      <p class="screen-intro" style="margin-bottom:10px">
+        Importez un fichier (PDF, Word, email, texte, HTML, JSON…), collez un email
+        ou indiquez l'URL du site cible. ZORAN extrait le texte et pré-remplit l'analyse.
+      </p>
+
+      <div class="field">
+        <label for="in-files">Fichier(s) — PDF / Word / email / image / autre</label>
+        <input type="file" id="in-files" multiple
+               accept=".pdf,.doc,.docx,.eml,.msg,.txt,.md,.html,.htm,.json,.csv,.rtf,image/*,*/*">
+      </div>
+
+      <div class="field">
+        <label for="in-url">URL du site cible</label>
+        <div style="display:flex; gap:8px">
+          <input type="url" id="in-url" placeholder="https://exemple.fr" inputmode="url" style="flex:1">
+          <button class="btn btn-mini" id="btn-url-add" type="button">Ajouter</button>
+        </div>
+        <small class="screen-intro" style="margin:6px 0 0">Le contenu distant peut être bloqué par le navigateur (CORS) ; l'URL reste tracée comme source.</small>
+      </div>
+
+      <div class="field">
+        <label for="in-paste">Coller un email / un texte</label>
+        <textarea id="in-paste" rows="4" placeholder="Collez ici le corps d'un email reçu, un brief, des notes…"></textarea>
+        <button class="btn btn-mini" id="btn-paste-add" type="button" style="margin-top:8px">Ajouter ce texte comme source</button>
+      </div>
+
+      <div id="sources-list"></div>
+      <button class="btn btn-block" id="btn-extract" style="margin-top:8px">🔵 Extraire &amp; pré-remplir depuis les sources</button>
+    </div>
+  </section>
+
+  <!-- ================= ÉCRAN 2 : ANALYSE ================= -->
+  <section class="screen" id="screen-analyse" data-title="Analyse">
+    <h1 class="screen-title">🔎 Analyse</h1>
+    <p class="screen-intro" id="an-meta">Aucune analyse générée. Lancez « Analyser » depuis l'accueil.</p>
+
+    <div class="card an-card">
+      <h2>Résumé exécutif</h2>
+      <div class="an-text" id="an-resume" data-an="resume"></div>
+    </div>
+    <div class="card an-card">
+      <h2>Compréhension entreprise</h2>
+      <div class="an-text" id="an-comprehension" data-an="comprehension"></div>
+    </div>
+    <div class="card an-card">
+      <h2>Enjeux</h2>
+      <div class="an-text" id="an-enjeux" data-an="enjeux"></div>
+    </div>
+    <div class="card an-card">
+      <h2>Risques</h2>
+      <div class="an-text" id="an-risques" data-an="risques"></div>
+    </div>
+    <div class="card an-card">
+      <h2>Opportunités</h2>
+      <div class="an-text" id="an-opportunites" data-an="opportunites"></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="btn-an-modifier">🔵 Modifier</button>
+      <button class="btn" id="btn-an-regenerer">🔵 Régénérer</button>
+      <button class="btn" id="btn-an-approfondir">🔵 Approfondir</button>
+    </div>
+  </section>
+
+  <!-- ================= ÉCRAN : MOTEUR DE CONNAISSANCE (V3) ================= -->
+  <section class="screen" id="screen-moteur" data-title="Moteur">
+    <h1 class="screen-title">🧠 Moteur ZORAN</h1>
+    <p class="screen-intro">Une seule saisie client → des dizaines de livrables adaptés. Le contenu est composé à partir de la base de connaissance ZORAN et de votre dossier (brouillons réels, éditables et exportables).</p>
+
+    <div class="card">
+      <h2>Profil prospect</h2>
+      <div class="field-grid">
+        <div class="field">
+          <label for="in-taille">Taille entreprise</label>
+          <select id="in-taille" data-bind="profil.taille">
+            <option>Artisan</option><option>TPE</option><option selected>PME</option>
+            <option>ETI</option><option>Grand groupe</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="in-secteur">Secteur</label>
+          <input type="text" id="in-secteur" data-bind="profil.secteur" placeholder="BTP, santé, banque…">
+        </div>
+        <div class="field">
+          <label for="in-maturite">Maturité IA (0–6)</label>
+          <select id="in-maturite" data-bind="profil.maturiteIA">
+            <option value="0">0 — Aucune IA</option>
+            <option value="1">1 — Découverte</option>
+            <option value="2" selected>2 — Expérimentation</option>
+            <option value="3">3 — Premiers usages</option>
+            <option value="4">4 — Déploiement partiel</option>
+            <option value="5">5 — Déploiement généralisé</option>
+            <option value="6">6 — IA avancée</option>
+          </select>
+          <small class="field-error" data-err="profil.maturiteIA"></small>
+        </div>
+        <div class="field">
+          <label for="in-budget">Budget estimé</label>
+          <input type="text" id="in-budget" data-bind="profil.budget" placeholder="ex. 20–50 k€">
+        </div>
+        <div class="field">
+          <label for="in-niveau-tech">Niveau technique</label>
+          <select id="in-niveau-tech" data-bind="profil.niveauTechnique">
+            <option>faible</option><option selected>moyen</option><option>élevé</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="in-urgence">Urgence</label>
+          <select id="in-urgence" data-bind="profil.urgence">
+            <option>faible</option><option selected>moyenne</option><option>forte</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>Objections connues</label>
+        <div id="profil-objections" class="chips"></div>
+      </div>
+    </div>
+
+    <div class="card" id="moteur-reco">
+      <h2>🎯 Recommandation automatique</h2>
+      <div id="reco-body"></div>
+      <button class="btn btn-primary btn-block" id="btn-reco-apply" style="margin-top:10px">Appliquer la recommandation au générateur</button>
+    </div>
+
+    <div class="card">
+      <h2>⚙️ Générateur de livrable</h2>
+      <div class="field-grid">
+        <div class="field">
+          <label for="gen-audience">Audience</label>
+          <select id="gen-audience" data-bind="generation.audience"></select>
+        </div>
+        <div class="field">
+          <label for="gen-complexite">Complexité</label>
+          <select id="gen-complexite" data-bind="generation.complexite"></select>
+        </div>
+        <div class="field">
+          <label for="gen-format">Format</label>
+          <select id="gen-format" data-bind="generation.format"></select>
+        </div>
+        <div class="field">
+          <label for="gen-objectif">Objectif</label>
+          <select id="gen-objectif" data-bind="generation.objectif"></select>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-block" id="btn-generer">🔵 Générer le livrable</button>
+    </div>
+
+    <div class="card">
+      <h2>⚡ Moteurs rapides</h2>
+      <div id="moteur-rapide" class="rapide-grid"></div>
+    </div>
+
+    <div class="card" id="gen-output-card" style="display:none">
+      <h2 id="gen-output-titre">Livrable</h2>
+      <div class="gen-meta" id="gen-output-meta"></div>
+      <div class="an-text" id="gen-output-body" contenteditable="false"></div>
+      <div class="btn-row" style="margin-top:12px">
+        <button class="btn" id="btn-gen-edit">✏️ Modifier</button>
+        <button class="btn" id="btn-gen-copy">📋 Copier</button>
+        <button class="btn" id="btn-gen-pdf">📄 PDF</button>
+        <button class="btn" id="btn-gen-word">📝 Word</button>
+        <button class="btn" id="btn-gen-email">✉️ Email</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ÉCRAN 3 : ZORAN (MODULES) ================= -->
+  <section class="screen" id="screen-zoran" data-title="ZORAN">
+    <h1 class="screen-title">🧩 Modules ZORAN</h1>
+    <p class="screen-intro">Activez les capacités du moteur. Chaque module impacte le devis et le ROI.</p>
+
+    <div class="modules-grid" id="modules-grid"></div>
+
+    <div class="btn-row">
+      <button class="btn" id="btn-mod-all-on">🔵 Tout activer</button>
+      <button class="btn" id="btn-mod-all-off">🔵 Tout désactiver</button>
+    </div>
+  </section>
+
+  <!-- ================= ÉCRAN 4 : DIMENSIONNEMENT ================= -->
+  <section class="screen" id="screen-dimension" data-title="Dimensionnement">
+    <h1 class="screen-title">📐 Dimensionnement</h1>
+    <p class="screen-intro">Calibrez le déploiement. Tout est recalculé automatiquement.</p>
+
+    <div class="card">
+      <div class="field-grid">
+        <div class="field">
+          <label for="in-employes">Employés</label>
+          <input type="number" id="in-employes" data-bind="dimension.employes" inputmode="numeric" min="1" max="100000">
+          <small class="field-error" data-err="dimension.employes"></small>
+        </div>
+        <div class="field">
+          <label for="in-services">Services</label>
+          <input type="number" id="in-services" data-bind="dimension.services" inputmode="numeric" min="1" max="500">
+          <small class="field-error" data-err="dimension.services"></small>
+        </div>
+        <div class="field">
+          <label for="in-utilisateurs">Utilisateurs</label>
+          <input type="number" id="in-utilisateurs" data-bind="dimension.utilisateurs" inputmode="numeric" min="1" max="50000">
+          <small class="field-error" data-err="dimension.utilisateurs"></small>
+        </div>
+        <div class="field">
+          <label for="in-managers">Managers</label>
+          <input type="number" id="in-managers" data-bind="dimension.managers" inputmode="numeric" min="0" max="50000">
+          <small class="field-error" data-err="dimension.managers"></small>
+        </div>
+        <div class="field">
+          <label for="in-experts">Experts</label>
+          <input type="number" id="in-experts" data-bind="dimension.experts" inputmode="numeric" min="0" max="50000">
+          <small class="field-error" data-err="dimension.experts"></small>
+        </div>
+        <div class="field">
+          <label for="in-documents">Documents</label>
+          <input type="number" id="in-documents" data-bind="dimension.documents" inputmode="numeric" min="0" max="10000000">
+          <small class="field-error" data-err="dimension.documents"></small>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="dim-result"></div>
+  </section>
+
+  <!-- ================= ÉCRAN 5 : LICENCES ================= -->
+  <section class="screen" id="screen-licences" data-title="Licences">
+    <h1 class="screen-title">🪪 Licences</h1>
+    <p class="screen-intro" id="licence-reco"></p>
+    <div id="licences-grid"></div>
+  </section>
+
+  <!-- ================= ÉCRAN 6 : ROI ================= -->
+  <section class="screen" id="screen-roi" data-title="ROI">
+    <h1 class="screen-title">📈 Retour sur investissement</h1>
+    <p class="screen-intro">Hypothèses modifiables en direct devant le client.</p>
+
+    <div class="card">
+      <h2>Hypothèses</h2>
+      <div class="field-grid">
+        <div class="field">
+          <label for="in-roi-heures">Heures gagnées / utilisateur / semaine</label>
+          <input type="number" id="in-roi-heures" data-bind="roiHyp.heures" step="0.5" min="0" max="20" inputmode="decimal">
+          <small class="field-error" data-err="roiHyp.heures"></small>
+        </div>
+        <div class="field">
+          <label for="in-roi-cout">Coût horaire chargé (€)</label>
+          <input type="number" id="in-roi-cout" data-bind="roiHyp.coutHoraire" step="1" min="10" max="500" inputmode="decimal">
+          <small class="field-error" data-err="roiHyp.coutHoraire"></small>
+        </div>
+        <div class="field">
+          <label for="in-roi-adoption">Taux d'adoption (%)</label>
+          <input type="number" id="in-roi-adoption" data-bind="roiHyp.adoption" step="5" min="10" max="100" inputmode="numeric">
+          <small class="field-error" data-err="roiHyp.adoption"></small>
+        </div>
+        <div class="field">
+          <label for="in-roi-semaines">Semaines travaillées / an</label>
+          <input type="number" id="in-roi-semaines" data-bind="roiHyp.semaines" step="1" min="20" max="52" inputmode="numeric">
+          <small class="field-error" data-err="roiHyp.semaines"></small>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="roi-result"></div>
+
+    <div class="card">
+      <h2>Coûts vs gains cumulés (3 ans)</h2>
+      <canvas id="roi-chart" height="220"></canvas>
+      <div class="chart-legend">
+        <span><i class="dot dot-cost"></i> Coûts cumulés</span>
+        <span><i class="dot dot-gain"></i> Gains cumulés</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ÉCRAN 7 : DEVIS ================= -->
+  <section class="screen" id="screen-devis" data-title="Devis">
+    <h1 class="screen-title">🧾 Devis</h1>
+    <p class="screen-intro" id="devis-meta"></p>
+    <div class="card" id="devis-table"></div>
+
+    <div class="card">
+      <h2>📤 Exporter le dossier</h2>
+      <p class="screen-intro" style="margin-bottom:10px">Générez le livrable dans le format attendu par le client.</p>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="btn-export-pdf">📄 PDF</button>
+        <button class="btn" id="btn-export-word">📝 Word</button>
+        <button class="btn" id="btn-export-email">✉️ Email</button>
+      </div>
+      <button class="btn btn-block" id="btn-export-json" style="margin-top:4px">🔵 Exporter le JSON du dossier</button>
+    </div>
+  </section>
+
+  <!-- ================= ÉCRAN 8 : VERSIONS ================= -->
+  <section class="screen" id="screen-versions" data-title="Versions">
+    <h1 class="screen-title">🎯 Versions du discours</h1>
+    <p class="screen-intro">Choisissez le profil de votre interlocuteur : le pitch s'adapte.</p>
+    <div class="versions-grid" id="versions-grid"></div>
+    <div class="card" id="version-pitch"></div>
+  </section>
+
+  <!-- ================= ÉCRAN 9 : AUDIT ================= -->
+  <section class="screen" id="screen-audit" data-title="Audit">
+    <h1 class="screen-title">🛡️ Audit &amp; traçabilité</h1>
+
+    <div class="card">
+      <h2>Pipeline de calcul (Python virtuel)</h2>
+      <div id="audit-trace"></div>
+    </div>
+
+    <div class="card">
+      <h2>Historique des modifications</h2>
+      <div id="audit-log"></div>
+    </div>
+
+    <div class="card">
+      <h2>JSON source</h2>
+      <pre id="audit-json"></pre>
+      <div class="btn-row">
+        <button class="btn" id="btn-json-copy">🔵 Copier le JSON</button>
+        <button class="btn btn-danger" id="btn-reset">⚠️ Réinitialiser</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Zone d'impression du devis (remplie par JS au moment de l'export) -->
+<div id="print-area" aria-hidden="true"></div>
+
+<nav class="bottomnav" id="bottomnav">
+  <button data-screen="screen-accueil" class="active"><span>🏠</span>Accueil</button>
+  <button data-screen="screen-analyse"><span>🔎</span>Analyse</button>
+  <button data-screen="screen-moteur"><span>🧠</span>Moteur</button>
+  <button data-screen="screen-zoran"><span>🧩</span>ZORAN</button>
+  <button data-screen="screen-dimension"><span>📐</span>Dimension</button>
+  <button data-screen="screen-licences"><span>🪪</span>Licences</button>
+  <button data-screen="screen-roi"><span>📈</span>ROI</button>
+  <button data-screen="screen-devis"><span>🧾</span>Devis</button>
+  <button data-screen="screen-versions"><span>🎯</span>Versions</button>
+  <button data-screen="screen-audit"><span>🛡️</span>Audit</button>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   ZORAN Knowledge & Sales Engine V3
+   Moteur de composition déterministe (sans backend, sans clé API).
+   À partir d'UN dossier client unique, produit des livrables réels,
+   adaptés à l'audience / la complexité / le format / l'objectif.
+   Fonctions pures (testables hors navigateur). Exposé en global : ENGINE.
+   ============================================================ */
+var ENGINE = (function () {
+  'use strict';
+
+  /* ---------- Référentiels ---------- */
+  const MATURITE = [
+    { n: 0, label: 'Aucune IA', desc: "aucun usage d'IA, tout est manuel" },
+    { n: 1, label: 'Découverte', desc: "curiosité, premières lectures, pas d'outil" },
+    { n: 2, label: 'Expérimentation', desc: "tests informels (ChatGPT grand public)" },
+    { n: 3, label: 'Premiers usages', desc: "quelques usages individuels non cadrés" },
+    { n: 4, label: 'Déploiement partiel', desc: "outils déployés sur un périmètre" },
+    { n: 5, label: 'Déploiement généralisé', desc: "IA intégrée aux processus" },
+    { n: 6, label: 'IA avancée', desc: "agents, automatisation, gouvernance mature" }
+  ];
+
+  const AUDIENCES = {
+    'Artisan':                { angle: "gagner du temps sur les devis, mémoires et la paperasse", kpi: "heures administratives par semaine", vocab: 0 },
+    'TPE':                    { angle: "faire plus sans embaucher, ne rien perdre quand quelqu'un part", kpi: "temps perdu à chercher l'information", vocab: 0 },
+    'PME':                    { angle: "structurer la connaissance et accélérer les équipes", kpi: "productivité et délais", vocab: 1 },
+    'ETI':                    { angle: "harmoniser les pratiques entre sites et capitaliser l'expertise", kpi: "coût de la non-qualité documentaire", vocab: 2 },
+    'Grand groupe':           { angle: "gouvernance du savoir à l'échelle, conformité et souveraineté", kpi: "risque, conformité et productivité globale", vocab: 3 },
+    'DG':                     { angle: "avantage compétitif durable et ROI mesurable", kpi: "ROI, time-to-market, rétention du savoir", vocab: 2 },
+    'DAF':                    { angle: "coûts maîtrisés, ROI prouvé, dépense récurrente prévisible", kpi: "ROI, TCO, payback", vocab: 2 },
+    'DSI':                    { angle: "sécurité, souveraineté des données et intégration au SI", kpi: "sécurité, conformité, intégration", vocab: 4 },
+    'Responsable métier':     { angle: "résoudre un irritant quotidien concret", kpi: "temps gagné sur le terrain", vocab: 1 },
+    'Responsable qualité':    { angle: "traçabilité, conformité documentaire et auditabilité", kpi: "non-conformités, traçabilité", vocab: 3 },
+    'Responsable innovation': { angle: "différenciation et nouveaux usages", kpi: "vitesse d'innovation", vocab: 3 },
+    'Expert':                 { angle: "décharger les sollicitations répétitives et transmettre le savoir", kpi: "temps d'expert préservé", vocab: 4 },
+    'Technique':              { angle: "architecture, API, déploiement et sécurité", kpi: "intégration, latence, contrôle", vocab: 5 },
+    'Investisseur':           { angle: "marché, modèle récurrent, effet d'échelle et défendabilité", kpi: "ARR, marge, TAM, moat", vocab: 3 },
+    'Financeur':              { angle: "impact, éligibilité aux dispositifs et solidité du projet", kpi: "impact mesurable, cofinancement", vocab: 2 },
+    'Administration':         { angle: "service public augmenté, conformité RGPD et transparence", kpi: "qualité de service, conformité", vocab: 2 },
+    'Collectivité':           { angle: "service aux usagers, souveraineté et transparence", kpi: "service rendu, conformité Loi 25/RGPD", vocab: 2 }
+  };
+
+  const COMPLEXITES = ['Ultra simple', 'Simple', 'Commercial', 'Manager', 'Expert', 'Technique', 'Investisseur', 'Scientifique'];
+
+  const FORMATS = {
+    '10 lignes':        { props: 1, style: 'prose',  sections: ['accroche', 'valeur', 'cta'] },
+    '20 lignes':        { props: 2, style: 'prose',  sections: ['accroche', 'contexte', 'valeur', 'cta'] },
+    '50 lignes':        { props: 3, style: 'prose',  sections: ['accroche', 'contexte', 'valeur', 'roi', 'cta'] },
+    '1 page':           { props: 3, style: 'prose',  sections: ['accroche', 'contexte', 'valeur', 'preuve', 'roi', 'cta'] },
+    '2 pages':          { props: 4, style: 'prose',  sections: ['accroche', 'contexte', 'valeur', 'preuve', 'differenciateur', 'objection', 'roi', 'cta'] },
+    '5 pages':          { props: 6, style: 'prose',  sections: ['accroche', 'contexte', 'valeur', 'preuve', 'differenciateur', 'objection', 'casusage', 'roi', 'roadmap', 'cta'] },
+    '10 pages':         { props: 7, style: 'prose',  sections: ['accroche', 'contexte', 'valeur', 'preuve', 'differenciateur', 'objection', 'casusage', 'poc', 'roi', 'risque', 'roadmap', 'cta'] },
+    'FAQ':              { props: 4, style: 'faq',    sections: ['faq'] },
+    'Présentation':     { props: 5, style: 'slides', sections: ['accroche', 'contexte', 'valeur', 'differenciateur', 'roi', 'roadmap', 'cta'] },
+    'PowerPoint':       { props: 5, style: 'slides', sections: ['accroche', 'contexte', 'valeur', 'differenciateur', 'roi', 'roadmap', 'cta'] },
+    'Fiche synthèse':   { props: 3, style: 'bullets', sections: ['accroche', 'valeur', 'roi', 'cta'] },
+    'Compte rendu':     { props: 3, style: 'prose',  sections: ['contexte', 'valeur', 'roi', 'cta'] },
+    'Livre blanc':      { props: 7, style: 'prose',  sections: ['accroche', 'contexte', 'valeur', 'preuve', 'differenciateur', 'casusage', 'risque', 'roadmap', 'cta'] },
+    'Argumentaire oral':{ props: 3, style: 'oral',   sections: ['accroche', 'valeur', 'preuve', 'cta'] }
+  };
+
+  const OBJECTIFS = {
+    'Comprendre':                 { cta: "Souhaitez-vous que nous prenions 20 minutes pour explorer votre cas précis ?" },
+    'Découvrir':                  { cta: "Je vous propose une courte démonstration sur vos propres documents." },
+    'Sensibiliser':               { cta: "Le bon point de départ est un diagnostic gratuit de votre patrimoine documentaire." },
+    'Convaincre':                 { cta: "Validons ensemble un POC chiffré sur un périmètre maîtrisé." },
+    'Obtenir un rendez-vous':     { cta: "Quand seriez-vous disponible 30 minutes la semaine prochaine ?" },
+    'Obtenir un POC':             { cta: "Lançons un POC de 6 semaines avec des indicateurs de succès clairs." },
+    'Obtenir un budget':          { cta: "Voici le chiffrage et le ROI à présenter en comité d'investissement." },
+    'Déployer':                   { cta: "Passons du POC au déploiement selon la feuille de route ci-dessous." },
+    'Former':                     { cta: "Un plan de formation par rôle accompagne l'adoption." },
+    'Financer':                   { cta: "Le projet est éligible à plusieurs dispositifs de financement de l'innovation." },
+    "Répondre à un appel d'offres": { cta: "Cette note alimente directement votre mémoire technique." },
+    'Répondre à une objection':   { cta: "Reprenons point par point pour lever le doute." },
+    'Préparer un comité de direction': { cta: "Voici la synthèse décisionnelle pour votre CODIR." },
+    'Préparer un investisseur':   { cta: "Voici les éléments de marché et de modèle pour votre due diligence." }
+  };
+
+  /* ---------- Base de connaissance ZORAN ---------- */
+  const KB = {
+    valueProps: [
+      { id: 'memoire',  titre: "Une mémoire d'entreprise vivante",
+        court: "ZORAN transforme vos documents et l'expertise dispersée en une mémoire interrogeable en langage naturel.",
+        detail: "Plutôt que de chercher dans des dossiers, vos équipes posent une question et obtiennent une réponse synthétique, construite sur VOS contenus. La connaissance cesse de dormir dans des fichiers : elle devient utilisable instantanément.",
+        preuve: "Le temps moyen passé à rechercher une information (souvent 1 à 2 h par jour et par cadre) est largement récupéré." },
+      { id: 'source',   titre: "Des réponses sourcées et auditables",
+        court: "Chaque réponse cite ses sources et reste traçable de bout en bout.",
+        detail: "Contrairement à un assistant grand public, ZORAN indique d'où vient l'information et conserve la trace de qui a demandé quoi, quand. C'est la condition d'un usage professionnel sérieux : on peut vérifier, justifier et auditer.",
+        preuve: "Traçabilité complète (qui / quoi / quand / source) intégrée nativement." },
+      { id: 'souverain',titre: "Souveraineté et conformité",
+        court: "Vos données restent maîtrisées, dans un cadre conforme RGPD / Loi 25.",
+        detail: "ZORAN s'inscrit dans une logique d'IA souveraine et éthique : hébergement maîtrisé, gouvernance des données, respect des obligations réglementaires. Vos informations sensibles ne nourrissent pas un modèle public.",
+        preuve: "Conformité RGPD / Loi 25 et hébergement maîtrisé." },
+      { id: 'expertise',titre: "Capitalisation de l'expertise",
+        court: "Le savoir de vos experts est préservé et partagé, même en cas de départ.",
+        detail: "La dépendance à quelques personnes-clés est un risque majeur. ZORAN capture le savoir-faire et le rend accessible à tous, réduisant le point de rupture quand un expert s'absente ou quitte l'entreprise.",
+        preuve: "Réduction de la dépendance aux experts et du risque de perte de savoir." },
+      { id: 'temps',    titre: "Du temps opérationnel gagné",
+        court: "Moins de recherche, moins de ressaisie, plus de production à valeur.",
+        detail: "Les tâches répétitives (retrouver, résumer, reformuler, comparer) sont accélérées. Vos équipes se concentrent sur ce qui compte vraiment.",
+        preuve: "Gains de productivité mesurables dès les premières semaines." },
+      { id: 'ethique',  titre: "Une IA mimétique et éthique",
+        court: "Une approche pensée pour la fiabilité et l'alignement, pas pour l'effet de mode.",
+        detail: "ZORAN privilégie la pertinence sur votre contexte, la transparence des sources et un comportement maîtrisé, plutôt qu'une réponse impressionnante mais invérifiable.",
+        preuve: "Conception orientée fiabilité, transparence et contrôle." },
+      { id: 'modulaire',titre: "Un déploiement progressif et modulaire",
+        court: "On commence petit, on étend au rythme de l'adoption.",
+        detail: "Mémoire, audit, agents, skills : les capacités s'activent par étapes. Pas de big-bang : un socle qui prouve sa valeur, puis une extension maîtrisée.",
+        preuve: "Mise en route rapide sur un périmètre, puis montée en charge." }
+    ],
+
+    differentiateurs: {
+      'ChatGPT': {
+        nom: 'ChatGPT', pointsCommuns: "Tous deux comprennent le langage naturel et rédigent.",
+        differences: "ChatGPT est généraliste et ne connaît pas votre entreprise ; ZORAN raisonne sur VOTRE corpus, avec mémoire persistante et sources.",
+        avantages: "Réponses ancrées dans vos documents, traçabilité, souveraineté des données.",
+        limites: "ChatGPT reste excellent pour des tâches génériques et publiques.",
+        casUsage: "Là où vos données sont sensibles et où la justification compte, ZORAN s'impose." },
+      'Claude': {
+        nom: 'Claude', pointsCommuns: "Excellente compréhension et rédaction, attention à la sûreté.",
+        differences: "Claude est un modèle généraliste ; ZORAN est une solution d'entreprise qui ajoute mémoire propriétaire, traçabilité et gouvernance autour du raisonnement.",
+        avantages: "Mémoire d'entreprise, audit natif, intégration métier et souveraineté.",
+        limites: "Pour du raisonnement généraliste pur, un grand modèle seul suffit.",
+        casUsage: "ZORAN apporte la couche entreprise (corpus, sources, conformité) absente d'un assistant seul." },
+      'Copilot': {
+        nom: 'Microsoft Copilot', pointsCommuns: "Assistance à la productivité au quotidien.",
+        differences: "Copilot est lié à l'écosystème Microsoft 365 ; ZORAN est agnostique et centré sur la souveraineté et la mémoire métier.",
+        avantages: "Indépendance vis-à-vis d'un éditeur, contrôle des données, traçabilité.",
+        limites: "Dans un environnement 100 % Microsoft, Copilot est très intégré.",
+        casUsage: "ZORAN convient quand on refuse l'enfermement éditeur ou qu'on exige la souveraineté." },
+      'Gemini': {
+        nom: 'Google Gemini', pointsCommuns: "Modèle puissant, multimodal.",
+        differences: "Gemini est un service cloud généraliste ; ZORAN est une mémoire d'entreprise souveraine et auditable.",
+        avantages: "Données maîtrisées, sources, conformité, ancrage sur votre savoir.",
+        limites: "Pour des usages grand public, Gemini est très accessible.",
+        casUsage: "ZORAN cible l'usage professionnel sensible et traçable." },
+      'GED classique': {
+        nom: 'GED classique', pointsCommuns: "Tous deux gèrent des documents d'entreprise.",
+        differences: "Une GED stocke et classe ; ZORAN comprend, synthétise et répond à partir du contenu.",
+        avantages: "On passe du « retrouver un fichier » au « obtenir une réponse ».",
+        limites: "La GED reste utile pour l'archivage réglementaire structuré.",
+        casUsage: "ZORAN se pose au-dessus de la GED pour la rendre intelligente." },
+      'Moteur documentaire': {
+        nom: 'Moteur documentaire', pointsCommuns: "Recherche dans un corpus.",
+        differences: "Un moteur renvoie des documents ; ZORAN renvoie une réponse synthétique sourcée.",
+        avantages: "Moins de lecture, plus de décision : la synthèse est faite pour vous.",
+        limites: "La recherche par mots-clés garde un intérêt pour le repérage brut.",
+        casUsage: "ZORAN remplace 'chercher puis lire' par 'demander et décider'." }
+    },
+
+    objections: {
+      'chatgpt':   { label: "« Nous avons déjà ChatGPT »",
+        court: "ChatGPT ne connaît pas vos documents et ne trace pas ses sources ; ZORAN raisonne sur votre savoir, de façon auditable et souveraine.",
+        DG: "ChatGPT est un couteau suisse public. ZORAN est votre mémoire d'entreprise : sourcée, traçable, et qui ne fuit pas vos données.",
+        DSI: "La différence est la gouvernance : avec ZORAN, les données restent maîtrisées, les réponses sont sourcées et tout est auditable.",
+        Investisseur: "Le différenciateur défendable est la mémoire propriétaire et la conformité, pas le modèle sous-jacent." },
+      'copilot':   { label: "« Nous avons déjà Copilot »",
+        court: "Copilot vous lie à Microsoft ; ZORAN reste agnostique, souverain et centré sur votre mémoire métier.",
+        DG: "Copilot dépend de votre licence Microsoft. ZORAN évite l'enfermement et garantit la souveraineté.",
+        DSI: "ZORAN s'intègre sans imposer un écosystème unique et garde le contrôle des données.",
+        Investisseur: "L'indépendance éditeur est un atout de négociation et de pérennité." },
+      'sharepoint':{ label: "« Nous avons SharePoint »",
+        court: "SharePoint stocke ; ZORAN comprend et répond à partir de ce qui y est stocké.",
+        DG: "Vos équipes ne cherchent plus un fichier : elles obtiennent une réponse.",
+        DSI: "ZORAN se branche au-dessus de l'existant, sans tout refondre.",
+        Investisseur: "ZORAN valorise un actif documentaire déjà payé." },
+      'ged':       { label: "« Nous avons une GED »",
+        court: "La GED classe, ZORAN raisonne : c'est complémentaire, pas redondant.",
+        DG: "La GED a rangé vos documents ; ZORAN les rend enfin utiles au quotidien.",
+        DSI: "ZORAN s'appuie sur la GED comme source, sans la remplacer.",
+        Investisseur: "Couche d'intelligence à forte valeur ajoutée sur un socle existant." },
+      'budget':    { label: "« Nous n'avons pas de budget »",
+        court: "Le coût de l'inaction (temps perdu, dépendance experts) dépasse souvent l'investissement ; commençons par un POC à périmètre réduit.",
+        DG: "Le vrai coût, c'est le temps perdu chaque jour. Le POC le prouve chiffres en main.",
+        DSI: "On démarre petit, sur un budget maîtrisé, avec un ROI mesuré avant d'étendre.",
+        Investisseur: "Modèle progressif : faible mise initiale, extension financée par les gains." },
+      'resistance':{ label: "« Nos équipes résisteront »",
+        court: "L'adoption se pilote : périmètre pilote, formation par rôle, gains rapides visibles.",
+        DG: "On choisit un cas qui soulage immédiatement les équipes : l'adhésion suit.",
+        DSI: "Accompagnement, formation et indicateurs d'usage cadrent le changement.",
+        Investisseur: "La conduite du changement est intégrée à la feuille de route." },
+      'temps':     { label: "« Nous n'avons pas le temps »",
+        court: "Justement : ZORAN fait gagner du temps, et le POC demande peu d'implication de vos équipes.",
+        DG: "Ne rien faire coûte du temps chaque jour ; le POC en demande très peu.",
+        DSI: "Mise en route légère, sur un périmètre restreint.",
+        Investisseur: "Time-to-value court, charge interne minimale." },
+      'donnees':   { label: "« Nos données sont sensibles »",
+        court: "C'est exactement la raison d'être de ZORAN : souveraineté, hébergement maîtrisé, conformité RGPD / Loi 25.",
+        DG: "Vos données ne nourrissent aucun modèle public : elles restent chez vous.",
+        DSI: "Gouvernance, traçabilité et hébergement maîtrisé répondent à vos exigences.",
+        Investisseur: "La conformité est un argument commercial, pas un frein." }
+    },
+
+    casUsage: {
+      1: { titre: "Gains rapides", ex: ["Retrouver instantanément une procédure ou une clause", "Résumer un dossier volumineux", "Répondre vite à une question récurrente"] },
+      2: { titre: "Optimisation", ex: ["Standardiser les réponses et les livrables", "Réduire les ressaisies entre services", "Accélérer la rédaction de devis et mémoires"] },
+      3: { titre: "Transformation", ex: ["Unifier la connaissance entre sites", "Sécuriser le savoir des experts", "Industrialiser les propositions commerciales"] },
+      4: { titre: "Innovation", ex: ["Agents métier autonomes", "Aide à la décision sur le corpus", "Nouveaux services data pour vos clients"] }
+    },
+
+    pitchPhrases: {
+      hook: "Vos équipes passent des heures à chercher, reformuler et retrouver l'information ; ce savoir dort dans vos documents.",
+      what: "ZORAN transforme tout ce patrimoine en une mémoire d'entreprise interrogeable, souveraine et auditable.",
+      proof: "Chaque réponse est sourcée et traçable, vos données restent maîtrisées.",
+      diff: "Là où un assistant grand public ignore votre contexte, ZORAN raisonne sur VOTRE savoir.",
+      ask: "Le plus simple est un POC court sur vos propres documents pour mesurer le gain."
+    }
+  };
+
+  /* ---------- Utilitaires ---------- */
+  function fmtEur(n) { return Math.round(n).toLocaleString('fr-FR') + ' €'; }
+  function clamp(n, a, b) { return Math.max(a, Math.min(b, n)); }
+
+  function metrics(state) {
+    const d = state.dimension || {};
+    const h = state.roiHyp || {};
+    const utilisateursActifs = Math.round((d.utilisateurs || 0) * ((h.adoption || 70) / 100));
+    const heuresAn = utilisateursActifs * (h.heures || 2) * (h.semaines || 46);
+    const gainBrutAn = heuresAn * (h.coutHoraire || 45);
+    return { utilisateursActifs, heuresAn, gainBrutAn };
+  }
+
+  function maturiteObj(state) {
+    const n = clamp(parseInt((state.profil && state.profil.maturiteIA) != null ? state.profil.maturiteIA : 2, 10), 0, 6);
+    return MATURITE[n];
+  }
+
+  /* Adapte une phrase de valeur au niveau de maturité IA */
+  function valeurSelonMaturite(prop, mat) {
+    if (mat.n <= 1) return prop.court + " C'est un premier pas simple et concret.";
+    if (mat.n <= 3) return prop.court + " " + prop.detail;
+    return prop.detail + " À votre niveau de maturité, l'enjeu est l'industrialisation et la gouvernance.";
+  }
+
+  function introComplexite(complexite, audienceKey, ent) {
+    const a = AUDIENCES[audienceKey] || AUDIENCES['DG'];
+    switch (complexite) {
+      case 'Ultra simple': return "En une phrase : ZORAN aide " + ent + " à retrouver et utiliser tout son savoir, sans perdre de temps.";
+      case 'Simple':       return "Pour " + ent + ", l'idée est simple : arrêter de chercher l'information et l'obtenir directement.";
+      case 'Scientifique': return "Approche : ancrage des réponses sur un corpus propriétaire (RAG souverain), traçabilité des sources et gouvernance des données, au service de " + a.angle + ".";
+      case 'Technique':    return "Sur le plan technique, ZORAN indexe votre corpus, ancre les réponses sur vos sources et expose des contrôles d'audit, en visant " + a.angle + ".";
+      case 'Investisseur': return "Thèse : une mémoire d'entreprise souveraine crée un actif défendable et récurrent, au service de " + a.angle + ".";
+      default:             return "Pour " + ent + ", l'enjeu prioritaire est de " + a.angle + ".";
+    }
+  }
+
+  /* ---------- Sections réutilisables ---------- */
+  function buildSection(key, ctx) {
+    const { state, audienceKey, complexite, format, objectif, mat, ent, m, props } = ctx;
+    const a = AUDIENCES[audienceKey] || AUDIENCES['DG'];
+    switch (key) {
+      case 'accroche':
+        return { h: "L'essentiel", t: introComplexite(complexite, audienceKey, ent) + " " + KB.pitchPhrases.hook };
+      case 'contexte': {
+        const d = state.dimension || {};
+        return { h: "Votre contexte", t: ent + (state.client && state.client.secteur ? " (" + state.client.secteur + ")" : "") +
+          " : " + (d.utilisateurs || '?') + " utilisateurs potentiels, " + (d.services || '?') + " services, " +
+          (d.documents ? Number(d.documents).toLocaleString('fr-FR') + " documents à valoriser. " : "") +
+          "Objectif déclaré : " + ((state.client && state.client.objectif) || a.angle) + "." };
+      }
+      case 'valeur':
+        return { h: "Ce que ZORAN apporte",
+          t: props.map(p => "• " + valeurSelonMaturite(p, mat)).join('\n') };
+      case 'preuve':
+        return { h: "Preuves", t: props.map(p => "• " + p.preuve).join('\n') };
+      case 'differenciateur': {
+        const comp = (state.profil && state.profil.objections && state.profil.objections.indexOf('copilot') >= 0) ? 'Copilot' : 'ChatGPT';
+        const dd = KB.differentiateurs[comp];
+        return { h: "ZORAN vs " + dd.nom, t: "Différence clé : " + dd.differences + "\nAvantage : " + dd.avantages };
+      }
+      case 'objection': {
+        const objId = (state.profil && state.profil.objections && state.profil.objections[0]) || 'chatgpt';
+        const o = KB.objections[objId] || KB.objections['chatgpt'];
+        return { h: "Objection anticipée — " + o.label, t: o.court };
+      }
+      case 'casusage': {
+        const niv = clamp(mat.n <= 2 ? 1 : mat.n <= 4 ? 2 : mat.n <= 5 ? 3 : 4, 1, 4);
+        const cu = KB.casUsage[niv];
+        return { h: "Cas d'usage prioritaires — " + cu.titre, t: cu.ex.map(e => "• " + e).join('\n') };
+      }
+      case 'roi':
+        return { h: "Retour sur investissement",
+          t: "Gain brut estimé : " + fmtEur(m.gainBrutAn) + "/an (" + Math.round(m.heuresAn).toLocaleString('fr-FR') +
+             " h économisées sur " + m.utilisateursActifs + " utilisateurs actifs). Hypothèses ajustables en direct." };
+      case 'risque': {
+        const r = risqueInaction(state);
+        return { h: "Risque de ne rien faire", t: r.sections.map(s => s.t).join('\n') };
+      }
+      case 'poc': {
+        const p = poc(state);
+        return { h: "Proposition de POC", t: p.sections.map(s => s.h + " : " + s.t).join('\n') };
+      }
+      case 'roadmap': {
+        const rd = roadmap(state);
+        return { h: "Feuille de route", t: rd.sections.map(s => s.h + " — " + s.t).join('\n') };
+      }
+      case 'cta':
+        return { h: "Prochaine étape", t: (OBJECTIFS[objectif] || OBJECTIFS['Convaincre']).cta };
+      default:
+        return null;
+    }
+  }
+
+  /* ---------- Générateur principal adaptatif ---------- */
+  function generate(state, opts) {
+    opts = opts || {};
+    const g = state.generation || {};
+    const audienceKey = opts.audience || g.audience || 'DG';
+    const complexite  = opts.complexite || g.complexite || 'Commercial';
+    const format      = opts.format || g.format || '1 page';
+    const objectif    = opts.objectif || g.objectif || 'Convaincre';
+
+    const fmt = FORMATS[format] || FORMATS['1 page'];
+    const mat = maturiteObj(state);
+    const ent = (state.client && state.client.entreprise) || 'votre organisation';
+    const m = metrics(state);
+
+    // Sélection des value props prioritaires pour l'audience
+    const a = AUDIENCES[audienceKey] || AUDIENCES['DG'];
+    let propsOrder = KB.valueProps.slice();
+    if (audienceKey === 'DSI' || audienceKey === 'Technique') propsOrder = reorder(propsOrder, ['souverain', 'source', 'memoire']);
+    else if (audienceKey === 'DAF' || audienceKey === 'Investisseur' || audienceKey === 'Financeur') propsOrder = reorder(propsOrder, ['temps', 'expertise', 'memoire']);
+    else if (audienceKey === 'Responsable qualité' || audienceKey === 'Administration' || audienceKey === 'Collectivité') propsOrder = reorder(propsOrder, ['source', 'souverain', 'memoire']);
+    else propsOrder = reorder(propsOrder, ['memoire', 'temps', 'expertise']);
+    const props = propsOrder.slice(0, clamp(fmt.props, 1, KB.valueProps.length));
+
+    const ctx = { state, audienceKey, complexite, format, objectif, mat, ent, m, props };
+
+    if (fmt.style === 'faq') return faq(state, ctx);
+
+    const sections = fmt.sections.map(k => buildSection(k, ctx)).filter(Boolean);
+
+    let titre = "ZORAN pour " + ent + " — " + audienceKey + " / " + objectif;
+    if (fmt.style === 'slides') titre = "Présentation ZORAN — " + ent + " (" + audienceKey + ")";
+
+    return {
+      titre,
+      meta: { audience: audienceKey, complexite, format, objectif, maturite: mat.label, style: fmt.style },
+      sections
+    };
+  }
+
+  function reorder(arr, ids) {
+    const map = {}; arr.forEach(p => map[p.id] = p);
+    const head = ids.map(id => map[id]).filter(Boolean);
+    const rest = arr.filter(p => ids.indexOf(p.id) < 0);
+    return head.concat(rest);
+  }
+
+  /* ---------- Moteurs spécialisés ---------- */
+  function differenciation(state, competitorKey) {
+    const d = KB.differentiateurs[competitorKey] || KB.differentiateurs['ChatGPT'];
+    return {
+      titre: "Comparatif ZORAN vs " + d.nom,
+      meta: { type: 'differenciation' },
+      sections: [
+        { h: "Points communs", t: d.pointsCommuns },
+        { h: "Différences", t: d.differences },
+        { h: "Avantages de ZORAN", t: d.avantages },
+        { h: "Limites / honnêteté", t: d.limites },
+        { h: "Quand choisir ZORAN", t: d.casUsage }
+      ]
+    };
+  }
+
+  function pourquoiMaintenant(state, audienceKey) {
+    const ent = (state.client && state.client.entreprise) || 'votre organisation';
+    const m = metrics(state);
+    const variantes = {
+      'PME': "Pour une PME comme " + ent + ", chaque heure compte. L'IA bien cadrée fait gagner du temps sans surcoût humain.",
+      'DG': "L'écart se creuse entre les organisations qui capitalisent leur savoir et les autres. Attendre, c'est laisser filer un avantage.",
+      'DSI': "Mieux vaut cadrer l'usage de l'IA maintenant, de façon souveraine et gouvernée, que de subir des usages sauvages non maîtrisés.",
+      'Investisseur': "Le marché bascule vers des mémoires d'entreprise souveraines : se positionner tôt crée un actif défendable."
+    };
+    return {
+      titre: "Pourquoi l'IA, et pourquoi maintenant — " + ent,
+      meta: { type: 'pourquoi' },
+      sections: [
+        { h: "Pourquoi s'intéresser à l'IA ?", t: "Parce que votre savoir est un actif sous-exploité. " + KB.pitchPhrases.what },
+        { h: "Pourquoi maintenant ?", t: variantes[audienceKey] || variantes['DG'] },
+        { h: "Pourquoi attendre est risqué ?", t: "Chaque mois sans agir, c'est du temps perdu (estimé " + fmtEur(m.gainBrutAn / 12) + "/mois) et du savoir qui s'érode au gré des départs." },
+        { h: "Gains rapides", t: KB.casUsage[1].ex.map(e => "• " + e).join('\n') },
+        { h: "Gains long terme", t: KB.casUsage[3].ex.map(e => "• " + e).join('\n') }
+      ]
+    };
+  }
+
+  function poc(state) {
+    const ent = (state.client && state.client.entreprise) || 'votre organisation';
+    const d = state.dimension || {};
+    const users = clamp(Math.round((d.utilisateurs || 20) * 0.1), 5, 30);
+    const m = metrics(state);
+    const budget = clamp(Math.round(m.gainBrutAn * 0.05), 8000, 45000);
+    return {
+      titre: "Plan de POC ZORAN — " + ent,
+      meta: { type: 'poc' },
+      sections: [
+        { h: "Objectif", t: "Prouver, chiffres à l'appui, le gain de temps et la fiabilité sur un périmètre réel." },
+        { h: "Périmètre", t: "1 service pilote, " + users + " utilisateurs, un corpus documentaire ciblé." },
+        { h: "Durée", t: "6 semaines (2 de cadrage/ingestion, 4 d'usage)." },
+        { h: "Équipe", t: "1 sponsor, 1 référent métier, 1 référent données côté client ; accompagnement ZORAN." },
+        { h: "Indicateurs", t: "Temps moyen de recherche, taux de réponses jugées utiles, nombre d'usages/semaine." },
+        { h: "Critères de succès", t: "≥ 30 % de temps gagné sur les tâches ciblées et adoption ≥ 60 % des pilotes." },
+        { h: "Critères d'échec", t: "Adoption < 30 % ou aucune amélioration mesurable du temps de recherche." },
+        { h: "Budget indicatif", t: fmtEur(budget) + " pour le POC (déductible d'un déploiement ultérieur)." },
+        { h: "Planning", t: "S1-S2 ingestion & cadrage · S3-S6 usage & mesure · restitution en fin de S6." }
+      ]
+    };
+  }
+
+  function objection(state, objId) {
+    const o = KB.objections[objId] || KB.objections['chatgpt'];
+    return {
+      titre: "Réponse à l'objection : " + o.label,
+      meta: { type: 'objection' },
+      sections: [
+        { h: "Réponse courte", t: o.court },
+        { h: "Réponse pour un DG", t: o.DG },
+        { h: "Réponse pour un DSI", t: o.DSI },
+        { h: "Réponse pour un investisseur", t: o.Investisseur }
+      ]
+    };
+  }
+
+  function risqueInaction(state) {
+    const m = metrics(state);
+    const d = state.dimension || {};
+    const perteAn = m.gainBrutAn; // temps récupérable non récupéré
+    const detteDocAn = (Number(d.documents) || 0) * 0.15; // coût caché de dette documentaire (indicatif)
+    const baseAn = perteAn + detteDocAn;
+    const proj = mois => {
+      const ans = mois / 12;
+      // érosion du savoir : facteur croissant léger
+      const facteur = 1 + 0.05 * (ans - 1);
+      return baseAn * ans * facteur;
+    };
+    return {
+      titre: "Coût de l'inaction — " + ((state.client && state.client.entreprise) || 'votre organisation'),
+      meta: { type: 'risque' },
+      sections: [
+        { h: "Postes de coût", t: "• Temps perdu en recherche : " + fmtEur(perteAn) + "/an\n• Dépendance aux experts (risque de rupture)\n• Dette documentaire estimée : " + fmtEur(detteDocAn) + "/an\n• Perte d'opportunités et de réactivité" },
+        { h: "Projection 12 mois", t: fmtEur(proj(12)) },
+        { h: "Projection 24 mois", t: fmtEur(proj(24)) },
+        { h: "Projection 36 mois", t: fmtEur(proj(36)) },
+        { h: "Projection 60 mois", t: fmtEur(proj(60)) }
+      ]
+    };
+  }
+
+  function roadmap(state) {
+    return {
+      titre: "Feuille de route d'adoption — " + ((state.client && state.client.entreprise) || 'votre organisation'),
+      meta: { type: 'roadmap' },
+      sections: [
+        { h: "30 jours", t: "Cadrage, sélection du périmètre pilote, ingestion du premier corpus." },
+        { h: "90 jours", t: "POC mené et mesuré, premiers usages, décision Go/No-Go documentée." },
+        { h: "6 mois", t: "Extension à 2-3 services, formation par rôle, mise en place de la gouvernance." },
+        { h: "12 mois", t: "Déploiement généralisé sur les usages prioritaires, suivi des indicateurs." },
+        { h: "24 mois", t: "Agents et skills métier, automatisations, intégrations au SI." },
+        { h: "36 mois", t: "IA avancée : aide à la décision sur le corpus, nouveaux services data." }
+      ]
+    };
+  }
+
+  function casUsage(state) {
+    const sections = [1, 2, 3, 4].map(n => ({ h: "Niveau " + n + " — " + KB.casUsage[n].titre, t: KB.casUsage[n].ex.map(e => "• " + e).join('\n') }));
+    return { titre: "Cas d'usage ZORAN par niveau de maturité", meta: { type: 'casusage' }, sections };
+  }
+
+  function pitch(state, dureeKey, audienceKey) {
+    const ent = (state.client && state.client.entreprise) || 'votre organisation';
+    const m = metrics(state);
+    const p = KB.pitchPhrases;
+    const roi = "Gain estimé : " + fmtEur(m.gainBrutAn) + "/an.";
+    const scripts = {
+      '15 secondes': [p.what],
+      '30 secondes': [p.hook, p.what, p.ask],
+      '1 minute':    [p.hook, p.what, p.proof, p.ask],
+      '2 minutes':   [p.hook, p.what, p.proof, p.diff, roi, p.ask],
+      '5 minutes':   [p.hook, p.what, p.proof, p.diff, roi, "Concrètement chez " + ent + " : " + KB.casUsage[1].ex.join(', ') + ".", p.ask],
+      '15 minutes':  [p.hook, p.what, p.proof, p.diff, roi,
+                      "Cas d'usage : " + KB.casUsage[2].ex.join(', ') + ".",
+                      "Déploiement progressif en 30/90 jours puis montée en charge.",
+                      "Souveraineté et conformité (RGPD/Loi 25) garanties.", p.ask],
+      '30 minutes':  [p.hook, p.what, p.proof, p.diff, roi,
+                      "Cas d'usage par niveau : " + KB.casUsage[1].titre + ", " + KB.casUsage[2].titre + ", " + KB.casUsage[3].titre + ".",
+                      "POC de 6 semaines avec indicateurs de succès.",
+                      "Feuille de route 30j → 36 mois.",
+                      "Comparaison avec les assistants grand public : mémoire, sources, souveraineté.", p.ask]
+    };
+    const lignes = scripts[dureeKey] || scripts['30 secondes'];
+    return {
+      titre: "Pitch ZORAN " + dureeKey + (audienceKey ? " — " + audienceKey : "") + " (" + ent + ")",
+      meta: { type: 'pitch', duree: dureeKey },
+      sections: [{ h: "Script", t: lignes.join('\n\n') }]
+    };
+  }
+
+  function faq(state, ctx) {
+    const ent = (state.client && state.client.entreprise) || 'votre organisation';
+    const m = metrics(state);
+    const qa = [
+      ["Qu'est-ce que ZORAN, en une phrase ?", "Une mémoire d'entreprise qui transforme vos documents et l'expertise interne en réponses sourcées et souveraines."],
+      ["En quoi est-ce différent de ChatGPT ?", KB.differentiateurs['ChatGPT'].differences],
+      ["Nos données sont-elles en sécurité ?", "Oui : hébergement maîtrisé, gouvernance des données et conformité RGPD / Loi 25. Vos données ne nourrissent pas un modèle public."],
+      ["Combien de temps pour démarrer ?", "Un POC de 6 semaines sur un périmètre réduit suffit à mesurer la valeur."],
+      ["Quel retour sur investissement ?", "Pour " + ent + ", gain brut estimé à " + fmtEur(m.gainBrutAn) + "/an, ajustable selon vos hypothèses."],
+      ["Faut-il remplacer notre GED / SharePoint ?", "Non : ZORAN s'appuie dessus comme source et ajoute la couche d'intelligence."],
+      ["Comment gère-t-on l'adoption ?", "Périmètre pilote, formation par rôle et indicateurs d'usage pour piloter le changement."]
+    ];
+    return {
+      titre: "FAQ ZORAN — " + ent,
+      meta: { type: 'faq' },
+      sections: qa.map(([q, a]) => ({ h: q, t: a }))
+    };
+  }
+
+  function financement(state) {
+    const ent = (state.client && state.client.entreprise) || 'votre organisation';
+    const m = metrics(state);
+    return {
+      titre: "Dossier de financement — " + ent,
+      meta: { type: 'financement' },
+      sections: [
+        { h: "Projet", t: "Déploiement d'une mémoire d'entreprise souveraine (ZORAN) pour valoriser le savoir et améliorer la productivité." },
+        { h: "Impact attendu", t: "Gain de productivité estimé à " + fmtEur(m.gainBrutAn) + "/an, réduction du risque de perte de savoir, conformité renforcée." },
+        { h: "Dimension innovation", t: "IA souveraine, traçable et éthique : sujet éligible à plusieurs dispositifs de soutien à l'innovation et à la transition numérique." },
+        { h: "Plan d'investissement", t: "POC puis déploiement progressif (voir feuille de route 30j → 36 mois)." },
+        { h: "Indicateurs de suivi", t: "Temps gagné, taux d'adoption, nombre d'usages, réduction des non-conformités." },
+        { h: "Pistes de financement", t: "Dispositifs d'aide à l'innovation, crédits transition numérique, cofinancements régionaux (à confirmer selon territoire et statut)." }
+      ]
+    };
+  }
+
+  /* ---------- Moteur de recommandation automatique ---------- */
+  function recommander(state) {
+    const p = state.profil || {};
+    const mat = maturiteObj(state);
+    const urgence = p.urgence || 'moyenne';
+    const budget = p.budget || '';
+
+    // Angle conseillé selon maturité
+    let angle, argument, format, objectif, pocReco, adoption;
+    if (mat.n <= 1) {
+      angle = "Sensibilisation : montrer la valeur avant de parler technique.";
+      argument = "Gain de temps immédiat et fin de la perte de savoir.";
+      format = "Fiche synthèse"; objectif = "Sensibiliser";
+      pocReco = "Démonstration sur leurs propres documents."; adoption = "Commencer par un cas qui soulage visiblement les équipes.";
+    } else if (mat.n <= 3) {
+      angle = "Cadrage : transformer des essais épars en usage maîtrisé.";
+      argument = "Souveraineté et traçabilité vs outils grand public.";
+      format = "1 page"; objectif = "Obtenir un POC";
+      pocReco = "POC 6 semaines sur un service pilote."; adoption = "Formation par rôle + indicateurs d'usage.";
+    } else {
+      angle = "Industrialisation : gouvernance, échelle et nouveaux usages.";
+      argument = "Mémoire propriétaire défendable et conformité à l'échelle.";
+      format = "5 pages"; objectif = "Déployer";
+      pocReco = "Extension multi-services et agents métier."; adoption = "Gouvernance dédiée + centre d'excellence interne.";
+    }
+
+    // Meilleur format ajusté à l'audience principale et au budget
+    const aud = (state.generation && state.generation.audience) || 'DG';
+    if (aud === 'Investisseur' || aud === 'Financeur') { format = 'Livre blanc'; objectif = budget ? 'Obtenir un budget' : 'Préparer un investisseur'; }
+    if (aud === 'DSI' || aud === 'Technique') argument = "Souveraineté, intégration au SI et auditabilité.";
+
+    const objs = (p.objections && p.objections.length) ? p.objections : ['chatgpt'];
+    const objectionPrioritaire = KB.objections[objs[0]] ? KB.objections[objs[0]].label : "« Nous avons déjà ChatGPT »";
+
+    return {
+      maturite: mat,
+      angle, argument, format, objectif,
+      poc: pocReco, adoption,
+      objectionPrioritaire,
+      urgenceNote: urgence === 'forte' ? "Urgence forte : viser un POC immédiat." :
+                   urgence === 'faible' ? "Urgence faible : nourrir avec de la sensibilisation." :
+                   "Urgence moyenne : POC à court terme."
+    };
+  }
+
+  /* ---------- Rendu texte / HTML ---------- */
+  function toText(deliv) {
+    if (!deliv) return '';
+    let out = deliv.titre + "\n" + "=".repeat(Math.min(deliv.titre.length, 60)) + "\n\n";
+    out += deliv.sections.map(s => (s.h ? s.h.toUpperCase() + "\n" : "") + s.t).join("\n\n");
+    return out;
+  }
+  function escapeHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+  function toHtml(deliv) {
+    if (!deliv) return '';
+    return '<h1>' + escapeHtml(deliv.titre) + '</h1>' +
+      deliv.sections.map(s =>
+        (s.h ? '<h2>' + escapeHtml(s.h) + '</h2>' : '') +
+        '<p>' + escapeHtml(s.t).replace(/\n/g, '<br>') + '</p>'
+      ).join('');
+  }
+
+  return {
+    MATURITE, AUDIENCES, COMPLEXITES, FORMATS, OBJECTIFS, KB,
+    metrics, maturiteObj,
+    generate, differenciation, pourquoiMaintenant, poc, objection,
+    risqueInaction, roadmap, casUsage, pitch, faq, financement, recommander,
+    toText, toHtml,
+    competitors: Object.keys(KB.differentiateurs),
+    objectionsList: Object.keys(KB.objections).map(id => ({ id, label: KB.objections[id].label })),
+    dureesPitch: ['15 secondes', '30 secondes', '1 minute', '2 minutes', '5 minutes', '15 minutes', '30 minutes']
+  };
+})();
+
+if (typeof module !== 'undefined' && module.exports) module.exports = ENGINE;
+
+</script>
+<script>
+/* ============================================================
+   ZORAN Biz Mobile — moteur applicatif
+   - JSON central unique pilotant tous les écrans
+   - Validation (types, min/max, messages)
+   - Pipeline "Python virtuel" : JSON -> Validation -> Calcul -> ROI -> Devis
+   - Import multi-format (PDF / Word / email / texte / HTML / URL)
+   - Export PDF / Word / Email
+   - Audit complet (qui / quoi / quand / avant / après)
+   ============================================================ */
+'use strict';
+
+/* ---------------------------------------------------------------
+   1. CONFIGURATION MÉTIER
+--------------------------------------------------------------- */
+const CONFIG = {
+  devise: '€',
+  operateur: 'Xavier',
+
+  // Catalogue des modules ZORAN (écran 3)
+  modules: [
+    { id: 'memoire',     nom: 'Mémoire',                icon: '🧠', desc: 'Mémoire longue durée et contexte client.',        cout: 1800 },
+    { id: 'audit',       nom: 'Audit',                  icon: '🛡️', desc: 'Traçabilité complète des décisions.',             cout: 1500 },
+    { id: 'pdf',         nom: 'PDF',                    icon: '📄', desc: 'Génération et lecture documentaire.',             cout: 900  },
+    { id: 'agents',      nom: 'Agents',                 icon: '🤖', desc: 'Agents autonomes spécialisés par métier.',        cout: 3200 },
+    { id: 'skills',      nom: 'Skills',                 icon: '🧩', desc: 'Compétences activables à la demande.',            cout: 2100 },
+    { id: 'coherence',   nom: 'Cohérence phénoménale',  icon: '🔗', desc: 'Contrôle de cohérence transversale.',             cout: 2600 },
+    { id: 'cinematique', nom: 'Cinématique',            icon: '🎬', desc: 'Restitution visuelle des scénarios.',             cout: 1700 },
+    { id: 'futur',       nom: 'Futur probable',         icon: '🔮', desc: 'Projection prospective et anticipation.',         cout: 2900 }
+  ],
+
+  // Paliers de licence (écran 5) — prix par utilisateur / an
+  licences: [
+    { id: 'starter',    nom: 'Starter',    maxUsers: 25,     prixUserAn: 240,  desc: 'Petites équipes, déploiement rapide.' },
+    { id: 'business',   nom: 'Business',   maxUsers: 150,    prixUserAn: 200,  desc: 'PME multi-services, usage quotidien.' },
+    { id: 'enterprise', nom: 'Enterprise', maxUsers: 1000,   prixUserAn: 165,  desc: 'Grands comptes, intégrations avancées.' },
+    { id: 'corporate',  nom: 'Corporate',  maxUsers: Infinity, prixUserAn: 130, desc: 'Déploiement groupe, SLA dédié.' }
+  ],
+
+  // Prestations de service du devis (écran 7)
+  services: {
+    installationBase: 3500,   // forfait
+    parametrageParService: 650,
+    formationParManager: 180,
+    formationParExpert: 260,
+    supportPctLicence: 0.18,  // % du coût licences / an
+    maintenancePctLicence: 0.12
+  },
+
+  // Versions de discours (écran 8)
+  versions: [
+    { id: 'DG',           nom: 'DG',           icon: '👔', angle: 'vision & rentabilité' },
+    { id: 'DSI',          nom: 'DSI',          icon: '🖥️', angle: 'sécurité & intégration' },
+    { id: 'Technique',    nom: 'Technique',    icon: '⚙️', angle: 'architecture & API' },
+    { id: 'Investisseur', nom: 'Investisseur', icon: '💹', angle: 'croissance & marché' },
+    { id: 'BTP',          nom: 'BTP',          icon: '🏗️', angle: 'chantiers & devis' },
+    { id: 'Industrie',    nom: 'Industrie',    icon: '🏭', angle: 'production & qualité' },
+    { id: 'Sante',        nom: 'Santé',        icon: '🏥', angle: 'conformité & soin' },
+    { id: 'Collectivite', nom: 'Collectivité', icon: '🏛️', angle: 'service public & RGPD' },
+    { id: 'Banque',       nom: 'Banque',       icon: '🏦', angle: 'risque & réglementation' },
+    { id: 'Assurance',    nom: 'Assurance',    icon: '📊', angle: 'sinistres & actuariat' }
+  ]
+};
+
+/* ---------------------------------------------------------------
+   2. SCHÉMA DE VALIDATION (types, min/max, messages)
+--------------------------------------------------------------- */
+const SCHEMA = {
+  'client.entreprise':     { type: 'string', required: true, min: 2, max: 120, msg: "Renseignez le nom de l'entreprise." },
+  'client.siteWeb':        { type: 'url', required: false, max: 200, msg: "URL invalide (ex. https://exemple.fr)." },
+  'client.pays':           { type: 'string', required: false, max: 60 },
+  'client.interlocuteur':  { type: 'string', required: true, min: 2, max: 80, msg: "Renseignez l'interlocuteur." },
+  'client.fonction':       { type: 'string', required: false, max: 80 },
+  'client.objectif':       { type: 'string', required: false, max: 600 },
+
+  'dimension.employes':    { type: 'int', required: true, min: 1, max: 100000, msg: "1 à 100 000 employés." },
+  'dimension.services':    { type: 'int', required: true, min: 1, max: 500, msg: "1 à 500 services." },
+  'dimension.utilisateurs':{ type: 'int', required: true, min: 1, max: 50000, msg: "1 à 50 000 utilisateurs." },
+  'dimension.managers':    { type: 'int', required: true, min: 0, max: 50000, msg: "0 à 50 000 managers." },
+  'dimension.experts':     { type: 'int', required: true, min: 0, max: 50000, msg: "0 à 50 000 experts." },
+  'dimension.documents':   { type: 'int', required: true, min: 0, max: 10000000, msg: "0 à 10 000 000 documents." },
+
+  'roiHyp.heures':         { type: 'float', required: true, min: 0, max: 20, msg: "0 à 20 h/semaine." },
+  'roiHyp.coutHoraire':    { type: 'float', required: true, min: 10, max: 500, msg: "Coût horaire entre 10 et 500." },
+  'roiHyp.adoption':       { type: 'int', required: true, min: 10, max: 100, msg: "Adoption entre 10 et 100 %." },
+  'roiHyp.semaines':       { type: 'int', required: true, min: 20, max: 52, msg: "20 à 52 semaines." },
+
+  'profil.maturiteIA':     { type: 'int', required: true, min: 0, max: 6, msg: "Maturité de 0 à 6." }
+};
+
+/* ---------------------------------------------------------------
+   3. ÉTAT (JSON CENTRAL UNIQUE)
+--------------------------------------------------------------- */
+const STORAGE_KEY = 'zoran-biz-mobile-state-v1';
+
+/* Identifiants uniques de traçabilité.
+   Préfixes : SES session · SRC entrant · EXP sortant · LOG journal · ANA analyse · CAS dossier */
+function genId(prefix) {
+  const t = Date.now().toString(36).toUpperCase();
+  const r = Math.random().toString(36).slice(2, 8).toUpperCase();
+  return `${prefix}-${t}-${r}`;
+}
+
+function defaultState() {
+  const modules = {};
+  CONFIG.modules.forEach(m => { modules[m.id] = ['memoire', 'audit', 'pdf'].includes(m.id); });
+  return {
+    meta: { version: 1, updatedAt: new Date().toISOString(), sessionId: genId('SES'), dossierId: genId('CAS') },
+    client: { entreprise: '', siteWeb: '', pays: 'France', interlocuteur: '', fonction: '', objectif: '' },
+    sources: [],
+    analyse: { resume: '', comprehension: '', enjeux: '', risques: '', opportunites: '', generatedAt: null },
+    modules,
+    dimension: { employes: 120, services: 6, utilisateurs: 90, managers: 12, experts: 8, documents: 5000 },
+    roiHyp: { heures: 2, coutHoraire: 45, adoption: 70, semaines: 46 },
+    profil: { taille: 'PME', secteur: '', maturiteIA: 2, budget: '', niveauTechnique: 'moyen', urgence: 'moyenne', objectifs: '', freins: [], objections: ['chatgpt'] },
+    generation: { audience: 'DG', complexite: 'Commercial', format: '1 page', objectif: 'Convaincre', dernier: null },
+    licence: { choisie: null, recommandee: null },
+    version: 'DG',
+    auditLog: []
+  };
+}
+
+let STATE = loadState();
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) return Object.assign(defaultState(), JSON.parse(raw));
+  } catch (e) { /* ignore */ }
+  return defaultState();
+}
+
+function saveState() {
+  STATE.meta.updatedAt = new Date().toISOString();
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(STATE)); } catch (e) { /* quota */ }
+}
+
+/* Helpers chemin "a.b.c" */
+function getPath(obj, path) {
+  return path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), obj);
+}
+function setPath(obj, path, val) {
+  const keys = path.split('.');
+  const last = keys.pop();
+  const tgt = keys.reduce((o, k) => (o[k] = o[k] || {}), obj);
+  tgt[last] = val;
+}
+
+/* ---------------------------------------------------------------
+   4. VALIDATION
+--------------------------------------------------------------- */
+function validateField(path, rawValue) {
+  const rule = SCHEMA[path];
+  if (!rule) return { ok: true, value: rawValue };
+
+  let v = rawValue;
+  if (typeof v === 'string') v = v.trim();
+
+  if (rule.required && (v === '' || v == null)) {
+    return { ok: false, error: rule.msg || 'Champ obligatoire.' };
+  }
+  if (!rule.required && (v === '' || v == null)) {
+    return { ok: true, value: rule.type === 'int' || rule.type === 'float' ? 0 : '' };
+  }
+
+  if (rule.type === 'int' || rule.type === 'float') {
+    const num = rule.type === 'int' ? parseInt(v, 10) : parseFloat(v);
+    if (isNaN(num)) return { ok: false, error: rule.msg || 'Valeur numérique attendue.' };
+    if (rule.min != null && num < rule.min) return { ok: false, error: rule.msg || `Minimum ${rule.min}.` };
+    if (rule.max != null && num > rule.max) return { ok: false, error: rule.msg || `Maximum ${rule.max}.` };
+    return { ok: true, value: num };
+  }
+
+  if (rule.type === 'url') {
+    if (!/^https?:\/\/.+\..+/.test(v)) return { ok: false, error: rule.msg || 'URL invalide.' };
+  }
+  if (rule.max != null && String(v).length > rule.max) {
+    return { ok: false, error: rule.msg || `Maximum ${rule.max} caractères.` };
+  }
+  if (rule.min != null && String(v).length < rule.min) {
+    return { ok: false, error: rule.msg || `Minimum ${rule.min} caractères.` };
+  }
+  return { ok: true, value: v };
+}
+
+function validateAll() {
+  const errors = {};
+  Object.keys(SCHEMA).forEach(path => {
+    const res = validateField(path, getPath(STATE, path));
+    if (!res.ok) errors[path] = res.error;
+  });
+  return errors;
+}
+
+/* ---------------------------------------------------------------
+   5. PIPELINE DE CALCUL ("Python virtuel")
+   JSON -> Validation -> Calcul -> ROI -> Devis
+--------------------------------------------------------------- */
+function computeAll() {
+  const trace = [];
+  const t0 = performance.now();
+
+  // Étape 1 : Validation
+  const errors = validateAll();
+  const validOk = Object.keys(errors).length === 0;
+  trace.push({ step: 'Validation', ok: validOk, detail: validOk ? 'Toutes les contraintes respectées' : `${Object.keys(errors).length} champ(s) à corriger` });
+
+  // Étape 2 : Dimensionnement -> licence recommandée
+  const d = STATE.dimension;
+  const charge = d.utilisateurs * 1 + d.managers * 1.5 + d.experts * 2;
+  const reco = CONFIG.licences.find(l => d.utilisateurs <= l.maxUsers) || CONFIG.licences[CONFIG.licences.length - 1];
+  STATE.licence.recommandee = reco.id;
+  if (!STATE.licence.choisie) STATE.licence.choisie = reco.id;
+  trace.push({ step: 'Calcul dimensionnement', ok: true, detail: `Charge pondérée ${Math.round(charge)} · palier ${reco.nom}` });
+
+  // Étape 3 : Licences
+  const palier = CONFIG.licences.find(l => l.id === STATE.licence.choisie) || reco;
+  const coutLicencesAn = d.utilisateurs * palier.prixUserAn;
+  const modulesActifs = CONFIG.modules.filter(m => STATE.modules[m.id]);
+  const coutModulesAn = modulesActifs.reduce((s, m) => s + m.cout, 0);
+  const recurrentLicences = coutLicencesAn + coutModulesAn;
+  trace.push({ step: 'Calcul licences', ok: true, detail: `${fmt(recurrentLicences)} /an (${modulesActifs.length} modules)` });
+
+  // Étape 4 : ROI
+  const h = STATE.roiHyp;
+  const utilisateursActifs = Math.round(d.utilisateurs * (h.adoption / 100));
+  const heuresAn = utilisateursActifs * h.heures * h.semaines;
+  const gainBrutAn = heuresAn * h.coutHoraire;
+
+  const svc = CONFIG.services;
+  const installation = svc.installationBase;
+  const parametrage = d.services * svc.parametrageParService;
+  const formation = d.managers * svc.formationParManager + d.experts * svc.formationParExpert;
+  const support = recurrentLicences * svc.supportPctLicence;
+  const maintenance = recurrentLicences * svc.maintenancePctLicence;
+
+  const oneTime = installation + parametrage + formation;
+  const recurrentAn = recurrentLicences + support + maintenance;
+  const totalAn1 = oneTime + recurrentAn;
+
+  const gainNetAn1 = gainBrutAn - totalAn1;
+  const gainNetRecurrent = gainBrutAn - recurrentAn;
+  const roiPct = totalAn1 > 0 ? (gainNetAn1 / totalAn1) * 100 : 0;
+  const retourMois = gainBrutAn > 0 ? (totalAn1 / (gainBrutAn / 12)) : Infinity;
+  trace.push({ step: 'Calcul ROI', ok: true, detail: `Gain brut ${fmt(gainBrutAn)}/an · ROI an 1 ${Math.round(roiPct)} %` });
+
+  // Étape 5 : Devis
+  const devisLignes = [
+    { label: 'Installation', montant: installation, recurrent: false },
+    { label: 'Paramétrage', montant: parametrage, recurrent: false },
+    { label: 'Formation', montant: formation, recurrent: false },
+    { label: `Licences ${palier.nom} (${d.utilisateurs} utilisateurs)`, montant: coutLicencesAn, recurrent: true },
+    { label: `Modules ZORAN (${modulesActifs.length})`, montant: coutModulesAn, recurrent: true },
+    { label: 'Support', montant: support, recurrent: true },
+    { label: 'Maintenance', montant: maintenance, recurrent: true }
+  ];
+  trace.push({ step: 'Génération devis', ok: true, detail: `Total an 1 ${fmt(totalAn1)}` });
+
+  const ms = (performance.now() - t0).toFixed(1);
+  trace.push({ step: 'Pipeline terminé', ok: true, detail: `${ms} ms` });
+
+  return {
+    errors, valid: validOk,
+    charge, reco, palier,
+    coutLicencesAn, coutModulesAn, modulesActifs, recurrentLicences,
+    utilisateursActifs, heuresAn, gainBrutAn,
+    installation, parametrage, formation, support, maintenance,
+    oneTime, recurrentAn, totalAn1,
+    gainNetAn1, gainNetRecurrent, roiPct, retourMois,
+    devisLignes, trace
+  };
+}
+
+/* ---------------------------------------------------------------
+   6. FORMATAGE
+--------------------------------------------------------------- */
+function fmt(n) {
+  if (n === Infinity || isNaN(n)) return '—';
+  return Math.round(n).toLocaleString('fr-FR') + ' ' + CONFIG.devise;
+}
+function fmtNum(n) { return Math.round(n).toLocaleString('fr-FR'); }
+function escapeHtml(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+/* ---------------------------------------------------------------
+   7. AUDIT
+--------------------------------------------------------------- */
+function logAudit(quoi, avant, apres, tags) {
+  STATE.auditLog.unshift({
+    id: genId('LOG'),
+    session: STATE.meta.sessionId,
+    dossier: STATE.meta.dossierId,
+    tags: tags || [],
+    ts: new Date().toISOString(),
+    qui: CONFIG.operateur,
+    quoi,
+    avant: avant == null ? '' : String(avant),
+    apres: apres == null ? '' : String(apres)
+  });
+  if (STATE.auditLog.length > 200) STATE.auditLog.length = 200;
+}
+
+/* ---------------------------------------------------------------
+   8. IMPORT MULTI-FORMAT
+--------------------------------------------------------------- */
+function readFileText(file) {
+  return new Promise(resolve => {
+    const name = file.name.toLowerCase();
+    const reader = new FileReader();
+    const isBinaryDoc = /\.(pdf|docx|doc|rtf|msg)$/.test(name);
+
+    reader.onload = () => {
+      let text = '';
+      try {
+        if (name.endsWith('.pdf')) {
+          text = extractPdfText(reader.result);
+        } else if (name.endsWith('.docx')) {
+          text = extractDocxText(reader.result);
+        } else {
+          text = String(reader.result || '');
+        }
+      } catch (e) { text = ''; }
+      resolve(cleanText(text));
+    };
+    reader.onerror = () => resolve('');
+
+    if (isBinaryDoc) reader.readAsBinaryString(file);
+    else reader.readAsText(file);
+  });
+}
+
+/* Extraction naïve de texte PDF (flux non compressés / parenthèses). Best effort, sans dépendance. */
+function extractPdfText(raw) {
+  const out = [];
+  const re = /\(((?:\\.|[^()\\])*)\)\s*T[jJ]/g;
+  let m;
+  while ((m = re.exec(raw)) !== null) {
+    out.push(m[1].replace(/\\([()\\])/g, '$1'));
+  }
+  if (out.length) return out.join(' ');
+  // Repli : séquences lisibles
+  return (raw.match(/[A-Za-zÀ-ÿ0-9 .,;:'@\/\-]{6,}/g) || []).slice(0, 400).join(' ');
+}
+
+/* Extraction texte .docx (ZIP) : récupère les <w:t> si le flux contient document.xml en clair. */
+function extractDocxText(raw) {
+  const xmlMatches = raw.match(/<w:t[^>]*>([^<]*)<\/w:t>/g);
+  if (xmlMatches) {
+    return xmlMatches.map(t => t.replace(/<[^>]+>/g, '')).join(' ');
+  }
+  return (raw.match(/[A-Za-zÀ-ÿ0-9 .,;:'@\/\-]{6,}/g) || []).slice(0, 400).join(' ');
+}
+
+function cleanText(t) {
+  return String(t || '')
+    .replace(/ /g, ' ')
+    .replace(/[ \t]+/g, ' ')
+    .replace(/\s*\n\s*/g, '\n')
+    .trim();
+}
+
+/* Heuristiques d'extraction d'informations client à partir du texte */
+function extractInfoFromText(text) {
+  const info = {};
+  const emailM = text.match(/[\w.+-]+@[\w-]+\.[\w.-]+/);
+  if (emailM) info.email = emailM[0];
+
+  const urlM = text.match(/https?:\/\/[^\s)"']+/);
+  if (urlM) info.siteWeb = urlM[0];
+  else if (emailM) info.siteWeb = 'https://' + emailM[0].split('@')[1];
+
+  // En-têtes d'email
+  const fromM = text.match(/(?:^|\n)\s*(?:From|De)\s*:\s*(.+)/i);
+  if (fromM) {
+    const nameM = fromM[1].match(/"?([A-Za-zÀ-ÿ' .-]{3,})"?\s*<?/);
+    if (nameM) info.interlocuteur = nameM[1].trim();
+  }
+  const objM = text.match(/(?:^|\n)\s*(?:Subject|Objet)\s*:\s*(.+)/i);
+  if (objM) info.objectif = objM[1].trim().slice(0, 300);
+
+  // Société : ligne contenant SAS/SARL/SA/GmbH/Ltd/Inc
+  const socM = text.match(/([A-ZÀ-Ÿ][\w&'’.\- ]{2,60}?\s(?:SAS|SARL|SA|GmbH|Ltd|Inc|SASU|SCOP|EURL))/);
+  if (socM) info.entreprise = socM[1].trim();
+
+  return info;
+}
+
+/* ---------------------------------------------------------------
+   9. NAVIGATION
+--------------------------------------------------------------- */
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.toggle('active', s.id === id));
+  document.querySelectorAll('.bottomnav button').forEach(b => b.classList.toggle('active', b.dataset.screen === id));
+  const active = document.querySelector('.bottomnav button.active');
+  if (active) active.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+  window.scrollTo({ top: 0, behavior: 'instant' in window ? 'auto' : 'auto' });
+  renderScreen(id);
+}
+
+/* ---------------------------------------------------------------
+   10. RENDU DES ÉCRANS
+--------------------------------------------------------------- */
+function renderScreen(id) {
+  switch (id) {
+    case 'screen-accueil': renderSources(); break;
+    case 'screen-analyse': renderAnalyse(); break;
+    case 'screen-moteur': renderMoteur(); break;
+    case 'screen-zoran': renderModules(); break;
+    case 'screen-dimension': renderDimension(); break;
+    case 'screen-licences': renderLicences(); break;
+    case 'screen-roi': renderRoi(); break;
+    case 'screen-devis': renderDevis(); break;
+    case 'screen-versions': renderVersions(); break;
+    case 'screen-audit': renderAudit(); break;
+  }
+  document.getElementById('topbar-version').textContent = 'v' + STATE.meta.version;
+  const sub = document.getElementById('topbar-sub');
+  if (sub) sub.textContent = STATE.client.entreprise ? STATE.client.entreprise : 'Assistant commercial mobile';
+}
+
+/* --- Sources (Accueil) --- */
+function renderSources() {
+  const box = document.getElementById('sources-list');
+  if (!STATE.sources.length) {
+    box.innerHTML = '<p class="screen-intro" style="margin:8px 0 0">Aucune source ajoutée pour le moment.</p>';
+    return;
+  }
+  box.innerHTML = STATE.sources.map((s, i) => `
+    <div class="kv">
+      <span>${iconForType(s.type)} ${escapeHtml(s.name)}
+        <small style="color:var(--ink-soft)"> · ${escapeHtml(s.size)}${s.id ? ' · ' + escapeHtml(s.id) : ''}</small></span>
+      <button class="btn btn-mini" data-src-del="${i}">✕</button>
+    </div>`).join('');
+  box.querySelectorAll('[data-src-del]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const i = +btn.dataset.srcDel;
+      logAudit('Suppression source', STATE.sources[i].name, '');
+      STATE.sources.splice(i, 1);
+      saveState(); renderSources();
+      toast('Source supprimée');
+    });
+  });
+}
+function iconForType(t) {
+  if (/pdf/.test(t)) return '📄';
+  if (/word|doc/.test(t)) return '📝';
+  if (/email|eml|msg/.test(t)) return '✉️';
+  if (/url|web/.test(t)) return '🌐';
+  if (/image/.test(t)) return '🖼️';
+  if (/text|note/.test(t)) return '🗒️';
+  return '📎';
+}
+
+/* --- Analyse --- */
+const AN_LABELS = {
+  resume: 'resume', comprehension: 'comprehension', enjeux: 'enjeux',
+  risques: 'risques', opportunites: 'opportunites'
+};
+function renderAnalyse() {
+  const a = STATE.analyse;
+  const meta = document.getElementById('an-meta');
+  if (a.generatedAt) {
+    meta.textContent = `Analyse pour ${STATE.client.entreprise || '—'} · générée le ${new Date(a.generatedAt).toLocaleString('fr-FR')}${a.id ? ' · ' + a.id : ''}`;
+  } else {
+    meta.textContent = "Aucune analyse générée. Lancez « Analyser » depuis l'accueil.";
+  }
+  Object.keys(AN_LABELS).forEach(k => {
+    const el = document.querySelector(`[data-an="${k}"]`);
+    if (el && !el.isContentEditable) el.textContent = a[k] || '';
+  });
+}
+
+function generateAnalyse(deepen) {
+  const c = STATE.client;
+  const ent = c.entreprise || "l'entreprise";
+  const pays = c.pays || 'son marché';
+  const fct = c.fonction ? `, ${c.fonction},` : '';
+  const obj = c.objectif || 'optimiser ses opérations et la circulation de la connaissance';
+  const srcTxt = STATE.sources.map(s => s.excerpt).join(' ').slice(0, 1200);
+  const motsCles = topKeywords(srcTxt);
+  const clePhrase = motsCles.length ? ` Thèmes saillants relevés dans les sources : ${motsCles.join(', ')}.` : '';
+  const plus = deepen ? ' (analyse approfondie)' : '';
+
+  STATE.analyse = {
+    resume: `${ent} évolue en ${pays} et cherche à ${obj}. L'enjeu central est de transformer la connaissance dispersée en avantage opérationnel mesurable, en s'appuyant sur ZORAN comme moteur d'intelligence augmentée.${clePhrase}${plus}`,
+    comprehension: `Interlocuteur : ${c.interlocuteur || '—'}${fct} pilote la décision. ${ent} compte ${fmtNum(STATE.dimension.employes)} employés répartis sur ${STATE.dimension.services} services, avec ${fmtNum(STATE.dimension.documents)} documents à valoriser. Le périmètre utilisateur visé est de ${fmtNum(STATE.dimension.utilisateurs)} personnes.`,
+    enjeux: `• Réduire le temps perdu à rechercher l'information.\n• Sécuriser et tracer les décisions.\n• Capitaliser sur l'expertise des ${fmtNum(STATE.dimension.experts)} experts et ${fmtNum(STATE.dimension.managers)} managers.\n• Aligner les ${STATE.dimension.services} services sur une base de connaissance commune.`,
+    risques: `• Adoption insuffisante sans accompagnement (formation prévue au devis).\n• Données sensibles : gouvernance et traçabilité indispensables (module Audit).\n• Conduite du changement à piloter sur les premiers mois.`,
+    opportunites: `• Gain de productivité estimé sur ${fmtNum(STATE.dimension.utilisateurs)} utilisateurs.\n• Différenciation par l'usage d'une IA souveraine et éthique.\n• Extension progressive (agents, skills, futur probable) après le socle initial.`,
+    generatedAt: new Date().toISOString(),
+    id: genId('ANA')
+  };
+  logAudit((deepen ? 'Analyse approfondie ' : 'Analyse générée ') + STATE.analyse.id, '', ent, ['analyse']);
+  STATE.meta.version++;
+  saveState();
+}
+
+function topKeywords(text) {
+  if (!text) return [];
+  const stop = new Set(['dans','pour','avec','vous','nous','votre','notre','cette','plus','sont','être','leurs','leur','des','les','une','aux','que','qui','par','sur','est','aux','the','and','for','with','this','that','your']);
+  const freq = {};
+  (text.toLowerCase().match(/[a-zà-ÿ]{4,}/g) || []).forEach(w => {
+    if (!stop.has(w)) freq[w] = (freq[w] || 0) + 1;
+  });
+  return Object.entries(freq).sort((a, b) => b[1] - a[1]).slice(0, 6).map(e => e[0]);
+}
+
+/* --- Modules ZORAN --- */
+function renderModules() {
+  const grid = document.getElementById('modules-grid');
+  grid.innerHTML = CONFIG.modules.map(m => {
+    const on = !!STATE.modules[m.id];
+    return `
+    <div class="module-card ${on ? 'on' : ''}" data-mod="${m.id}">
+      <div class="module-head">
+        <span class="module-icon">${m.icon}</span>
+        <span class="module-state">${on ? '● Activé' : '○ Inactif'}</span>
+      </div>
+      <div class="module-name">${m.nom}</div>
+      <div class="module-desc">${m.desc}</div>
+      <div class="module-desc"><b>${fmt(m.cout)}</b>/an</div>
+      <div class="module-actions">
+        <button class="btn" data-mod-toggle="${m.id}">${on ? 'Désactiver' : 'Activer'}</button>
+      </div>
+    </div>`;
+  }).join('');
+  grid.querySelectorAll('[data-mod-toggle]').forEach(btn => {
+    btn.addEventListener('click', () => toggleModule(btn.dataset.modToggle));
+  });
+}
+function toggleModule(id) {
+  const before = STATE.modules[id];
+  STATE.modules[id] = !before;
+  const m = CONFIG.modules.find(x => x.id === id);
+  logAudit('Module ' + m.nom, before ? 'activé' : 'inactif', STATE.modules[id] ? 'activé' : 'inactif');
+  saveState(); renderModules();
+  toast(`${m.nom} ${STATE.modules[id] ? 'activé' : 'désactivé'}`);
+}
+
+/* --- Dimensionnement --- */
+function renderDimension() {
+  const r = computeAll();
+  const d = STATE.dimension;
+  document.getElementById('dim-result').innerHTML = `
+    <h2>Résultat du dimensionnement</h2>
+    <div class="kv"><span>Charge pondérée</span><b>${fmtNum(r.charge)} pts</b></div>
+    <div class="kv"><span>Utilisateurs actifs (adoption ${STATE.roiHyp.adoption} %)</span><b>${fmtNum(r.utilisateursActifs)}</b></div>
+    <div class="kv"><span>Ratio documents / utilisateur</span><b>${fmtNum(d.documents / Math.max(1, d.utilisateurs))}</b></div>
+    <div class="kv"><span>Palier recommandé</span><b><span class="badge">${r.reco.nom}</span></b></div>
+    <div class="kv total"><span>Coût licences estimé</span><b>${fmt(r.coutLicencesAn)}/an</b></div>`;
+}
+
+/* --- Licences --- */
+function renderLicences() {
+  const r = computeAll();
+  document.getElementById('licence-reco').innerHTML =
+    `Palier recommandé pour ${fmtNum(STATE.dimension.utilisateurs)} utilisateurs : <span class="badge ok">${r.reco.nom}</span>`;
+  const grid = document.getElementById('licences-grid');
+  grid.innerHTML = CONFIG.licences.map(l => {
+    const isReco = l.id === r.reco.id;
+    const isChosen = l.id === STATE.licence.choisie;
+    const coutAn = STATE.dimension.utilisateurs * l.prixUserAn;
+    const maxTxt = l.maxUsers === Infinity ? 'illimité' : '≤ ' + l.maxUsers + ' utilisateurs';
+    return `
+    <div class="licence-card ${isChosen ? 'reco' : ''}">
+      <div class="licence-head">
+        <span class="licence-name">${l.nom} ${isReco ? '<span class="badge ok">conseillé</span>' : ''}</span>
+        <span class="licence-price">${fmt(l.prixUserAn)}/user/an</span>
+      </div>
+      <div class="licence-desc">${l.desc} · ${maxTxt}</div>
+      <div class="kv"><span>Coût pour votre périmètre</span><b>${fmt(coutAn)}/an</b></div>
+      <button class="btn ${isChosen ? 'btn-primary' : ''} btn-block" data-lic="${l.id}" style="margin-top:8px">
+        ${isChosen ? '✓ Sélectionné' : 'Choisir ' + l.nom}</button>
+    </div>`;
+  }).join('');
+  grid.querySelectorAll('[data-lic]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const before = STATE.licence.choisie;
+      STATE.licence.choisie = btn.dataset.lic;
+      logAudit('Licence choisie', before, btn.dataset.lic);
+      saveState(); renderLicences();
+      toast('Licence ' + (CONFIG.licences.find(l => l.id === btn.dataset.lic).nom) + ' sélectionnée');
+    });
+  });
+}
+
+/* --- ROI --- */
+function renderRoi() {
+  const r = computeAll();
+  document.getElementById('roi-result').innerHTML = `
+    <h2>Résultats</h2>
+    <div class="kv"><span>Heures économisées / an</span><b>${fmtNum(r.heuresAn)} h</b></div>
+    <div class="kv"><span>Gain brut annuel</span><b class="pos">${fmt(r.gainBrutAn)}</b></div>
+    <div class="kv"><span>Coût total année 1</span><b class="neg">${fmt(r.totalAn1)}</b></div>
+    <div class="kv"><span>Coût récurrent annuel</span><b class="neg">${fmt(r.recurrentAn)}</b></div>
+    <div class="kv"><span>Gain net année 1</span><b class="${r.gainNetAn1 >= 0 ? 'pos' : 'neg'}">${fmt(r.gainNetAn1)}</b></div>
+    <div class="kv"><span>Gain net récurrent / an</span><b class="${r.gainNetRecurrent >= 0 ? 'pos' : 'neg'}">${fmt(r.gainNetRecurrent)}</b></div>
+    <div class="kv total"><span>ROI année 1</span><b>${Math.round(r.roiPct)} %</b></div>
+    <div class="kv"><span>Retour sur investissement</span><b>${r.retourMois === Infinity ? '—' : fmtNum(r.retourMois) + ' mois'}</b></div>`;
+  drawRoiChart(r);
+}
+
+function drawRoiChart(r) {
+  const cv = document.getElementById('roi-chart');
+  if (!cv) return;
+  const dpr = window.devicePixelRatio || 1;
+  const w = cv.clientWidth || cv.parentElement.clientWidth - 32;
+  const h = 220;
+  cv.width = w * dpr; cv.height = h * dpr;
+  const ctx = cv.getContext('2d');
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, w, h);
+
+  const years = [1, 2, 3];
+  const costs = years.map(y => r.totalAn1 + (y - 1) * r.recurrentAn);
+  const gains = years.map(y => r.gainBrutAn * y);
+  const maxV = Math.max(...costs, ...gains, 1);
+
+  const padL = 8, padR = 8, padT = 14, padB = 28;
+  const plotW = w - padL - padR;
+  const plotH = h - padT - padB;
+  const n = years.length;
+  const groupW = plotW / n;
+  const barW = groupW * 0.30;
+
+  const css = getComputedStyle(document.documentElement);
+  const costColor = (css.getPropertyValue('--danger') || '#d63649').trim();
+  const gainColor = (css.getPropertyValue('--ok') || '#18a35d').trim();
+  const inkSoft = (css.getPropertyValue('--ink-soft') || '#5a6782').trim();
+
+  ctx.strokeStyle = '#e2e7f0';
+  ctx.beginPath(); ctx.moveTo(padL, padT + plotH); ctx.lineTo(w - padR, padT + plotH); ctx.stroke();
+
+  ctx.font = '11px -apple-system, sans-serif';
+  ctx.textAlign = 'center';
+  years.forEach((y, i) => {
+    const gx = padL + i * groupW + groupW / 2;
+    const cH = (costs[i] / maxV) * plotH;
+    const gH = (gains[i] / maxV) * plotH;
+    ctx.fillStyle = costColor;
+    ctx.fillRect(gx - barW - 3, padT + plotH - cH, barW, cH);
+    ctx.fillStyle = gainColor;
+    ctx.fillRect(gx + 3, padT + plotH - gH, barW, gH);
+    ctx.fillStyle = inkSoft;
+    ctx.fillText('Année ' + y, gx, padT + plotH + 16);
+  });
+}
+
+/* --- Devis --- */
+function renderDevis() {
+  const r = computeAll();
+  document.getElementById('devis-meta').innerHTML = STATE.client.entreprise
+    ? `Devis pour <b>${escapeHtml(STATE.client.entreprise)}</b> · palier ${r.palier.nom}`
+    : 'Renseignez le client sur l\'accueil pour personnaliser le devis.';
+  const rows = r.devisLignes.map(l =>
+    `<div class="kv"><span>${escapeHtml(l.label)}${l.recurrent ? ' <small style="color:var(--ink-soft)">/an</small>' : ''}</span><b>${fmt(l.montant)}</b></div>`
+  ).join('');
+  document.getElementById('devis-table').innerHTML = `
+    <h2>Détail du devis</h2>
+    ${rows}
+    <div class="kv total"><span>Total année 1</span><b>${fmt(r.totalAn1)}</b></div>
+    <div class="kv"><span>Total récurrent</span><b>${fmt(r.recurrentAn)}/an</b></div>`;
+}
+
+/* --- Versions --- */
+function renderVersions() {
+  const grid = document.getElementById('versions-grid');
+  grid.innerHTML = CONFIG.versions.map(v => `
+    <button data-ver="${v.id}" class="${STATE.version === v.id ? 'active' : ''}">
+      <span class="v-ico">${v.icon}</span>${v.nom}
+    </button>`).join('');
+  grid.querySelectorAll('[data-ver]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const before = STATE.version;
+      STATE.version = btn.dataset.ver;
+      logAudit('Version discours', before, STATE.version);
+      saveState(); renderVersions();
+    });
+  });
+  renderVersionPitch();
+}
+function renderVersionPitch() {
+  const v = CONFIG.versions.find(x => x.id === STATE.version) || CONFIG.versions[0];
+  const r = computeAll();
+  const ent = STATE.client.entreprise || 'votre organisation';
+  document.getElementById('version-pitch').innerHTML = `
+    <h2>${v.icon} Pitch ${v.nom} — ${v.angle}</h2>
+    <p class="an-text">Pour ${escapeHtml(ent)}, l'argument ${v.nom} se concentre sur ${v.angle}.
+    ZORAN apporte ici un gain net estimé de <b>${fmt(r.gainNetRecurrent)}/an</b> en régime de croisière,
+    pour un investissement année 1 de <b>${fmt(r.totalAn1)}</b> et un retour en
+    <b>${r.retourMois === Infinity ? '—' : fmtNum(r.retourMois) + ' mois'}</b>.</p>
+    <p class="an-text">${pitchAngle(v.id, r)}</p>`;
+}
+function pitchAngle(id, r) {
+  const map = {
+    DG: "Vision : un avantage compétitif durable et un ROI mesurable dès la première année.",
+    DSI: "Sécurité : traçabilité native, hébergement maîtrisé, intégration à votre SI existant.",
+    Technique: "Architecture modulaire, API ouvertes, déploiement progressif sans rupture.",
+    Investisseur: `Marché en croissance, modèle récurrent (${fmt(r.recurrentAn)}/an), effet d'échelle.`,
+    BTP: "Devis, mémoires techniques et suivi de chantier accélérés par l'IA.",
+    Industrie: "Qualité, maintenance prédictive et capitalisation du savoir-faire.",
+    Sante: "Conformité, confidentialité patient et appui à la décision soignante.",
+    Collectivite: "Service public augmenté, conformité RGPD et transparence.",
+    Banque: "Maîtrise du risque, conformité réglementaire et productivité analyste.",
+    Assurance: "Traitement des sinistres accéléré et appui actuariel."
+  };
+  return map[id] || '';
+}
+
+/* --- Audit --- */
+function renderAudit() {
+  const r = computeAll();
+  document.getElementById('audit-trace').innerHTML = `
+    <div class="kv"><span>Session</span><b><code>${escapeHtml(STATE.meta.sessionId || '—')}</code></b></div>
+    <div class="kv"><span>Dossier</span><b><code>${escapeHtml(STATE.meta.dossierId || '—')}</code></b></div>` +
+    r.trace.map(t => `
+    <div class="step">
+      <span class="s-ico">${t.ok ? '✅' : '⚠️'}</span>
+      <span><b>${escapeHtml(t.step)}</b><br><span class="s-detail">${escapeHtml(t.detail)}</span></span>
+    </div>`).join('');
+
+  const log = document.getElementById('audit-log');
+  log.innerHTML = STATE.auditLog.length
+    ? STATE.auditLog.map(e => `
+      <div class="log-entry">
+        <div><b>${escapeHtml(e.quoi)}</b>${(e.tags || []).map(t => ` <span class="badge">${escapeHtml(t)}</span>`).join('')}</div>
+        <div class="log-meta">${escapeHtml(e.qui)} · ${new Date(e.ts).toLocaleString('fr-FR')}${e.id ? ' · ' + escapeHtml(e.id) : ''}</div>
+        ${(e.avant || e.apres) ? `<div>avant <code>${escapeHtml(e.avant || '∅')}</code> → après <code>${escapeHtml(e.apres || '∅')}</code></div>` : ''}
+      </div>`).join('')
+    : '<p class="screen-intro">Aucune modification enregistrée.</p>';
+
+  document.getElementById('audit-json').textContent = JSON.stringify(STATE, null, 2);
+}
+
+/* ---------------------------------------------------------------
+   10b. MOTEUR DE CONNAISSANCE (V3)
+--------------------------------------------------------------- */
+let lastDeliverable = null;
+let moteurWired = false;
+
+function renderMoteur() {
+  // Options des sélecteurs (peuplées une seule fois, puis valeurs synchronisées)
+  const audSel = document.getElementById('gen-audience');
+  if (audSel && !audSel.options.length) {
+    fillOptions(audSel, Object.keys(ENGINE.AUDIENCES));
+    fillOptions(document.getElementById('gen-complexite'), ENGINE.COMPLEXITES);
+    fillOptions(document.getElementById('gen-format'), Object.keys(ENGINE.FORMATS));
+    fillOptions(document.getElementById('gen-objectif'), Object.keys(ENGINE.OBJECTIFS));
+  }
+  ['audience', 'complexite', 'format', 'objectif'].forEach(k => {
+    const el = document.getElementById('gen-' + k);
+    if (el) el.value = STATE.generation[k];
+  });
+
+  // Objections (chips)
+  const objBox = document.getElementById('profil-objections');
+  if (objBox) {
+    objBox.innerHTML = ENGINE.objectionsList.map(o => {
+      const on = (STATE.profil.objections || []).indexOf(o.id) >= 0;
+      return `<button type="button" class="chip ${on ? 'on' : ''}" data-obj="${o.id}">${escapeHtml(o.label)}</button>`;
+    }).join('');
+    objBox.querySelectorAll('[data-obj]').forEach(b => b.addEventListener('click', () => {
+      const id = b.dataset.obj;
+      const arr = STATE.profil.objections || (STATE.profil.objections = []);
+      const i = arr.indexOf(id);
+      if (i >= 0) arr.splice(i, 1); else arr.push(id);
+      logAudit('Objection prospect', '', id, ['profil']);
+      saveState(); renderMoteur();
+    }));
+  }
+
+  // Recommandation automatique
+  const reco = ENGINE.recommander(STATE);
+  const rb = document.getElementById('reco-body');
+  if (rb) rb.innerHTML = `
+    <div class="kv"><span>Maturité IA détectée</span><b><span class="badge">${reco.maturite.n} · ${escapeHtml(reco.maturite.label)}</span></b></div>
+    <div class="kv"><span>Meilleur angle</span><b>${escapeHtml(reco.angle)}</b></div>
+    <div class="kv"><span>Argument prioritaire</span><b>${escapeHtml(reco.argument)}</b></div>
+    <div class="kv"><span>Format conseillé</span><b>${escapeHtml(reco.format)}</b></div>
+    <div class="kv"><span>Objectif conseillé</span><b>${escapeHtml(reco.objectif)}</b></div>
+    <div class="kv"><span>POC recommandé</span><b>${escapeHtml(reco.poc)}</b></div>
+    <div class="kv"><span>Stratégie d'adoption</span><b>${escapeHtml(reco.adoption)}</b></div>
+    <div class="kv"><span>Objection à préparer</span><b>${escapeHtml(reco.objectionPrioritaire)}</b></div>
+    <div class="kv"><span>Urgence</span><b>${escapeHtml(reco.urgenceNote)}</b></div>`;
+
+  // Moteurs rapides
+  const rapide = document.getElementById('moteur-rapide');
+  if (rapide) {
+    const boutons = [
+      { id: 'pourquoi', label: "🚀 Pourquoi l'IA maintenant" },
+      { id: 'risque', label: "⚠️ Risque de ne rien faire" },
+      { id: 'poc', label: "🧪 Plan de POC" },
+      { id: 'roadmap', label: "🗺️ Feuille de route" },
+      { id: 'casusage', label: "🧰 Cas d'usage" },
+      { id: 'faq', label: "❓ FAQ" },
+      { id: 'financement', label: "💶 Dossier de financement" }
+    ];
+    rapide.innerHTML =
+      boutons.map(b => `<button class="btn btn-mini" data-rapide="${b.id}">${b.label}</button>`).join('') +
+      ENGINE.competitors.map(c => `<button class="btn btn-mini" data-vs="${escapeHtml(c)}">⚔️ vs ${escapeHtml(c)}</button>`).join('') +
+      ENGINE.dureesPitch.map(d => `<button class="btn btn-mini" data-pitch="${escapeHtml(d)}">🎤 Pitch ${escapeHtml(d)}</button>`).join('') +
+      ENGINE.objectionsList.map(o => `<button class="btn btn-mini" data-objrep="${o.id}">💬 ${escapeHtml(o.label)}</button>`).join('');
+
+    rapide.querySelectorAll('[data-rapide]').forEach(b => b.addEventListener('click', () => {
+      const id = b.dataset.rapide;
+      const map = { pourquoi: () => ENGINE.pourquoiMaintenant(STATE, STATE.generation.audience),
+        risque: () => ENGINE.risqueInaction(STATE), poc: () => ENGINE.poc(STATE),
+        roadmap: () => ENGINE.roadmap(STATE), casusage: () => ENGINE.casUsage(STATE),
+        faq: () => ENGINE.faq(STATE), financement: () => ENGINE.financement(STATE) };
+      showDeliverable(map[id](), id);
+    }));
+    rapide.querySelectorAll('[data-vs]').forEach(b => b.addEventListener('click', () =>
+      showDeliverable(ENGINE.differenciation(STATE, b.dataset.vs), 'vs-' + b.dataset.vs)));
+    rapide.querySelectorAll('[data-pitch]').forEach(b => b.addEventListener('click', () =>
+      showDeliverable(ENGINE.pitch(STATE, b.dataset.pitch, STATE.generation.audience), 'pitch')));
+    rapide.querySelectorAll('[data-objrep]').forEach(b => b.addEventListener('click', () =>
+      showDeliverable(ENGINE.objection(STATE, b.dataset.objrep), 'objection')));
+  }
+
+  // Câblage unique des boutons fixes
+  if (!moteurWired) {
+    moteurWired = true;
+    document.getElementById('btn-generer').addEventListener('click', () => {
+      showDeliverable(ENGINE.generate(STATE), 'generate');
+    });
+    document.getElementById('btn-reco-apply').addEventListener('click', () => {
+      const r = ENGINE.recommander(STATE);
+      STATE.generation.format = r.format;
+      STATE.generation.objectif = r.objectif;
+      logAudit('Recommandation appliquée', '', r.format + ' / ' + r.objectif, ['moteur']);
+      saveState(); renderMoteur();
+      toast('Recommandation appliquée');
+    });
+    document.getElementById('btn-gen-edit').addEventListener('click', () => {
+      const body = document.getElementById('gen-output-body');
+      if (body.isContentEditable) {
+        body.contentEditable = 'false'; body.classList.remove('editing');
+        if (lastDeliverable) lastDeliverable.sections = [{ h: '', t: body.innerText }];
+        toast('Modifications conservées pour l\'export');
+      } else { body.contentEditable = 'true'; body.classList.add('editing'); body.focus(); }
+    });
+    document.getElementById('btn-gen-copy').addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(ENGINE.toText(lastDeliverable)); toast('Livrable copié'); }
+      catch (e) { toast('Copie impossible'); }
+    });
+    document.getElementById('btn-gen-pdf').addEventListener('click', () => exportDeliverable('pdf'));
+    document.getElementById('btn-gen-word').addEventListener('click', () => exportDeliverable('word'));
+    document.getElementById('btn-gen-email').addEventListener('click', () => exportDeliverable('email'));
+  }
+}
+
+function fillOptions(sel, arr) {
+  if (!sel) return;
+  sel.innerHTML = arr.map(v => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join('');
+}
+
+function showDeliverable(deliv, kind) {
+  lastDeliverable = deliv;
+  document.getElementById('gen-output-card').style.display = 'block';
+  document.getElementById('gen-output-titre').textContent = deliv.titre;
+  const meta = deliv.meta || {};
+  document.getElementById('gen-output-meta').innerHTML = Object.keys(meta)
+    .map(k => `<span class="badge">${escapeHtml(k)}: ${escapeHtml(String(meta[k]))}</span>`).join(' ');
+  const body = document.getElementById('gen-output-body');
+  body.contentEditable = 'false'; body.classList.remove('editing');
+  body.innerHTML = deliv.sections.map(s =>
+    (s.h ? '<b>' + escapeHtml(s.h) + '</b>\n' : '') + escapeHtml(s.t)).join('\n\n').replace(/\n/g, '<br>');
+  logAudit('Livrable généré [' + (kind || '') + ']', '', deliv.titre, ['sortant', 'genere']);
+  saveState();
+  document.getElementById('gen-output-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function exportDeliverable(kind) {
+  if (!lastDeliverable) { toast('Générez d\'abord un livrable'); return; }
+  const expId = genId('EXP');
+  const titre = lastDeliverable.titre;
+  if (kind === 'pdf') {
+    printDocument(ENGINE.toHtml(lastDeliverable) + traceFooter(expId));
+    logAudit('Export livrable PDF ' + expId, '', titre, ['sortant', 'pdf', 'livrable']);
+  } else if (kind === 'word') {
+    const html = wordWrap(ENGINE.toHtml(lastDeliverable) + traceFooter(expId), titre);
+    downloadBlob(html, filename('docx-as-doc'), 'application/msword');
+    logAudit('Export livrable Word ' + expId, '', titre, ['sortant', 'word', 'livrable']);
+  } else if (kind === 'email') {
+    const corps = ENGINE.toText(lastDeliverable) + '\n\nRéférence : ' + expId + ' · Dossier : ' + STATE.meta.dossierId;
+    const mailto = `mailto:?subject=${encodeURIComponent(titre)}&body=${encodeURIComponent(corps)}`;
+    downloadBlob('Subject: ' + titre + '\nX-Unsent: 1\nContent-Type: text/plain; charset=utf-8\n\n' + corps, filename('eml'), 'message/rfc822');
+    window.location.href = mailto;
+    logAudit('Export livrable Email ' + expId, '', titre, ['sortant', 'email', 'livrable']);
+  }
+  saveState();
+  toast('Livrable exporté (' + kind + ')');
+}
+
+function traceFooter(expId) {
+  return '<div class="print-foot">Document généré par ZORAN Biz Mobile — ' + new Date().toLocaleString('fr-FR') +
+    '<br>Référence : ' + escapeHtml(expId) + ' · Dossier : ' + escapeHtml(STATE.meta.dossierId) +
+    ' · Session : ' + escapeHtml(STATE.meta.sessionId) + '</div>';
+}
+function wordWrap(inner, titre) {
+  return '<!DOCTYPE html><html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">' +
+    '<head><meta charset="utf-8"><title>' + escapeHtml(titre) + '</title>' +
+    '<style>body{font-family:Calibri,Arial,sans-serif;color:#1b2434}h1{color:#1f3a5f;font-size:18pt}h2{color:#1f3a5f;font-size:12pt}.print-foot{margin-top:16pt;color:#888;font-size:8pt}</style>' +
+    '</head><body>' + inner + '</body></html>';
+}
+function printDocument(innerHtml) {
+  document.getElementById('print-area').innerHTML = innerHtml;
+  setTimeout(() => window.print(), 60);
+}
+
+/* ---------------------------------------------------------------
+   11. EXPORTS (PDF / Word / Email / JSON)
+--------------------------------------------------------------- */
+function buildDevisHtml(expId) {
+  const r = computeAll();
+  const c = STATE.client;
+  const date = new Date().toLocaleDateString('fr-FR');
+  const rows = r.devisLignes.map(l =>
+    `<tr><td>${escapeHtml(l.label)}${l.recurrent ? ' (/an)' : ''}</td><td>${fmt(l.montant)}</td></tr>`
+  ).join('');
+  return `
+    <h1>Proposition commerciale ZORAN</h1>
+    <div class="print-sub">${escapeHtml(c.entreprise || '—')} · ${escapeHtml(c.pays || '')} · ${date}</div>
+    <p><b>Interlocuteur :</b> ${escapeHtml(c.interlocuteur || '—')} ${c.fonction ? '(' + escapeHtml(c.fonction) + ')' : ''}<br>
+       <b>Objectif :</b> ${escapeHtml(c.objectif || '—')}<br>
+       <b>Palier :</b> ${escapeHtml(r.palier.nom)} · ${fmtNum(STATE.dimension.utilisateurs)} utilisateurs</p>
+    <table>
+      <thead><tr><th>Poste</th><th>Montant</th></tr></thead>
+      <tbody>
+        ${rows}
+        <tr class="print-total"><td>Total année 1</td><td>${fmt(r.totalAn1)}</td></tr>
+        <tr class="print-total"><td>Total récurrent / an</td><td>${fmt(r.recurrentAn)}</td></tr>
+      </tbody>
+    </table>
+    <p><b>Synthèse ROI :</b> gain brut ${fmt(r.gainBrutAn)}/an · ROI année 1 ${Math.round(r.roiPct)} % ·
+       retour en ${r.retourMois === Infinity ? '—' : fmtNum(r.retourMois) + ' mois'}.</p>
+    <div class="print-foot">Document généré par ZORAN Biz Mobile — ${new Date().toLocaleString('fr-FR')}<br>
+      Référence : ${escapeHtml(expId || '—')} · Dossier : ${escapeHtml(STATE.meta.dossierId)} · Session : ${escapeHtml(STATE.meta.sessionId)}</div>`;
+}
+
+function exportPDF() {
+  const expId = genId('EXP');
+  document.getElementById('print-area').innerHTML = buildDevisHtml(expId);
+  logAudit('Export PDF ' + expId, '', STATE.client.entreprise || '', ['sortant', 'pdf']);
+  saveState();
+  setTimeout(() => window.print(), 60);
+}
+
+function exportWord() {
+  const expId = genId('EXP');
+  const inner = buildDevisHtml(expId);
+  const html = `<!DOCTYPE html><html xmlns:o="urn:schemas-microsoft-com:office:office"
+    xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+    <head><meta charset="utf-8"><title>Devis ZORAN</title>
+    <style>
+      body{font-family:Calibri,Arial,sans-serif;color:#16213a}
+      h1{color:#1c3f6e;font-size:20pt;margin-bottom:2pt}
+      .print-sub{color:#666;font-size:10pt;margin-bottom:16pt}
+      table{border-collapse:collapse;width:100%}
+      th,td{border:1px solid #bbb;padding:6pt 9pt;text-align:left;font-size:10pt}
+      td:last-child,th:last-child{text-align:right}
+      .print-total td{font-weight:bold;background:#eef2fb}
+      .print-foot{margin-top:16pt;color:#888;font-size:8pt}
+    </style></head><body>${inner}</body></html>`;
+  downloadBlob(html, filename('docx-as-doc'), 'application/msword');
+  logAudit('Export Word ' + expId, '', STATE.client.entreprise || '', ['sortant', 'word']);
+  saveState();
+  toast('Document Word généré');
+}
+
+function exportEmail() {
+  const expId = genId('EXP');
+  const r = computeAll();
+  const c = STATE.client;
+  const objet = `Proposition ZORAN — ${c.entreprise || 'votre projet'} [${expId}]`;
+  const corps =
+`Bonjour ${c.interlocuteur || ''},
+
+Suite à notre échange, voici la synthèse de la proposition ZORAN pour ${c.entreprise || 'votre organisation'} :
+
+• Palier : ${r.palier.nom} (${fmtNum(STATE.dimension.utilisateurs)} utilisateurs)
+• Total année 1 : ${fmt(r.totalAn1)}
+• Total récurrent : ${fmt(r.recurrentAn)}/an
+• Gain brut estimé : ${fmt(r.gainBrutAn)}/an
+• ROI année 1 : ${Math.round(r.roiPct)} %
+• Retour sur investissement : ${r.retourMois === Infinity ? '—' : fmtNum(r.retourMois) + ' mois'}
+
+Le détail complet du devis est joint.
+
+Bien cordialement,
+${CONFIG.operateur}
+
+Référence : ${expId} · Dossier : ${STATE.meta.dossierId} · Session : ${STATE.meta.sessionId}`;
+
+  // Fichier .eml téléchargeable
+  const to = (c.siteWeb ? '' : '');
+  const eml =
+`To: ${to}
+Subject: ${objet}
+X-Unsent: 1
+Content-Type: text/plain; charset=utf-8
+
+${corps}`;
+  downloadBlob(eml, filename('eml'), 'message/rfc822');
+
+  // Ouverture client mail
+  const mailto = `mailto:?subject=${encodeURIComponent(objet)}&body=${encodeURIComponent(corps)}`;
+  window.location.href = mailto;
+
+  logAudit('Export Email ' + expId, '', c.entreprise || '', ['sortant', 'email']);
+  saveState();
+  toast('Email préparé (.eml téléchargé + client mail ouvert)');
+}
+
+function exportJSON() {
+  const expId = genId('EXP');
+  downloadBlob(JSON.stringify(STATE, null, 2), filename('json'), 'application/json');
+  logAudit('Export JSON ' + expId, '', '', ['sortant', 'json']);
+  saveState();
+  toast('JSON exporté');
+}
+
+function filename(ext) {
+  const base = (STATE.client.entreprise || 'zoran-devis').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const stamp = new Date().toISOString().slice(0, 10);
+  const realExt = ext === 'docx-as-doc' ? 'doc' : ext;
+  return `${base || 'zoran'}-${stamp}.${realExt}`;
+}
+
+function downloadBlob(content, name, mime) {
+  const blob = new Blob(['﻿', content], { type: mime + ';charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = name;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1500);
+}
+
+/* ---------------------------------------------------------------
+   12. LIAISON DES CHAMPS (data-bind) + VALIDATION TEMPS RÉEL
+--------------------------------------------------------------- */
+function bindInputs() {
+  document.querySelectorAll('[data-bind]').forEach(el => {
+    const path = el.dataset.bind;
+    const cur = getPath(STATE, path);
+    if (cur != null && cur !== '') el.value = cur;
+
+    el.addEventListener('input', () => {
+      const res = validateField(path, el.value);
+      const errEl = document.querySelector(`[data-err="${path}"]`);
+      if (!res.ok) {
+        el.classList.add('invalid');
+        if (errEl) { errEl.textContent = res.error; errEl.classList.add('show'); }
+      } else {
+        el.classList.remove('invalid');
+        if (errEl) errEl.classList.remove('show');
+        const before = getPath(STATE, path);
+        setPath(STATE, path, res.value);
+        if (before !== res.value) {
+          // pas de log à chaque frappe : on logge sur "change"
+          saveState();
+          refreshComputedScreens();
+        }
+      }
+    });
+
+    el.addEventListener('change', () => {
+      const res = validateField(path, el.value);
+      if (res.ok) {
+        logAudit('Champ ' + path, '', String(res.value).slice(0, 60));
+        saveState();
+      }
+    });
+  });
+}
+
+/* Rafraîchit uniquement les écrans dépendant des calculs */
+function refreshComputedScreens() {
+  const active = document.querySelector('.screen.active');
+  if (!active) return;
+  if (['screen-dimension', 'screen-licences', 'screen-roi', 'screen-devis', 'screen-versions', 'screen-audit'].includes(active.id)) {
+    renderScreen(active.id);
+  }
+  const sub = document.getElementById('topbar-sub');
+  if (sub) sub.textContent = STATE.client.entreprise || 'Assistant commercial mobile';
+}
+
+/* ---------------------------------------------------------------
+   13. TOAST
+--------------------------------------------------------------- */
+let toastTimer;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2400);
+}
+
+/* ---------------------------------------------------------------
+   14. ÉVÉNEMENTS
+--------------------------------------------------------------- */
+function wireEvents() {
+  // Navigation
+  document.querySelectorAll('.bottomnav button').forEach(b => {
+    b.addEventListener('click', () => showScreen(b.dataset.screen));
+  });
+
+  // Accueil : Analyser
+  document.getElementById('btn-analyser').addEventListener('click', () => {
+    const errors = {};
+    ['client.entreprise', 'client.interlocuteur'].forEach(p => {
+      const res = validateField(p, getPath(STATE, p));
+      const errEl = document.querySelector(`[data-err="${p}"]`);
+      const input = document.querySelector(`[data-bind="${p}"]`);
+      if (!res.ok) {
+        errors[p] = res.error;
+        if (errEl) { errEl.textContent = res.error; errEl.classList.add('show'); }
+        if (input) input.classList.add('invalid');
+      }
+    });
+    if (Object.keys(errors).length) { toast('Complétez les champs obligatoires'); return; }
+    generateAnalyse(false);
+    showScreen('screen-analyse');
+    toast('Analyse générée');
+  });
+
+  // Sources : fichiers
+  document.getElementById('in-files').addEventListener('change', async (e) => {
+    const files = Array.from(e.target.files || []);
+    for (const f of files) {
+      const excerpt = await readFileText(f);
+      const srcId = genId('SRC');
+      STATE.sources.push({
+        id: srcId,
+        name: f.name,
+        type: f.type || guessType(f.name),
+        size: humanSize(f.size),
+        excerpt: excerpt.slice(0, 4000),
+        addedAt: new Date().toISOString()
+      });
+      logAudit('Import fichier ' + srcId, '', f.name, ['entrant', 'fichier']);
+    }
+    saveState(); renderSources();
+    toast(files.length + ' fichier(s) importé(s)');
+    e.target.value = '';
+  });
+
+  // Sources : URL
+  document.getElementById('btn-url-add').addEventListener('click', async () => {
+    const input = document.getElementById('in-url');
+    const url = input.value.trim();
+    if (!/^https?:\/\/.+\..+/.test(url)) { toast('URL invalide'); return; }
+    let excerpt = '';
+    try {
+      const resp = await fetch(url, { mode: 'cors' });
+      const html = await resp.text();
+      excerpt = cleanText(html.replace(/<script[\s\S]*?<\/script>/gi, ' ')
+        .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+        .replace(/<[^>]+>/g, ' '));
+    } catch (err) {
+      excerpt = '[Contenu distant non récupérable depuis le navigateur — URL tracée comme source.]';
+    }
+    const srcId = genId('SRC');
+    STATE.sources.push({ id: srcId, name: url, type: 'url', size: '—', excerpt: excerpt.slice(0, 4000), addedAt: new Date().toISOString() });
+    if (!STATE.client.siteWeb) { STATE.client.siteWeb = url; const si = document.getElementById('in-site'); if (si) si.value = url; }
+    logAudit('Import URL ' + srcId, '', url, ['entrant', 'url']);
+    input.value = '';
+    saveState(); renderSources();
+    toast('URL ajoutée comme source');
+  });
+
+  // Sources : texte collé
+  document.getElementById('btn-paste-add').addEventListener('click', () => {
+    const ta = document.getElementById('in-paste');
+    const txt = ta.value.trim();
+    if (txt.length < 3) { toast('Texte trop court'); return; }
+    const srcId = genId('SRC');
+    STATE.sources.push({ id: srcId, name: 'Texte collé', type: 'note', size: humanSize(txt.length), excerpt: txt.slice(0, 4000), addedAt: new Date().toISOString() });
+    logAudit('Import texte collé ' + srcId, '', txt.slice(0, 40), ['entrant', 'texte']);
+    ta.value = '';
+    saveState(); renderSources();
+    toast('Texte ajouté comme source');
+  });
+
+  // Sources : extraction & pré-remplissage
+  document.getElementById('btn-extract').addEventListener('click', () => {
+    if (!STATE.sources.length) { toast('Ajoutez au moins une source'); return; }
+    const all = STATE.sources.map(s => s.excerpt).join('\n');
+    const info = extractInfoFromText(all);
+    let count = 0;
+    [['entreprise', 'in-entreprise'], ['siteWeb', 'in-site'], ['interlocuteur', 'in-interlocuteur'], ['objectif', 'in-objectif']].forEach(([key, elId]) => {
+      if (info[key] && !STATE.client[key]) {
+        STATE.client[key] = info[key];
+        const el = document.getElementById(elId);
+        if (el) el.value = info[key];
+        count++;
+      }
+    });
+    logAudit('Extraction sources', '', Object.keys(info).join(', ') || '∅');
+    saveState();
+    toast(count ? count + ' champ(s) pré-rempli(s)' : 'Sources analysées (rien à compléter)');
+  });
+
+  // Analyse : actions
+  document.getElementById('btn-an-modifier').addEventListener('click', () => {
+    const editing = document.querySelector('[data-an].editing');
+    const els = document.querySelectorAll('[data-an]');
+    if (editing) {
+      els.forEach(el => {
+        el.contentEditable = 'false';
+        el.classList.remove('editing');
+        STATE.analyse[el.dataset.an] = el.textContent.trim();
+      });
+      logAudit('Analyse modifiée', '', 'édition manuelle');
+      saveState();
+      toast('Modifications enregistrées');
+    } else {
+      els.forEach(el => { el.contentEditable = 'true'; el.classList.add('editing'); });
+      toast('Modifiez les textes puis « Modifier » pour valider');
+    }
+  });
+  document.getElementById('btn-an-regenerer').addEventListener('click', () => {
+    if (!STATE.client.entreprise) { toast('Renseignez le client'); return; }
+    generateAnalyse(false); renderAnalyse(); toast('Analyse régénérée');
+  });
+  document.getElementById('btn-an-approfondir').addEventListener('click', () => {
+    if (!STATE.client.entreprise) { toast('Renseignez le client'); return; }
+    generateAnalyse(true); renderAnalyse(); toast('Analyse approfondie');
+  });
+
+  // Modules : tout activer / désactiver
+  document.getElementById('btn-mod-all-on').addEventListener('click', () => {
+    CONFIG.modules.forEach(m => STATE.modules[m.id] = true);
+    logAudit('Modules', '', 'tous activés'); saveState(); renderModules(); toast('Tous les modules activés');
+  });
+  document.getElementById('btn-mod-all-off').addEventListener('click', () => {
+    CONFIG.modules.forEach(m => STATE.modules[m.id] = false);
+    logAudit('Modules', '', 'tous désactivés'); saveState(); renderModules(); toast('Tous les modules désactivés');
+  });
+
+  // Devis : exports
+  document.getElementById('btn-export-pdf').addEventListener('click', exportPDF);
+  document.getElementById('btn-export-word').addEventListener('click', exportWord);
+  document.getElementById('btn-export-email').addEventListener('click', exportEmail);
+  document.getElementById('btn-export-json').addEventListener('click', exportJSON);
+
+  // Audit : copier JSON / reset
+  document.getElementById('btn-json-copy').addEventListener('click', async () => {
+    const txt = JSON.stringify(STATE, null, 2);
+    try { await navigator.clipboard.writeText(txt); toast('JSON copié'); }
+    catch (e) { exportJSON(); }
+  });
+  document.getElementById('btn-reset').addEventListener('click', () => {
+    if (!confirm('Réinitialiser tout le dossier ? Cette action efface les données locales.')) return;
+    STATE = defaultState();
+    localStorage.removeItem(STORAGE_KEY);
+    bindInputs();
+    showScreen('screen-accueil');
+    toast('Dossier réinitialisé');
+  });
+
+  // Redessiner le graphique au redimensionnement
+  window.addEventListener('resize', () => {
+    const active = document.querySelector('.screen.active');
+    if (active && active.id === 'screen-roi') renderRoi();
+  });
+}
+
+function guessType(name) {
+  const n = name.toLowerCase();
+  if (n.endsWith('.pdf')) return 'application/pdf';
+  if (n.endsWith('.doc') || n.endsWith('.docx')) return 'application/msword';
+  if (n.endsWith('.eml') || n.endsWith('.msg')) return 'message/rfc822';
+  if (n.match(/\.(png|jpg|jpeg|gif|webp)$/)) return 'image/*';
+  return 'text/plain';
+}
+function humanSize(bytes) {
+  if (bytes < 1024) return bytes + ' o';
+  if (bytes < 1048576) return (bytes / 1024).toFixed(0) + ' Ko';
+  return (bytes / 1048576).toFixed(1) + ' Mo';
+}
+
+/* ---------------------------------------------------------------
+   15. INITIALISATION
+--------------------------------------------------------------- */
+function init() {
+  bindInputs();
+  wireEvents();
+  showScreen('screen-accueil');
+}
+document.addEventListener('DOMContentLoaded', init);
+
+</script>
+</body>
+</html>
