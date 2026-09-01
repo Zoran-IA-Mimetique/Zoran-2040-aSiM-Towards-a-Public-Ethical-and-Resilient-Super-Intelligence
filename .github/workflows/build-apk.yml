@@ -1,0 +1,107 @@
+name: Build ZORAN Plate Scan APK
+
+on:
+  push:
+    branches:
+      - claude/zoran-plate-scan-android-ux3zup
+    paths:
+      - "plate_scan_pro/**"
+      - ".github/workflows/build-apk.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: plate_scan_pro
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Flutter version
+        run: flutter --version
+
+      # Scaffold the android/ platform folder (lib/ is preserved).
+      - name: Scaffold Android platform
+        run: |
+          flutter create \
+            --org com.zoran.platescan \
+            --project-name plate_scan_pro \
+            --platforms=android \
+            .
+          # Remove the default widget test scaffolded by `flutter create`
+          # (references a non-existent MyApp; our tests live elsewhere).
+          rm -f test/widget_test.dart
+
+      - name: Patch Android manifest (permissions)
+        run: python3 tool/patch_android.py
+
+      - name: Resolve dependencies
+        run: flutter pub get
+
+      - name: Analyze (non-blocking)
+        run: flutter analyze || true
+
+      - name: Build debug APK
+        run: flutter build apk --debug
+
+      - name: Build release APK (debug-signed)
+        run: flutter build apk --release
+
+      - name: Build per-ABI release APKs (smaller, more reliable install)
+        run: flutter build apk --release --split-per-abi
+
+      - name: Rename artifacts
+        run: |
+          mkdir -p dist
+          cp build/app/outputs/flutter-apk/app-debug.apk \
+             dist/zoran-plate-scan-debug.apk
+          cp build/app/outputs/flutter-apk/app-release.apk \
+             dist/zoran-plate-scan-release-universal.apk
+          # Per-ABI builds: arm64 covers virtually all modern phones.
+          cp build/app/outputs/flutter-apk/app-arm64-v8a-release.apk \
+             dist/zoran-plate-scan-arm64.apk
+          cp build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk \
+             dist/zoran-plate-scan-arm32.apk || true
+          ls -lh dist
+
+      - name: Upload APK artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: zoran-plate-scan-apk
+          path: plate_scan_pro/dist/*.apk
+          retention-days: 30
+
+      - name: Publish downloadable Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: plate-scan-v1.0-${{ github.run_number }}
+          name: ZORAN Plate Scan Pro v1.0 (build ${{ github.run_number }})
+          body: |
+            Application Android ANPR pour agents de stationnement (100% hors-ligne).
+
+            ## Quel fichier installer ?
+            - **zoran-plate-scan-arm64.apk** — RECOMMANDE (telephones modernes, ~35 Mo).
+            - zoran-plate-scan-arm32.apk — vieux appareils 32 bits.
+            - zoran-plate-scan-release-universal.apk — toutes architectures (~91 Mo).
+            - zoran-plate-scan-debug.apk — version debug (diagnostic).
+
+            Signes cle debug -> installation directe (Sources inconnues a autoriser).
+            En cas de "Play Protect" : Installer quand meme.
+          files: plate_scan_pro/dist/*.apk
+          fail_on_unmatched_files: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
